@@ -35,7 +35,16 @@ export function mergeRoster(prev: RosterChar[], next: RosterChar[]): RosterChar[
     // invents one. Everything else on the newer read wins.
     by.set(k, had ? { ...had, ...c, lvl: Math.max(had.lvl, c.lvl) } : c);
   }
-  return [...by.values()].sort((a, b) => b.lvl - a.lvl);
+
+  // Exactly one character is ever CURRENT, but the badge follows whoever you
+  // were playing when each page was captured - merging pages shot at different
+  // times otherwise leaves two. A page that carries the badge is the newer
+  // truth, so it clears the badge everywhere else.
+  const moved = new Set(next.filter((c) => c.current).map((c) => c.name.toLowerCase()));
+  const out = [...by.values()].map((c) =>
+    moved.size ? { ...c, current: moved.has(c.name.toLowerCase()) } : c
+  );
+  return out.sort((a, b) => b.lvl - a.lvl);
 }
 
 export type Rank = "-" | "B" | "A" | "S" | "SS" | "SSS";
