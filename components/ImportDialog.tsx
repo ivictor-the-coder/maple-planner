@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { parseTooltip, type ParsedItem } from "@/lib/import/tooltip";
 import { SLOTS, TIER_LABEL, type Item } from "@/lib/rules";
-import { rankOf, type RosterChar } from "@/lib/legion";
+import { mergeRoster, rankOf, type RosterChar } from "@/lib/legion";
+import { resolveItem } from "@/lib/itemLookup";
 
 const MAX_FILES = 10;
 /** In-flight requests. All ten at once trips the provider's rate limit; one at
@@ -42,19 +43,6 @@ function familyOf(slot: string): string[] {
   const base = slot.replace(/\d+$/, "");
   if (base === slot) return [];
   return SLOTS.filter((s) => s.id.replace(/\d+$/, "") === base).map((s) => s.id);
-}
-
-function mergeRoster(prev: RosterChar[], next: RosterChar[]): RosterChar[] {
-  const by = new Map(prev.map((c) => [c.name.toLowerCase(), c]));
-  for (const c of next) {
-    const k = c.name.toLowerCase();
-    const had = by.get(k);
-    // Two reads of the same card can disagree; the higher level is the one that
-    // was actually rendered, since a misread digit drops a level far more often
-    // than it invents one.
-    if (!had || c.lvl > had.lvl) by.set(k, { ...had, ...c });
-  }
-  return [...by.values()].sort((a, b) => b.lvl - a.lvl);
 }
 
 /** Crop the item's icon out of the screenshot so the grid can show the real
@@ -183,27 +171,15 @@ export default function ImportDialog({
         // A cropped screenshot region is never as clean as the real sprite, and
         // the model's boxes are loose. If the item database knows this item by
         // name, take its icon and metadata instead.
-        let itemId: number | undefined;
-        let bossDrop: boolean | undefined;
-        let dbSub: string | undefined;
-        let dbLevel = 0;
-        let dbSuperior = false;
-        try {
-          const look = await fetch(`/api/items?q=${encodeURIComponent(j.item.name)}`);
-          const hits = (await look.json())?.items ?? [];
-          const exact = hits.find(
-            (h: { name: string }) => h.name.toLowerCase() === String(j.item.name).toLowerCase()
-          ) as { itemId: number; bossDrop: boolean; subcategory: string; level: number; superior: boolean } | undefined;
-          if (exact) {
-            itemId = exact.itemId;
-            bossDrop = exact.bossDrop;
-            dbSub = exact.subcategory;
-            dbLevel = exact.level ?? 0;
-            dbSuperior = !!exact.superior;
-          }
-        } catch {
-          /* database is a bonus, not a requirement */
-        }
+        // The database gives a pixel-perfect sprite plus real metadata, and
+        // it repairs a misread name when the closest entry is unambiguous -
+        // "Iffa's Ring" is one transposed letter from the real "Ifia's Ring".
+        const db = await resolveItem(String(j.item.name), j.slotGuess ?? undefined);
+
+        const warnings: string[] = [];
+        if (!j.item.star) warnings.push("Star force came back 0 — check it.");
+        if (!db) warnings.push("No database match, so no sprite. Check the spelling of the name.");
+        else if (db.corrected) warnings.push(`Name corrected to "${db.name}".`);
 
         return {
           via: j.model,
@@ -212,15 +188,16 @@ export default function ImportDialog({
           parsed: {
             item: {
               ...j.item,
+              name: db?.name ?? j.item.name,
               icon,
-              itemId,
-              bossDrop,
-              sub: dbSub,
+              itemId: db?.itemId,
+              bossDrop: db?.bossDrop,
+              sub: db?.sub,
               // The database level is authoritative. The model reading "Lv. 95"
               // off an item that is really Lv. 110 is what produced star counts
               // above the item's own cap.
-              lvl: dbLevel || j.item.lvl,
-              sup: j.item.sup || (dbSuperior ? 1 : 0),
+              lvl: db?.level || j.item.lvl,
+              sup: j.item.sup || (db?.superior ? 1 : 0),
               p: [p[0] ?? "", p[1] ?? "", p[2] ?? ""],
               f: [f[0] ?? "", f[1] ?? "", f[2] ?? ""],
             },
@@ -230,7 +207,7 @@ export default function ImportDialog({
               potLines: p.filter(Boolean).length, flameLines: f.filter(Boolean).length,
               superior: !!j.item.sup,
             },
-            warnings: j.item.star ? [] : ["Star force came back 0 — check it."],
+            warnings,
             raw: "",
           },
         };
