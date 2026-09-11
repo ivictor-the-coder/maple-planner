@@ -145,7 +145,12 @@ const OFF: Record<MainStat, MainStat[]> = {
   int: ["str", "dex", "luk"],
   luk: ["str", "int", "dex"],
 };
-const JUNK = /\b(def|defense|max ?mp|mp|speed|jump|avoid|accuracy|knockback)\b/i;
+// Flat defense, MP and movement stats do nothing for damage.
+const JUNK = /\b(max ?mp|mp|speed|jump|avoid|accuracy|knockback)\b/i;
+const FLAT_DEF = /\bdef(ense)?\b/i;
+// ...but Ignore Defense is a premium line and must never be mistaken for flat
+// defense just because it contains the same word.
+const IGNORE_DEF = /\bignore\s*(enemy\s*)?def(ense)?\b|\bied\b/i;
 const TIER_NEXT: Record<Tier, Tier | null> = {
   none: "rare", rare: "epic", epic: "unique", unique: "legendary", legendary: null,
 };
@@ -157,7 +162,8 @@ export const TIER_LABEL: Record<Tier, string> = {
 export function isDeadLine(txt: string, main: MainStat): boolean {
   if (!txt) return false;
   const t = txt.toLowerCase();
-  if (JUNK.test(t)) return true;
+  if (IGNORE_DEF.test(t)) return false;
+  if (JUNK.test(t) || FLAT_DEF.test(t)) return true;
   if (/all ?stat/.test(t)) return false;
   return OFF[main].some((o) => new RegExp(`\\b${o}\\b`).test(t));
 }
@@ -240,10 +246,12 @@ export function advise(slot: SlotDef, ch: Character): Rec[] {
         add(3, "mid", `Currently ${pct}% effective ${label}.`);
       }
     } else if (slot.pot === "atk") {
-      const good = lines.filter((l) => /boss|ignore|att/i.test(l)).length;
+      // Plain "Damage +12%" is a strong line here too, not just boss/IED/ATT.
+      const good = lines.filter((l) => /boss|ignore|\batt\b|attack|damage/i.test(l)).length;
       if (good < 2) add(2, "mid", "Aim for Boss Damage % / Ignore DEF % / ATT %.",
         "Highest damage-per-cube slot in the game. Target boss/boss/IED or att/boss/IED.");
-      else add(3, "ok", `${good} damage lines — good.`);
+      else add(3, "ok", `${good} damage lines — good.`,
+        good >= 3 ? "This slot is finished." : "A third damage line is the next step.");
     } else if (slot.pot === "crit") {
       const cd = lines.filter((l) => /crit/i.test(l)).length;
       if (!cd) add(3, "mid", "Gloves are the only slot that rolls Critical Damage %.",
