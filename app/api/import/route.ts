@@ -19,12 +19,19 @@ export const maxDuration = 60;
 //   nex-agi/nex-n2.5-pro:free      404 — no endpoints
 //   inclusionai/ling-3.0-flash-vl  responded
 //   openrouter/free                responded
-// deepseek-v4.1-flash is paid but ~$0.15/M input, i.e. a fraction of a cent
-// per screenshot, and is far stronger than the free tier at reading a tooltip.
+// Costs are per million input tokens; one screenshot is a small fraction of one.
+//   meta/muse-spark-1.3-contributor  $0.10  cheaper because prompts are shared
+//                                           with the provider
+//   z-ai/glm-5.3-flash               $0.15  note: plain glm-5.3 has NO vision,
+//                                           only the -flash variant can see images
+//   deepseek/deepseek-v4.1-flash     $0.15
+//
+// The free tier was dropped from the chain: of five probed, three returned
+// 429/403/404 and the two that answered were weak at this task.
 const DEFAULT_MODELS = [
+  "meta/muse-spark-1.3-contributor",
+  "z-ai/glm-5.3-flash",
   "deepseek/deepseek-v4.1-flash",
-  "inclusionai/ling-3.0-flash-vl:free",
-  "openrouter/free",
 ];
 
 const PROMPT = `You are reading a screenshot of the game MapleStory.
