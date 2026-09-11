@@ -7,6 +7,8 @@ import {
   type Character, type Item, type Rec, type SlotDef, type Tier,
 } from "@/lib/rules";
 import { getStore } from "@/lib/storage";
+import ImportDialog from "@/components/ImportDialog";
+import type { ParsedItem } from "@/lib/import/tooltip";
 
 const PRI_LABEL = ["", "NOW", "SOON", "LATER", "DONE"];
 
@@ -26,6 +28,7 @@ export default function Planner() {
   const [ch, setCh] = useState<Character>(() => exampleCharacter());
   const [hover, setHover] = useState<string | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
+  const [importing, setImporting] = useState(false);
   const [ready, setReady] = useState(false);
   const store = useMemo(() => getStore(), []);
 
@@ -100,7 +103,8 @@ export default function Planner() {
               </div>
             ))}
           </div>
-          <div style={{ display: "flex", gap: 6, marginTop: 12 }}>
+          <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
+            <button className="btn p" onClick={() => setImporting(true)}>Import tooltip</button>
             <button className="btn" onClick={() => update(exampleCharacter())}>Example</button>
             <button className="btn" onClick={() => update(emptyCharacter())}>Clear</button>
           </div>
@@ -193,6 +197,17 @@ export default function Planner() {
           )}
         </div>
       </section>
+
+      {importing && (
+        <ImportDialog
+          onClose={() => setImporting(false)}
+          onApply={(slotId: string, parsed: ParsedItem) => {
+            update({ ...ch, items: { ...ch.items, [slotId]: parsed.item } });
+            setImporting(false);
+            setHover(slotId);
+          }}
+        />
+      )}
 
       {editing && editSlot && (
         <ItemEditor
