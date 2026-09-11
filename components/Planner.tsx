@@ -52,10 +52,10 @@ export default function Planner() {
   const recs = slot ? advise(slot, ch) : charAdvice(ch);
   const label = STAT_LABEL[ch.main];
 
-  const statRows: Array<[string, keyof Character["stats"]]> = [
-    [`Main stat (${label})`, "main"], ["Attack", "att"], ["Crit rate %", "crit"],
-    ["Crit damage %", "critdmg"], ["Boss damage %", "boss"], ["Ignore DEF %", "ied"],
-    ["Max HP", "hp"], ["Arcane Power", "arcane"], ["Star Force total", "starforce"],
+  const statGroups: Array<[string, Array<[string, keyof Character["stats"]]>]> = [
+    ["Offense", [[label, "main"], ["Attack", "att"], ["Crit rate %", "crit"], ["Crit dmg %", "critdmg"], ["Boss dmg %", "boss"], ["Ignore DEF %", "ied"]]],
+    ["Survivability", [["Max HP", "hp"]]],
+    ["Progression", [["Arcane Power", "arcane"], ["Star Force", "starforce"]]],
   ];
 
   function statClass(k: keyof Character["stats"]) {
@@ -90,21 +90,24 @@ export default function Planner() {
             <div className="l">Combat Power</div>
             <div className="v">{ch.cp ? ch.cp.toLocaleString() : "—"}</div>
           </div>
-          <div>
-            {statRows.map(([lbl, key]) => (
-              <div className={statClass(key)} key={key}>
-                <span className="k">{lbl}</span>
-                <input
-                  type="number"
-                  value={ch.stats[key] || 0}
-                  aria-label={lbl}
-                  onChange={(e) =>
-                    update({ ...ch, stats: { ...ch.stats, [key]: parseFloat(e.target.value) || 0 } })
-                  }
-                />
-              </div>
-            ))}
-          </div>
+          {statGroups.map(([group, rows]) => (
+            <div key={group}>
+              <div className="statgroup">{group}</div>
+              {rows.map(([lbl, key]) => (
+                <div className={statClass(key)} key={key}>
+                  <span className="k">{lbl}</span>
+                  <input
+                    type="number"
+                    value={ch.stats[key] || 0}
+                    aria-label={lbl}
+                    onChange={(e) =>
+                      update({ ...ch, stats: { ...ch.stats, [key]: parseFloat(e.target.value) || 0 } })
+                    }
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
           <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
             <button className="btn p" onClick={() => setImporting(true)}>Import tooltip</button>
             <button className="btn" onClick={() => update(exampleCharacter())}>Example</button>
@@ -120,42 +123,46 @@ export default function Planner() {
 
       {/* equipment */}
       <section className="card">
-        <h2>Equipment — click to edit, hover for advice</h2>
-        <div className="grid-eq" onMouseLeave={() => setHover(null)}>
-          {SLOTS.map((s) => {
-            const it = ch.items[s.id];
-            const urgent = it ? advise(s, ch).some((r) => r.lv === "hi") : false;
-            return (
-              <button
-                key={s.id}
-                className={`slot${it ? "" : " empty"}`}
-                style={{ gridColumn: s.c, gridRow: s.r }}
-                onMouseEnter={() => setHover(s.id)}
-                onFocus={() => setHover(s.id)}
-                onClick={() => setEditing(s.id)}
-              >
-                <span className="sn">{s.n}</span>
-                {it?.itemId ? (
-                  <span style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, minHeight: 0 }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`https://api.maplestory.net/item/${it.itemId}/icon`}
-                      alt={it.name}
-                      title={it.name}
-                      style={{ maxWidth: "78%", maxHeight: "78%", imageRendering: "pixelated" }}
-                    />
-                  </span>
-                ) : (
-                  <span className="it">{it?.name ?? ""}</span>
-                )}
-                <span className="bot">
-                  <span className="st">{it && s.sf ? `★${it.star || 0}` : ""}</span>
-                  {it && s.pot !== "no" && <span className={`pt ${it.pot || "none"}`} />}
-                </span>
-                {urgent && <span className="flag-dot" />}
-              </button>
-            );
-          })}
+        <h2>Equipment</h2>
+        <div className="eqwin">
+          <div className="grid-eq" onMouseLeave={() => setHover(null)}>
+            {SLOTS.map((s) => {
+              const it = ch.items[s.id];
+              const urgent = it ? advise(s, ch).some((r) => r.lv === "hi") : false;
+              return (
+                <button
+                  key={s.id}
+                  className={`slot${it ? "" : " empty"}`}
+                  style={{ gridColumn: s.c, gridRow: s.r }}
+                  title={it ? `${it.name} — click to edit` : `${s.n} — empty`}
+                  onMouseEnter={() => setHover(s.id)}
+                  onFocus={() => setHover(s.id)}
+                  onClick={() => setEditing(s.id)}
+                >
+                  {it && s.pot !== "no" && <span className={`slot-tier ${it.pot || "none"}`} />}
+                  {it?.itemId ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-icon" src={`https://api.maplestory.net/item/${it.itemId}/icon`} alt={it.name} />
+                  ) : it ? (
+                    <span className="slot-abbr">{it.name}</span>
+                  ) : (
+                    <span className="slot-label">{s.n}</span>
+                  )}
+                  {it && s.sf && (
+                    <span className={`slot-star${(it.star || 0) === 0 ? " zero" : ""}`}>★{it.star || 0}</span>
+                  )}
+                  {urgent && <span className="slot-alert" />}
+                </button>
+              );
+            })}
+          </div>
+          <div className="eq-legend">
+            <span><i style={{ background: "var(--leg)" }} />Legendary</span>
+            <span><i style={{ background: "var(--uni)" }} />Unique</span>
+            <span><i style={{ background: "var(--epi)" }} />Epic</span>
+            <span><i style={{ background: "var(--rar)" }} />Rare</span>
+            <span><i style={{ background: "var(--bad)", borderRadius: "50%" }} />Needs attention</span>
+          </div>
         </div>
       </section>
 
@@ -165,19 +172,24 @@ export default function Planner() {
         <div className="tip">
           {slot && (
             <>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
-                <h3 style={{ fontSize: "1rem", fontWeight: 600 }}>{ch.items[slot.id]?.name ?? "Empty"}</h3>
+              <div className="tiphead">
+                {ch.items[slot.id]?.itemId && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={`https://api.maplestory.net/item/${ch.items[slot.id].itemId}/icon`} alt="" />
+                )}
+                <h3>{ch.items[slot.id]?.name ?? "Empty"}</h3>
                 {ch.items[slot.id] && (
                   <>
                     <span className={`tag ${ch.items[slot.id].pot || "none"}`}>
                       {TIER_LABEL[ch.items[slot.id].pot || "none"]}
                     </span>
                     {slot.sf && (
-                      <span className="tag none">
+                      <span className="tag plain">
                         ★ {ch.items[slot.id].star || 0}/{sfCap(ch.items[slot.id])}
                       </span>
                     )}
-                    {ch.items[slot.id].lvl > 0 && <span className="tag none">Lv. {ch.items[slot.id].lvl}</span>}
+                    {ch.items[slot.id].lvl > 0 && <span className="tag plain">Lv. {ch.items[slot.id].lvl}</span>}
+                    {ch.items[slot.id].bossDrop && <span className="tag plain">boss drop</span>}
                   </>
                 )}
               </div>
@@ -185,17 +197,19 @@ export default function Planner() {
                 const arr = (ch.items[slot.id]?.[key] || []).filter(Boolean);
                 if (!arr.length) return null;
                 return (
-                  <div key={key}>
+                  <div key={key} style={{ display: "flex", flexDirection: "column", gap: 5 }}>
                     <div className="sub-h">{key === "p" ? "Potential" : "Flame"}</div>
-                    {arr.map((x, i) => {
-                      const dead = isDeadLine(x, ch.main);
-                      return (
-                        <div className={`line${dead ? " dead" : ""}`} key={i}>
-                          <span className="t">{x}</span>
-                          {dead && <span className="b">dead</span>}
-                        </div>
-                      );
-                    })}
+                    <div className="linebox">
+                      {arr.map((x, i) => {
+                        const dead = isDeadLine(x, ch.main);
+                        return (
+                          <div className={`line${dead ? " dead" : ""}`} key={i}>
+                            <span className="t">{x}</span>
+                            {dead && <span className="b">dead</span>}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 );
               })}

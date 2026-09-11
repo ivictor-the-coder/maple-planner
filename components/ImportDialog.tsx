@@ -4,14 +4,34 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { parseTooltip, type ParsedItem } from "@/lib/import/tooltip";
 import { SLOTS, TIER_LABEL } from "@/lib/rules";
 
-/** MapleStory tooltips are light text on a dark panel, and small. Tesseract
- *  does much better on large dark-on-light text, so upscale and invert. */
+/** Otsu's method: pick the grey level that best separates the histogram into
+ *  two classes. Far more robust than a fixed threshold on a semi-transparent
+ *  tooltip, where the game scene shows through the background. */
+function otsuThreshold(hist: number[], total: number): number {
+  let sum = 0;
+  for (let i = 0; i < 256; i++) sum += i * hist[i];
+  let sumB = 0, wB = 0, best = 0, thr = 127;
+  for (let t = 0; t < 256; t++) {
+    wB += hist[t];
+    if (!wB) continue;
+    const wF = total - wB;
+    if (!wF) break;
+    sumB += t * hist[t];
+    const mB = sumB / wB;
+    const mF = (sum - sumB) / wF;
+    const between = wB * wF * (mB - mF) * (mB - mF);
+    if (between > best) { best = between; thr = t; }
+  }
+  return thr;
+}
+
+/** Upscale, grey, binarise, and orient to dark-text-on-white. */
 function preprocess(img: HTMLImageElement): string {
-  const scale = Math.min(4, Math.max(2, 900 / Math.max(img.width, 1)));
+  const scale = Math.min(5, Math.max(2.5, 1800 / Math.max(img.width, 1)));
   const c = document.createElement("canvas");
   c.width = Math.round(img.width * scale);
   c.height = Math.round(img.height * scale);
-  const ctx = c.getContext("2d");
+  const ctx = c.getContext("2d", { willReadFrequently: true });
   if (!ctx) return c.toDataURL();
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = "high";
@@ -19,16 +39,29 @@ function preprocess(img: HTMLImageElement): string {
 
   const d = ctx.getImageData(0, 0, c.width, c.height);
   const px = d.data;
-  let sum = 0;
-  for (let i = 0; i < px.length; i += 4) sum += (px[i] + px[i + 1] + px[i + 2]) / 3;
-  const mean = sum / (px.length / 4);
-  const dark = mean < 128;
+  const n = px.length / 4;
 
-  for (let i = 0; i < px.length; i += 4) {
-    let g = 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2];
-    if (dark) g = 255 - g;
-    g = g < 110 ? Math.max(0, g - 45) : Math.min(255, g + 45);
-    px[i] = px[i + 1] = px[i + 2] = g;
+  const grey = new Uint8Array(n);
+  const hist = new Array(256).fill(0);
+  for (let i = 0, j = 0; i < px.length; i += 4, j++) {
+    const g = (0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]) | 0;
+    grey[j] = g;
+    hist[g]++;
+  }
+
+  const thr = otsuThreshold(hist, n);
+
+  // Text is the minority class. Whichever side of the threshold has fewer
+  // pixels is the glyphs, and that side must end up black.
+  let above = 0;
+  for (let j = 0; j < n; j++) if (grey[j] > thr) above++;
+  const textIsBright = above < n / 2;
+
+  for (let i = 0, j = 0; i < px.length; i += 4, j++) {
+    const isText = textIsBright ? grey[j] > thr : grey[j] <= thr;
+    const v = isText ? 0 : 255;
+    px[i] = px[i + 1] = px[i + 2] = v;
+    px[i + 3] = 255;
   }
   ctx.putImageData(d, 0, 0);
   return c.toDataURL("image/png");
@@ -79,6 +112,13 @@ export default function ImportDialog({
         logger: (m: { status: string; progress: number }) => {
           if (m.status === "recognizing text") setProgress(Math.round(m.progress * 100));
         },
+      });
+      // A tooltip is one uniform block, and its vocabulary is small — telling
+      // Tesseract both stops it inventing characters that can't occur.
+      await worker.setParameters({
+        tessedit_pageseg_mode: "6" as unknown as never,
+        tessedit_char_whitelist:
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-%:.,()/' ",
       });
       const { data } = await worker.recognize(prepped);
       await worker.terminate();
