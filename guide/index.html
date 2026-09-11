@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MapleStory Progression Guide</title>
+<meta name="description" content="A living progression reference for MapleStory on Heroic worlds: gear, star force, symbols, potential, flames, bosses, training, V Matrix and HEXA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--ground:#F3F4F9;--panel:#FFF;--panel-2:#EDEFF7;--line:#DBDEEC;--line-soft:#E8EAF3;--ink:#171A29;--ink-2:#4C5372;--ink-3:#767D9B;--accent:#3B4BA6;--accent-2:#2C3A88;--accent-soft:#E2E6F8;--amber:#8A6210;--amber-soft:#F5EAD2;--r:4px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0E1017;--panel:#161925;--panel-2:#1D2130;--line:#2B3146;--line-soft:#222739;--ink:#E8EAF4;--ink-2:#A2A9C3;--ink-3:#79809C;--accent:#8C9BF0;--accent-2:#AAB6F7;--accent-soft:#1C2140;--amber:#E0B35B;--amber-soft:#342A14}}
+:root[data-theme="dark"]{--ground:#0E1017;--panel:#161925;--panel-2:#1D2130;--line:#2B3146;--line-soft:#222739;--ink:#E8EAF4;--ink-2:#A2A9C3;--ink-3:#79809C;--accent:#8C9BF0;--accent-2:#AAB6F7;--accent-soft:#1C2140;--amber:#E0B35B;--amber-soft:#342A14}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:'Public Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Familjen Grotesk',system-ui,sans-serif;margin:0;text-wrap:balance;letter-spacing:-.015em}
+code{font-family:'JetBrains Mono',ui-monospace,monospace}
+.mast{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.mast-in{max-width:1180px;margin:0 auto;padding:13px 22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:2px;margin-right:auto;min-width:0}
+.brand h1{font-size:1.12rem;font-weight:700}
+.brand .meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.67rem;letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase;margin:0}
+.brand .meta a{color:var(--accent-2)}
+.vchip{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;background:var(--accent-soft);color:var(--accent-2);border:1px solid var(--accent);padding:3px 8px;letter-spacing:.04em}
+#q{font-family:'Public Sans',sans-serif;font-size:.88rem;background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:8px 12px;min-width:220px;border-radius:var(--r)}
+#q:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+#count{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;color:var(--ink-3);min-width:9ch}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 80px;display:grid;grid-template-columns:186px minmax(0,1fr);gap:34px;align-items:start}
+nav{position:sticky;top:86px;display:flex;flex-direction:column;gap:1px}
+nav a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 10px;font-size:.83rem;color:var(--ink-2);text-decoration:none;border-left:2px solid transparent;border-radius:0 var(--r) var(--r) 0}
+nav a:hover{background:var(--panel-2);color:var(--ink)}
+nav a.on{border-left-color:var(--accent);color:var(--accent-2);background:var(--accent-soft);font-weight:600}
+nav a .n{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.65rem;color:var(--ink-3)}
+main{display:flex;flex-direction:column;gap:40px;min-width:0}
+.sec{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sec>h2{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);padding-bottom:8px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',ui-monospace,monospace}
+.node{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px 12px;display:flex;flex-direction:column;gap:11px;min-width:0}
+.node-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.node-h h3{font-size:1.03rem;font-weight:600}
+.badge{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.62rem;letter-spacing:.07em;background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber);padding:2px 6px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.87rem}
+th{text-align:left;font-weight:500;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--panel-2)}
+td.k{font-weight:500;white-space:nowrap}
+.points{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.points li{position:relative;padding-left:17px;font-size:.9rem}
+.points li::before{content:"";position:absolute;left:3px;top:.62em;width:5px;height:5px;background:var(--accent);border-radius:50%}
+.note{margin:0;font-size:.84rem;color:var(--ink-2);background:var(--panel-2);border-left:2px solid var(--accent);padding:9px 12px;border-radius:0 var(--r) var(--r) 0}
+.src{margin:0;padding-top:4px;border-top:1px solid var(--line-soft);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.63rem;color:var(--ink-3)}
+.empty{display:none;padding:40px 0;text-align:center;color:var(--ink-3);font-size:.9rem}
+.empty.on{display:block}
+footer{max-width:1180px;margin:0 auto;padding:18px 22px 60px;color:var(--ink-3);font-size:.76rem;border-top:1px solid var(--line)}
+@media (max-width:900px){.wrap{grid-template-columns:1fr;gap:20px;padding-top:16px}nav{position:static;flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:6px}nav a{border-left:0;border-bottom:2px solid transparent;white-space:nowrap;border-radius:var(--r)}nav a.on{border-left:0;border-bottom-color:var(--accent)}nav a .n{display:none}#q{min-width:0;flex:1}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+<div class="brand"><h1>MapleStory Progression Guide</h1><p class="meta" id="meta"></p></div>
+<span class="vchip" id="vchip"></span>
+<input id="q" type="search" placeholder="Filter every row…" aria-label="Filter rows" autocomplete="off">
+<span id="count"></span>
+</div></header>
+<div class="wrap"><nav id="nav"></nav><main id="main"><p class="empty" id="empty">Nothing matches that.</p></main></div>
+<footer>Generated from a tagged content graph; every section carries its own source and verified date. Rebuilt each Thursday against the newest GMS patch notes — sections a patch did not touch keep their older verified date on purpose.</footer>
+<script>
+(function(){
+var PATCH_URL="https://www.nexon.com/maplestory/news/update/44597/updated-9-10-v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes";
+var slug=function(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')};
+var el=function(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n};
+
+function parseCSV(text){
+  var rows=[],row=[],cur='',inQ=false;
+  for(var i=0;i<text.length;i++){
+    var c=text[i];
+    if(inQ){ if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++} else {inQ=false} } else {cur+=c} }
+    else if(c==='"'){inQ=true}
+    else if(c===','){row.push(cur);cur=''}
+    else if(c==='\n'){row.push(cur);rows.push(row);row=[];cur=''}
+    else if(c!=='\r'){cur+=c}
+  }
+  row.push(cur);rows.push(row);
+  return rows;
+}
+
+function build(rows){
+  var meta={},secs=[],sec=null,node=null;
+  meta.title=rows[0][0];meta.version=rows[0][1];meta.name=rows[0][2];
+  meta.patch=(rows[1]||[])[0]||'';meta.built=(rows[1]||[])[1]||'';meta.world=(rows[1]||[])[2]||'';
+  for(var i=2;i<rows.length;i++){
+    var r=rows[i],first=r[0]||'';
+    var blank=r.length===1&&first==='';
+    if(blank){continue}
+    if(first.indexOf('## ')===0){sec={name:first.slice(3),nodes:[]};secs.push(sec);node=null;continue}
+    if(first.indexOf('# ')===0){node={title:first.slice(2),headers:null,rows:[],note:'',src:''};if(sec)sec.nodes.push(node);continue}
+    if(!node){continue}
+    if(first==='NOTE'){node.note=r[1]||'';continue}
+    if(first==='src'){node.src=r[1]||'';continue}
+    if(r.length>1){ if(!node.headers&&!node.rows.length){node.headers=r}else{node.rows.push(r)} }
+    else{node.rows.push(first)}
+  }
+  return {meta:meta,secs:secs};
+}
+
+fetch('guide.csv').then(function(r){return r.text()}).then(function(t){render(build(parseCSV(t)))})
+.catch(function(){document.getElementById('empty').className='empty on';
+  document.getElementById('empty').textContent='Could not load the guide data.'});
+
+function render(d){
+  var CUR=d.meta.version;
+  document.title='MapleStory Progression Guide — '+CUR;
+  document.getElementById('vchip').textContent=CUR;
+  var m=document.getElementById('meta');
+  m.appendChild(document.createTextNode(d.meta.name+' · '+d.meta.patch+' · '+d.meta.built+' · '+d.meta.world+' · '));
+  var a=el('a',null,'patch notes');a.href=PATCH_URL;a.target='_blank';a.rel='noopener';m.appendChild(a);
+
+  var main=document.getElementById('main'),nav=document.getElementById('nav'),empty=document.getElementById('empty');
+  var nodes=[],rowsOf=[],secEls=[],links=[];
+
+  d.secs.forEach(function(s){
+    if(!s.nodes.length)return;
+    var secEl=el('section','sec');secEl.id='sec-'+slug(s.name);
+    secEl.appendChild(el('h2',null,s.name));
+    s.nodes.forEach(function(n){
+      var art=el('article','node');
+      var idm=/\|\s*([a-z0-9.]+)\s*$/i.exec(n.src);
+      if(idm)art.id=idm[1];
+      var h=el('div','node-h');h.appendChild(el('h3',null,n.title));
+      if(n.src.indexOf(CUR)!==-1&&/patch notes/i.test(n.src))h.appendChild(el('span','badge',CUR));
+      art.appendChild(h);
+      var myRows=[];
+      if(n.headers){
+        var sc=el('div','scroll'),tb=el('table'),th=el('thead'),hr=el('tr');
+        n.headers.forEach(function(x){hr.appendChild(el('th',null,x))});
+        th.appendChild(hr);tb.appendChild(th);
+        var body=el('tbody');
+        n.rows.forEach(function(r){
+          var tr=el('tr');
+          (Array.isArray(r)?r:[r]).forEach(function(c,i){tr.appendChild(el('td',i===0?'k':null,c))});
+          body.appendChild(tr);myRows.push(tr);
+        });
+        tb.appendChild(body);sc.appendChild(tb);art.appendChild(sc);
+      }else{
+        var ul=el('ul','points');
+        n.rows.forEach(function(r){var li=el('li',null,Array.isArray(r)?r.join(' '):r);ul.appendChild(li);myRows.push(li)});
+        art.appendChild(ul);
+      }
+      if(n.note)art.appendChild(el('p','note',n.note));
+      if(n.src)art.appendChild(el('p','src',n.src));
+      secEl.appendChild(art);nodes.push(art);rowsOf.push(myRows);
+    });
+    main.insertBefore(secEl,empty);secEls.push(secEl);
+    var link=el('a',null,s.name);link.href='#'+secEl.id;
+    link.appendChild(el('span','n',String(s.nodes.length)));
+    nav.appendChild(link);links.push(link);
+  });
+
+  var q=document.getElementById('q'),count=document.getElementById('count');
+  var total=rowsOf.reduce(function(a,b){return a+b.length},0);
+  count.textContent=total+' rows';
+  function filter(){
+    var t=q.value.trim().toLowerCase();
+    if(!t){
+      nodes.forEach(function(n,i){n.hidden=false;rowsOf[i].forEach(function(r){r.hidden=false})});
+      secEls.forEach(function(s){s.hidden=false});
+      empty.classList.remove('on');count.textContent=total+' rows';return;
+    }
+    var shown=0;
+    nodes.forEach(function(n,i){
+      var titleHit=n.querySelector('h3').textContent.toLowerCase().indexOf(t)!==-1,any=false;
+      rowsOf[i].forEach(function(r){
+        var hit=titleHit||r.textContent.toLowerCase().indexOf(t)!==-1;
+        r.hidden=!hit;if(hit){any=true;shown++}
+      });
+      n.hidden=!any;
+    });
+    secEls.forEach(function(s){s.hidden=!s.querySelector('.node:not([hidden])')});
+    empty.classList.toggle('on',shown===0);
+    count.textContent=shown+' of '+total;
+  }
+  q.addEventListener('input',filter);
+  q.addEventListener('keydown',function(e){if(e.key==='Escape'){q.value='';filter()}});
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return;
+        links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)});
+      });
+    },{rootMargin:'-92px 0px -70% 0px'});
+    secEls.forEach(function(s){io.observe(s)});
+  }
+}
+})();
+</script>
+</body>
+</html>

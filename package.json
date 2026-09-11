@@ -1,0 +1,12 @@
+﻿{
+  "name": "maple-planner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MapleStory progression planner and living guide",
+  "scripts": {
+    "build": "node tools/build-site.js"
+  },
+  "devDependencies": {
+    "exceljs": "^4.4.0"
+  }
+}

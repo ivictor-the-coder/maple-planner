@@ -1,0 +1,6 @@
+﻿node_modules/
+*.xlsx
+tools/MapleStory-Progression-Guide.csv
+.vercel/
+.DS_Store
+Thumbs.db
