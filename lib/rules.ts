@@ -17,6 +17,9 @@ export interface Item {
   itemId?: number;
   /** Boss-drop gear is flame advantaged: tier 4 minimum, up to tier 7. */
   bossDrop?: boolean;
+  /** Icon cropped out of an imported screenshot, as a data URL. Used when the
+   *  item database has no match — an imported item still shows its real sprite. */
+  icon?: string;
 }
 
 export interface Stats {
