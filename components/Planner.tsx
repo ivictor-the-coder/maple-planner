@@ -139,12 +139,14 @@ export default function Planner() {
                   onClick={() => setEditing(s.id)}
                 >
                   {it && s.pot !== "no" && <span className={`slot-tier ${it.pot || "none"}`} />}
-                  {it?.icon ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img className="slot-icon" src={it.icon} alt={it.name} />
-                  ) : it?.itemId ? (
+                  {/* Database sprite first — it's pixel perfect. The screenshot
+                      crop is only a fallback for items the database can't match. */}
+                  {it?.itemId ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img className="slot-icon" src={`https://api.maplestory.net/item/${it.itemId}/icon`} alt={it.name} />
+                  ) : it?.icon ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-icon" src={it.icon} alt={it.name} />
                   ) : it ? (
                     <span className="slot-abbr">{it.name}</span>
                   ) : (
