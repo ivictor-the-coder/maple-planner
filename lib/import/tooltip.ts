@@ -160,11 +160,15 @@ export function parseTooltip(input: string): ParsedItem {
   }
   if (!name) warnings.push("Could not read the item name.");
 
-  /* ---- required level ---- */
+  /* ---- required level ----
+     Only ever trust an explicit "Required Level". A bare "Lv. 244" also appears
+     in the character HUD, and reading that gives you your own level instead of
+     the item's. */
   let lvl = 0;
-  const lvlMatch = text.match(/required level\s*:?\s*lv\.?\s*(\d{1,3})/i) || text.match(/\blv\.?\s*(\d{2,3})\b/i);
+  const lvlMatch = text.match(/required\s*level\s*:?\s*lv\.?\s*(\d{1,3})/i);
   if (lvlMatch) lvl = parseInt(lvlMatch[1], 10);
-  else warnings.push("Could not read the required level.");
+  if (lvl > 300) lvl = 0;
+  if (!lvl) warnings.push("Could not read the required level — crop tighter, or set it yourself.");
 
   /* ---- slot ---- */
   let slotGuess: string | null = null;
