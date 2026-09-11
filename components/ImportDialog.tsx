@@ -79,6 +79,7 @@ export default function ImportDialog({
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ParsedItem | null>(null);
+  const [via, setVia] = useState<string | null>(null);
   const [slotId, setSlotId] = useState<string>("hat");
   const [text, setText] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
@@ -94,18 +95,71 @@ export default function ImportDialog({
     if (parsed.slotGuess) setSlotId(parsed.slotGuess);
   }, []);
 
-  const runOcr = useCallback(async (file: File | Blob) => {
-    setBusy(true); setError(null); setProgress(0);
+  /** Cap the longest side so a full-screen grab stays a reasonable payload. */
+  const toDataUrl = useCallback((img: HTMLImageElement, max = 2000): string => {
+    const s = Math.min(1, max / Math.max(img.width, img.height));
+    const c = document.createElement("canvas");
+    c.width = Math.round(img.width * s);
+    c.height = Math.round(img.height * s);
+    const ctx = c.getContext("2d");
+    if (!ctx) return "";
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(img, 0, 0, c.width, c.height);
+    return c.toDataURL("image/jpeg", 0.92);
+  }, []);
+
+  const loadImage = useCallback(async (file: File | Blob): Promise<HTMLImageElement> => {
+    const url = URL.createObjectURL(file);
     try {
-      const url = URL.createObjectURL(file);
-      const img = await new Promise<HTMLImageElement>((res, rej) => {
+      return await new Promise<HTMLImageElement>((res, rej) => {
         const i = new Image();
         i.onload = () => res(i);
         i.onerror = () => rej(new Error("That file could not be read as an image."));
         i.src = url;
       });
+    } finally {
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+    }
+  }, []);
+
+  /** Vision model first — it handles full screenshots and cursor occlusion.
+   *  Local OCR is the fallback when no key is configured or every model is busy. */
+  const runImport = useCallback(async (file: File | Blob) => {
+    setBusy(true); setError(null); setProgress(0); setVia(null);
+    try {
+      const img = await loadImage(file);
+
+      setVia("reading the screenshot…");
+      try {
+        const res = await fetch("/api/import", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: toDataUrl(img) }),
+        });
+        const j = await res.json();
+        if (res.ok && j.item?.name) {
+          setVia(`read by ${j.model}`);
+          accept({
+            item: { ...j.item, p: [j.item.p[0] ?? "", j.item.p[1] ?? "", j.item.p[2] ?? ""], f: [j.item.f[0] ?? "", j.item.f[1] ?? "", j.item.f[2] ?? ""] },
+            slotGuess: j.slotGuess ?? null,
+            found: {
+              name: !!j.item.name, lvl: j.item.lvl > 0, pot: j.item.pot !== "none",
+              potLines: j.item.p.filter(Boolean).length,
+              flameLines: j.item.f.filter(Boolean).length,
+              superior: !!j.item.sup,
+            },
+            warnings: j.item.star ? [] : ["Star force wasn't read — check it."],
+            raw: "",
+          });
+          return;
+        }
+        if (j.error) setError(`${j.error} Falling back to local OCR.`);
+      } catch {
+        setError("Vision import failed. Falling back to local OCR.");
+      }
+
+      setVia("local OCR (lower accuracy)");
       const prepped = preprocess(img);
-      URL.revokeObjectURL(url);
 
       const { createWorker } = await import("tesseract.js");
       const worker = await createWorker("eng", 1, {
@@ -141,11 +195,11 @@ export default function ImportDialog({
       if (tab !== "shot") return;
       const item = Array.from(e.clipboardData?.items ?? []).find((i) => i.type.startsWith("image/"));
       const blob = item?.getAsFile();
-      if (blob) { e.preventDefault(); void runOcr(blob); }
+      if (blob) { e.preventDefault(); void runImport(blob); }
     };
     window.addEventListener("paste", onPaste);
     return () => window.removeEventListener("paste", onPaste);
-  }, [tab, runOcr]);
+  }, [tab, runImport]);
 
   const it = result?.item;
 
@@ -166,7 +220,7 @@ export default function ImportDialog({
                 onDrop={(e) => {
                   e.preventDefault();
                   const f = e.dataTransfer.files?.[0];
-                  if (f) void runOcr(f);
+                  if (f) void runImport(f);
                 }}
                 onClick={() => fileRef.current?.click()}
                 style={{
@@ -183,7 +237,7 @@ export default function ImportDialog({
               </div>
               <input
                 ref={fileRef} type="file" accept="image/*" hidden
-                onChange={(e) => { const f = e.target.files?.[0]; if (f) void runOcr(f); }}
+                onChange={(e) => { const f = e.target.files?.[0]; if (f) void runImport(f); }}
               />
             </>
           )}
