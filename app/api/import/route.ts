@@ -13,11 +13,17 @@ import type { Tier } from "@/lib/rules";
 
 export const maxDuration = 60;
 
+// Chain order matters. Probed against the live account:
+//   google/gemma-4-31b-it:free     429 — rate limited
+//   thinkingmachines/inkling:free  403 — not available to this account
+//   nex-agi/nex-n2.5-pro:free      404 — no endpoints
+//   inclusionai/ling-3.0-flash-vl  responded
+//   openrouter/free                responded
+// deepseek-v4.1-flash is paid but ~$0.15/M input, i.e. a fraction of a cent
+// per screenshot, and is far stronger than the free tier at reading a tooltip.
 const DEFAULT_MODELS = [
-  "google/gemma-4-31b-it:free",
+  "deepseek/deepseek-v4.1-flash",
   "inclusionai/ling-3.0-flash-vl:free",
-  "thinkingmachines/inkling:free",
-  "nex-agi/nex-n2.5-pro:free",
   "openrouter/free",
 ];
 
