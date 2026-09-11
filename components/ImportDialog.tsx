@@ -147,11 +147,44 @@ export default function ImportDialog({
         const p: string[] = j.item.p ?? [];
         const f: string[] = j.item.f ?? [];
         const icon = j.iconBox ? cropIcon(img, j.iconBox) : undefined;
+
+        // A cropped screenshot region is never as clean as the real sprite, and
+        // the model's boxes are loose. If the item database knows this item by
+        // name, take its icon and metadata instead.
+        let itemId: number | undefined;
+        let bossDrop: boolean | undefined;
+        let dbLevel = 0;
+        let dbSuperior = false;
+        try {
+          const look = await fetch(`/api/items?q=${encodeURIComponent(j.item.name)}`);
+          const hits = (await look.json())?.items ?? [];
+          const exact = hits.find(
+            (h: { name: string }) => h.name.toLowerCase() === String(j.item.name).toLowerCase()
+          );
+          if (exact) {
+            itemId = exact.itemId;
+            bossDrop = exact.bossDrop;
+            dbLevel = exact.level ?? 0;
+            dbSuperior = !!exact.superior;
+          }
+        } catch {
+          /* database is a bonus, not a requirement */
+        }
+
         return {
           via: j.model,
           stats: j.stats as StatsPatch | undefined,
           parsed: {
-            item: { ...j.item, icon, p: [p[0] ?? "", p[1] ?? "", p[2] ?? ""], f: [f[0] ?? "", f[1] ?? "", f[2] ?? ""] },
+            item: {
+              ...j.item,
+              icon,
+              itemId,
+              bossDrop,
+              lvl: j.item.lvl || dbLevel,
+              sup: j.item.sup || (dbSuperior ? 1 : 0),
+              p: [p[0] ?? "", p[1] ?? "", p[2] ?? ""],
+              f: [f[0] ?? "", f[1] ?? "", f[2] ?? ""],
+            },
             slotGuess: j.slotGuess ?? null,
             found: {
               name: !!j.item.name, lvl: j.item.lvl > 0, pot: j.item.pot !== "none",
@@ -351,7 +384,27 @@ export default function ImportDialog({
                       </b>
                       <span className={`tag ${it.pot || "none"}`}>{TIER_LABEL[it.pot || "none"]}</span>
                       <span className="tag plain">{it.lvl ? `Lv. ${it.lvl}` : "Lv. ?"}</span>
-                      <span className="tag plain">★{it.star ?? 0}</span>
+                      {/* Star force is the least reliable field — models count the
+                          whole star row rather than only the filled ones — so it is
+                          editable right here instead of buried in the slot editor. */}
+                      <label style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                        <span style={{ color: "var(--gold)", fontSize: ".8rem" }}>★</span>
+                        <input
+                          type="number" min={0} max={30} value={it.star ?? 0}
+                          aria-label={`Star force for ${it.name}`}
+                          onChange={(ev) => {
+                            const star = Math.max(0, Math.min(30, parseInt(ev.target.value, 10) || 0));
+                            setEntries((prev) => prev.map((x) =>
+                              x.id === e.id ? { ...x, parsed: { ...x.parsed, item: { ...x.parsed.item, star } } } : x
+                            ));
+                          }}
+                          style={{
+                            width: "5ch", background: "var(--panel-2)", border: "1px solid var(--line)",
+                            borderRadius: 2, padding: "1px 4px", color: "var(--ink)",
+                            fontFamily: "var(--font-jetbrains), monospace", fontSize: ".72rem", textAlign: "right",
+                          }}
+                        />
+                      </label>
                       <span className="mono" style={{ marginLeft: "auto", fontSize: ".6rem", color: "var(--ink-3)" }}>{e.via}</span>
                     </div>
 
