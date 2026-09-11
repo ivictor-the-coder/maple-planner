@@ -35,6 +35,15 @@ const STAT_LABELS: Array<[keyof StatsPatch, string]> = [
   ["arcane", "Arcane Power"], ["starforce", "Star Force"],
 ];
 
+/** Slots that come in interchangeable sets: ring1..ring4, pendant1..pendant2.
+ *  Derived from SLOTS rather than hardcoded, so a future numbered family is
+ *  covered without touching this. Returns [] for a one-of-a-kind slot. */
+function familyOf(slot: string): string[] {
+  const base = slot.replace(/\d+$/, "");
+  if (base === slot) return [];
+  return SLOTS.filter((s) => s.id.replace(/\d+$/, "") === base).map((s) => s.id);
+}
+
 function mergeRoster(prev: RosterChar[], next: RosterChar[]): RosterChar[] {
   const by = new Map(prev.map((c) => [c.name.toLowerCase(), c]));
   for (const c of next) {
@@ -125,10 +134,16 @@ export default function ImportDialog({
   }, [onClose]);
 
   const add = useCallback((parsed: ParsedItem, via: string) => {
-    setEntries((prev) => [
-      ...prev,
-      { id: nextId.current++, parsed, slot: parsed.slotGuess ?? "hat", include: true, via },
-    ]);
+    setEntries((prev) => {
+      // An item tooltip cannot say WHICH ring you were hovering — every ring
+      // reads as "ring" and resolves to ring1. Importing four of them used to
+      // stack all four on ring1, where each overwrote the last and three were
+      // silently lost. Spread them across the free slots in the family instead.
+      const want = parsed.slotGuess ?? "hat";
+      const taken = new Set(prev.map((e) => e.slot));
+      const slot = taken.has(want) ? (familyOf(want).find((id) => !taken.has(id)) ?? want) : want;
+      return [...prev, { id: nextId.current++, parsed, slot, include: true, via }];
+    });
   }, []);
 
   /** One image, read by the vision route.
@@ -477,7 +492,7 @@ export default function ImportDialog({
 
                     {clash && (
                       <p style={{ margin: 0, fontSize: ".74rem", color: "var(--warn)" }}>
-                        Two items are going to this slot — the later one wins.
+                        Two items are set to this slot — only the lower one will be applied.
                       </p>
                     )}
                   </div>
