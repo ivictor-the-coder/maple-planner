@@ -231,10 +231,24 @@ export default function Planner() {
       {importing && (
         <ImportDialog
           onClose={() => setImporting(false)}
-          onApply={(entries) => {
+          onApply={(entries, patch) => {
             const items = { ...ch.items };
             for (const e of entries) items[e.slot] = e.item;
-            update({ ...ch, items });
+
+            // Only overwrite what the stat window actually yielded.
+            const next: Character = { ...ch, items };
+            if (patch) {
+              if (patch.name) next.name = patch.name;
+              if (patch.cls) next.cls = patch.cls;
+              if (patch.lvl) next.lvl = patch.lvl;
+              if (patch.cp) next.cp = patch.cp;
+              const s = { ...ch.stats };
+              (["main", "att", "crit", "critdmg", "boss", "ied", "hp", "arcane", "starforce"] as const)
+                .forEach((k) => { if (patch[k] !== undefined) s[k] = patch[k] as number; });
+              next.stats = s;
+            }
+
+            update(next);
             setImporting(false);
             setHover(entries[entries.length - 1]?.slot ?? null);
           }}
