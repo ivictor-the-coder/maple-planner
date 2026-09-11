@@ -5,6 +5,11 @@ import { parseTooltip, type ParsedItem } from "@/lib/import/tooltip";
 import { SLOTS, TIER_LABEL, type Item } from "@/lib/rules";
 
 const MAX_FILES = 10;
+/** In-flight requests. All ten at once trips the provider's rate limit; one at
+ *  a time makes ten screenshots a 45-second wait. Three is the compromise. */
+const CONCURRENCY = 3;
+/** Stagger worker starts so the first three don't land on the same instant. */
+const STAGGER_MS = 400;
 
 export interface ImportEntry {
   id: number;
@@ -153,18 +158,35 @@ export default function ImportDialog({
 
     setBusy(true);
     setFails([]);
-    // Sequential, and spaced: hitting a vision endpoint ten times back to back
-    // trips its rate limit and most of the batch comes back 429.
-    for (let i = 0; i < batch.length; i++) {
-      setStep({ done: i, total: batch.length, label: batch[i].name || "screenshot" });
-      const r = await readOne(batch[i]);
-      if (typeof r === "string") {
-        setFails((prev) => [...prev, { name: batch[i].name || `Screenshot ${i + 1}`, why: r }]);
-      } else {
-        add(r.parsed, r.via);
+
+    // A few at a time rather than one after another. All ten at once trips the
+    // provider's rate limit — that's what made nine of ten come back empty —
+    // but three in flight is both fast and well under it. Each result lands in
+    // the list the moment it arrives instead of waiting for the whole batch.
+    let done = 0;
+    let cursor = 0;
+    setStep({ done: 0, total: batch.length, label: "" });
+
+    const worker = async (lane: number) => {
+      await new Promise((res) => setTimeout(res, lane * STAGGER_MS));
+      for (;;) {
+        const i = cursor++;
+        if (i >= batch.length) return;
+        const r = await readOne(batch[i]);
+        if (typeof r === "string") {
+          setFails((prev) => [...prev, { name: batch[i].name || `Screenshot ${i + 1}`, why: r }]);
+        } else {
+          add(r.parsed, r.via);
+        }
+        done++;
+        setStep({ done, total: batch.length, label: "" });
       }
-      if (i < batch.length - 1) await new Promise((res) => setTimeout(res, 1200));
-    }
+    };
+
+    await Promise.all(
+      Array.from({ length: Math.min(CONCURRENCY, batch.length) }, (_, lane) => worker(lane))
+    );
+
     setStep(null);
     setBusy(false);
   }, [entries.length, readOne, add]);
