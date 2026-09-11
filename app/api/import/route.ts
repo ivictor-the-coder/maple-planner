@@ -45,12 +45,18 @@ Reply with ONLY a JSON object, no prose and no code fences:
                                // If a line shows only two numbers it is ambiguous — omit it.
                                // If the tooltip says "Bonus Stats Can't Enhance", return [].
   "starforce": number,         // count the FILLED gold stars above the item name. 0 if none or unreadable
-  "superior": boolean          // true if the name contains Tyrant, or it says superior, or "Bonus Stats Can't Enhance"
+  "superior": boolean,         // true if the name contains Tyrant, or it says superior, or "Bonus Stats Can't Enhance"
+  "iconBox": [number, number, number, number]
+                               // bounding box of the item's ICON — the small square picture of the item
+                               // inside the tooltip, usually top-left under the name. Give it as
+                               // [x, y, width, height] normalised 0-1 relative to the whole image.
+                               // Use [0,0,0,0] if you cannot locate it.
 }`;
 
 interface VisionItem {
   name?: string; level?: number; slot?: string; tier?: string;
   potential?: string[]; flame?: string[]; starforce?: number; superior?: boolean;
+  iconBox?: number[];
 }
 
 const TIERS: Tier[] = ["none", "rare", "epic", "unique", "legendary"];
@@ -107,13 +113,22 @@ export async function POST(req: Request) {
   }
 
   const models = (process.env.OPENROUTER_MODELS?.split(",").map((s) => s.trim()).filter(Boolean)) ?? DEFAULT_MODELS;
-  const tried: string[] = [];
+
+  // Track *why* each model didn't answer. "No tooltip in the image" and "every
+  // free endpoint is rate-limited" are completely different problems and must
+  // not produce the same message.
+  const outcomes: Array<{ model: string; why: string }> = [];
+  let anyModelAnswered = false;
 
   for (const model of models) {
-    tried.push(model);
+    // Hard per-model deadline. A free endpoint that hangs must not consume the
+    // whole request budget and leave the user staring at a spinner.
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 20_000);
     try {
       const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
+        signal: ctl.signal,
         headers: {
           Authorization: `Bearer ${key}`,
           "Content-Type": "application/json",
@@ -135,12 +150,18 @@ export async function POST(req: Request) {
         }),
       });
 
-      if (!res.ok) continue; // rate limited or model down — try the next one
+      if (!res.ok) {
+        outcomes.push({ model, why: `HTTP ${res.status}${res.status === 429 ? " (rate limited)" : ""}` });
+        continue;
+      }
 
       const json = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
       const text = json.choices?.[0]?.message?.content ?? "";
+      anyModelAnswered = true;
+
       const parsed = extractJson(text);
-      if (!parsed || !parsed.name) continue;
+      if (!parsed) { outcomes.push({ model, why: "replied but not with JSON" }); continue; }
+      if (!parsed.name) { outcomes.push({ model, why: "read the image but found no item name" }); continue; }
 
       const rawSlot = (parsed.slot ?? "").toLowerCase().trim();
       const slot = SLOT_ALIASES[rawSlot] ?? (rawSlot || null);
@@ -160,14 +181,19 @@ export async function POST(req: Request) {
           f: tidy(parsed.flame),
         },
         slotGuess: slot,
+        iconBox: Array.isArray(parsed.iconBox) && parsed.iconBox.length === 4 ? parsed.iconBox.map(Number) : null,
       });
-    } catch {
-      // network hiccup on a free endpoint — fall through to the next model
+    } catch (e) {
+      outcomes.push({ model, why: (e as Error)?.name === "AbortError" ? "timed out after 20s" : "network error" });
+    } finally {
+      clearTimeout(timer);
     }
   }
 
-  return NextResponse.json(
-    { error: `No vision model answered. Tried: ${tried.join(", ")}. Free models rate-limit often — wait a moment and retry.` },
-    { status: 503 }
-  );
+  const detail = outcomes.map((o) => `${o.model} — ${o.why}`).join("; ");
+  const error = anyModelAnswered
+    ? `A model read the image but couldn't find an item tooltip in it. Make sure one item's tooltip is visible in the screenshot. (${detail})`
+    : `No vision model responded — free endpoints are likely rate-limited right now. Wait a minute and retry. (${detail})`;
+
+  return NextResponse.json({ error, outcomes }, { status: 503 });
 }

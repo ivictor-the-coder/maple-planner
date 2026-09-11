@@ -9,7 +9,6 @@ import {
 import { getStore } from "@/lib/storage";
 import ImportDialog from "@/components/ImportDialog";
 import ItemSearch from "@/components/ItemSearch";
-import type { ParsedItem } from "@/lib/import/tooltip";
 import type { ItemHit } from "@/app/api/items/route";
 
 const PRI_LABEL = ["", "NOW", "SOON", "LATER", "DONE"];
@@ -140,7 +139,10 @@ export default function Planner() {
                   onClick={() => setEditing(s.id)}
                 >
                   {it && s.pot !== "no" && <span className={`slot-tier ${it.pot || "none"}`} />}
-                  {it?.itemId ? (
+                  {it?.icon ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-icon" src={it.icon} alt={it.name} />
+                  ) : it?.itemId ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img className="slot-icon" src={`https://api.maplestory.net/item/${it.itemId}/icon`} alt={it.name} />
                   ) : it ? (
@@ -229,10 +231,12 @@ export default function Planner() {
       {importing && (
         <ImportDialog
           onClose={() => setImporting(false)}
-          onApply={(slotId: string, parsed: ParsedItem) => {
-            update({ ...ch, items: { ...ch.items, [slotId]: parsed.item } });
+          onApply={(entries) => {
+            const items = { ...ch.items };
+            for (const e of entries) items[e.slot] = e.item;
+            update({ ...ch, items });
             setImporting(false);
-            setHover(slotId);
+            setHover(entries[entries.length - 1]?.slot ?? null);
           }}
         />
       )}
