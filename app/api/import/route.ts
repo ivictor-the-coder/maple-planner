@@ -122,7 +122,11 @@ Class is the MIDDLE line and name is the BOTTOM line — do not swap them. Set
 rather than guessing at it. Also add "rosterPage": [n, total] from the page
 counter, so [1, 3] for "01 / 03".
 
-Omit "roster" entirely when no Switch Character window is on screen.`;
+Omit "roster" entirely when no Switch Character window is on screen.
+
+Output the JSON object and nothing else. Do not narrate what you see, do not
+think out loud, do not write "Let me analyze". The first character you emit must
+be { and the last must be }.`;
 
 interface VisionStats {
   name?: string; class?: string; level?: number; combatPower?: number;
@@ -305,8 +309,10 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           model,
           temperature: 0,
-          // Enough headroom that a preamble can't truncate the object.
-          max_tokens: 1600,
+          // These models burn output tokens narrating before they emit the
+          // object, and reasoning tokens count against this budget, so 1600 was
+          // truncating GLM mid-sentence. The object itself is ~400 tokens.
+          max_tokens: 3000,
           // Ask for guaranteed-parseable output where the model supports it.
           ...(jsonMode ? { response_format: { type: "json_object" } } : {}),
           messages: [
@@ -334,15 +340,32 @@ export async function POST(req: Request) {
         break;
       }
 
-      const json = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
-      const text = json.choices?.[0]?.message?.content ?? "";
+      const json = (await res.json()) as {
+        choices?: Array<{
+          message?: { content?: string; reasoning?: string };
+          finish_reason?: string;
+        }>;
+      };
+      const choice = json.choices?.[0];
+      // Reasoning models routinely return an empty content with the real answer
+      // sitting in "reasoning". extractJson walks whatever it is given, so
+      // handing it the reasoning text costs nothing and recovers the reply.
+      const text = choice?.message?.content?.trim() || choice?.message?.reasoning?.trim() || "";
+      const truncated = choice?.finish_reason === "length";
       anyModelAnswered = true;
 
       const parsed = extractJson(text);
       if (!parsed) {
         // Surface what it actually said — guessing at this cost several rounds.
-        const snip = text.replace(/\s+/g, " ").trim().slice(0, 160) || "(empty reply)";
-        outcomes.push({ model, why: `replied but not with JSON: "${snip}"` });
+        const snip = text.replace(/\s+/g, " ").trim().slice(0, 160);
+        outcomes.push({
+          model,
+          why: truncated
+            ? `ran out of output tokens before closing the JSON: "${snip.slice(0, 90)}"`
+            : snip
+              ? `replied but not with JSON: "${snip}"`
+              : "returned an empty message",
+        });
         break;
       }
       const stats = tidyStats(parsed.stats);
