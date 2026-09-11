@@ -2,87 +2,82 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { parseTooltip, type ParsedItem } from "@/lib/import/tooltip";
-import { SLOTS, TIER_LABEL } from "@/lib/rules";
+import { SLOTS, TIER_LABEL, type Item } from "@/lib/rules";
 
-/** Otsu's method: pick the grey level that best separates the histogram into
- *  two classes. Far more robust than a fixed threshold on a semi-transparent
- *  tooltip, where the game scene shows through the background. */
-function otsuThreshold(hist: number[], total: number): number {
-  let sum = 0;
-  for (let i = 0; i < 256; i++) sum += i * hist[i];
-  let sumB = 0, wB = 0, best = 0, thr = 127;
-  for (let t = 0; t < 256; t++) {
-    wB += hist[t];
-    if (!wB) continue;
-    const wF = total - wB;
-    if (!wF) break;
-    sumB += t * hist[t];
-    const mB = sumB / wB;
-    const mF = (sum - sumB) / wF;
-    const between = wB * wF * (mB - mF) * (mB - mF);
-    if (between > best) { best = between; thr = t; }
-  }
-  return thr;
+const MAX_FILES = 10;
+
+export interface ImportEntry {
+  id: number;
+  parsed: ParsedItem;
+  slot: string;
+  include: boolean;
+  via: string;
 }
 
-/** Upscale, grey, binarise, and orient to dark-text-on-white. */
-function preprocess(img: HTMLImageElement): string {
-  const scale = Math.min(5, Math.max(2.5, 1800 / Math.max(img.width, 1)));
+/** Crop the item's icon out of the screenshot so the grid can show the real
+ *  sprite even for items the item database doesn't match. Box is normalised. */
+function cropIcon(img: HTMLImageElement, box: number[], size = 72): string | undefined {
+  if (!Array.isArray(box) || box.length !== 4) return undefined;
+  let [x, y, w, h] = box.map(Number);
+  if (![x, y, w, h].every(Number.isFinite)) return undefined;
+  // tolerate a model returning pixels instead of 0-1
+  if (w > 1.5 || h > 1.5) {
+    x /= img.width; y /= img.height; w /= img.width; h /= img.height;
+  }
+  if (w <= 0.002 || h <= 0.002 || w > 0.6 || h > 0.6) return undefined;
+  x = Math.max(0, Math.min(1, x)); y = Math.max(0, Math.min(1, y));
+
   const c = document.createElement("canvas");
-  c.width = Math.round(img.width * scale);
-  c.height = Math.round(img.height * scale);
-  const ctx = c.getContext("2d", { willReadFrequently: true });
-  if (!ctx) return c.toDataURL();
-  ctx.imageSmoothingEnabled = true;
+  c.width = c.height = size;
+  const ctx = c.getContext("2d");
+  if (!ctx) return undefined;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(
+    img,
+    Math.round(x * img.width), Math.round(y * img.height),
+    Math.round(w * img.width), Math.round(h * img.height),
+    0, 0, size, size
+  );
+  return c.toDataURL("image/png");
+}
+
+function loadImage(file: File | Blob): Promise<HTMLImageElement> {
+  const url = URL.createObjectURL(file);
+  return new Promise((res, rej) => {
+    const i = new Image();
+    i.onload = () => { setTimeout(() => URL.revokeObjectURL(url), 5000); res(i); };
+    i.onerror = () => rej(new Error("That file could not be read as an image."));
+    i.src = url;
+  });
+}
+
+function toDataUrl(img: HTMLImageElement, max = 2000): string {
+  const s = Math.min(1, max / Math.max(img.width, img.height));
+  const c = document.createElement("canvas");
+  c.width = Math.round(img.width * s);
+  c.height = Math.round(img.height * s);
+  const ctx = c.getContext("2d");
+  if (!ctx) return "";
   ctx.imageSmoothingQuality = "high";
   ctx.drawImage(img, 0, 0, c.width, c.height);
-
-  const d = ctx.getImageData(0, 0, c.width, c.height);
-  const px = d.data;
-  const n = px.length / 4;
-
-  const grey = new Uint8Array(n);
-  const hist = new Array(256).fill(0);
-  for (let i = 0, j = 0; i < px.length; i += 4, j++) {
-    const g = (0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]) | 0;
-    grey[j] = g;
-    hist[g]++;
-  }
-
-  const thr = otsuThreshold(hist, n);
-
-  // Text is the minority class. Whichever side of the threshold has fewer
-  // pixels is the glyphs, and that side must end up black.
-  let above = 0;
-  for (let j = 0; j < n; j++) if (grey[j] > thr) above++;
-  const textIsBright = above < n / 2;
-
-  for (let i = 0, j = 0; i < px.length; i += 4, j++) {
-    const isText = textIsBright ? grey[j] > thr : grey[j] <= thr;
-    const v = isText ? 0 : 255;
-    px[i] = px[i + 1] = px[i + 2] = v;
-    px[i + 3] = 255;
-  }
-  ctx.putImageData(d, 0, 0);
-  return c.toDataURL("image/png");
+  return c.toDataURL("image/jpeg", 0.92);
 }
 
 export default function ImportDialog({
   onApply,
   onClose,
 }: {
-  onApply: (slotId: string, parsed: ParsedItem) => void;
+  onApply: (entries: Array<{ slot: string; item: Item }>) => void;
   onClose: () => void;
 }) {
   const [tab, setTab] = useState<"shot" | "text">("shot");
   const [busy, setBusy] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [step, setStep] = useState<{ done: number; total: number; label: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<ParsedItem | null>(null);
-  const [via, setVia] = useState<string | null>(null);
-  const [slotId, setSlotId] = useState<string>("hat");
+  const [entries, setEntries] = useState<ImportEntry[]>([]);
   const [text, setText] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
+  const nextId = useRef(1);
 
   useEffect(() => {
     const esc = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -90,223 +85,221 @@ export default function ImportDialog({
     return () => window.removeEventListener("keydown", esc);
   }, [onClose]);
 
-  const accept = useCallback((parsed: ParsedItem) => {
-    setResult(parsed);
-    if (parsed.slotGuess) setSlotId(parsed.slotGuess);
+  const add = useCallback((parsed: ParsedItem, via: string) => {
+    setEntries((prev) => [
+      ...prev,
+      { id: nextId.current++, parsed, slot: parsed.slotGuess ?? "hat", include: true, via },
+    ]);
   }, []);
 
-  /** Cap the longest side so a full-screen grab stays a reasonable payload. */
-  const toDataUrl = useCallback((img: HTMLImageElement, max = 2000): string => {
-    const s = Math.min(1, max / Math.max(img.width, img.height));
-    const c = document.createElement("canvas");
-    c.width = Math.round(img.width * s);
-    c.height = Math.round(img.height * s);
-    const ctx = c.getContext("2d");
-    if (!ctx) return "";
-    ctx.imageSmoothingQuality = "high";
-    ctx.drawImage(img, 0, 0, c.width, c.height);
-    return c.toDataURL("image/jpeg", 0.92);
-  }, []);
-
-  const loadImage = useCallback(async (file: File | Blob): Promise<HTMLImageElement> => {
-    const url = URL.createObjectURL(file);
+  /** One image, read by the vision route.
+   *  There is deliberately no local-OCR fallback: tesseract never once read a
+   *  real tooltip correctly, and running it on a full-size screenshot took
+   *  minutes. A clear error beats a spinner that never ends. */
+  const readOne = useCallback(async (file: File | Blob): Promise<{ parsed: ParsedItem; via: string } | string> => {
+    let img: HTMLImageElement;
     try {
-      return await new Promise<HTMLImageElement>((res, rej) => {
-        const i = new Image();
-        i.onload = () => res(i);
-        i.onerror = () => rej(new Error("That file could not be read as an image."));
-        i.src = url;
-      });
-    } finally {
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      img = await loadImage(file);
+    } catch {
+      return "Not a readable image.";
     }
-  }, []);
 
-  /** Vision model first — it handles full screenshots and cursor occlusion.
-   *  Local OCR is the fallback when no key is configured or every model is busy. */
-  const runImport = useCallback(async (file: File | Blob) => {
-    setBusy(true); setError(null); setProgress(0); setVia(null);
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 75_000);
     try {
-      const img = await loadImage(file);
-
-      setVia("reading the screenshot…");
-      try {
-        const res = await fetch("/api/import", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ image: toDataUrl(img) }),
-        });
-        const j = await res.json();
-        if (res.ok && j.item?.name) {
-          setVia(`read by ${j.model}`);
-          accept({
-            item: { ...j.item, p: [j.item.p[0] ?? "", j.item.p[1] ?? "", j.item.p[2] ?? ""], f: [j.item.f[0] ?? "", j.item.f[1] ?? "", j.item.f[2] ?? ""] },
+      const res = await fetch("/api/import", {
+        method: "POST",
+        signal: ctl.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: toDataUrl(img) }),
+      });
+      const j = await res.json();
+      if (res.ok && j.item?.name) {
+        const p: string[] = j.item.p ?? [];
+        const f: string[] = j.item.f ?? [];
+        const icon = j.iconBox ? cropIcon(img, j.iconBox) : undefined;
+        return {
+          via: j.model,
+          parsed: {
+            item: { ...j.item, icon, p: [p[0] ?? "", p[1] ?? "", p[2] ?? ""], f: [f[0] ?? "", f[1] ?? "", f[2] ?? ""] },
             slotGuess: j.slotGuess ?? null,
             found: {
               name: !!j.item.name, lvl: j.item.lvl > 0, pot: j.item.pot !== "none",
-              potLines: j.item.p.filter(Boolean).length,
-              flameLines: j.item.f.filter(Boolean).length,
+              potLines: p.filter(Boolean).length, flameLines: f.filter(Boolean).length,
               superior: !!j.item.sup,
             },
-            warnings: j.item.star ? [] : ["Star force wasn't read — check it."],
+            warnings: j.item.star ? [] : ["Star force came back 0 — check it."],
             raw: "",
-          });
-          return;
-        }
-        if (j.error) setError(`${j.error} Falling back to local OCR.`);
-      } catch {
-        setError("Vision import failed. Falling back to local OCR.");
+          },
+        };
       }
-
-      setVia("local OCR (lower accuracy)");
-      const prepped = preprocess(img);
-
-      const { createWorker } = await import("tesseract.js");
-      const worker = await createWorker("eng", 1, {
-        logger: (m: { status: string; progress: number }) => {
-          if (m.status === "recognizing text") setProgress(Math.round(m.progress * 100));
-        },
-      });
-      // A tooltip is one uniform block, and its vocabulary is small — telling
-      // Tesseract both stops it inventing characters that can't occur.
-      await worker.setParameters({
-        tessedit_pageseg_mode: "6" as unknown as never,
-        tessedit_char_whitelist:
-          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-%:.,()/' ",
-      });
-      const { data } = await worker.recognize(prepped);
-      await worker.terminate();
-
-      if (!data.text || data.text.trim().length < 10) {
-        setError("Nothing readable came out of that image. Try a larger screenshot, or use the Paste text tab.");
-        return;
-      }
-      accept(parseTooltip(data.text));
+      return (j.error as string) || `Import failed (HTTP ${res.status}).`;
     } catch (e) {
-      setError(e instanceof Error ? e.message : "OCR failed.");
+      return (e as Error)?.name === "AbortError"
+        ? "Timed out waiting for a vision model. Free endpoints are slow when busy — try again."
+        : "Could not reach the import service.";
     } finally {
-      setBusy(false);
+      clearTimeout(timer);
     }
-  }, [accept]);
+  }, []);
 
-  // paste an image straight from the clipboard
+  const runFiles = useCallback(async (files: File[]) => {
+    const room = MAX_FILES - entries.length;
+    if (room <= 0) { setError(`That's the limit of ${MAX_FILES} screenshots.`); return; }
+    const batch = files.slice(0, room);
+    if (files.length > room) setError(`Only the first ${room} were taken — limit is ${MAX_FILES}.`);
+    else setError(null);
+
+    setBusy(true);
+    const failures: string[] = [];
+    // Sequential on purpose: free vision endpoints rate-limit hard in parallel.
+    for (let i = 0; i < batch.length; i++) {
+      setStep({ done: i, total: batch.length, label: batch[i].name || "screenshot" });
+      const r = await readOne(batch[i]);
+      if (typeof r === "string") failures.push(`${batch[i].name || `#${i + 1}`}: ${r}`);
+      else add(r.parsed, r.via);
+    }
+    setStep(null);
+    setBusy(false);
+    if (failures.length) setError(failures.join(" · "));
+  }, [entries.length, readOne, add]);
+
   useEffect(() => {
     const onPaste = (e: ClipboardEvent) => {
-      if (tab !== "shot") return;
-      const item = Array.from(e.clipboardData?.items ?? []).find((i) => i.type.startsWith("image/"));
-      const blob = item?.getAsFile();
-      if (blob) { e.preventDefault(); void runImport(blob); }
+      if (tab !== "shot" || busy) return;
+      const files = Array.from(e.clipboardData?.items ?? [])
+        .filter((i) => i.type.startsWith("image/"))
+        .map((i) => i.getAsFile())
+        .filter((f): f is File => !!f);
+      if (files.length) { e.preventDefault(); void runFiles(files); }
     };
     window.addEventListener("paste", onPaste);
     return () => window.removeEventListener("paste", onPaste);
-  }, [tab, runImport]);
+  }, [tab, busy, runFiles]);
 
-  const it = result?.item;
+  const patch = (id: number, p: Partial<ImportEntry>) =>
+    setEntries((prev) => prev.map((e) => (e.id === id ? { ...e, ...p } : e)));
+
+  const chosen = entries.filter((e) => e.include);
+  const dupes = new Set(
+    chosen.map((e) => e.slot).filter((s, i, a) => a.indexOf(s) !== i)
+  );
 
   return (
     <div className="ed-back" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="ed-in" style={{ maxWidth: 620 }}>
+      <div className="ed-in" style={{ maxWidth: 720 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 15px", borderBottom: "1px solid var(--line)" }}>
-          <h3 style={{ fontSize: "1rem", marginRight: "auto" }}>Import from tooltip</h3>
-          <button className={`btn${tab === "shot" ? " p" : ""}`} onClick={() => setTab("shot")}>Screenshot</button>
+          <h3 style={{ fontSize: "1rem", marginRight: "auto" }}>
+            Import tooltips {entries.length > 0 && <span className="mono" style={{ color: "var(--ink-3)", fontSize: ".72rem" }}>{entries.length}/{MAX_FILES}</span>}
+          </h3>
+          <button className={`btn${tab === "shot" ? " p" : ""}`} onClick={() => setTab("shot")}>Screenshots</button>
           <button className={`btn${tab === "text" ? " p" : ""}`} onClick={() => setTab("text")}>Paste text</button>
         </div>
 
-        <div style={{ padding: "14px 15px", display: "flex", flexDirection: "column", gap: 13 }}>
-          {!result && tab === "shot" && (
-            <>
-              <div
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  const f = e.dataTransfer.files?.[0];
-                  if (f) void runImport(f);
-                }}
-                onClick={() => fileRef.current?.click()}
-                style={{
-                  border: "1px dashed var(--line)", borderRadius: 3, padding: "34px 16px",
-                  textAlign: "center", cursor: "pointer", background: "var(--panel-2)",
-                }}
-              >
-                <p style={{ margin: 0, fontSize: ".9rem" }}>
-                  {busy ? `Reading… ${progress}%` : "Drop a tooltip screenshot, paste one, or click to pick a file"}
-                </p>
-                <p style={{ margin: "6px 0 0", fontSize: ".76rem", color: "var(--ink-3)" }}>
-                  Runs in your browser — the image is never uploaded.
-                </p>
-              </div>
-              <input
-                ref={fileRef} type="file" accept="image/*" hidden
-                onChange={(e) => { const f = e.target.files?.[0]; if (f) void runImport(f); }}
-              />
-            </>
+        <div style={{ padding: "14px 15px", display: "flex", flexDirection: "column", gap: 13, maxHeight: "64vh", overflowY: "auto" }}>
+          {tab === "shot" && (
+            <div
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => { e.preventDefault(); const f = Array.from(e.dataTransfer.files ?? []); if (f.length) void runFiles(f); }}
+              onClick={() => !busy && fileRef.current?.click()}
+              style={{
+                border: "1px dashed var(--line)", borderRadius: 3, padding: "26px 16px",
+                textAlign: "center", cursor: busy ? "default" : "pointer", background: "var(--well)",
+              }}
+            >
+              <p style={{ margin: 0, fontSize: ".9rem" }}>
+                {busy && step
+                  ? `Reading ${step.done + 1} of ${step.total}…`
+                  : `Drop up to ${MAX_FILES} screenshots, paste with Ctrl/Cmd+V, or click to pick files`}
+              </p>
+              <p style={{ margin: "6px 0 0", fontSize: ".76rem", color: "var(--ink-3)" }}>
+                Full screenshots are fine — no cropping needed. One item tooltip visible per shot.
+              </p>
+            </div>
           )}
+          <input ref={fileRef} type="file" accept="image/*" multiple hidden
+            onChange={(e) => { const f = Array.from(e.target.files ?? []); if (f.length) void runFiles(f); e.target.value = ""; }} />
 
-          {!result && tab === "text" && (
+          {tab === "text" && (
             <div className="fld">
               <label htmlFor="paste">Tooltip text</label>
-              <textarea
-                id="paste" rows={10} value={text} onChange={(e) => setText(e.target.value)}
+              <textarea id="paste" rows={8} value={text} onChange={(e) => setText(e.target.value)}
                 placeholder={"Royal Ranger Beret\nArmor\nHat\nRequired Level Lv. 150\n…"}
-                style={{ width: "100%", background: "var(--panel-2)", border: "1px solid var(--line)", borderRadius: 2, padding: "8px 10px", color: "var(--ink)", fontFamily: "var(--font-jetbrains), monospace", fontSize: ".8rem" }}
-              />
+                style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: ".8rem" }} />
               <button className="btn p" style={{ alignSelf: "flex-start", marginTop: 8 }}
-                disabled={text.trim().length < 10}
-                onClick={() => accept(parseTooltip(text))}>
-                Parse
+                disabled={text.trim().length < 10 || entries.length >= MAX_FILES}
+                onClick={() => { add(parseTooltip(text), "pasted text"); setText(""); }}>
+                Parse and add
               </button>
             </div>
           )}
 
           {error && (
-            <p style={{ margin: 0, fontSize: ".83rem", color: "var(--bad)", background: "var(--panel-2)", borderLeft: "2px solid var(--bad)", padding: "9px 12px" }}>
+            <p style={{ margin: 0, fontSize: ".8rem", color: "var(--bad)", background: "var(--well)", borderLeft: "2px solid var(--bad)", padding: "9px 12px" }}>
               {error}
             </p>
           )}
 
-          {result && it && (
+          {entries.length > 0 && (
             <>
-              <div className="sub-h">Check this before applying</div>
-              <div style={{ background: "var(--panel-2)", border: "1px solid var(--line)", borderRadius: 3, padding: "11px 13px", display: "flex", flexDirection: "column", gap: 6 }}>
-                <Row k="Name" v={it.name || "— not read —"} ok={result.found.name} />
-                <Row k="Item level" v={it.lvl ? String(it.lvl) : "— not read —"} ok={result.found.lvl} />
-                <Row k="Potential" v={TIER_LABEL[it.pot]} ok={result.found.pot} />
-                <Row k="Potential lines" v={it.p.filter(Boolean).join(" · ") || "none"} ok={result.found.potLines > 0} />
-                <Row k="Flame" v={it.f.filter(Boolean).join(" · ") || "none"} ok={result.found.flameLines > 0} />
-                <Row k="Superior" v={it.sup ? "yes" : "no"} ok />
-              </div>
+              <div className="sub-h">Check these before applying</div>
+              {entries.map((e) => {
+                const it = e.parsed.item;
+                const clash = e.include && dupes.has(e.slot);
+                return (
+                  <div key={e.id} style={{
+                    background: "var(--well)", border: `1px solid ${clash ? "var(--warn)" : "var(--line-soft)"}`,
+                    borderRadius: 3, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 7,
+                    opacity: e.include ? 1 : 0.45,
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 9, flexWrap: "wrap" }}>
+                      <input type="checkbox" checked={e.include} aria-label="Include this item"
+                        onChange={(ev) => patch(e.id, { include: ev.target.checked })} />
+                      <b style={{ fontSize: ".88rem", color: e.parsed.found.name ? "var(--ink)" : "var(--warn)" }}>
+                        {it.name || "— name not read —"}
+                      </b>
+                      <span className={`tag ${it.pot || "none"}`}>{TIER_LABEL[it.pot || "none"]}</span>
+                      <span className="tag plain">{it.lvl ? `Lv. ${it.lvl}` : "Lv. ?"}</span>
+                      <span className="tag plain">★{it.star ?? 0}</span>
+                      <span className="mono" style={{ marginLeft: "auto", fontSize: ".6rem", color: "var(--ink-3)" }}>{e.via}</span>
+                    </div>
 
-              <div className="fld">
-                <label htmlFor="slot">Put it in</label>
-                <select id="slot" value={slotId} onChange={(e) => setSlotId(e.target.value)}>
-                  {SLOTS.map((s) => <option key={s.id} value={s.id}>{s.n}</option>)}
-                </select>
-              </div>
+                    <div style={{ fontSize: ".76rem", color: "var(--ink-3)" }}>
+                      pot: {it.p.filter(Boolean).join(" · ") || "none"}
+                      {" — flame: "}{it.f.filter(Boolean).join(" · ") || "none"}
+                    </div>
 
-              {result.warnings.length > 0 && (
-                <ul style={{ margin: 0, paddingLeft: 16, fontSize: ".78rem", color: "var(--ink-3)" }}>
-                  {result.warnings.map((w, i) => <li key={i}>{w}</li>)}
-                </ul>
-              )}
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <label className="sub-h" htmlFor={`slot-${e.id}`}>Slot</label>
+                      <select id={`slot-${e.id}`} value={e.slot} style={{ flex: 1 }}
+                        onChange={(ev) => patch(e.id, { slot: ev.target.value })}>
+                        {SLOTS.map((s) => <option key={s.id} value={s.id}>{s.n}</option>)}
+                      </select>
+                      <button className="btn" onClick={() => setEntries((prev) => prev.filter((x) => x.id !== e.id))}>Remove</button>
+                    </div>
+
+                    {clash && (
+                      <p style={{ margin: 0, fontSize: ".74rem", color: "var(--warn)" }}>
+                        Two items are going to this slot — the later one wins.
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
             </>
           )}
         </div>
 
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", padding: "12px 15px", borderTop: "1px solid var(--line)" }}>
           <button className="btn" onClick={onClose}>Cancel</button>
-          {result && <button className="btn" onClick={() => { setResult(null); setError(null); }}>Start over</button>}
-          {result && <button className="btn p" onClick={() => onApply(slotId, result)}>Apply to {SLOTS.find((s) => s.id === slotId)?.n}</button>}
+          {entries.length > 0 && <button className="btn" onClick={() => { setEntries([]); setError(null); }}>Clear all</button>}
+          {chosen.length > 0 && (
+            <button className="btn p" onClick={() => onApply(chosen.map((e) => ({ slot: e.slot, item: e.parsed.item })))}>
+              Apply {chosen.length} item{chosen.length > 1 ? "s" : ""}
+            </button>
+          )}
         </div>
       </div>
-    </div>
-  );
-}
-
-function Row({ k, v, ok }: { k: string; v: string; ok: boolean }) {
-  return (
-    <div style={{ display: "flex", justifyContent: "space-between", gap: 10, fontSize: ".82rem" }}>
-      <span style={{ color: "var(--ink-3)" }}>{k}</span>
-      <span style={{ textAlign: "right", color: ok ? "var(--ink)" : "var(--warn)" }}>{v}</span>
     </div>
   );
 }
