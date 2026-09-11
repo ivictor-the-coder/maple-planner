@@ -28,13 +28,14 @@ export const maxDuration = 60;
 //
 // The free tier was dropped from the chain: of five probed, three returned
 // 429/403/404 and the two that answered were weak at this task.
-// muse-spark is last, not first: it returns 403 on every request from this
-// account until OpenRouter prompt-sharing is enabled, and a model at the head of
-// the chain that always fails costs one wasted round trip per screenshot.
+// muse-spark-1.3-contributor was dropped. A "-contributor" endpoint shares
+// prompts with the provider by definition, and this account requires Zero Data
+// Retention for all other models, so every request to it was rejected 403. The
+// only way to admit it is to drop ZDR account-wide, which is a bad trade for a
+// model that would only ever be reached when both of these had already failed.
 const DEFAULT_MODELS = [
   "z-ai/glm-5.3-flash",
   "deepseek/deepseek-v4.1-flash",
-  "meta/muse-spark-1.3-contributor",
 ];
 
 const PROMPT = `You are reading a screenshot of the game MapleStory.
