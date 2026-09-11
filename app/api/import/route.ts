@@ -57,19 +57,82 @@ Reply with ONLY a JSON object, no prose and no code fences:
                                // = base + starforce + flame, so the THIRD number is the flame: "STR +20".
                                // If a line shows only two numbers it is ambiguous — omit it.
                                // If the tooltip says "Bonus Stats Can't Enhance", return [].
-  "starforce": number,         // count the FILLED gold stars above the item name. 0 if none or unreadable
+  "starforce": number,         // Star force, above the item name. The stars are drawn in groups of five
+                               // and the row shows EVERY possible star, most of them EMPTY. Count ONLY
+                               // the solid gold/yellow filled ones. Grey, hollow or dim outlined stars
+                               // are NOT earned and must not be counted. If the row shows 12 gold then
+                               // 3 grey, the answer is 12, not 15. Never assume the item is maxed.
+                               // Use 0 if there are no gold stars or you cannot tell.
   "superior": boolean,         // true if the name contains Tyrant, or it says superior, or "Bonus Stats Can't Enhance"
   "iconBox": [number, number, number, number]
                                // bounding box of the item's ICON — the small square picture of the item
                                // inside the tooltip, usually top-left under the name. Give it as
                                // [x, y, width, height] normalised 0-1 relative to the whole image.
                                // Use [0,0,0,0] if you cannot locate it.
-}`;
+}
+
+If there is NO item tooltip visible, set "name" to "" — do not invent one.
+
+SEPARATELY: the screenshot may also show the CHARACTER STAT window (headed
+"Character Info" / "STAT", showing Combat Power, DAMAGE RANGE, STR/DEX/INT/LUK,
+CRITICAL RATE, BOSS DAMAGE, IGNORE DEFENSE, ARCANE POWER, STAR FORCE and so on).
+If and only if that window is visible, add a "stats" key. Read the numbers exactly
+as displayed, stripping commas and % signs. Omit any field you cannot see.
+
+  "stats": {
+    "name": string,          // character name
+    "class": string,         // e.g. "Bow Master"
+    "level": number,         // the character's Lv.
+    "combatPower": number,
+    "mainStat": number,      // the STR/DEX/INT/LUK value that matches the class's main stat
+    "attack": number,        // ATTACK POWER
+    "critRate": number,      // CRITICAL RATE %
+    "critDamage": number,    // CRITICAL DAMAGE %
+    "bossDamage": number,    // BOSS DAMAGE %
+    "ignoreDefense": number, // IGNORE DEFENSE %
+    "maxHp": number,
+    "arcanePower": number,
+    "starForce": number      // the STAR FORCE total, not any single item's stars
+  }
+
+Omit "stats" entirely when no stat window is on screen.`;
+
+interface VisionStats {
+  name?: string; class?: string; level?: number; combatPower?: number;
+  mainStat?: number; attack?: number; critRate?: number; critDamage?: number;
+  bossDamage?: number; ignoreDefense?: number; maxHp?: number;
+  arcanePower?: number; starForce?: number;
+}
 
 interface VisionItem {
   name?: string; level?: number; slot?: string; tier?: string;
   potential?: string[]; flame?: string[]; starforce?: number; superior?: boolean;
-  iconBox?: number[];
+  iconBox?: number[]; stats?: VisionStats;
+}
+
+const num = (v: unknown, max: number): number | undefined => {
+  const n = typeof v === "string" ? parseFloat(v.replace(/[,%\s]/g, "")) : Number(v);
+  return Number.isFinite(n) && n >= 0 && n <= max ? n : undefined;
+};
+
+function tidyStats(s: VisionStats | undefined) {
+  if (!s || typeof s !== "object") return undefined;
+  const out = {
+    name: typeof s.name === "string" ? s.name.trim() : undefined,
+    cls: typeof s.class === "string" ? s.class.trim() : undefined,
+    lvl: num(s.level, 300),
+    cp: num(s.combatPower, 1e10),
+    main: num(s.mainStat, 1e7),
+    att: num(s.attack, 1e6),
+    crit: num(s.critRate, 100),
+    critdmg: num(s.critDamage, 1000),
+    boss: num(s.bossDamage, 2000),
+    ied: num(s.ignoreDefense, 100),
+    hp: num(s.maxHp, 1e8),
+    arcane: num(s.arcanePower, 1320),
+    starforce: num(s.starForce, 1000),
+  };
+  return Object.values(out).some((v) => v !== undefined && v !== "") ? out : undefined;
 }
 
 const TIERS: Tier[] = ["none", "rare", "epic", "unique", "legendary"];
@@ -79,14 +142,32 @@ const SLOT_ALIASES: Record<string, string> = {
   glove: "gloves", "face accessory": "face", "eye accessory": "eye",
 };
 
-/** Free models frequently wrap JSON in prose or fences. Dig it out. */
+/** Models wrap JSON in prose or fences, and a chatty preamble can push the
+ *  closing brace past the token limit. Dig the object out, and if it was cut
+ *  off mid-object, close it and salvage what arrived. */
 function extractJson(text: string): VisionItem | null {
   const cleaned = text.replace(/```(?:json)?/gi, "").trim();
   const start = cleaned.indexOf("{");
+  if (start === -1) return null;
+
   const end = cleaned.lastIndexOf("}");
-  if (start === -1 || end <= start) return null;
+  if (end > start) {
+    try {
+      return JSON.parse(cleaned.slice(start, end + 1)) as VisionItem;
+    } catch {
+      /* fall through to salvage */
+    }
+  }
+
+  // Truncated: balance the braces/brackets and drop any half-written pair.
+  let frag = cleaned.slice(start);
+  frag = frag.replace(/,\s*"[^"]*"\s*:\s*[^,}\]]*$/, "");
+  frag = frag.replace(/,\s*$/, "");
+  const opens = (frag.match(/\{/g) ?? []).length - (frag.match(/\}/g) ?? []).length;
+  const brackets = (frag.match(/\[/g) ?? []).length - (frag.match(/\]/g) ?? []).length;
+  frag += "]".repeat(Math.max(0, brackets)) + "}".repeat(Math.max(0, opens));
   try {
-    return JSON.parse(cleaned.slice(start, end + 1)) as VisionItem;
+    return JSON.parse(frag) as VisionItem;
   } catch {
     return null;
   }
@@ -136,8 +217,11 @@ export async function POST(req: Request) {
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   for (const model of models) {
-    // One backoff retry per model on 429, while request budget allows.
-    for (let attempt = 0; attempt < 2; attempt++) {
+    // Not every model accepts response_format. If one rejects it we retry the
+    // same model without it rather than losing the model entirely.
+    let jsonMode = true;
+    // Up to three attempts: 429 backoff, and a no-json-mode retry.
+    for (let attempt = 0; attempt < 3; attempt++) {
     // Hard per-model deadline. A free endpoint that hangs must not consume the
     // whole request budget and leave the user staring at a spinner.
     const ctl = new AbortController();
@@ -154,7 +238,10 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           model,
           temperature: 0,
-          max_tokens: 900,
+          // Enough headroom that a preamble can't truncate the object.
+          max_tokens: 1600,
+          // Ask for guaranteed-parseable output where the model supports it.
+          ...(jsonMode ? { response_format: { type: "json_object" } } : {}),
           messages: [
             {
               role: "user",
@@ -167,6 +254,10 @@ export async function POST(req: Request) {
         }),
       });
 
+      if (res.status === 400 && jsonMode) {
+        jsonMode = false; // this model rejects response_format — retry plain
+        continue;
+      }
       if (res.status === 429 && attempt === 0 && Date.now() - startedAt < 28_000) {
         await sleep(2500);
         continue; // same model, second attempt
@@ -181,8 +272,21 @@ export async function POST(req: Request) {
       anyModelAnswered = true;
 
       const parsed = extractJson(text);
-      if (!parsed) { outcomes.push({ model, why: "replied but not with JSON" }); break; }
-      if (!parsed.name) { outcomes.push({ model, why: "read the image but found no item name" }); break; }
+      if (!parsed) {
+        // Surface what it actually said — guessing at this cost several rounds.
+        const snip = text.replace(/\s+/g, " ").trim().slice(0, 160) || "(empty reply)";
+        outcomes.push({ model, why: `replied but not with JSON: "${snip}"` });
+        break;
+      }
+      const stats = tidyStats(parsed.stats);
+      if (!parsed.name && !stats) {
+        outcomes.push({ model, why: "read the image but found no item tooltip or stat window" });
+        break;
+      }
+      if (!parsed.name) {
+        // Stat window only — no item in this shot, which is fine.
+        return NextResponse.json({ model, item: null, slotGuess: null, iconBox: null, stats });
+      }
 
       const rawSlot = (parsed.slot ?? "").toLowerCase().trim();
       const slot = SLOT_ALIASES[rawSlot] ?? (rawSlot || null);
@@ -203,6 +307,7 @@ export async function POST(req: Request) {
         },
         slotGuess: slot,
         iconBox: Array.isArray(parsed.iconBox) && parsed.iconBox.length === 4 ? parsed.iconBox.map(Number) : null,
+        stats,
       });
     } catch (e) {
       outcomes.push({ model, why: (e as Error)?.name === "AbortError" ? "timed out after 20s" : "network error" });

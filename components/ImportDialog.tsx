@@ -19,6 +19,21 @@ export interface ImportEntry {
   via: string;
 }
 
+/** Whatever the stat window yielded. Every field is optional — the model omits
+ *  anything it couldn't see, and we only overwrite what actually came back. */
+export interface StatsPatch {
+  name?: string; cls?: string; lvl?: number; cp?: number;
+  main?: number; att?: number; crit?: number; critdmg?: number;
+  boss?: number; ied?: number; hp?: number; arcane?: number; starforce?: number;
+}
+
+const STAT_LABELS: Array<[keyof StatsPatch, string]> = [
+  ["name", "Name"], ["cls", "Class"], ["lvl", "Level"], ["cp", "Combat Power"],
+  ["main", "Main stat"], ["att", "Attack"], ["crit", "Crit rate"], ["critdmg", "Crit damage"],
+  ["boss", "Boss damage"], ["ied", "Ignore DEF"], ["hp", "Max HP"],
+  ["arcane", "Arcane Power"], ["starforce", "Star Force"],
+];
+
 /** Crop the item's icon out of the screenshot so the grid can show the real
  *  sprite even for items the item database doesn't match. Box is normalised. */
 function cropIcon(img: HTMLImageElement, box: number[], size = 72): string | undefined {
@@ -72,7 +87,7 @@ export default function ImportDialog({
   onApply,
   onClose,
 }: {
-  onApply: (entries: Array<{ slot: string; item: Item }>) => void;
+  onApply: (entries: Array<{ slot: string; item: Item }>, stats?: StatsPatch) => void;
   onClose: () => void;
 }) {
   const [tab, setTab] = useState<"shot" | "text">("shot");
@@ -81,6 +96,8 @@ export default function ImportDialog({
   const [error, setError] = useState<string | null>(null);
   const [entries, setEntries] = useState<ImportEntry[]>([]);
   const [fails, setFails] = useState<Array<{ name: string; why: string }>>([]);
+  const [stats, setStats] = useState<StatsPatch | null>(null);
+  const [useStats, setUseStats] = useState(true);
   const [text, setText] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
   const nextId = useRef(1);
@@ -102,7 +119,7 @@ export default function ImportDialog({
    *  There is deliberately no local-OCR fallback: tesseract never once read a
    *  real tooltip correctly, and running it on a full-size screenshot took
    *  minutes. A clear error beats a spinner that never ends. */
-  const readOne = useCallback(async (file: File | Blob): Promise<{ parsed: ParsedItem; via: string } | string> => {
+  const readOne = useCallback(async (file: File | Blob): Promise<{ parsed?: ParsedItem; stats?: StatsPatch; via: string } | string> => {
     let img: HTMLImageElement;
     try {
       img = await loadImage(file);
@@ -120,12 +137,19 @@ export default function ImportDialog({
         body: JSON.stringify({ image: toDataUrl(img) }),
       });
       const j = await res.json();
+
+      // A shot may hold the stat window, an item tooltip, or both.
+      if (res.ok && !j.item?.name && j.stats) {
+        return { via: j.model, stats: j.stats as StatsPatch };
+      }
+
       if (res.ok && j.item?.name) {
         const p: string[] = j.item.p ?? [];
         const f: string[] = j.item.f ?? [];
         const icon = j.iconBox ? cropIcon(img, j.iconBox) : undefined;
         return {
           via: j.model,
+          stats: j.stats as StatsPatch | undefined,
           parsed: {
             item: { ...j.item, icon, p: [p[0] ?? "", p[1] ?? "", p[2] ?? ""], f: [f[0] ?? "", f[1] ?? "", f[2] ?? ""] },
             slotGuess: j.slotGuess ?? null,
@@ -176,7 +200,8 @@ export default function ImportDialog({
         if (typeof r === "string") {
           setFails((prev) => [...prev, { name: batch[i].name || `Screenshot ${i + 1}`, why: r }]);
         } else {
-          add(r.parsed, r.via);
+          if (r.stats) setStats((prev) => ({ ...(prev ?? {}), ...r.stats }));
+          if (r.parsed) add(r.parsed, r.via);
         }
         done++;
         setStep({ done, total: batch.length, label: "" });
@@ -267,6 +292,30 @@ export default function ImportDialog({
             </p>
           )}
 
+          {stats && (
+            <>
+              <div className="sub-h">Character stats found</div>
+              <div style={{
+                background: "var(--well)", border: `1px solid ${useStats ? "var(--gold)" : "var(--line-soft)"}`,
+                borderRadius: 3, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 7,
+                opacity: useStats ? 1 : 0.45,
+              }}>
+                <label style={{ display: "flex", alignItems: "center", gap: 9, fontSize: ".85rem", fontWeight: 600 }}>
+                  <input type="checkbox" checked={useStats} onChange={(e) => setUseStats(e.target.checked)} />
+                  Update the character panel with these
+                </label>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(140px,1fr))", gap: "3px 14px" }}>
+                  {STAT_LABELS.filter(([k]) => stats[k] !== undefined && stats[k] !== "").map(([k, label]) => (
+                    <div key={k} style={{ display: "flex", justifyContent: "space-between", gap: 6, fontSize: ".76rem" }}>
+                      <span style={{ color: "var(--ink-3)" }}>{label}</span>
+                      <span className="mono">{typeof stats[k] === "number" ? (stats[k] as number).toLocaleString() : String(stats[k])}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+
           {fails.length > 0 && (
             <>
               <div className="sub-h">Couldn&apos;t read ({fails.length})</div>
@@ -334,10 +383,23 @@ export default function ImportDialog({
 
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", padding: "12px 15px", borderTop: "1px solid var(--line)" }}>
           <button className="btn" onClick={onClose}>Cancel</button>
-          {entries.length > 0 && <button className="btn" onClick={() => { setEntries([]); setError(null); }}>Clear all</button>}
-          {chosen.length > 0 && (
-            <button className="btn p" onClick={() => onApply(chosen.map((e) => ({ slot: e.slot, item: e.parsed.item })))}>
-              Apply {chosen.length} item{chosen.length > 1 ? "s" : ""}
+          {(entries.length > 0 || stats) && (
+            <button className="btn" onClick={() => { setEntries([]); setFails([]); setStats(null); setError(null); }}>Clear all</button>
+          )}
+          {(chosen.length > 0 || (stats && useStats)) && (
+            <button
+              className="btn p"
+              onClick={() =>
+                onApply(
+                  chosen.map((e) => ({ slot: e.slot, item: e.parsed.item })),
+                  stats && useStats ? stats : undefined
+                )
+              }
+            >
+              Apply {[
+                chosen.length ? `${chosen.length} item${chosen.length > 1 ? "s" : ""}` : null,
+                stats && useStats ? "stats" : null,
+              ].filter(Boolean).join(" + ")}
             </button>
           )}
         </div>
