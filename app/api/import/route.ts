@@ -132,8 +132,12 @@ export async function POST(req: Request) {
   // not produce the same message.
   const outcomes: Array<{ model: string; why: string }> = [];
   let anyModelAnswered = false;
+  const startedAt = Date.now();
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   for (const model of models) {
+    // One backoff retry per model on 429, while request budget allows.
+    for (let attempt = 0; attempt < 2; attempt++) {
     // Hard per-model deadline. A free endpoint that hangs must not consume the
     // whole request budget and leave the user staring at a spinner.
     const ctl = new AbortController();
@@ -163,9 +167,13 @@ export async function POST(req: Request) {
         }),
       });
 
+      if (res.status === 429 && attempt === 0 && Date.now() - startedAt < 28_000) {
+        await sleep(2500);
+        continue; // same model, second attempt
+      }
       if (!res.ok) {
         outcomes.push({ model, why: `HTTP ${res.status}${res.status === 429 ? " (rate limited)" : ""}` });
-        continue;
+        break;
       }
 
       const json = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
@@ -173,8 +181,8 @@ export async function POST(req: Request) {
       anyModelAnswered = true;
 
       const parsed = extractJson(text);
-      if (!parsed) { outcomes.push({ model, why: "replied but not with JSON" }); continue; }
-      if (!parsed.name) { outcomes.push({ model, why: "read the image but found no item name" }); continue; }
+      if (!parsed) { outcomes.push({ model, why: "replied but not with JSON" }); break; }
+      if (!parsed.name) { outcomes.push({ model, why: "read the image but found no item name" }); break; }
 
       const rawSlot = (parsed.slot ?? "").toLowerCase().trim();
       const slot = SLOT_ALIASES[rawSlot] ?? (rawSlot || null);
@@ -198,8 +206,11 @@ export async function POST(req: Request) {
       });
     } catch (e) {
       outcomes.push({ model, why: (e as Error)?.name === "AbortError" ? "timed out after 20s" : "network error" });
-    } finally {
       clearTimeout(timer);
+      break;
+    }
+    clearTimeout(timer);
+    break;
     }
   }
 
