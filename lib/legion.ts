@@ -18,6 +18,26 @@ export interface RosterChar {
   current?: boolean;
 }
 
+/** Fold one page of characters into an existing roster.
+ *
+ *  The Switch Character window is paginated, so a full account arrives across
+ *  several screenshots and often across several separate imports - replacing
+ *  would mean only ever keeping the last page you happened to upload. Matching
+ *  is by name, which is the one field that is stable: levels go up, and the
+ *  CURRENT badge moves whenever you switch characters. */
+export function mergeRoster(prev: RosterChar[], next: RosterChar[]): RosterChar[] {
+  const by = new Map(prev.map((c) => [c.name.toLowerCase(), c]));
+  for (const c of next) {
+    const k = c.name.toLowerCase();
+    const had = by.get(k);
+    // A character never loses levels, so on a disagreement the higher number is
+    // the real one - a misread digit drops a level far more often than it
+    // invents one. Everything else on the newer read wins.
+    by.set(k, had ? { ...had, ...c, lvl: Math.max(had.lvl, c.lvl) } : c);
+  }
+  return [...by.values()].sort((a, b) => b.lvl - a.lvl);
+}
+
 export type Rank = "-" | "B" | "A" | "S" | "SS" | "SSS";
 
 /** Descending, so the first match wins. */

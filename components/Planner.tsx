@@ -7,6 +7,8 @@ import {
   type Character, type Item, type Rec, type SlotDef, type Tier,
 } from "@/lib/rules";
 import { getStore } from "@/lib/storage";
+import { resolveItem } from "@/lib/itemLookup";
+import { mergeRoster } from "@/lib/legion";
 import ImportDialog from "@/components/ImportDialog";
 import ItemSearch from "@/components/ItemSearch";
 import Roster from "@/components/Roster";
@@ -42,6 +44,44 @@ export default function Planner() {
     });
     return () => { live = false; };
   }, [store]);
+
+  // Items saved before the database lookup existed carry a name but no
+  // itemId, so the grid had no sprite to draw and fell back to rendering the
+  // name as text. Resolve them once in the background rather than making the
+  // user re-import gear that is already correct.
+  const backfilled = useRef(false);
+  useEffect(() => {
+    if (!ready || backfilled.current) return;
+    const missing = Object.entries(ch.items).filter(([, it]) => it?.name && !it.itemId);
+    backfilled.current = true;
+    if (!missing.length) return;
+
+    let live = true;
+    void (async () => {
+      const items = { ...ch.items };
+      let changed = false;
+      for (const [slotId, it] of missing) {
+        const db = await resolveItem(it.name, slotId);
+        if (!db) continue;
+        items[slotId] = {
+          ...it,
+          name: db.name,
+          itemId: db.itemId,
+          sub: db.sub,
+          bossDrop: db.bossDrop,
+          lvl: it.lvl || db.level || 0,
+          sup: it.sup || (db.superior ? 1 : 0),
+        };
+        changed = true;
+      }
+      if (live && changed) {
+        const next = { ...ch, items };
+        setCh(next);
+        void store.save(next);
+      }
+    })();
+    return () => { live = false; };
+  }, [ready, ch, store]);
 
   const update = useCallback((next: Character) => {
     setCh(next);
@@ -257,7 +297,9 @@ export default function Planner() {
                 .forEach((k) => { if (patch[k] !== undefined) s[k] = patch[k] as number; });
               next.stats = s;
             }
-            if (roster?.length) next.roster = roster;
+            // Merge rather than replace: the Switch Character window is
+            // paginated, so uploading page 2 must not discard page 1.
+            if (roster?.length) next.roster = mergeRoster(ch.roster ?? [], roster);
 
             update(next);
             setImporting(false);
