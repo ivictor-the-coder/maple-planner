@@ -267,3 +267,42 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
   .grid-eq { grid-template-columns: repeat(5, 1fr); grid-auto-rows: auto; }
   .slot { aspect-ratio: 1; }
 }
+
+/* ---------- legion roster ---------- */
+.roster-sum {
+  display: flex; flex-wrap: wrap; gap: 6px 16px;
+  font-size: .78rem; color: var(--ink-3);
+  padding: 9px 12px; margin-bottom: 12px;
+  background: var(--well); border-radius: 3px;
+}
+.roster-sum b { color: var(--ink-1); font-variant-numeric: tabular-nums; }
+.roster-sum .warn b { color: var(--bad); }
+
+.roster-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+@media (max-width: 860px) { .roster-split { grid-template-columns: 1fr; } }
+
+.roster-list { display: flex; flex-direction: column; gap: 1px; }
+.roster-row {
+  display: flex; align-items: center; gap: 9px;
+  padding: 5px 9px; border-radius: 3px; font-size: .79rem;
+}
+.roster-row:nth-child(odd) { background: var(--well); }
+.roster-row .lv { color: var(--gold); min-width: 26px; text-align: right; }
+.roster-row .nm { color: var(--ink-1); display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.roster-row .nm em { font-style: normal; color: var(--ink-3); font-size: .72rem; white-space: nowrap; }
+.roster-row .nx { margin-left: auto; color: var(--ink-3); font-size: .7rem; white-space: nowrap; }
+.roster-row .cur {
+  font-style: normal; font-size: .6rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold); border-radius: 2px; padding: 0 3px;
+}
+
+.rank {
+  font-size: .66rem; font-weight: 700; letter-spacing: .04em;
+  min-width: 26px; text-align: center; padding: 1px 3px; border-radius: 2px;
+  background: var(--line); color: var(--ink-3);
+}
+.rank.rSSS { background: #6d3b12; color: #ffd58a; }
+.rank.rSS  { background: #4a3410; color: #ffc95e; }
+.rank.rS   { background: #2f3f1c; color: #b6e06a; }
+.rank.rA   { background: #1e3346; color: #7fc0f0; }
+.rank.rB   { background: #33283f; color: #c3a2e6; }
