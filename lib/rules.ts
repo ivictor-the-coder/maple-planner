@@ -1,6 +1,8 @@
 // Recommendation engine. Everything the planner advises comes from here.
 // Rules are current as of GMS v.271 (2026-09-09).
 
+import type { RosterChar } from "./legion";
+
 export type MainStat = "dex" | "str" | "int" | "luk";
 export type Tier = "none" | "rare" | "epic" | "unique" | "legendary";
 export type PotKind = "stat" | "atk" | "crit" | "no";
@@ -20,6 +22,19 @@ export interface Item {
   /** Icon cropped out of an imported screenshot, as a data URL. Used when the
    *  item database has no match — an imported item still shows its real sprite. */
   icon?: string;
+  /** Item database subcategory, e.g. "Arrow Fletching" or "Shield". This is what
+   *  decides star forceability in the secondary slot; the slot cannot. */
+  sub?: string;
+  // MapleStory has three independent enhancement systems and an item can opt
+  // out of any combination of them — the tooltip spells it out, so read it
+  // rather than inferring from the slot. A Glory Guard ring takes no stars
+  // while every other ring does; a pocket item takes flames but no potential.
+  /** "Star Force ... Can't Enhance". */
+  noSf?: boolean;
+  /** "... Bonus Stats Can't Enhance". */
+  noFl?: boolean;
+  /** "Potential : Can't Enhance". */
+  noPot?: boolean;
 }
 
 export interface Stats {
@@ -42,6 +57,8 @@ export interface Character {
   cp: number;
   stats: Stats;
   items: Record<string, Item>;
+  /** Every character on the account, read from the Switch Character window. */
+  roster?: RosterChar[];
 }
 
 export interface SlotDef {
@@ -179,6 +196,19 @@ export function statPct(txt: string, main: MainStat): number {
   return 0;
 }
 
+// Most secondary weapons take no star force at all — arrow fletchings, charms,
+// chess pieces, wristbands and the rest of the class-specific secondaries have no
+// upgrade slots. Shields are the exception: they sit in the secondary slot but
+// enhance like armour. A per-slot boolean cannot express that, so it lives here.
+const SF_SECONDARY = /shield|katara|magic arrow/i;
+
+export function canStarForce(slot: SlotDef, it: Item | null): boolean {
+  if (!slot.sf || !it) return false;
+  if (it.noSf) return false;
+  if (slot.id === "secondary") return SF_SECONDARY.test(it.sub || it.name || "");
+  return true;
+}
+
 export function sfCap(it: Item | null): number {
   if (!it) return 0;
   if (it.sup) return 15;
@@ -216,7 +246,7 @@ export function advise(slot: SlotDef, ch: Character): Rec[] {
     return recs;
   }
 
-  if (slot.pot !== "no") {
+  if (slot.pot !== "no" && !it.noPot) {
     const tier: Tier = it.pot || "none";
     const lines = (it.p || []).filter(Boolean);
     const dead = lines.filter((l) => isDeadLine(l, main));
@@ -258,10 +288,19 @@ export function advise(slot: SlotDef, ch: Character): Rec[] {
         `Run ${label}% until the rest of your gear is done, then switch.`);
       else add(3, "ok", `${cd} crit damage line${cd > 1 ? "s" : ""}.`);
     }
+  } else if (it.noPot && slot.pot !== "no") {
+    add(4, "ok", "This item cannot take potential.", "Its tooltip reads \u201cPotential : Can't Enhance\u201d.");
   }
 
-  if (slot.sf) {
-    const cap = sfCap(it), tgt = sfTarget(it), cur = it.star || 0;
+  if (canStarForce(slot, it)) {
+    const cap = sfCap(it), tgt = sfTarget(it), raw = it.star || 0;
+    const cur = Math.min(raw, cap);
+    if (raw > cap) {
+      // The cap is derived from the item's level, so more stars than the cap
+      // allows means the LEVEL is wrong, not the stars. Say which to check.
+      add(1, "hi", `Reads ${raw} stars, but Lv ${it.lvl} caps at ${cap}.`,
+        "One of the two was misread. Fix the required level first — the cap comes from it.");
+    }
     if (it.sup && cur < 15) {
       add(1, "hi", `Superior gear — caps at 15 stars, currently ${cur}.`,
         "Expensive per star. Consider a non-superior replacement that goes to 30 instead.");
@@ -276,9 +315,14 @@ export function advise(slot: SlotDef, ch: Character): Rec[] {
     } else {
       add(4, "ok", `${cur}/${cap} stars.`);
     }
+  } else if (slot.sf && it) {
+    add(4, "ok", "This item cannot be star forced.",
+      slot.id === "secondary"
+        ? "Only shields take star force in the secondary slot. Fletchings, charms, chess pieces and the rest have no upgrade slots."
+        : "Its tooltip has no star force row.");
   }
 
-  if (slot.fl) {
+  if (slot.fl && !it.noFl) {
     const fl = (it.f || []).filter(Boolean);
     const badf = fl.filter((l) => isDeadLine(l, main));
     const advantaged = it.bossDrop
@@ -294,6 +338,8 @@ export function advise(slot: SlotDef, ch: Character): Rec[] {
       add(4, "ok", "Flame is working.",
         `Best lines are All Stat %, then flat ${label}, then ATT.${advantaged}`);
     }
+  } else if (slot.fl && it.noFl) {
+    add(4, "ok", "This item cannot take flames.");
   } else if (slot.id === "shoulder" || slot.id.startsWith("ring")) {
     add(4, "ok", "This slot cannot take flames.");
   }

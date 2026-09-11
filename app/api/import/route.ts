@@ -28,10 +28,13 @@ export const maxDuration = 60;
 //
 // The free tier was dropped from the chain: of five probed, three returned
 // 429/403/404 and the two that answered were weak at this task.
+// muse-spark is last, not first: it returns 403 on every request from this
+// account until OpenRouter prompt-sharing is enabled, and a model at the head of
+// the chain that always fails costs one wasted round trip per screenshot.
 const DEFAULT_MODELS = [
-  "meta/muse-spark-1.3-contributor",
   "z-ai/glm-5.3-flash",
   "deepseek/deepseek-v4.1-flash",
+  "meta/muse-spark-1.3-contributor",
 ];
 
 const PROMPT = `You are reading a screenshot of the game MapleStory.
@@ -63,7 +66,14 @@ Reply with ONLY a JSON object, no prose and no code fences:
                                // are NOT earned and must not be counted. If the row shows 12 gold then
                                // 3 grey, the answer is 12, not 15. Never assume the item is maxed.
                                // Use 0 if there are no gold stars or you cannot tell.
-  "superior": boolean,         // true if the name contains Tyrant, or it says superior, or "Bonus Stats Can't Enhance"
+  "superior": boolean,         // true ONLY if the name contains Tyrant, or the tooltip says Superior.
+                               // A "Can't Enhance" line is NOT superior — superior items still take 15 stars.
+  "noStarForce": boolean,      // true if the tooltip has a line like "Star Force, Bonus Stats Can't Enhance"
+                               // or "Star Force Can't Enhance". Most secondary weapons say this.
+  "noFlame": boolean,          // true if that same line mentions "Bonus Stats" — the item takes no flame.
+  "noPotential": boolean,      // true if the tooltip reads "Potential : Can't Enhance" instead of a tier.
+                               // Note an item can say "Star Force, Bonus Stats Can't Enhance" and STILL
+                               // have a real "Potential : Legendary" with lines — read the two separately.
   "iconBox": [number, number, number, number]
                                // bounding box of the item's ICON — the small square picture of the item
                                // inside the tooltip, usually top-left under the name. Give it as
@@ -95,7 +105,24 @@ as displayed, stripping commas and % signs. Omit any field you cannot see.
     "starForce": number      // the STAR FORCE total, not any single item's stars
   }
 
-Omit "stats" entirely when no stat window is on screen.`;
+Omit "stats" entirely when no stat window is on screen.
+
+SEPARATELY AGAIN: the screenshot may show the SWITCH CHARACTER window — a grid of
+character cards, each card showing "Lv.NNN" on top, the CLASS under it ("Bow
+Master", "Demon Avenger", "Dawn Warrior"), and the CHARACTER NAME on the bottom
+line next to a small job icon ("Archerroni"). One card may carry a CURRENT badge,
+and there is a page counter like "01 / 03" at the bottom. If and only if that
+window is visible, add a "roster" key with every card you can read, left to right
+then top to bottom:
+
+  "roster": [ { "name": string, "class": string, "level": number, "current": boolean } ]
+
+Class is the MIDDLE line and name is the BOTTOM line — do not swap them. Set
+"current" true only for the card badged CURRENT. Skip a card you cannot read
+rather than guessing at it. Also add "rosterPage": [n, total] from the page
+counter, so [1, 3] for "01 / 03".
+
+Omit "roster" entirely when no Switch Character window is on screen.`;
 
 interface VisionStats {
   name?: string; class?: string; level?: number; combatPower?: number;
@@ -104,16 +131,36 @@ interface VisionStats {
   arcanePower?: number; starForce?: number;
 }
 
+interface VisionRosterEntry {
+  name?: string; class?: string; level?: number; current?: boolean;
+}
+
 interface VisionItem {
   name?: string; level?: number; slot?: string; tier?: string;
   potential?: string[]; flame?: string[]; starforce?: number; superior?: boolean;
+  noStarForce?: boolean; noFlame?: boolean; noPotential?: boolean;
   iconBox?: number[]; stats?: VisionStats;
+  roster?: VisionRosterEntry[]; rosterPage?: number[];
 }
 
 const num = (v: unknown, max: number): number | undefined => {
   const n = typeof v === "string" ? parseFloat(v.replace(/[,%\s]/g, "")) : Number(v);
   return Number.isFinite(n) && n >= 0 && n <= max ? n : undefined;
 };
+
+function tidyRoster(r: unknown) {
+  if (!Array.isArray(r)) return undefined;
+  const out: Array<{ name: string; cls: string; lvl: number; current: boolean }> = [];
+  for (const e of r) {
+    const x = (e ?? {}) as VisionRosterEntry;
+    const name = typeof x.name === "string" ? x.name.trim() : "";
+    const cls = typeof x.class === "string" ? x.class.trim() : "";
+    const lvl = num(x.level, 300);
+    if (!name || lvl === undefined) continue;
+    out.push({ name, cls, lvl, current: !!x.current });
+  }
+  return out.length ? out : undefined;
+}
 
 function tidyStats(s: VisionStats | undefined) {
   if (!s || typeof s !== "object") return undefined;
@@ -173,7 +220,9 @@ function extractJson(text: string): VisionItem | null {
       }
     }
   }
-  const useful = candidates.find((c) => c && (c.name !== undefined || c.stats !== undefined));
+  const useful = candidates.find(
+    (c) => c && (c.name !== undefined || c.stats !== undefined || c.roster !== undefined)
+  );
   if (useful) return useful;
   if (candidates.length === 1) return candidates[0];
 
@@ -297,13 +346,14 @@ export async function POST(req: Request) {
         break;
       }
       const stats = tidyStats(parsed.stats);
-      if (!parsed.name && !stats) {
-        outcomes.push({ model, why: "read the image but found no item tooltip or stat window" });
+      const roster = tidyRoster(parsed.roster);
+      if (!parsed.name && !stats && !roster) {
+        outcomes.push({ model, why: "read the image but found no item tooltip, stat window or character list" });
         break;
       }
       if (!parsed.name) {
-        // Stat window only — no item in this shot, which is fine.
-        return NextResponse.json({ model, item: null, slotGuess: null, iconBox: null, stats });
+        // Stats and/or roster only — no item in this shot, which is fine.
+        return NextResponse.json({ model, item: null, slotGuess: null, iconBox: null, stats, roster });
       }
 
       const rawSlot = (parsed.slot ?? "").toLowerCase().trim();
@@ -320,12 +370,16 @@ export async function POST(req: Request) {
           star,
           pot: tier,
           sup: parsed.superior ? 1 : 0,
-          p: tidy(parsed.potential),
-          f: tidy(parsed.flame),
+          noSf: !!parsed.noStarForce,
+          noFl: !!parsed.noFlame,
+          noPot: !!parsed.noPotential,
+          p: parsed.noPotential ? [] : tidy(parsed.potential),
+          f: parsed.noFlame ? [] : tidy(parsed.flame),
         },
         slotGuess: slot,
         iconBox: Array.isArray(parsed.iconBox) && parsed.iconBox.length === 4 ? parsed.iconBox.map(Number) : null,
         stats,
+        roster,
       });
     } catch (e) {
       outcomes.push({ model, why: (e as Error)?.name === "AbortError" ? "timed out after 20s" : "network error" });
@@ -339,7 +393,7 @@ export async function POST(req: Request) {
 
   const detail = outcomes.map((o) => `${o.model} — ${o.why}`).join("; ");
   const error = anyModelAnswered
-    ? `A model read the image but couldn't find an item tooltip in it. Make sure one item's tooltip is visible in the screenshot. (${detail})`
+    ? `A model read the image but found nothing it could use. Show an item tooltip, the Stat window, or the Switch Character list. (${detail})`
     : `No vision model responded — free endpoints are likely rate-limited right now. Wait a minute and retry. (${detail})`;
 
   return NextResponse.json({ error, outcomes }, { status: 503 });
