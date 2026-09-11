@@ -75,6 +75,7 @@ export default function ImportDialog({
   const [step, setStep] = useState<{ done: number; total: number; label: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [entries, setEntries] = useState<ImportEntry[]>([]);
+  const [fails, setFails] = useState<Array<{ name: string; why: string }>>([]);
   const [text, setText] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
   const nextId = useRef(1);
@@ -151,17 +152,21 @@ export default function ImportDialog({
     else setError(null);
 
     setBusy(true);
-    const failures: string[] = [];
-    // Sequential on purpose: free vision endpoints rate-limit hard in parallel.
+    setFails([]);
+    // Sequential, and spaced: hitting a vision endpoint ten times back to back
+    // trips its rate limit and most of the batch comes back 429.
     for (let i = 0; i < batch.length; i++) {
       setStep({ done: i, total: batch.length, label: batch[i].name || "screenshot" });
       const r = await readOne(batch[i]);
-      if (typeof r === "string") failures.push(`${batch[i].name || `#${i + 1}`}: ${r}`);
-      else add(r.parsed, r.via);
+      if (typeof r === "string") {
+        setFails((prev) => [...prev, { name: batch[i].name || `Screenshot ${i + 1}`, why: r }]);
+      } else {
+        add(r.parsed, r.via);
+      }
+      if (i < batch.length - 1) await new Promise((res) => setTimeout(res, 1200));
     }
     setStep(null);
     setBusy(false);
-    if (failures.length) setError(failures.join(" · "));
   }, [entries.length, readOne, add]);
 
   useEffect(() => {
@@ -238,6 +243,21 @@ export default function ImportDialog({
             <p style={{ margin: 0, fontSize: ".8rem", color: "var(--bad)", background: "var(--well)", borderLeft: "2px solid var(--bad)", padding: "9px 12px" }}>
               {error}
             </p>
+          )}
+
+          {fails.length > 0 && (
+            <>
+              <div className="sub-h">Couldn&apos;t read ({fails.length})</div>
+              {fails.map((f, i) => (
+                <div key={i} style={{
+                  background: "var(--well)", borderLeft: "2px solid var(--bad)",
+                  borderRadius: "0 3px 3px 0", padding: "8px 11px", fontSize: ".78rem",
+                }}>
+                  <b style={{ color: "var(--ink-2)" }}>{f.name}</b>
+                  <span style={{ display: "block", color: "var(--ink-3)", marginTop: 2 }}>{f.why}</span>
+                </div>
+              ))}
+            </>
           )}
 
           {entries.length > 0 && (
