@@ -1,12 +1,29 @@
-﻿{
+{
   "name": "maple-planner",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
-  "description": "MapleStory progression planner and living guide",
   "scripts": {
-    "build": "node tools/build-site.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "build:sheet": "node tools/build-sheet.js"
+  },
+  "dependencies": {
+    "next": "16.3.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
-    "exceljs": "^4.4.0"
-  }
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "description": "MapleStory progression planner and living guide"
 }
