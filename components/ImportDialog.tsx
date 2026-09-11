@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { parseTooltip, type ParsedItem } from "@/lib/import/tooltip";
 import { SLOTS, TIER_LABEL, type Item } from "@/lib/rules";
+import { rankOf, type RosterChar } from "@/lib/legion";
 
 const MAX_FILES = 10;
 /** In-flight requests. All ten at once trips the provider's rate limit; one at
@@ -33,6 +34,19 @@ const STAT_LABELS: Array<[keyof StatsPatch, string]> = [
   ["boss", "Boss damage"], ["ied", "Ignore DEF"], ["hp", "Max HP"],
   ["arcane", "Arcane Power"], ["starforce", "Star Force"],
 ];
+
+function mergeRoster(prev: RosterChar[], next: RosterChar[]): RosterChar[] {
+  const by = new Map(prev.map((c) => [c.name.toLowerCase(), c]));
+  for (const c of next) {
+    const k = c.name.toLowerCase();
+    const had = by.get(k);
+    // Two reads of the same card can disagree; the higher level is the one that
+    // was actually rendered, since a misread digit drops a level far more often
+    // than it invents one.
+    if (!had || c.lvl > had.lvl) by.set(k, { ...had, ...c });
+  }
+  return [...by.values()].sort((a, b) => b.lvl - a.lvl);
+}
 
 /** Crop the item's icon out of the screenshot so the grid can show the real
  *  sprite even for items the item database doesn't match. Box is normalised. */
@@ -87,7 +101,7 @@ export default function ImportDialog({
   onApply,
   onClose,
 }: {
-  onApply: (entries: Array<{ slot: string; item: Item }>, stats?: StatsPatch) => void;
+  onApply: (entries: Array<{ slot: string; item: Item }>, stats?: StatsPatch, roster?: RosterChar[]) => void;
   onClose: () => void;
 }) {
   const [tab, setTab] = useState<"shot" | "text">("shot");
@@ -98,6 +112,8 @@ export default function ImportDialog({
   const [fails, setFails] = useState<Array<{ name: string; why: string }>>([]);
   const [stats, setStats] = useState<StatsPatch | null>(null);
   const [useStats, setUseStats] = useState(true);
+  const [roster, setRoster] = useState<RosterChar[]>([]);
+  const [useRoster, setUseRoster] = useState(true);
   const [text, setText] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
   const nextId = useRef(1);
@@ -119,7 +135,7 @@ export default function ImportDialog({
    *  There is deliberately no local-OCR fallback: tesseract never once read a
    *  real tooltip correctly, and running it on a full-size screenshot took
    *  minutes. A clear error beats a spinner that never ends. */
-  const readOne = useCallback(async (file: File | Blob): Promise<{ parsed?: ParsedItem; stats?: StatsPatch; via: string } | string> => {
+  const readOne = useCallback(async (file: File | Blob): Promise<{ parsed?: ParsedItem; stats?: StatsPatch; roster?: RosterChar[]; via: string } | string> => {
     let img: HTMLImageElement;
     try {
       img = await loadImage(file);
@@ -138,9 +154,10 @@ export default function ImportDialog({
       });
       const j = await res.json();
 
-      // A shot may hold the stat window, an item tooltip, or both.
-      if (res.ok && !j.item?.name && j.stats) {
-        return { via: j.model, stats: j.stats as StatsPatch };
+      // A shot may hold a tooltip, the stat window, the Switch Character list,
+      // or any combination — the Switch Character list never has a tooltip.
+      if (res.ok && !j.item?.name && (j.stats || j.roster)) {
+        return { via: j.model, stats: j.stats as StatsPatch | undefined, roster: j.roster as RosterChar[] | undefined };
       }
 
       if (res.ok && j.item?.name) {
@@ -153,6 +170,7 @@ export default function ImportDialog({
         // name, take its icon and metadata instead.
         let itemId: number | undefined;
         let bossDrop: boolean | undefined;
+        let dbSub: string | undefined;
         let dbLevel = 0;
         let dbSuperior = false;
         try {
@@ -160,10 +178,11 @@ export default function ImportDialog({
           const hits = (await look.json())?.items ?? [];
           const exact = hits.find(
             (h: { name: string }) => h.name.toLowerCase() === String(j.item.name).toLowerCase()
-          );
+          ) as { itemId: number; bossDrop: boolean; subcategory: string; level: number; superior: boolean } | undefined;
           if (exact) {
             itemId = exact.itemId;
             bossDrop = exact.bossDrop;
+            dbSub = exact.subcategory;
             dbLevel = exact.level ?? 0;
             dbSuperior = !!exact.superior;
           }
@@ -174,13 +193,18 @@ export default function ImportDialog({
         return {
           via: j.model,
           stats: j.stats as StatsPatch | undefined,
+          roster: j.roster as RosterChar[] | undefined,
           parsed: {
             item: {
               ...j.item,
               icon,
               itemId,
               bossDrop,
-              lvl: j.item.lvl || dbLevel,
+              sub: dbSub,
+              // The database level is authoritative. The model reading "Lv. 95"
+              // off an item that is really Lv. 110 is what produced star counts
+              // above the item's own cap.
+              lvl: dbLevel || j.item.lvl,
               sup: j.item.sup || (dbSuperior ? 1 : 0),
               p: [p[0] ?? "", p[1] ?? "", p[2] ?? ""],
               f: [f[0] ?? "", f[1] ?? "", f[2] ?? ""],
@@ -234,6 +258,7 @@ export default function ImportDialog({
           setFails((prev) => [...prev, { name: batch[i].name || `Screenshot ${i + 1}`, why: r }]);
         } else {
           if (r.stats) setStats((prev) => ({ ...(prev ?? {}), ...r.stats }));
+          if (r.roster?.length) setRoster((prev) => mergeRoster(prev, r.roster!));
           if (r.parsed) add(r.parsed, r.via);
         }
         done++;
@@ -275,7 +300,7 @@ export default function ImportDialog({
       <div className="ed-in" style={{ maxWidth: 720 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 15px", borderBottom: "1px solid var(--line)" }}>
           <h3 style={{ fontSize: "1rem", marginRight: "auto" }}>
-            Import tooltips {entries.length > 0 && <span className="mono" style={{ color: "var(--ink-3)", fontSize: ".72rem" }}>{entries.length}/{MAX_FILES}</span>}
+            Import from screenshots {entries.length > 0 && <span className="mono" style={{ color: "var(--ink-3)", fontSize: ".72rem" }}>{entries.length}/{MAX_FILES}</span>}
           </h3>
           <button className={`btn${tab === "shot" ? " p" : ""}`} onClick={() => setTab("shot")}>Screenshots</button>
           <button className={`btn${tab === "text" ? " p" : ""}`} onClick={() => setTab("text")}>Paste text</button>
@@ -342,6 +367,34 @@ export default function ImportDialog({
                     <div key={k} style={{ display: "flex", justifyContent: "space-between", gap: 6, fontSize: ".76rem" }}>
                       <span style={{ color: "var(--ink-3)" }}>{label}</span>
                       <span className="mono">{typeof stats[k] === "number" ? (stats[k] as number).toLocaleString() : String(stats[k])}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+
+          {roster.length > 0 && (
+            <>
+              <div className="sub-h">Characters found ({roster.length})</div>
+              <div style={{
+                background: "var(--well)", border: `1px solid ${useRoster ? "var(--gold)" : "var(--line-soft)"}`,
+                borderRadius: 3, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 8,
+                opacity: useRoster ? 1 : 0.45,
+              }}>
+                <label style={{ display: "flex", alignItems: "center", gap: 9, fontSize: ".85rem", fontWeight: 600 }}>
+                  <input type="checkbox" checked={useRoster} onChange={(e) => setUseRoster(e.target.checked)} />
+                  Build the Legion roster from these
+                </label>
+                <p style={{ margin: 0, fontSize: ".74rem", color: "var(--ink-3)" }}>
+                  The Switch Character window is paginated — add a shot of each page and they merge.
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(180px,1fr))", gap: "3px 14px" }}>
+                  {roster.map((c) => (
+                    <div key={c.name} style={{ display: "flex", alignItems: "baseline", gap: 6, fontSize: ".76rem" }}>
+                      <span className="mono" style={{ color: "var(--gold)", minWidth: 34 }}>{c.lvl}</span>
+                      <span style={{ color: "var(--ink-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.name}</span>
+                      <span className="mono" style={{ marginLeft: "auto", color: "var(--ink-3)" }}>{rankOf(c.lvl)}</span>
                     </div>
                   ))}
                 </div>
@@ -436,22 +489,24 @@ export default function ImportDialog({
 
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", padding: "12px 15px", borderTop: "1px solid var(--line)" }}>
           <button className="btn" onClick={onClose}>Cancel</button>
-          {(entries.length > 0 || stats) && (
-            <button className="btn" onClick={() => { setEntries([]); setFails([]); setStats(null); setError(null); }}>Clear all</button>
+          {(entries.length > 0 || stats || roster.length > 0) && (
+            <button className="btn" onClick={() => { setEntries([]); setFails([]); setStats(null); setRoster([]); setError(null); }}>Clear all</button>
           )}
-          {(chosen.length > 0 || (stats && useStats)) && (
+          {(chosen.length > 0 || (stats && useStats) || (roster.length > 0 && useRoster)) && (
             <button
               className="btn p"
               onClick={() =>
                 onApply(
                   chosen.map((e) => ({ slot: e.slot, item: e.parsed.item })),
-                  stats && useStats ? stats : undefined
+                  stats && useStats ? stats : undefined,
+                  roster.length > 0 && useRoster ? roster : undefined
                 )
               }
             >
               Apply {[
                 chosen.length ? `${chosen.length} item${chosen.length > 1 ? "s" : ""}` : null,
                 stats && useStats ? "stats" : null,
+                roster.length > 0 && useRoster ? `${roster.length} characters` : null,
               ].filter(Boolean).join(" + ")}
             </button>
           )}

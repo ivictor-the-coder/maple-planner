@@ -9,6 +9,7 @@ import {
 import { getStore } from "@/lib/storage";
 import ImportDialog from "@/components/ImportDialog";
 import ItemSearch from "@/components/ItemSearch";
+import Roster from "@/components/Roster";
 import type { ItemHit } from "@/app/api/items/route";
 
 const PRI_LABEL = ["", "NOW", "SOON", "LATER", "DONE"];
@@ -108,7 +109,7 @@ export default function Planner() {
             </div>
           ))}
           <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-            <button className="btn p" onClick={() => setImporting(true)}>Import tooltip</button>
+            <button className="btn p" onClick={() => setImporting(true)}>Import screenshots</button>
             <button className="btn" onClick={() => update(exampleCharacter())}>Example</button>
             <button className="btn" onClick={() => update(emptyCharacter())}>Clear</button>
           </div>
@@ -230,10 +231,17 @@ export default function Planner() {
         </div>
       </section>
 
+      {ch.roster?.length ? (
+        <Roster
+          chars={ch.roster}
+          onClear={() => update({ ...ch, roster: undefined })}
+        />
+      ) : null}
+
       {importing && (
         <ImportDialog
           onClose={() => setImporting(false)}
-          onApply={(entries, patch) => {
+          onApply={(entries, patch, roster) => {
             const items = { ...ch.items };
             for (const e of entries) items[e.slot] = e.item;
 
@@ -249,6 +257,7 @@ export default function Planner() {
                 .forEach((k) => { if (patch[k] !== undefined) s[k] = patch[k] as number; });
               next.stats = s;
             }
+            if (roster?.length) next.roster = roster;
 
             update(next);
             setImporting(false);
@@ -331,6 +340,20 @@ function ItemEditor({
               <label htmlFor="i-lvl">Item level</label>
               <input id="i-lvl" type="number" value={f.lvl || ""} placeholder="150"
                 onChange={(e) => setF({ ...f, lvl: parseInt(e.target.value, 10) || 0 })} />
+            </div>
+          </div>
+
+          {/* The game states these per item, not per slot, and the vision read
+              misses the line often enough to be worth a manual override. */}
+          <div className="fld">
+            <label>Can&apos;t enhance</label>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: ".78rem" }}>
+              {([["noSf", "Star force"], ["noFl", "Bonus stats"], ["noPot", "Potential"]] as const).map(([k, lbl]) => (
+                <label key={k} style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 400 }}>
+                  <input type="checkbox" checked={!!f[k]} onChange={(e) => setF({ ...f, [k]: e.target.checked })} />
+                  {lbl}
+                </label>
+              ))}
             </div>
           </div>
 
