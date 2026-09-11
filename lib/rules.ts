@@ -13,6 +13,10 @@ export interface Item {
   sup: 0 | 1;
   p: string[];
   f: string[];
+  /** From the item database, when the item was picked rather than typed. */
+  itemId?: number;
+  /** Boss-drop gear is flame advantaged: tier 4 minimum, up to tier 7. */
+  bossDrop?: boolean;
 }
 
 export interface Stats {
@@ -266,13 +270,18 @@ export function advise(slot: SlotDef, ch: Character): Rec[] {
   if (slot.fl) {
     const fl = (it.f || []).filter(Boolean);
     const badf = fl.filter((l) => isDeadLine(l, main));
+    const advantaged = it.bossDrop
+      ? " This is boss-drop gear, so it is flame advantaged — tier 4 minimum and up to tier 7. Worth more rerolls than ordinary gear."
+      : "";
     if (!fl.length) {
-      add(2, "mid", "No flame. Roll one.", "Bonus stats reset for 3,000,000 mesos since v.271 — at Black Flame rates.");
+      add(2, "mid", "No flame. Roll one.",
+        `Bonus stats reset for 3,000,000 mesos since v.271 — at Black Flame rates.${advantaged}`);
     } else if (badf.length) {
       add(1, "hi", `${badf.length} wasted flame line${badf.length > 1 ? "s" : ""} — reset it.`,
-        `${badf.join(" · ")}. A reset is 3,000,000 mesos. The cheapest fix on the page.`);
+        `${badf.join(" · ")}. A reset is 3,000,000 mesos. The cheapest fix on the page.${advantaged}`);
     } else {
-      add(4, "ok", "Flame is working.", `Best lines are All Stat %, then flat ${label}, then ATT.`);
+      add(4, "ok", "Flame is working.",
+        `Best lines are All Stat %, then flat ${label}, then ATT.${advantaged}`);
     }
   } else if (slot.id === "shoulder" || slot.id.startsWith("ring")) {
     add(4, "ok", "This slot cannot take flames.");

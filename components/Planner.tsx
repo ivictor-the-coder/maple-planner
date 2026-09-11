@@ -8,7 +8,9 @@ import {
 } from "@/lib/rules";
 import { getStore } from "@/lib/storage";
 import ImportDialog from "@/components/ImportDialog";
+import ItemSearch from "@/components/ItemSearch";
 import type { ParsedItem } from "@/lib/import/tooltip";
+import type { ItemHit } from "@/app/api/items/route";
 
 const PRI_LABEL = ["", "NOW", "SOON", "LATER", "DONE"];
 
@@ -133,7 +135,19 @@ export default function Planner() {
                 onClick={() => setEditing(s.id)}
               >
                 <span className="sn">{s.n}</span>
-                <span className="it">{it?.name ?? ""}</span>
+                {it?.itemId ? (
+                  <span style={{ display: "flex", justifyContent: "center", alignItems: "center", flex: 1, minHeight: 0 }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://api.maplestory.net/item/${it.itemId}/icon`}
+                      alt={it.name}
+                      title={it.name}
+                      style={{ maxWidth: "78%", maxHeight: "78%", imageRendering: "pixelated" }}
+                    />
+                  </span>
+                ) : (
+                  <span className="it">{it?.name ?? ""}</span>
+                )}
                 <span className="bot">
                   <span className="st">{it && s.sf ? `★${it.star || 0}` : ""}</span>
                   {it && s.pot !== "no" && <span className={`pt ${it.pot || "none"}`} />}
@@ -264,8 +278,20 @@ function ItemEditor({
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             <div className="fld">
               <label htmlFor="i-name">Item name</label>
-              <input id="i-name" ref={first} value={f.name} placeholder="Royal Ranger Beret"
-                onChange={(e) => setF({ ...f, name: e.target.value })} />
+              <ItemSearch
+                value={f.name}
+                onText={(v) => setF({ ...f, name: v })}
+                onPick={(h: ItemHit) =>
+                  setF({
+                    ...f,
+                    name: h.name,
+                    lvl: h.level || f.lvl,
+                    sup: h.superior ? 1 : f.sup,
+                    itemId: h.itemId,
+                    bossDrop: h.bossDrop,
+                  })
+                }
+              />
             </div>
             <div className="fld">
               <label htmlFor="i-lvl">Item level</label>
