@@ -150,14 +150,32 @@ function extractJson(text: string): VisionItem | null {
   const start = cleaned.indexOf("{");
   if (start === -1) return null;
 
-  const end = cleaned.lastIndexOf("}");
-  if (end > start) {
-    try {
-      return JSON.parse(cleaned.slice(start, end + 1)) as VisionItem;
-    } catch {
-      /* fall through to salvage */
+  // Some models emit more than one object — deepseek echoes {"type":"json_object"}
+  // before the real answer. Walk every balanced object and take the one that
+  // actually carries our payload, rather than slicing first-brace to last.
+  const candidates: VisionItem[] = [];
+  let depth = 0, objStart = -1, inStr = false, esc = false;
+  for (let i = start; i < cleaned.length; i++) {
+    const c = cleaned[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (c === "\\") esc = true;
+      else if (c === '"') inStr = false;
+      continue;
+    }
+    if (c === '"') { inStr = true; continue; }
+    if (c === "{") { if (depth === 0) objStart = i; depth++; continue; }
+    if (c === "}") {
+      depth--;
+      if (depth === 0 && objStart !== -1) {
+        try { candidates.push(JSON.parse(cleaned.slice(objStart, i + 1)) as VisionItem); } catch { /* skip */ }
+        objStart = -1;
+      }
     }
   }
+  const useful = candidates.find((c) => c && (c.name !== undefined || c.stats !== undefined));
+  if (useful) return useful;
+  if (candidates.length === 1) return candidates[0];
 
   // Truncated: balance the braces/brackets and drop any half-written pair.
   let frag = cleaned.slice(start);
