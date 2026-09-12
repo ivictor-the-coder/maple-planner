@@ -106,3 +106,95 @@ dashboard, the same way `OPENROUTER_API_KEY` was.
   zero means nobody experiences the feature before paying for it.
 - Multi-character: the roster proves the account has 31 characters. Does the
   planner store gear for more than one?
+
+---
+
+# Findings that change decisions above
+
+Added 2026-09-11 from `docs/RESEARCH-MESO-ACCOUNTS.md` (37-agent research workflow with
+adversarial verification). These contradict or constrain what is written above, so they
+sit here rather than being quietly folded in.
+
+## Billing is blocked before it starts — Vercel Hobby forbids it
+
+**Vercel's Hobby plan prohibits commercial use, and defines that to include "any method
+of requesting or processing payment from visitors of the site."** Taking $10/month means
+upgrading to Vercel Pro at $20 per seat per month **first**. The plan costs $20/month to
+operate before it earns $10/month, so it does not break even until the third subscriber.
+
+Vercel **explicitly exempts donations**, so a Ko-fi or Patreon link is free-tier-legal
+and needs no plan change. That is the only monetisation path with no fixed cost.
+
+## The niche has effectively no paid-gating precedent
+
+MapleTools is free with Ko-fi. Maple Meta Calculator is free with a $3 Patreon. The
+closest analogues in other games — WoWAnalyzer, Warcraft Logs — keep *all analysis* free
+and sell ad removal, priority queue and higher API limits instead. $10/month is roughly
+three times the observed norm for this audience, and gating the importer is a visible
+norm-break rather than an invisible one.
+
+This does not overturn the decision, which stands. It means the decision should be made
+knowing it is an outlier, and that annual or one-time pricing beats monthly badly at this
+price point: the $0.30 fixed processor fee is 6% of a $5 charge and 0.6% of a $50 annual
+charge. A lifetime unlock also avoids Stripe Billing's 0.7% subscription fee entirely.
+
+## Recommended stack: Better Auth + Neon Postgres
+
+- **Auth.js/NextAuth was absorbed by Better Auth, and Vercel acquired Better Auth on
+  2026-07-07.** Auth.js now gets security patches rather than features. Better Auth is
+  MIT, runs inside the Next app, and costs nothing at any user count.
+- **Vercel Postgres no longer exists** — it migrated to Neon through the Vercel
+  Marketplace. Neon is usage-based with no monthly minimum, which suits bursty traffic.
+- **Not Supabase:** free projects pause after one week of inactivity, which forces the
+  $25/month before it is technically needed.
+- **Not Clerk:** auth only, so a database is still needed on top; most expensive at
+  scale and the hardest to leave, since user identity lives there.
+
+## The meso feature's key constant cannot be sourced
+
+The weekly crystal sale cap — "180 per world" — **could not be verified by any of five
+independent passes.** The last GMS-official world-shared figure anyone found is 60, from
+2021. KMS and others use 90. The per-character weekly sub-limit is disputed between 12
+and 14, with no patch note anywhere raising it. Even "Heroic prices are 5x Interactive"
+was refuted.
+
+Consequence, and it is a design requirement rather than a caveat: **the cap ships as a
+user-settable value with the dispute visible, never as a hardcoded number.** Both figures
+are checkable in about thirty seconds at the Collector NPC, which makes the player a
+better source than the internet here.
+
+## Daily bossing is a phase you grow OUT of, not into
+
+This inverts the ordering in the feature request. Daily-boss and weekly-boss crystals
+appear to draw from the **same world allowance**. One character running the daily roster
+produces roughly 126 crystals a week for perhaps 100-150M total, while about 13
+characters filling weekly slots already meets or exceeds the world cap.
+
+So once a roster can fill the cap with weekly crystals, **daily crystals are worth
+approximately nothing and selling them destroys value.** A naive "daily boss checklist"
+feature would actively lose the player mesos. The allocator must derive this rather than
+special-case it. Note this account has 31 characters, so it is very likely already past
+that threshold.
+
+Caveat kept deliberately: the claim that daily and monthly crystals consume zero
+per-character weekly slots has only weak corroboration, and the whole conclusion rests
+on it.
+
+## Nexon's API terms would constrain a paid product — but may not apply
+
+Nexon Open API terms §8.13 prohibits commercial use without written agreement and names
+paid premium features specifically; §8.7 caps retention of Nexon game data at 30 days,
+which would directly limit what a saved profile may hold.
+
+**This app does not call the Nexon Open API.** `app/api/items/route.ts` calls
+`api.maplestory.net`, a third-party service, and the screenshot importer reads the user's
+own screenshots. Staying screenshot-only is therefore a licensing feature and not only a
+UX one. Still open: `api.maplestory.net` publishes only a Swagger UI with no reachable
+terms of use, so its own licensing and rate limits are unverified.
+
+## Settleable by the account holder in-game
+
+- [ ] Weekly crystals sellable per character — 12 or 14? Collector NPC shows the record.
+- [ ] The world cap, and whether it is per world or per account.
+- [ ] Whether a crystal bought just after Thursday reset survives the next reset. Until
+      this is known the planner must never advise banking crystals.
