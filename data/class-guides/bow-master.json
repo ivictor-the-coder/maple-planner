@@ -183,7 +183,121 @@
     ],
     "sourceCount": 2,
     "consensus": "moderate",
-    "verifiedAt": "2026-09-12"
+    "verifiedAt": "2026-09-12",
+    "observedBoostNodes": {
+      "observedAt": "2026-09-12",
+      "source": "in-game V Matrix tooltips, Archerroni Lv 245, GMS Heroic",
+      "sourceCount": 1,
+      "consensus": "observed",
+      "note": "Read straight off the player's own matrix, which outranks any guide: these are the six boost nodes that exist for this class, with their exact names and the skills each one pairs. Levels are this player's, not a recommendation.",
+      "nodes": [
+        {
+          "node": "Hurricane/Final Attack: Bow Boost",
+          "level": 60,
+          "max": 60,
+          "boosts": [
+            {
+              "skill": "Hurricane",
+              "finalDamagePct": 120
+            },
+            {
+              "skill": "Final Attack: Bow/Advanced Final Attack",
+              "finalDamagePct": 120
+            }
+          ]
+        },
+        {
+          "node": "Arrow Blaster/Arrow Stream Boost",
+          "level": 26,
+          "max": 60,
+          "boosts": [
+            {
+              "skill": "Arrow Blaster",
+              "finalDamagePct": 52
+            },
+            {
+              "skill": "Arrow Stream",
+              "finalDamagePct": 52
+            }
+          ]
+        },
+        {
+          "node": "Quiver Cartridge/Phoenix Boost",
+          "level": 7,
+          "max": 60,
+          "boosts": [
+            {
+              "skill": "Magic Arrow",
+              "finalDamagePct": 14
+            },
+            {
+              "skill": "Phoenix",
+              "finalDamagePct": 21
+            }
+          ]
+        },
+        {
+          "node": "Covering Fire/Swift Surge Boost",
+          "level": 1,
+          "max": 60,
+          "boosts": [
+            {
+              "skill": "Covering Fire",
+              "finalDamagePct": 3
+            },
+            {
+              "skill": "Swift Surge",
+              "finalDamagePct": 3
+            }
+          ]
+        },
+        {
+          "node": "Gritty Gust/Speed Mirage Boost",
+          "level": 1,
+          "max": 60,
+          "boosts": [
+            {
+              "skill": "Gritty Gust",
+              "finalDamagePct": 2
+            },
+            {
+              "skill": "Speed Mirage",
+              "finalDamagePct": 2
+            }
+          ]
+        },
+        {
+          "node": "Wind Arrow/Arrow Blow Boost",
+          "level": 1,
+          "max": 60,
+          "boosts": [
+            {
+              "skill": "Wind Arrow",
+              "finalDamagePct": 5
+            },
+            {
+              "skill": "Arrow Blow",
+              "finalDamagePct": 3
+            }
+          ]
+        }
+      ],
+      "perLevelFinalDamage": "Not uniform across skills. At level 1: Wind Arrow +5%, Covering Fire / Swift Surge / Arrow Blow +3%, Gritty Gust / Speed Mirage +2%. At level 7 the Quiver Cartridge node gives Magic Arrow +14% (2%/level) and Phoenix +21% (3%/level). So node value depends on WHICH skills it pairs, not just its level - a boost node ranking that ignores that is ranking the wrong thing."
+    },
+    "resolvedDefects": [
+      {
+        "defect": "Advanced Final Attack vs Final Attack: Bow - the file asserted an identity no source stated, and Grandis listed them as two separate co-existing skills.",
+        "resolution": "The in-game node tooltip names the boosted skill as \"Final Attack: Bow/Advanced Final Attack\" on ONE line, boosting both for +120% at level 60. They are two skills sharing one boost node entry. Neither transcription was wrong; both were partial.",
+        "resolvedAt": "2026-09-12",
+        "source": "in-game V Matrix tooltip"
+      }
+    ],
+    "slotsObserved": {
+      "jobNodes": 4,
+      "boostNodes": 6,
+      "specialNodes": 1,
+      "vPointsUnspent": 26
+    }
   },
   "hexa": {
     "order": [

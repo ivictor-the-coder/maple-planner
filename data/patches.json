@@ -2231,5 +2231,33 @@
       "source": "https://pinkbean.gg/update",
       "dated": "2026-09-12"
     }
-  ]
+  ],
+  "observed": {
+    "vMatrix": {
+      "observedAt": "2026-09-12",
+      "character": "Archerroni, Bow Master, Lv 245",
+      "world": "GMS Heroic",
+      "vPointsUnspent": 26,
+      "jobNodeSlots": 4,
+      "jobNodeLevels": [
+        "30/30",
+        "30/30",
+        "30/30",
+        "10/30"
+      ],
+      "boostNodeSlots": 6,
+      "boostNodeLevels": [
+        "60/60",
+        "26/60",
+        "07/60",
+        "01/60",
+        "01/60",
+        "01/60"
+      ],
+      "specialNodeSlots": 1,
+      "commonNodesVisible": 19,
+      "note": "Slot COUNTS only. Node NAMES are not readable from the grid - the icons are unlabelled and each boost node is split between two skills. The 5-vs-7 slot-curve dispute is not settled by this: what is observable at Lv 245 is 6 boost node slots, which neither source predicts for Lv 200.",
+      "stillNeeded": "Boost node names, which require hovering each node."
+    }
+  }
 }

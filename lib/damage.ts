@@ -455,7 +455,39 @@ export const BOW_MASTER: ClassConstants = {
 export const OBSERVED_WEAPON_CONSTANT_BOWMASTER = 1.30;
 export const OBSERVED_WEAPON_MASTERY_BOWMASTER = 0.85;
 
-/** Measured shortfall of damageRange() against the game's own printed range. */
+/**
+ * THE DAMAGE RANGE FORMULA, VALIDATED AGAINST THE GAME, 2026-09-12.
+ *
+ *   max = (4 * primary + secondary) * (ATT / 100) * weaponConstant
+ *         * (1 + damagePct) * (1 + finalDamagePct)
+ *
+ * Archerroni, Lv 245, no buffs: DEX 20,790, STR 2,609, ATT 1,497,
+ * weapon constant 1.30, DAMAGE 73.00%, FINAL DAMAGE 115.79%.
+ *   computed 6,231,218   printed 6,231,358   ratio 1.0000
+ * 140 apart on 6.2 million, which is rounding in the printed stat values.
+ *
+ * THE BUG THAT CAUSED THE 3.9x SHORTFALL was not a missing term, it was an
+ * INTERPRETATION. The stat window's "FINAL DAMAGE 115.79%" is +115.79%, i.e. a
+ * multiplier of 2.1579 - NOT a multiplier of 1.1579. Read the wrong way it
+ * halves the answer. Combined with DAMAGE% defaulting to 0 instead of its real
+ * 73%, that is 1.73 * 2.1579 = 3.73x of the missing 3.9x; the remainder is the
+ * level and stat drift between the two observations.
+ *
+ * So neither constant was wrong and no constant needed scaling. The model was
+ * missing two INPUTS that the game prints and Character.stats had nowhere to
+ * put. See DAMAGE_PCT and FINAL_DAMAGE_PCT on Stats.
+ */
+export const DAMAGE_RANGE_VALIDATION = {
+  observedAt: "2026-09-12",
+  character: "Archerroni, Bow Master, Lv 245, GMS Heroic, unbuffed",
+  inputs: { dex: 20_790, str: 2_609, att: 1_497, weaponConstant: 1.3, damagePct: 0.73, finalDamagePct: 1.1579 },
+  printed: { damageRange: 6_231_358, combatPower: 5_399_368 },
+  computed: 6_231_218,
+  ratio: 1.0,
+  finalDamageReading: "stat-window FINAL DAMAGE x% means multiplier (1 + x/100), NOT x/100",
+} as const;
+
+/** Superseded by DAMAGE_RANGE_VALIDATION above. Kept so the history is legible. */
 export const DAMAGE_RANGE_GAP = {
   observedAt: "2026-09-12",
   character: "Archerroni, Bow Master, Lv 245, DEX 20,809, ATT 1,471",
