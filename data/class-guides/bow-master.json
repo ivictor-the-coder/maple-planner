@@ -19,378 +19,519 @@
   },
   "legionEffect": null,
   "vMatrix": {
+    "structure": "Both cited sources organise Bow Master boost nodes as SIX numbered node groups, not as a flat ranking of individual skills. The class doc's operative sentence is: 'It is mandatory to level the first four nodes to maximum. Node 5 for Covering Fire/Swift Surge is optional for mains looking to minmax and not necessary for 6th job progression. Node 6 is completely useless at all times.' Grandis Library buckets the same six groups as Primary (Nodes 1-2), Secondary (Nodes 3-4) and Other (Nodes 5-6). The array below is therefore ordered by node group, and that order IS stated by the sources.",
+    "orderIsRanked": true,
     "priority": [
       {
-        "node": "Hurricane",
-        "why": "Named as a mandatory max-level boost node by the class doc and listed PRIMARY by Grandis Library. It is the class's keydown main attack, so its boost node is multiplying the majority of both bossing and training damage. Independently corroborated as a bossing trio member by mastermysty's cross-class node reference.",
-        "consensus": "moderate",
+        "node": "Node 1",
+        "skills": [
+          "Hurricane",
+          "Final Attack (source strings differ - see conflicts: Grandis Library's node list says 'Final Attack: Bow'; the class doc says 'Advanced Final Attack')"
+        ],
+        "tier": "mandatory-max",
+        "why": "Inside the class doc's mandatory first-four group and bucketed PRIMARY by Grandis Library. Hurricane is the keydown main attack, so this node multiplies the majority of both bossing and training damage. mastermysty's independent cross-class trio reference also places Hurricane in its Bossing trio, which is the only corroboration from outside the class-doc family.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "Three URLs but two independent families: Grandis Library's Credits block states 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so its node buckets are NOT an independent vote for the class doc's build. mastermysty is the second family."
       },
       {
-        "node": "Final Attack (class doc writes 'Advanced Final Attack'; Grandis Library writes 'Final Attack: Bow')",
-        "why": "One of the four nodes the class doc says to take to max first, and PRIMARY on Grandis Library. Final Attack procs off the keydown main line, so boosting it scales with Hurricane uptime rather than being a separate rotation slot. Node naming is inconsistent between sources - see conflicts.",
-        "consensus": "moderate",
+        "node": "Node 2",
+        "skills": [
+          "Arrow Blaster",
+          "Arrow Stream"
+        ],
+        "tier": "mandatory-max",
+        "why": "Inside the class doc's mandatory first-four group and bucketed PRIMARY by Grandis Library. mastermysty independently places Arrow Blaster in its Bossing trio and Arrow Stream at the head of its second trio. Caveat recorded by the class doc: Arrow Blaster performs poorly at high ping.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Arrow Blaster",
-        "why": "Among the four the class doc marks mandatory-max, and PRIMARY on Grandis Library. mastermysty places it in the recommended bossing trio. Caveat recorded by the class doc: it performs poorly at high ping.",
-        "consensus": "moderate",
+        "node": "Node 3",
+        "skills": [
+          "Quiver Cartridge",
+          "Phoenix"
+        ],
+        "tier": "mandatory-max",
+        "why": "Still inside the class doc's mandatory first-four group - the doc's optional band starts at Node 5, not Node 3. Grandis Library buckets it SECONDARY, which is a within-mandatory ordering, not a demotion out of the mandatory group. mastermysty independently places Quiver Cartridge in its Bossing trio and Phoenix in its second trio.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Arrow Stream",
-        "why": "Fourth of the mandatory-max group in the class doc, PRIMARY on Grandis Library, and the lead skill of mastermysty's second (training) trio. It is the mobbing workhorse, so it matters more for a farming character than for a pure boss mule.",
-        "consensus": "moderate",
+        "node": "Node 4",
+        "skills": [
+          "Gritty Gust",
+          "Speed Mirage"
+        ],
+        "tier": "mandatory-max",
+        "why": "Last group inside the class doc's mandatory first-four. Bucketed SECONDARY by Grandis Library. mastermysty lists Gritty Gust as the lead of its third trio. Gritty Gust is labelled a Hyper Skill in Grandis's node list, which is a reminder that Bow Master's node list is not restricted to 4th job skills.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Quiver Cartridge",
-        "why": "Second-group priority. Grandis Library lists it SECONDARY; the class doc ranks it below the mandatory four but above the optional tail. mastermysty includes it in the bossing trio, which is the only independent corroboration of its bossing weighting.",
-        "consensus": "moderate",
+        "node": "Node 5",
+        "skills": [
+          "Covering Fire",
+          "Swift Surge"
+        ],
+        "tier": "optional",
+        "why": "The class doc names this node explicitly and scopes it: 'Node 5 for Covering Fire/Swift Surge is optional for mains looking to minmax and not necessary for 6th job progression.' Grandis Library buckets the same pair under OTHER. Node membership here is the one grouping both sources state identically in plain text.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-          "https://grandislibrary.com/explorers/bowmaster",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Phoenix",
-        "why": "SECONDARY on Grandis Library; mastermysty places it in a training trio alongside Arrow Stream and Final Attack. Not in the class doc's mandatory-max group.",
+          "https://grandislibrary.com/explorers/bowmaster"
+        ],
+        "sourceCount": 1,
         "consensus": "weak",
-        "sources": [
-          "https://grandislibrary.com/explorers/bowmaster",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "One family - Grandis credits the class doc for its Boost Nodes Build."
       },
       {
-        "node": "Gritty Gust",
-        "why": "Ranked immediately below the mandatory four by the class doc and SECONDARY by Grandis Library. mastermysty lists it as the lead of a third, training-oriented trio.",
-        "consensus": "moderate",
+        "node": "Node 6",
+        "skills": [
+          "Wind Arrow",
+          "Arrow Blow"
+        ],
+        "tier": "not recommended",
+        "why": "The class doc: 'Node 6 is completely useless at all times. Only put leftover points into this if you feel like it.' Grandis Library buckets the same pair under OTHER.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-          "https://grandislibrary.com/explorers/bowmaster",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Speed Mirage",
-        "why": "SECONDARY on Grandis Library. It also appears at the tail of the class doc's HEXA Mastery order, which implies low but non-zero priority. No independent source ranks it.",
+          "https://grandislibrary.com/explorers/bowmaster"
+        ],
+        "sourceCount": 1,
         "consensus": "weak",
-        "sources": [
-          "https://grandislibrary.com/explorers/bowmaster",
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "node": "Covering Fire, Swift Surge, Wind Arrow, Arrow Blow",
-        "why": "Grandis Library groups these as OTHER; the class doc places Covering Fire and Swift Surge in an optional band and says the lowest tiers are only worth leveling with surplus points. Treat as filler, not priority.",
-        "consensus": "weak",
-        "sources": [
-          "https://grandislibrary.com/explorers/bowmaster",
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
+        "verifiedAt": "2026-09-12"
       }
     ],
+    "nodeMembershipCaveat": "The skill pairings for Nodes 1-4 above are taken from Grandis Library, which lists them in plain text. The class doc encodes its own Node 1-4 membership as skill icons; three separate text extractions of that section this session returned three mutually inconsistent readings (one of which offset Advanced Final Attack into Node 2, another of which produced a flat six-skill list, another of which produced an S/A/B/C/D/F tier chart containing 'Erda Nova'). Only Node 5 and Node 6 membership is stated identically in plain text by both sources. Do not present Node 1-4 membership as jointly confirmed.",
     "trios": [
       {
         "role": "bossing",
+        "roleSource": "labelled 'Bossing' by mastermysty",
         "skills": [
           "Hurricane",
           "Arrow Blaster",
           "Quiver Cartridge"
         ],
-        "consensus": "weak",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
         ],
-        "notes": "Stated explicitly by mastermysty's cross-class trio reference, which self-reports a 2024-11-21 page date and 2024-05-14 data. It is the only source that writes a full trio out in plain text; the class doc presents its trio groupings largely as images, which did not survive text extraction. Verify against the class doc infographics or the class Discord before treating this as current."
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "notes": "Re-read this session. mastermysty's page states 'Last update: November 21st, 2024' and its header states '[200 nodes: chance to find all trios. 10000 tests per class(May 14th, 2024)]', so the underlying data predates the v269 boost-node grouping change. It is the only source that writes a full Bow Master trio out in plain text; the class doc presents its trio groupings as images that did not survive text extraction."
       },
       {
-        "role": "training",
+        "role": "unlabelled",
+        "roleSource": "mastermysty heads this column 'Trio #2' and gives it no role label. The earlier characterisation of it as a TRAINING trio was an inference, not a source claim, and has been removed.",
         "skills": [
           "Arrow Stream",
           "Final Attack",
           "Phoenix"
         ],
-        "consensus": "weak",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
         ],
-        "notes": "mastermysty's second trio. Same staleness caveat."
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "notes": "Same staleness caveat. mastermysty spells the third skill 'Pheonix'."
       },
       {
-        "role": "training (third trio)",
+        "role": "unlabelled",
+        "roleSource": "mastermysty heads this column 'Trio #3' and gives it no role label. The earlier characterisation of it as TRAINING-oriented was an inference and has been removed.",
         "skills": [
           "Gritty Gust",
-          "Covering Fire"
+          "Covering Fire (noted by the source as a half boost)"
         ],
-        "consensus": "weak",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
         ],
-        "notes": "mastermysty lists this as a partial trio with Covering Fire noted as a half boost; the third slot is not specified. Same staleness caveat."
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "notes": "A partial trio - the third slot is not specified by the source. Same staleness caveat."
       }
     ],
-    "notes": "The one thing every source agrees on is the shape rather than the exact trios: four nodes - Hurricane, Final Attack, Arrow Blaster, Arrow Stream - are taken to max before anything else, and everything below them is optional. That is the safe advice to give a player. Exact trio pairings are the weakest part of the public Bow Master record: the class doc encodes them in images, Grandis Library only publishes Primary/Secondary/Other buckets rather than pairings, and the only explicit written trios come from a source whose data is stated as 2024-05-14 and therefore predates the v269 boost-node grouping changes that Grandis Library's own 'View Pre-V.269 Boost Nodes' toggle is evidence of. Do not present trio pairings with the same confidence as the mandatory four.",
+    "notes": "What every source agrees on is the node-group shape, not the trios: Nodes 1-4 are taken to max before anything else, Node 5 is a minmax-only extra, Node 6 is dead. That is the safe advice to give a player. Exact trio pairings are the weakest part of the public Bow Master record: the class doc encodes them in images, Grandis Library only publishes node groups and Primary/Secondary/Other buckets rather than pairings, and the only explicit written trios come from a source whose data is stated as 2024-05-14 and therefore predates the v269 boost-node grouping changes that Grandis Library's own 'View Pre-V.269 Boost Nodes' toggle is evidence of. Do not present trio pairings with the same confidence as the node-group order. Also note for consensus maths: Grandis Library's Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so Grandis is a mirror of the class doc for node priority - it is NOT a second vote.",
     "sources": [
       "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
       "https://grandislibrary.com/explorers/bowmaster",
       "https://mystyjl.github.io/reference/NodeGuide.html"
-    ]
+    ],
+    "sourceCount": 2,
+    "consensus": "moderate",
+    "verifiedAt": "2026-09-12"
   },
   "hexa": {
     "order": [
       {
         "step": "Ascendant Shadow (Origin skill) - unlock and take to Lv. 1 immediately",
-        "why": "The Origin skill is the first HEXA node and the single largest damage addition available at 6th job. The class doc also records it as a defensive tool: roughly a 4.5 second invincibility window during its cutscene, on a 6 minute cooldown, which makes it a rotation anchor rather than just a damage button. It gains extra innate stats at Lv. 10, 20 and 30.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "Flashpoint (Ascent skill) - Lv. 1",
-        "why": "Second HEXA node. The class doc describes three uses per boss fight (six key presses), or a 4 minute cooldown outside boss content. Like the Origin skill it gains additional innate stats at Lv. 10, 20 and 30.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "Mastery core: Hurricane VI first",
-        "why": "Hurricane is the keydown main attack, so its Mastery core upgrades the skill that delivers most of the class's damage in every situation. The class doc puts it at the head of the Mastery order.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "Mastery cores: Arrow Stream VI and Arrow Blaster VI",
-        "why": "Second group in the class doc's Mastery order. The doc does not rank these two against each other; a training-focused character leans Arrow Stream, a bossing one Arrow Blaster, which follows from the same skills' roles in the boost node section.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "Mastery cores: Quiver Cartridge VI, Phoenix VI, Extra Quiver Cartridge",
-        "why": "Third group in the class doc's Mastery order. Unranked within the group.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "Mastery cores: Speed Mirage VI, Gritty Gust VI",
-        "why": "Last group in the class doc's Mastery order.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "Enhancement (Boost) cores on the four 5th job skills: Storm of Arrows, Inhuman Speed, Quiver Barrage, Silhouette Mirage",
-        "why": "The class doc states each of the four reaches +60% Final Damage at full investment. It does not rank the four against one another, so no order is recorded here rather than inventing one. Note the doc's own wording for the third skill is 'Quiver Full Barrage' while its 5th job skill list says 'Quiver Barrage' - see conflicts.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "Common cores: Sol Janus to Lv. 1 early; Fury of the Wild VI; Sol Hecate to Lv. 1, then 20, then 30",
-        "why": "Sol Janus at Lv. 1 is called out as an early farming pickup, with further levels dependent on how much the character farms. The class doc says Fury of the Wild VI costs less in both Fragments and Sol Erda than the other Common skills, which is a cost-efficiency argument for taking it earlier. Sol Hecate's value is gated on breakpoints: the summon and Styx at Lv. 1, Charon (a death-prevention effect) at Lv. 20, and Phlegethon at Lv. 30, so partial investment between those levels buys little.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "step": "HEXA Stat: prioritise ATT, then DEX, then Boss Damage",
-        "why": "Stated directly by the class doc as ATT > DEX > Boss%. The doc adds the practical point that rolls should be rearranged so the largest value sits on the highest-priority line, rather than assuming attack always belongs in the main line.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      }
-    ],
-    "notes": "IMPORTANT STRUCTURAL FACT, and the most product-relevant thing in this file: the class doc does not publish a single flat HEXA order. It publishes separate charts chosen along two axes. Axis one is server type - Heroic/Reboot players are told to use the FRAGMENT LIMITED charts, Interactive players the ENERGY LIMITED charts, because the two worlds bottleneck on different currencies. Axis two is what the character is for, with three variants: Main/Min-Clear, Legion Champ, and Mule/Culvert. Grandis Library independently publishes three 6th Job infographics under those same three names, which corroborates the three-way split even though Grandis credits the class doc for its build content. A planner that emits one universal Bow Master HEXA order is therefore contradicting the class's own maintained guide. The detailed step-by-step sequences live inside those images and did not survive text extraction, so the per-step target levels are NOT recorded here - only the category order above, which came from the doc's prose. Anyone completing this file should read the infographics directly. Secondary claim, weak and unverified: the class doc states Mastery cores require the relevant V matrix boost nodes at Lv. 40+ and Enhancement nodes require Lv. 25+ job nodes; those thresholds came through text extraction and were not cross-checked against the wiki's HEXA mechanics page, so confirm in game before relying on them.",
-    "serverSplit": {
-      "heroic": "Use the class doc's FRAGMENT LIMITED charts - Heroic/Reboot is bottlenecked on Sol Erda Fragments.",
-      "interactive": "Use the ENERGY LIMITED charts - Interactive is bottlenecked on Sol Erda.",
-      "consensus": "weak",
-      "sources": [
-        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-      ]
-    },
-    "variants": [
-      "Main/Min-Clear",
-      "Legion Champ",
-      "Mule/Culvert"
-    ],
-    "sources": [
-      "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-      "https://grandislibrary.com/explorers/bowmaster"
-    ]
-  },
-  "hyperStats": {
-    "priority": [
-      {
-        "stat": "Critical Damage",
-        "why": "Grouped by the class doc with IED, Boss Damage and Damage as the standard first block of hyper stat investment. The class doc also ranks Critical Damage first on the Legion grid, which is consistent weighting.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "stat": "Ignore Enemy DEF (IED)",
-        "why": "Part of the same first block per the class doc. Note the interaction with gearing: because Bow Master passives already supply a large amount of IED, the class doc argues IED lines are not needed on weapon/secondary/emblem - the hyper stat is still taken, the gear lines are not.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "stat": "Boss Damage",
-        "why": "Part of the class doc's first block.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "stat": "Damage",
-        "why": "Part of the class doc's first block.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-        ]
-      },
-      {
-        "stat": "Critical Rate - roughly 7 to 10 points, late game, ON TOP of reaching 100%",
-        "why": "This is the Bow Master-specific one and the reason a generic hyper stat list is wrong for this class. Vicious Shot lets Critical Rate exceed the 100% cap and converts total Critical Rate into Critical Damage at a 50% ratio, so crit rate keeps scaling damage after the point where every other class stops buying it. The class doc recommends carrying roughly 7-10 extra points of Critical Rate in hyper stats once the relevant node is maxed. Grandis Library independently lists Vicious Shot's effect as granting 50% of Critical Rate, which corroborates the mechanic even though it does not state the hyper stat recommendation.",
-        "consensus": "moderate",
+        "why": "The class doc puts the Origin and Ascent skills ahead of Mastery cores in its priority charts. The doc describes Ascendant Shadow as firing 15 lines dealing 1425% damage 39 times during a 4.5-second cutscene, and treats that cutscene as an invincibility window, which makes it a rotation anchor rather than just a damage button. Grandis Library independently lists Ascendant Shadow as a 6th Job bind skill with iFrame properties on a 360-second cooldown, which corroborates both the name and the defensive framing from outside the class-doc family.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "Grandis's skill data is API-derived and is NOT part of the 'Class Doc' credit, which covers only its Inner Ability, Hyper Passive and Boost Nodes build sections. It therefore counts as independent for skill facts."
+      },
+      {
+        "step": "Flashpoint (Ascent skill) - Lv. 1",
+        "why": "The class doc describes Flashpoint as a two-part skill that grants invincibility during casting, with three uses per boss fight, and places the Ascent skill alongside the Origin skill ahead of Mastery cores.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "The NAME is corroborated - Grandis Library ships a skill-preview icon asset at /class-icons/explorers/bowmaster/flashpoint.png - but Grandis never names it in text and does not identify it as the Ascent skill. Its role and its position as the second HEXA node are single-sourced to the class doc. The earlier claims of 'six key presses' and a '4 minute cooldown outside boss content' could not be re-verified and have been deleted."
+      },
+      {
+        "step": "Mastery core: Hurricane VI first",
+        "why": "The class doc's Mastery order reads Hurricane VI, then Arrow Stream VI / Arrow Blaster VI, then Quiver Cartridge VI / Phoenix VI, then Speed Mirage VI / Gritty Gust VI. Hurricane is the keydown main attack, so its Mastery core upgrades the skill that delivers most of the class's damage in every situation.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "step": "Mastery cores: Arrow Stream VI and Arrow Blaster VI",
+        "why": "Second group in the class doc's Mastery order. The doc does not rank these two against each other, so no order is recorded here.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "unrankedWithinStep": true,
+        "note": "The earlier gloss that 'a training-focused character leans Arrow Stream, a bossing one Arrow Blaster' was an inference from the boost-node section, not a statement in any source, and has been deleted."
+      },
+      {
+        "step": "Mastery cores: Quiver Cartridge VI and Phoenix VI",
+        "why": "Third group in the class doc's Mastery order. Unranked within the group.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "unrankedWithinStep": true,
+        "note": "'Extra Quiver Cartridge' was previously listed here as a third Mastery core in this group. That was wrong placement, not a fabricated name: MapleStory Wiki carries a page for Extra Quiver Cartridge describing it as an active skill GRANTED BY the 6th Job Mastery Enhancement that also upgrades Quiver Cartridge and Phoenix. It is an output of the Quiver Cartridge VI core, not a core you invest in separately. The class doc's own text agrees it is a stack-building skill: 'When you successfully trigger either a Magic Arrow or Blood Arrow, this skill will build a corresponding stack.'"
+      },
+      {
+        "step": "Mastery cores: Speed Mirage VI and Gritty Gust VI",
+        "why": "Last group in the class doc's Mastery order.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "unrankedWithinStep": true
+      },
+      {
+        "step": "Enhancement (Boost) cores on the four 5th job skills: Storm of Arrows, Inhuman Speed, Quiver Barrage, Silhouette Mirage",
+        "why": "The class doc states each reaches the standard +60% Final Damage bonus at full investment: 'Storm of Arrows, Inhuman Speed, and Quiver Full Barrage all received the standard +60% Final Damage bonus... Silhouette Mirage also received the +60% Final Damage bonus.' It does not rank the four against one another, so no order is recorded here rather than inventing one. The doc's Enhancement section writes the third skill as 'Quiver Full Barrage' while its 5th job skill list says 'Quiver Barrage' - see conflicts.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "unrankedWithinStep": true
+      },
+      {
+        "step": "Common cores: Sol Janus to Lv. 1 early; Fury of the Wild VI; Sol Hecate to Lv. 1, then 20, then 30",
+        "why": "Class doc, quoted: 'It is recommended to take at least Lv. 1 of Sol Janus early on in your 6th job progression', with further levels framed as optional - 'if you are happy with your current damage output and there are maps that you feel would benefit from more coverage or the increased passive exp, then consider upgrading Janus'. On Fury of the Wild: 'Note this skill has a cheaper cost in both Fragments and Sol Erda than the other Common Skills', which is a cost-efficiency argument for taking it earlier. Sol Hecate's value is gated on breakpoints: 'At Lv. 1, you will gain access to both the Sol Hecate summon (toggle) as well as Sol Hecate: Styx', 'At Lv. 20, you gain access to Sol Hecate: Charon', 'At Lv. 30, you gain access to Sol Hecate: Phlegethon' - so partial investment between those levels buys little. The doc adds a class-specific registration instruction: 'Styx should be registered to Terms & Conditions and Phlegethon should be registered to Vicious Shot.'",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "note": "The earlier gloss describing Charon as 'a death-prevention effect' does not appear in the cited source and has been deleted."
+      },
+      {
+        "step": "HEXA Stat: prioritise ATT, then DEX, then Boss Damage",
+        "why": "Stated directly by the class doc as 'ATT > DEX > Boss%'. This is the one place in the endgame sections where the class doc DOES publish an explicit ranking, which is why it is stored as an ordered claim while hyperStats is not.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "note": "The earlier addendum about rearranging rolls so the largest value sits on the highest-priority line could not be re-verified this pass and has been deleted."
       }
     ],
-    "notes": "The class doc explicitly declines to publish a fixed hyper stat order, on the grounds that the optimal allocation depends on the character's own stat sheet, and points readers at a calculator instead. That refusal is itself the finding and should be surfaced to users rather than papered over with a static list: the community's operative answer to hyper stat priority is MathBro's per-character optimizer, not a ranking. The ordering above should be presented as a starting shape, with the Critical Rate overflow point as the class-specific rule that a generic optimizer preset will get wrong if it caps crit at 100%.",
+    "prerequisites": {
+      "masteryNodes": "The class doc: 'In order to unlock your Mastery Nodes, the corresponding V-Matrix Boost Nodes must be level 40 or higher.'",
+      "enhancementNodes": "The class doc: 'In order to unlock your Enhancement Nodes, your V-Matrix Job Nodes must be level 25 or higher.'",
+      "sources": [
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "note": "Previously flagged in this file as an unverified extraction artifact. Re-read directly from the class doc this session and confirmed as the doc's wording. Still single-sourced - it has not been checked against an in-game HEXA mechanics page."
+    },
+    "notes": "IMPORTANT STRUCTURAL FACT, and the most product-relevant thing in this file: the class doc does not publish a single flat HEXA order. It publishes separate priority charts chosen along two axes. Axis one is server type - quoting the doc, 'Heroic World players should pick from the FRAGMENT LIMITED charts listed first and Interactive World players who are using the market to buy fragments when necessary should use the ENERGY LIMITED charts below that.' Axis two is what the character is for, with three variants the doc heads MAIN/MIN CLEAR PRIORITY, LEGION CHAMP PRIORITY and BURST/CULVERT PRIORITY. Grandis Library publishes three 6th Job infographics under the headings '6th Job (Main/Min-Clear)', '6th Job (Legion Champ)' and '6th Job (Mule/Culvert)' - the same three-way split, with the third named differently (Mule/Culvert vs Burst/Culvert). Note that Grandis is not an independent vote here, but the infographic set does confirm the three-way split is the class's own published shape. A planner that emits one universal Bow Master HEXA order is therefore contradicting the class's own maintained guide. The detailed step-by-step sequences live inside those images and did not survive text extraction, so per-step target levels are NOT recorded here - only the category order above, which came from the doc's prose. Anyone completing this file should read the infographics directly.",
+    "serverSplit": {
+      "heroic": "Use the class doc's FRAGMENT LIMITED charts - Heroic World is bottlenecked on Sol Erda Fragments.",
+      "interactive": "Use the ENERGY LIMITED charts - Interactive World players buying fragments on the market are bottlenecked on Sol Erda instead.",
+      "sources": [
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
+    "variants": [
+      {
+        "classDocName": "MAIN/MIN CLEAR PRIORITY",
+        "grandisInfographicName": "6th Job (Main/Min-Clear)"
+      },
+      {
+        "classDocName": "LEGION CHAMP PRIORITY",
+        "grandisInfographicName": "6th Job (Legion Champ)"
+      },
+      {
+        "classDocName": "BURST/CULVERT PRIORITY",
+        "grandisInfographicName": "6th Job (Mule/Culvert)"
+      }
+    ],
+    "variantsNote": "Recorded as source-paired strings rather than a single canonical list, because the two pages do not use the same name for the third variant. The earlier file asserted Grandis published 'those same three names'; it does not.",
     "sources": [
       "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-      "https://brendonmay.github.io/hyperCalculator/"
-    ]
+      "https://grandislibrary.com/explorers/bowmaster",
+      "https://maplestorywiki.net/w/Extra_Quiver_Cartridge"
+    ],
+    "sourceCount": 2,
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
-  "hyperSkills": {
-    "passives": {
-      "bossing": [
-        "Hurricane - Reinforce",
-        "Hurricane - Boss Rush (the class doc writes this as 'Hurricane - Boss Slayer'; see conflicts)",
-        "Hurricane - Split Attack",
-        "Sharp Eyes - Guardbreak",
-        "Sharp Eyes - Critical Chance"
+  "hyperStats": {
+    "priority": null,
+    "priorityIsNullBecause": "The class doc explicitly declines to rank hyper stats: 'Hyper stats are largely dependent on your own individual stats and what your character needs.' Its only concrete guidance names an UNORDERED group - 'the usual big 4 of Crit Damage, IED, Boss, and Damage'. Storing that as an ordered array would let downstream code read array position as a priority no source states, so no ordered priority is published for this class.",
+    "unordered": true,
+    "coreSet": {
+      "stats": [
+        "Critical Damage",
+        "Ignore Enemy DEF (IED)",
+        "Boss Damage",
+        "Damage"
       ],
-      "training": [
-        "Arrow Stream - Reinforce",
-        "Arrow Stream - Extra Strike",
-        "Arrow Stream - Spread (listed by the class doc only)"
+      "why": "The class doc calls these 'the usual big 4' and treats them as the block to fill out first. It does not order them against one another. The set is unordered by the source and is stored unordered here.",
+      "sources": [
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
       ],
-      "alsoListed": [
-        "Sharp Eyes - Persist (listed by the class doc only)"
-      ],
-      "why": "Both sources converge on the same bossing five: all three Hurricane passives plus the two Sharp Eyes passives that add Ignore DEF and Critical Rate. The logic is consistent with the rest of the class - the three Hurricane lines all multiply the keydown main attack, and Sharp Eyes is a permanent self-buff rather than a situational one. Grandis Library presents the Arrow Stream pair as the training substitution.",
+      "sourceCount": 1,
       "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "note": "The previous version of this file justified putting Critical Damage first with 'the class doc also ranks Critical Damage first on the Legion grid'. The Legion grid is a different system with its own ranking; using it to order hyper stats was a cross-system inference the source does not make, and it has been deleted. The IED gearing interaction is real and is retained separately: because Bow Master passives already supply a large amount of Ignore DEF, the class doc argues IED lines are not needed on weapon/secondary/emblem - the hyper stat is still taken, the gear lines are not."
+    },
+    "afterCoreSet": {
+      "stat": "Critical Rate - roughly 7 to 10 points, late game, ON TOP of reaching 100%",
+      "why": "This is the Bow Master-specific rule and the reason a generic hyper stat preset is wrong for this class. Class doc, quoted: 'Consider spending extra points in crit rate after filling out the usual big 4 of Crit Damage, IED, Boss, and Damage' and 'In the late game (assuming a maxed Vicious Shot node), running between 7-10 Crit Rate is advisable depending on how burst centric you want your build to be.' Grandis Library's Base Stats table independently lists Vicious Shot as a 5th Job skill contributing '+50% of Crit Rate' to Crit Damage, which corroborates the mechanic that makes overflow crit rate worth buying, though Grandis does not state the hyper stat recommendation itself.",
       "sources": [
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
         "https://grandislibrary.com/explorers/bowmaster"
-      ]
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12",
+      "sourceCountNote": "Grandis's Base Stats table is API/skill-data derived and is outside the 'Class Doc' credit, so it counts independently for the Vicious Shot mechanic. It is NOT a second vote for the 7-10 point figure, which is class-doc only."
+    },
+    "notes": "The class doc declines to publish a fixed hyper stat order on the grounds that the optimal allocation depends on the character's own stat sheet, and points readers at a calculator instead: 'A popular hyper stat calculator can be found here for optimizations: https://brendonmay.github.io/hyperCalculator/'. That refusal is itself the finding and should be surfaced to users rather than papered over with a static list: the community's operative answer to Bow Master hyper stat priority is a per-character optimizer, not a ranking. The one thing a planner SHOULD assert for this class is the Critical Rate overflow rule, because a generic optimizer preset that hard-caps crit at 100% will get Bow Master wrong.",
+    "sources": [
+      "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
+      "https://grandislibrary.com/explorers/bowmaster",
+      "https://brendonmay.github.io/hyperCalculator/"
+    ],
+    "sourceCount": 2,
+    "consensus": "moderate",
+    "verifiedAt": "2026-09-12"
+  },
+  "hyperSkills": {
+    "passives": {
+      "bossing": {
+        "skills": [
+          "Hurricane - Reinforce",
+          "Hurricane - Boss Rush (Grandis Library's string; the class doc writes 'Hurricane - Boss Slayer' - see conflicts)",
+          "Hurricane - Split Attack (the class doc's string; Grandis Library writes 'Hurricane - Split')",
+          "Sharp Eyes - Guardbreak",
+          "Sharp Eyes - Critical Chance"
+        ],
+        "why": "Both pages name the same five. Class doc, quoted: 'Our optimal bossing Hyper Skill loadout is all 3 Hurricane enhancements as well as Sharp Eyes - Guard Break and Sharp Eyes - Critical Chance.' Grandis Library's Hyper Skill Passive Build reads 'Sharp Eyes - Guardbreak and Critical Chance' plus 'Hurricane - Reinforce, Boss Rush, and Split'. The three Hurricane lines all multiply the keydown main attack and Sharp Eyes is a permanent self-buff rather than a situational one, which is consistent with the rest of the class.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
+          "https://grandislibrary.com/explorers/bowmaster"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "Two URLs, ONE family: Grandis Library's Credits block states 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc'. Their agreement confirms the two pages have not drifted from each other; it is not independent corroboration."
+      },
+      "training": {
+        "skills": [
+          "Arrow Stream - Reinforce",
+          "Arrow Stream - Extra Strike"
+        ],
+        "why": "Grandis Library presents these as the training substitution: 'For training purposes, players may substitute Arrow Stream - Reinforce and Extra Strike.' The class doc lists both passives with their effects (Reinforce: Damage +20%; Extra Strike: Number of Lines +1) but frames only the Hurricane/Sharp Eyes set as its stated optimal loadout.",
+        "sources": [
+          "https://grandislibrary.com/explorers/bowmaster",
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "note": "'Arrow Stream - Spread' was previously carried in this list. It is NOT in Grandis Library's training substitution and is not part of any recommended loadout in the class doc - the doc only lists it among the available Arrow Stream passives with its effect (Max Monsters Hit +1). It has been moved out of the recommended set to availableButNotRecommended."
+      },
+      "availableButNotRecommended": {
+        "skills": [
+          "Arrow Stream - Spread (class doc: Max Monsters Hit +1)",
+          "Sharp Eyes - Persist (class doc: Duration +30s)"
+        ],
+        "why": "Both appear only in the class doc's enumeration of available Bow Master hyper passives with their effects. Neither appears in the class doc's stated optimal bossing loadout, and neither string appears anywhere on Grandis Library's page. Recorded so a planner can recognise them, not recommend them.",
+        "sources": [
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
+      }
     },
     "actives": null,
-    "notes": "Marked weak despite two sources agreeing, because Grandis Library's Credits block names 'Class Doc' as the origin of its Hyper Passive Build - the two are one consensus family, not two votes. The agreement does confirm the two pages have not drifted from each other. Hyper skill ACTIVES were not sourced in this pass and are left null rather than guessed. The exact GMS string for the boss-damage Hurricane passive is contested between the two sources and should be validated against an in-game skill table before display.",
+    "activesNote": "Hyper skill ACTIVES were not sourced in this pass or the previous one and are left null rather than guessed. This is a gap, not an unverified claim.",
+    "notes": "The exact GMS string for the boss-damage Hurricane passive is contested between the two pages ('Boss Rush' vs 'Boss Slayer') and should be validated against an in-game skill table before display. Same for Split vs Split Attack. The selection itself is stable across both pages, but they are one consensus family.",
     "sources": [
       "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
       "https://grandislibrary.com/explorers/bowmaster"
-    ]
+    ],
+    "sourceCount": 1,
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "innerAbility": {
     "bossing": [
       {
         "line": "Boss Damage +20% (top line, Legendary)",
-        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "line": "Critical Rate +20%",
-        "why": "Worth more to Bow Master than to most classes: Vicious Shot converts Critical Rate above the cap into Critical Damage, so this line keeps paying after 100% crit is reached.",
-        "consensus": "weak",
+        "line": "Critical Rate +20% (the class doc writes 'Critical Chance: +20%'; Grandis Library writes 'Crit Rate +20%')",
+        "why": "Worth more to Bow Master than to most classes: Vicious Shot converts Critical Rate above the cap into Critical Damage at a 50% ratio, so this line keeps paying after 100% crit rate is reached. Grandis Library's Base Stats table lists Vicious Shot as contributing '+50% of Crit Rate' to Crit Damage, which is independent corroboration of the mechanic.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "One family for the IA preset itself; two families for the Vicious Shot mechanic that justifies it."
       },
       {
-        "line": "+8% damage to monsters with an abnormal status",
+        "line": "+8% damage to monsters with an abnormal status (Grandis Library: 'Damage to monsters inflicted with Abnormal Status +8%')",
         "why": "The class doc records the practical reason this line is reliable rather than situational: the status condition is kept up automatically while the Explorer Mage link skill is equipped, so the bonus is effectively always live in boss fights.",
-        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "training": [
       {
         "line": "Item Drop Rate +20% or Mesos Obtained +20% (top line)",
-        "consensus": "weak",
+        "why": "The class doc's farming preset opens 'Item Drop Rate: +20%'; Grandis Library writes the same slot as 'Meso Obtained / Item Drop Rate +20%'.",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "line": "Mesos Obtained +15% (the class doc names Mesos specifically; Grandis Library states Mesos or Drop at +15%)",
-        "consensus": "weak",
+        "line": "Mesos Obtained +15% (the class doc names Mesos specifically; Grandis Library writes 'Meso Obtained / Item Drop Rate +15%')",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "+8% damage to normal monsters",
-        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
           "https://grandislibrary.com/explorers/bowmaster"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "The attack speed +1 line, which is a standard recommendation for Explorer classes, is NOT wanted here. The class doc states Bow Master is a keydown class that does not benefit from the top attack speed bracket and naturally reaches its useful cap from gear. This matches the cross-class rule recorded on the community wiki's Inner Ability guide, which scopes the attack speed line to Explorer classes that lack a Hurricane-type skill - Bow Master is the class that rule is carving out. That is an independent lane agreeing with the class doc, which is why this is the best-supported Inner Ability claim in the file. Both Inner Ability presets themselves are one consensus family (Grandis Library credits 'Class Doc' for its Inner Ability section), hence weak.",
+    "avoid": {
+      "lines": [
+        "Attack Speed +1",
+        "Passives +1",
+        "Cooldown Skip Chance",
+        "Buff Duration",
+        "Attack"
+      ],
+      "why": "Class doc, quoted: 'Bowmaster DOES NOT need lines such as Passives +1, Attack Speed +1, Cooldown Skip Chance, Buff Duration, nor Attack.' The attack speed exclusion is the one that most often trips players coming from other Explorers, and it is independently supported by the mechanic: Grandis Library's Attack Speed content page states 'Hurricane-type / Key-down skills like [...] are not affected by Attack Speed'. That page is Grandis's own systems documentation, outside the 'Class Doc' credit, so it is a genuinely independent lane agreeing with the class doc. This is the best-supported Inner Ability claim in the file.",
+      "sources": [
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
+        "https://grandislibrary.com/content/attack-speed"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "Both Inner Ability presets are one consensus family - Grandis Library's Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc' - hence weak on the preset lines themselves. The attack-speed exclusion is stronger because a second, independent lane (Grandis's own Attack Speed systems page) supports the underlying mechanic. maplestorywiki.net/w/Guide:Inner_Ability was previously cited here as that independent lane; it returned HTTP 403 again this session and could NOT be re-verified, so it has been removed from this claim's sources and replaced with a source that was actually read.",
     "sources": [
       "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
       "https://grandislibrary.com/explorers/bowmaster",
-      "https://maplestorywiki.net/w/Guide:Inner_Ability"
-    ]
+      "https://grandislibrary.com/content/attack-speed"
+    ],
+    "sourceCount": 2,
+    "consensus": "moderate",
+    "verifiedAt": "2026-09-12"
   },
   "gearingNotes": "Bow Master changes gearing advice in four specific ways, all sourced to the class doc unless noted.\n\n1. CRITICAL RATE DOES NOT STOP AT 100%. Vicious Shot allows Critical Rate to exceed the cap and converts total Critical Rate into Critical Damage at a 50% ratio. Grandis Library independently lists the skill as granting 50% of Critical Rate. Practical consequence: keep buying crit rate past the point where other classes stop - the class doc suggests roughly 7-10 extra hyper stat points late game - and do not let a planner or optimizer hard-cap crit at 100% for this class.\n\n2. NO IED LINES ON WEAPON, SECONDARY OR EMBLEM. The class doc states Bow Master's own passives already supply enough Ignore DEF that IED lines on WSE are not needed, and recommends a 9/0/0 attack/boss/IED main potential loadout instead. The two sources disagree on how much IED the passives actually give - the class doc cites two passives contributing 40% and 25%, while Grandis Library's base-stats-from-skills summary totals 59.85% Ignore DEF - so the exact number is contested, but both agree it is large.\n\n3. NO COOLDOWN HAT. The class doc says to stack %DEX on the hat rather than taking a cooldown-reduction hat. This is a real fork for players coming from classes where the cooldown hat is standard.\n\n4. ATTACK SPEED CAPS EARLY. As a keydown class it does not benefit from the highest attack speed bracket; the class doc puts the useful natural cap at 8 from gear. This removes the attack speed inner ability line and de-prioritises attack speed sources generally.\n\nOther sourced gearing facts from the class doc: Titanium Arrows give +9 attack and only a single arrow needs to be held in the inventory; Blood Arrows cost roughly 4% damage relative to Magic Arrows and should only be used when the sustain is actually needed; Ring of Restraint and Continuous Ring are both kept equipped; the Legion grid is ranked Critical Damage > Boss Damage > IED = Critical Rate > DEX > ATT > Buff Duration. The class doc also names an endgame secondary weapon and emblem, but those item names could not be validated against a skill/item table in this session and are deliberately omitted rather than risk printing a wrong item name.",
   "commonMistakes": [
@@ -400,7 +541,10 @@
       "sources": [
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
         "https://grandislibrary.com/explorers/bowmaster"
-      ]
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Buying IED lines on weapon, secondary and emblem",
@@ -418,11 +562,14 @@
     },
     {
       "mistake": "Chasing attack speed 10 or rolling the attack speed inner ability line",
-      "why": "Keydown attack, so the top attack speed bracket does not convert into damage; the useful cap is reached from gear.",
+      "why": "Keydown attack, so the top attack speed bracket does not convert into damage; the useful cap is reached from gear. The class doc lists Attack Speed +1 among the lines Bow Master does not need, and Grandis Library's Attack Speed page independently states that Hurricane-type / key-down skills are not affected by Attack Speed.",
       "sources": [
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-        "https://maplestorywiki.net/w/Guide:Inner_Ability"
-      ]
+        "https://grandislibrary.com/content/attack-speed"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Running Blood Arrows by default",
@@ -440,26 +587,42 @@
     },
     {
       "mistake": "Following a single universal HEXA order",
-      "why": "The class's own guide splits HEXA charts by server type (Fragment-limited for Heroic, Energy-limited for Interactive) and by character role (Main/Min-Clear, Legion Champ, Mule/Culvert). A one-size order contradicts the source.",
+      "why": "The class's own guide splits HEXA priority charts by server type (Fragment-limited for Heroic World, Energy-limited for Interactive World) and by character role (MAIN/MIN CLEAR, LEGION CHAMP, BURST/CULVERT). Grandis Library mirrors the same three-way split in its infographic set. A one-size order contradicts the source.",
       "sources": [
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
         "https://grandislibrary.com/explorers/bowmaster"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Partially leveling Sol Hecate and stopping between breakpoints",
-      "why": "Its abilities unlock at specific levels - Styx at 1, Charon at 20, Phlegethon at 30 - so levels spent between breakpoints buy comparatively little.",
+      "why": "Its abilities unlock at specific levels - the summon and Styx at Lv. 1, Charon at Lv. 20, Phlegethon at Lv. 30 - so levels spent between breakpoints buy comparatively little.",
       "sources": [
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "mistake": "Treating the class doc's hyper stat 'big 4' as a ranked order",
+      "why": "The class doc explicitly declines to rank hyper stats and names Crit Damage, IED, Boss and Damage as an unordered group, pointing readers at a per-character calculator. A planner that reads them as a fixed order is asserting something the source refuses to say.",
+      "sources": [
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     }
   ],
   "skillNameReference": {
-    "note": "Recorded for name validation so downstream code never emits a fabricated node or skill name. Every name here appears literally in at least one source listed; none are inferred.",
+    "note": "Recorded for name validation so downstream code never emits a fabricated node or skill name. Every name here was re-checked against a reachable source on 2026-09-12. Strings that differ between sources are recorded with BOTH variants rather than merged.",
     "fifthJob": [
       "Storm of Arrows",
       "Inhuman Speed",
-      "Quiver Barrage",
+      "Quiver Barrage (the class doc's Enhancement node section writes 'Quiver Full Barrage')",
       "Silhouette Mirage"
     ],
     "hexaOrigin": "Ascendant Shadow",
@@ -470,9 +633,23 @@
       "Arrow Blaster VI",
       "Quiver Cartridge VI",
       "Phoenix VI",
-      "Extra Quiver Cartridge",
       "Speed Mirage VI",
       "Gritty Gust VI"
+    ],
+    "grantedByMasteryCore": [
+      {
+        "skill": "Extra Quiver Cartridge",
+        "grantedBy": "the 6th Job Mastery Enhancement covering Quiver Cartridge and Phoenix (i.e. Quiver Cartridge VI)",
+        "note": "Previously mis-listed as a separate Mastery core. MapleStory Wiki carries a page for it describing it as an active skill, max level 30, granted by that Mastery Enhancement. The class doc describes its mechanic: it builds a stack whenever a Magic Arrow or Blood Arrow triggers.",
+        "sources": [
+          "https://maplestorywiki.net/w/Extra_Quiver_Cartridge",
+          "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "verificationMethod": "maplestorywiki.net returns HTTP 403 to direct fetching from this environment; the page's existence and content were confirmed through a web-search result summary of that exact URL, not a direct read."
+      }
     ],
     "hexaCommon": [
       "Sol Janus",
@@ -481,7 +658,7 @@
     ],
     "boostNodeTargets": [
       "Hurricane",
-      "Final Attack: Bow",
+      "Final Attack: Bow  |  Advanced Final Attack  (UNRESOLVED - two different real skills, see conflicts; do not emit either as canonical yet)",
       "Arrow Blaster",
       "Arrow Stream",
       "Quiver Cartridge",
@@ -493,101 +670,168 @@
       "Wind Arrow",
       "Arrow Blow"
     ],
-    "unvalidated": "These names were taken from the class doc and Grandis Library, NOT from a wiki skill table - maplestorywiki.net returned 403 to fetching and the browser pane was unusable this session, so the intended name-validation step did not run. Validate against https://maplestorywiki.net/w/Bow_Master/Skills before treating this list as an allowlist.",
+    "unvalidated": "Names come from the class doc, Grandis Library and (for Extra Quiver Cartridge and Advanced Final Attack) MapleStory Wiki via search-result summaries. maplestorywiki.net returned HTTP 403 to direct fetching again this session, so https://maplestorywiki.net/w/Bow_Master/Skills was not read in full and this list is still not a complete allowlist.",
     "sources": [
       "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-      "https://grandislibrary.com/explorers/bowmaster"
-    ]
+      "https://grandislibrary.com/explorers/bowmaster",
+      "https://maplestorywiki.net/w/Extra_Quiver_Cartridge",
+      "https://maplestorywiki.net/w/Advanced_Final_Attack"
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "sources": [
     {
       "url": "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-      "what": "Book of Bowmaster - the class Discord's maintained guide and the origin of essentially all public Bow Master judgement. Covers boost nodes, 6th job/HEXA by server type and character role, hyper stats, hyper skills, inner ability, gearing. Read directly this session.",
+      "what": "Book of Bowmaster - the class Discord's maintained guide and the origin of essentially all public Bow Master judgement. Covers boost nodes, 6th job/HEXA by server type and character role, hyper stats, hyper skills, inner ability, gearing. Re-read directly on 2026-09-12 for the resolution pass.",
       "dated": "2026-09-09 (the v.271 patch date, per the doc's own last-updated line)",
-      "independent": true
+      "independent": true,
+      "family": "A"
     },
     {
       "url": "https://grandislibrary.com/explorers/bowmaster",
-      "what": "Grandis Library class page. Boost nodes bucketed Primary/Secondary/Other, hyper passive build, recommended inner ability, link skill, base stats from skills, and three 6th Job infographics named Main/Min-Clear, Legion Champ and Mule/Culvert. Read directly this session.",
+      "what": "Grandis Library class page. Re-read directly on 2026-09-12. IMPORTANT for consensus maths: its Credits block reads 'Skill Icons + Animations: Ikasuu | Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc | 5th Job Skill Animations: KyoWantsCute | Quiver Barrage + Silhouette Mirage Animation: Owltakuu'. So its Inner Ability, Hyper Passive and Boost Node BUILD sections are a mirror of family A and must not be counted as a second vote. Its skill tables, Base Stats from skills, node membership lists and infographic set are its own and DO count independently for skill facts.",
       "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
-      "independent": false
+      "independent": "partially - family A for build sections, family B for skill data",
+      "family": "A for builds / B for skill data"
+    },
+    {
+      "url": "https://grandislibrary.com/content/attack-speed",
+      "what": "Grandis Library's Attack Speed systems page. Read directly on 2026-09-12. States verbatim that 'Hurricane-type / Key-down skills like [...] are not affected by Attack Speed'. Outside the 'Class Doc' credit, so independent. Cited for the Inner Ability attack-speed exclusion, replacing the unreachable maplestorywiki guide.",
+      "dated": "not stated on page",
+      "independent": true,
+      "family": "B"
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. The only source that writes Bow Master's trios out in plain text. Read directly this session.",
-      "dated": "Page states 2024-11-21; author states the underlying data is 2024-05-14 - predates the v269 boost node grouping change",
-      "independent": true
+      "what": "mastermysty's cross-class boost node trio reference. The only source that writes Bow Master's trios out in plain text. Re-read on 2026-09-12. Labels only the FIRST Bow Master trio ('Bossing'); the other two are headed 'Trio #2' and 'Trio #3' with no role label.",
+      "dated": "Page states 'Last update: November 21st, 2024'; header states '[200 nodes: chance to find all trios. 10000 tests per class(May 14th, 2024)]' - the data predates the v269 boost node grouping change",
+      "independent": true,
+      "family": "C"
     },
     {
       "url": "https://brendonmay.github.io/hyperCalculator/",
-      "what": "MathBro's hyper stat optimizer. Cited only for the claim that hyper stat allocation is computed per character rather than fixed - which is the position the class doc itself takes.",
+      "what": "MathBro's hyper stat optimizer. The class doc links it directly: 'A popular hyper stat calculator can be found here for optimizations'. Cited only for the claim that Bow Master hyper stat allocation is computed per character rather than fixed.",
       "dated": "actively maintained; exact date not confirmed",
-      "independent": true
+      "independent": true,
+      "family": "D"
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Extra_Quiver_Cartridge",
+      "what": "MapleStory Wiki page for Extra Quiver Cartridge. Confirms the name is real and that it is an active skill granted by the 6th Job Mastery Enhancement that also upgrades Quiver Cartridge and Phoenix. Reached via web-search result summary only - direct fetching returns HTTP 403 from this environment.",
+      "dated": "not confirmed",
+      "independent": true,
+      "family": "E"
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Advanced_Final_Attack",
+      "what": "MapleStory Wiki page for Advanced Final Attack. Confirms Advanced Final Attack is a 4th job passive that REQUIRES Final Attack: Bow at MAX as a prerequisite - i.e. the two are distinct, co-existing skills, not aliases. Reached via web-search result summary only - direct fetching returns HTTP 403.",
+      "dated": "not confirmed",
+      "independent": true,
+      "family": "E"
     },
     {
       "url": "https://maplestorywiki.net/w/Guide:Inner_Ability",
-      "what": "Cross-class Inner Ability framework. Cited for the rule that the attack speed line belongs to Explorer classes WITHOUT a Hurricane-type skill, which independently supports the class doc's advice to skip attack speed on Bow Master. Verified in the project's discovery pass, not re-read here - the site returned 403 to fetching this session.",
-      "dated": "unverified - page history was not reachable",
-      "independent": true
+      "what": "Cross-class Inner Ability framework. WAS cited in this file for the rule scoping the attack speed line to Explorers without a Hurricane-type skill. Returned HTTP 403 again on 2026-09-12 and could not be re-verified, so it has been REMOVED from the sources of every claim in this file. Left listed here only to record that it was checked and found unreachable.",
+      "dated": "unverified - page not reachable",
+      "independent": true,
+      "family": "unusable this pass"
     },
     {
       "url": "https://discord.gg/YJqyRYxWV3",
       "what": "Bowmasters Hideout, the class Discord. Upstream of the Book of Bowmaster and where changes land before the doc updates. Not machine-readable; not read.",
       "dated": "live",
-      "independent": false
+      "independent": false,
+      "family": "A (upstream)"
     },
     {
       "url": "https://dexless.com/guides/bowmaster-in-depth-job-guide.137/",
-      "what": "Sky's Bowmaster In-Depth Job Guide v4.0 - the ONE genuinely independent written Bow Master guide, whose author states it is developed independently of the Book of Bowmaster except for the 6th job build images. NOT READ: returned HTTP 403 to fetching and the browser pane was unusable this session. Nothing in this file comes from it. This is the single highest-value gap to close.",
+      "what": "Sky's Bowmaster In-Depth Job Guide v4.0 - the ONE genuinely independent written Bow Master guide, whose author states it is developed independently of the Book of Bowmaster except for the 6th job build images. STILL NOT READ: returns HTTP 403 to fetching. Nothing in this file comes from it. This remains the single highest-value gap to close.",
       "dated": "2025-12-15, self-declared for GMS v265 (per the project's earlier source survey; not verified here)",
-      "independent": true
+      "independent": true,
+      "family": "F (unreached)"
     },
     {
       "url": "https://www.mapledoro.com/guides/character-guides/bowmaster",
-      "what": "Checked and rejected: returns 'Class not found'. No Bow Master content exists there.",
+      "what": "Checked and rejected in an earlier pass: returns 'Class not found'. No Bow Master content exists there.",
       "dated": "n/a",
-      "independent": false
+      "independent": false,
+      "family": "n/a"
     }
   ],
   "consensusLevel": "weak",
   "conflicts": [
+    {
+      "topic": "Which skill the 'Final Attack' boost node actually targets",
+      "positions": [
+        "Grandis Library's node list: Node 1 contains 'Hurricane (4th Job)' and 'Final Attack: Bow (2nd Job)'",
+        "Book of Bowmaster: names 'Advanced Final Attack' among the mandatory node skills",
+        "mastermysty: writes the unqualified string 'Final Attack' in its second trio"
+      ],
+      "note": "RE-OPENED AND SHARPENED on 2026-09-12. This is NOT an alias problem and must not be collapsed into one - the previous version of this file asserted 'three sources, three strings, same node', which no source states and which MapleStory Wiki contradicts. MapleStory Wiki confirms Advanced Final Attack is a 4th job passive whose prerequisite is Final Attack: Bow (MAX), so the two are distinct, co-existing skills. Grandis's node list is the only source that states a job tier for the node target, and it says 2nd Job Final Attack: Bow. This is a possible substantive disagreement about which skill the node boosts. UNRESOLVED - do not emit either string as canonical.",
+      "sources": [
+        "https://grandislibrary.com/explorers/bowmaster",
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://maplestorywiki.net/w/Advanced_Final_Attack"
+      ],
+      "verifiedAt": "2026-09-12",
+      "status": "unresolved"
+    },
+    {
+      "topic": "Node 1-4 skill membership in the class doc versus Grandis Library",
+      "positions": [
+        "Grandis Library, plain text: Node 1 = Hurricane + Final Attack: Bow; Node 2 = Arrow Blaster + Arrow Stream; Node 3 = Quiver Cartridge + Phoenix; Node 4 = Gritty Gust + Speed Mirage",
+        "Book of Bowmaster: encodes Node 1-4 membership as skill icons. Three separate text extractions this session returned three inconsistent readings, one of which placed Advanced Final Attack in Node 2 and one of which produced a tier chart containing 'Erda Nova'."
+      ],
+      "note": "New conflict recorded on 2026-09-12. Both sources agree exactly on Node 5 (Covering Fire / Swift Surge) and Node 6, which is why those two are the only groupings this file treats as jointly confirmed. The file uses Grandis's Node 1-4 pairing because it is the only plain-text statement of it; that choice is flagged in vMatrix.nodeMembershipCaveat.",
+      "sources": [
+        "https://grandislibrary.com/explorers/bowmaster",
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12",
+      "status": "unresolved"
+    },
     {
       "topic": "Hyper skill passive name for the Hurricane boss damage line",
       "positions": [
         "Grandis Library lists it as 'Hurricane - Boss Rush'",
         "Book of Bowmaster writes it as 'Hurricane - Boss Slayer'"
       ],
-      "note": "Both clearly mean the same passive. Grandis Library sources its skill data from an API rather than from the class doc, which is a mild argument for 'Boss Rush' being the in-game GMS string, but this was not confirmed - the wiki skill table was unreachable. Do not display either name as authoritative until validated.",
+      "note": "Both clearly mean the same passive - both pages place it as the boss-damage member of the three Hurricane enhancements in the same recommended loadout. Grandis sources its skill strings from an API rather than from the class doc, which is a mild argument for 'Boss Rush' being the in-game GMS string, but this was not confirmed - maplestorywiki.net returned 403. The same pages also differ on 'Hurricane - Split' vs 'Hurricane - Split Attack'. Do not display either name as authoritative until validated.",
       "sources": [
         "https://grandislibrary.com/explorers/bowmaster",
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12",
+      "status": "unresolved"
     },
     {
-      "topic": "Name of the Final Attack boost node",
+      "topic": "Whether 'Erda Nova' belongs in the Bow Master boost node list",
       "positions": [
-        "Grandis Library: 'Final Attack: Bow'",
-        "Book of Bowmaster: 'Advanced Final Attack'",
-        "mastermysty: 'Final Attack'"
+        "One text extraction of the Book of Bowmaster's image-based tier chart produced an A-tier entry reading 'Erda Nova'",
+        "Neither Grandis Library's six-node list nor any other reachable source contains Erda Nova as a Bow Master boost node"
       ],
-      "note": "Three sources, three strings, same node. Likely a 4th job versus advanced-version naming distinction. Needs wiki validation.",
+      "note": "CORRECTED on 2026-09-12. The previous version of this file dismissed the Erda Nova reading with the reasoning 'Erda Nova is a 5th job skill and boost nodes boost 4th job skills'. That premise is false and has been deleted: Grandis's own Bow Master node list spans 1st, 2nd, 3rd and 4th Job skills and a Hyper Skill (it labels Gritty Gust 'Hyper Skill' and Arrow Blow '1st Job'). The conclusion is retained on a sound basis instead - Erda Nova appears in no node list from any reachable source, and the extraction that produced it also produced two other mutually inconsistent readings of the same image region, so it is treated as an extraction artifact.",
       "sources": [
         "https://grandislibrary.com/explorers/bowmaster",
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12",
+      "status": "resolved - treated as extraction artifact, reasoning replaced"
+    },
+    {
+      "topic": "Name of the third HEXA priority chart variant",
+      "positions": [
+        "Book of Bowmaster heads it 'BURST/CULVERT PRIORITY'",
+        "Grandis Library heads its matching infographic '6th Job (Mule/Culvert)'"
+      ],
+      "note": "New conflict recorded on 2026-09-12. The first two variants match exactly (Main/Min-Clear, Legion Champ). The previous version of this file claimed Grandis published 'those same three names'; it does not. Both strings are recorded in hexa.variants rather than picking one.",
+      "sources": [
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
-        "https://mystyjl.github.io/reference/NodeGuide.html"
-      ]
-    },
-    {
-      "topic": "Bossing boost node trio composition",
-      "positions": [
-        "mastermysty states Hurricane + Arrow Blaster + Quiver Cartridge",
-        "A text extraction of the Book of Bowmaster suggested Hurricane + Quiver Cartridge + Erda Nova"
+        "https://grandislibrary.com/explorers/bowmaster"
       ],
-      "note": "Recorded rather than resolved, but flagged as probably not a real disagreement: Erda Nova is a 5th job skill and boost nodes boost 4th job skills, so the second reading is most likely an extraction artifact from the doc's image-heavy node section rather than the doc's actual claim. Neither trio should be shipped with confidence until the class doc infographics are read directly.",
-      "sources": [
-        "https://mystyjl.github.io/reference/NodeGuide.html",
-        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-      ]
+      "verifiedAt": "2026-09-12",
+      "status": "unresolved"
     },
     {
       "topic": "How much Ignore DEF the class gets from its own passives",
@@ -595,7 +839,7 @@
         "Book of Bowmaster: two passives contributing 40% and 25%",
         "Grandis Library base stats from skills: 59.85% Ignore DEF total"
       ],
-      "note": "The conclusion drawn from it - no IED lines needed on WSE - is the same either way.",
+      "note": "The conclusion drawn from it - no IED lines needed on WSE - is the same either way. Out of scope for this resolution pass (gearing).",
       "sources": [
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
         "https://grandislibrary.com/explorers/bowmaster"
@@ -607,7 +851,7 @@
         "Grandis Library: Adventurer's Curiosity at Master Level 9 gives Monster Collection chance +50% and Critical Rate +15%",
         "Book of Bowmaster: the Bow Master, Marksman and Pathfinder links combined give 15% Critical Rate and 6% Damage"
       ],
-      "note": "Unclear whether Grandis Library's +15% is the single-class value or the fully stacked three-class value, and the 6% Damage component appears in only one source. Do not display a per-class link value until resolved.",
+      "note": "Unclear whether Grandis Library's +15% is the single-class value or the fully stacked three-class value, and the 6% Damage component appears in only one source. Do not display a per-class link value until resolved. Out of scope for this resolution pass.",
       "sources": [
         "https://grandislibrary.com/explorers/bowmaster",
         "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
@@ -616,41 +860,115 @@
     {
       "topic": "Name of the third 5th job skill / its Enhancement node",
       "positions": [
-        "'Quiver Barrage' in the class doc's 5th job skill list",
-        "'Quiver Full Barrage' in the same doc's Enhancement node section"
+        "'Quiver Barrage' in the class doc's 5th job skill list, and in Grandis Library's Credits block ('Quiver Barrage + Silhouette Mirage Animation: Owltakuu')",
+        "'Quiver Full Barrage' in the same class doc's Enhancement node section"
       ],
-      "note": "Internal inconsistency within one document. Needs wiki validation.",
+      "note": "Internal inconsistency within one document. Grandis Library's Credits block independently uses 'Quiver Barrage', which is a mild argument for that string. Needs wiki validation.",
       "sources": [
-        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic"
-      ]
+        "https://docs.google.com/document/d/14Ob3MKysPnv7aQ31uLm0SkBLpKZSSjKRuwh_2nn28HE/mobilebasic",
+        "https://grandislibrary.com/explorers/bowmaster"
+      ],
+      "verifiedAt": "2026-09-12",
+      "status": "unresolved"
     }
   ],
   "gaps": [
-    "Sky's Dexless guide - the only genuinely independent written Bow Master guide - could not be read (HTTP 403, browser pane unusable). Reading it is the single change that would move this class from weak to moderate/strong consensus.",
-    "The class doc's HEXA infographics contain the actual step-by-step investment sequences, split Fragment-limited vs Energy-limited and across three character roles. They are images; only the category-level order was recoverable from prose. A vision pass on those images is required to complete the hexa.order field.",
-    "Boost node trio pairings are only available in plain text from a source whose data is dated 2024-05-14, which predates the v269 node grouping change.",
-    "Skill and node names were not validated against maplestorywiki.net/w/Bow_Master/Skills (403 this session), so the skillNameReference block is not yet a safe allowlist.",
-    "Hyper skill ACTIVES were not sourced at all.",
+    "Sky's Dexless guide - the only genuinely independent written Bow Master guide - still could not be read (HTTP 403). Reading it is the single change that would move this class from weak to moderate/strong consensus.",
+    "The class doc's HEXA infographics contain the actual step-by-step investment sequences, split Fragment-limited vs Energy-limited across three character roles. They are images; only the category-level order was recoverable from prose. A vision pass on those images is required to complete hexa.order with per-step target levels.",
+    "The class doc's Node 1-4 skill membership is also image-encoded. Three text extractions this session disagreed with each other. The same vision pass would settle it, and would settle whether the node target is Final Attack: Bow or Advanced Final Attack.",
+    "Boost node trio pairings are only available in plain text from mastermysty, whose data is dated 2024-05-14 and predates the v269 node grouping change. mastermysty labels only the bossing trio; the other two trios have no role label, so no role should be attributed to them.",
+    "Skill and node names could not be validated against https://maplestorywiki.net/w/Bow_Master/Skills (403 to direct fetching). Two individual wiki pages were confirmed via search-result summaries; the full skill table was not.",
+    "https://maplestorywiki.net/w/Guide:Inner_Ability is unreachable from this environment and has been removed from every claim's sources rather than left as an unverifiable citation.",
+    "Hyper skill ACTIVES remain entirely unsourced.",
     "The Bow Master legion/union board effect was not sourced and is left null.",
-    "r/Maplestory remains unexamined - reddit is blocked in this environment.",
-    "Web search budget for this session was already exhausted (200/200) before this class was researched, so no new source discovery was possible beyond the URLs supplied by the discovery pass."
+    "r/Maplestory remains unexamined - reddit is blocked in this environment."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "resolutionRanAt": "2026-09-12",
+    "resolutionMethod": "Scope narrowed by the product owner to the five endgame sections (vMatrix, hexa, hyperSkills, hyperStats, innerAbility). Each in-scope defect was settled by re-opening the exact cited page and re-reading the exact disputed claim. No new source discovery was performed except where a cited source was unreachable.",
     "defects": [
-      "The merged node entry 'Final Attack (class doc writes Advanced Final Attack; Grandis Library writes Final Attack: Bow)' and the matching conflict entry 'Three sources, three strings, one node' assert an identity that no source states, and Grandis contradicts it. Grandis's skill table lists Final Attack: Bow (2nd Job) AND Advanced Final Attack (4th Job) as two separate, co-existing skills. Grandis's Node 1 boosts Final Attack: Bow; the class doc's mandatory four names Advanced Final Attack. That is a possible real disagreement about which skill the node targets, collapsed into an alias problem. boostNodeTargets then ships only 'Final Attack: Bow', so downstream code would emit the 2nd job name under guide text that says Advanced Final Attack.",
-      "archetype: 'its progression is unusually front-loaded onto a small number of 4th job skills (Hurricane, Final Attack, Arrow Blaster, Arrow Stream) that boost nodes and HEXA Mastery cores both target.' Per Grandis's skill table only two of those four are 4th job. Arrow Blaster is 3rd Job and Final Attack: Bow is 2nd Job. The claim that HEXA Mastery cores and boost nodes target the same set is asserted with no source and is doubtful for a 3rd job skill.",
-      "conflicts, bossing trio entry: the reasoning 'Erda Nova is a 5th job skill and boost nodes target 4th job skills' rests on a false premise. Grandis's node list contains 1st, 2nd, 3rd, 4th and Hyper skills (Gritty Gust is explicitly labelled Hyper Skill). The conclusion is probably still right, but the stated reason is invented.",
-      "'Extra Quiver Cartridge' (hexa.order group 3 and skillNameReference.hexaMastery) appears in no source I could reach. It is absent from Grandis's full skill table, which instead lists a 4th job skill 'Enchanted Quiver'. Given it came from text extraction of an image-heavy document, treat it as a probable extraction artifact until a second source shows it. skillNameReference claims 'Every name here appears literally in at least one source listed; none are inferred' - that claim is only as strong as the extraction.",
-      "'Flashpoint' as the Ascent skill is single-sourced to the same text extraction. Grandis's 6th Job section lists only Ascendant Shadow. Absence is not disconfirmation (Grandis is at v269 and Ascent skills may postdate it), but hexa.order presents it flatly as 'Second HEXA node' with no second source anywhere. 'Ascendant Shadow' by contrast IS independently confirmed by Grandis.",
-      "hyperStats.priority is an ordered array reading Critical Damage > IED > Boss Damage > Damage, and the Critical Damage entry justifies first place with 'the class doc also ranks Critical Damage first on the Legion grid'. The class doc calls these an unordered 'big 4' and explicitly declines to rank hyper stats; the Legion grid is a different system. The file's own notes admit the doc refuses to order, then ships an ordered array anyway - downstream code will read array position as priority."
+      "UNSETTLED (recorded as a conflict, not a claim): which skill the 'Final Attack' boost node targets. Grandis Library's node list says 'Final Attack: Bow (2nd Job)'; the class doc says 'Advanced Final Attack'; MapleStory Wiki confirms these are two distinct co-existing skills with a prerequisite relationship. Cannot be settled from any reachable text source - the class doc's node membership is image-encoded. Requires a vision pass on the class doc's boost node infographic.",
+      "UNSETTLED (recorded as a conflict, not a claim): the class doc's own Node 1-4 skill membership. Three text extractions of the same image region this session returned three mutually inconsistent readings. The file uses Grandis Library's plain-text pairing and flags the choice. Requires the same vision pass."
     ],
     "clearedOnInspection": [],
+    "resolved": [
+      {
+        "defect": "The merged node entry 'Final Attack (class doc writes Advanced Final Attack; Grandis Library writes Final Attack: Bow)' and the matching conflict entry assert an identity no source states, and Grandis contradicts it.",
+        "scope": "in-scope (vMatrix)",
+        "disposition": "CORRECTED",
+        "whatWasDone": "The asserted identity was deleted. MapleStory Wiki's Advanced Final Attack page was checked and confirms Advanced Final Attack is a 4th job passive requiring Final Attack: Bow (MAX) - two distinct skills, not aliases. The vMatrix Node 1 entry now records both source strings side by side with an explicit 'source strings differ' marker and no identity claim. boostNodeTargets no longer ships a single canonical string for this node; it carries both with 'UNRESOLVED - do not emit either as canonical yet'. The conflict entry was rewritten and marked status: unresolved."
+      },
+      {
+        "defect": "archetype asserts four 4th job skills and that boost nodes and HEXA Mastery cores target the same set; per Grandis, Arrow Blaster is 3rd Job and Final Attack: Bow is 2nd Job.",
+        "scope": "OUT OF SCOPE - job tiers, explicitly excluded by the product owner's scope narrowing",
+        "disposition": "LEFT UNTOUCHED",
+        "whatWasDone": "Counted as out-of-scope and the archetype text was not modified, per the instruction to leave job-tier content alone. For the record, the re-read does show the overlap claim is close but not exact: the class doc's Mastery core list covers Hurricane, Arrow Stream, Arrow Blaster, Quiver Cartridge, Phoenix, Speed Mirage and Gritty Gust, with no Mastery core for the Final Attack node target."
+      },
+      {
+        "defect": "The bossing-trio conflict note reasons that 'Erda Nova is a 5th job skill and boost nodes target 4th job skills' - a false premise, since Grandis's node list contains 1st through 4th job and Hyper skills.",
+        "scope": "in-scope (vMatrix)",
+        "disposition": "CORRECTED",
+        "whatWasDone": "The false premise was deleted. Re-reading Grandis confirms the defect: its Bow Master node list labels Arrow Blow '1st Job', Final Attack: Bow / Quiver Cartridge / Covering Fire / Swift Surge / Wind Arrow '2nd Job', Arrow Blaster / Phoenix / Speed Mirage '3rd Job', Hurricane / Arrow Stream '4th Job' and Gritty Gust 'Hyper Skill'. The conclusion (Erda Nova is an extraction artifact) is retained on a sound basis: it appears in no node list from any reachable source, and the extraction that produced it also produced two other mutually inconsistent readings of the same image region."
+      },
+      {
+        "defect": "'Extra Quiver Cartridge' appears in no reachable source and is a probable extraction artifact.",
+        "scope": "in-scope (hexa, skillNameReference)",
+        "disposition": "CONFIRMED THE NAME IS REAL, CORRECTED ITS PLACEMENT",
+        "whatWasDone": "The defect is refuted on existence: MapleStory Wiki carries a page at /w/Extra_Quiver_Cartridge describing it as an active Bow Master skill, max level 30, granted by the 6th Job Mastery Enhancement that also upgrades Quiver Cartridge and Phoenix. The class doc independently describes its mechanic. However the file's PLACEMENT was wrong: it was listed as a third Mastery core to invest in alongside Quiver Cartridge VI and Phoenix VI. It has been removed from hexa.order group 3 and from skillNameReference.hexaMastery, and moved to a new skillNameReference.grantedByMasteryCore entry that states the correct relationship. The wiki page returns 403 to direct fetching; verification was via a web-search result summary of that exact URL and the verificationMethod is recorded on the claim."
+      },
+      {
+        "defect": "'Flashpoint' as the Ascent skill is single-sourced to a text extraction; Grandis's 6th Job section lists only Ascendant Shadow, yet hexa.order presents Flashpoint flatly as 'Second HEXA node'.",
+        "scope": "in-scope (hexa)",
+        "disposition": "CORRECTED",
+        "whatWasDone": "The name is corroborated - Grandis Library ships a skill-preview icon asset at /class-icons/explorers/bowmaster/flashpoint.png - but Grandis never names it in descriptive text and never identifies it as the Ascent skill, confirming the defect on the ROLE claim. The hexa.order entry now states plainly that the role and the second-node position are single-sourced to the class doc, with sourceCount 1 and consensus weak, and carries a sourceCountNote spelling out exactly what Grandis does and does not corroborate. Two unverifiable details attached to that entry ('six key presses', '4 minute cooldown outside boss content') were DELETED - they could not be found on re-reading."
+      },
+      {
+        "defect": "hyperStats.priority is an ordered array while the class doc explicitly declines to rank hyper stats, and the Critical Damage entry justifies first place using the Legion grid, a different system.",
+        "scope": "in-scope (hyperStats)",
+        "disposition": "CORRECTED - structural fix",
+        "whatWasDone": "Fully confirmed on re-read. The class doc says 'Hyper stats are largely dependent on your own individual stats and what your character needs' and names 'the usual big 4 of Crit Damage, IED, Boss, and Damage' as an unordered group. hyperStats.priority is now null, with priorityIsNullBecause explaining why, an 'unordered': true flag, and the four stats stored in an unordered coreSet. The Legion-grid justification was DELETED as a cross-system inference the source does not make. The class-specific Critical Rate overflow rule is preserved in a separate afterCoreSet object because the doc DOES state it as sequential ('after filling out the usual big 4') and gives a figure ('running between 7-10 Crit Rate is advisable'), both re-verified verbatim. A matching entry was added to commonMistakes so the refusal-to-rank is surfaced to users rather than papered over."
+      }
+    ],
+    "correctionsFoundDuringResolution": [
+      {
+        "what": "vMatrix priority was restructured from a flat skill ranking to the six numbered node groups the sources actually use.",
+        "why": "Re-reading the class doc produced its operative sentence verbatim: 'It is mandatory to level the first four nodes to maximum. Node 5 for Covering Fire/Swift Surge is optional for mains looking to minmax and not necessary for 6th job progression. Node 6 is completely useless at all times.' Nodes are PAIRS, and the doc's own Node 5 and Node 6 match Grandis's Node 5 and Node 6 exactly. So 'the mandatory four' means node groups 1-4 (eight skills), not four individual skills. The old file demoted Quiver Cartridge, Phoenix, Gritty Gust and Speed Mirage to a second band 'below the mandatory four' - that was a misreading that would have told players to under-level four mandatory-max nodes. Grandis's Primary(1-2)/Secondary(3-4) buckets are a within-mandatory ordering, not a demotion."
+      },
+      {
+        "what": "Grandis Library was demoted from an independent corroborating source to a same-family mirror for boost nodes, hyper passives and inner ability.",
+        "why": "Its Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc'. The old file counted 'PRIMARY on Grandis Library' as corroboration of the class doc's node ranking and rated several claims 'moderate' on that basis. Every affected claim now carries a sourceCountNote naming the family collapse, and sourceCount counts families rather than URLs. Grandis's skill tables, Base Stats and node membership lists remain independent because they are API-derived and outside that credit."
+      },
+      {
+        "what": "The 'training' role labels on mastermysty's second and third trios were deleted.",
+        "why": "Re-reading the source shows it labels only the first Bow Master trio, as 'Bossing'. The others are headed 'Trio #2' and 'Trio #3' with no role label at all. The old file's 'second (training) trio' and 'third, training-oriented trio' were inferences presented as source claims. Both now read role: 'unlabelled' with a roleSource field saying exactly what the source does and does not say."
+      },
+      {
+        "what": "The HEXA variant list was changed from three canonical names to source-paired strings.",
+        "why": "The class doc heads its third chart 'BURST/CULVERT PRIORITY'; Grandis heads its third infographic '6th Job (Mule/Culvert)'. The old file claimed Grandis published 'those same three names'. Two match, one does not. A new conflict entry records it."
+      },
+      {
+        "what": "maplestorywiki.net/w/Guide:Inner_Ability was removed from the sources of the attack-speed claim and from the commonMistakes entry, and replaced with https://grandislibrary.com/content/attack-speed.",
+        "why": "The wiki guide returned HTTP 403 again and could not be re-verified, so it must not be carried as a citation. Grandis Library's own Attack Speed systems page WAS read and states verbatim that 'Hurricane-type / Key-down skills like [...] are not affected by Attack Speed'. That page is outside the 'Class Doc' credit, so the claim keeps its genuinely independent second lane and its 'moderate' rating on a source that was actually read."
+      },
+      {
+        "what": "'Arrow Stream - Spread' was moved out of the recommended training hyper passive set.",
+        "why": "Grandis Library's training substitution names only 'Arrow Stream - Reinforce and Extra Strike'. The class doc lists Spread among available Arrow Stream passives with its effect (Max Monsters Hit +1) but does not put it in a recommended loadout. It now sits in a new availableButNotRecommended bucket alongside Sharp Eyes - Persist, which has the same status."
+      },
+      {
+        "what": "Two unverifiable glosses were deleted from hexa.order: Charon described as 'a death-prevention effect', and the HEXA Stat advice about rearranging rolls so the largest value sits on the highest-priority line.",
+        "why": "Neither could be found on re-reading the class doc. The doc says only 'At Lv. 20, you gain access to Sol Hecate: Charon' and 'ATT > DEX > Boss%'. A previously-unrecorded doc instruction WAS found and added instead: 'Styx should be registered to Terms & Conditions and Phlegethon should be registered to Vicious Shot.'"
+      },
+      {
+        "what": "The HEXA node prerequisites (Mastery needs boost nodes Lv. 40+, Enhancement needs job nodes Lv. 25+) were promoted from a hedged aside in hexa.notes to a structured hexa.prerequisites field with the doc's verbatim wording.",
+        "why": "The old file flagged them as an unchecked text-extraction artifact. They were re-read directly this session and are the class doc's actual wording. Still single-sourced and labelled weak, since they have not been checked against an in-game mechanics page."
+      }
+    ],
     "shipReady": false
   },
   "written": false,
-  "blockedReason": "6 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "blockedReason": "All six contested defects were settled - one out of scope, five corrected or confirmed - and every claim in the five endgame sections now carries re-verified sources, a family-counted sourceCount, a consensus label and verifiedAt 2026-09-12. Two items remain genuinely unresolved and are recorded as conflicts rather than as claims, which is why this stays false: (1) whether the Final Attack boost node targets 'Final Attack: Bow' or 'Advanced Final Attack' - MapleStory Wiki confirms these are two distinct real skills, and the disagreement changes what a player is told to level; (2) the class doc's own Node 1-4 skill membership, which is image-encoded and produced three mutually inconsistent text extractions this session, so the file ships Grandis Library's pairing under a flag. Both need a vision pass on the class doc's boost node infographic. Separately, hyperSkills.actives is still unsourced and null. Nothing unverified is presented as guidance, but the vMatrix section cannot be called settled until the node membership is read from the images."
 }

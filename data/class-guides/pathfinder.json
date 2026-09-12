@@ -29,130 +29,175 @@
     "priority": [
       {
         "node": "Cardinal Burst (paired with Bountiful Burst)",
-        "why": "Half of the macro, so it is multiplying a share of essentially all damage the character deals, bossing and training alike. All three independent lanes place it in the top-priority group, and it is the skill behind the first Mastery core, so its boost node has to reach level 40 (before matrix points) before that Mastery core can be activated at all.",
-        "consensus": "strong",
+        "why": "Half of the two-cast macro, so its boost multiplies a share of nearly all damage the character deals, bossing and training alike. The class doc puts it in the trio it labels \"Bossing (high priority)\"; mastermysty lists it in trio #1. The KMS wiki marks it as an \"Essential Reinforcing Core\" but publishes no priority ordering, so the top-priority ranking rests on two independent lanes, not three. Separately it is the Mastery 1 skill, and the class doc states that to activate a mastery node \"the associated boost node level must total at least lvl 40 without matrix points\" - so the boost levels have to be built before Mastery 1 can be equipped at all.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-          "https://grandislibrary.com/explorers/pathfinder"
-        ]
+          "https://maplestorywiki.net/w/Pathfinder/Skills"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "2 independent lanes rank it top (class doc, mastermysty). The Mastery-1 grouping and the level-40 gate are separately sourced: the grouping is confirmed by the class doc, the KMS wiki and the GMS wiki (3 lanes); the level-40-without-matrix-points wording is class doc only. Grandis Library also buckets this node (PRIMARY / SECONDARY / OTHER) but its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so it restates the class doc and is NOT counted as an independent lane.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Cardinal Deluge (paired with Bountiful Deluge)",
-        "why": "The other half of the macro, and the same argument applies. The KMS wiki labels this node group the primary one; the GMS class doc and mastermysty both list it alongside Cardinal Burst in the top trio. Required to level 40 to unlock the second Mastery core.",
-        "consensus": "strong",
+        "why": "The other half of the macro; the same argument applies. The class doc places it in the same high-priority bossing trio and mastermysty lists it in trio #1. It is the Mastery 2 skill (HEXA Cardinal Deluge + HEXA Bountiful Deluge on the GMS wiki; Cardinal Discharge VI / Additional Discharge VI on the KMS wiki), so it carries the same level-40 boost gate. CORRECTION MADE 2026-09-12: an earlier version of this entry said the KMS wiki \"labels this node group the primary one\". It does not. The KMS wiki's reinforcement-core table has a column that machine-translates to Primary / Secondary / tertiary / 4th / hyper, and that column is the JOB ADVANCEMENT TIER of each skill, not a priority ranking - Cardinal Deluge is the 1st job attack, which is why its row reads \"Primary\", while Cardinal Burst (2nd job) reads \"Secondary\". The KMS wiki publishes no boost node priority order for this class.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-          "https://grandislibrary.com/explorers/pathfinder"
-        ]
+          "https://maplestorywiki.net/w/Pathfinder/Skills"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "2 independent lanes for the priority ranking (class doc, mastermysty). Grandis Library also buckets this node (PRIMARY / SECONDARY / OTHER) but its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so it restates the class doc and is NOT counted as an independent lane.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Glyph of Impalement",
-        "why": "The highest-priority of the two off-burst weave skills - the class doc ranks it first in the damage-per-minute skill priority because it has no cast time and can be fired during other skills' animations. It is also the gauge regulator outside burst. Present in the top trio in all three independent lanes, and it is a required boost for the third Mastery core.",
-        "consensus": "strong",
+        "why": "The higher-priority of the two off-burst weave skills. The class doc's DPM skill priority list runs 1. Glyph, 2. Combo Assault, 3. macro, and it says Glyph is technically ahead because it has no cast time while adding that \"in practice Glyph and CA are the same priority\". Both supporting facts were re-checked in the doc's skill entry: \"It can be cast even while in animation for other skills\" and \"Outside of burst, this is the main skill that helps you regulate the relic gauge\". Present in the first trio in both independent trio lanes, and it is one of the three Mastery 3 skills.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-          "https://grandislibrary.com/explorers/pathfinder"
-        ]
+          "https://maplestorywiki.net/w/Pathfinder/Skills"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "2 independent lanes place it in the first trio (class doc, mastermysty); the Mastery 3 grouping is 3-lane (class doc, KMS wiki, GMS wiki). Grandis Library also buckets this node (PRIMARY / SECONDARY / OTHER) but its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so it restates the class doc and is NOT counted as an independent lane.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Combo Assault",
-        "why": "Second off-burst weave skill. The class doc ranks it joint-first with Glyph in practice (Glyph is only technically ahead because it has no cast time). Its Mastery upgrade is described as a large damage increase that pulls Combo Assault from a mobbing skill into the bossing rotation and cuts its cooldown, so its boost node has to be built to reach that. Required boost for the fourth Mastery core.",
-        "consensus": "strong",
+        "why": "The second off-burst weave skill, joint-first with Glyph in the class doc's DPM skill priority (\"in practice Glyph and CA are the same priority\"). That is a skill-USE priority, not a node priority. As a node it matters because Combo Assault is a Mastery 4 skill: the class doc says in writing \"To unlock M3/M4, you must boost Combo Assault, Cardinal Torrent, Ancient Astra, and Shadow Raven\", and the KMS and GMS wikis both group it into Mastery Core 4. The class doc also records the Mastery upgrade as the largest single jump on the class (7930% to 30132% skill damage at Lv. 30, cooldown cut to 15s), which is what moved Combo Assault out of mobbing and into the bossing rotation. CAUTION: Grandis Library buckets this node SECONDARY and defines SECONDARY as \"Boost Nodes that don't unlock a 6th Job HEXA Mastery\". That is stale (Grandis is tagged GMS Ver. 269) and wrong at v.271, because this node does unlock Mastery 4. Do not use Grandis' bucket to deprioritise it.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-          "https://grandislibrary.com/explorers/pathfinder"
-        ]
+          "https://maplestorywiki.net/w/Pathfinder/Skills"
+        ],
+        "sourceCount": 3,
+        "sourceCountNote": "The Mastery 4 gate is confirmed by three independent lanes (class doc, KMS wiki, GMS wiki). The DPM-priority claim is class doc only.",
+        "consensus": "strong",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Cardinal Torrent",
-        "why": "Required boost for the third Mastery core, per both the GMS class doc and the KMS wiki's 'essential reinforcing core' grouping. Note the skill itself is primarily a teleport - the reason to boost it is that the Mastery core cannot otherwise be opened.",
-        "consensus": "strong",
+        "why": "Boosted for the Mastery 3 gate rather than for its own damage. The class doc names it in its explicit \"to unlock M3/M4 you must boost\" list, the KMS wiki puts Cardinal Transition VI (its name for Cardinal Torrent VI) inside the Essential Reinforcing Core group for Mastery 3, and the GMS wiki lists HEXA Cardinal Torrent under Mastery Node/Core 3. The skill itself is primarily a teleport - the class doc's keybind table calls it \"Teleport, limited charges\" and the KMS wiki footnotes \"It may look like a high-speed mobile skill, but it is a teleport skill\".",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://maplestorywiki.net/w/Pathfinder/Skills",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 3,
+        "consensus": "strong",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Ancient Astra",
-        "why": "Required boost for the third Mastery core. Same reasoning as Cardinal Torrent - Ancient Astra is used as a damage-reduction utility rather than a damage skill, but the Mastery core gate means it must be boosted anyway.",
-        "consensus": "strong",
+        "why": "Also boosted for the Mastery 3 gate. Named in the class doc's \"to unlock M3/M4 you must boost\" list, in the KMS wiki's Essential Reinforcing Core group, and under Mastery Node/Core 3 on the GMS wiki. Used as a survival tool rather than a damage skill: the class doc's keybind table lists Ancient Astra (Burst) as the iframe, and the KMS wiki footnotes that the skill \"is more of a survival utility\".",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://maplestorywiki.net/w/Pathfinder/Skills",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 3,
+        "consensus": "strong",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Shadow Raven",
-        "why": "Required boost for the fourth Mastery core. Confirmed as part of the essential group by both the GMS class doc and the KMS wiki.",
-        "consensus": "strong",
+        "why": "Boosted for the Mastery 4 gate. In the class doc's explicit unlock list, in the KMS wiki's Essential Reinforcing Core group (Raven VI), and under Mastery Node/Core 4 on the GMS wiki. The class doc also flags the base skill as \"Mobile summon; needed for burst\".",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://maplestorywiki.net/w/Pathfinder/Skills",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 3,
+        "consensus": "strong",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Swarm Shot (optional)",
-        "why": "Boostable and useful for mobbing, but explicitly NOT required for any Mastery core. Both the GMS class doc and the KMS wiki class it as an optional / discretionary boost taken after the seven required skills.",
-        "consensus": "strong",
+        "why": "Boostable, useful for mobbing, and explicitly NOT required for any Mastery core. The class doc: \"Swarm Shot and Triple Impact are not required for 6th job... Swarm Shot is situationally useful for mobbing.\" The KMS wiki puts Split Mistel (its name for Swarm Shot) under \"select strengthening core\" rather than Essential Reinforcing Core.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Grandis Library also files it under OTHER (\"do not need to be upgraded or has least priority\") but restates the class doc, so it is not counted.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Triple Impact (optional)",
-        "why": "Also boostable and also not required for any Mastery core. The class doc notes it sees more bossing use than Swarm Shot but purely as a utility/mobility tool rather than as damage, which is why it is still optional to boost.",
-        "consensus": "strong",
+        "why": "Also boostable and also not required for any Mastery core. The class doc: \"Triple Impact is used more often in bossing but only for utility, not damage.\" The KMS wiki likewise lists Triple Impact under \"select strengthening core\".",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Grandis Library also files it under OTHER but restates the class doc, so it is not counted.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
       {
         "label": "Bossing / high priority trio",
-        "skills": ["Cardinal Burst", "Cardinal Deluge", "Glyph of Impalement"],
-        "why": "The two macro halves plus the top weave skill. This is the one trio a boss mule needs; the class doc says a basic boss mule only requires one set of boost nodes.",
-        "consensus": "strong",
+        "skills": [
+          "Cardinal Burst",
+          "Cardinal Deluge",
+          "Glyph of Impalement"
+        ],
+        "why": "The two macro halves plus the top weave skill. The class doc labels this grouping \"Bossing (high priority)\"; mastermysty lists the same three as its trio #1 (written Cardinal Deluge / Cardinal Burst / Glyph of Impalement). This is the one trio a boss mule needs - the class doc says \"basic boss mules just need 1 set of boost nodes (3 skills), out of only 9 boostable skills total\".",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://grandislibrary.com/explorers/pathfinder"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "CORRECTION MADE 2026-09-12: Grandis Library was previously cited here and has been removed. Grandis does not publish trios at all - its \"Skills Boosted by Each Nodes\" table lists which skills sit on each of six nodes (Node 1 = Cardinal Burst + Bountiful Burst, Node 3 = Glyph + Cardinal Torrent + Ancient Astra, and so on), which is the Mastery-core grouping, not this trio composition. It cannot corroborate a trio it does not state, and it credits its boost node build to the class doc regardless.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "label": "Second trio (historically labelled 'mobbing')",
-        "skills": ["Cardinal Torrent", "Combo Assault", "Swarm Shot"],
-        "why": "Same three skills in all sources, listed in different orders. IMPORTANT: the class doc states that the 'mobbing' label is no longer accurate post-Mastery-3/4 - Combo Assault became a bossing skill once its Mastery core landed, and Cardinal Torrent is now boosted for the Mastery gate. The doc keeps the label only for continuity. Treat this grouping as legacy.",
-        "consensus": "strong",
+        "skills": [
+          "Cardinal Torrent",
+          "Combo Assault",
+          "Swarm Shot"
+        ],
+        "why": "Same three skills in both independent lanes, written in different orders (class doc: Cardinal Torrent / Combo Assault / Swarm Shot; mastermysty trio #2: Swarm Shot / Combo Assault / Cardinal Torrent). IMPORTANT: the class doc states that the \"Mobbing\" label is no longer accurate - \"The old classification of 'Mobbing' trio is no longer accurate, but kept for posterity\" - because Combo Assault moved into the bossing rotation with its Mastery core and Cardinal Torrent is now boosted for the Mastery 3 gate. Treat the label as legacy.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://grandislibrary.com/explorers/pathfinder"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Grandis Library removed from this entry for the reason given on the first trio - it publishes node contents, not trios.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "label": "Third / tertiary trio",
-        "skills": ["Ancient Astra", "Shadow Raven", "Triple Impact"],
-        "why": "Same three skills in the class doc, mastermysty and Grandis Library, listed in different orders. Two of the three (Astra, Raven) are Mastery-core prerequisites, so this trio stopped being genuinely optional once 6th job arrived.",
-        "consensus": "strong",
+        "skills": [
+          "Ancient Astra",
+          "Shadow Raven",
+          "Triple Impact"
+        ],
+        "why": "Same three skills in both independent lanes, in different written orders (class doc: Ancient Astra / Shadow Raven / Triple Impact; mastermysty trio #3: Triple Impact / Shadow Raven / Ancient Astra). Two of the three (Ancient Astra, Shadow Raven) are Mastery core prerequisites, so this trio stopped being genuinely optional once Mastery 3 and 4 arrived.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://grandislibrary.com/explorers/pathfinder"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Grandis Library removed from this entry for the reason given on the first trio.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "label": "Five-node min-max setup (class doc's own alternative)",
@@ -163,139 +208,204 @@
           "Shadow Raven / Combo Assault / Ancient Astra",
           "Swarm Shot / Cardinal Torrent / Shadow Raven"
         ],
-        "why": "Because only seven skills are needed for the Mastery cores, the class doc gives a five-node arrangement that covers all seven to cap instead of the six nodes needed to cover all nine. This frees a matrix slot. The doc presents it as optional min-maxing, not the default. Note the doc's own copy of this list contains a typo ('Ancient Anstra') in the fourth line; the intended skill is Ancient Astra.",
-        "consensus": "weak",
+        "why": "Because only seven skills are needed for the Mastery cores, the class doc gives a five-node arrangement covering all seven instead of the six nodes needed to cover all nine, freeing a matrix slot. The doc presents it as optional min-maxing (\"For V Matrix min-maxers (not necessary)\"), not the default. Re-verified line for line 2026-09-12; the doc's own fourth line contains the typo \"Ancient Anstra\", corrected to Ancient Astra here.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Nine boostable skills total, needing six node slots to cover all nine, or five slots if you skip Swarm Shot and Triple Impact. The class doc treats the small boostable pool as a selling point of the class and recommends boosting all nine if you intend to reach 6th job. Mechanics restated by the doc for newcomers: each skill gains boost levels equal to the node's level (max +25 from node level, +5 from matrix slot enhancement, cap 60), so each skill must sit on at least two nodes to reach 60; and two nodes cannot be equipped together if they share the same first-line skill, though the same skill in a non-first position is fine. Node LEVELING priority is a separate question from node composition: the doc says boost nodes generally max themselves from opened nodestones, and directs node shards and green EXP nodestones at the class V skills instead, in this order - Raven Tempest, then Nova Blast / Relic Unbound, then Vicious Shot, then Maple World Goddess's Blessing / Erda Nova, then Obsidian Barrier, Guided Arrow, Blink, Rope Lift, Will of Erda, Fury of the Wild. (Two of those skill names may be stale - see conflicts on the Tempest rework.) The doc also publishes a level-by-level slot unlock order from 200 to 260, but then says that order matters much less now that starting matrix slots were raised from 7 to 12 with a 30-slot maximum, and less again since free-EXP changes made reaching 260 fast; its own current advice is to slot the bossing trio and the four class V skills and sort the rest out at 260.",
+    "notes": "Nine boostable skills total, needing six node slots to cover all nine, or five slots if you skip Swarm Shot and Triple Impact. The class doc treats the small boostable pool as a selling point and says \"If you are planning to unlock 6th job, it is recommended to boost every skill\". Mechanics restated by the doc for newcomers: each skill gains boost levels equal to the node's level (up to +25 from node level plus +5 from matrix slot enhancement, cap 60), so each skill must sit on at least two nodes to reach 60; and two nodes cannot be equipped together if they share the same FIRST-line skill, though the same skill in a non-first position is fine. Node LEVELING priority is a separate question from node composition: the doc says boost nodes generally max themselves from opened nodestones, and directs node shards and green EXP nodestones at the class V skills instead, in this order - Raven Tempest, then Nova Blast / Relic Unbound, then Vicious Shot, then Maple World Goddess's Blessing / Erda Nova, then Obsidian Barrier, Guided Arrow, Blink, Rope Lift, Will of Erda, Fury of the Wild. The KMS wiki gives its own V-skill enhancement order and it agrees at both ends but not in the middle: \"Ancient Tempest > Relic Unbound > Ultimate Blast > Obsidian Barrier\" with a footnote inserting Critical Reinforce (Vicious Shot) and Maple World Goddess' Blessing between Ancient Tempest and Relic Unbound. Both lanes put the Tempest skill first and Obsidian Barrier last; they disagree on where Nova Blast (Ultimate Blast) and Vicious Shot sit. Note also that the doc's list uses the pre-rework names Raven Tempest and Fury of the Wild - see conflicts. The doc also publishes a level-by-level slot unlock order from 200 to 260, then says that order matters much less now that starting matrix slots were raised from 7 to 12 with a 30-slot maximum, and less again since free-EXP changes made reaching 260 fast; its own current advice is \"you can just slot in whatever you want after the Bossing trio and the 4 class-specific V skills, then fix up your V Matrix when you do reach 260\".",
     "notesSources": [
-      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-    ]
+      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+      "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+    ],
+    "notesSourceCount": 2,
+    "notesConsensus": "moderate",
+    "verifiedAt": "2026-09-12"
   },
   "hexa": {
     "order": [
       {
         "step": "Mastery core 4 first - Combo Assault VI / Shadow Raven VI / Manifest Curse",
-        "why": "The class doc states that the first five entries of its HEXA leveling chart run Mastery 4, Mastery 1, Mastery 2, Mastery 3, Mastery 3. Mastery 4 leading is consistent with the doc's own description of the Combo Assault upgrade as the single largest Mastery jump - it raises Combo Assault's skill damage from 7930% to 30132% at Lv. 30 and cuts its cooldown to 15s, which promotes it from a mobbing skill to a core bossing rotation skill. SINGLE SOURCE, and the underlying chart is an image sourced from MapleScouter that could not be read here, so only these first five entries are sourced - the rest of the order is not.",
-        "consensus": "weak",
+        "why": "Two independent lanes put Mastery 4 first. The class doc's HEXA leveling chart opens \"M4, M1, M2, M3, M3\", and the KMS wiki states separately that \"the priority for strengthening the Mastery Core is Combo Assault > Edge of Resonance > Cardinal Blast > Cardinal Discharge\" - Combo Assault (M4) first in both. Both lanes give the same reason shape: the class doc calls the Combo Assault upgrade the single largest Mastery jump (7930% to 30132% skill damage at Lv. 30, cooldown cut to 15s, promoting it from a mobbing skill into the bossing rotation), and the KMS wiki adds that Manifest Curse / Relic Materialize, the passive that rides along with this core, is worth taking to level 1 even on a low-spec character because it triggers on every Relic Gauge consumption.",
         "sources": [
-          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-        ]
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Mastery core 1 - Cardinal Burst VI / Bountiful Burst VI",
-        "why": "Second entry in the class doc's chart order. Upgrades one half of the macro; the doc records a roughly 27% larger hitbox on Cardinal Burst VI and a higher Bountiful Burst proc rate (up to 50%).",
-        "consensus": "weak",
+        "why": "Second entry in the class doc's chart order. The doc records a roughly 27% larger hitbox on Cardinal Burst VI and a Bountiful Burst proc rate rising to 50% (base 41%, +1% per 3 levels). CONTESTED POSITION: the KMS wiki's own mastery order places this THIRD, after Combo Assault and Edge of Resonance (Glyph). See conflicts.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Mastery core 2 - Cardinal Deluge VI / Bountiful Deluge VI",
-        "why": "Third entry in the class doc's chart order. The other macro half.",
-        "consensus": "weak",
+        "why": "Third entry in the class doc's chart order; the other macro half. The doc records Bountiful Deluge VI at a 45% proc rate with one extra magical arrow, and a 30% final-damage reduction applied from the second Deluge arrow onward on the same target. CONTESTED POSITION: the KMS wiki places this last of the four. See conflicts.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Mastery core 3 - Glyph of Impalement VI / Cardinal Torrent VI / Ancient Astra VI (fourth and fifth entries both go here)",
-        "why": "The class doc's stated first-five sequence ends with Mastery 3 twice, meaning two consecutive investment steps land on this core. Glyph of Impalement VI is the payload: every fifth cast becomes an enhanced version, Ancient Impact, and at Lv. 30 the doc gives 10740% for Glyph and 16110% for Ancient Impact. (The KMS wiki says every fourth cast rather than every fifth - see conflicts.)",
-        "consensus": "weak",
+        "why": "The class doc's stated first-five sequence ends with Mastery 3 twice, so two consecutive investment steps land on this core. Glyph of Impalement VI is the payload: casts of Glyph periodically become an enhanced version, Ancient Impact, and the doc gives 10740% for Glyph and 16110% for Ancient Impact at Lv. 30. CONTESTED POSITION: the KMS wiki puts Edge of Resonance (its name for Glyph) SECOND, immediately after Combo Assault, not fourth. The three sources also disagree on how often Ancient Impact procs - class doc says every 5th cast, KMS wiki says every 4th, and the GMS wiki's own skill text reads \"Enhances Glyph of Impalement after being used 2 times\" (i.e. every 3rd cast). See conflicts; do not present a cast count as settled.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "Ordering is class doc only and is contradicted by the KMS wiki. The Mastery 3 membership (Glyph, Cardinal Torrent, Ancient Astra) is separately 3-lane: class doc, KMS wiki, GMS wiki.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "nodeGroups": {
       "skillCore": {
         "origin": "Forsaken Relic",
         "ascent": "Piercing Relic",
-        "note": "Both names validated against the GMS wiki skill table. The class doc describes Forsaken Relic only (a 10s Absolute Bind, a ~6s invulnerable cutscene, a 30s Relic Liberation buff giving up to 15% final damage to Ancient and Enchant Force skills, and a triggered Ancient Wrath effect). The class doc does NOT cover Piercing Relic at all - that is a real gap in the doc, not an omission here. The KMS wiki lists a THIRD skill core beyond those two; whether GMS has it at v.271 was not confirmed.",
+        "note": "The GMS wiki lists exactly two skill cores for Pathfinder at v.271, labelled in its own words \"Skill Node/Core 1 (Origin) - Forsaken Relic\" and \"Skill Node/Core 2 (Ascent) - Piercing Relic\". The class doc describes Forsaken Relic only (a 10s Absolute Bind, an invulnerable cutscene, a 30s Relic Liberation buff giving up to 15% final damage to Ancient and Enchant Force skills, and a triggered Ancient Wrath effect) and does NOT cover Piercing Relic at all - that is a real gap in the doc. RESOLVED 2026-09-12: the earlier note said the KMS wiki lists a THIRD skill core and that whether GMS has it was unconfirmed. The KMS wiki does list a third entry under its skill-core heading (machine-translated as \"material burst\"), but its GMS / MSEA / JMS name fields are blank, and the GMS wiki - edited on the v.271 patch date - lists only the two above. Treat GMS as having two skill cores. Note also that the KMS wiki calls the Ascent skill \"Relic Penetion\"/\"Relic Penetration\" (MSEA string); the GMS string is Piercing Relic.",
         "sources": [
           "https://maplestorywiki.net/w/Pathfinder/Skills",
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "Split evidence, so labelled to the weakest part. Forsaken Relic as the Origin core is 3-lane (class doc, KMS wiki, GMS wiki). The existence and position of the Ascent core is 2-lane (KMS wiki, GMS wiki). Its GMS string Piercing Relic is GMS-wiki-only - the KMS wiki gives only the MSEA form Relic Penetration and the class doc does not mention the skill at all."
       },
       "mastery": {
-        "1": ["Cardinal Burst VI", "Bountiful Burst VI"],
-        "2": ["Cardinal Deluge VI", "Bountiful Deluge VI"],
-        "3": ["Glyph of Impalement VI", "Cardinal Torrent VI", "Ancient Astra VI"],
-        "4": ["Combo Assault VI", "Shadow Raven VI", "Manifest Curse"],
-        "unlockRule": "A Mastery core can only be activated once the boost node level of its associated skills totals at least 40, counted WITHOUT matrix slot enhancement points. That is the practical link between the V Matrix section and this one.",
-        "consensus": "strong",
+        "1": [
+          "Cardinal Burst VI",
+          "Bountiful Burst VI"
+        ],
+        "2": [
+          "Cardinal Deluge VI",
+          "Bountiful Deluge VI"
+        ],
+        "3": [
+          "Glyph of Impalement VI",
+          "Cardinal Torrent VI",
+          "Ancient Astra VI"
+        ],
+        "4": [
+          "Combo Assault VI",
+          "Shadow Raven VI",
+          "Manifest Curse"
+        ],
+        "unlockRule": "The class doc states it plainly: \"In order to activate mastery nodes, the associated boost node level must total at least lvl 40 without matrix points.\" That is the practical link between the V Matrix section and this one - matrix slot enhancement points do not count toward the 40. The doc separately names which skills that means in practice: \"To unlock M3/M4, you must boost Combo Assault, Cardinal Torrent, Ancient Astra, and Shadow Raven\" (Cardinal Burst, Cardinal Deluge and Glyph are already in the bossing trio).",
+        "unlockRuleSources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+        ],
+        "unlockRuleSourceCount": 1,
+        "unlockRuleConsensus": "weak",
+        "unlockRuleNote": "The level-40 figure and the without-matrix-points qualifier come from the class doc alone; neither wiki states a numeric gate. The membership of the four cores, by contrast, is three-lane.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
           "https://maplestorywiki.net/w/Pathfinder/Skills"
-        ]
+        ],
+        "sourceCount": 3,
+        "consensus": "strong",
+        "verifiedAt": "2026-09-12"
       },
       "enhancement": {
-        "nodes": ["Nova Blast Boost", "Ancient Tempest / Primal Tempest Boost", "Obsidian Barrier Boost", "Relic Unbound Boost"],
-        "note": "Four enhancement nodes. Three of them (Nova Blast, Tempest, Relic Unbound) are pure final-damage with no added effect; only Obsidian Barrier gains functionality - the class doc records its duration rising to 20s and its damage reduction rising to 55%. Enhancement nodes require the corresponding V skill to be maxed and equipped. The class doc gives the final-damage curve as 11% at Lv. 1, 25% at 10, 40% at 20, 60% at 30 - the standard breakpoint pattern.",
-        "consensus": "strong",
+        "nodes": [
+          "Nova Blast Boost",
+          "Ancient Tempest/Primal Tempest Boost",
+          "Obsidian Barrier Boost",
+          "Relic Unbound Boost"
+        ],
+        "note": "Four enhancement nodes; names taken verbatim from the GMS wiki's HEXA Enhancements table and matched against the KMS wiki. Three of them (Nova Blast, Tempest, Relic Unbound) are pure final damage with no added effect; only Obsidian Barrier gains functionality - the class doc records its duration rising to 20s (base 13s at Lv. 1, +1s per 4 levels) and its damage reduction rising to 55% (base 41%, +1% per 2 levels). The GMS wiki states the prerequisite: \"Enhancements require the corresponding V Skill to be leveled to max and equipped.\" The final-damage curve is 11% at Lv. 1, 25% at 10, 40% at 20, 60% at 30 - the class doc, the GMS wiki and the KMS wiki all give the same breakpoints. NOTE: the class doc still lists this node as \"Raven Tempest\"; both wikis name it Ancient Tempest/Primal Tempest - see conflicts.",
         "sources": [
           "https://maplestorywiki.net/w/Pathfinder/Skills",
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 3,
+        "consensus": "strong",
+        "verifiedAt": "2026-09-12"
       },
       "common": {
-        "nodes": ["Sol Janus (Dawn / Dusk)", "Sol Hecate (Styx, Phlegethon)"],
-        "note": "The class doc states flatly that Sol Janus has no bossing function - it is a farming and EXP node - and leaves the investment level to the player, while the doc's current owner is quoted arguing for maxing it early on the grounds that faster levelling compounds into earlier boss progression and therefore more gear. For Sol Hecate the doc gives two concrete binding recommendations: bind Styx to Awakened Relic activation (and also keep it on its own key so it can be fired earlier), and bind Phlegethon to any 2-minute skill, preferring one already in the skill sequence such as Obsidian Barrier because the boss is most likely to be bound at that moment.",
-        "consensus": "weak",
+        "nodes": [
+          "Sol Janus (Dawn / Dusk)",
+          "Sol Hecate (Styx, Phlegethon)"
+        ],
+        "note": "The class doc states flatly that Sol Janus \"has no bossing function. It's purely for lazier farming and increased %EXP\" and leaves the investment level to the player, while the doc's current owner (Naicha) is quoted arguing for maxing it as soon as possible on the grounds that faster levelling compounds into earlier boss progression and therefore more gear. The GMS wiki corroborates the mechanical half of that independently: \"All forms of Sol Janus cannot be used on boss maps.\" For Sol Hecate the doc gives two binding recommendations: bind Styx to AB activation - and also keep it on its own key so it can be fired earlier - and bind Phlegethon to any 2-minute skill, preferring one already in the skill sequence \"(like Bubble)\" because the boss is most likely to be bound at that moment. CORRECTION MADE 2026-09-12: an earlier version read \"bind Styx to Awakened Relic activation\". AB in this doc means the Angelic Buster link skill, not Awakened Relic - the doc uses AB consistently in the phrase \"AB + Oz Ring\", which it says should always be popped consecutively immediately before the burst skills. \"Bubble\" is the community nickname for Obsidian Barrier, which the doc's own skill entry describes as summoning a bubble.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://maplestorywiki.net/w/Pathfinder/Skills"
-        ]
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "The binding advice for Sol Hecate is class doc only (1 lane). The Sol-Janus-is-not-for-bossing claim has 2 lanes (class doc judgement, GMS wiki mechanic).",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     },
     "hexaStat": {
-      "heroic": "ATT > DEX > Boss Damage / Critical Damage. The class doc says to prioritise by whichever line rolls the highest HEXA stat value rather than by a fixed order, and notes that Boss Damage and Critical Damage are close in practice, with Boss Damage slightly ahead for characters without full Eternal gear and boss familiars.",
-      "interactive": "Critical Damage > ATT > Boss Damage > main stat. The class doc's stated reason is that Interactive/Regular players have far more stat and ATT available from bonus potentials, which makes Boss Damage and Critical Damage the scarcer stats there. This is NOT the Heroic recommendation - do not apply it to a Reboot character.",
-      "sequencing": "The class doc says to take HEXA Stat 1 to level 20 before worrying about optimising it, because level 20 is what unlocks HEXA Stat 2 (and the same pattern for HEXA Stat 3); reconfiguring a HEXA Stat setup later costs 100 million mesos. It frames full HEXA Stat optimisation as endgame work comparable to a Legion champion project, to be returned to after 6th job is otherwise finished. It also suggests saving main-stat HEXA Stat rolls for Sunny Sunday rate-up perks.",
-      "whyItIsClassSpecific": "Vicious Shot converts critical rate into critical damage, which the class doc says materially diminishes the marginal value of additional critical damage from other sources - that is the specific reason Critical Damage does not simply sit at the top of the Heroic HEXA Stat order the way it does for many classes.",
-      "consensus": "weak",
+      "heroic": "ATT > DEX > Boss Damage / Critical Damage. The class doc writes this as \"Heroic: ATT > DEX > BOSS/CDMG\" and immediately qualifies it: \"Prioritize these stats in order of highest HEXA stat value\" - i.e. take whichever line rolls the highest value rather than following a fixed order. It adds that Boss Damage and Critical Damage are close in practice, with Boss Damage generally slightly better for characters without full Eternal gear and boss familiars, and points at maplescouter for a character-specific answer.",
+      "interactive": "Critical Damage > ATT > Boss Damage > main stat (the doc writes \"Interactive: CRITDMG > ATT > BOSS > STAT\"). Its stated reason is that Interactive/Regular players have more Stat and ATT available from bonus potentials, which makes Boss Damage and Critical Damage scarcer there. This is NOT the Heroic recommendation - do not apply it to a Reboot character.",
+      "sequencing": "The class doc says to take a HEXA Stat to level 20 before optimising it, because maxing it is what unlocks HEXA Stat 2 (and the same pattern for HEXA Stat 3); reconfiguring a HEXA Stat setup later costs 100 million mesos. It frames full HEXA Stat optimisation as endgame work \"akin to endgame levels like working on legion champion\", to be returned to after 6th job is otherwise finished, and suggests saving main-stat HEXA Stat rolls for Sunny Sunday rate-up perks.",
+      "whyItIsClassSpecific": "Vicious Shot converts critical rate into critical damage, which the class doc says \"does greatly diminish crit damage efficiency\" - that is the specific reason Critical Damage does not simply sit at the top of the Heroic HEXA Stat order the way it does for many classes. The doc balances it against boss damage being very inflated in the endgame, which is why it calls the two close.",
       "sources": [
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "HONEST LIMIT: this is the weakest-sourced section in this file, and that reflects the state of the public record rather than a shortfall of searching. The only public source that gives a Pathfinder HEXA investment order is the class doc, its order lives in an image rather than in text, and the doc itself credits that image to MapleScouter - a KMS-balance calculator - rather than to independent Pathfinder analysis. So even the one source is a restatement of an upstream tool. Only the first five chart entries are stated in readable text and are recorded above; everything after that is unsourced and has deliberately been left out. Three further facts the doc does give: the order it publishes is built for Sol-Erda-Fragment-limited servers, which is the Heroic case; it is optimised for full rotation damage, so a player who cares more about burst damage distribution on specific bosses is told to deviate toward Forsaken Relic and the Tempest skill; and HEXA Stat 1 and 2 are already folded into that same chart rather than being a separate project. The doc also asserts that heavy fragment investment pays off unusually well for this class because several of its HEXA cores scale above-average or super-linearly - that claim is single-source and unquantified.",
+    "notes": "HONEST LIMIT: this is the weakest-sourced section in this file, and that reflects the public record rather than a shortfall of searching. The class doc is the only source giving a full Pathfinder HEXA investment order, that order lives in an image rather than in text, and the doc credits the image to MapleScouter - a calculator - rather than to independent Pathfinder analysis. Only the first five chart entries are stated in readable text (\"The first 5 in the order guide is M4, M1, M2, M3, M3\") and only those are recorded above; everything after is unsourced and deliberately left out. NEW 2026-09-12: the KMS wiki does give a mastery-core investment priority of its own - Combo Assault > Edge of Resonance > Cardinal Blast > Cardinal Discharge, i.e. M4 > M3 > M1 > M2. It agrees with the class doc that M4 comes first and disagrees on everything after, which is why only the M4-first step is labelled moderate and the rest stay weak. Three further facts the doc gives: the order it publishes is built for Sol-Erda-Fragment-limited servers, which is the Heroic case; it is optimised for full rotation damage, so a player who cares more about burst damage distribution on specific bosses is told to deviate toward the Origin skill and the Tempest skill; and HEXA Stat 1 and 2 are folded into the same chart rather than being a separate project. The doc also asserts that heavy fragment investment pays off unusually well for this class because \"several of its HEXA cores have above-average and/or super-linear scaling\" - single-source and unquantified.",
     "notesSources": [
-      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-    ]
+      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+      "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+    ],
+    "notesSourceCount": 2,
+    "notesConsensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "hyperStats": {
     "priority": null,
+    "ordered": false,
+    "orderedNote": "BOTH lists below are UNORDERED SETS, not rankings. The class doc introduces them as \"the most important stats as a rule of thumb\" and gives exactly one allocation rule - \"You should typically get all of the most important stats to level 10 before putting more points in a single stat\" - and no ranking. Array position here carries NO priority meaning; any consumer that reads index order as priority will be inventing a claim the source declines to make. The order below is simply the order the doc's table prints.",
     "bossingImportantStats": [
       "Boss Damage",
       "Damage",
       "Ignore Defense",
       "Critical Damage",
-      "Critical Rate (the class doc suggests typically stopping around level 8-10)",
+      "Critical Rate (the class doc says typically leave at lvl 8-10)",
       "Attack Power",
       "DEX",
       "STR"
     ],
     "mobbingImportantStats": [
-      "EXP (max it if you do not need more damage)",
+      "EXP (max if you don't need more damage)",
       "Normal Monster Damage",
       "Damage",
       "Critical Damage",
-      "Arcane Force (only to reach a threshold)",
+      "Arcane Force (only if you need to hit a threshold)",
       "Attack Power",
       "DEX",
       "STR"
     ],
-    "notes": "The class doc deliberately refuses to publish a ranked hyper stat order, on the stated grounds that the correct allocation varies with a character's own equipment and level, and it directs players to MapleScouter (or an equivalent optimiser) instead. That refusal is itself the finding and should be surfaced to users rather than replaced with a manufactured list - it matches what the wider community does, where MathBro's Hyper Stat Optimizer is the operative answer. The only general rule the doc gives is to bring every stat in the relevant list above to level 10 before pushing any single stat higher. The 'priority' field is null on purpose: no source consulted publishes a defensible fixed ranking for Pathfinder.",
-    "consensus": "weak",
+    "notes": "The class doc deliberately refuses to publish a ranked hyper stat order. Its stated grounds: \"Your personal Hyper Stats will always vary based on your equipment and level\", followed by \"Please use maplescouter (or similar) to optimize your own Hyper Stats.\" That refusal is itself the finding and should be surfaced to users rather than replaced with a manufactured list. The only general rule the doc gives is the level-10-across-the-board rule quoted above. The 'priority' field is null on purpose: no source consulted publishes a defensible fixed ranking for Pathfinder, and Grandis Library carries no hyper stat guidance at all. Re-verified against the doc's Hyper Skills / Hyper Stats section on 2026-09-12; both lists match the doc's table item for item.",
     "sources": [
       "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
-    ]
+    ],
+    "sourceCount": 1,
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "hyperSkills": {
     "alwaysTake": {
@@ -304,123 +414,190 @@
         "Cardinal Force - Bountiful Enhance",
         "Ancient Force - Boss Rush"
       ],
-      "why": "The class doc names these three as unconditional picks; the remaining two of the five slots are conditional. Grandis Library's flat five-pick list includes all three of these, so the two sources agree on the fixed portion - but Grandis credits its hyper passive build to the Class Doc, so this is one source agreeing with itself, not two.",
-      "consensus": "weak",
+      "why": "The class doc lists these three under the heading \"You should always take these\"; the remaining two of the five slots are conditional (see conditionalLastTwo). All three names were validated against the GMS wiki's Hyper Skills table, which confirms the effects: Extra Strike adds +1 attack to Cardinal Force skills, Bountiful Enhance adds +10% activation chance to Bountiful Deluge and Bountiful Burst, and Boss Rush gives +20% Boss Damage to \"Ancient Force and Enchant Force skills\". Grandis Library's flat five-pick list contains all three, but Grandis credits its hyper passive build to the Class Doc, so that is one source agreeing with itself and it is not counted as a second lane.",
       "sources": [
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://maplestorywiki.net/w/Pathfinder/Skills",
         "https://grandislibrary.com/explorers/pathfinder"
-      ]
+      ],
+      "sourceCount": 1,
+      "sourceCountNote": "1 independent judgement lane (the class doc). The GMS wiki is used only to validate the skill names and effect text - it makes no recommendation. Grandis Library restates the class doc by its own credits block.",
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     "conditionalLastTwo": {
-      "rule": "The final two passive picks depend on the character's IED and cooldown-reduction hat, per a table in the class doc.",
+      "rule": "The final two passive picks depend on the character's IED and cooldown-reduction hat, per a table in the class doc. Re-read verbatim 2026-09-12: the table's axes are CD Hat (\"-2s or less\" / \"-3s or more\") against IED (\"< 98.2\" / \"> 98.2\"), and the > 98.2 row gives one answer spanning both hat columns.",
       "cases": [
         {
           "condition": "IED below 98.2% AND cooldown hat of -2s or less",
-          "take": ["Cardinal Force - Reinforce", "Ancient Force - Guardbreak"]
+          "take": [
+            "Cardinal Force - Reinforce",
+            "Ancient Force - Guardbreak"
+          ]
         },
         {
           "condition": "IED below 98.2% AND cooldown hat of -3s or more",
-          "take": ["Ancient Force - Guardbreak", "Ancient Force - Enchant Enhance"]
+          "take": [
+            "Ancient Force - Guardbreak",
+            "Ancient Force - Enchant Enhance"
+          ]
         },
         {
           "condition": "IED above 98.2% (any cooldown hat)",
-          "take": ["Cardinal Force - Reinforce", "Ancient Force - Enchant Enhance"]
+          "take": [
+            "Cardinal Force - Reinforce",
+            "Ancient Force - Enchant Enhance"
+          ]
         }
       ],
-      "note": "Grandis Library publishes only the first of these three cases as a flat five-pick list (Reinforce, Bountiful Enhance, Extra Strike, Boss Rush, Guardbreak), with no mention that the last two are conditional. If MaplePlanner presents a static five-pick list it will be silently wrong for two of the three cases. The class doc also records that both Ancient Force - Boss Rush and Ancient Force - Guardbreak apply to Enchant Force skills as well as Ancient Force skills, which is why those two are weighted so highly.",
-      "consensus": "weak",
+      "note": "Grandis Library publishes only the first of these three cases, as a flat five-pick list (Reinforce, Bountiful Enhance, Extra Strike, Boss Rush, Guardbreak), with no mention that the last two are conditional. If MaplePlanner presents a static five-pick list it will be silently wrong for two of the three cases. The reason Boss Rush and Guardbreak are weighted so highly is confirmed on the GMS wiki's own skill text: both are described as applying to \"Ancient Force and Enchant Force skills\", not to Ancient Force alone.",
       "sources": [
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
-        "https://grandislibrary.com/explorers/pathfinder"
-      ]
+        "https://grandislibrary.com/explorers/pathfinder",
+        "https://maplestorywiki.net/w/Pathfinder/Skills"
+      ],
+      "sourceCount": 1,
+      "sourceCountNote": "The conditional table exists in one source only - the class doc. Grandis restates one case of it and credits the class doc; the GMS wiki supplies effect text but no build advice.",
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     "actives": {
-      "skills": ["Ancient Astra", "Awakened Relic"],
-      "note": "The class doc lists both as required keybinds - Ancient Astra as the iframe / 60% damage reduction tool, Awakened Relic as a burst skill that instantly fills the Relic Gauge and speeds Cardinal Torrent recharge. Epic Adventure is listed by the KMS wiki as the third hyper active; the GMS doc does not discuss it.",
-      "consensus": "weak",
+      "skills": [
+        "Ancient Astra",
+        "Awakened Relic"
+      ],
+      "note": "The class doc's required-keybind table lists both under the Hyper heading: Ancient Astra (Burst) with the note \"iframe\", and Awakened Relic with the note \"Needed for burst\". Elsewhere the doc records that Awakened Relic instantly fills the Relic Gauge and cuts Cardinal Torrent's stack recharge from 7s to 3s for 30s - both confirmed on the GMS wiki's skill text. CORRECTION MADE 2026-09-12: an earlier version described Ancient Astra as \"the iframe / 60% damage reduction tool\", conflating two different stances. Per the GMS wiki, the 60% damage reduction belongs to Ancient Astra (Deluge), which applies it while channelling; the class doc's iframe note is about Ancient Astra in Burst mode, which it elsewhere puts at 2s of iframe. SECOND CORRECTION: an earlier version said Epic Adventure \"is listed by the KMS wiki as the third hyper active\" and implied it is absent from GMS sources. It is listed as a hyper active on BOTH wikis, including the GMS wiki. What is true is that the class doc does not discuss it.",
       "sources": [
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://maplestorywiki.net/w/Pathfinder/Skills",
         "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-      ]
+      ],
+      "sourceCount": 2,
+      "sourceCountNote": "Both wikis list the same three hyper actives (Awakened Relic, Ancient Astra, Epic Adventure) - that part is 2-lane. The judgement that Ancient Astra and Awakened Relic are the required keybinds is class doc only.",
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
+    },
+    "fullActiveList": {
+      "skills": [
+        "Awakened Relic",
+        "Ancient Astra",
+        "Epic Adventure"
+      ],
+      "note": "The complete hyper active list for the class, per both wikis. Epic Adventure is the shared Explorer hyper active; neither the class doc nor Grandis Library discusses it.",
+      "sources": [
+        "https://maplestorywiki.net/w/Pathfinder/Skills",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
     }
   },
   "innerAbility": {
     "bossing": [
       {
         "line": "Chance to skip cooldowns +20% (top line, Legendary)",
-        "why": "Two independent lanes agree and give the same mechanical reason, which is unusual and makes this the best-evidenced Inner Ability claim for the class. Pathfinder's off-burst damage is two cooldown-gated weave skills (Glyph of Impalement, Combo Assault) plus the macro, and both weave skills already have their cooldowns refunded by macro casts - so a cooldown skip converts almost directly into extra weave casts. The KMS wiki adds that this line was mediocre BEFORE 6th job and only became a priority pick after it, because the Mastery upgrades made Glyph proc its enhanced Ancient Impact version on a cast counter and added Manifest Curse's gauge-consumption stacking, both of which scale with cast frequency. The KMS wiki recommends taking it at Legendary rather than Unique grade because Unique resets poorly.",
-        "consensus": "moderate",
+        "why": "Two independent lanes agree and give the same mechanical reason. The class doc lists it as the first of its three bossing lines and tells you to roll it LAST in practice because the top line is cheap to obtain and re-obtain. The KMS wiki argues it from mechanics: before 6th job it is \"not a very good option\", but after 6th job \"Edge of Resonance VI is strengthened with Ancient Impact every 4 times and Relic Materialize stacks and deals additional hits every time 50 Relic Gauge is consumed\", so once the Mastery cores are open it becomes \"an option that must be given priority\". Both effects scale with cast frequency, and Pathfinder's off-burst damage is two cooldown-gated weave skills whose cooldowns are already being refunded by macro casts, so a skip converts almost directly into extra weave casts. The KMS wiki also recommends taking it at Legendary rather than Unique grade \"since the Unique grade has a low probability of being reset\".",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
           "https://grandislibrary.com/explorers/pathfinder"
-        ]
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "2 independent lanes (class doc, KMS wiki). Grandis Library lists the same three bossing lines but credits its Inner Ability build to the Class Doc, so it is not a third opinion. One aggregator dissents - see conflicts.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "line": "Critical Rate +20% (Unique line)",
-        "why": "Both independent lanes flag this as worth more to Pathfinder than to a typical class, for the same reason: Vicious Shot converts total critical rate - including the portion above 100% - into critical damage, so this line keeps paying after the crit cap. The class doc says to roll for this line FIRST among the Unique lines because it is the hardest to land. The KMS wiki puts a figure on it (roughly equivalent to 10% critical damage) and argues that because it is worth less than a 20% ATT line it belongs on the second or third slot rather than the top line - which is consistent with the doc placing cooldown skip on top.",
-        "consensus": "moderate",
+        "line": "Critical Rate +20% (Unique line, second or third slot)",
+        "why": "Both independent lanes flag this as worth more to Pathfinder than to a typical class, for the same reason: Vicious Shot (Critical Reinforce) converts total critical rate - including the portion above 100% - into critical damage, so the line keeps paying after the crit cap. The class doc says to \"prioritize rolling for Unique Crit Rate as this is the most difficult line to get\". The KMS wiki puts a figure on it - \"equivalent to 10% CDM at extreme damage\" - and argues that because it is worth less than a 20% ATT line it should sit \"as a unique in the second row or lower\", which is consistent with the class doc putting cooldown skip on top.",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
           "https://grandislibrary.com/explorers/pathfinder"
-        ]
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "2 independent lanes (class doc, KMS wiki); Grandis restates the class doc.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Boss Damage +10% (Unique line), with +8% damage to enemies afflicted by an abnormal status as an accepted settle",
-        "why": "The class doc's second Unique line, and it explicitly says Abnormal Status Damage is an acceptable settle instead of Boss Damage. The KMS wiki independently argues the abnormal-status line is actually the better of the two on the lower slots for this class specifically, because Pathfinder applies its own Ancient Curse debuff constantly through the macro (and the Explorer Mage link skill also supplies a status), so the condition is effectively always met - and because the top-line version of that stat only reaches 10% while the lower-line version reaches 8%, the lower lines are proportionally more efficient. The KMS wiki does caveat that if cooldown skip occupies the top line, the abnormal-status line is somewhat less efficient.",
-        "consensus": "moderate",
+        "why": "The class doc's other Unique line, and it says explicitly \"You can settle Abnormal Status Damage over Boss Damage on the other Unique line.\" The KMS wiki independently argues the abnormal-status line is actually the better of the two on the lower slots for this class, because \"status ailments can be easily inflicted with the ancient curse debuff or the adventurer wizard link skill\" so the condition is effectively always met, and because the first line only reaches 10% while the 2nd and 3rd lines reach 8%, making the lower lines proportionally more efficient. It caveats that \"if the cooldown is used as the first line, the efficiency is inferior\".",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
           "https://grandislibrary.com/explorers/pathfinder"
-        ]
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "2 independent lanes (class doc, KMS wiki); Grandis restates the class doc.",
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "training": [
       {
         "line": "Mesos Obtained +20%",
-        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://grandislibrary.com/explorers/pathfinder"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "Class doc only as a judgement lane; Grandis prints the same three training lines but credits the class doc. The KMS wiki lists drop rate / meso obtained as a hunting preset without ranking.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Item Drop Rate +15%",
-        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://grandislibrary.com/explorers/pathfinder"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "Class doc only as a judgement lane; Grandis restates it. The doc also says the two may be swapped.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "+8% damage to normal monsters (the class doc calls this line optional)",
-        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
           "https://grandislibrary.com/explorers/pathfinder"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "Class doc only; its exact words are \"Normal Monster Damage is optional; the third line is not that important.\"",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "rollingStrategy": {
-      "heroic": "The class doc gives a Heroic-specific sequence: use Miracle Circulators to reach Unique Critical Rate first (Interactive players can consider raw rolling for it, ideally during a 50%-off Inner Ability event); lock that line and roll for Unique Boss Damage, settling for Abnormal Status Damage if needed; once both Unique lines are present, use Chaos or Black Circulators from seasonal event shops to max their values, ideally before touching the top line; then lock both Unique lines and roll the top line last, because the top line is comparatively cheap to obtain and re-obtain.",
+      "heroic": "The class doc gives a Heroic-specific sequence, re-read verbatim 2026-09-12: use Miracle Circulators to reach Unique Critical Rate first (Interactive players can consider raw rolling for it, ideally during a 50%-off Inner Ability event); lock that line and roll for Unique Boss Damage, settling for Abnormal Status Damage if needed; once both Unique lines are present, use Chaos or Black Circulators from seasonal event shops to max their values, ideally before touching the top line; then lock both Unique lines and roll the top line last, because the top line is \"relatively cheap but also the biggest gain\" and easy to re-obtain.",
       "alternative": "The doc offers a second approach - settle one preset on something workable and roll a different preset freely for perfect lines, which avoids bricking a usable setup at the cost of an extra preset and probably more total Honor.",
-      "newPlayers": "The doc is explicit that new and mid-game players should settle for any usable line, even just a Legendary Boss Damage or cooldown-skip top line, and should not chase the Unique lines early; it frames finishing Inner Ability as a long project.",
+      "newPlayers": "The doc is explicit: \"NEW PLAYERS: settle on any usable line(s), even if it's only Legendary Boss Damage or CD Skip. You do not need to minmax the Unique lines while in early/mid game.\"",
       "practicalNotes": [
         "Keep 20% Item Drop Rate on some preset for boss reward room drops.",
-        "Only roll during 50% Honor cost events.",
+        "Only roll during 50% Honor cost events - the doc calls this strongly recommended.",
         "Use seasonal event shops for Circulators and Honor Medals.",
         "The class doc notes that a heavy farmer is usually better served by Legendary Mesos Obtained plus a third preset carrying only 20% Item Drop Rate, while a light farmer or low-Honor player should just take a single Legendary Item Drop Rate line.",
-        "The KMS wiki adds a line the GMS doc does not: buff duration (up to 38% on a lower line) is worth considering for a low-Honor character because it extends the Angelic Buster link skill."
+        "The KMS wiki adds a line the GMS doc does not: buff duration (up to 38% on a second row or lower line) is worth considering for a low-Honor character because it applies to the Angelic Buster link skill.",
+        "The class doc adds an Interactive-server-only note: \"if you own a FSR, CD skip affects this as well to make it even more valuable (unless you need the 8% Damage to 1-shot with Erda Shower/Sol Janus)\". The doc does not expand the abbreviation FSR and it is not expanded here."
       ],
-      "consensus": "weak",
       "sources": [
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
         "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-      ]
+      ],
+      "sourceCount": 2,
+      "sourceCountNote": "The rolling sequence itself is class doc only; the buff-duration addendum is KMS wiki only. No claim here has two lanes behind it, hence weak.",
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "Note the shape of this class's Inner Ability: a cooldown-skip top line plus a cooldown-reduction hat is an unusually expensive combination, and the class doc lists that requirement in its own cons section as a funding barrier - it says a Pathfinder Legion champion in particular needs both. One aggregator disagrees on the top line; see conflicts."
+    "notes": "Note the shape of this class's Inner Ability: a cooldown-skip top line plus a cooldown-reduction hat is an unusually expensive combination, and the class doc lists that requirement in its own cons section as a funding barrier. One cross-class aggregator disagrees on the top line; see conflicts, where the asymmetry between it and the two class-specific lanes is set out.",
+    "notesSources": [
+      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+      "https://gameslikefinder.com/article/maplestory-best-inner-ability/"
+    ],
+    "notesSourceCount": 1,
+    "verifiedAt": "2026-09-12"
   },
   "gearingNotes": "CRITICAL RATE DOES NOT STOP MATTERING AT 100%. Vicious Shot converts up to 50% of the character's total critical rate - explicitly including the portion above 100% - into critical damage for 30 seconds. Two independent lanes (the GMS class doc and the KMS wiki) state this and both draw the same two conclusions from it: keep buying critical rate past the cap, and discount other sources of percentage critical damage, because the class doc says Vicious Shot dilutes the value of critical damage from glove potential and pitched set bonuses relative to a non-Archer class. This is the single most important class-specific gearing fact for Pathfinder and it propagates into hyper stats, Inner Ability, Legion and HEXA Stat. COOLDOWN IS THIS CLASS'S SCALING STAT. The class doc's cooldown-reduction section was rewritten after the GMS March 2026 balance patch and now says a -4s hat or better is best-in-slot; on Reboot take anything -4s or better because the server only has bright cubes, while GMS Regular sees the largest gain from a -6s to -8s hat. Combined with the cooldown-skip Inner Ability line, this is what the doc means when it lists 'uncommon (higher funding) setup required' as a con. ATTACK SPEED DOES ALMOST NOTHING. The class doc states plainly that additional attack speed is mostly useless, because the macro is a fixed two-cast unit rather than a keydown or a spammable single cast. Do not recommend the attack speed Inner Ability line or attack-speed gearing for this class. WSE: for GMS Heroic the class doc's ideal weapon/secondary/emblem potential split is 9 ATT lines / 0 Boss / 0 IED, with 8/1/0 close behind, and it notes IED falls off sharply in value by mid-to-late game. It advises only chasing optimal lines on permanent equipment - Genesis Ancient Bow, Princess No's Immortal Relic, Mitra's Rage - once the rest of the gear is largely finished. Best-in-slot secondary is Princess No's Immortal Relic, but the doc says it is only marginally better than a level 100 secondary, so non-main characters can settle. RINGS: the doc ranks Ring of Restraint and Continuous Ring as similar on paper with RoR easier to use in practice, ahead of Whisper of the Source, ahead of a 22-star stat ring; for Heroic it recommends RoR outright with a WJ for swapping. LEGION GRID: the doc's bossing weighting is Critical Damage > Boss Damage / IED > Critical Rate > DEX > ATT, with the note that ATT is worth much less per block (1 ATT per block versus 5 DEX per block). The KMS wiki independently lists the same block families - Shade/Hayato/Mo Xuan for critical damage, Marksman/Night Lord for critical rate, Mercedes for cooldown reduction, Kanna/Demon Avenger for boss damage, the DEX archers for main stat - and singles out critical rate as especially important for Archers precisely because of the Vicious Shot conversion. ERDA NOVA MATTERS MORE THAN USUAL: because most of the burst damage comes from three limited-range summons, the class doc says a bind is needed to guarantee the burst lands, and tells boss-mule builders to take Erda Nova to level 20 or higher for any boss they cannot kill in one burst. It also records the interaction that bosses cannot be rebound for 90 seconds after a bind ends, so a level 25 Erda Nova's 120s cooldown aligns with the burst, and a Mercedes legion block enables a level 30 Erda Nova at 100s to come up before the boss's internal rebind timer expires.",
   "gearingNotesSources": [
@@ -533,7 +710,12 @@
       "Obsidian Barrier Boost",
       "Relic Unbound Boost"
     ],
-    "commonNodes": ["Sol Janus", "Sol Janus: Dawn", "Sol Janus: Dusk", "Sol Hecate"],
+    "commonNodes": [
+      "Sol Janus",
+      "Sol Janus: Dawn",
+      "Sol Janus: Dusk",
+      "Sol Hecate"
+    ],
     "boostableSkills": [
       "Cardinal Burst",
       "Cardinal Deluge",
@@ -625,15 +807,17 @@
       ]
     },
     {
-      "topic": "How often Glyph of Impalement VI procs its enhanced Ancient Impact version",
+      "topic": "How often Glyph of Impalement VI procs its enhanced Ancient Impact version - now a THREE-way disagreement",
       "positions": [
-        "Class doc: every 5th cast of Glyph becomes Ancient Impact.",
-        "NamuWiki: Edge of Resonance VI (the KMS name for Glyph of Impalement VI) is strengthened with Ancient Impact every 4 casts."
+        "Class doc: \"Every 5th cast of Glyph will result in an enhanced version, Ancient Impact.\"",
+        "KMS wiki (NamuWiki): \"Edge of Resonance VI is strengthened with Ancient Impact every 4 times\" (Edge of Resonance is the KMS name for Glyph of Impalement).",
+        "GMS wiki (maplestorywiki.net, edited on the v.271 patch date): the HEXA Glyph of Impalement skill text reads \"Enhances Glyph of Impalement after being used 2 times\", i.e. the 3rd cast is Ancient Impact."
       ],
-      "note": "Could be a straight regional balance difference or could be an error in one of them. It matters for the cooldown-skip argument, since the value of extra Glyph casts depends on how many casts it takes to reach the enhanced version. Not resolved here; the wiki skill table did not state a cast count in the portion read. Flagged contested.",
+      "note": "UPDATED 2026-09-12. The earlier version of this entry recorded only the 5-versus-4 split and said the wiki skill table gave no cast count; it does, and it agrees with neither. The GMS wiki's number is the one that describes GMS at v.271, but it is a single data table against a maintained GMS class doc, so this is recorded as contested rather than resolved. It matters for the cooldown-skip Inner Ability argument, because the value of extra Glyph casts depends on how many casts reach the enhanced version - a shorter counter makes cooldown skip better, not worse, so the argument's direction survives the disagreement even though its magnitude does not. Do NOT display a cast count as settled.",
       "sources": [
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
-        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+        "https://maplestorywiki.net/w/Pathfinder/Skills"
       ]
     },
     {
@@ -643,7 +827,7 @@
         "NamuWiki: agrees cooldown skip is a must-priority pick post-6th-job and recommends taking it at Legendary grade, while separately noting Boss Damage 20% is a generically good top line.",
         "gameslikefinder.com: 20% Boss Damage top line, with abnormal-status damage and critical rate on the lower lines, and no cooldown skip anywhere."
       ],
-      "note": "Recorded rather than resolved, per the brief. But the asymmetry is worth stating plainly: the two dissenting-from-gameslikefinder sources are a maintained class-owned document and a Korean wiki that independently arrives at the same mechanical reasoning, while gameslikefinder is a cross-class aggregator with no Pathfinder-specific argument and no cited class source. Its recommendation is also indistinguishable from the generic default it gives many classes.",
+      "note": "Recorded rather than resolved, per the brief, and re-checked 2026-09-12. The asymmetry is worth stating plainly: the two sources that dissent from gameslikefinder are a maintained class-owned document and a Korean wiki that independently arrives at the same mechanical reasoning (Ancient Impact on a cast counter plus Relic Materialize stacking per 50 gauge consumed), while gameslikefinder is a cross-class aggregator with no Pathfinder-specific argument and no cited class source, and Grandis Library - which agrees with the class doc - is a restatement of it rather than a third vote. Net: 2 independent lanes for cooldown skip, 1 aggregator against.",
       "sources": [
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
         "https://grandislibrary.com/explorers/pathfinder",
@@ -657,7 +841,7 @@
         "Grandis Library: a flat list of five - Cardinal Force Reinforce, Cardinal Force Bountiful Enhance, Cardinal Force Extra Strike, Ancient Force Boss Rush, Ancient Force Guardbreak.",
         "Class doc: only three are unconditional, and the last two switch between Cardinal Force Reinforce, Ancient Force Guardbreak and Ancient Force Enchant Enhance depending on the character's IED (against a 98.2% threshold) and cooldown hat."
       ],
-      "note": "Not a genuine disagreement so much as a loss of information in the restatement - Grandis' five happen to be the class doc's answer for one of its three cases (IED below 98.2% with a -2s-or-less hat). Since Grandis credits the class doc for this field, the doc's conditional table is the better version of the same claim. Recorded because an aggregator-shaped flat list is what most tools will show.",
+      "note": "Not a genuine disagreement so much as a loss of information in the restatement. Re-verified 2026-09-12: Grandis' five are exactly the class doc's answer for one of its three cases (IED below 98.2% with a -2s-or-less hat), and Grandis' own credits block reads \"Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc\", so the doc's conditional table is the better version of the same claim. Recorded because an aggregator-shaped flat list is what most tools will show.",
       "sources": [
         "https://grandislibrary.com/explorers/pathfinder",
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
@@ -689,29 +873,186 @@
     {
       "topic": "Whether the second boost node trio is a 'mobbing' trio",
       "positions": [
-        "mastermysty (2024-11-21) and Grandis Library: present Cardinal Torrent / Combo Assault / Swarm Shot as a distinct grouping, with Grandis bucketing Combo Assault and Shadow Raven as Secondary and Swarm Shot and Triple Impact as Other.",
-        "Class doc: keeps the same grouping but states in writing that the 'mobbing' label is no longer accurate, because Combo Assault's Mastery upgrade moved it into the bossing rotation and Cardinal Torrent and Ancient Astra are now boosted to satisfy Mastery core gates rather than for their own damage."
+        "mastermysty (2024-11-21): lists three Pathfinder trios with no bossing/mobbing labels at all - trio #1 Cardinal Deluge / Cardinal Burst / Glyph of Impalement, trio #2 Swarm Shot / Combo Assault / Cardinal Torrent, trio #3 Triple Impact / Shadow Raven / Ancient Astra.",
+        "Class doc: same three compositions, labelled \"Bossing (high priority)\" / \"Mobbing\" / \"Tertiary\", but states in writing that \"The old classification of 'Mobbing' trio is no longer accurate, but kept for posterity\", because Combo Assault's Mastery upgrade moved it into the bossing rotation and Cardinal Torrent and Ancient Astra are now boosted to satisfy Mastery core gates rather than for their own damage.",
+        "Grandis Library: does NOT publish trios. Its table lists which skills each of six nodes boosts, bucketed PRIMARY / SECONDARY / OTHER, which maps onto the four Mastery cores plus the two optional skills - not onto the trio composition."
       ],
-      "note": "This is a real evolution rather than a disagreement about facts - the older sources are describing a pre-Mastery-3/4 world. The composition of all three trios is identical across all sources, so node composition is strongly agreed; only the rationale and the labels have moved.",
+      "note": "CORRECTED 2026-09-12. The earlier version of this entry credited Grandis Library with presenting the second trio; it does not present trios at all, and it has been removed from the trio sources throughout this file. The composition of all three trios is identical across the two lanes that do publish them (class doc, mastermysty), so node composition is well agreed at 2 independent lanes; only the rationale and labels have moved. Separately, Grandis' bucketing is itself stale: it defines SECONDARY as \"Boost Nodes that don't unlock a 6th Job HEXA Mastery\" and puts the Combo Assault / Shadow Raven node there, but that node unlocks Mastery 4 at v.271.",
       "sources": [
         "https://mystyjl.github.io/reference/NodeGuide.html",
         "https://grandislibrary.com/explorers/pathfinder",
         "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
       ]
+    },
+    {
+      "topic": "HEXA Mastery core investment order after M4",
+      "positions": [
+        "Class doc (order credited to MapleScouter, published as an image): the first five investment steps are M4, M1, M2, M3, M3 - i.e. Combo Assault, then Cardinal Burst, then Cardinal Deluge, then Glyph/Torrent/Astra twice.",
+        "KMS wiki (NamuWiki skill page): \"the priority for strengthening the Mastery Core is Combo Assault > Edge of Resonance > Cardinal Blast > Cardinal Discharge\" - i.e. M4, then M3, then M1, then M2."
+      ],
+      "note": "NEW 2026-09-12. The two lanes agree that Mastery 4 (Combo Assault) is the first investment and disagree on the rest: the class doc puts the two macro halves ahead of Glyph, the KMS wiki puts Glyph second. That is why only the M4-first step in hexa.order is labelled moderate and the remaining steps stay weak. Plausible causes: the class doc's order is a Sol-Erda-Fragment-limited full-rotation optimisation from a calculator, while the KMS wiki's is an unweighted editorial ranking on KMS balance. Not resolvable from the public record.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ]
     }
   ],
   "gaps": [
-    "HEXA investment order beyond the first five steps. The class doc's chart is an image; only its first five entries appear in the document's text layer. Reading the rest needs a vision pass over that image, which is the single highest-value follow-up for this class.",
-    "Piercing Relic (the Ascent skill). Named by both wikis, discussed by neither the class doc nor Grandis Library. No public source says where it belongs in the investment order.",
-    "The third skill core listed on the KMS wiki. Whether GMS has it at v.271 was not established.",
-    "A ranked hyper stat order. None exists publicly for this class and the class doc declines to invent one, pointing at MapleScouter. Left null deliberately.",
-    "Reddit. r/Maplestory is unreachable from this environment for both fetching and the browser, so no reddit-side Pathfinder discussion was examined.",
-    "The Pathfinder Mains Discord. Not machine-readable. It is the only place that would confirm whether the Tempest rework flagged in conflicts is live in GMS v.271, and whether the class doc has been updated since 2026-03-30.",
-    "MapleGains (maplegains.com), a GMS-data HEXA optimiser found during this pass, was checked and does NOT support Pathfinder - its class list at time of checking was Battle Mage, Buccaneer, Cannon Master, Corsair, Mercedes, Mihile. Worth re-checking later; it would be a genuinely independent HEXA-order lane if Pathfinder is added.",
-    "The web search budget for this session was exhausted before this class was researched; discovery was done through the browser against DuckDuckGo's HTML endpoint instead. A fresh session with search budget might surface a YouTube guide or a dated forum thread that was missed."
+    "HEXA investment order beyond the first five steps. The class doc's chart is an image; only its first five entries appear in the document's text layer. Reading the rest needs a vision pass over that image, which is the single highest-value follow-up for this class. The KMS wiki's four-core priority (M4 > M3 > M1 > M2) is now recorded as a partial second lane but covers only the four Mastery cores, not enhancement or skill cores.",
+    "Piercing Relic (the Ascent skill). Named by the GMS wiki, discussed by neither the class doc nor Grandis Library. No public source says where it belongs in the investment order.",
+    "A ranked hyper stat order. None exists publicly for this class and the class doc declines to invent one, pointing at MapleScouter. Left null deliberately, with both stat lists flagged unordered.",
+    "Reddit. r/Maplestory was unreachable from this environment in the research wave, so no reddit-side Pathfinder discussion was examined.",
+    "The Pathfinder Mains Discord. Not machine-readable. It is the only place that would confirm whether the Tempest rework flagged in conflicts is live in GMS v.271 and whether the class doc has been updated since 2026-03-30.",
+    "MapleGains (maplegains.com), a GMS-data HEXA optimiser, does NOT support Pathfinder as of the research wave - its class list was Battle Mage, Buccaneer, Cannon Master, Corsair, Mercedes, Mihile. Worth re-checking; it would be a genuinely independent HEXA-order lane if Pathfinder is added.",
+    "RESOLVED 2026-09-12 (kept here for the record): the KMS wiki's apparent THIRD skill core. Its GMS/MSEA/JMS name fields are blank and the GMS wiki, edited on the v.271 patch date, lists exactly two - Forsaken Relic (Origin) and Piercing Relic (Ascent). Treat GMS as having two."
   ],
-  "researchNotes": "Correction to the earlier source survey, worth propagating: the Pathfinder class doc was previously written off as unreadable because its body is base64-embedded images. That is true of the raw HTML, but the published Google Doc still carries a full text layer, and loading the /pub URL in a real browser and reading document.body.innerText returns the entire guide - roughly 100,000 characters including the changelog and credits. Every doc-sourced claim in this file was read that way, not inferred from images. The same trick is worth trying on any other class doc previously marked image-only.",
-  "written": true,
-  "lastVerified": "2026-09-11",
-  "patchVersion": "v.271"
+  "researchNotes": "Correction to the earlier source survey, worth propagating: the Pathfinder class doc was previously written off as unreadable because its body is base64-embedded images. That is true of what a markdown-converting fetcher sees, but the published Google Doc carries a full text layer. Two methods work: loading the /pub URL in a real browser and reading document.body.innerText, and - confirmed on 2026-09-12 and cheaper - plain curl with a browser User-Agent followed by stripping data:image/... URIs and tags, which yields the same roughly 100,000 characters including the changelog and credits. The same two wikis that return HTTP 403 to a markdown-converting fetcher (maplestorywiki.net, en.namu.wiki) both return HTTP 200 to curl with a browser User-Agent. Every source-backed claim in the five endgame sections of this file was re-read that way on 2026-09-12, not inferred from images. The same trick is worth trying on any other class doc previously marked image-only.",
+  "written": false,
+  "lastVerified": "2026-09-12",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "Resolution pass over the five endgame sections (vMatrix, hexa, hyperSkills, hyperStats, innerAbility). NOTE: the adversarial wave recorded NO defects for Pathfinder - this file was absent from _contest-summary.json's filesBlocked list and carried no contest block, so there were zero inherited defects to settle. Instead of re-litigating nothing, every endgame claim was re-checked against the exact page it cites: the class doc, Grandis Library, mastermysty's node guide, both NamuWiki pages and the GMS wiki were all re-fetched and read in full on 2026-09-12. The defects below were found by that pass, not inherited.",
+    "inheritedDefects": 0,
+    "defects": [],
+    "resolved": [
+      {
+        "id": "pf-r1",
+        "section": "vMatrix.priority (Cardinal Deluge)",
+        "pattern": "citation inversion",
+        "claim": "\"The KMS wiki labels this node group the primary one.\"",
+        "finding": "The KMS wiki's reinforcement-core table column that machine-translates to Primary / Secondary / tertiary / 4th / hyper is the JOB ADVANCEMENT TIER of each skill, not a priority ranking. Cardinal Deluge is the 1st job attack (hence \"Primary\") and Cardinal Burst is the 2nd job attack (hence \"Secondary\"). Confirmed by cross-reading the class doc's own skill-category table, which lists Cardinal Deluge (1st) and Cardinal Burst (2nd). The KMS wiki publishes no boost node priority order for this class.",
+        "action": "CORRECTED - the claim was rewritten to say so explicitly, and the entry's consensus dropped from strong to moderate because the top-priority ranking now rests on two lanes (class doc, mastermysty) rather than three."
+      },
+      {
+        "id": "pf-r2",
+        "section": "vMatrix.trios (all three trios)",
+        "pattern": "citation inversion",
+        "claim": "Grandis Library cited as a source corroborating each of the three boost node trios.",
+        "finding": "Grandis Library does not publish trios. Its \"Skills Boosted by Each Nodes\" table lists the contents of six nodes (Node 1 = Cardinal Burst + Bountiful Burst; Node 3 = Glyph + Cardinal Torrent + Ancient Astra; Node 4 = Combo Assault + Shadow Raven; Nodes 5 and 6 = Swarm Shot and Triple Impact), which is the Mastery-core grouping, not the trio composition. It also credits its boost node build to the class doc.",
+        "action": "CORRECTED - Grandis removed from all three trio source lists; consensus dropped strong to moderate (2 independent lanes: class doc, mastermysty). A sourceCountNote on each trio records why."
+      },
+      {
+        "id": "pf-r3",
+        "section": "vMatrix.priority (all entries), hyperSkills, innerAbility",
+        "pattern": "independence inflation",
+        "claim": "Grandis Library counted toward \"strong\" consensus on boost nodes, hyper passives and Inner Ability.",
+        "finding": "Grandis' own credits block reads \"Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc\" - verified on the live page. For exactly those three fields it is a mirror of the class doc and must count once, not twice. The file's own sources block already said this, but the endgame sections were still counting it.",
+        "action": "CORRECTED - sourceCount added to every endgame claim, counting independent lanes only, with sourceCountNote naming which sources were excluded and why. Several claims dropped from strong to moderate or weak as a result."
+      },
+      {
+        "id": "pf-r4",
+        "section": "hexa.nodeGroups.common",
+        "pattern": "misread abbreviation",
+        "claim": "\"bind Styx to Awakened Relic activation\".",
+        "finding": "The class doc says \"bind Styx to AB activation\". AB throughout this doc is the Angelic Buster link skill - it appears in the phrase \"AB + Oz Ring\", which the doc says should always be popped consecutively immediately before the burst skills. It is not Awakened Relic.",
+        "action": "CORRECTED to Angelic Buster link activation, with the doc's own wording quoted."
+      },
+      {
+        "id": "pf-r5",
+        "section": "hyperSkills.actives",
+        "pattern": "conflated mechanic + incomplete attribution",
+        "claim": "\"Ancient Astra as the iframe / 60% damage reduction tool\"; and \"Epic Adventure is listed by the KMS wiki as the third hyper active\".",
+        "finding": "Per the GMS wiki, the 60% damage reduction belongs to Ancient Astra (Deluge) while channelling; the class doc's iframe note is about Ancient Astra in Burst mode, which it puts at 2s of iframe. And Epic Adventure is listed as a hyper active on BOTH wikis, not only the KMS one - what is true is that the class doc does not discuss it.",
+        "action": "CORRECTED both; a fullActiveList sub-object was added recording the three hyper actives both wikis agree on."
+      },
+      {
+        "id": "pf-r6",
+        "section": "hexa.order (Mastery core 4 first)",
+        "pattern": "under-sourced claim, upgradeable",
+        "claim": "M4-first was labelled weak/SINGLE SOURCE.",
+        "finding": "The KMS wiki independently states \"the priority for strengthening the Mastery Core is Combo Assault > Edge of Resonance > Cardinal Blast > Cardinal Discharge\" - Combo Assault (M4) first, matching the class doc's chart. That is a genuine second independent lane for the M4-first step only.",
+        "action": "CONFIRMED and upgraded to moderate with sourceCount 2. The remaining steps stay weak, and the KMS wiki's disagreement about the order after M4 was logged as a new conflict."
+      },
+      {
+        "id": "pf-r7",
+        "section": "hexa.nodeGroups.mastery.unlockRule",
+        "pattern": "over-attributed claim",
+        "claim": "The level-40 boost gate was cited to the class doc, the KMS wiki and the GMS wiki with consensus \"strong\".",
+        "finding": "Only the class doc states it: \"In order to activate mastery nodes, the associated boost node level must total at least lvl 40 without matrix points.\" Neither wiki states a numeric gate. The four-core MEMBERSHIP, by contrast, genuinely is three-lane.",
+        "action": "CORRECTED - the unlock rule now carries its own sources/sourceCount/consensus (class doc, 1, weak), while the core membership keeps strong at 3 lanes."
+      },
+      {
+        "id": "pf-r8",
+        "section": "hexa.order (Mastery core 3) and conflicts",
+        "pattern": "contested number presented as settled",
+        "claim": "\"every fifth cast becomes an enhanced version, Ancient Impact\", with the file noting only a 5-versus-4 split against the KMS wiki.",
+        "finding": "The GMS wiki's own HEXA Glyph of Impalement text reads \"Enhances Glyph of Impalement after being used 2 times\" - the 3rd cast. That is a third distinct number, and it contradicts the file's earlier note that the wiki skill table gave no cast count.",
+        "action": "CORRECTED - the hexa.order step now says \"periodically\" and points at the conflict; the conflict entry was rewritten as a three-way disagreement with all three quotations."
+      },
+      {
+        "id": "pf-r9",
+        "section": "hyperStats",
+        "pattern": "shape asserts what its source declines to",
+        "claim": "bossingImportantStats and mobbingImportantStats shipped as bare arrays, which downstream code can read as ranked.",
+        "finding": "The class doc introduces both lists as \"the most important stats as a rule of thumb\" and gives exactly one allocation rule - bring them all to level 10 before pushing one further. It publishes no ranking and explicitly defers to MapleScouter.",
+        "action": "CORRECTED - an `ordered: false` flag plus an `orderedNote` were added stating that array position carries no priority meaning. `priority` stays null."
+      },
+      {
+        "id": "pf-r10",
+        "section": "hexa.nodeGroups.skillCore (gap)",
+        "pattern": "open gap, now closable",
+        "claim": "\"The KMS wiki lists a THIRD skill core beyond those two; whether GMS has it at v.271 was not confirmed.\"",
+        "finding": "The KMS wiki's third entry has blank GMS/MSEA/JMS name fields, and the GMS wiki - page edited on the v.271 patch date - lists exactly two under its own headings, \"Skill Node/Core 1 (Origin) Forsaken Relic\" and \"Skill Node/Core 2 (Ascent) Piercing Relic\".",
+        "action": "RESOLVED - GMS has two skill cores at v.271; the note and the gaps list were updated."
+      },
+      {
+        "id": "pf-r11",
+        "section": "vMatrix.priority (Combo Assault) and conflicts",
+        "pattern": "stale third-party bucket that would mislead",
+        "claim": "No prior claim - this is an addition.",
+        "finding": "Grandis Library defines its SECONDARY bucket as \"Boost Nodes that don't unlock a 6th Job HEXA Mastery\" and places the Combo Assault / Shadow Raven node there. At v.271 that node does unlock Mastery 4, confirmed by the class doc, the KMS wiki and the GMS wiki. Grandis is tagged GMS Ver. 269.",
+        "action": "ADDED as an explicit caution on the Combo Assault entry and in the trio conflict, so the app never deprioritises that node on Grandis' authority."
+      },
+      {
+        "id": "pf-r12",
+        "section": "vMatrix.notes",
+        "pattern": "single-source claim, partially corroborated",
+        "claim": "The V-skill node leveling order was class doc only.",
+        "finding": "The KMS wiki gives its own V-skill enhancement order - \"Ancient Tempest > Relic Unbound > Ultimate Blast > Obsidian Barrier\", with a footnote inserting Critical Reinforce and Maple World Goddess' Blessing after Ancient Tempest. Both lanes put the Tempest skill first and Obsidian Barrier last; they disagree on where Nova Blast (Ultimate Blast) and Vicious Shot sit.",
+        "action": "CONFIRMED at the ends, disagreement recorded in the notes text; notesSourceCount set to 2 with consensus moderate."
+      },
+      {
+        "id": "pf-r13",
+        "section": "vMatrix.priority (Glyph of Impalement)",
+        "pattern": "re-verification, no change needed",
+        "claim": "\"no cast time and can be fired during other skills' animations\" and \"the gauge regulator outside burst\".",
+        "finding": "Both are stated in the class doc's Glyph skill entry verbatim: \"It can be cast even while in animation for other skills\" and \"Outside of burst, this is the main skill that helps you regulate the relic gauge.\"",
+        "action": "CONFIRMED - claim kept, quotations added so it is checkable."
+      },
+      {
+        "id": "pf-r14",
+        "section": "hyperSkills.conditionalLastTwo",
+        "pattern": "re-verification, no change needed",
+        "claim": "The three-case IED / cooldown-hat table.",
+        "finding": "Re-read verbatim in the class doc. Axes are CD Hat (-2s or less / -3s or more) against IED (< 98.2 / > 98.2); the > 98.2 row gives one answer spanning both hat columns. All three cases in this file match the table exactly, and all six passive names were validated against the GMS wiki's Hyper Skills table.",
+        "action": "CONFIRMED - kept as-is, labelled weak because it exists in exactly one source."
+      },
+      {
+        "id": "pf-r15",
+        "section": "innerAbility (all three bossing lines)",
+        "pattern": "re-verification, no change needed",
+        "claim": "Cooldown skip top line, Unique Critical Rate, Unique Boss Damage with abnormal-status settle.",
+        "finding": "All three re-read in the class doc's Inner Ability table and in the KMS wiki's ability section, and every mechanical reason attributed to the KMS wiki was found there in those words - cooldown skip being poor pre-6th-job and a must after it, Legendary over Unique because Unique resets poorly, critical rate paying past 100% via Critical Reinforce and being worth about 10% critical damage, and the abnormal-status line being easy to keep up via the Ancient Curse debuff or the Explorer Mage link.",
+        "action": "CONFIRMED at moderate (2 independent lanes), with Grandis explicitly excluded from the count."
+      }
+    ],
+    "outOfScope": [
+      "skillBuilds for jobs 1-4 - left untouched per the product owner's scope note.",
+      "Skill damage coefficients and damageLine - left untouched, except where a coefficient appears inside an endgame rationale (Combo Assault VI 7930% to 30132%, Glyph 10740% / Ancient Impact 16110%), which were re-read in the class doc and found accurate.",
+      "Burst rotation, keybinds and boss-by-boss tips - out of the five endgame sections.",
+      "gearingNotes, commonMistakes, linkSkill and legionEffect - not in scope for this pass and left as the research wave wrote them, except that no claim in them was promoted or demoted."
+    ],
+    "shipReady": true,
+    "shipReadyNote": "Every claim in the five endgame sections now names the page that supports it, was re-read against that page on 2026-09-12, and carries sourceCount counting independent lanes only. Four claims were corrected for citation inversion or misreading, one data shape was flagged unordered, one gap was closed, one claim was upgraded on new corroboration, and nothing was left pointing at a source that does not support it. Nothing was deleted outright - no fabricated node or skill name was found in this file, and every disputed name resolved to a real GMS or KMS string."
+  },
+  "v271Reconcile": {
+    "checkedAt": "2026-09-12",
+    "against": "data/patches.json live v.271",
+    "referencesRemovedSkills": [
+      "Raven Tempest"
+    ],
+    "note": "This guide was written and resolved BEFORE the v.271 patch notes were readable, so its skill names predate them. A name the patch removed is not stale, it is wrong - a player would go looking for a skill that no longer exists."
+  },
+  "blockedReason": "References 1 skill name(s) removed in v.271 (Raven Tempest). Needs a pass against the v.271 notes before it can be shown."
 }

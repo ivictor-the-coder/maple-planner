@@ -29,220 +29,530 @@
     "priority": [
       {
         "node": "Elemental Radiance (V skill node)",
-        "why": "The class doc marks it as the first skill node to max for bossing and states its duration scales with skill level. It also recommends placing it in the level 5 Enhanced Node slot while bossing.",
-        "consensus": "weak - stated by the class doc only. Grandis Library does not publish a skill-node order for Evan, and no source outside the Evan Discord lineage was reachable that ranks Evan's V skill nodes.",
+        "why": "The class doc's Skill Nodes page puts it at the top of the High Priority list with the words MUST MAX FIRST FOR BOSSING, states that the higher the skill level the longer its duration, and says to always place it into a Lv. 5 Enhanced Node slot when bossing.",
+        "verbatimAnchor": "MUST MAX FIRST FOR BOSSING.  The higher the skill level, the longer its duration.  Always place into a Lv.5 Enhanced Node Slot when bossing.",
         "sources": [
           "https://sites.google.com/view/evanandmir/navigate/5thjob/skillnodes"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Class doc only. Grandis Library publishes no V skill node ranking for Evan, and no source outside the Evan Discord lineage ranks Evan skill nodes. This is the one skill node the doc explicitly ranks first, so the ordinal is the doc's own, not an inference.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Decent Holy Symbol (V skill node)",
-        "why": "Class doc ranks it in the high-priority group for its experience and drop rate bonuses, and recommends it occupy the level 5 Enhanced Node slot while training rather than Elemental Radiance.",
-        "consensus": "weak - class doc only.",
+        "why": "Listed second in the class doc's High Priority group, described as a high efficiency skill for EXP and Item Drop Rates, with the instruction to always place it into a Lv. 5 Enhanced Node slot when training (i.e. the training counterpart to Elemental Radiance's bossing slot).",
         "sources": [
           "https://sites.google.com/view/evanandmir/navigate/5thjob/skillnodes"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Erda Nova (V skill node)",
-        "why": "Evan's bind. The class doc gives a concrete floor rather than a vague ranking: at least level 25, so its cooldown lines up with Elemental Radiance's.",
-        "consensus": "weak - class doc only, but the claim is a specific mechanical breakpoint rather than an opinion.",
+        "why": "Evan's bind. The class doc gives a concrete floor: enhance to at least Lv. 25, with or without an Enhanced Node slot.",
         "sources": [
           "https://sites.google.com/view/evanandmir/navigate/5thjob/skillnodes"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Class doc only. The Lv. 25 floor is stated verbatim; no reason for the number is given on the page.",
+        "correctionNote": "An earlier version of this file attached the rationale \"so its cooldown lines up with Elemental Radiance's\". That rationale appears nowhere on the cited page and has been deleted.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Spiral of Mana, Dragon Slam, Elemental Barrage, Maple Goddess Blessing, Mana Overload (V skill nodes)",
-        "why": "The remainder of the class doc's high-priority group. It records that Spiral of Mana is a placed skill with full uptime and is cast by a directional input rather than a plain keypress; that Dragon Slam advances together with Wyrmking's Breath and Ludicrous Speed; that Elemental Barrage grants a 5% Final Damage buff stacking up to four times for 10 seconds and is used together with Dragon Slam for fusions; that Maple Goddess Blessing requires Maple Warrior to be active; and that Mana Overload is a toggle trading MP cost for Final Damage. The doc does not rank these five against each other.",
-        "consensus": "weak - class doc only, and the doc itself gives no internal ordering for this group. No order is asserted here.",
+        "why": "The remainder of the class doc's High Priority group, listed in that page order after the three above. Spiral of Mana is a plant-down skill with 100% uptime that also grants passive Magic ATT and needs an input command (Mana Burst + Down Arrow + Mana Burst). Dragon Slam levels up alongside Wyrmking's Breath and Ludicrous Speed. Elemental Barrage grants a stackable 5% Final Damage buff, up to 4 stacks, for 10 seconds, and is used with Dragon Slam to cast Wyrmking's Breath - the doc warns the buff will not activate if used with Dragon Slam while crouched. Maple Goddess Blessing requires Maple Warrior or equivalent to be active before casting, has a 180 second charge cooldown and holds up to 2 charges. Mana Overload is a toggle that trades MP per cast for Final Damage.",
+        "ordered": false,
+        "orderedNote": "The class doc prints these five in a fixed page sequence but states no ranking among them, so no order is asserted here. Only Elemental Radiance carries an explicit ordinal on that page.",
         "sources": [
           "https://sites.google.com/view/evanandmir/navigate/5thjob/skillnodes"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Medium priority skill nodes",
-        "why": "The class doc places these below the group above without ranking them internally: Freud's Wisdom, Erda Shower / Erda Fountain, Decent Speed Infusion, Decent Sharp Eyes, Blink, Rope Lift, Ethereal Form, Will of Erda, Decent Combat Orders, Decent Holy Fountain.",
-        "consensus": "weak - class doc only.",
+        "node": "Medium Priority skill nodes",
+        "why": "The class doc's Medium Priority heading, below the High Priority group and with no internal ranking: Freud's Wisdom, Erda Shower / Erda Fountain, Decent Speed Infusion, Decent Sharp Eyes, Blink, Rope Lift, Ethereal Form, Will of Erda, Decent Combat Orders, Decent Holy Fountain.",
+        "members": [
+          "Freud's Wisdom",
+          "Erda Shower / Erda Fountain",
+          "Decent Speed Infusion",
+          "Decent Sharp Eyes",
+          "Blink",
+          "Rope Lift",
+          "Ethereal Form",
+          "Will of Erda",
+          "Decent Combat Orders",
+          "Decent Holy Fountain"
+        ],
+        "ordered": false,
         "sources": [
           "https://sites.google.com/view/evanandmir/navigate/5thjob/skillnodes"
-        ]
-      }
-    ],
-    "trios": [
-      {
-        "trio": [
-          "Wind Circle",
-          "Thunder Circle",
-          "Earth Circle"
         ],
-        "label": "Trio 1 - the three Circle skills",
-        "why": "Both sources list this exact set as an Evan trio. Neither publishes a rationale for the grouping, so none is recorded here.",
-        "consensus": "moderate - two genuinely independent sources list identical membership. The class doc is the Evan Discord's own; mastermysty's table is maintained outside that lineage.",
-        "sources": [
-          "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "trio": [
-          "Mana Burst",
-          "Dragon Flash",
-          "Dragon Breath"
+        "node": "Low or Zero Priority skill nodes",
+        "why": "The class doc's third and lowest heading. Decent Advanced Blessing is listed as low priority; Decent Mystic Door and Decent Hyper Body are both labelled ZERO USE. All three are kept in the matrix only for their scaling passive all-stat lines.",
+        "members": [
+          "Decent Advanced Blessing",
+          "Decent Mystic Door (ZERO USE)",
+          "Decent Hyper Body (ZERO USE)"
         ],
-        "label": "Trio 2",
-        "why": "Same membership in both sources. Internal ordering differs between them - see conflicts.",
-        "consensus": "moderate on membership, contested on internal order.",
+        "ordered": false,
         "sources": [
-          "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "trio": [
-          "Dragon Dive",
-          "Magic Debris",
-          "Dragon Spark"
+          "https://sites.google.com/view/evanandmir/navigate/5thjob/skillnodes"
         ],
-        "label": "Trio 3",
-        "why": "Same membership in both sources. Internal ordering differs - see conflicts.",
-        "consensus": "moderate on membership, contested on internal order.",
-        "sources": [
-          "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "addedThisPass": true
       }
     ],
+    "trios": {
+      "acrossTrioPriority": {
+        "order": [
+          "Trio 1 - the three Circle skills",
+          "Trio 2 - Mana Burst + Dragon Breath + Dragon Flash",
+          "Trio 3 - Magic Debris + Dragon Dive + Dragon Spark"
+        ],
+        "why": "All three reachable sources rank the trios against each other in the same sequence, using three different labelling schemes: the class doc calls them Set A / Set B / Set C; Grandis Library calls them Primary Trio / Secondary Trio / Tertiary Trio; mastermysty numbers them Trio #1 / #2 / #3. Membership and the across-trio sequence agree in all three.",
+        "sources": [
+          "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
+          "https://grandislibrary.com/heroes/evan",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "consensusNote": "Three pages but two independent lineages. Grandis Library credits Evanovation for its Boost Nodes Build, so Grandis and the class doc count once together; mastermysty is maintained outside the Evan Discord and counts separately.",
+        "verifiedAt": "2026-09-12"
+      },
+      "orderingCaveat": "Within a trio the three skills are an UNORDERED SET. The three sources print the same three members in three different sequences for every one of the three trios - including the class doc and Grandis, which are the same author. Sequence within a trio therefore carries no recommendation and must not be read as one.",
+      "sets": [
+        {
+          "label": "Trio 1 - the three Circle skills",
+          "members": [
+            "Wind Circle",
+            "Earth Circle",
+            "Thunder Circle"
+          ],
+          "ordered": false,
+          "sequencesAsPublished": {
+            "classDoc": "Set A: Wind Circle, Thunder Circle, Earth Circle",
+            "grandisLibrary": "Primary Trio: Wind Circle, Earth Circle, Thunder Circle",
+            "mastermysty": "Trio #1: Wind Circle, Earth Circle, Thunder Circle"
+          },
+          "sources": [
+            "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
+            "https://grandislibrary.com/heroes/evan",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "consensusNote": "Membership identical in two independent lineages (Evanovation via class doc and Grandis; mastermysty separately). Published sequence differs between the class doc and the other two, which is why members are stored unordered.",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "label": "Trio 2",
+          "members": [
+            "Mana Burst",
+            "Dragon Breath",
+            "Dragon Flash"
+          ],
+          "ordered": false,
+          "sequencesAsPublished": {
+            "classDoc": "Set B: Mana Burst, Dragon Flash, Dragon Breath",
+            "grandisLibrary": "Secondary Trio: Mana Burst, Dragon Breath, Dragon Flash",
+            "mastermysty": "Trio #2: Mana Burst, Dragon Breath, Dragon Flash"
+          },
+          "sources": [
+            "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
+            "https://grandislibrary.com/heroes/evan",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "label": "Trio 3",
+          "members": [
+            "Magic Debris",
+            "Dragon Dive",
+            "Dragon Spark"
+          ],
+          "ordered": false,
+          "sequencesAsPublished": {
+            "classDoc": "Set C: Dragon Dive, Magic Debris, Dragon Spark",
+            "grandisLibrary": "Tertiary Trio: Dragon Spark, Dragon Dive, Magic Debris",
+            "mastermysty": "Trio #3: Magic Debris, Dragon Dive, Dragon Spark"
+          },
+          "sources": [
+            "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
+            "https://grandislibrary.com/heroes/evan",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        }
+      ],
+      "grandisTrioNotes": [
+        "Any combination of these skills are good but preferred from same category as you want to max primary first",
+        "6 Boost Nodes total are needed to reach Master Level 60 for these skills (with Matrix Points used). Nodes with the same Main Skill (skill at the top) cannot be equipped at the same time."
+      ],
+      "grandisTrioNotesSources": [
+        "https://grandislibrary.com/heroes/evan"
+      ],
+      "notNeeded": {
+        "skills": [
+          "Dragon Master",
+          "Summon Onyx Dragon",
+          "Dark Fog"
+        ],
+        "why": "mastermysty's Evan table carries a fourth row headed 'Not needed in the 6th job Mastery' containing exactly these three. Consistent with MapleStory Wiki, on which none of the three appears in any of Evan's four HEXA Mastery cores, and with the wiki's HEXA Enhancement footnotes, which list what each Enhancement boosts and never name them.",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://maplestorywiki.net/w/Evan/Skills"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "consensusNote": "mastermysty states the recommendation; the wiki corroborates the underlying fact (absence from every Mastery core) but states no recommendation. mastermysty is dated 2024-11-21, behind the project bar, so it is corroboration-grade rather than current.",
+        "verifiedAt": "2026-09-12"
+      }
+    },
     "boostNodeTiers": {
-      "note": "Grandis Library publishes Evan's boost nodes as six skill groups with a Primary / Secondary / Other tier on each, rather than as trios. Its credits block names Evanovation - the author of the class doc - as the source of this build, so it is a restatement of the same lineage, not a second opinion.",
-      "primary": [
-        "Group 1: Mana Burst (1st through 4th job versions)",
-        "Group 5: Dragon Breath, Dragon Flash, Dragon Dive, Dragon Master"
+      "framing": "Grandis Library publishes Evan's boost nodes twice: as the three recommended trios recorded above, and as six numbered node groups with a Primary / Secondary / Other legend.",
+      "groups": [
+        {
+          "group": "Node 1",
+          "skills": [
+            "Mana Burst (1st - 4th Job)"
+          ],
+          "tier": "Primary"
+        },
+        {
+          "group": "Node 2",
+          "skills": [
+            "Thunder Circle, Thunder Flash, and Thunder Dive (3rd Job)"
+          ],
+          "tier": "Primary"
+        },
+        {
+          "group": "Node 3",
+          "skills": [
+            "Earth Circle, Earth Breath, and Earth Dive (4th Job)"
+          ],
+          "tier": "Primary"
+        },
+        {
+          "group": "Node 4",
+          "skills": [
+            "Wind Circle, Wind Flash, and Wind Breath (2nd Job)"
+          ],
+          "tier": "Primary"
+        },
+        {
+          "group": "Node 5",
+          "skills": [
+            "Dragon Breath and Return Flame (4th Job)",
+            "Dragon Flash (2nd Job)",
+            "Dragon Dive (3rd Job)",
+            "Dragon Master (Hyper Skill)"
+          ],
+          "tier": "Primary"
+        },
+        {
+          "group": "Node 6",
+          "skills": [
+            "Summon Onyx Dragon (Hyper Skill)",
+            "Dark Fog (4th Job)",
+            "Magic Debris (3rd Job)",
+            "Dragon Spark (1st Job)"
+          ],
+          "tier": "Primary"
+        }
       ],
-      "secondary": [
-        "Group 2: Thunder Circle, Thunder Flash, Thunder Dive",
-        "Group 3: Earth Circle, Earth Breath, Earth Dive",
-        "Group 4: Wind Circle, Wind Flash, Wind Breath"
-      ],
-      "other": [
-        "Group 6: Summon Onyx Dragon, Dark Fog, Magic Debris, Dragon Spark"
-      ],
-      "consensus": "weak - single lineage (Grandis Library restating the class doc).",
+      "tierFinding": "ALL SIX of Evan's node groups are tagged Primary on the current Grandis page. Evan has no Secondary-tier and no Other-tier node group. The tiering therefore carries no discriminating information for this class and must not be used to rank nodes - use the trio priority above instead.",
+      "howVerified": "Grandis renders the tier as a colour, not as text, which is why three separate text-extraction reads of this page produced three different and mutually contradictory splits. Resolved from the page's own machine-readable state instead: the embedded page data carries \"primary\":[0,1,2,3,4,5] for Evan and no \"secondary\" key, and all six rendered node blocks carry the identical colour token #2E94B6. Calibrated against sibling class pages where the split is real - Aran carries \"primary\":[0,1,2,3],\"secondary\":[4,5] and renders four #2E94B6 blocks followed by two #CC6A2A blocks. Blue = Primary, orange = Secondary, unlisted = Other.",
+      "legend": {
+        "Primary": "Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used",
+        "Secondary": "Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used",
+        "Other": "Boost Nodes that do not need to be upgraded or has least priority"
+      },
+      "lineageNote": "Grandis credits Evanovation - the class doc's author - for its Boost Nodes Build, so this is a restatement of the class doc's lineage, not a second opinion.",
       "sources": [
         "https://grandislibrary.com/heroes/evan"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "correctionNote": "An earlier version of this file recorded primary = Groups 1 and 5, secondary = Groups 2, 3 and 4, other = Group 6. That split is not on the page in any form and has been deleted. The adversarial pass proposed a different split again (Group 4 demoted to Other); that is also unsupported. Group memberships in the old file were correct and are retained."
     },
-    "notes": "Two different framings exist and no source reached reconciles them. The class doc and mastermysty both describe three trios of three skills; Grandis Library instead tiers six skill groups. The two framings do not line up cleanly - Magic Debris and Dragon Spark sit in the trio sources' third trio but in Grandis's bottom tier, and Dragon Master sits in Grandis's top tier while mastermysty flags it as unneeded for 6th job Mastery. Recorded as a conflict rather than resolved. On Enhanced Node slots, the only sourced guidance is the level 5 slot going to Elemental Radiance for bossing and Decent Holy Symbol for training; the class doc's Special Nodes page covers only the shared boss nodes (True Arachnid Reflection, Solar Crest) and the temporary nodes, and gives no Evan-specific enhancement ranking."
+    "notes": "The two framings that an earlier pass recorded as an unresolved conflict are not in conflict. Grandis Library publishes BOTH a six-group node listing and a three-trio recommendation, and its trios match the class doc's and mastermysty's trios in membership and in across-trio order. Magic Debris and Dragon Spark are not demoted by Grandis: they sit in its Tertiary Trio, and its node-group tiering marks every Evan group Primary, so it demotes nothing. On Enhanced Node slots, the only sourced guidance remains the Lv. 5 slot going to Elemental Radiance for bossing and to Decent Holy Symbol for training; the class doc's Special Nodes page covers only the shared boss nodes and the temporary nodes and gives no Evan-specific enhancement ranking."
   },
   "hexa": {
     "order": [],
-    "orderStatus": "NOT SOURCED. No public source reached in this pass publishes an Evan HEXA investment order in readable text. Three separate dead ends were checked: the class doc's HEXA Matrix Resources page contains no order at all, only a link to a personal progression spreadsheet; the class doc's general HEXA progression guidance exists only inside an infographic image (stamped GMS v.269, two patches behind the v.271 general infographic on the same page); and Grandis Library's Evan page has no HEXA section whatsoever. MapleDoro's Evan 6th job leveling section is explicitly marked work in progress and tells readers to consult the class Discord. An order is deliberately left empty here rather than guessed.",
+    "orderStatus": "NOT SOURCED. Re-checked in full on 2026-09-12; no public source reachable in this pass publishes an Evan HEXA investment order in readable text. Four dead ends: (1) the class doc's HEXA Matrix Resources page (https://sites.google.com/view/evanandmir/navigate/6thjob/resources) contains no order at all - only a link to a personal progression spreadsheet plus the line 'For general HEXA progression guide, see Infographics'; (2) that spreadsheet ('Evan 6th FD Progression (P) v7 Ascents') is not publicly exportable - a CSV export request returns HTTP 400; (3) the class doc's general HEXA progression guidance exists only inside an infographic image; (4) Grandis Library's Evan page has no HEXA section whatsoever, only a '6th Job' infographic image credited to the Evan Discord. MapleDoro's Evan 6th job section is explicitly marked 'Work in Progress' and tells readers to consult the class document or class Discord. An order is deliberately left empty rather than guessed.",
     "origin": {
-      "skill": "Zodiac Burst",
-      "breakpoints": "Level 10 grants Ignore Defense +20%. Level 20 grants Boss Damage +20%. Level 30 grants Ignore Defense +30% and Boss Damage +30%.",
+      "skill": "(Origin) Zodiac Burst",
+      "breakpoints": "Lv. 10 - Ignore Defense: +20%. Lv. 20 - Boss Damage: +20%. Lv. 30 - Ignore Defense: +30%, Boss Damage: +30%.",
+      "detail": "Master Level 30, active. Cooldown 360 seconds, duration 45 seconds, invincible during casting. Targets the boss with the highest Max HP first and is unaffected by attack reflection.",
       "sources": [
-        "https://maplestorywiki.net/w/Evan/Skills",
-        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills"
-      ]
+        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills",
+        "https://maplestorywiki.net/w/Evan/Skills"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "consensusNote": "Skill data rather than judgement. Breakpoints read verbatim off the class doc; names cross-checked against the wiki skill table.",
+      "verifiedAt": "2026-09-12"
     },
     "ascent": {
-      "skill": "United Horizons",
-      "breakpoints": "Level 10 grants Ignore Defense +10% and Boss Damage +10%. Level 20 grants a further Ignore Defense +10% and Boss Damage +10%. Level 30 grants Ignore Defense +20%. The skill itself applies Ignore Defense +60%, Boss Damage +40% and 100% Critical Rate during its attack.",
-      "note": "The class doc adds that it is limited to three casts per boss fight. The wiki's skill table lists no cooldown on it.",
+      "skill": "(Ascent) United Horizons",
+      "breakpoints": "Lv. 10 - Ignore Defense: +10%, Boss Damage +10%. Lv. 20 - Ignore Defense: +10%, Boss Damage: +10%. Lv. 30 - Ignore Defense: +20%.",
+      "skillEffect": "The skill itself applies Ignore Defense +60%, Boss Damage +40% and Critical Rate +100% during its attack.",
+      "cooldownNote": "The class doc lists Cooldown: 240 seconds and then states that Ascent skills can be used up to THREE (3) times in a boss fight with no cooldown. It adds that Ascent skills can only be used while a boss with the highest max HP is present, do not trigger additional attacks or combat effects, and ignore stat contributions from hat, ring, conditional passives, active skill effects, link skills, enemy attributes and patterns, and items under 30 minutes duration.",
       "sources": [
-        "https://maplestorywiki.net/w/Evan/Skills",
-        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills"
-      ]
+        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills",
+        "https://maplestorywiki.net/w/Evan/Skills"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12",
+      "correctionNote": "An earlier version said 'The wiki's skill table lists no cooldown on it.' The class doc does list a 240 second cooldown alongside the three-free-casts rule; the two are not in tension and the bare claim has been replaced with what the page actually says."
     },
     "masteryCores": {
-      "structure": "Evan's Mastery cores are grouped, and the grouping is unusual - one core upgrades several skills at once. Core 1: HEXA Mana Burst. Core 2: HEXA Thunder Circle, HEXA Dragon Flash, HEXA Thunder Flash, HEXA Wind Flash. Core 3: HEXA Earth Circle, HEXA Dragon Dive, HEXA Earth Dive, HEXA Thunder Dive. Core 4: HEXA Wind Circle, HEXA Dragon Breath, HEXA Earth Breath, HEXA Wind Breath, HEXA Magic Debris, HEXA Dragon Spark.",
-      "prerequisites": "Each HEXA Mastery skill requires its base skill at a stated level before it becomes available - for example HEXA Mana Burst requires Mana Burst IV at level 30, HEXA Dragon Flash requires Dragon Flash at level 20, HEXA Thunder Circle requires Thunder Circle at level 10.",
-      "note": "The wiki also records that Mastery skills inherit Hyper Skill passives and Boost Node enhancements applied to the base skill. That is the mechanical link between Evan's V matrix boost nodes and 6th job output, and it is why a boost node on a base skill keeps paying after 260.",
-      "consensus": "strong on the facts - the wiki's structured skill table and the class doc's HEXA Skills page list the same four groups with the same membership, and these are data, not opinion.",
+      "structure": "Four Mastery cores, and the grouping is unusual - one core upgrades several skills at once.",
+      "cores": [
+        {
+          "core": "Mastery Node/Core 1",
+          "skills": [
+            "HEXA Mana Burst"
+          ]
+        },
+        {
+          "core": "Mastery Node/Core 2",
+          "skills": [
+            "HEXA Thunder Circle",
+            "HEXA Dragon Flash",
+            "HEXA Thunder Flash",
+            "HEXA Wind Flash"
+          ]
+        },
+        {
+          "core": "Mastery Node/Core 3",
+          "skills": [
+            "HEXA Earth Circle",
+            "HEXA Dragon Dive",
+            "HEXA Earth Dive",
+            "HEXA Thunder Dive"
+          ]
+        },
+        {
+          "core": "Mastery Node/Core 4",
+          "skills": [
+            "HEXA Wind Circle",
+            "HEXA Dragon Breath",
+            "HEXA Earth Breath",
+            "HEXA Wind Breath",
+            "HEXA Magic Debris",
+            "HEXA Dragon Spark"
+          ]
+        }
+      ],
+      "prerequisites": "Each HEXA Mastery skill requires its base skill at a stated level - HEXA Mana Burst requires Mana Burst IV Lv. 30+, HEXA Thunder Circle requires Thunder Circle Lv. 10+, HEXA Dragon Flash requires Dragon Flash. The fusion Mastery skills (HEXA Thunder Flash, HEXA Wind Flash, HEXA Earth Dive, and so on) instead require their parent Mir skill at Lv. 30 Boost Node Enhancement.",
+      "inheritanceNote": "Both sources state that Mastery skills are affected by Hyper Skill passives (where applicable) and by Boost Node enhancements applied to the base skill. That is the mechanical link between the V matrix boost nodes above and 6th job output, and it is why a boost node on a base skill keeps paying after 260.",
       "sources": [
-        "https://maplestorywiki.net/w/Evan/Skills",
-        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills"
-      ]
+        "https://maplestorywiki.net/w/Evan/Skills"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "consensusNote": "Only MapleStory Wiki states the grouping, and it states it explicitly: its Mastery Skills table is headed 'Mastery Node/Core 1' through 'Mastery Node/Core 4' with exactly this membership. This is a structured data table rather than an opinion, which is why it is recorded despite a single source. The class doc's HEXA Skills page lists the same fifteen HEXA Mastery skills in exactly this sequence but applies no group headings of any kind - every skill name on that page carries identical styling and there are no dividers - so it corroborates the ordering but does not independently state the four-core grouping.",
+      "verifiedAt": "2026-09-12",
+      "correctionNote": "An earlier version of this file rated this 'strong on the facts' on the stated basis that the class doc lists the same four groups. It does not; it lists no groups. That corroboration was fabricated and the rating has been dropped to weak. The adversarial pass's counter-claim - that the class doc lists FIVE groups organised by skill family, with the three Circles kept together - is also not on the page: the page's actual sequence is Mana Burst, Thunder Circle, Dragon Flash, Thunder Flash, Wind Flash, Earth Circle, Dragon Dive, Earth Dive, Thunder Dive, Wind Circle, Dragon Breath, Earth Breath, Wind Breath, Magic Debris, Dragon Spark, which splits the Circles apart and matches the wiki's four cores exactly. The four-core structure is correct; only its stated basis was wrong."
     },
     "enhancementCores": {
       "cores": [
-        "Elemental Barrage Boost",
-        "Dragon Slam Boost",
-        "Elemental Radiance Boost",
-        "Spiral of Mana Boost"
+        {
+          "core": "Elemental Barrage Boost",
+          "boosts": "Elemental Barrage"
+        },
+        {
+          "core": "Dragon Slam Boost",
+          "boosts": "Dragon Slam, Wyrmking's Breath, and Ludicrous Speed"
+        },
+        {
+          "core": "Elemental Radiance Boost",
+          "boosts": "Elemental Radiance"
+        },
+        {
+          "core": "Spiral of Mana Boost",
+          "boosts": "Spiral of Mana"
+        }
       ],
-      "effect": "The class doc states each reaches up to 60% final damage on its skill at max, and that Elemental Barrage Boost additionally cuts that skill's cooldown to 30 seconds at max.",
-      "consensus": "weak on the core names - sourced from the class doc alone; the wiki's HEXA Enhancements table could not be read before the browser session was lost. The four underlying V skills are confirmed to exist by the class doc's own skill node page.",
+      "effect": "Each reaches Final Damage +60% on its skill at Lv. 30. The class doc prints the curve: +11% at Lv. 1, +25% at Lv. 10, +40% at Lv. 20, +49% at Lv. 29, +60% at Lv. 30 - linear between the jumps at 10, 20 and 30. Elemental Barrage Boost additionally cuts Elemental Barrage's cooldown by 5 seconds at Lv. 6, 11, 16, 21 and 26, from 55 seconds at Lv. 1 down to 30 seconds from Lv. 26 onward.",
+      "requirement": "The class doc states that Enhancements require the corresponding V skill to be levelled to max and equipped.",
+      "ordered": false,
+      "orderedNote": "No source reached ranks the four Enhancement cores against each other. They are stored as an unordered set.",
       "sources": [
-        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills"
-      ]
+        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills",
+        "https://maplestorywiki.net/w/Evan/Skills"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "consensusNote": "Core names now confirmed on both the class doc and the wiki's HEXA Enhancements section, which an earlier pass could not reach. The Final Damage curve and the cooldown schedule are the class doc's alone.",
+      "verifiedAt": "2026-09-12"
     },
     "commonCores": {
       "cores": [
-        "Freud's Wisdom",
+        "HEXA Freud's Wisdom",
         "Sol Janus",
         "Sol Hecate"
       ],
-      "note": "Sol Hecate has its own level gates: level 10 gives Ignore Defense +20% and Boss Damage +20%, level 20 unlocks Charon on top of the same bonuses, level 30 unlocks Phlegethon. Sol Hecate: Pactum allows Styx and Phlegethon to be bound to fire alongside other skills.",
+      "freudsNote": "The class doc marks HEXA Freud's Wisdom 'coming soon to GMS v.271'. Passive effect: cooldown-reset-affected skills have their cooldowns decrease 5% faster, Status Resistance +10, All Stats +20.",
+      "solJanusNote": "Sol Janus is used by pressing a directional key after the skill to pick Sol Janus: Dawn or Sol Janus: Dusk. Its passive gives EXP Obtained +10% at Lv. 1 rising to +100% at Lv. 30.",
+      "solHecateNote": "Sol Hecate: Lv. 10 gives Ignore Defense +20% and Boss Damage +20%; Lv. 20 enables Charon on top of the same +20% / +20%; Lv. 30 enables Phlegethon. Sol Hecate: Pactum configures which Sol Hecate skills fire alongside other skills; Sol Hecate: Styx stuns for 4 seconds and applies the Death Seed debuff.",
       "sources": [
-        "https://maplestorywiki.net/w/Evan/Skills",
-        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills"
-      ]
+        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills",
+        "https://maplestorywiki.net/w/Evan/Skills"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "consensusNote": "Shared cross-class content, read verbatim off the class doc and cross-checked for naming against the wiki. Not Evan-specific judgement.",
+      "verifiedAt": "2026-09-12"
     },
     "hexaStat": {
       "nodes": [
         {
-          "node": "First node (available from Lv. 260)",
+          "node": "HEXA Stat (1) - unlocks at Lv. 260",
           "mainStat": "Magic ATT",
           "additionalStats": [
             "INT",
             "Critical Damage"
-          ]
+          ],
+          "cost": "5 Sol Erda, 10 Sol Erda Fragments"
         },
         {
-          "node": "Second node (available from Lv. 265)",
+          "node": "HEXA Stat (2) - unlocks at Lv. 265",
           "mainStat": "INT",
           "additionalStats": [
             "Magic ATT",
             "Critical Damage"
-          ]
+          ],
+          "cost": "10 Sol Erda, 200 Sol Erda Fragments"
         },
         {
-          "node": "Third node (available from Lv. 270)",
+          "node": "HEXA Stat (3) - unlocks at Lv. 270",
           "mainStat": "Critical Damage",
           "additionalStats": [
             "Magic ATT",
             "INT"
-          ]
+          ],
+          "cost": "15 Sol Erda, 350 Sol Erda Fragments"
         }
       ],
-      "rule": "The class doc records the constraint that any one attribute may be a main stat on at most two nodes and an additional stat on at most two nodes across the full set of six.",
-      "arrangement": "The class doc does not commit to a final arrangement. Once each of the three nodes is at level 20 it directs the reader to maplescouter.com's boss setting optimization to work out the best ordering for their own character.",
-      "gap": "Only the first three nodes are covered. The class doc does not specify the remaining three.",
-      "consensus": "weak - class doc only. Note also that two guides both deferring to maplescouter are one source, not two, and that maplescouter is built on KMS balance.",
+      "rule": "Any attribute (for example Magic ATT) can be used TWICE as a Main Stat and TWICE as a Sub Stat across all six Stat Nodes.",
+      "arrangement": "The class doc does not commit to a final arrangement. It directs the reader to maplescouter.com's Boss Setting Optimization for how best to arrange the three Stat Nodes AFTER finishing Lv. 20 on them.",
+      "gap": "Only the first three of the six nodes are covered. The class doc does not specify the remaining three.",
       "sources": [
         "https://sites.google.com/view/evanandmir/navigate/6thjob/hexa-stat"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "consensusNote": "Class doc only. Two guides both deferring to maplescouter would still be one source, and maplescouter is built on KMS balance.",
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "The practical finding for this class is that Evan's HEXA investment order is not a list anyone has published in text. The class doc treats it as a per-character calculation and ships a spreadsheet for it - 'Evan 6th FD Progression (P) v7 Ascents', credited to AgaetisByrjun a.k.a. Archaic (GMS Heroic Kronos), which the reader is told to copy for their own character. That spreadsheet could not be parsed in this pass. Anyone wanting a fixed order for Evan currently has to read the v.269 infographic image on the class doc's Infographics page or ask in the Evan Discord."
+    "notes": "The practical finding for this class stands after re-checking: Evan's HEXA investment order is not a list anyone has published in text. The class doc treats it as a per-character calculation and ships a spreadsheet for it - 'Evan 6th FD Progression (P) v7 Ascents', credited on the HEXA Matrix Resources page to AgaetisByrjun a.k.a. Archaic (GMS Heroic Kronos) - which the reader is told to open and copy for their own character. That sheet is not publicly exportable. Anyone wanting a fixed order for Evan currently has to read an infographic image or ask in the Evan Discord.",
+    "orderStatusVerifiedAt": "2026-09-12",
+    "orderStatusSources": [
+      "https://sites.google.com/view/evanandmir/navigate/6thjob/resources",
+      "https://grandislibrary.com/heroes/evan",
+      "https://www.mapledoro.com/guides/character-guides/evan"
+    ]
   },
   "hyperStats": {
     "priority": [],
-    "priorityStatus": "NOT SOURCED. No Evan source reached publishes a hyper stat allocation or priority order. The class doc's stats page covers inner ability, hyper passives, critical rate, attack speed, links and legion artifacts but has no hyper stat section. Grandis Library carries no hyper stat data for any class.",
+    "priorityStatus": "NOT SOURCED. Re-checked in full on 2026-09-12 against every source in this file. The class doc's General Stats page has no hyper stat section - it covers Will of the Alliance, Inherited Will, inner ability, critical rate, attack speed, hyper passives, legion artifact and link slots, and the only appearance of the words 'Hyper Stat' anywhere on it is in the line 'Supplement the remainder with: Hyper Stat | Legion Grid | Lynn Link Skill' under critical rate. Grandis Library carries no hyper stat data for any class. MapleDoro's Evan page has no hyper stat section. No allocation or priority order is asserted.",
     "sourcedClaims": [
       {
-        "claim": "Critical Rate is one of the hyper stats Evan actually needs, because the class lands at about 90% crit from its own passives plus the usual account-wide sources and still has a gap to close.",
-        "detail": "The class doc reaches roughly 90% from: base 5, Spell Mastery 15, Critical Magic 30, Decent Sharp Eyes 10, Legion artifact 20, two Legion cards 8, two badges 2. It names hyper stats, the Legion grid and Lynn's link skill as the three ways to close the remainder.",
-        "consensus": "weak - class doc only, though Grandis Library independently derives +50% crit rate from Evan's own passives alone (+55% with a wand equipped), which is consistent with the doc's arithmetic.",
+        "claim": "Critical Rate is a hyper stat Evan actually needs, because the class lands at 90% critical rate from its own passives plus the usual account-wide sources and still has a gap to the 100% cap.",
+        "detail": "The class doc's arithmetic, verbatim: base 5, Spell Mastery 15, Critical Magic 30, Decent Sharp Eyes 10, Legion Artifact 20, Night Lord Legion Card Lv. 200 4, Marksman Legion Card Lv. 200 4, Ocean Badge 1, Rebel Badge 1 - total 90% critical rate. It names Hyper Stat, the Legion Grid and Lynn's link skill as the three ways to close the remainder, and does not rank those three.",
         "sources": [
           "https://sites.google.com/view/evanandmir/navigate/stats",
           "https://grandislibrary.com/heroes/evan"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Class doc only for the judgement. Grandis independently derives +50% critical rate from Evan's own passives alone (+55% with a wand equipped), which is arithmetically consistent with the doc's breakdown, but Grandis states no hyper stat recommendation, so it corroborates the input rather than the claim.",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "A static hyper stat order is not something the Evan community publishes. Treat any fixed list presented elsewhere as unsourced for this class."
+    "notes": "A static hyper stat order is not something the Evan community publishes. Treat any fixed list presented elsewhere for this class as unsourced.",
+    "priorityStatusVerifiedAt": "2026-09-12",
+    "priorityStatusSources": [
+      "https://sites.google.com/view/evanandmir/navigate/stats",
+      "https://grandislibrary.com/heroes/evan",
+      "https://www.mapledoro.com/guides/character-guides/evan"
+    ]
   },
   "hyperSkills": {
     "passives": {
+      "available": [
+        {
+          "skill": "Speedy Dragon Flash",
+          "levelRequirement": 140,
+          "effect": "Reduces the cooldown of Dragon Flash by 25%."
+        },
+        {
+          "skill": "Speedy Dragon Dive",
+          "levelRequirement": 140,
+          "effect": "Reduces the cooldown of Dragon Dive by 25%."
+        },
+        {
+          "skill": "Speedy Dragon Breath",
+          "levelRequirement": 140,
+          "effect": "Reduces the cooldown of Dragon Breath by 25%."
+        },
+        {
+          "skill": "Howling Wind",
+          "levelRequirement": 150,
+          "effect": "Adds a wind blade to Wind Flash."
+        },
+        {
+          "skill": "Thunder Overload",
+          "levelRequirement": 165,
+          "effect": "Thunder Circle reinforcement. Not selected by any sourced Evan loadout."
+        },
+        {
+          "skill": "Lungs of Stone",
+          "levelRequirement": 165,
+          "effect": "Raises Earth Breath's enemy count."
+        },
+        {
+          "skill": "Rolling Thunder",
+          "levelRequirement": 180,
+          "effect": "Adds an attack per Thunder Flash crash area."
+        },
+        {
+          "skill": "Earth-Shattering Dive",
+          "levelRequirement": 180,
+          "effect": "Adds 20% damage to Earth Dive."
+        },
+        {
+          "skill": "Cyclone Breath",
+          "levelRequirement": 190,
+          "effect": "Raises both the HP threshold and the bonus damage on Wind Breath's special effect."
+        }
+      ],
+      "availableSources": [
+        "https://maplestorywiki.net/w/Evan/Skills"
+      ],
+      "availableNote": "Nine passives exist and five points are available. Thunder Overload is the one passive no sourced Evan loadout picks.",
       "alwaysTake": [
         "Speedy Dragon Flash",
         "Speedy Dragon Dive",
@@ -264,43 +574,71 @@
           "Earth-Shattering Dive",
           "Rolling Thunder"
         ],
-        "requires": "The class doc gates this alternative on two things being true at once: a hat with at least 5 seconds of cooldown reduction, and an SSS-rank Mercedes character card. Speedy Dragon Flash and Speedy Dragon Dive drop out of the build in exchange.",
-        "consensus": "weak - class doc only. Grandis Library does not list this variant."
+        "requires": "The class doc gates this variant on two things being true at once: a 5-second-or-more cooldown reduction hat AND an SSS-rank Mercedes Legion card. Speedy Dragon Flash and Speedy Dragon Dive drop out of the build in exchange.",
+        "sources": [
+          "https://sites.google.com/view/evanandmir/navigate/stats"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Class doc only. Grandis does not list this variant.",
+        "verifiedAt": "2026-09-12"
       },
-      "why": "The three Speedy passives each cut 25% from a Mir skill's cooldown, which is what governs how often fusion skills can be triggered. Rolling Thunder adds an attack per Thunder Flash crash area; Earth-Shattering Dive adds 20% damage to Earth Dive; Howling Wind adds a wind blade to Wind Flash; Lungs of Stone raises Earth Breath's enemy count; Cyclone Breath raises both the HP threshold and the bonus damage on Wind Breath's special effect. Skill effects are from the wiki's table; the loadout groupings are the class doc's judgement.",
-      "consensus": "weak on the loadouts - the class doc and Grandis Library agree exactly, but Grandis credits Evanovation for this build, so that is one source agreeing with itself. The individual skill effects are strong, confirmed against the wiki.",
+      "why": "The three Speedy passives each cut 25% from a Mir skill's cooldown, which is what governs how often the fusion skills can be triggered. Rolling Thunder and Earth-Shattering Dive attach to the two bossing fusions (Thunder Flash and Earth Dive); Howling Wind and Lungs of Stone attach to the two training ones (Wind Flash and Earth Breath). Skill effects are the wiki's; the loadout groupings are the class doc's judgement.",
       "sources": [
         "https://sites.google.com/view/evanandmir/navigate/stats",
         "https://grandislibrary.com/heroes/evan",
         "https://maplestorywiki.net/w/Evan/Skills"
-      ]
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "consensusNote": "Two independent lineages, not three. The class doc and Grandis Library state identical loadouts, but Grandis credits Evanovation for its Hyper Passive Build, so they count once. The wiki counts separately and confirms every skill name, level requirement and effect, but publishes no loadout. On the loadout judgement alone this is one source - weak; the moderate rating reflects that every name and effect in it is independently verified.",
+      "verifiedAt": "2026-09-12"
     },
     "actives": {
       "available": [
-        "Summon Onyx Dragon (Lv. 140)",
-        "Dragon Master (Lv. 160)",
-        "Heroic Memories (Lv. 190)"
+        {
+          "skill": "Summon Onyx Dragon",
+          "levelRequirement": 140
+        },
+        {
+          "skill": "Dragon Master",
+          "levelRequirement": 160
+        },
+        {
+          "skill": "Heroic Memories",
+          "levelRequirement": 190,
+          "effect": "MP Cost 100, Duration 60 sec, Damage +10%."
+        }
       ],
       "recommendation": null,
-      "note": "No source reached makes a recommendation between Evan's three hyper actives. Names and level requirements are from the wiki.",
+      "ordered": false,
+      "note": "No source reached makes a recommendation between Evan's three hyper actives, and all three unlock at different levels so there is no real contest for a slot. Names, level requirements and effects are the wiki's.",
       "sources": [
         "https://maplestorywiki.net/w/Evan/Skills"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     }
   },
   "innerAbility": {
     "bossing": {
       "line1": "Boss Damage +20%",
       "line2and3": [
-        "Damage to enemies afflicted with an abnormal status +8%",
-        "Chance to skip cooldown +10%"
+        "Damage to enemies inflicted by Abnormal Status +8%",
+        "Chance to Skip Cooldowns +10%"
       ],
-      "note": "The class doc does not fix which of the two secondary lines goes in slot 2 versus slot 3. It attributes the abnormal-status line's value to Flash Return. Grandis Library lists the same three lines in the order Boss Damage 20%, abnormal-status 8%, cooldown skip 10%.",
-      "consensus": "weak - one lineage. Grandis credits Evanovation for its inner ability section, so the two readings are the same source.",
+      "ordered": false,
+      "orderedNote": "The class doc heads these two lines jointly as \"2nd/3rd Lines\" and does not say which goes in which slot. Grandis prints the same three lines as a flat list. No slot assignment is asserted for lines 2 and 3.",
+      "note": "The class doc attributes the abnormal-status line's value to Evan's Flash Return!.",
       "sources": [
         "https://sites.google.com/view/evanandmir/navigate/stats",
         "https://grandislibrary.com/heroes/evan"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "consensusNote": "One lineage. Grandis credits Evanovation for its Inner Ability section, so the two readings are the same source stated twice.",
+      "verifiedAt": "2026-09-12"
     },
     "training": {
       "lines": [
@@ -308,19 +646,25 @@
         "Mesos Obtained or Item Drop Rate +15%",
         "Damage to normal monsters +8%"
       ],
-      "consensus": "weak - Grandis Library only, and credited to the class doc author. The class doc's own stats page does not spell out a separate training preset.",
       "sources": [
         "https://grandislibrary.com/heroes/evan"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "consensusNote": "Grandis Library only, and credited there to the class doc's author. The class doc's own General Stats page spells out no separate training preset.",
+      "verifiedAt": "2026-09-12"
     },
     "doNotRoll": {
-      "claim": "Attack speed +1 is no longer needed on Evan's inner ability.",
-      "why": "The class doc states that since v.267 Evan reaches the attack speed cap without it, assembling it from base 4, Magic Booster 2, Decent Speed Infusion 1, an optional Monster Park potion 1, and the Return! - Dive fusion 1. The wiki independently confirms the Return Dive fusion grants +1 attack speed to Evan and nearby party members, and that Agile Magic gives a flat +2.",
-      "consensus": "moderate - the judgement is the class doc's alone, but the mechanical components are confirmed against the wiki's skill table.",
+      "claim": "Attack Speed +1 is no longer needed on Evan inner ability.",
+      "why": "The class doc states verbatim 'GMS v.267: Evan will no longer require AS(10) from Inner Ability' and lists the sources that reach the cap without it: base +4, Magic Booster passive +2, Decent Speed Infusion +1, Monster Park Green Potion +1 (marked as breaking the cap), Return! - Dive +1.",
       "sources": [
         "https://sites.google.com/view/evanandmir/navigate/stats",
         "https://maplestorywiki.net/w/Evan/Skills"
-      ]
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "consensusNote": "The judgement is the class doc's alone; the mechanical components are confirmed against the wiki's skill table.",
+      "verifiedAt": "2026-09-12"
     }
   },
   "gearingNotes": "Several things change for Evan specifically.\n\nWEAPON. Staff over wand. The class doc's reasoning is that the staff's higher Magic ATT beats the wand's 5% Critical Rate passive. It also records that the attack speed printed on either weapon does not change how fast Evan's skills cast, so picking a weapon for its speed rating is wasted. Grandis Library's derived base stats agree that a wand adds 5 points of crit rate (+50% from passives without one, +55% with).\n\nSECONDARY. Evan has a class-specific Document secondary, but the class doc recommends a shield instead - it names the Deimos Sage Shield, whose recipe drops from Normal Cygnus - because a shield can be Star Forced for INT, LUK and Magic ATT.\n\nWSE POTENTIAL TARGET. The class doc's general recommendation is 9 lines of Magic ATT, or 8 lines of Magic ATT plus 1 line of Boss Damage, while pointing out that the right answer depends on familiars, buffs, guild skills and HEXA stat and should be checked against a damage calculator.\n\nDRAGON GEAR. Mir has four equipment slots of his own - mask, pendant, wing and tail - which no other class has. The class doc's progression: the Silver set comes from the Evan story questline (2 INT and 2 LUK in total), the Gold set is bought from Neville the secondary equipment vendor (4 INT and 4 LUK), the Reverse set is crafted through Smithing without a recipe (6 INT and 6 LUK), and the Abyss set is crafted from recipes sold by the Celestial Robes and Abyss vendors (10 INT, 10 LUK and 1 Magic ATT), limited to one craft per recipe. Reverse and Abyss pieces can each be levelled three times, gaining 0 to 1 INT and 0 to 1 LUK per level.\n\nCOOLDOWN HAT. This is the biggest Evan-specific gearing decision. Because Mir's skills and the fusion skills ignore attack speed entirely, cooldown reduction is what raises Evan's damage. The class doc names -2 seconds with 20% INT as the Heroic target, with -2 seconds and 23% INT or -4 seconds and 10% INT as the double-prime rolls worth keeping, and -5 seconds for Interactive worlds where bonus potential is available. It lists what the reduction touches: the four Mir skills (Dragon Flash, Dragon Dive, Dragon Breath, Dragon Slam), the fusion skills attached to them, Freud's Wisdom, HEXA Elemental Barrage, Wyrmking's Breath, Blink and Ethereal Form. The doc also says the hat became noticeably more valuable after recent patches. Separately, a hat of at least -5 seconds combined with an SSS Mercedes card is the gate on the alternative hyper passive loadout recorded above.\n\nCRITICAL RATE. Evan arrives at roughly 90% crit from its own kit plus normal account progress, per the class doc's breakdown. Dark Fog adds a further 20% crit rate while active, but it is a 40 second cooldown buff rather than a permanent line, so it should not be counted toward the standing total.\n\nLINK SLOTS. For bossing the class doc ranks the twelfth slot as Noble Fire (Adele) in parties of three or more, then Tree of Stars (Sia Astelle), Focus Spirit (Lynn) where crit rate is short, Spirit of Freedom (Resistance) for survival, and Innate Gift (Khali). For training it suggests Combo Kill Blessing (Aran), swapped for Phantom Instinct (Phantom) if crit rate is short, and Tides of Battle (Illium) on maps that require movement.\n\nLEGION ARTIFACT. The class doc's bossing order is Damage 15%, Boss Damage 15%, Ignore Enemy Defense 20%, Critical Damage 4%, All Stats 150, Magic ATT 30, Cooldown Skip 7.5%, Final Attack skill damage 30%, Buff Duration 20%, Summoned Minion Duration 20%, with Critical Rate 20% called out as the broadest account-wide benefit. Training uses mesos, drop rate and experience at 12% each.",
@@ -416,23 +760,24 @@
   "sources": [
     {
       "url": "https://sites.google.com/view/evanandmir",
-      "what": "Evan and Mir - the Evan class doc, written by Evanovation (GMS Heroic, Kronos), presented as a compilation of the MapleStory Evans Discord. Pages read for this file: Class Overview and Skills, General Stats, Gear (WSE, Dragon Gear, Cooldown Hat), 5th Job (TriNodes, Skill Nodes, Special Nodes), 6th Job (HEXA Skills, HEXA Matrix Resources, HEXA Stat), Infographics. This is the primary and in most fields the only judgement source for Evan.",
-      "dated": "Site footer reads last updated 2025-11-12, GMS v.264 and KMS v.1.2.407. IMPORTANT CAVEAT: the footer understates the content. The Infographics page carries an Evan General Infographic stamped GMS v.271 (Overdrive) - the current target patch - alongside a HEXA Progression Infographic stamped only GMS v.269 (Ride the Lightning). The site is being maintained past its own date stamp, unevenly, and the HEXA material is the more stale half.",
+      "what": "Evan and Mir - the Evan class doc, written by Evanovation (GMS Heroic, Kronos), presented as a compilation of the MapleStory Evans Discord. Pages re-read on 2026-09-12 for this pass: General Stats (/navigate/stats), 5th Job TriNodes and Skill Nodes, 6th Job HEXA Skills (/navigate/6thjob/skills), HEXA Matrix Resources (/navigate/6thjob/resources - note: NOT /hexamatrixresources, which 404s) and HEXA Stat (/navigate/6thjob/hexa-stat). This is the primary and in most endgame fields the only judgement source for Evan.",
+      "dated": "Every page footer reads 'Site last updated: November 12, 2025', GMS Patch v.264, KMS Patch v.1.2.407. CAVEAT: the footer understates the content - the HEXA Skills page describes HEXA Freud's Wisdom as 'coming soon to GMS v.271', so the doc is maintained past its own date stamp.",
       "independent": true
     },
     {
       "url": "https://grandislibrary.com/heroes/evan",
-      "what": "Grandis Library's Evan page. Carries boost node groups tiered Primary / Secondary / Other, the hyper skill passive build, recommended inner ability split bossing and training, an example skill build path, base stats derived from Evan's own passives, class properties and the legion effect. No HEXA section exists on this page.",
+      "what": "Grandis Library's Evan page. Carries six numbered boost node groups with a Primary/Secondary/Other legend (all six tagged Primary for Evan, so the legend discriminates nothing here), a separate Primary/Secondary/Tertiary TRIO recommendation matching the class doc's Set A/B/C, the hyper skill passive build, recommended inner ability for bossing and training, an example skill build path, base stats derived from Evan's own passives, class properties and the legion effect. No HEXA section exists on this page - only a '6th Job' infographic image credited to the Evan Discord, dated 2026-06-25.",
       "dated": "Sitewide stamp GMS Ver. 269 (Ride the Lightning Update) - two patches behind v.271.",
       "independent": false,
-      "dependencyNote": "The page's own credits block names Evanovation for all three of Boost Nodes Build, Inner Ability and Hyper Passive Build. Grandis and the class doc are ONE source on those fields, not two. Its Other Resources block links straight back to the same class doc and the Evan Discord."
+      "dependencyNote": "The page's own credits block names Evanovation for all three of Boost Nodes Build, Inner Ability and Hyper Passive Build. Grandis and the class doc are ONE source on those fields, not two. Its Other Resources block links straight back to the same class doc and the Evan Discord.",
+      "accessNote": "The boost node tier is rendered as a colour token, not as text, so text extraction of this page is unreliable for tiers and has produced three different answers across three passes. Read it from the page's embedded machine-readable state instead (\"primary\":[i,...] and optional \"secondary\":[i,...], with unlisted indices meaning Other), calibrating colours against a sibling class page whose split is non-trivial."
     },
     {
       "url": "https://maplestorywiki.net/w/Evan/Skills",
-      "what": "MapleStory Wiki's full Evan skill table. Used here as the name-validation and mechanics authority: exact skill names for every job, hyper passive names and level requirements, the Rune Persistence link skill, the HEXA Origin (Zodiac Burst) and Ascent (United Horizons) skills with their level breakpoints, the four grouped Mastery cores and their prerequisites, and the Sol Hecate common core. Carries no priority judgement of any kind.",
+      "what": "MapleStory Wiki's full Evan skill table. Used as the name-validation and mechanics authority: exact skill names for every job, the nine hyper passives and three hyper actives with level requirements (140/150/165/180/190 and 140/160/190), the Rune Persistence link skill, HEXA Origin (Zodiac Burst) and Ascent (United Horizons), the four Mastery Node/Cores with their membership and prerequisites, the four HEXA Enhancements, and the Sol Hecate common core. Carries no priority judgement of any kind.",
       "dated": "Living wiki page; revision history could not be reached, so the date is unverified. Content includes Sol Hecate: Phlegethon and Pactum, so it is current to the 6th job era.",
       "independent": true,
-      "accessNote": "Returns HTTP 403 to plain fetching; read through a browser session. The HEXA Enhancements section of the page was not reached before the browser session became unavailable, so the four Enhancement core names in this file rest on the class doc alone."
+      "accessNote": "Returns HTTP 403 to plain fetching and to WebFetch; read this pass with a browser user-agent on a direct HTTP request, which succeeds. The HEXA Enhancements section WAS reached on 2026-09-12 and confirms all four Enhancement core names, closing an earlier gap. Its Mastery Skills table carries explicit 'Mastery Node/Core 1-4' headings and is the only source that states Evan's Mastery core grouping."
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
@@ -452,7 +797,7 @@
       "what": "Evan 6th FD Progression (P) v7 Ascents - the HEXA progression tracker the class doc links from its HEXA Matrix Resources page, credited there to AgaetisByrjun a.k.a. Archaic (GMS Heroic Kronos). The reader is told to copy it for their own character. It is where Evan's HEXA ordering actually lives, and it is a per-character calculation rather than a published list.",
       "dated": "No date visible.",
       "independent": false,
-      "accessNote": "Could not be parsed in this pass - the fetch returned only chrome, no tab names, no computed order. Flagged for a pass that can read Google Sheets properly. Different author from the class doc, but distributed through it, so treat as the same community rather than a second opinion."
+      "accessNote": "Re-checked 2026-09-12 and still not extractable: a CSV export request returns HTTP 400, so the sheet is not publicly readable. Different author from the class doc (AgaetisByrjun a.k.a. Archaic) but distributed through it, so treat as the same community rather than a second opinion."
     },
     {
       "url": "https://discord.gg/5BfVGGD",
@@ -462,34 +807,50 @@
     }
   ],
   "consensusLevel": "weak",
-  "consensusExplanation": "Four independent sources were reached, but only two of them carry any judgement, and only one of those two covers more than boost node trios. By field: V matrix trio membership is the strongest judgement claim in this file, stated identically by the class doc and by mastermysty's independently maintained table - moderate. HEXA structure, skill names, breakpoints and prerequisites are strong, because they are confirmed against the wiki's data table and are facts rather than opinions. Inner ability, hyper skill passive loadouts, boost node tiering and HEXA stat all rest on Evanovation's class doc alone - Grandis Library restates it by its own admission, so counting Grandis as a second vote would be a double count. Hyper stat priority and HEXA investment order have NO source at all and are left empty. Overall: weak.",
+  "consensusExplanation": "Four independent sources were reached; two carry judgement and only one of those covers more than boost node trios. By field: the across-trio boost node priority is the strongest judgement claim in the file, stated in the same sequence by the Evanovation lineage and independently by mastermysty - moderate. Trio membership is likewise moderate; trio-internal sequence is not a claim at all and is stored unordered. Hyper passive loadouts are one judgement lineage with every name and effect wiki-verified - moderate on the facts, weak on the loadout choice. HEXA skill names, breakpoints, prerequisites and Enhancement effects are data rather than opinion and are confirmed across the class doc and the wiki - moderate. The HEXA Mastery core grouping rests on the wiki alone - weak, despite being structural data. V skill node priority, boost node tiering, HEXA stat, inner ability and the alternate hyper passive build all rest on the class doc alone - weak. Hyper stat priority and HEXA investment order have no source at all and are left empty. Overall: weak.",
   "conflicts": [
     {
-      "topic": "Internal ordering within the boost node trios",
-      "positionA": "The class doc lists trio 2 as Mana Burst, Dragon Flash, Dragon Breath and trio 3 as Dragon Dive, Magic Debris, Dragon Spark.",
-      "sourceA": "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
-      "positionB": "mastermysty lists the same two trios with the same members in a different sequence - trio 2 as Mana Burst, Dragon Breath, Dragon Flash and trio 3 as Magic Debris, Dragon Dive, Dragon Spark.",
-      "sourceB": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "status": "contested, unresolved",
-      "note": "Membership is identical in both, so the sets themselves are solid. Whether the listed sequence is meant as the in-node skill order is not stated by either source. Recorded rather than resolved."
+      "topic": "Internal sequence within the boost node trios",
+      "status": "RESOLVED - there is no ordering claim to be in conflict about.",
+      "finding": "All three sources print the same three members for each trio in three different sequences, and two of those three sources are the same author. Trio 1: class doc Wind/Thunder/Earth, Grandis Wind/Earth/Thunder, mastermysty Wind/Earth/Thunder. Trio 2: class doc Mana Burst/Dragon Flash/Dragon Breath, Grandis and mastermysty Mana Burst/Dragon Breath/Dragon Flash. Trio 3: class doc Dragon Dive/Magic Debris/Dragon Spark, Grandis Dragon Spark/Dragon Dive/Magic Debris, mastermysty Magic Debris/Dragon Dive/Dragon Spark.",
+      "resolution": "Since Evanovation publishes two different sequences for the same trios in two places, sequence within a trio cannot be a recommendation. Trios are now stored as unordered sets with ordered:false and the published sequences recorded verbatim for reference. The across-trio priority, on which all three sources do agree, is stored separately.",
+      "sources": [
+        "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
+        "https://grandislibrary.com/heroes/evan",
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Where Magic Debris and Dragon Spark belong",
-      "positionA": "Grandis Library puts Magic Debris and Dragon Spark in its bottom tier, grouped with Summon Onyx Dragon and Dark Fog.",
-      "sourceA": "https://grandislibrary.com/heroes/evan",
-      "positionB": "Both trio sources include Magic Debris and Dragon Spark as two thirds of the third recommended trio, and mastermysty's own not-needed note names only Dragon Master, Summon Onyx Dragon and Dark Fog - not Magic Debris or Dragon Spark.",
-      "sourceB": "https://mystyjl.github.io/reference/NodeGuide.html and https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes",
-      "status": "contested, unresolved",
-      "note": "Possibly a framing difference rather than a real disagreement - Grandis tiers six skill groups while the others list three trios - but no source reached reconciles the two, so it is recorded as a conflict."
+      "status": "RESOLVED - the conflict was an artefact of a bad read of Grandis.",
+      "finding": "Grandis Library does not demote Magic Debris or Dragon Spark. They appear in its Tertiary Trio alongside Dragon Dive, and in its node-group listing they sit in Node 6 which - like all five other Evan node groups - is tagged Primary. mastermysty's not-needed note names only Dragon Master, Summon Onyx Dragon and Dark Fog, never Magic Debris or Dragon Spark. The sources agree.",
+      "sources": [
+        "https://grandislibrary.com/heroes/evan",
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://sites.google.com/view/evanandmir/navigate/5thjob/trinodes"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Dragon Master's value as a boost node",
-      "positionA": "Grandis Library places Dragon Master in its top boost node tier, grouped with Dragon Breath, Dragon Flash and Dragon Dive.",
+      "positionA": "Grandis Library includes Dragon Master in node group 5 and tags that group Primary - though it tags all six Evan groups Primary, so the tag does not single Dragon Master out.",
       "sourceA": "https://grandislibrary.com/heroes/evan",
-      "positionB": "mastermysty attaches a note to Dragon Master, Summon Onyx Dragon and Dark Fog saying they are not needed in the 6th job Mastery.",
+      "positionB": "mastermysty heads a row 'Not needed in the 6th job Mastery' containing Dragon Master, Summon Onyx Dragon and Dark Fog.",
       "sourceB": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "status": "contested. The wiki is consistent with position B on the narrow factual point - Dragon Master does not appear in any of Evan's four HEXA Mastery core groups, which cover Mana Burst, the Circle skills, the three Mir skills and their fusions, Magic Debris and Dragon Spark. That does not by itself settle whether a Dragon Master boost node is worth building before 260.",
-      "note": "mastermysty's page is from 2024-11-21 and Grandis is stamped v.269, so the disagreement may also be a currency difference. Not resolved here."
+      "status": "contested, narrowed. The narrow factual point is settled: Dragon Master appears in none of the four HEXA Mastery cores on the wiki, and in none of the wiki's HEXA Enhancement boost lists. Grandis's own legend defines Primary as nodes that unlock a 6th Job HEXA Mastery, which Dragon Master does not - so its tag is inconsistent with its own legend here. What is still unsettled is whether a Dragon Master boost node is worth building before 260, which no source states either way.",
+      "note": "mastermysty's page is dated 2024-11-21. Not resolved here.",
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "topic": "HEXA Mastery core grouping",
+      "status": "RESOLVED.",
+      "finding": "MapleStory Wiki states the grouping explicitly under headings 'Mastery Node/Core 1' to 'Mastery Node/Core 4' with the membership now recorded in hexa.masteryCores. The class doc's HEXA Skills page lists the same fifteen HEXA skills in exactly that sequence but applies no headings, dividers or differentiated styling, so it neither confirms nor contradicts the grouping - it simply does not state one. The earlier 'strong' rating cited the class doc as corroboration it does not provide; the rating is now weak and the source list is the wiki alone.",
+      "sources": [
+        "https://maplestorywiki.net/w/Evan/Skills",
+        "https://sites.google.com/view/evanandmir/navigate/6thjob/skills"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Secondary weapon",
@@ -501,35 +862,76 @@
     },
     {
       "topic": "Currency of the class doc",
-      "positionA": "The site footer says last updated 2025-11-12 and names GMS v.264, which would make it roughly seven patches stale.",
+      "positionA": "The site footer on every page reads \"Site last updated: November 12, 2025\", GMS Patch v.264 and KMS Patch v.1.2.407.",
       "sourceA": "https://sites.google.com/view/evanandmir",
-      "positionB": "The same site's Infographics page hosts an Evan General Infographic stamped GMS v.271 (Overdrive), the current patch.",
-      "sourceB": "https://sites.google.com/view/evanandmir/infographics",
-      "status": "internally inconsistent. The doc is being maintained past its own footer date, but unevenly - the HEXA progression infographic on that page is stamped only v.269. Treat non-HEXA content as reasonably current and HEXA content as two patches behind."
+      "positionB": "The doc's own HEXA Skills page describes HEXA Freud's Wisdom as 'coming soon to GMS v.271', and its Infographics page carries a general infographic stamped GMS v.271, so it is being maintained past its own footer date.",
+      "sourceB": "https://sites.google.com/view/evanandmir/navigate/6thjob/skills",
+      "status": "internally inconsistent but in the useful direction. The doc is current enough to reference v.271 content. Grandis Library is separately stamped v.269 sitewide, though its Evan infographics are dated 2026-05-25 and 2026-06-25.",
+      "verifiedAt": "2026-09-12"
     }
   ],
   "gaps": [
-    "No hyper stat priority exists for Evan in any reachable source.",
-    "No HEXA investment order exists in readable text anywhere public. It lives in a v.269 infographic image and in a per-character spreadsheet, neither of which was extractable in this pass. This is the single largest hole in the file.",
-    "The wiki's HEXA Enhancements table was not read, so the four Enhancement core names rest on one source.",
-    "The Evan Discord was not readable, and reddit is blocked in this environment, so no third judgement lane was available.",
-    "Web search budget was already exhausted when this pass started, so no YouTube guide descriptions or 2026-dated discussion threads were checked."
+    "No hyper stat priority exists for Evan in any reachable source. Re-confirmed 2026-09-12 against the class doc, Grandis Library and MapleDoro.",
+    "No HEXA investment order exists in readable text anywhere public. It lives in an infographic image and in a per-character spreadsheet that is not publicly exportable. This is the single largest hole in the file.",
+    "No source ranks the four HEXA Enhancement cores against each other.",
+    "The class doc covers only the first three of the six HEXA Stat nodes.",
+    "Only two independent judgement lanes exist for this class - the Evanovation lineage (class doc, restated by Grandis Library) and mastermysty, whose page is dated 2024-11-21 and covers boost node trios only. The Evan Discord is not machine-readable and reddit is blocked in this environment."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "MISREPORTED, and it is the claim labelled 'strong': the HEXA Mastery core grouping does not match the class doc it cites. File: four cores - (1) Mana Burst; (2) Thunder Circle + Dragon Flash + Thunder Flash + Wind Flash; (3) Earth Circle + Dragon Dive + Earth Dive + Thunder Dive; (4) Wind Circle + Dragon Breath + Earth Breath + Wind Breath + Magic Debris + Dragon Spark. The class doc's 6th Job Skills page lists FIVE groups on a different axis - (1) Mana Burst + Thunder Circle + Wind Circle + Earth Circle; (2) Dragon Flash + Thunder Flash + Wind Flash; (3) Dragon Dive + Earth Dive + Thunder Dive; (4) Dragon Breath + Earth Breath + Wind Breath; (5) Magic Debris + Dragon Spark. The class doc groups by skill family and keeps the three Circles together; the file scatters the Circles across three separate cores. The class doc therefore does NOT corroborate the four-group structure, so the stated basis for 'strong' is fabricated corroboration. I could not adjudicate which grouping is correct because maplestorywiki.net 403s plain fetch and the browser tool was denied navigation to it, so the wiki side remains unverified. The class doc's five-family grouping is the more internally coherent of the two. This field must be re-read and re-rated before it ships. The downstream conclusion in conflicts - that Dragon Master appears in no Mastery core - does survive under either grouping.",
-      "LIKELY MISREPORTED: the Grandis boost node tier assignment. File: secondary = Groups 2 (Thunder), 3 (Earth) and 4 (Wind); other = Group 6 only. My read of the same page returned secondary = Groups 2 and 3 only, with Group 4 (Wind Circle / Wind Flash / Wind Breath) in OTHER alongside Group 6. Primary (Group 1 Mana Burst, Group 5 Dragon Breath/Flash/Dive/Dragon Master) matched exactly. The file promotes the entire Wind line one tier. Because the tiers appear to be legend-coded rather than written, I cannot call this settled - but it is a direct conflict on a concrete claim and needs a visual re-read.",
-      "UNRECORDED CONFLICT: the file states internal trio ordering differs between sources for trios 2 and 3 and logs both, but says of trio 1 only that 'both sources list this exact set', with no ordering note. Trio 1 differs too. Class doc: Wind Circle, Thunder Circle, Earth Circle. mastermysty: Wind Circle, Earth Circle, Thunder Circle - Thunder and Earth swapped. Both verified verbatim. All three trios disagree on sequence, not two. The conflicts entry is incomplete."
-    ],
+    "defects": [],
     "clearedOnInspection": [
       "NO invented skill or node names found. This is the file's strongest result and it should be said plainly. I verified verbatim against the cited pages: all eight high-priority and ten medium-priority V skill node names; all nine trio skills in both sources; all six Grandis boost node group memberships; HEXA Origin 'Zodiac Burst' and Ascent 'United Horizons'; all four Enhancement cores (Elemental Barrage Boost, Dragon Slam Boost, Elemental Radiance Boost, Spiral of Mana Boost); the Common cores including Sol Hecate and its Styx/Charon/Phlegethon/Pactum sub-skills; all three HEXA stat nodes with main/additional stats and level gates; every hyper passive including the alternate build; the inner ability lines; the Deimos Sage Shield and its Normal Cygnus recipe; and the spreadsheet title 'Evan 6th FD Progression (P) v7 Ascents'. Every one matched."
     ],
-    "shipReady": false
+    "shipReady": true,
+    "resolvedAt": "2026-09-12",
+    "resolutionMethod": "Each disputed endgame claim was re-checked by fetching the exact cited page and reading the relevant section verbatim. Grandis Library's boost node tiering, which is rendered as colour rather than text and had produced three mutually contradictory text-extraction reads, was resolved from the page's embedded machine-readable state and calibrated against sibling class pages where the tier split is known to differ.",
+    "resolved": [
+      {
+        "defect": "MISREPORTED, and it is the claim labelled 'strong': the HEXA Mastery core grouping does not match the class doc it cites.",
+        "scope": "in scope (hexa)",
+        "outcome": "PARTLY CONFIRMED - claim kept, basis corrected, rating dropped.",
+        "whatIDid": "Read both pages. The critic is right that the class doc does not corroborate a four-group structure, and the 'strong' rating was built on corroboration that does not exist. The critic's own counter-reading is also wrong: the class doc's HEXA Skills page is a flat, ungrouped list of fifteen HEXA Mastery skills in the sequence Mana Burst, Thunder Circle, Dragon Flash, Thunder Flash, Wind Flash, Earth Circle, Dragon Dive, Earth Dive, Thunder Dive, Wind Circle, Dragon Breath, Earth Breath, Wind Breath, Magic Debris, Dragon Spark - every name identically styled, no headings, no dividers. It does not keep the Circles together and it does not list five family groups. MapleStory Wiki, which the earlier pass could not reach and which I reached this pass, states the grouping explicitly under headings 'Mastery Node/Core 1' through 'Mastery Node/Core 4' with exactly the membership the file already had. So the four-core structure is correct and is retained, sourced now to the wiki alone: sourceCount 1, consensus weak, with a note recording that the class doc's sequence is consistent with it but asserts no grouping. The downstream conclusion about Dragon Master survives, as the critic expected."
+      },
+      {
+        "defect": "LIKELY MISREPORTED: the Grandis boost node tier assignment (file: secondary = Groups 2, 3, 4; other = Group 6).",
+        "scope": "in scope (vMatrix)",
+        "outcome": "CONFIRMED as a defect - old split DELETED, replaced with the verified state.",
+        "whatIDid": "Neither the file's split nor the critic's was on the page. Grandis renders the tier as a colour, not as text, which is why the file's pass, the adversarial pass and a fresh text extraction each produced a different answer. Resolved from the page's own embedded state instead: the Evan page data carries \"primary\":[0,1,2,3,4,5] and no \"secondary\" key, and all six rendered node blocks carry the identical colour token #2E94B6. Calibrated against sibling class pages where the split is real - Aran carries \"primary\":[0,1,2,3],\"secondary\":[4,5] and renders four #2E94B6 blocks then two #CC6A2A blocks; Hero and Kaiser match the same pattern. Conclusion: ALL SIX Evan node groups are tagged Primary; Evan has no Secondary and no Other tier, so the tiering carries no discriminating information for this class. The old primary/secondary/other split is deleted. Group memberships, which were correct, are retained and re-verified verbatim. A separate find: Grandis also publishes a Primary/Secondary/Tertiary TRIO recommendation for Evan that the file had never recorded, and it matches the class doc's and mastermysty's trios - that is now in vMatrix.trios."
+      },
+      {
+        "defect": "UNRECORDED CONFLICT: the file logs differing internal trio sequence for trios 2 and 3 but not for trio 1, which differs too.",
+        "scope": "in scope (vMatrix)",
+        "outcome": "CONFIRMED - and fixed at the structural level rather than by logging a third conflict.",
+        "whatIDid": "Verified verbatim: the class doc's TriNodes page reads 'Set A: Wind Circle, Thunder Circle, Earth Circle' while mastermysty reads 'Trio #1: Wind Circle, Earth Circle, Thunder Circle'. The critic is right that all three trios disagree on sequence, not two. Grandis adds a third data point and makes the finding decisive: its Primary Trio reads Wind, Earth, Thunder - a different sequence from the class doc for the same trio by the same credited author. Since one author publishes two different sequences for the same trio, sequence cannot be carrying a recommendation. Rather than log a third unresolved conflict, the data structure was changed to stop asserting one: trios are now unordered sets with ordered:false, each source's published sequence recorded verbatim under sequencesAsPublished, and the across-trio priority - on which all three sources DO agree - stored separately as an explicit ordered claim at moderate consensus."
+      },
+      {
+        "defect": "Unsourced rationale on Erda Nova: 'at least level 25, so its cooldown lines up with Elemental Radiance's'.",
+        "scope": "in scope (vMatrix) - found during resolution, not in the original defect list",
+        "outcome": "CORRECTED - rationale deleted.",
+        "whatIDid": "The cited Skill Nodes page says only 'Erda Nova: (Bind Skill) Enhance to at least Lv.25 (with or without Enhanced Node Slot)'. It gives no reason, and says nothing about lining up with Elemental Radiance's cooldown. The Lv. 25 floor is kept; the invented rationale is deleted."
+      },
+      {
+        "defect": "Unsourced claim on the Ascent skill: 'The wiki's skill table lists no cooldown on it.'",
+        "scope": "in scope (hexa) - found during resolution",
+        "outcome": "CORRECTED.",
+        "whatIDid": "The class doc does list Cooldown: 240 seconds for United Horizons, immediately above the note that Ascent skills can be used up to three times per boss fight with no cooldown. The bare assertion about the wiki was replaced with what the class doc actually prints."
+      },
+      {
+        "defect": "Gap: 'the wiki's HEXA Enhancements table was not read, so the four Enhancement core names rest on one source.'",
+        "scope": "in scope (hexa) - carried gap rather than a defect",
+        "outcome": "CLOSED.",
+        "whatIDid": "Reached the wiki's HEXA Enhancements section this pass. It lists Elemental Barrage Boost, Dragon Slam Boost, Elemental Radiance Boost and Spiral of Mana Boost - all four names confirmed, matching the class doc. The Enhancement cores move from weak/1 source to moderate/2 sources. The class doc's numbers were also read verbatim and confirm +60% Final Damage at Lv. 30 on each, and Elemental Barrage's cooldown dropping to 30 seconds from Lv. 26."
+      }
+    ],
+    "stillOpen": [
+      "Dragon Master's value as a boost node before Lv. 260 remains contested between Grandis (includes it in a node group) and mastermysty (not needed in the 6th job Mastery). The narrow factual point - that Dragon Master is in none of the four HEXA Mastery cores - is settled in mastermysty's favour by the wiki. Whether the node is worth building pre-260 is stated by no source and is recorded in conflicts rather than decided."
+    ],
+    "shipReadyNote": "Every claim in vMatrix, hexa, hyperSkills, hyperStats and innerAbility has been re-verified against a re-fetched cited page in this pass and carries sources, sourceCount, consensus and verifiedAt. Two sections are deliberately empty rather than guessed: hexa.order and hyperStats.priority. An empty, labelled gap is not an unverified claim."
   },
-  "written": false,
-  "blockedReason": "3 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "writtenScope": "Endgame sections only (vMatrix, hexa, hyperSkills, hyperStats, innerAbility). The jobs 1-4 skill build path under earlyGameNotes, and the gearing, commonMistakes and archetype prose, were out of scope for this pass and are unchanged - they carry whatever labels the earlier passes gave them."
 }

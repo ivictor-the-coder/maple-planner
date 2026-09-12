@@ -25,120 +25,143 @@
     "notes": "NamuWiki's KMS page treats the class's own crit-rate union effect as combining with crit-rate legion picks specifically because of the Vicious Shot conversion (see gearingNotes)."
   },
   "vMatrix": {
-    "priority": [
+    "priority": null,
+    "priorityOrdered": false,
+    "priorityNote": "NO SOURCE RANKS MARKSMAN BOOST NODES AGAINST ONE ANOTHER, so no ranking is stored. An earlier version of this file shipped an ordered `priority` array; array position was doing work no source supports, and the array has been removed. Grandis Library's own trio block says in as many words 'Any combination of these skills are good'. What IS sourced is a two-band split (nodeBands below) and trio membership (trios below). Nothing in this section is ordered - treat every array here as a set.",
+    "nodeBands": [
       {
-        "node": "Snipe (boost node)",
-        "why": "Ranked in the top tier by both the Grandis Library node table and the class's own quick-guide infographic, and named as the first skill of the main trio by an outside cross-class trio reference. Snipe is the class's single-target damage skill and its Empowered/Ultimate follow-ups scale with it.",
-        "consensus": "moderate",
+        "band": "Primary",
+        "ordered": false,
+        "grandisDefinition": "Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used",
+        "nodes": [
+          { "node": 1, "skills": ["Snipe"] },
+          { "node": 2, "skills": ["Piercing Arrow"] },
+          { "node": 3, "skills": ["Bolt Burst", "Frostprey"] },
+          { "node": 4, "skills": ["Final Attack: Crossbow", "High Speed Shot"] }
+        ],
+        "why": "Read directly from the Grandis Library Marksman page: its boost-node data groups node indices 0-3 as `primary`, and the four Primary blocks render in the Primary colour. The page's own legend gives the rationale - a Primary node is one that unlocks a 6th Job HEXA Mastery and is frequently used. That is the same set as the four HEXA mastery cores recorded under hexa.nodeInventory.masteryCores, which is the one genuinely mechanical reason to favour these four.",
         "sources": [
-          "https://grandislibrary.com/explorers/marksman",
-          "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Piercing Arrow (boost node)",
-        "why": "Second top-tier node in the Grandis table and second skill of the main trio in both the class infographic and the independent trio reference.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/explorers/marksman",
-          "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Bolt Burst / Frostprey (boost node)",
-        "why": "Third slot of the main trio. The class infographic pairs Bolt Burst with Frostprey in one node; the independent trio reference lists Bolt Burst as the third main-trio skill. Grandis's own table places this pair one tier below Snipe and Piercing Arrow.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/explorers/marksman",
-          "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "High Speed Shot / Arrow Illusion, Final Attack: Crossbow (secondary boost nodes)",
-        "why": "Both the class infographic and the independent trio reference put High Speed Shot and Final Attack: Crossbow in the second trio. Grandis groups Final Attack: Crossbow with High Speed Shot as one node in its second tier.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/explorers/marksman",
-          "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Covering Fire (boost node)",
-        "why": "The class quick-guide infographic fills the third slot of the secondary trio with Covering Fire but marks it as not worth building. The independent trio reference also lists it as the third skill of the second trio, without comment. Grandis places Covering Fire in its lowest tier.",
-        "consensus": "weak",
-        "sources": [
-          "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://grandislibrary.com/explorers/marksman"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Split Shot (skill node)",
-        "why": "The class quick-guide infographic calls Split Shot the most important skill node for both bossing and levelling and marks it very high priority. The skill's own description supports why: while Split Shot is active, landing Full Burst Shot after Piercing Arrow, Snipe, either Empowered variant, Ultimate Piercing, Ultimate Snipe, HEXA High Speed Shot, Final Aim or Repeating Crossbow Cartridge causes the arrow to split for extra hits, so it multiplies the rest of the kit rather than adding damage on its own.",
-        "consensus": "weak",
+        "band": "Secondary",
+        "ordered": false,
+        "grandisDefinition": "Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used",
+        "nodes": [
+          { "node": 5, "skills": ["Covering Fire", "Swift Surge"] },
+          { "node": 6, "skills": ["Arrow Blow", "Arrow Illusion"] }
+        ],
+        "why": "Grandis groups node indices 4-5 as `secondary`. IMPORTANT: Secondary is NOT a discouragement. The page states 'Nodes categorized as Primary and Secondary are recommended to be upgraded'. The OTHER band - the one Grandis defines as 'do not need to be upgraded or has least priority' - is EMPTY for Marksman.",
         "sources": [
-          "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-          "https://maplestorywiki.net/w/Marksman/Skills"
-        ]
+          "https://grandislibrary.com/explorers/marksman"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
+    "nodeBandsNote": "These bands are a recommendation-vs-not split with a HEXA-mastery rationale, NOT a damage-priority ranking, and the band order above must not be read as one beyond 'Primary unlocks a HEXA Mastery, Secondary does not'. Both bands are recommended for upgrade by the source. A previous version of this file inverted the bands (calling Bolt Burst/Frostprey and Final Attack/High Speed Shot lower-tier, and Covering Fire 'lowest tier') and also treated the bands as a priority ordering; both errors are corrected here.",
     "trios": [
       {
         "role": "main / bossing",
+        "ordered": false,
         "skills": [
-          "Snipe",
-          "Piercing Arrow",
+          "Snipe (Grandis and the infographic write it Snipe/Empowered Snipe)",
+          "Piercing Arrow (written Piercing Arrow/Empowered Piercing Arrow)",
           "Bolt Burst (paired with Frostprey)"
         ],
-        "consensus": "moderate",
         "sources": [
+          "https://grandislibrary.com/explorers/marksman",
           "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
           "https://mystyjl.github.io/reference/NodeGuide.html"
         ],
-        "notes": "Two lanes that do not share an author agree on these three skills: the Marksman Discord's own quick-guide infographic and mastermysty's cross-class trio table. The infographic writes the first two as Snipe/Empowered Snipe and Piercing Arrow/Empowered Piercing Arrow, i.e. the boost node covers the Empowered versions too."
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "notes": "The first two URLs are ONE source family (Grandis's trio block and LoliFox's infographic both trace to the Marksman Discord) and they state the trio identically, down to the Empowered wording and the Bolt Burst/Frostprey pairing. mastermysty's cross-class table is the second family and lists the same three skills for its 'Bossing Mule' row. Grandis's accompanying note - 'Any combination of these skills are good' - is the reason no order is recorded inside the trio. mastermysty green-highlights the Snipe and Piercing Arrow cells but publishes no legend for that highlight, so it is not used here as a ranking."
       },
       {
         "role": "secondary",
+        "ordered": false,
         "skills": [
           "High Speed Shot (paired with Arrow Illusion)",
           "Final Attack: Crossbow",
           "Covering Fire"
         ],
-        "consensus": "moderate",
         "sources": [
+          "https://grandislibrary.com/explorers/marksman",
           "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
           "https://mystyjl.github.io/reference/NodeGuide.html"
         ],
-        "notes": "The two sources agree on the three skills. They disagree slightly on pairing: the infographic pairs High Speed Shot with Arrow Illusion, while Grandis's node table pairs High Speed Shot with Final Attack: Crossbow in one node and puts Covering Fire with Swift Surge in a lower tier."
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "notes": "Same three skills and the same High Speed Shot / Arrow Illusion pairing in Grandis's trio block and in the infographic; mastermysty's 'Trio #2' row lists the same three. A previous version of this file recorded a conflict between the infographic's pairings and 'Grandis's node table'. That conflict was an artefact of comparing two different structures on the same page: Grandis publishes BOTH a recommended-trio block (which matches the infographic exactly) and a separate node-tier table (which describes which boost nodes exist and how they are grouped in-game). They are not competing recommendations, and the conflict has been withdrawn.",
+        "caveat": "The infographic annotates Covering Fire '(Useless)'. Grandis's node table nevertheless files Covering Fire + Swift Surge under Secondary and says Primary and Secondary nodes are recommended to be upgraded. That is a genuine internal disagreement inside the Marksman Discord source family - see commonMistakes."
       }
     ],
+    "skillNodes": [
+      {
+        "node": "Split Shot",
+        "claim": "Highest-priority V skill node for Marksman, for both bossing and levelling.",
+        "why": "The quick-guide infographic states it verbatim: 'Split Shot is your most important skill for both Bossing and Leveling. Very High priority.' The skill's own wiki description explains the mechanism - while Split Shot is active, Full Burst Shot landed after Piercing Arrow, Snipe, either Empowered variant, Ultimate Piercing, Ultimate Snipe, HEXA High Speed Shot, Final Aim or Repeating Crossbow Cartridge splits for extra hits, so it multiplies the rest of the kit rather than adding damage of its own. NamuWiki's KMS page independently calls Split Shot (machine-translated 'Split Arrow') the skill 'which takes up most of the damage', and attributes a 20-30% damage loss at Suu to losing roughly half its uptime.",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
+          "https://maplestorywiki.net/w/Marksman/Skills",
+          "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "notes": "Two independent families judge Split Shot central (Marksman Discord infographic; NamuWiki KMS). maplestorywiki supplies the mechanism and no judgement, so it is not counted toward sourceCount."
+      }
+    ],
+    "skillNodesNotTranscribed": "The quick-guide infographic also carries an eight-icon skill-node priority chain under its 'Skill Nodes & Buff Sequence' heading, written as icons joined by '&' and '>'. The icons are legible but were NOT identified to a confidence that would justify writing skill names down, so the chain is not transcribed. Surface the image if a player asks for it.",
     "levelOrder": null,
-    "notes": "No public Marksman class document exists. Grandis Library's per-class pages normally carry a 'Class Doc' link; the Marksman page has none, and its credits attribute the inner ability, hyper passive and boost node fields to the Marksman Discord directly. So the Grandis page and the Grandis-hosted infographics are ONE source family, not two. The only genuinely outside corroboration found for trios is mastermysty's cross-class table, which self-reports a 2024-11-21 page date and 2024-05-14 data - that predates the v.269 boost-node regrouping (Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence the groupings changed). Treat the agreement on WHICH three skills matter as solid, and the exact node pairings as needing a re-check against the Discord. No source found states a node levelling order (which trio skill to push to 60 first)."
+    "levelOrderNote": "No source found states a boost-node levelling order (which trio skill to push to 60 first). Grandis states only the budgeting fact that 4 boost nodes total are needed to reach Master Level 60 for a trio's skills with Matrix Points used, and the constraint that nodes sharing a Main Skill cannot be equipped at once.",
+    "notes": "No public Marksman class document exists. Grandis Library's per-class pages normally carry a 'Class Doc' link; the Marksman page has none (re-verified 2026-09-12: its Other Resources block links only maplestorywiki, NamuWiki and the class Discord), and its credits attribute the inner ability, hyper passive and boost node fields to the Marksman Discord. So the Grandis page and the Grandis-hosted infographics are ONE source family, not two. The only outside corroboration found for trios is mastermysty's cross-class table, which self-reports a 2024-11-21 page date and 2024-05-14 trio data - predating the v.269 boost-node regrouping (Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle, direct evidence the groupings changed) - and which publishes no provenance for its trio selections. Treat the agreement on WHICH three skills matter as the solid part; treat the in-game node pairings as sourced only to the current Grandis page.",
+    "verifiedAt": "2026-09-12"
   },
   "hexa": {
     "order": [
       {
-        "step": "Open several different nodes at level 1 before deep-levelling any one of them",
-        "why": "Both of the class's published 6th-job charts begin with a run of level-1 entries (the fragment-efficient chart's first five entries are all Lv 1) before any entry asks for a higher target level.",
-        "consensus": "weak",
+        "step": "Open five different nodes at level 1 before deep-levelling any one of them",
+        "why": "Re-read from both charts at full resolution on 2026-09-12. Each chart's first five entries are labelled Lv 1 and sit on five visually distinct node icons; from the sixth entry onward the icons start repeating with higher target levels (Lv 4, Lv 2, Lv 6 ...). So the opening move on both charts is breadth, not depth.",
         "sources": [
           "https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-fragments.png",
           "https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-energy.png"
         ],
-        "caveat": "Read from the level labels on the charts, which are legible. The identity of each node icon was NOT resolved and is deliberately not recorded here."
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "caveat": "One source family (both charts are credited to the Marksman Discord), so sourceCount is 1 even though two images agree. The level labels are legible and were read directly; the identity of each node icon was NOT resolved and is deliberately not recorded."
       },
       {
-        "step": "HEXA Stat cores are activated part-way through the sequence, not at the start",
-        "why": "In the fragment-efficient chart the three HEXA Stat entries (labelled Stat 1, Stat 2, Stat 3) appear at roughly the 36th, 49th and 61st entries of a chart of about 170 entries - i.e. after a substantial block of skill, mastery and boost investment.",
-        "consensus": "weak",
+        "step": "On the FRAGMENTS-efficient chart, HEXA Stat cores are activated part-way through, not at the start",
+        "why": "Counted directly off the chart's 13-column grid, read left to right row by row: the entries labelled Stat 1, Stat 2 and Stat 3 are the 36th, 49th and 61st of about 170 entries - after a substantial block of skill, mastery and boost investment.",
         "sources": [
           "https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-fragments.png"
         ],
-        "caveat": "The Stat 1/2/3 labels are legible; the entry numbers assume the chart is read left to right, row by row, across its 13-column grid. Treat the positions as approximate."
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "caveat": "Scoped to the fragments chart only - see the next entry. Positions re-counted at full resolution on 2026-09-12 and found exact, not approximate."
+      },
+      {
+        "step": "The two charts DISAGREE about when to take the first HEXA Stat, and the difference is large",
+        "why": "The energy-efficient chart is a 9-column grid and places Stat 1 as its 8th entry, in the first row. The fragments-efficient chart places Stat 1 at entry 36. A player following the wrong chart for their server takes HEXA Stat roughly 28 steps early or late. GMS Heroic/Reboot players want the FRAGMENTS chart, because Sol Erda Fragments are the binding constraint there.",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-fragments.png",
+          "https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-energy.png"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "caveat": "Both charts are Marksman Discord products, so this is one family disagreeing with itself across two optimisation targets, not two sources disagreeing. Read directly from the Stat 1 labels on both images."
       }
     ],
     "nodeInventory": {
@@ -190,31 +213,55 @@
       "sources": [
         "https://maplestorywiki.net/w/Marksman/Skills"
       ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "inventoryNote": "This is a NAME INVENTORY, not a recommendation - it lists which HEXA cores exist for Marksman and says nothing about investment order, and the list is unordered. `consensus` is set to weak strictly by the source-count rule (one source), NOT because the names are doubtful: maplestorywiki is the authoritative transcription of the game's own skill data, it is the only source that needs to exist for a name list, and a prior adversarial pass checked every one of these names against it and cleared them. Treat a mismatch here as a naming/patch question, not as a contested recommendation.",
       "mechanicalNotes": [
         {
           "claim": "HEXA Piercing Arrow carries a passive that permanently enhances HEXA Snipe, and the bonus grows sharply with its level.",
           "why": "The skill's own passive effect line lists added damage to HEXA Snipe, Empowered Snipe and Ultimate Snipe, rising from a few percentage points at Lv. 1 to the 60-132 percentage point range at Lv. 30. That is a real coupling between two mastery nodes, which is the kind of thing an investment order gets built around - but no source found states what order to build them in, so none is recorded.",
           "sources": [
             "https://maplestorywiki.net/w/Marksman/Skills"
-          ]
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "notes": "Weak by the source-count rule only. This is a mechanical reading of the skill's own effect text on the authoritative wiki, not a guide's judgement, and it was cleared by a prior adversarial pass. No recommendation is derived from it."
         },
         {
           "claim": "HEXA Enhancement (boost) final damage rises linearly per level with jumps at levels 10, 20 and 30.",
           "why": "Stated on the wiki's Marksman HEXA Enhancements section. The two class skill cores also list their own breakpoint bonuses at Lv. 10/20/30 (Final Aim: Ignore DEF and Boss Damage; Fatal Trigger: Ignore DEF and Boss Damage).",
           "sources": [
             "https://maplestorywiki.net/w/Marksman/Skills"
-          ]
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "notes": "Weak by the source-count rule only - a mechanical reading of the wiki's own HEXA Enhancements table, not a guide's judgement. No recommendation is derived from it."
         }
       ]
     },
-    "notes": "THE PER-NODE HEXA ORDER FOR MARKSMAN IS PUBLISHED ONLY AS IMAGES AND IS NOT TRANSCRIBED HERE. Grandis Library hosts two Marksman 6th-job charts, credited to the Marksman Discord and last checked 2026-06-25: 'Fragments Efficient' (https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-fragments.png) and 'Energy Efficient' (https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-energy.png). Each is a grid of skill icons with a target level under each, giving a full upgrade-by-upgrade sequence. The level labels are readable; the individual node icons were not identified to a confidence level that would justify writing node names down, so no order is claimed. Surface the images to the user rather than a transcription. The fragment-efficient variant is the one that matters for GMS Heroic, where Sol Erda Fragments are the binding constraint. Nothing outside the Marksman Discord family publishes any Marksman HEXA order - there is no class doc, mapledoro's 6th-job section reads 'Coming soon', and the aggregator sites carry no Marksman-specific ordering."
+    "notes": "THE PER-NODE HEXA ORDER FOR MARKSMAN IS PUBLISHED ONLY AS IMAGES AND IS NOT TRANSCRIBED HERE. Grandis Library hosts two Marksman 6th-job charts, credited to the Marksman Discord and last checked 2026-06-25: 'Fragments Efficient' (https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-fragments.png, a 13-column grid of about 170 entries) and 'Energy Efficient' (https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-energy.png, a 9-column grid). Each entry is a node icon with a target level under it, giving a full upgrade-by-upgrade sequence. Both images were re-opened at full resolution on 2026-09-12: the level labels and the Stat 1/2/3 markers are legible and were read; the individual node icons were NOT identified to a confidence level that would justify writing node names down, so no per-node order is claimed. Surface the images to the user rather than a transcription. The fragment-efficient variant is the one that matters for GMS Heroic, where Sol Erda Fragments are the binding constraint. Nothing outside the Marksman Discord family publishes any Marksman HEXA order - there is no class doc, mapledoro's '6th job leveling order' section reads 'Coming soon' (re-verified 2026-09-12), and the aggregator sites carry no Marksman-specific ordering.",
+    "verifiedAt": "2026-09-12"
   },
   "hyperStats": {
     "priority": null,
-    "notes": "No source was found that states a Marksman hyper stat priority order. Grandis Library carries no hyper stat section for any class; the Marksman quick-guide infographic has no hyper stat block; mapledoro's Marksman page has none; and there is no Marksman class document. Nothing is recorded here rather than importing another class's list. The community's operative answer to hyper stat allocation is a per-character computation against a given boss rather than a fixed list - MathBro's hyper stat optimizer at https://brendonmay.github.io/hyperCalculator/ - which is a cross-class fact, not a Marksman-specific one. One Marksman-specific input to that calculation IS recorded, under gearingNotes: because of Vicious Shot, critical rate does not stop paying at 100%, so any optimizer or planner that hard-caps crit at 100% will under-rate the crit rate hyper stat for this class."
+    "priorityOrdered": false,
+    "notes": "No source was found that states a Marksman hyper stat priority order. Re-checked 2026-09-12: the Grandis Library Marksman page contains no hyper stat section (nor does its Bow Master page - the string does not occur on either); the Marksman quick-guide infographic has no hyper stat block; mapledoro's Marksman page has no hyper stat section; and there is no Marksman class document. Nothing is recorded here rather than importing another class's list. The community's operative answer to hyper stat allocation is a per-character computation against a given boss rather than a fixed list - MathBro's hyper stat optimizer at https://brendonmay.github.io/hyperCalculator/ - which is a cross-class fact, not a Marksman-specific one. One Marksman-specific input to that calculation IS recorded, under gearingNotes: because of Vicious Shot, critical rate does not stop paying at 100%, so any optimizer or planner that hard-caps crit at 100% will under-rate the crit rate hyper stat for this class.",
+    "sources": [
+      "https://grandislibrary.com/explorers/marksman",
+      "https://www.mapledoro.com/guides/character-guides/marksman",
+      "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png"
+    ],
+    "sourceCount": 0,
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12",
+    "sourcesNote": "The URLs above are the pages checked and found to carry NO hyper stat content. sourceCount is 0 because no source supports any claim here - there is no claim."
   },
   "hyperSkills": {
     "bossing": {
+      "ordered": false,
       "passives": [
         "Snipe - Extra Strike",
         "Snipe - Reinforce",
@@ -222,14 +269,17 @@
         "Sharp Eyes - Critical Chance",
         "Sharp Eyes - Guardbreak"
       ],
-      "consensus": "weak",
       "sources": [
         "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
         "https://grandislibrary.com/explorers/marksman"
       ],
-      "notes": "The infographic and the Grandis page table are the same source family (both credited to the Marksman Discord) and they agree. Grandis's bossing table lists Sharp Eyes - Guardbreak, Sharp Eyes - Critical Chance and the three Snipe lines, matching the infographic."
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "notes": "Both URLs re-read 2026-09-12 and they agree exactly. The infographic's Bossing block reads: Snipe - Extra Strike (Attacks +1), Snipe - Reinforce (Damage +20%), Snipe - Boss Rush (Boss Damage +10%), Sharp Eyes - Critical Chance (Critical Rate +5%), Sharp Eyes - Guardbreak (Ignore Defense +5%). The Grandis page's [For Bossing] list is the same five. They are ONE source family (both credited to the Marksman Discord), hence sourceCount 1 and consensus weak despite two URLs. This is a SET of five picks taken together, not a ranking - `ordered` is false and array position carries no meaning."
     },
     "training": {
+      "ordered": false,
       "passives": [
         "Piercing Arrow - Reinforce",
         "Piercing Arrow - Spread",
@@ -237,94 +287,132 @@
         "Snipe - Extra Strike",
         "Snipe - Reinforce OR Sharp Eyes - Critical Chance"
       ],
-      "consensus": "weak",
       "sources": [
         "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
         "https://grandislibrary.com/explorers/marksman"
       ],
-      "notes": "The infographic gives the fifth pick as a choice between Snipe - Reinforce and Sharp Eyes - Critical Chance. Grandis's training table lists the three Piercing Arrow lines plus Snipe - Extra Strike and Snipe - Reinforce."
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "notes": "Re-read 2026-09-12. The infographic's 'Leveling' block lists Piercing Arrow - Reinforce, Spread and Extra Strike, then Snipe - Extra Strike, then an explicit 'OR' between Snipe - Reinforce and Sharp Eyes - Critical Chance. The Grandis page's [For Training] list gives the three Piercing Arrow lines plus Snipe - Extra Strike and Snipe - Reinforce, i.e. it resolves the OR to Snipe - Reinforce rather than offering the choice. One source family; unordered set, not a ranking."
     },
     "actives": null,
-    "notes": "No source found states which hyper actives to take. The three available are Bullseye Shot, High Speed Shot and Epic Adventure (maplestorywiki). High Speed Shot doubles as a boost-node and HEXA mastery target, so it is unlikely to be optional in practice, but no source says so - left unclaimed."
+    "actives_notes": "No source found states which hyper actives to take. The three available are Bullseye Shot, High Speed Shot and Epic Adventure (maplestorywiki). High Speed Shot doubles as a boost-node and HEXA mastery target, so it is unlikely to be optional in practice, but no source says so - left unclaimed. Re-checked 2026-09-12: the Grandis page, the infographic and mapledoro all carry hyper PASSIVE content only and say nothing about actives.",
+    "notes": "Both builds trace to a single source family (the Marksman Discord, via Grandis Library and the LoliFox infographic). Nothing outside that family publishes a Marksman hyper passive build, so no hyper skill claim in this file can exceed 'weak'. The two picks that differ between Grandis and the infographic (the training fifth slot) are recorded as the infographic's OR rather than silently resolved.",
+    "verifiedAt": "2026-09-12"
   },
   "innerAbility": {
+    "linesOrdered": true,
     "lines": [
       {
         "slot": 1,
         "line": "Attack Speed +1 (Legendary)",
-        "why": "Stated as the first line by the class quick-guide infographic and listed first on the Grandis page. An independent cross-class source supports the shape of the recommendation: maplestorywiki's inner ability guide gives Attack Speed as the top-line rule for Explorer classes that do not have a Hurricane-type skill, and Marksman's skill list contains no such skill (unlike Bow Master, which has Hurricane and is steered toward Boss Damage instead).",
-        "consensus": "moderate",
+        "why": "The quick-guide infographic labels it '1st line: Attacks Speed +1' explicitly, and the Grandis page lists it first. The tier label 'Legendary' is not on the infographic; it comes from mapledoro, which tags the same line Legendary, and is consistent with maplestorywiki's statement that only the top line can reach Legendary.",
         "sources": [
           "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
           "https://grandislibrary.com/explorers/marksman",
+          "https://www.mapledoro.com/guides/character-guides/marksman",
           "https://maplestorywiki.net/w/Guide:Inner_Ability",
           "https://maplestorywiki.net/w/Marksman/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "rankConsensus": "weak",
+        "contested": true,
+        "verifiedAt": "2026-09-12",
+        "notes": "DOWNGRADED from moderate on re-check 2026-09-12. Only one family (the Marksman Discord, via Grandis and the infographic) states this for Marksman. mapledoro repeats the same three lines character-for-character and publishes no sourcing, so it cannot be counted as a second family. AND THE CROSS-CLASS RULE DOES NOT DISAMBIGUATE, contrary to what an earlier version of this file implied: maplestorywiki's Guide:Inner_Ability lists 'Attack Speed: for many Explorer classes which do not have a Hurricane-like skill' AND 'Boss Damage: for burst-focused classes' as parallel bullets. Marksman satisfies both tests at once - it has no Hurricane-like skill, and this file's own archetype line calls it a burst archer - so the guide supports either answer and cannot be cited for Attack Speed alone. That is probably also why NamuWiki's KMS page lands on Boss Damage and never discusses attack speed as a target line. The top slot is genuinely contested. See conflicts[0]."
       },
       {
         "slot": 2,
-        "line": "Critical Rate +20%",
-        "why": "Second line in the class infographic. NamuWiki's KMS page reaches the same conclusion by an independent route, citing the Vicious Shot conversion as the reason crit rate keeps paying for this class, and placing the line in the second or third slot.",
-        "consensus": "moderate",
+        "line": "Critical Rate +20% (Unique)",
+        "why": "Second line in the class infographic and second on the Grandis page; mapledoro tags the same line Unique. NamuWiki's KMS page reaches a compatible conclusion by an independent route: it calls crit rate a line that 'exerts a significant presence because it can convert critical probability into critical damage during the duration of Critical Reinforce' (Critical Reinforce is the KMS name for Vicious Shot), and says it is 'mainly used in the 2nd or 3rd row', moving to the 1st row only for players not investing heavily in abilities.",
         "sources": [
           "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
           "https://grandislibrary.com/explorers/marksman",
+          "https://www.mapledoro.com/guides/character-guides/marksman",
           "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "rankConsensus": "moderate",
+        "contested": false,
+        "verifiedAt": "2026-09-12",
+        "notes": "The strongest inner ability claim in this file: two independent families (Marksman Discord via Grandis; NamuWiki KMS) put Critical Rate +20% in the second slot, and NamuWiki gives a class-specific mechanical reason rather than repeating a generic preference."
       },
       {
         "slot": 3,
-        "line": "Boss Damage +10%",
-        "why": "Third line in the class infographic and third entry on the Grandis page.",
-        "consensus": "weak",
+        "line": "Boss Damage +10% (Epic)",
+        "why": "Third line in the class infographic ('3nd line: Boss Dmg +10%', sic) and third on the Grandis page; mapledoro tags the same line Epic.",
         "sources": [
           "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-          "https://grandislibrary.com/explorers/marksman"
-        ]
+          "https://grandislibrary.com/explorers/marksman",
+          "https://www.mapledoro.com/guides/character-guides/marksman"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "rankConsensus": "weak",
+        "contested": true,
+        "verifiedAt": "2026-09-12",
+        "notes": "One family states the slot. That boss damage is WORTH chasing at all is separately corroborated by NamuWiki, which calls Boss Damage (Legendary up to 20%) 'the most preferred ability among the legendary options' - but that is a claim for the FIRST slot at a higher cap, not the third at +10%, so it is recorded as a conflict rather than as support. See conflicts[0]."
       }
     ],
+    "linesNote": "Slot order here is genuinely sourced: the infographic numbers the lines 1st / 2nd / 3rd in print. That is a real ordering claim from one source family, not an artefact of array position. The per-slot `rankConsensus` field says how well-supported the SLOT is, separately from whether the line is worth chasing.",
     "training": null,
     "alternatives": [
       {
         "line": "Damage to enemies with an abnormal status (Unique, up to 8%)",
-        "why": "NamuWiki's KMS page ranks this second among the lines to chase, after boss damage.",
-        "consensus": "weak",
+        "why": "CORRECTED 2026-09-12. NamuWiki's KMS page says this line 'is no different from additional damage, but since it is less important than [crit rate], it is targeted in second place after [crit rate]'. The anchor is CRITICAL RATE, not boss damage - an earlier version of this file said 'after boss damage', which inverted the comparison the source actually makes.",
         "sources": [
           "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "notes": "Read in machine translation; the source renders crit rate as 'Big Chance' (from the Korean abbreviation for critical probability) and this line as 'lettuce dem'. KMS-only, no GMS source mentions it for Marksman. Note that the same line IS the Bow Master third bossing line on Grandis, so it is a plausible Explorer Archer pick, but no GMS source says so for Marksman."
       },
       {
         "line": "Meso obtained / item drop rate, and damage to normal monsters, on a separate training preset",
-        "why": "NamuWiki's KMS page describes keeping these on a hunting preset and swapping on reward maps. This matches the cross-class pattern in maplestorywiki's inner ability guide of running a distinct training preset.",
-        "consensus": "weak",
+        "why": "NamuWiki's KMS page describes exactly this: meso/drop is 'Ability for all characters ... After adding Ability Preset, you can put it in the hunting preset and switch in the reward map', and normal-monster damage was 'hired' for the hunting preset once Ability Presets existed. maplestorywiki's cross-class inner ability guide describes the same distinct-training-preset pattern.",
         "sources": [
           "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
           "https://maplestorywiki.net/w/Guide:Inner_Ability"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12",
+        "notes": "Re-verified against the NamuWiki ability section 2026-09-12. This is a cross-class pattern that happens to be stated on the Marksman page, not a Marksman-specific edge."
       }
     ],
-    "notes": "Grandis Library normally splits recommended inner ability into bossing and training and labels it by attack-speed-cap region; the Marksman page does not - it carries a single flat list of three lines. The line ORDER recorded above comes from the quick-guide infographic, which explicitly labels them 1st / 2nd / 3rd line. See conflicts for the GMS-vs-KMS disagreement on the top line."
+    "notes": "CORRECTED 2026-09-12. An earlier version of this file claimed Grandis Library 'normally splits recommended inner ability into bossing and training and labels it by attack-speed-cap region'. The bossing/training half is true - the Grandis inner-ability data carries an optional `name` field, used on the Bow Master page as 'For Bossing' / 'For Training', and the Marksman entry has no name and is a single flat list of three lines. The region / attack-speed-cap half was INVENTED: no such field exists in the data on either page. That invented convention was the only support for explaining the GMS-vs-KMS top-line disagreement as a regional artefact, and that explanation has been withdrawn from conflicts[0]. The line ORDER recorded above does have a real source: the quick-guide infographic prints them as 1st / 2nd / 3rd line. mapledoro splits the same three lines across 'Bossing' and 'Mobbing' columns with identical contents in both, which is how the tier labels (Legendary / Unique / Epic) were obtained.",
+    "verifiedAt": "2026-09-12"
   },
-  "gearingNotes": "CRITICAL RATE DOES NOT STOP PAYING AT 100%. Vicious Shot, the shared Explorer Archer 5th job skill, allows Critical Rate to exceed 100% and increases Critical Damage by a percentage of total Critical Rate - 21% of crit rate at Lv. 1 rising to 50% at Lv. 30 - for 30 seconds on a 120 second cooldown (the skill's own additional crit rate is excluded from the conversion). Source: maplestorywiki's Marksman skill page. NamuWiki's KMS page reaches the same practical conclusion independently, treating crit-rate inner ability lines and the crit-rate union/legion picks as valuable specifically because they convert during that window. Consequence for a planner: do not hard-cap crit rate at 100% for this class, and do not rank the crit rate hyper stat or the crit-rate inner ability line the way you would for a class that caps. NOTE THIS IS NOT A MARKSMAN-VS-BOW-MASTER DIFFERENCE - Vicious Shot is shared by both Explorer Archers, and the Bow Master entry records the same quirk. [sources: https://maplestorywiki.net/w/Marksman/Skills ; https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)]\n\nMARKSMAN ARRIVES AT HIGH CRIT RATE LARGELY ON ITS OWN. Grandis Library's base-stats-from-skills summary for Marksman totals +75% Critical Rate from passives and buffs before gear, links or legion. Contributing skills on the wiki include Critical Shot (+40% at max), Sharp Eyes (+20%, plus +5% from the Sharp Eyes - Critical Chance hyper passive), Bullseye Shot (+20% for its duration) and the class's own link skill (+15%, which the wiki notes applies multiplicatively). Snipe, Perfect Shot and Surge Bolt additionally carry +100% bonus critical rate on their own hits, and Evasion Boost makes attacks in the second after a successful dodge critical. This is why crit rate reads as a mid-priority line rather than a starving one - the payoff is the Vicious Shot conversion, not reaching the cap. [sources: https://grandislibrary.com/explorers/marksman ; https://maplestorywiki.net/w/Marksman/Skills]\n\nA CLASS MECHANIC THAT CHANGES SETUP RATHER THAN GEAR: Perfect Shot (KMS name True Sniping) is aimed with the mouse - the skill description instructs the player to attack with the left mouse button and cancel with the right. NamuWiki's KMS page calls this out as a mechanism unique to Marksman among all classes, in a game otherwise played from the keyboard during boss fights. Worth surfacing to a player coming from Bow Master. [sources: https://maplestorywiki.net/w/Marksman/Skills ; https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)]\n\nNO SOURCE WAS FOUND on Marksman weapon/secondary/emblem potential lines, IED targets, or boss damage targets. The Bow Master class document covers those for its class; Marksman has no equivalent document, so those fields are left unwritten rather than carried across from Bow Master.",
+  "gearingNotes": "CRITICAL RATE DOES NOT STOP PAYING AT 100%. Vicious Shot, the shared Explorer Archer 5th job skill, allows Critical Rate to exceed 100% and increases Critical Damage by a percentage of total Critical Rate - 21% of crit rate at Lv. 1 rising to 50% at Lv. 30 - for 30 seconds on a 120 second cooldown. CORRECTED 2026-09-12: an earlier version of this file glossed the wiki's exclusion clause as 'the skill's own additional crit rate is excluded from the conversion'. Vicious Shot grants no critical rate of its own. The wiki line reads 'The attack's additional Critical Rate is not applied', which means a skill's per-attack Bonus Critical Rate (the wiki prints 'Bonus Critical Rate: 100%' on a number of Marksman attacks) does not feed the conversion. The conversion therefore runs off the character's actual crit-rate stat - which strengthens the planner conclusion below, but by a different mechanism than the one previously written down. Source: maplestorywiki's Marksman skill page. NamuWiki's KMS page reaches the same practical conclusion independently, treating crit-rate inner ability lines and the crit-rate union/legion picks as valuable specifically because they convert during that window. Consequence for a planner: do not hard-cap crit rate at 100% for this class, and do not rank the crit rate hyper stat or the crit-rate inner ability line the way you would for a class that caps. NOTE THIS IS NOT A MARKSMAN-VS-BOW-MASTER DIFFERENCE - Vicious Shot is shared by both Explorer Archers, and the Bow Master entry records the same quirk. [sources: https://maplestorywiki.net/w/Marksman/Skills ; https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)]\n\nMARKSMAN ARRIVES AT HIGH CRIT RATE LARGELY ON ITS OWN. Grandis Library's base-stats-from-skills summary for Marksman totals +75% Critical Rate from passives and buffs before gear, links or legion. Contributing skills on the wiki include Critical Shot (+40% at max), Sharp Eyes (+20%, plus +5% from the Sharp Eyes - Critical Chance hyper passive), Bullseye Shot (+20% for its duration) and the class's own link skill (+15%, which the wiki notes applies multiplicatively). Snipe, Perfect Shot and Surge Bolt additionally carry +100% bonus critical rate on their own hits, and Evasion Boost makes attacks in the second after a successful dodge critical. This is why crit rate reads as a mid-priority line rather than a starving one - the payoff is the Vicious Shot conversion, not reaching the cap. [sources: https://grandislibrary.com/explorers/marksman ; https://maplestorywiki.net/w/Marksman/Skills]\n\nA CLASS MECHANIC THAT CHANGES SETUP RATHER THAN GEAR: Perfect Shot (KMS name True Sniping) is aimed with the mouse - the skill description instructs the player to attack with the left mouse button and cancel with the right. NamuWiki's KMS page calls this out as a mechanism unique to Marksman among all classes, in a game otherwise played from the keyboard during boss fights. Worth surfacing to a player coming from Bow Master. [sources: https://maplestorywiki.net/w/Marksman/Skills ; https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)]\n\nNO SOURCE WAS FOUND on Marksman weapon/secondary/emblem potential lines, IED targets, or boss damage targets. The Bow Master class document covers those for its class; Marksman has no equivalent document, so those fields are left unwritten rather than carried across from Bow Master.",
   "commonMistakes": [
     {
       "mistake": "Firing the big burst skills without Split Shot running.",
-      "why": "Split Shot's own description makes Full Burst Shot split into extra arrows only while Split Shot is active, and the list of skills it triggers off includes Final Aim (the Origin skill) and Repeating Crossbow Cartridge. NamuWiki's KMS page states the damage difference with and without Split Shot is large even for those burst skills, and the class quick-guide infographic independently flags Split Shot as the highest-priority skill node for both bossing and levelling.",
-      "consensus": "moderate",
+      "why": "Split Shot's own description makes Full Burst Shot split into extra arrows only while Split Shot is active, and the list of skills it triggers off includes Final Aim (the Origin skill) and Repeating Crossbow Cartridge. NamuWiki's KMS page calls Split Shot the skill 'which takes up most of the damage' and attributes a 20-30% overall damage loss at Suu to losing roughly half its uptime; the class quick-guide infographic independently flags Split Shot as the highest-priority skill node for both bossing and levelling. (Wording tightened 2026-09-12: the earlier phrasing said NamuWiki states the difference is large 'even for those burst skills', which is more specific than what the page says.)",
       "sources": [
         "https://maplestorywiki.net/w/Marksman/Skills",
         "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
         "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png"
-      ]
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Sinking nodestone rolls into Covering Fire.",
-      "why": "The class quick-guide infographic lists Covering Fire only as the filler third slot of the secondary trio and marks it as not worth building; Grandis's node table places it in its lowest tier.",
-      "consensus": "weak",
+      "why": "CORRECTED 2026-09-12. The class quick-guide infographic lists Covering Fire as the third slot of the secondary trio and annotates it '(Useless)', which does support the mistake. The Grandis citation that used to sit beside it did NOT: Grandis files Covering Fire + Swift Surge under SECONDARY, and its legend says 'Nodes categorized as Primary and Secondary are recommended to be upgraded'. Grandis's OTHER band - 'do not need to be upgraded or has least priority' - is empty for Marksman. So the Grandis page contradicts this mistake rather than supporting it, and is now recorded as a counter-source.",
       "sources": [
-        "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
+        "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png"
+      ],
+      "counterSources": [
         "https://grandislibrary.com/explorers/marksman"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "notes": "This is an internal disagreement inside one source family - LoliFox's infographic calls Covering Fire useless while the Grandis page, also credited to the Marksman Discord, recommends upgrading it. Present it as a judgement call, not as settled advice. mastermysty lists Covering Fire in Trio #2 without comment and so is silent either way."
     }
   ],
   "differencesFromBowMaster": [
@@ -337,7 +425,7 @@
     },
     {
       "claim": "Different inner ability top line.",
-      "detail": "Marksman's own recommendation puts Attack Speed +1 first; the Bow Master entry in this dataset records Boss Damage +20% first. maplestorywiki's cross-class inner ability guide gives the rule that predicts the split - Attack Speed for Explorer classes without a Hurricane-type skill, Boss Damage for burst-focused classes. Bow Master has Hurricane; Marksman does not.",
+      "detail": "Marksman's own recommendation puts Attack Speed +1 first; the Bow Master entry in this dataset records Boss Damage +20% first. maplestorywiki's cross-class inner ability guide lists both rules as parallel bullets - 'Attack Speed: for many Explorer classes which do not have a Hurricane-like skill' and 'Boss Damage: for burst-focused classes'. Bow Master has Hurricane, so only the Boss Damage bullet applies to it and the guide is decisive there. Marksman satisfies BOTH bullets (no Hurricane-like skill, but burst-focused), so the guide does not decide the Marksman case - corrected 2026-09-12, an earlier version of this file presented the rule as predicting the split cleanly.",
       "sources": [
         "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
         "https://maplestorywiki.net/w/Guide:Inner_Ability",
@@ -402,14 +490,14 @@
   "sources": [
     {
       "url": "https://grandislibrary.com/explorers/marksman",
-      "what": "Grandis Library Marksman class page. Boost node tiering (Primary/Secondary/Other, as six two-skill nodes), hyper skill passive build split training/bossing, recommended inner ability (a flat three-line list, unusually with no bossing/training or region split), base stats from skills, link and legion. No HEXA section in the page body. Its Other Resources block links only maplestorywiki, NamuWiki and the Marksman Discord - there is NO Class Doc link, which is the reliable tell that no public Marksman document exists.",
+      "what": "Grandis Library Marksman class page. Re-read 2026-09-12. Carries: a recommended-TRIO block (Primary Trio = Snipe/Empowered Snipe, Piercing Arrow/Empowered Piercing Arrow, Bolt Burst/Frostprey; Secondary Trio = High Speed Shot / Arrow Illusion, Final Attack: Crossbow, Covering Fire; note 'Any combination of these skills are good'); a SEPARATE six-node boost-node table - node 1 Snipe alone and node 2 Piercing Arrow alone are SINGLE-skill, only nodes 3-6 pair two skills - banded Primary (nodes 1-4) / Secondary (nodes 5-6) with the Other band EMPTY; hyper skill passive build split [For Training] / [For Bossing]; recommended inner ability as a flat three-line list with no name label (the schema's optional name field is what produces 'For Bossing' / 'For Training' on other class pages, e.g. Bow Master - there is no region or attack-speed-cap field anywhere); base stats from skills; link and legion. NO hyper stat section. No HEXA section in the page body. Its Other Resources block links only maplestorywiki, NamuWiki and the Marksman Discord - there is NO Class Doc link, which is the reliable tell that no public Marksman document exists.",
       "dated": "Site footer stamp GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
       "independent": false,
       "note": "Credits block reads: skill icons and animations by Ikasuu; inner ability, hyper passive build and boost node build from the Marksman Discord. Same source family as the infographics below."
     },
     {
       "url": "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-      "what": "'Marksman Quick Guide' infographic by LoliFox, hosted by Grandis Library. Fully legible. Gives hyper skill passives split bossing/levelling, inner ability as an explicitly numbered 1st/2nd/3rd line list, main and secondary boost node trios, and the statement that Split Shot is the highest-priority skill node for both bossing and levelling. Points readers to the Marksman Discord for 6th job information.",
+      "what": "'Marksman Quick Guide' infographic by LoliFox, hosted by Grandis Library. Re-opened and read at full resolution 2026-09-12; fully legible. Gives hyper skill passives split Bossing/Leveling (with an explicit OR on the fifth Leveling pick), inner ability as an explicitly numbered 1st/2nd/3rd line list, Main and Secondary boost node trios identical to the trio block on the Grandis page (including the '(Useless)' annotation on Covering Fire), and the statement 'Split Shot is your most important skill for both Bossing and Leveling. Very High priority.' It also carries an eight-icon skill-node priority chain and a nine-step buff sequence, both icon-only; neither was identified and neither is transcribed in this file. Points readers to the Marksman Discord for 6th job information.",
       "dated": "2026-05-15 (Grandis records this as the last-checked date)",
       "independent": false,
       "note": "Same Marksman Discord family as the Grandis page."
@@ -435,9 +523,10 @@
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. Gives Marksman's bossing trio as Snipe, Piercing Arrow, Bolt Burst and a second trio of High Speed Shot, Final Attack, Covering Fire. Written outside the class-doc / Grandis lineage and backed by the author's own trio-probability testing, so it is a genuine second opinion on trios.",
-      "dated": "Page self-reports 2024-11-21; the underlying trio data is dated 2024-05-14 - PRE-dates the v.269 boost node regrouping",
-      "independent": true
+      "what": "mastermysty's cross-class boost node trio reference. Gives Marksman's 'Bossing Mule' trio as Snipe, Piercing Arrow, Bolt Burst and a 'Trio #2' of High Speed Shot, Final Attack, Covering Fire. Written outside the class-doc / Grandis lineage, so it is a second publisher.",
+      "dated": "Page self-reports 2024-11-21; the linked trio-chance data is dated 2024-05-14 - PRE-dates the v.269 boost node regrouping",
+      "independent": true,
+      "note": "CHARACTERISATION CORRECTED 2026-09-12. This file previously described the page as 'backed by the author's own trio-probability testing, so it is a genuine second opinion on trios'. The only methodology the page states is a simulation of the odds of FINDING all trios within 200 nodes (10,000 tests per class, May 14th 2024) - that is testing about node-drop probability, not about which skills belong in a trio. The page states no provenance at all for its trio SELECTIONS and asks readers to DM corrections, so its lists may well descend from the same class Discords. It is still counted as a second source (different author, different site, published independently), but the 'genuine second opinion' framing overstated it. The page also green-highlights the Snipe and Piercing Arrow cells in the Marksman row; there is no legend for that highlight anywhere on the page, so it is not used as a ranking."
     },
     {
       "url": "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
@@ -460,10 +549,10 @@
     },
     {
       "url": "https://www.mapledoro.com/guides/character-guides/marksman",
-      "what": "MapleDoro Marksman page. Its 6th job leveling order section reads 'Coming soon' and it has no boost node or hyper stat content. Its inner ability recommendation is character-for-character identical to the Grandis / Marksman Discord list (Attack Speed +1 / Crit Rate +20% / Boss Damage +10%), so it corroborates nothing.",
+      "what": "MapleDoro Marksman page. Re-read 2026-09-12. Its '6th job leveling order' and 'Recommended link skills' sections both read 'Coming soon'; it has no boost node, hyper skill or hyper stat content at all. Its inner ability section gives two columns, Bossing and Mobbing, whose contents are IDENTICAL to each other and character-for-character identical to the Grandis / Marksman Discord list: Legendary Attack Speed +1, Unique Crit Rate +20%, Epic Boss Damage +10%.",
       "dated": "No date or maintainer published",
       "independent": false,
-      "note": "Listed so it is explicitly ruled out rather than rediscovered later and miscounted as a third source."
+      "note": "Listed so it is explicitly ruled out rather than rediscovered later and miscounted as a third source. A contest pass claimed this page lists only two lines and omits Boss Damage +10%; that was checked on 2026-09-12 and is wrong - all three lines are present in both columns. The one thing it does add is the tier of each line (Legendary / Unique / Epic), which the infographic does not print, so it is cited alongside the infographic for the tier labels only."
     },
     {
       "url": "https://brendonmay.github.io/hyperCalculator/",
@@ -481,33 +570,126 @@
       "positionB": "Boss Damage (Legendary, up to 20%) is the most preferred Legendary top line; Critical Rate belongs in the second or third line and moves up to the first line only if the player is not investing heavily in abilities. Attack speed is not discussed as a target line at all.",
       "sourceB": "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC) (KMS)",
       "status": "contested - not resolved",
-      "note": "Plausibly a region difference rather than a genuine disagreement: attack speed caps and the gear that reaches them differ between GMS and KMS, and Grandis's own convention on other classes is to label inner ability recommendations by attack-speed-cap region. The Marksman page does not carry that label. Do not present either as settled without the Marksman Discord confirming which applies to GMS v.271."
+      "note": "CORRECTED 2026-09-12. This note previously explained the disagreement away as 'plausibly a region difference', on the grounds that Grandis labels inner ability recommendations by attack-speed-cap region and the Marksman page omits that label. There is no such labelling convention - the Grandis inner-ability data has an optional `name` field used only for 'For Bossing' / 'For Training' (verified on the Bow Master page), and no region or attack-speed field exists on either page. With that support removed, the region hypothesis is a bare guess and is retained only as such. A GMS-vs-KMS attack-speed-cap difference remains a plausible cause, but nothing in either source says so. Do not present either position as settled without the Marksman Discord confirming which applies to GMS v.271.",
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Composition of the secondary boost node trio",
-      "positionA": "High Speed Shot paired with Arrow Illusion; Final Attack: Crossbow; Covering Fire (marked not worth building).",
-      "sourceA": "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png",
-      "positionB": "Grandis's own node table pairs Final Attack: Crossbow with High Speed Shot in a single node and puts Covering Fire with Swift Surge in its lowest tier - so the pairings differ from the infographic even within the same source family.",
-      "sourceB": "https://grandislibrary.com/explorers/marksman",
-      "status": "contested - minor, likely a v.269 regrouping artefact",
-      "note": "Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle site-wide, which is evidence that node groupings changed at v.269. The infographic is dated 2026-05-15 and the page is stamped v.269. Record the skills; treat the pairings as unverified."
+      "status": "WITHDRAWN 2026-09-12 - not a conflict",
+      "note": "This entry compared the infographic's Secondary Trio against the Grandis page's boost-node table and read the difference as a disagreement. It is not one. The Grandis page publishes BOTH structures: a recommended-trio block, which states the Secondary Trio as High Speed Shot / Arrow Illusion, Final Attack: Crossbow, Covering Fire - identical to the infographic, pairing included - and a separate table of the six boost nodes as the game actually groups them, in which Final Attack: Crossbow and High Speed Shot share node 4 and Covering Fire shares node 5 with Swift Surge. One is a recommendation, the other is an inventory of what exists. Both were re-read on 2026-09-12 and they are consistent. The real residual disagreement inside this source family is about Covering Fire's WORTH, not the trio's composition, and it is recorded on vMatrix.trios[1].caveat and commonMistakes[1]."
     }
   ],
   "gaps": [
-    "No hyper stat priority exists for Marksman in any public source.",
-    "The HEXA per-node investment order exists only as two images and was deliberately not transcribed - see hexa.notes.",
+    "No hyper stat priority exists for Marksman in any public source. Re-confirmed 2026-09-12 against Grandis (no hyper stat section on the Marksman or Bow Master page), the quick-guide infographic, and mapledoro.",
+    "No boost node PRIORITY ORDER exists in any public source. Grandis gives an unordered two-band split and says 'Any combination of these skills are good'; nothing ranks nodes against each other. This file therefore ships no ordered boost-node array.",
+    "The HEXA per-node investment order exists only as two images and was deliberately not transcribed - see hexa.notes. The images' level labels and Stat markers WERE read on 2026-09-12; the node icons were not identified.",
+    "The infographic's eight-icon skill-node priority chain was not identified and is not transcribed - see vMatrix.skillNodesNotTranscribed.",
     "No boost node LEVELLING order (which trio skill to push to 60 first) was found in any source.",
     "No WSE / potential line / IED target / boss damage target guidance was found.",
-    "No hyper active skill recommendation was found.",
+    "No hyper active skill recommendation was found. Re-confirmed 2026-09-12.",
     "reddit.com is blocked in this environment, so r/Maplestory Marksman threads were not examined.",
-    "The Marksman Discord was not read. It is the upstream of everything in this file and the only place the HEXA order and post-v.269 node groupings are discussed."
+    "The Marksman Discord was not read. It is the upstream of everything in this file and the only place the HEXA order and post-v.269 node groupings are discussed.",
+    "Every endgame recommendation in this file traces to at most two independent families (the Marksman Discord, and NamuWiki KMS or mastermysty depending on the topic). NOTHING for Marksman reaches three, so no endgame claim in this file is labelled 'strong'."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
+    "resolutionPass": {
+      "ranAt": "2026-09-12",
+      "scope": "vMatrix, hexa, hyperSkills, hyperStats, innerAbility only. Every cited page was re-opened and the disputed claim re-read against it. No new sources were sought.",
+      "sourcesReopened": [
+        "https://grandislibrary.com/explorers/marksman - fetched raw and read from the page's own embedded data, not a markdown conversion (a converted read of this page mis-assigned the node bands, so the raw data was used)",
+        "https://grandislibrary.com/explorers/bowmaster - raw, to check the inner-ability schema's name field",
+        "https://grandislibrary.com/class-infographic/marksman/marksman-overview.png - downloaded and read at full resolution; fully legible",
+        "https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-fragments.png - downloaded, read, and rows cropped and magnified",
+        "https://grandislibrary.com/class-infographic/marksman/marksman-6th-job-energy.png - same",
+        "https://mystyjl.github.io/reference/NodeGuide.html - raw HTML, including its CSS, to check what the green highlight means",
+        "https://www.mapledoro.com/guides/character-guides/marksman - raw HTML",
+        "https://en.namu.wiki/w/%EC%8B%A0%EA%B6%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC) - raw HTML, ability and union sections read in machine translation",
+        "https://maplestorywiki.net/w/Marksman/Skills - raw HTML",
+        "https://maplestorywiki.net/w/Guide:Inner_Ability - raw HTML"
+      ],
+      "structuralChange": "vMatrix.priority was an ORDERED array of six node entries. No source ranks Marksman boost nodes - Grandis's own trio block says 'Any combination of these skills are good' - so the array asserted a ranking by its shape alone. It has been replaced by vMatrix.nodeBands (two unordered, sourced bands) plus vMatrix.trios and vMatrix.skillNodes, and vMatrix.priority is now null with priorityOrdered:false. hyperSkills.bossing/.training also carry ordered:false, because those five picks are a set taken together, not a ranking."
+    },
+    "resolved": [
+      {
+        "defect": "THE BOOST NODE TIERS ARE REPORTED BACKWARDS (nodes 1-4 Primary, 5-6 Secondary, Other empty).",
+        "verdict": "CONFIRMED - the critic was right.",
+        "evidence": "The Grandis page's embedded boost-node data reads \"primary\":[0,1,2,3],\"secondary\":[4,5] with no \"other\" key, and the rendered Node 1-4 blocks carry the Primary colour while Node 5-6 carry the Secondary colour. Node contents in index order: Snipe; Piercing Arrow; Bolt Burst + Frostprey; Final Attack: Crossbow + High Speed Shot; Covering Fire + Swift Surge; Arrow Blow + Arrow Illusion.",
+        "action": "CORRECTED. Every inverted statement was removed with the priority array itself. The correct bands are now stated once, in vMatrix.nodeBands, with the node contents spelled out. Propagated fixes to trios[1].notes, commonMistakes[1], conflicts[1] and sources[0]."
+      },
+      {
+        "defect": "GRANDIS'S TIERS ARE NOT A DAMAGE-PRIORITY RANKING, and the file treated them as one; the HEXA-mastery rationale was missed.",
+        "verdict": "CONFIRMED.",
+        "evidence": "Boost Node Legend, read verbatim: 'Each Boost Node provides a %Final Damage increase to the skills included in the node. Nodes categorized as Primary and Secondary are recommended to be upgraded'; PRIMARY = 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used'; SECONDARY = 'Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used'; OTHER = 'do not need to be upgraded or has least priority'.",
+        "action": "CORRECTED. The legend definitions are now quoted on each band, vMatrix.nodeBandsNote states explicitly that the bands are not a damage ranking, and the Primary band's `why` records the missed rationale - Grandis's Primary set is exactly the four nodes that gate the four HEXA mastery cores listed in hexa.nodeInventory."
+      },
+      {
+        "defect": "commonMistakes[1] cites the Grandis page as supporting 'don't sink rolls into Covering Fire', but Grandis recommends upgrading it.",
+        "verdict": "CONFIRMED - a citation inversion.",
+        "evidence": "Covering Fire + Swift Surge is node 5, in the Secondary band, and Grandis says Primary and Secondary are both recommended to be upgraded. Separately, the infographic - which the critic could not read but which was read at full resolution in this pass - does annotate Covering Fire '(Useless)' in its Secondary Trio, so that half of the citation holds.",
+        "action": "CORRECTED. The Grandis URL moved from `sources` to a new `counterSources` field on that entry, sourceCount dropped to 1, and the internal disagreement inside the Marksman Discord family is now stated outright rather than laundered into agreement. Mirrored on vMatrix.trios[1].caveat."
+      },
+      {
+        "defect": "innerAbility.notes invented a Grandis convention of labelling inner ability by attack-speed-cap region, and conflicts[0] leaned on that invention.",
+        "verdict": "CONFIRMED.",
+        "evidence": "The Bow Master page's inner-ability data reads [{\"name\":\"For Bossing\",...},{\"name\":\"For Training\",...}]; the Marksman page's reads [{\"abilities\":[...]}] with no name. There is no region or attack-speed field on either page.",
+        "action": "CORRECTED. innerAbility.notes now separates the true half (bossing/training split exists via an optional name field; Marksman's entry has none) from the invented half, and conflicts[0].note withdraws the 'likely a region artefact' explanation, keeping the region hypothesis only as an explicitly unsupported guess."
+      },
+      {
+        "defect": "innerAbility.alternatives[0] said NamuWiki ranks abnormal-status damage second 'after boss damage'; the anchor is crit rate.",
+        "verdict": "CONFIRMED.",
+        "evidence": "NamuWiki ability section, machine translation: 'Increases damage when attacking enemies with status ailments (Unique up to 8%) ... since it is less important than [crit rate], it is targeted in second place after [crit rate]'. The translation renders crit rate from its Korean abbreviation, which is what made the sentence easy to misread.",
+        "action": "CORRECTED to name crit rate as the anchor, with the misreading recorded so it is not reintroduced."
+      },
+      {
+        "defect": "gearingNotes mis-glossed the Vicious Shot exclusion clause as excluding the skill's own crit rate.",
+        "verdict": "CONFIRMED.",
+        "evidence": "maplestorywiki's Vicious Shot entry grants no Critical Rate at any level - only 'Allows Critical Rate to exceed 100% and Critical Damage to increase by 21%[Lv1] to 50%[Lv30] of Critical Rate. The attack's additional Critical Rate is not applied.' The excluded quantity is per-attack Bonus Critical Rate; the page prints 'Bonus Critical Rate: 100%' on a number of Marksman attacks.",
+        "action": "CORRECTED in gearingNotes. The planner conclusion (do not hard-cap crit at 100% for this class, which feeds hyperStats.notes) is unchanged and in fact strengthened - the conversion runs off the character's actual crit-rate stat."
+      },
+      {
+        "defect": "sources[9] claims MapleDoro's inner ability list is character-for-character identical to the Grandis list; the critic said MapleDoro lists only two lines and no Boss Damage.",
+        "verdict": "REJECTED - the critic was wrong; the original claim was right.",
+        "evidence": "MapleDoro's inner ability section, re-read 2026-09-12, has two columns (Bossing and Mobbing) whose contents are identical to each other and to Grandis: Legendary Attack Speed +1, Unique Crit Rate +20%, Epic Boss Damage +10%.",
+        "action": "CONFIRMED and enriched. The sources entry now records the Bossing/Mobbing split and the per-line tiers, and notes the failed refutation so the point is not re-opened. The tier labels are the one thing MapleDoro adds, so it is now cited alongside the infographic for those and nothing else."
+      },
+      {
+        "defect": "sources[4] overstates mystyjl as 'backed by the author's own trio-probability testing, so it is a genuine second opinion on trios'.",
+        "verdict": "CONFIRMED.",
+        "evidence": "The page's only stated methodology is a link titled '200 nodes: chance to find all trios. 10000 tests per class(May 14th, 2024)' - probability of FINDING trios, not of selecting them. The page header reads 'If something is wrong feel free to dm me on discord'. No provenance is given for the trio lists. Its green cell highlight (on Snipe and Piercing Arrow in the Marksman row) resolves in the page CSS to nothing but a colour, with no legend.",
+        "action": "CORRECTED. sources[4] now says what the page actually tests, keeps mystyjl as a second publisher (so trio claims stay at sourceCount 2 / moderate), and drops the 'genuine second opinion' framing. The green highlight is explicitly excluded as a ranking signal in vMatrix.trios[0].notes."
+      },
+      {
+        "defect": "sources[0] describes the Grandis node table as 'six two-skill nodes'; nodes 1 and 2 are single-skill.",
+        "verdict": "CONFIRMED.",
+        "evidence": "Node 1 contains Snipe alone and node 2 Piercing Arrow alone in the page data; only nodes 3-6 pair two skills.",
+        "action": "CORRECTED in sources[0], which now also distinguishes the page's recommended-trio block from its boost-node table."
+      },
+      {
+        "defect": "FOUND DURING THIS PASS, not in the contest list: conflicts[1] recorded a disagreement over the secondary trio's composition that does not exist.",
+        "verdict": "CONFIRMED as a false conflict.",
+        "evidence": "The Grandis page publishes a recommended-trio block AND a separate boost-node table. Its trio block reads Secondary Trio = High Speed Shot / Arrow Illusion, Final Attack: Crossbow, Covering Fire - identical to the infographic, pairing included. The node table is an inventory of how the game groups the six nodes. The earlier entry compared one against the other and read the difference as a source conflict.",
+        "action": "WITHDRAWN. conflicts[1] now records the withdrawal and points at the real residual disagreement, which is about Covering Fire's worth."
+      },
+      {
+        "defect": "FOUND DURING THIS PASS: innerAbility.lines[0] and differencesFromBowMaster[1] cited maplestorywiki's Guide:Inner_Ability as supporting Attack Speed for Marksman. The guide does not decide the Marksman case.",
+        "verdict": "CONFIRMED as a soft citation inversion.",
+        "evidence": "Guide:Inner_Ability lists as parallel bullets: 'Attack Speed: for many Explorer classes which do not have a Hurricane-like skill' and 'Boss Damage: for burst-focused classes'. Marksman satisfies both - no Hurricane-like skill, and this file's own archetype line calls it a burst archer. The guide was being cited for only the half that agreed with the GMS recommendation.",
+        "action": "CORRECTED. innerAbility.lines[0] no longer cites the guide as support for the pick, its notes state that the rule cuts both ways, and differencesFromBowMaster[1] now says the rule is decisive for Bow Master (which has Hurricane) but not for Marksman. This is also the most likely reason NamuWiki lands on Boss Damage, so it strengthens conflicts[0] rather than resolving it."
+      },
+      {
+        "defect": "FOUND DURING THIS PASS: the two HEXA charts disagree about when to take HEXA Stat, and the file recorded only the fragments chart's answer as a general step.",
+        "verdict": "CONFIRMED as an incomplete claim rather than a false one.",
+        "evidence": "Read at full resolution 2026-09-12: the fragments chart (13 columns, ~170 entries) places Stat 1 / Stat 2 / Stat 3 at entries 36, 49 and 61 exactly. The energy chart (9 columns) places Stat 1 at entry 8, in its first row.",
+        "action": "CORRECTED. The step is now scoped to the fragments chart by name and a third step records the divergence, with the note that GMS Heroic/Reboot players want the fragments chart because Sol Erda Fragments are the binding constraint there."
+      }
+    ],
+    "outOfScopeDefects": [],
+    "outOfScopeNote": "None of the nine contested defects concerned jobs 1-4 skill builds, skill damage coefficients, damage lines, job tiers or rotations. This file carries no skillBuilds, damageLine, tier or rotation sections at all, so there was no out-of-scope content to leave alone.",
+    "priorDefectsForReference": [
       "THE BOOST NODE TIERS ARE REPORTED BACKWARDS. The Grandis Marksman page's own page data reads \"primary\":[0,1,2,3],\"secondary\":[4,5] - Nodes 1-4 are PRIMARY (Snipe; Piercing Arrow; Bolt Burst+Frostprey; Final Attack: Crossbow+High Speed Shot), Nodes 5-6 are SECONDARY (Covering Fire+Swift Surge; Arrow Blow+Arrow Illusion), and the OTHER tier is empty for Marksman. The file states in three places that Bolt Burst/Frostprey sits \"one tier below Snipe and Piercing Arrow\" (false - same tier), that Final Attack: Crossbow + High Speed Shot is in Grandis's \"second tier\" (false - Primary), and that Covering Fire is in \"its lowest tier\" (Secondary is the lower of two used tiers, but see next item). The error propagates into vMatrix entries 3, 4 and 5, trios[1].notes, commonMistakes[1], conflicts[1] and sources[0].",
       "GRANDIS'S TIERS ARE NOT A DAMAGE-PRIORITY RANKING. The page's own Boost Node Legend defines PRIMARY as \"Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used\", SECONDARY as \"Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used\", OTHER as \"do not need to be upgraded or has least priority\", and states that \"Nodes categorized as Primary and Secondary are recommended to be upgraded\". The file treats the tiers as a priority ordering throughout. This also means Grandis's Primary set is exactly the set of nodes gating HEXA mastery cores 1-4 - a sourced rationale for node priority that the file missed entirely.",
       "commonMistakes[1] (\"Sinking nodestone rolls into Covering Fire\") cites the Grandis page as supporting evidence, but Grandis puts Covering Fire in SECONDARY and explicitly says Primary and Secondary nodes are recommended to be upgraded. The Grandis citation contradicts the mistake rather than supporting it; the only remaining support is the infographic, which I could not read.",
@@ -518,11 +700,15 @@
       "sources[4] characterises mystyjl as \"backed by the author's own trio-probability testing, so it is a genuine second opinion on trios\". The page's only stated methodology is the odds of FINDING all trios within 200 nodes (10,000 simulations per class, dated May 14th 2024). It states no provenance whatsoever for which skills belong in each trio, and invites corrections by DM. Probability-of-finding testing is not evidence about trio selection, so the claim of an independent second opinion is unsupported - the trio lists may well descend from the same class Discords.",
       "sources[0] describes the Grandis node table as \"six two-skill nodes\". Nodes 1 and 2 are single-skill (Snipe alone; Piercing Arrow alone); only nodes 3-6 pair two skills."
     ],
+    "defects": [],
+    "defectsNote": "Empty: all nine contested defects were settled in the 2026-09-12 resolution pass - eight confirmed and corrected, one (the MapleDoro inner ability description) rejected after re-checking the page. Two further defects found during that pass are recorded in `resolved` as well. The verbatim original defect list is preserved above under priorDefectsForReference.",
     "clearedOnInspection": [
       "NO fabricated skill or node names were found. Every name in the file checks out against maplestorywiki.net/w/Marksman/Skills and/or the Grandis node table: Bolt Burst (3rd job), Frostprey (3rd job), Covering Fire (2nd job), Swift Surge (2nd job), Arrow Blow (1st job), Arrow Illusion (4th job), Final Attack: Crossbow (2nd job), High Speed Shot (hyper active, Lv 160), Split Shot, Perfect Shot, Surge Bolt, Repeating Crossbow Cartridge, Vicious Shot, Final Aim (Origin), Fatal Trigger (Ascent), the six HEXA mastery names, and the four HEXA Enhancement boosts. The hyper passive and hyper active lists, the link skill values (MC +50% / Crit +15% / Damage +6% at Lv 9, multiplicative, stacks 3, Damage component at Lv 7), Vicious Shot 21%->50%, the Split Shot trigger list, the HEXA Piercing Arrow -> HEXA Snipe passive (+60 to +132 percentage points at Lv 30), Grandis's +75% crit from skills, and the legion crit 1/2/3/4/5% all match their cited sources exactly. What follows are asserted claims contradicted by, or absent from, the sources cited for them."
     ],
-    "shipReady": false
+    "shipReady": true,
+    "shipReadyNote": "Scoped to the five endgame sections (vMatrix, hexa, hyperSkills, hyperStats, innerAbility). Every claim in them was re-read against its cited page on 2026-09-12 and now carries sources, sourceCount, consensus and verifiedAt. Nothing in this file is labelled 'strong' - Marksman has no source family beyond the Marksman Discord plus, per topic, one of NamuWiki KMS or mastermysty, so three independent sources are never available. That is an accurate label, not a gap in the work."
   },
-  "written": false,
-  "blockedReason": "9 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null,
+  "writtenNote": "The five endgame sections contain no unverified claim. What they DO contain, deliberately, are several accurately-labelled absences: hyperStats.priority is null, hyperSkills.actives is null, vMatrix.priority and vMatrix.levelOrder are null, the per-node HEXA order is not transcribed, and the infographic's skill-node icon chain is not transcribed. Those are gaps recorded as gaps, which is the correct state for them. Consumers MUST respect vMatrix.priorityOrdered:false, vMatrix.nodeBands[].ordered:false, vMatrix.trios[].ordered:false and hyperSkills.*.ordered:false - array position in those fields carries no priority meaning. Only innerAbility.lines is ordered (linesOrdered:true), because the quick-guide infographic prints the lines numbered 1st/2nd/3rd. The one unresolved substantive question, the GMS-vs-KMS inner ability top line, is recorded in conflicts[0] and reflected in that line's contested:true and weak rankConsensus rather than being presented as settled."
 }

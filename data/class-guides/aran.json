@@ -9,13 +9,16 @@
   "archetype": "Melee polearm warrior in the Heroes (Legends) branch",
   "linkSkill": {
     "name": "Combo Kill Blessing",
-    "effect": "Increases EXP gained from Combo Kill Marbles. Mapler House lists the per-level values as +400% / +650% / +900%. The full skill description could not be read from any reachable source this session - Grandis Library's Link Skill block renders client-side and returned empty to every fetch attempt.",
+    "effect": "Increases EXP gained from Combo Kill Orbs. MapleStory Wiki's Aran skill page gives Lv. 1 'Combo Kill Orb EXP: +400% (permanently)' and Lv. 3 'Combo Kill Orb EXP: +900% (permanently), Damage: +5%'. Mapler House's per-level list (+400% / +650% / +900%) agrees at levels 1 and 3; the level-2 value of +650% is Mapler House alone. The +5% Damage rider at level 3 is on the wiki and is not on Mapler House.",
     "levels": 3,
     "sources": [
+      "https://maplestorywiki.net/w/Aran/Skills",
       "https://www.maplerhouse.com/classes/aran",
       "https://grandislibrary.com/content/link-skills"
     ],
-    "consensus": "weak - the name appears on Grandis Library (link-skills page, in a training build example, and as the icon filename combo-kill-blessing.png on Mapler House); the numeric values come from Mapler House alone and are unconfirmed"
+    "sourceCount": 2,
+    "consensus": "moderate - the wiki and Mapler House independently agree on the level 1 and level 3 EXP values; the level 2 figure and the Damage rider each rest on one source",
+    "verifiedAt": "2026-09-12"
   },
   "legionEffect": {
     "effect": "Chance to recover a % of Max HP while attacking, 10 second cooldown. +2 / 4 / 6 / 8 / 10% at 70% chance.",
@@ -23,64 +26,93 @@
       "https://grandislibrary.com/heroes/aran",
       "https://www.maplerhouse.com/classes/aran"
     ],
-    "consensus": "strong - identical text on two sites"
+    "sourceCount": 2,
+    "consensus": "moderate - identical text on two sites; not re-fetched this pass (Mapler House returned HTTP 403 on 2026-09-12)",
+    "verifiedAt": "2026-09-11"
   },
   "vMatrix": {
+    "orderedBy": "Grandis Library's numbered boost node groups 1 through 6. The numbering is present as text on the page and was stable across every extraction pass, so array position here reflects a source-stated ordering. Grandis's PRIMARY / SECONDARY / OTHER colour tiers are NOT text on the page and are deliberately not recorded - see conflicts.",
     "priority": [
       {
         "node": "Beyond Blade",
-        "why": "Grandis Library lists it as boost Node 1, the highest-ranked node on the page; mastermysty's cross-class trio table also names it in the Aran bossing trio, and DigitalTQ names it in its first recommended trinode.",
-        "consensus": "strong - three independently authored sources all place Beyond Blade first",
+        "why": "Grandis Library lists it as boost Node 1, the first of its six numbered node groups. mastermysty's cross-class trio table names it in the Aran bossing trio (verbatim: 'Beyond Blade, Last Stand, Hunter's Prey'), and DigitalTQ names it in its first recommended trinode (Beyond Blade, Hyper Finisher - Last Stand, Final Attack). All three re-opened and re-read 2026-09-12.",
+        "consensus": "strong - three independent source families all place Beyond Blade in the core bossing node set. Note the precise shape of the agreement: only Grandis states a RANK; mastermysty and DigitalTQ state membership in a top trio.",
+        "sourceCount": 3,
         "sources": [
           "https://grandislibrary.com/heroes/aran",
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Finisher - Hunter's Prey",
-        "why": "Grandis Library boost Node 2. mastermysty places it in the same bossing trio as Beyond Blade and Last Stand.",
-        "consensus": "moderate - Grandis (Aran Discord) and mastermysty agree it is top-tier; DigitalTQ instead groups it into a second, mobbing-flavoured trio",
+        "why": "Grandis Library boost Node 2. mastermysty places it in the same bossing trio as Beyond Blade and Last Stand. DigitalTQ, re-read 2026-09-12, does NOT agree: it puts Hunter's Prey in its second trinode (Smash Swing, Adrenaline Rush, Hunter's Prey), so it is counted as a dissent rather than as support.",
+        "consensus": "moderate - two source families (Grandis restating the Aran Discord, and mastermysty) place it top-tier; the third independent source places it in a secondary trio",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/heroes/aran",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "dissent": [
+          "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Hyper Finisher - Last Stand",
-        "why": "Grandis Library boost Node 3. mastermysty and DigitalTQ both include it in a bossing trio alongside Beyond Blade.",
-        "consensus": "strong - present in all three sources, though they disagree on what it is paired with",
+        "why": "Grandis Library boost Node 3. mastermysty and DigitalTQ both include it in their bossing trio alongside Beyond Blade. Re-read on all three pages 2026-09-12.",
+        "consensus": "strong - present in the bossing set of all three independent source families, though they disagree on the third member",
+        "sourceCount": 3,
         "sources": [
           "https://grandislibrary.com/heroes/aran",
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Node 4: Final Attack, Adrenaline Rush, Adrenaline Overload, Permafrost",
-        "why": "Grandis Library's fourth node group. mastermysty's mobbing trio is Final Attack + Smash Swing + Adrenaline Rush, so two of these skills are the community's mobbing picks.",
-        "consensus": "moderate",
+        "why": "Grandis Library's fourth numbered node group, re-read 2026-09-12. The GROUPING is Grandis alone. Separately, mastermysty's mobbing trio is Final Attack + Smash Swing + Adrenaline Rush, so two of these four skills have independent support as mobbing picks - that is corroboration of two members, not of the group.",
+        "consensus": "weak for the grouping (one source family); moderate that Final Attack and Adrenaline Rush are worth nodes for mobbing (two families)",
+        "sourceCount": 1,
         "sources": [
-          "https://grandislibrary.com/heroes/aran",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://grandislibrary.com/heroes/aran"
+        ],
+        "partialCorroboration": {
+          "claim": "Final Attack and Adrenaline Rush are mobbing picks",
+          "sources": [
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ]
+        },
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Node 5: Final Charge, Final Toss",
-        "why": "Grandis Library places this group below the nodes above.",
+        "why": "Grandis Library places this group fifth of six. No other reachable source ranks these.",
         "consensus": "weak - single source family (Grandis Library restating the Aran Discord)",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/heroes/aran"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Node 6: Judgment Draw, Glacial Prison, Smash Swing",
-        "why": "Grandis Library's lowest node group. Smash Swing also appears in mastermysty's mobbing trio, so it has value for training specifically.",
-        "consensus": "weak for the grouping; moderate that Smash Swing is a mobbing-only pick",
+        "why": "Grandis Library's last numbered node group. Smash Swing is the exception inside it: mastermysty puts it in the Aran mobbing trio and DigitalTQ puts it in its second trinode, so Smash Swing specifically has two independent sources arguing it earns a node for training even though Grandis ranks the group last.",
+        "consensus": "weak for the grouping (one source family); moderate that Smash Swing has training value (two independent sources)",
+        "sourceCount": 1,
         "sources": [
-          "https://grandislibrary.com/heroes/aran",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://grandislibrary.com/heroes/aran"
+        ],
+        "partialCorroboration": {
+          "claim": "Smash Swing is worth a node for mobbing / training",
+          "sources": [
+            "https://mystyjl.github.io/reference/NodeGuide.html",
+            "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
+          ]
+        },
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
@@ -91,11 +123,18 @@
           "Hyper Finisher - Last Stand",
           "Finisher - Hunter's Prey"
         ],
-        "consensus": "moderate - stated by mastermysty (2024-11-21) and consistent with Grandis Library's node 1/2/3 ordering; contested by DigitalTQ (see conflicts)",
+        "consensus": "weak - only mastermysty states this trio outright (re-read 2026-09-12, verbatim 'Beyond Blade, Last Stand, Hunter's Prey'). Grandis Library's node 1/2/3 ordering is consistent with it but Grandis does not itself state a trio, so it is corroboration, not a second vote. DigitalTQ states a different bossing trio.",
+        "sourceCount": 1,
         "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "consistentWith": [
           "https://grandislibrary.com/heroes/aran"
-        ]
+        ],
+        "dissent": [
+          "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "purpose": "mobbing / training",
@@ -104,10 +143,12 @@
           "Smash Swing",
           "Adrenaline Rush"
         ],
-        "consensus": "weak - stated by mastermysty alone, and the data behind that page is dated 2024-05-14",
+        "consensus": "weak - stated by mastermysty alone (re-read 2026-09-12), and the author states the underlying data is dated 2024-05-14",
+        "sourceCount": 1,
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "purpose": "bossing (contested, older)",
@@ -116,10 +157,12 @@
           "Hyper Finisher - Last Stand",
           "Final Attack"
         ],
-        "consensus": "weak - DigitalTQ only, written for v.255 (Aran Redux), predates the v.269 boost-node regrouping",
+        "consensus": "weak - DigitalTQ only (re-read 2026-09-12), written for v.255 (Aran Redux), predates the v.269 boost-node regrouping",
+        "sourceCount": 1,
         "sources": [
           "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "purpose": "secondary (contested, older)",
@@ -128,75 +171,112 @@
           "Adrenaline Rush",
           "Finisher - Hunter's Prey"
         ],
-        "consensus": "weak - DigitalTQ only, v.255 era",
+        "consensus": "weak - DigitalTQ only (re-read 2026-09-12), v.255 era",
+        "sourceCount": 1,
         "sources": [
           "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Grandis Library exposes a 'View Pre-V.269 Boost Nodes' toggle on class pages, which is direct evidence that boost-node groupings changed at v.269. Both independent trio sources (mastermysty 2024-11-21, DigitalTQ 2024-12-04) predate that change, so where they disagree with Grandis the Grandis grouping is the newer one - but Grandis's judgement fields are credited to the Aran Discord, not independently derived. Grandis's own Primary/Secondary tier labels could not be read consistently across three extraction passes (nodes 1-3 Primary in one read, nodes 1-2 Primary with node 3 Secondary in two others); the node ORDER 1 through 6 was identical in every read and is what is recorded above. No public Aran class Google Doc exists - Grandis Library's Other Resources block for Aran lists MapleStory Wiki, NamuWiki and the Class Discord, and has no Class Doc link, unlike most other classes."
+    "notes": "Re-verification pass 2026-09-12: every node and trio above was re-read on its cited page and every one matched. Nothing here was fabricated and nothing needed deleting; what changed is the labelling - three consensus labels were downgraded because a source that merely does not contradict a claim was previously being counted as a source that supports it (node 4 grouping, node 6 grouping, and the bossing trio). Grandis Library exposes a 'View Pre-V.269 Boost Nodes' toggle on class pages, which is direct evidence that boost-node groupings changed at v.269; both independent trio sources (mastermysty 2024-11-21, DigitalTQ 2024-12-04) predate that change, so where they disagree with Grandis the Grandis grouping is the newer one - but Grandis's judgement fields are credited to the Aran Discord, not independently derived. Tier labels: Grandis renders PRIMARY / SECONDARY / OTHER as colour, not text. Its Boost Node Legend defines PRIMARY as 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used', SECONDARY as 'Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used', and OTHER as 'Boost Nodes that do not need to be upgraded or has least priority' - that legend text IS extractable and was re-read 2026-09-12, but which node carries which colour is not, so no tier is asserted here. See conflicts for what the legend plus the wiki's HEXA Mastery list implies and why that implication is left as an implication. No public Aran class Google Doc exists - Grandis Library's Other Resources block for Aran lists the Class Discord and wikis and has no Class Doc link, unlike most other classes."
   },
   "hexa": {
     "order": [
       {
         "step": "Raise all four HEXA Mastery cores to level 5 first, taking them in their own priority order",
-        "why": "First cell of the Aran Discord's 'Simplified Hexa Matrix' infographic. The image's own legend states that the crossed icon stands for all four mastery cores combined, applied in priority order. The four masteries shown in the legend are Beyond Blade, Hyper Finisher - Last Stand, Finisher - Hunter's Prey, and a fourth whose icon could not be matched to a named skill.",
-        "consensus": "weak - single source family (Aran Discord infographic by Ziby); no second Aran source publishes a HEXA order at all",
+        "why": "First cell of the Aran Discord's 'Simplified Hexa Matrix' infographic. The image's own legend states that the crossed icon stands for all four mastery cores combined, applied in priority order. The four mastery cores are now named from an independent source: MapleStory Wiki's Aran/Skills page lists Mastery Node/Core 1 HEXA Beyond Blade, Core 2 HEXA Finisher - Hunter's Prey, Core 3 HEXA Hyper Finisher - Last Stand, and Core 4 as a choice of HEXA Permafrost / HEXA Adrenaline Overload / HEXA Final Attack. (The previous note that the fourth mastery 'could not be matched to a named skill' is resolved; no source states which of the three Core 4 options to pick, so that choice is left open.)",
+        "consensus": "weak - the ORDER rests on a single source family (the Aran Discord infographic by Ziby; no second Aran source publishes a HEXA investment order at all). The IDENTITY of the four mastery cores is not a judgement at all but game data read off one authoritative reference (MapleStory Wiki), so it is recorded as verified rather than given a consensus grade it cannot earn on one source.",
+        "sourceCount": 1,
         "sources": [
           "https://img.maplerhouse.com/published/guide-assets/aran/sixthJob/v1/0-aran-6th-job.png"
-        ]
+        ],
+        "coreIdentitySources": [
+          "https://maplestorywiki.net/w/Aran/Skills"
+        ],
+        "verifiedAt": "2026-09-11",
+        "reverification": "2026-09-12: the mastery core NAMES were newly verified on maplestorywiki.net/w/Aran/Skills. The investment ORDER could not be re-checked - its only source is a PNG infographic, WebFetch cannot read images, and the browser pane was unavailable this session."
       },
       {
         "step": "Unlock the enhancement cores at level 1 - Final Beyond Blade - White Tiger, Blizzard Tempest, Finisher - Adrenaline Surge and Maha's Carnage - then take the masteries to 9",
-        "why": "Cells 2-7 of the infographic are level-1 unlocks, with a masteries-to-9 step sitting among them.",
-        "consensus": "weak - single source family",
+        "why": "Cells 2-7 of the infographic are level-1 unlocks, with a masteries-to-9 step sitting among them. The four skill names are independently confirmed to exist as Aran V skills with matching HEXA Enhancement cores on MapleStory Wiki (e.g. 'Finisher - Adrenaline Surge Boost', Level Requirement 260) and are also listed by DigitalTQ.",
+        "consensus": "weak - the order is single source family; the four names are confirmed by two independent sources",
+        "sourceCount": 1,
         "sources": [
           "https://img.maplerhouse.com/published/guide-assets/aran/sixthJob/v1/0-aran-6th-job.png"
-        ]
+        ],
+        "nameSources": [
+          "https://maplestorywiki.net/w/Aran/Skills",
+          "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
+        ],
+        "verifiedAt": "2026-09-11",
+        "reverification": "2026-09-12: names re-verified on the wiki; order not re-checkable (image source, no image reader this session)."
       },
       {
         "step": "Max HEXA Stat node I",
         "why": "The infographic maxes the first HEXA Stat node immediately after the masteries reach 9, ahead of any further enhancement investment.",
         "consensus": "weak - single source family",
+        "sourceCount": 1,
         "sources": [
           "https://img.maplerhouse.com/published/guide-assets/aran/sixthJob/v1/0-aran-6th-job.png"
-        ]
+        ],
+        "verifiedAt": "2026-09-11",
+        "reverification": "2026-09-12: not re-checkable (image source, no image reader this session)."
       },
       {
         "step": "Masteries to 19, then max HEXA Stat node II, then masteries to 25, then max HEXA Stat node III",
         "why": "The infographic interleaves the mastery ladder with the second and third HEXA Stat nodes before any node is pushed past the teens.",
         "consensus": "weak - single source family",
+        "sourceCount": 1,
         "sources": [
           "https://img.maplerhouse.com/published/guide-assets/aran/sixthJob/v1/0-aran-6th-job.png"
-        ]
+        ],
+        "verifiedAt": "2026-09-11",
+        "reverification": "2026-09-12: not re-checkable (image source, no image reader this session)."
       },
       {
         "step": "Then the long tail: enhancement cores stepped 5 / 10 / 20 to max, Endgame (Origin) stepped 5 / 10 / 15 to max, masteries to 29 and then max",
-        "why": "Read off the remaining cells of the infographic. Individual mastery and stat ladders are legible; the exact interleaving of the last dozen steps is not transcribable with confidence from an icon-only image (see notes).",
+        "why": "Read off the remaining cells of the infographic. Individual mastery and stat ladders are legible; the exact interleaving of the last dozen steps is not transcribable with confidence from an icon-only image (see notes). 'Endgame' is confirmed as Aran's Skill Node/Core 1 (Origin) on MapleStory Wiki.",
         "consensus": "weak - single source family, and partially unreadable",
+        "sourceCount": 1,
         "sources": [
           "https://img.maplerhouse.com/published/guide-assets/aran/sixthJob/v1/0-aran-6th-job.png"
-        ]
+        ],
+        "nameSources": [
+          "https://maplestorywiki.net/w/Aran/Skills"
+        ],
+        "verifiedAt": "2026-09-11",
+        "reverification": "2026-09-12: not re-checkable (image source, no image reader this session)."
       }
     ],
     "hexaStatPriority": {
+      "ordered": true,
       "order": [
         "Attack",
         "Crit Damage",
         "STR"
       ],
-      "consensus": "weak - single source family, but it is stated as plain text in the infographic rather than inferred",
+      "consensus": "weak - single source family, but it is stated as plain text in the infographic rather than inferred from icons",
+      "sourceCount": 1,
       "sources": [
         "https://img.maplerhouse.com/published/guide-assets/aran/sixthJob/v1/0-aran-6th-job.png"
-      ]
+      ],
+      "verifiedAt": "2026-09-11",
+      "reverification": "2026-09-12: not re-checkable (image source, no image reader this session)."
     },
-    "notes": "This is the whole public HEXA picture for Aran and it rests on ONE artifact: a 'Simplified Hexa Matrix' infographic credited in-image to 'Ziby' and linking the Aran Discord (discord.gg/WpJ4VDta8V), republished on Mapler House with a module date of 2026-06-19. Grandis Library has no HEXA section on any class page, and no Aran class doc exists to cross-check against, so there is no second opinion available publicly. Extraction caveat: the infographic conveys order entirely through 36 skill icons with a target level under each, and two of the node ladders use near-identical blue-and-gold icons that could not be told apart at source resolution - those two ladders (seven cells between them) are deliberately NOT assigned to named nodes here. They are consistent with the two shared Common cores, but that is an unconfirmed guess and is recorded as such rather than asserted. Nodes identified with confidence by matching the infographic art against Grandis Library's own Aran skill icons: the four masteries (combined icon, per the image's legend), HEXA Stat nodes I/II/III, Final Beyond Blade - White Tiger, Blizzard Tempest, Finisher - Adrenaline Surge, Maha's Carnage, and Endgame. Freshness caveat: the infographic predates KMS ver. 1.2.417 (2026-07-31), which introduced a 3rd HEXA Skill Core; if and when that reaches GMS the order will need revisiting."
+    "notes": "This is the whole public HEXA picture for Aran and it rests on ONE artifact: a 'Simplified Hexa Matrix' infographic credited in-image to 'Ziby' and linking the Aran Discord (discord.gg/WpJ4VDta8V), republished on Mapler House with a module date of 2026-06-19. Grandis Library has no HEXA section on any class page and no Aran class doc exists, so there is no second opinion available publicly. Extraction caveat (unchanged): the infographic conveys order entirely through 36 skill icons with a target level under each, and two of the node ladders use near-identical blue-and-gold icons that could not be told apart at source resolution - those two ladders (seven cells between them) are deliberately NOT assigned to named nodes. RESOLVED 2026-09-12: the fourth HEXA Mastery core is no longer unknown. MapleStory Wiki's Aran/Skills page lists Core 4 as a choice of HEXA Permafrost, HEXA Adrenaline Overload or HEXA Final Attack; the infographic's ordering advice applies to whichever is chosen, and no source states which to choose. NEW FRESHNESS GAP found 2026-09-12: MapleStory Wiki lists TWO class-specific HEXA skill cores for Aran - Skill Node/Core 1 (Origin) Endgame and Skill Node/Core 2 (Ascent) Hailstorm Howl. The infographic's order covers Endgame only and says nothing about an Ascent core, which is consistent with it predating KMS ver. 1.2.417 (2026-07-31). Whether Hailstorm Howl has reached GMS by v.271 was not established this session - it is recorded as present on the wiki and nothing more. The investment order below Endgame should be treated as incomplete for that reason."
   },
   "hyperStats": {
+    "ordered": false,
     "priority": null,
-    "notes": "Nothing found. No Aran source reachable this session publishes a hyper stat allocation - Grandis Library carries no hyper stat section for any class, there is no Aran class doc, and DigitalTQ's Aran page covers skill builds only. Leaving this empty rather than importing a generic cross-class list. The community's operative answer to hyper stats is MathBro's per-character optimizer (https://brendonmay.github.io/hyperCalculator/), which computes an allocation from a stat sheet rather than publishing a fixed order."
+    "sources": [],
+    "sourceCount": 0,
+    "consensus": "none - no claim is made",
+    "verifiedAt": "2026-09-12",
+    "notes": "Still nothing found, and the field is deliberately null rather than an ordered array, so no downstream consumer can read a ranking out of it. No Aran source reachable this session publishes a hyper stat allocation - Grandis Library carries no hyper stat section for any class, there is no Aran class doc, and DigitalTQ's Aran page (re-read 2026-09-12) covers skill builds and one inner ability line only. The community's operative answer to hyper stats is MathBro's per-character optimizer (https://brendonmay.github.io/hyperCalculator/), which computes an allocation from a stat sheet rather than publishing a fixed order, so there may be no fixed order to find."
   },
   "hyperSkills": {
+    "ordered": false,
     "passives": [
       "Finisher - Reinforce",
       "Surging Adrenaline",
@@ -204,29 +284,51 @@
       "Beyond Blade Barrage",
       "Piercing Beyond Blade"
     ],
+    "passiveTiers": {
+      "140": "Finisher - Reinforce (the alternative at this tier is Permafrost - Reinforce)",
+      "150": "Beyond-er Blade (alternative: Permafrost - Spread)",
+      "165": "Beyond Blade Barrage (alternative: Finisher - Guardbreak)",
+      "180": "Surging Adrenaline (alternative: Permafrost - Persist)",
+      "190": "Piercing Beyond Blade (the only passive at this tier - not a choice)"
+    },
     "actives": [
       "Hyper Finisher - Last Stand",
       "Heroic Memories",
       "Maha's Blessing"
     ],
-    "consensus": "strong for the five passives - Grandis Library (Aran Discord) and DigitalTQ list the identical five independently; moderate for the actives, named by DigitalTQ only but uncontested",
+    "activesAreExhaustive": true,
+    "consensus": "moderate for the five passives - two independent source families (Grandis Library restating the Aran Discord, and DigitalTQ) list the identical five, and MapleStory Wiki independently confirms that the five occupy one slot per hyper-passive tier, which is what a correct build looks like. Not labelled strong: only two families make the RECOMMENDATION. For the actives the question is moot - MapleStory Wiki shows Aran has exactly three hyper actives (Maha's Blessing 140, Hyper Finisher - Last Stand 160, Heroic Memories 190) for exactly three active slots, so every Aran takes all three and there is no choice to get wrong.",
+    "sourceCount": 2,
     "sources": [
       "https://grandislibrary.com/heroes/aran",
       "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
     ],
-    "notes": null
+    "structureSources": [
+      "https://maplestorywiki.net/w/Aran/Skills"
+    ],
+    "verifiedAt": "2026-09-12",
+    "notes": "Array order is NOT a priority - hyper passives are one pick per level tier and all five are taken. The passiveTiers map is the meaningful ordering and comes from MapleStory Wiki's Level Requirement fields, re-read 2026-09-12. Grandis Library's exact wording, re-read 2026-09-12: 'Finisher - Reinforce, Surging Adrenaline, Beyond-er Blade, Beyond Blade Barrage and Piercing Beyond Blade'. DigitalTQ lists all eight hyper skills in one undifferentiated line and does not itself label which are passive and which are active; the passive/active split recorded here comes from the wiki, not from DigitalTQ. The previous 'strong' label on the passives was downgraded to 'moderate' on 2026-09-12: the bar for strong is three independent sources making the same recommendation, and only two do."
   },
   "innerAbility": {
+    "lineOrderMeaning": "The arrays below are in Grandis Library's rendered line order (first line / second line / third line of the inner ability panel). That is a slot order, not a priority ranking - no source ranks these lines against each other.",
     "bossing": {
       "lines": [
         "Boss Damage +20%",
         "Damage to monsters inflicted with Abnormal Status +8%",
         "Attack +21 / Buff Duration +38%"
       ],
-      "consensus": "weak - single source family (Grandis Library restating the Aran Discord); no independent Aran source publishes inner ability lines",
+      "consensus": "weak - the three-line preset as a preset comes from one source family (Grandis Library restating the Aran Discord). The first line is separately corroborated: DigitalTQ's Aran guide, re-read 2026-09-12, states 'Inner Ability: 20% Boss Damage'.",
+      "sourceCount": 1,
       "sources": [
         "https://grandislibrary.com/heroes/aran"
-      ]
+      ],
+      "partialCorroboration": {
+        "claim": "Boss Damage +20% is the line to chase first",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-aran-skill-build-guide"
+        ]
+      },
+      "verifiedAt": "2026-09-12"
     },
     "training": {
       "lines": [
@@ -234,31 +336,41 @@
         "Meso Obtained / Item Drop Rate +15%",
         "Damage to Normal Monsters +8%"
       ],
-      "consensus": "weak - single source family",
+      "consensus": "weak - single source family, no corroboration anywhere",
+      "sourceCount": 1,
       "sources": [
         "https://grandislibrary.com/heroes/aran"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "Grandis Library splits inner ability recommendations by attack-speed cap region (GMS and KMS differ); the lines above are the ones rendered on the English page. Note that no attack speed line appears in either preset, and Grandis's base-stat table shows Aran reaching attack speed Stage 5 from passives - but no source states outright whether an attack speed inner ability line is wanted or wasted for Aran, so that is left unanswered rather than inferred."
+    "notes": "Both presets were re-fetched from Grandis Library on 2026-09-12 and matched the recorded text exactly. Grandis splits inner ability recommendations by attack-speed cap region (GMS and KMS differ); the lines above are the ones rendered on the English page. No attack speed line appears in either preset, and Grandis's base-stat table shows Aran reaching attack speed Stage 5 from passives - but no source states outright whether an attack speed inner ability line is wanted or wasted for Aran, so that is left unanswered rather than inferred."
   },
   "gearingNotes": "Sourced class-specific numbers, all from Grandis Library's 'Base Stats (From Skills)' table for Aran: crit rate +55% from class passives, ignore DEF +40% (up to +49.6%), final damage +33.1% (up to +41.09%), damage +65% (up to +95%), boss damage +7% (up to +32%), crit damage +21%, weapon mastery 90%, attack speed Stage 5. The +55% passive crit rate is the figure that should drive how much crit rate an Aran buys from links, legion and hyper stats, and it sits alongside a HEXA Stat priority that puts Crit Damage second behind Attack - but no source explicitly connects those two facts, so the connection is not asserted here. Aran is a straightforward STR/DEX warrior with no unusual resource or stat-conversion mechanic of the Demon Avenger or Xenon kind; nothing found in any source flags a gearing quirk beyond the passive crit rate.",
   "commonMistakes": [],
   "sources": [
     {
       "url": "https://grandislibrary.com/heroes/aran",
-      "what": "Class page: class properties, legion bonus, boost node groups 1-6 with tier labels, hyper skill passive build, recommended inner ability (bossing and training), base stats from skills, Class Infographics tabs (Overview, 6th Job). Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Aran Discord'. There is NO Class Doc link for Aran in Other Resources - Aran has no public class guide document.",
+      "what": "Class page: class properties, legion bonus, boost node groups 1-6, hyper skill passive build, recommended inner ability (bossing and training), base stats from skills, Class Infographics tabs. Credits block reads 'Skill Icons + Animations: Ikasuu; Inner Ability + Hyper Passive Build + Boost Nodes Build: Aran Discord'. Its Boost Node Legend defines PRIMARY / SECONDARY / OTHER in text, but the per-node tier itself is colour only and is not text-extractable. There is NO Class Doc link for Aran in Other Resources.",
       "dated": "GMS Ver. 269 [Ride the Lightning Update] (sitewide stamp; no per-page date) - two patches behind the v.271 target",
-      "independent": false
+      "independent": false,
+      "refetched": "2026-09-12, twice, both reads agreeing on node order, hyper passives and inner ability"
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Aran/Skills",
+      "what": "Game-data reference (not advice). Reached through the browser pane on 2026-09-12 after being unreachable in the previous pass. Used to verify: every skill name recorded in this file exists; the four HEXA Mastery cores (Core 1 HEXA Beyond Blade, Core 2 HEXA Finisher - Hunter's Prey, Core 3 HEXA Hyper Finisher - Last Stand, Core 4 HEXA Permafrost / HEXA Adrenaline Overload / HEXA Final Attack); the two class-specific HEXA Skill cores (Core 1 Origin: Endgame; Core 2 Ascent: Hailstorm Howl); the hyper passive and active tiers by Level Requirement; and the Combo Kill Blessing link skill values.",
+      "dated": "live wiki, read 2026-09-12",
+      "independent": true
     },
     {
       "url": "https://img.maplerhouse.com/published/guide-assets/aran/sixthJob/v1/0-aran-6th-job.png",
       "what": "'Simplified Hexa Matrix - Aran' infographic, credited in-image to Ziby and linking the Aran Discord (discord.gg/WpJ4VDta8V). 36-cell node-by-node investment order plus a stated HEXA Stat priority. Reached via https://www.maplerhouse.com/classes/aran, whose HEXA Priority module is this image.",
       "dated": "2026-06-19 (Mapler House module date)",
-      "independent": false
+      "independent": false,
+      "refetched": "NOT re-read 2026-09-12 - it is a PNG, WebFetch cannot read images and the browser pane was unavailable. Everything sourced to it carries its 2026-09-11 verification date."
     },
     {
       "url": "https://discord.gg/WpJ4VDta8V",
-      "what": "Aran class Discord. The origin of both sources above - Grandis Library credits it for Aran's inner ability, hyper passives and boost nodes, and the HEXA infographic links it. Not machine-readable; a human would need to read pins to go further, and that is where any Aran judgement newer than the above will be.",
+      "what": "Aran class Discord. The origin of both Aran-judgement sources above - Grandis Library credits it for Aran's inner ability, hyper passives and boost nodes, and the HEXA infographic links it. Not machine-readable; a human would need to read pins to go further, and that is where any Aran judgement newer than the above will be.",
       "dated": "live",
       "independent": false
     },
@@ -266,19 +378,22 @@
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
       "what": "mastermysty's cross-class boost node trio reference. Aran entry gives a bossing trio (Beyond Blade, Last Stand, Hunter's Prey) and a mobbing trio (Final Attack, Smash Swing, Adrenaline Rush).",
       "dated": "page 2024-11-21; author states the underlying data was last updated 2024-05-14 - predates the v.269 boost-node regrouping",
-      "independent": true
+      "independent": true,
+      "refetched": "2026-09-12, both trios re-read verbatim"
     },
     {
       "url": "https://www.digitaltq.com/maplestory-aran-skill-build-guide",
-      "what": "DigitalTQ Aran skill build guide. Skill-name validation (5th job: Final Beyond Blade - White Tiger, Maha's Carnage, Finisher - Adrenaline Surge, Blizzard Tempest; Origin skill: Endgame; Common: Sol Janus), hyper skill passives and actives, and two recommended trinodes. Carries no HEXA investment order, no hyper stat allocation and no inner ability advice.",
+      "what": "DigitalTQ Aran skill build guide. Skill-name validation, the eight hyper skill selections as one undifferentiated list, two recommended trinodes (Beyond Blade / Hyper Finisher - Last Stand / Final Attack, and Smash Swing / Adrenaline Rush / Hunter's Prey), and one inner ability line ('Inner Ability: 20% Boss Damage'). Carries no HEXA investment order and no hyper stat allocation.",
       "dated": "2024-12-04, written for v.255 (Aran Redux remaster)",
-      "independent": true
+      "independent": true,
+      "refetched": "2026-09-12, twice"
     },
     {
       "url": "https://www.maplerhouse.com/classes/aran",
-      "what": "Ranking-derived data - class rank and class share across KMS/TMS/GMS/MSEA (GMS #20, 1.99% share as of the 2026-09-11 refresh) and the gear/skill setups of top-ranked characters. Also the source of the link skill values. Its Skill Sequence, Burst Rotation and Culvert modules are empty placeholders, and its HEXA Priority module is the Aran Discord infographic, so only the ranking data is independent.",
+      "what": "Ranking-derived data - class rank and class share across KMS/TMS/GMS/MSEA and the gear/skill setups of top-ranked characters. Its Skill Sequence, Burst Rotation and Culvert modules are empty placeholders, and its HEXA Priority module is the Aran Discord infographic, so only the ranking data is independent.",
       "dated": "overview and HEXA modules 2026-06-19; ranking data refreshed 2026-09-11",
-      "independent": true
+      "independent": true,
+      "refetched": "attempted 2026-09-12, HTTP 403"
     },
     {
       "url": "https://orangemushroom.net/tag/aran/",
@@ -303,7 +418,7 @@
           "dated": "2024-12-04, v.255"
         }
       ],
-      "note": "Unresolved here. Grandis Library's current (v.269) node ordering puts Beyond Blade, Hunter's Prey and Last Stand as nodes 1, 2 and 3, which leans toward mastermysty's grouping - but Grandis is the Aran Discord restated, not a third vote, and both contesting sources predate the v.269 regrouping that Grandis itself flags with a 'View Pre-V.269 Boost Nodes' toggle."
+      "note": "Still unresolved after re-reading both pages on 2026-09-12 - both say exactly what the file records. Grandis Library's current (v.269) node ordering puts Beyond Blade, Hunter's Prey and Last Stand as nodes 1, 2 and 3, which leans toward mastermysty's grouping - but Grandis is the Aran Discord restated, not a third vote, and both contesting sources predate the v.269 regrouping that Grandis itself flags with a 'View Pre-V.269 Boost Nodes' toggle. One new piece of evidence points the same way without settling it: Grandis's own legend defines a PRIMARY node as one that 'unlock[s] a 6th Job HEXA Mastery', and MapleStory Wiki shows Aran's HEXA Masteries derive from Beyond Blade, Finisher - Hunter's Prey and Hyper Finisher - Last Stand (plus a Core 4 choice), which is mastermysty's trio exactly. That is a deduction from two sources, not a statement by either, so it is recorded here rather than promoted into vMatrix."
     },
     {
       "topic": "Grandis Library's own Primary/Secondary tier boundary for Aran boost nodes",
@@ -311,7 +426,7 @@
         {
           "claim": "Nodes 1, 2 and 3 are all PRIMARY",
           "source": "https://grandislibrary.com/heroes/aran",
-          "dated": "read 2026-09-11"
+          "dated": "read 2026-09-11, and again 2026-09-12"
         },
         {
           "claim": "Nodes 1 and 2 are PRIMARY, node 3 is SECONDARY",
@@ -319,49 +434,84 @@
           "dated": "read 2026-09-11"
         }
       ],
-      "note": "Not a disagreement between guides - the same page returned different tier labels across three extraction passes, because the tiers are conveyed by colour rather than text. The node ORDER (1 through 6) was stable across all passes. Resolve by having a human look at the page, or by reading the Aran Discord directly."
+      "note": "DIAGNOSED 2026-09-12, not resolved. A direct re-fetch asking only for text actually present reported that the page carries the legend definitions as text but does NOT state a tier for any individual node - the tiers are colour. So every 'Primary/Secondary' reading of this page, including a confident-looking one obtained during this pass, is an extraction guess and none of them should be trusted. No tier label is recorded anywhere in this file as a result. Note also that the legend's own definition of PRIMARY ('unlocks a 6th Job HEXA Mastery') would put node 4 in the primary band too, since Permafrost, Adrenaline Overload and Final Attack are all Core 4 mastery candidates on the wiki - which is a further reason not to guess. Resolve by having a human look at the page, or by reading the Aran Discord directly."
     },
     {
-      "topic": "Link skill naming",
+      "topic": "Link skill naming and values",
       "positions": [
         {
-          "claim": "Combo Kill Blessing",
-          "source": "https://grandislibrary.com/content/link-skills",
-          "dated": "GMS v.269"
+          "claim": "Combo Kill Blessing; Lv. 1 Combo Kill Orb EXP +400%, Lv. 3 +900% and Damage +5%",
+          "source": "https://maplestorywiki.net/w/Aran/Skills",
+          "dated": "read 2026-09-12"
         },
         {
-          "claim": "Combo Kill Marble EXP, +400% / +650% / +900%",
+          "claim": "Combo Kill Blessing, +400% / +650% / +900%",
           "source": "https://www.maplerhouse.com/classes/aran",
           "dated": "2026-06-19"
         }
       ],
-      "note": "Probably the skill name versus a description of its effect rather than a real disagreement, but neither page rendered the full skill text to any fetch, so it is recorded rather than merged."
+      "note": "RESOLVED 2026-09-12. This was never a naming disagreement - the skill is Combo Kill Blessing and the EXP figure is its effect. The wiki confirms Mapler House's level 1 and level 3 numbers and adds a Damage +5% rider at level 3 that Mapler House omits. Only the level 2 value (+650%) remains single-sourced. The effect text has been corrected from 'Combo Kill Marbles' to 'Combo Kill Orbs', which is the wording the wiki uses."
     }
   ],
   "evidenceWarnings": [
-    "Aran fails the three-independent-sources bar for everything that matters. HEXA investment order, HEXA stat priority and inner ability each rest on exactly ONE source family: the Aran Discord, reaching the public web through Grandis Library's class page and Ziby's infographic. Those two are not independent confirmations of each other.",
+    "Aran fails the three-independent-sources bar for everything that is a JUDGEMENT rather than game data. HEXA investment order, HEXA stat priority and inner ability each rest on exactly ONE source family: the Aran Discord, reaching the public web through Grandis Library's class page and Ziby's infographic. Those two are not independent confirmations of each other. The hyper passive build is the best-sourced judgement in the file at two independent families.",
     "There is no public Aran class Google Doc. Grandis Library - which links a Class Doc for most classes - has no Class Doc link on the Aran page, which is the reliable tell.",
-    "The only two independently authored sources (mastermysty, DigitalTQ) are both from late 2024, cover V matrix only, and predate the v.269 boost-node regrouping.",
-    "Hyper stats: no source at all. Field left null.",
-    "maplestorywiki.net was unreachable for the whole session (HTTP 403 to direct fetch, HTTP 522 through proxies, CAPTCHA in the browser), so the skill-name allowlist check against Aran/Skills could not be run. Skill names here were validated by matching Grandis Library's own icon filenames against DigitalTQ's skill list - weaker than the wiki check, but two sources agree on every name recorded.",
-    "reddit.com is blocked by policy in this environment, so r/Maplestory Aran threads are entirely unexamined.",
-    "The WebSearch budget was already exhausted when this pass started, and every fetchable search engine returned a CAPTCHA or a 403, so discovery was limited to following links from known-good hosts. A session with working search should re-run discovery for Aran specifically - in particular for a YouTube guide description and for any 2025-2026 Aran thread."
+    "The only two independently authored opinion sources (mastermysty, DigitalTQ) are both from late 2024, cover V matrix and hyper skills only, and predate the v.269 boost-node regrouping.",
+    "Hyper stats: no source at all. Field left null, and explicitly flagged unordered so nothing downstream can read a ranking out of an empty field.",
+    "The HEXA section could not be re-verified on 2026-09-12. Its only source is a PNG infographic; WebFetch cannot read images and the browser pane was unavailable for this file. Everything in hexa therefore still carries its 2026-09-11 verification, one pass old, and is labelled weak.",
+    "maplestorywiki.net WAS reachable this pass through the browser pane (it 403s to direct fetch), and the skill-name allowlist check was finally run. Every skill name in this file exists as an Aran skill. This closes the previous pass's biggest open worry.",
+    "MapleStory Wiki lists a second class-specific HEXA Skill core for Aran - Core 2 (Ascent), Hailstorm Howl - which the HEXA investment order does not mention at all. The order should be treated as incomplete below Endgame until a source that knows about the Ascent core publishes one.",
+    "reddit.com is blocked by policy in this environment, so r/Maplestory Aran threads are entirely unexamined."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
-    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "NONE FOUND. This is the strongest part of the file and it survives a direct allowlist check. I reached https://maplestorywiki.net/w/Aran/Skills through the browser pane and confirmed every name the file records exists as an Aran skill: Smash Swing, Final Charge, Final Toss, Beyond Blade, Final Attack, Permafrost, Judgment Draw, Adrenaline Rush, Adrenaline Overload, Finisher - Hunter's Prey, Glacial Prison, Hyper Finisher - Last Stand, Finisher - Reinforce, Surging Adrenaline, Beyond-er Blade, Beyond Blade Barrage, Piercing Beyond Blade, Maha's Blessing, Heroic Memories, Final Beyond Blade - White Tiger, Blizzard Tempest, Maha's Carnage, Finisher - Adrenaline Surge, Endgame, Sol Janus, Combo Kill Blessing.",
-      "The five hyper passives are internally consistent in a way that independently corroborates them: the picks map to exactly one per hyper-point tier (Finisher - Reinforce 140, Beyond-er Blade 150, Beyond Blade Barrage 165, Surging Adrenaline 180, Piercing Beyond Blade 190). A fabricated list would not land that cleanly.",
-      "A GAP THE FILE LEFT OPEN IS NOW CLOSABLE, not a fabrication: hexa.order[0] says the fourth HEXA Mastery core 'could not be matched to a named skill'. The wiki's 'Mastery Skills' section names all four - Core 1 HEXA Beyond Blade, Core 2 HEXA Finisher - Hunter's Prey, Core 3 HEXA Hyper Finisher - Last Stand, Core 4 HEXA Permafrost / HEXA Adrenaline Overload / HEXA Final Attack. The file was right to leave it blank rather than guess; the blank can now be filled from an independent source."
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm. A resolution pass on 2026-09-12 then re-opened every cited page for the five endgame sections and settled each entry below.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "NONE FOUND. This is the strongest part of the file and it survives a direct allowlist check. I reached https://maplestorywiki.net/w/Aran/Skills through the browser pane and confirmed every name the file records exists as an Aran skill.",
+        "scope": "in-scope (vMatrix, hexa, hyperSkills - skill-name validity)",
+        "action": "CONFIRMED",
+        "what": "Independently re-ran the check on 2026-09-12 by loading maplestorywiki.net/w/Aran/Skills in the browser pane and reading the Hyper Skills, V Skills and HEXA Skills sections. Every boost node name, hyper skill name, enhancement core name and HEXA skill name in this file appears on that page. No extraction artifacts of the Bow Master 'Extra Quiver Cartridge' kind exist in this file - nothing was deleted because nothing was fabricated. The wiki is now recorded in sources as an independent source, and it was not in the file before."
+      },
+      {
+        "defect": "The five hyper passives are internally consistent in a way that independently corroborates them: the picks map to exactly one per hyper-point tier (Finisher - Reinforce 140, Beyond-er Blade 150, Beyond Blade Barrage 165, Surging Adrenaline 180, Piercing Beyond Blade 190).",
+        "scope": "in-scope (hyperSkills)",
+        "action": "CONFIRMED, and the claim it was attached to was CORRECTED downward",
+        "what": "Verified the Level Requirement of all nine Aran hyper passives on the wiki: 140 Permafrost - Reinforce / Finisher - Reinforce; 150 Permafrost - Spread / Beyond-er Blade; 165 Finisher - Guardbreak / Beyond Blade Barrage; 180 Permafrost - Persist / Surging Adrenaline; 190 Piercing Beyond Blade only. The recommended five do take one slot per tier, exactly as the critic said. That structural check is recorded as passiveTiers. BUT it does not make the recommendation strongly sourced: the tier structure is game data, and only two independent families (Grandis/Aran Discord, DigitalTQ) actually make the recommendation. The consensus label was therefore changed from 'strong' to 'moderate', which is the accuracy fix the bar requires. Separately, the wiki shows Aran has exactly three hyper actives for three active slots, so the 'actives' list is exhaustive rather than selective and is now flagged activesAreExhaustive - there is no way for a player to get it wrong and no recommendation being made."
+      },
+      {
+        "defect": "A GAP THE FILE LEFT OPEN IS NOW CLOSABLE: hexa.order[0] says the fourth HEXA Mastery core 'could not be matched to a named skill'. The wiki's 'Mastery Skills' section names all four - Core 1 HEXA Beyond Blade, Core 2 HEXA Finisher - Hunter's Prey, Core 3 HEXA Hyper Finisher - Last Stand, Core 4 HEXA Permafrost / HEXA Adrenaline Overload / HEXA Final Attack.",
+        "scope": "in-scope (hexa)",
+        "action": "CORRECTED",
+        "what": "Read the Mastery Skills section on maplestorywiki.net/w/Aran/Skills on 2026-09-12 verbatim: 'Mastery Node/Core 1 HEXA Beyond Blade / Mastery Node/Core 2 HEXA Finisher - Hunter's Prey / Mastery Node/Core 3 HEXA Hyper Finisher - Last Stand / Mastery Node/Core 4 HEXA Permafrost, HEXA Adrenaline Overload, HEXA Final Attack'. hexa.order[0] now names all four, with Core 4 recorded as the three-way choice the wiki actually shows rather than collapsed into a single pick. No source says which of the three Core 4 options to take, and that is stated rather than guessed. The identity claim is game data from one authoritative reference and is labelled verified-not-graded rather than strong, because one source cannot earn a strong label under this wave's bar; the surrounding INVESTMENT ORDER is untouched and still weak."
+      },
+      {
+        "defect": "(Not raised by the critic; found during this pass.) vMatrix labelled the node 4 grouping, the node 6 grouping and the bossing trio as better-sourced than they are, by counting a source that is merely consistent with a claim as a source that supports it.",
+        "scope": "in-scope (vMatrix)",
+        "action": "CORRECTED",
+        "what": "Node 4 grouping and node 6 grouping dropped from 'moderate' to 'weak' with sourceCount 1 - the grouping is Grandis alone; what mastermysty and DigitalTQ actually support is that individual members (Final Attack, Adrenaline Rush, Smash Swing) are worth nodes for mobbing, and that is now recorded separately as partialCorroboration rather than folded into the grouping's score. The bossing trio dropped from 'moderate' to 'weak' with sourceCount 1 - only mastermysty states that trio; Grandis states a node ORDER that is consistent with it, which is now recorded in a consistentWith field that carries no weight. Hunter's Prey's sources were trimmed to the two that support it, with DigitalTQ moved into a dissent field because it places the skill in a secondary trio. This is the same class of error as the citation inversions this wave targets, one degree milder: not a source contradicting the claim, but a source not making it."
+      },
+      {
+        "defect": "(Not raised by the critic; found during this pass.) The Primary/Secondary tier disagreement recorded in conflicts was being treated as an unlucky extraction, leaving open the possibility of resolving it by reading harder.",
+        "scope": "in-scope (vMatrix)",
+        "action": "CORRECTED - diagnosed as unresolvable by extraction",
+        "what": "A targeted re-fetch of the Grandis page asking only for text actually present confirmed that the page carries the legend definitions as text ('PRIMARY: Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used', etc.) but states no tier for any individual node - the tier is colour. A different fetch of the same page the same day cheerfully produced a full Primary/Secondary/Other assignment, which is exactly the failure mode that produces citation inversions. No tier is recorded anywhere in the file and the conflict note now says why the question cannot be answered by fetching."
+      },
+      {
+        "defect": "(Not raised by the critic; found during this pass.) The link skill conflict entry framed 'Combo Kill Blessing' versus '+400%/+650%/+900%' as a possible naming disagreement.",
+        "scope": "adjacent (linkSkill, outside the five endgame sections but cheap to settle with a source already open)",
+        "action": "CORRECTED",
+        "what": "The wiki gives the skill as Combo Kill Blessing with 'Combo Kill Orb EXP: +400%' at Lv. 1 and 'Combo Kill Orb EXP: +900%, Damage: +5%' at Lv. 3. Name and effect were never in conflict. Effect text corrected from 'Combo Kill Marbles' to 'Combo Kill Orbs', the Lv. 3 Damage +5% rider added, and the level-2 value flagged as the only single-sourced number. Consensus raised from weak to moderate on two independent sources."
+      }
     ],
     "clearedOnInspection": [
-      "No invented priority order either. Every ordering in the file is attributed to a source that actually states it - the problem is what that ordering MEANS (see overconfident[0]), not that it was made up."
+      "No invented priority order either. Every ordering in the file is attributed to a source that actually states it - the problem is what that ordering MEANS, not that it was made up. Re-checked 2026-09-12 and still true: vMatrix array order is Grandis's own numbered groups, hexa order is the infographic's cell sequence, hexaStatPriority is stated as plain text in the infographic, hyperSkills is now explicitly flagged unordered, innerAbility line order is flagged as slot order rather than ranking, and hyperStats is null and flagged unordered."
     ],
     "shipReady": false
   },
   "written": false,
-  "blockedReason": "3 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "blockedReason": "Four of the five endgame sections are now clean: vMatrix, hyperSkills, innerAbility and hyperStats were each re-opened on their cited pages on 2026-09-12 and contain nothing unverified (hyperStats contains nothing at all, correctly labelled). The hexa section is what blocks. Two things are outstanding there. First, its investment order could not be re-verified this pass - its only source is a PNG infographic, WebFetch cannot read images and the browser pane was unavailable, so the transcription still rests on a single unrepeated read from 2026-09-11 and seven of its 36 cells were never assignable to named nodes. Second, MapleStory Wiki shows Aran now has a second class-specific HEXA Skill core, Core 2 (Ascent) Hailstorm Howl, that the infographic predates and does not cover, so the order is known to be incomplete rather than merely weakly sourced. None of the three contested claims turned out to be a fabrication - the file's earlier blockedReason saying '3 claims did not survive independent re-checking' was itself wrong and has been replaced."
 }

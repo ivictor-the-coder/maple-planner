@@ -16,235 +16,330 @@
   "vMatrix": {
     "priority": [
       {
-        "node": "Build the four boost node groups that feed the 6th job mastery cores first: (1) Chain Lightning, (2) Frozen Orb + Blizzard, (3) Lightning Orb, (4) Thunder Sphere + Elquines.",
-        "why": "These are the four of six boost node groups that matter. Each one is tied to one of the class's four HEXA mastery cores, so boost node investment is also the gate on 6th job progress. The class doc states the class has four boost nodes that must be upgraded first; Grandis Library tiers these same four above the remaining two; NamuWiki independently describes exactly four 'essential' reinforcement cores out of six and pairs each with the mastery core it unlocks.",
-        "consensus": "strong - three independent sources agree on which four groups matter and on the group contents (class doc, Grandis Library, NamuWiki KMS)",
+        "node": "Build the four boost node groups that correspond to the 6th job mastery cores first: (1) Chain Lightning, (2) Frozen Orb + Blizzard, (3) Lightning Orb, (4) Thunder Sphere + Elquines.",
+        "why": "These are four of the six boost node groups, and they are the four the sources single out. The class doc states verbatim: 'Ice/Lightning has four relevant boost nodes that must be upgraded first' (the accompanying list is an image and was not transcribed; the four group identities come from the other two sources). Grandis Library's page data marks node groups 1-4 as PRIMARY and defines PRIMARY as 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used'. NamuWiki heads an 'Essential Reinforcing Core' table with the matching 6th job core names (Chain Lightning VI, Frozen Orb VI / Blizzard VI, Lightning Spear VI, Thunder Spear VI / Elquines VI) and says it 'strengthens 4 cores out of a total of 6 reinforcement cores'. The class doc separately confirms the pairing skill-by-skill, describing Chain Lightning, Frozen Orb, Blizzard, Elquines and Lightning Orb each as 'Boosted by V Boost nodes' and 'given a VI Job Mastery Core'.",
+        "consensus": "strong",
+        "consensusNote": "Three independent sources agree on which four groups matter and on the group contents (class doc, Grandis Library, NamuWiki KMS). The four-groups statement itself is in the class doc's own prose; the contents are confirmed by Grandis's structured page data and by NamuWiki independently.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
           "https://grandislibrary.com/explorers/arch-mage-ice-lightning",
           "https://en.namu.wiki/w/%EC%95%84%ED%81%AC%EB%A9%94%EC%9D%B4%EC%A7%80(%EC%8D%AC%2C%EC%BD%9C)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 3,
+        "verifiedAt": "2026-09-12",
+        "correctionNote": "An earlier version of this entry added 'so boost node investment is also the gate on 6th job progress'. That causal gating mechanic is asserted by no source and has been removed. The class doc presents boost nodes and mastery cores as separate upgrade tracks. Grandis's PRIMARY legend does use the word 'unlock' about the relationship, so that wording is now quoted and attributed rather than generalised into a progression gate."
       },
       {
-        "node": "Leave the remaining two boost node groups (Frost Ward + Ice Strike, and Thunder Bolt + Cold Beam) for last.",
-        "why": "Grandis Library ranks both in its lowest tier. NamuWiki notes one narrow exception: Ice Strike is used in some training builds before HEXA Frozen Orb is unlocked, after which it stops mattering.",
-        "consensus": "moderate - two independent sources (Grandis, NamuWiki); the Ice Strike training exception is single-source and KMS-side",
+        "node": "Leave the remaining two boost node groups for last, and treat them as two different tiers rather than one: Frost Ward + Ice Strike is the lesser-but-still-used group; Thunder Bolt + Cold Beam is the one you can skip.",
+        "why": "Grandis Library's page data puts Frost Ward + Ice Strike in SECONDARY, defined as 'Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used', and puts Thunder Bolt + Cold Beam alone in OTHER, defined as 'Boost Nodes that do not need to be upgraded or has least priority'. NamuWiki matches the split: it lists Glacial Wall (Frost Ward) / Ice Strike as the 'select strengthening core' and does not list Cold Beam / Thunderbolt among either the essential or selectable cores. NamuWiki also gives the narrow exception verbatim: 'Ice Strike is used in some hunting builds before the opening of Frozen of VI', i.e. before HEXA Frozen Orb is unlocked.",
+        "consensus": "moderate",
+        "consensusNote": "Two independent sources (Grandis, NamuWiki) agree on both the split and the ordering. The Ice Strike training exception is single-source and KMS-side.",
         "sources": [
           "https://grandislibrary.com/explorers/arch-mage-ice-lightning",
           "https://en.namu.wiki/w/%EC%95%84%ED%81%AC%EB%A9%94%EC%9D%B4%EC%A7%80(%EC%8D%AC%2C%EC%BD%9C)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "correctionNote": "An earlier version said 'Grandis Library ranks both in its lowest tier'. It does not: Grandis ranks Frost Ward + Ice Strike SECONDARY and only Thunder Bolt + Cold Beam OTHER. Corrected to match the source."
       },
       {
         "node": "Level nodes for shard efficiency rather than pushing each skill to 25 before starting the next.",
-        "why": "The class doc advises spending shards on a slightly lower-priority skill when that skill will gain levels faster, rather than forcing strict priority order.",
-        "consensus": "weak - single source (class doc)",
+        "why": "The class doc, verbatim: 'I don't recommend sending every skill immediately to level 25 using your node shards before moving on to the next. Instead, to be node efficient, you may choose to spend some nodes on a slightly lower priority skill, as it will level up more quickly.'",
+        "consensus": "weak",
+        "consensusNote": "Single source (class doc), text-confirmed verbatim.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Park Mana Overload at level 1, 10 or 20 before eventually pushing to 30.",
-        "why": "Mana Overload grants +1% final damage at every tenth level only. Levels between those breakpoints contribute nothing, so shards are better spent elsewhere until you can clear the next breakpoint.",
-        "consensus": "weak - single source (class doc), but stated as a flat mechanical fact rather than an opinion",
+        "why": "The class doc, verbatim: 'Mana Overload increases your final damage by 1% at every 10th level, so you may opt to let it sit at level 1/10/20 for a while before sending it to level 30. The levels outside of these breakpoints don't really do anything.'",
+        "consensus": "weak",
+        "consensusNote": "Single source (class doc), but stated as a flat mechanical fact rather than an opinion, and quoted verbatim.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Craft Decent Holy Symbol as early as possible; later max Erda Fountain, Decent Holy Symbol, and Rope Lift / Blink.",
-        "why": "Decent Holy Symbol is called out as an early training priority for EXP and drop rate. Maxing Erda Fountain improves the odds of one- or two-shotting mobs. Rope Lift and Blink give free stat and magic attack when maxed.",
-        "consensus": "weak - single source (class doc)",
+        "why": "The class doc, verbatim: 'You also want to craft Decent Holy Symbol ASAP for training exp and drop rate' and 'you will also want to eventually max out rope lift/blink for the free stat/matt. For training purposes, maxing Erda Fountain will make it more likely to 1- or 2-shot mobs, and maxing Decent Holy Symbol will provide a bit of extra exp and drop rate.'",
+        "consensus": "weak",
+        "consensusNote": "Single source (class doc), text-confirmed verbatim.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "V skill (5th job) leveling order, KMS-side claim only: Bolt Barrage > Jupiter Thunder > Spirit of Snow = Frost Ark.",
-        "why": "NamuWiki states the reinforcement priority for the 6th job enhancement cores matches the 5th job order, and gives that order explicitly. The GMS Heroic class doc has its own V-skill priority chart but publishes it only as an image, which could not be transcribed, so this ordering is NOT confirmed for GMS Heroic.",
-        "consensus": "weak - single source, KMS balance, machine-translated; flagged contested",
+        "node": "CONTESTED - V skill (5th job) leveling order, KMS-side claim only: Bolt Barrage > Jupiter Thunder > Spirit of Snow = Frost Ark.",
+        "why": "NamuWiki's 5th job 'job core' section states verbatim: 'The reinforcement order is Thunder Break > Jupiter Thunder > Spirit of Snow = Frost Arc.' Thunder Break is the machine translation of Bolt Barrage and Frost Arc of Frost Ark. The GMS Heroic class doc has its own V-skill priority chart but publishes it only as an image, which could not be transcribed, so this ordering is NOT confirmed for GMS Heroic.",
+        "consensus": "weak",
+        "consensusNote": "Single source, KMS balance, machine-translated. The attribution is exact - NamuWiki does say this - but the claim is not corroborated for GMS Heroic and is flagged contested.",
         "sources": [
           "https://en.namu.wiki/w/%EC%95%84%ED%81%AC%EB%A9%94%EC%9D%B4%EC%A7%80(%EC%8D%AC%2C%EC%BD%9C)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
       {
         "trio": "Chain Lightning / Thunder Sphere / Lightning Orb",
-        "label": "Trio #1",
-        "why": "Listed as one of two recommended boost node trios for Arch Mage (I/L). No bossing/mobbing split is given for this class on that reference.",
-        "consensus": "weak - single source, independently authored but dated 2024-11-21",
+        "label": "Primary trio (mystyjl: 'Trio #1'; Grandis Library: 'Primary Trio')",
+        "rank": 1,
+        "why": "Two sources give the same three-skill packing and both put it first. mystyjl's cross-class trio reference lists it as Trio #1; Grandis Library's recommended-nodes data labels the identical set 'Primary Trio'. Grandis adds: 'Any combination of these skills are good but preferred from same category as you want to max primary first'.",
+        "consensus": "moderate",
+        "consensusNote": "Two sources that agree exactly, but only mystyjl is independent - Grandis credits its Boost Nodes Build to the class doc, so it belongs to the class doc family. Counted as 2 independent origins (mystyjl; class doc family), which is short of the 3 needed for strong.",
         "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
+        ],
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12"
       },
       {
         "trio": "Frozen Orb / Blizzard / Elquines",
-        "label": "Trio #2",
-        "why": "The second of the two recommended trios from the same reference.",
-        "consensus": "weak - single source, independently authored but dated 2024-11-21",
+        "label": "Secondary trio (mystyjl: 'Trio #2'; Grandis Library: 'Secondary Trio')",
+        "rank": 2,
+        "why": "The second trio, identical in both sources and second in both. Grandis notes '4 Boost Nodes total are needed to reach Master Level 60 for these skills (with Matrix Points used)' and that 'Nodes with the same Main Skill (skill at the top) cannot be equipped at the same time'.",
+        "consensus": "moderate",
+        "consensusNote": "Same two sources, same independence caveat as the primary trio.",
         "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
+        ],
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Two different things are described here and should not be confused. Grandis Library and NamuWiki describe boost node GROUPS, i.e. which skills a single node type boosts: Chain Lightning alone; Frozen Orb with Blizzard; Lightning Orb alone; Thunder Sphere with Elquines; Frost Ward with Ice Strike; Thunder Bolt with Cold Beam. mystyjl instead describes TRIO packing, i.e. which three skills to keep together on one trio node. The two views agree on which six skills matter. The trio packing is the weaker claim: it is dated 2024-11-21 with underlying test data from 2024-05-14, and the class doc's own changelog records a V-matrix change on 2026-06-19 ('changed to be in line with the changes to V-Matrix'), so the packing predates a known regrouping and should be re-verified before use. Grandis Library's Primary/Secondary/Other tier labels did not extract consistently across two reads of the same page for nodes 2 and 4; the group CONTENTS were identical both times, so the groupings are recorded as reliable and the tier labels are not recorded at all."
+    "triosOrdered": true,
+    "triosOrderingNote": "The rank field is safe to read as priority: Grandis explicitly labels the two trios Primary and Secondary and says to max primary first, and mystyjl numbers them #1 and #2. This is a stated ranking, not an artifact of array order.",
+    "notes": "Two different things are described here and should not be confused. The class doc, Grandis Library and NamuWiki describe boost node GROUPS, i.e. which skills a single node type boosts: Chain Lightning alone; Frozen Orb with Blizzard; Lightning Orb alone; Thunder Sphere with Elquines; Frost Ward with Ice Strike; Thunder Bolt with Cold Beam. mystyjl and Grandis's 'recommended nodes' block instead describe TRIO packing, i.e. which three skills to keep together on one trio node. The two views agree on which six skills matter. RESOLVED 2026-09-12: an earlier pass recorded that Grandis's Primary/Secondary/Other tier labels extracted inconsistently across two reads and therefore refused to record them. The instability was a rendered-text extraction artifact. The page's own embedded page data carries the tiers unambiguously (primary = node groups 1-4, secondary = group 5, other = group 6) and they are now recorded above. The trio packing was also upgraded from single-source: mystyjl (dated 2024-11-21, underlying test data 2024-05-14) is now corroborated by Grandis's identical Primary/Secondary trios. The class doc's changelog still records a V-matrix change on 2026-06-19, which postdates mystyjl, so mystyjl alone would be stale; Grandis (GMS v269 stamp) carries the corroboration."
   },
   "hexa": {
     "order": [
       {
         "step": "Unlock the four mastery cores before unlocking Sol Janus.",
-        "why": "The class doc recommends unlocking Sol Janus after the masteries are unlocked. The four mastery cores are HEXA Chain Lightning, HEXA Frozen Orb / HEXA Blizzard, HEXA Lightning Orb / Cryoshock, and HEXA Thunder Sphere / HEXA Elquines.",
-        "consensus": "moderate - the ordering advice is single-source (class doc); the identity and contents of the four mastery cores are confirmed by three independent sources",
+        "why": "The class doc, verbatim: 'I highly recommend unlocking Sol Janus after unlocking masteries.' The four mastery cores are named in the doc's own VI Job Skills section as Hexa Chain Lightning, Hexa Frozen Orb / Blizzard, Hexa Lightning Orb / Cryoshock, and Hexa Thunder Sphere / Hexa Elquines. maplestorywiki confirms the same core names, and NamuWiki lists the same four (Chain Lightning VI; Frozen Orb VI / Blizzard VI; Lightning Spear VI; Thunder Spear VI / Elquines VI).",
+        "consensus": "moderate",
+        "consensusNote": "The ordering advice - masteries before Sol Janus - is single-source (class doc). The identity and contents of the four mastery cores are confirmed by three independent sources. Labelled moderate because the actionable part of the claim is the ordering.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
           "https://maplestorywiki.net/w/Arch_Mage_(Ice,_Lightning)/Skills",
           "https://en.namu.wiki/w/%EC%95%84%ED%81%AC%EB%A9%94%EC%9D%B4%EC%A7%80(%EC%8D%AC%2C%EC%BD%9C)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 3,
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Optional swap: unlock HEXA Frozen Orb before HEXA Chain Lightning if training matters more to you than bossing.",
-        "why": "The class doc states this makes training much easier. HEXA Frozen Orb enlarges Frozen Orb and stops it halting at platform edges or slowing on normal monsters, which is what turns it into a strong mobbing skill.",
-        "consensus": "weak - single source (class doc), but stated as an explicit player-choice branch rather than a fixed order",
+        "why": "The class doc, verbatim: 'You may opt to unlock Hexa Frozen Orb before Hexa Chain Lightning as it makes training much easier.' The doc's skill entry explains why: the HEXA core 'Increases the damage of the skills, and makes Frozen Orb much larger. Frozen Orb also will no longer stop at the end of platforms, or slow down for normal monsters, making it a much better mobbing skill.'",
+        "consensus": "weak",
+        "consensusNote": "Single source (class doc), but stated as an explicit player-choice branch rather than a fixed order, and quoted verbatim.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Max HEXA Stat I after Jupiter Thunder Boost is unlocked. Max HEXA Stat II after Thunder Sphere reaches level 9.",
-        "why": "These are the two explicit HEXA Stat entry points the class doc gives in prose, describing where the Stat upgrades sit inside its own priority chart.",
-        "consensus": "weak - single source (class doc), but text-confirmed rather than inferred from an image",
+        "why": "The class doc, verbatim: 'The Hexa Stat upgrade in the list shows that after unlocking Jupiter Thunder Boost, Hexa Stat I should be upgraded to maximum. After Thunder Sphere is level 9, you can then upgrade Hexa Stat II to maximum and so on.' These are the two explicit HEXA Stat entry points the doc gives in prose, describing where the Stat upgrades sit inside its own image-only priority chart.",
+        "consensus": "weak",
+        "consensusNote": "Single source (class doc), text-confirmed rather than inferred from an image.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Take Sol Janus after the masteries. If you train more than roughly 30 minutes a day, push it to level 10 or 20 early; level 30 only if you grind heavily.",
-        "why": "Sol Janus grants bonus EXP with meaningful jumps at those level thresholds, and gives a choice of two mobbing modes (Dusk, an area meteor effect on a three second cooldown; Dawn, additional summons scaling from one at level 1 to three at level 20+).",
-        "consensus": "weak - single source (class doc)",
+        "why": "The class doc, verbatim: 'If you train more than ~30 minutes a day, I'd also recommend considering getting Sol Janus to level 10 or even 20 early on, as it grants a very good amount of bonus experience at those level thresholds. You can even send it to level 30 if you're a giga grinder!' The doc's skill entry describes the two modes: 'Dusk activates meteors that hit enemies in a very large area around you with a three second cooldown. Dawn provides another set of summons (1 at level 1, up to 2 at level 10, up to 3 at level 20+) that last up to 2m at max rank.'",
+        "consensus": "weak",
+        "consensusNote": "Single source (class doc), text-confirmed verbatim.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "correctionNote": "An earlier version compressed Dawn's scaling to 'from one at level 1 to three at level 20+', dropping the level 10 step. Corrected to the doc's exact figures."
       },
       {
         "step": "CONTESTED - HEXA enhancement (boost) core order, KMS-side claim: Bolt Barrage Boost > Jupiter Thunder Boost > Spirit of Snow Boost = Frost Ark Boost.",
-        "why": "NamuWiki reasons that these four cores carry no option other than final damage, so their reinforcement order simply follows the 5th job skill order. This is a KMS-balance claim. The GMS Heroic class doc's own chart could not be read, and its prose places Jupiter Thunder Boost early enough to gate HEXA Stat I, which does not obviously match putting Bolt Barrage Boost first. Do not treat this as settled for GMS Heroic.",
-        "consensus": "weak - single source, KMS balance, machine-translated, and in unresolved tension with the GMS doc's prose",
+        "why": "NamuWiki's 6th job 'reinforced core' section states verbatim: 'Both skills have no options other than the final damage. That's why the reinforcement priority and order are the same as the fifth in the order of Thunder Brake > Jupiter Thunder > Spirit of Snow = Frost Arc.' This is a KMS-balance claim. The GMS Heroic class doc's own chart could not be read, and its prose places Jupiter Thunder Boost early enough to gate HEXA Stat I, which does not obviously match putting Bolt Barrage Boost first. Do not treat this as settled for GMS Heroic.",
+        "consensus": "weak",
+        "consensusNote": "Single source, KMS balance, machine-translated, and in unresolved tension with the GMS doc's prose. The attribution is exact - NamuWiki does say this, with that reasoning.",
         "sources": [
           "https://en.namu.wiki/w/%EC%95%84%ED%81%AC%EB%A9%94%EC%9D%B4%EC%A7%80(%EC%8D%AC%2C%EC%BD%9C)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "IMPORTANT GAP, recorded rather than filled. The authoritative GMS Heroic HEXA investment order for this class exists and is credited inside the class doc to a community member named Ebola, but it is published only as an infographic image. The image was retrieved and inspected: it is a sequence of roughly 130 skill icons each annotated with a target level, captioned 'Made for Reboot by Ebola'. The icons are not individually identifiable at the published resolution, so the step-by-step order is NOT reproduced here. Guessing it would have been fabrication. What the class doc says about the chart in prose IS recorded: it is ordered by final damage per Sol Erda Fragment across a full rotation; it deliberately parks each skill at major breakpoints rather than chasing many small ones; and it optimises full rotation rather than burst, so a player who cares more about burst should weight Origin (Frozen Lightning) levels and Jupiter Thunder levels more heavily than the chart does. Node structure is fully name-validated: the origin skill is Frozen Lightning and the ascent skill is Parabolic Bolt; the four enhancement cores are Frost Ark Boost, Bolt Barrage Boost, Spirit of Snow Boost and Jupiter Thunder Boost; the common cores are Sol Janus (Dusk/Dawn) and Sol Hecate (Styx/Charon/Phlegethon). NamuWiki additionally lists a third skill core that is not yet live in GMS, matching the class doc's own 'Future Changes' entry for the KMS MapleStory Overdrive update."
+    "notes": "IMPORTANT GAP, recorded rather than filled. The authoritative GMS Heroic HEXA investment order for this class exists and is credited inside the class doc to a community member named Ebola, but it is published only as an infographic image, captioned 'Made for Reboot by Ebola'. The image was retrieved and inspected in an earlier pass: it is a long sequence of skill icons each annotated with a target level, and the icons are not individually identifiable at the published resolution, so the step-by-step order is NOT reproduced here. Guessing it would have been fabrication. Grandis Library's page data independently corroborates the credit, listing a '6th Job' infographic credited to Ebola dated 2026-06-25, but does not republish a readable copy (the image path in that data does not resolve). What the class doc says about the chart in prose IS recorded and was re-verified verbatim on 2026-09-12: 'This order is based on what upgrades give you the most Final Damage per Sol Erda Fragment in a full rotation'; the author 'has opted to instead focus on major breakpoints to park each skill before then focusing on something else'; and 'This graphic also prioritizes full rotation: if you'd rather focus on improving your burst, you may want to more heavily prioritize getting Origin levels and Jupiter Thunder levels.' Node structure is fully name-validated against the class doc's own VI Job Skills section and maplestorywiki: the origin skill is Frozen Lightning and the ascent skill is Parabolic Bolt; the four enhancement cores are Frost Ark Boost, Bolt Barrage Boost, Spirit of Snow Boost and Jupiter Thunder Boost; the common cores are Sol Janus (Dusk/Dawn) and Sol Hecate (Styx/Charon/Phlegethon). NamuWiki additionally lists a third skill core not yet live in GMS, matching the class doc's own 'Future Changes' entry for the KMS MapleStory Overdrive update, and the doc notes 'Two more Common Nodes will eventually be released later on.'"
   },
   "hyperStats": {
+    "ordered": false,
+    "orderingNote": "This is an UNORDERED set, not a ranking. It contains one entry because that is the only hyper stat allocation any source states for this class. The class doc explicitly refuses to publish a fixed hyper stat order and defers to per-character optimisation. Downstream code must not read array position here as priority.",
     "priority": [
       {
         "stat": "Critical Rate to level 7 (9% crit rate)",
-        "why": "The class doc's stated route to exactly 100% critical rate is the baseline account sources it lists, plus 3% from Familiar Badges, plus 9% from level 7 Critical Rate hyper stat. Hyper stat and Legion are interchangeable contributors here, so points can be moved out of critical rate if Legion covers it.",
-        "consensus": "weak - single source (class doc), text-confirmed",
+        "why": "The class doc, verbatim: 'I recommend getting 3% crit rate from Familiar Badges, and then 9% crit rate from Level 7 Hyper Stat to put you at exactly 100% crit combined with the above sources.' The doc immediately adds that hyper stat and Legion are interchangeable contributors: 'You can also put legion blocks into critical rate and reduce the amount of Hyper Stat Points allocated to critical rate. Note that you can optimize your hyper stat vs. legion contribution to crit rate using Maple Scouter.'",
+        "consensus": "weak",
+        "consensusNote": "Single source (class doc), text-confirmed verbatim.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "No full hyper stat allocation order is recorded, because none could be sourced. The class doc publishes its hyper stat and critical rate figures as images and its prose gives only the critical rate target. The doc explicitly says the hyper stat versus Legion split for critical rate should be optimised per character with Maple Scouter rather than read off a fixed list. That deferral is itself the finding: a static hyper stat priority list for this class is not what the maintainers recommend. A useful class-specific detail that IS text-confirmed: because Infinity was changed into a passive skill, Legion critical rate blocks became affordable for I/L, which changes how much hyper stat needs to go into critical rate compared to older guides. If critical rate is short on a less progressed account, the doc suggests the Phantom link skill as a temporary substitute until other sources come online."
+    "notes": "No full hyper stat allocation order is recorded, because none could be sourced. The class doc publishes its hyper stat and critical rate figures as images and its prose gives only the critical rate target. The doc explicitly says the hyper stat versus Legion split for critical rate should be optimised per character with Maple Scouter rather than read off a fixed list. That deferral is itself the finding: a static hyper stat priority list for this class is not what the maintainers recommend. A useful class-specific detail that IS text-confirmed: the doc says 'With the recent changes to our class transforming infinity into a passive skill, we can now afford crit rate blocks into our legion grid', which changes how much hyper stat needs to go into critical rate compared to older guides. If critical rate is short on a less progressed account, the doc suggests the Phantom link skill as a temporary substitute until other sources come online."
   },
   "hyperSkills": {
+    "ordered": false,
+    "orderingNote": "An UNORDERED set of five picks, not a ranking. The class doc groups them rather than ranking them: Chain Lightning - Reinforce, Chain Lightning - Extra Strike and Frozen Orb - Reinforce are the damage lines it says should always be taken; Teleport Mastery - Range is the utility pick; Chain Lightning - Spread is the flexible fifth. Downstream code must not read array position as priority.",
     "passives": [
       {
         "skill": "Teleport Mastery - Range",
-        "why": "Gives I/L one of the longest teleports in the game. Note it behaves as a toggle dragged from the skill tab onto the keyboard layout, not as a passive, and it does not stack with Teleport Boost - only one of the two can be active.",
-        "consensus": "moderate - class doc and Grandis Library list the same five picks, but Grandis credits its build to the class doc so this is one source family",
+        "group": "utility - always taken",
+        "why": "The class doc, verbatim: 'Teleport Mastery: Range is great for movement and gives I/L one of the longest teleports in the game. It is not a passive, but a toggle that you can drag from the skill tab to your keyboard layout. Note that it does not stack with Teleport Boost: you can only have one of Teleport Mastery: Range or Teleport Boost activated at once.'",
+        "consensus": "moderate",
+        "consensusNote": "Class doc and Grandis Library list the same five picks, but Grandis's own credits block assigns its Hyper Passive Build to the class doc, so this is one source family, not two opinions.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
           "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Chain Lightning - Reinforce",
-        "why": "Named by the class doc as one of the three best damage increases and described as always taken.",
-        "consensus": "moderate - class doc, restated by Grandis Library (not independent)",
+        "group": "damage - always taken",
+        "why": "The class doc, verbatim: 'Chain Lightning: Reinforce, +1 Hit, and Frozen Orb: Reinforce are the best options for increasing I/L's damage, and so should always be taken.'",
+        "consensus": "moderate",
+        "consensusNote": "Class doc, restated by Grandis Library, which credits its Hyper Passive Build to the class doc - one source family.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
           "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Chain Lightning - Extra Strike",
-        "why": "The class doc calls this the +1 Hit line and groups it with Chain Lightning Reinforce and Frozen Orb Reinforce as the three best damage options, always taken.",
-        "consensus": "moderate - class doc, restated by Grandis Library (not independent)",
+        "group": "damage - always taken",
+        "why": "This is the line the class doc calls '+1 Hit' in the sentence grouping it with Chain Lightning Reinforce and Frozen Orb Reinforce as the best damage options, always taken. Grandis Library lists it under its GMS name, Chain Lightning - Extra Strike.",
+        "consensus": "moderate",
+        "consensusNote": "Class doc, restated by Grandis Library (not independent). The name mapping from the doc's '+1 Hit' to the GMS skill name is supplied by Grandis and by maplestorywiki.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
           "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Frozen Orb - Reinforce",
-        "why": "Third of the three damage lines the class doc says should always be taken.",
-        "consensus": "moderate - class doc, restated by Grandis Library (not independent)",
+        "group": "damage - always taken",
+        "why": "Third of the three damage lines the class doc names in the 'should always be taken' sentence.",
+        "consensus": "moderate",
+        "consensusNote": "Class doc, restated by Grandis Library (not independent).",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
           "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Chain Lightning - Spread",
-        "why": "Taken as the fifth slot by default rather than because it is needed - the class doc says I/L has sufficient mobbing without it. The only real alternative is Frozen Orb - Spread, which helps mobbing slightly once HEXA Frozen Orb is unlocked.",
-        "consensus": "moderate - class doc, restated by Grandis Library (not independent); the doc itself presents this slot as flexible",
+        "group": "flexible fifth slot",
+        "why": "The class doc, verbatim: 'Chain Lightning: Spread is simply the best remaining fifth option, but really isn't needed for I/L to have sufficient mobbing. The only real alternative is Frozen Orb: Spread, which can help mobbing slightly once Hexa Frozen Orb is unlocked.'",
+        "consensus": "moderate",
+        "consensusNote": "Class doc, restated by Grandis Library (not independent); the doc itself presents this slot as flexible.",
         "sources": [
           "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
           "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       }
     ],
     "actives": null,
-    "notes": "Five passive picks total. The fifth slot is the only genuine decision: Chain Lightning - Spread by default, Frozen Orb - Spread if you value mobbing and have HEXA Frozen Orb unlocked. No sourced recommendation on the active hyper skills was found, so that field is left empty."
+    "notes": "Five passive picks total. The fifth slot is the only genuine decision: Chain Lightning - Spread by default, Frozen Orb - Spread if you value mobbing and have HEXA Frozen Orb unlocked. No sourced recommendation on the active hyper skills was found - the class doc's HYPER SKILL PASSIVES section covers passives only and says nothing about the active hyper skills - so that field is left empty rather than guessed. Note on sourceCount: every entry here is 1, not 2, because Grandis Library's credits block assigns its Hyper Passive Build to the class doc. Grandis is listed in sources as the corroborating transcription of an image-only list, not as a second opinion."
   },
   "innerAbility": {
     "bossing": {
+      "ordered": true,
+      "orderingNote": "Listed in the order Grandis Library lists them, which corresponds to inner ability line slots 1, 2 and 3. That ordering is a slot assignment, not a rolling order - see rollingStrategy, where the class doc tells you to roll the Boss Damage line FIRST because it is the hardest to hit.",
       "lines": [
-        "Boss Damage +10%",
         "Attack Speed +1",
-        "Damage to abnormal status afflicted monsters"
+        "Boss Damage +10%",
+        "Damage to monsters inflicted with Abnormal Status +8%"
       ],
-      "why": "The class doc names these three as the ideal bossing inner ability and describes the rolling order around them. Grandis Library lists the same three lines, with the third at +8%, but credits its inner ability section to the class doc, so it is a restatement rather than a second opinion.",
-      "consensus": "moderate - one source family (class doc, restated by Grandis Library); the three lines are text-confirmed in the doc's prose, not read off an image",
+      "why": "The class doc's ideal bossing inner ability is published as an image, but its surrounding prose names each line: it tells you to 'roll first for 10% Boss Damage, which is the harder line to get', and then to 'wait for a discount honor event, lock the boss damage, and roll for Attack Speed +1 and Abnormal Status Damage.' Grandis Library's page data lists the same three lines verbatim as 'Attack Speed +1', 'Boss Damage +10%', 'Damage to monsters inflicted with Abnormal Status +8%', supplying the +8% figure the doc's prose does not give.",
+      "consensus": "moderate",
+      "consensusNote": "One source family (class doc, restated by Grandis Library, which credits its Inner Ability section to the class doc). The three lines are text-confirmed in the doc's prose, not read off an image; the +8% abnormal-status figure comes from Grandis only.",
       "sources": [
         "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
         "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
-      ]
+      ],
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
+      "correctionNote": "An earlier version listed Boss Damage +10% first and Attack Speed +1 second, and paraphrased the third line as 'Damage to abnormal status afflicted monsters' with no value. Reordered to the source's own listing order and the third line restored to its full name and value."
     },
     "earlyGame": {
+      "ordered": false,
+      "orderingNote": "These are ALTERNATIVES, not a set to assemble. The doc offers either one as an acceptable early result.",
       "lines": [
         "Attack Speed +1",
         "Boss Damage +20%"
       ],
-      "why": "The class doc explicitly warns against chasing the ideal bossing inner ability as a new player because of the cost, and names either of these single lines as a good early-game result while money goes into gear instead.",
-      "consensus": "weak - single source (class doc), text-confirmed",
+      "why": "The class doc, verbatim: 'While it may be tempting to try and go for this inner ability as a new player, it is very expensive, and as such it is recommended you settle for good-but-not-perfect options while saving money for gear upgrades and honor for an inner ability discount event. You can consider Attack Speed +1 or Boss Damage +20% as a good early game Inner Ability.'",
+      "consensus": "weak",
+      "consensusNote": "Single source (class doc), text-confirmed verbatim.",
       "sources": [
         "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-      ]
+      ],
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12"
     },
     "training": {
+      "ordered": true,
+      "orderingNote": "Slot order, from Grandis Library. The first two lines are the same ability at different value caps - Grandis's own note reads 'Depending on what's chosen as the 1st Line, choose the other for the 2nd Line', i.e. the +20% first line and the +15% second line are the meso and drop halves of the same pair in whichever arrangement you roll.",
       "lines": [
-        "Meso Obtained +20%",
-        "Drop Rate +20%",
-        "Damage to normal monsters +8%"
+        "Meso Obtained / Item Drop Rate +20%",
+        "Meso Obtained / Item Drop Rate +15%",
+        "Damage to Normal Monsters +8%"
       ],
-      "why": "Since multiple inner ability presets became available, a dedicated grinding preset is standard. The class doc's grinding preset is published as an image and could not be read; these specific lines come from Grandis Library, which credits the class doc.",
-      "consensus": "weak - one source family, and the underlying doc's own version of this preset was not readable",
+      "why": "The class doc says a dedicated grinding preset became standard once multiple inner ability presets arrived ('As of the GO WEST/Dreamer update, there are multiple Inner Ability presets, and so you can have a dedicated preset for grinding'), but publishes its own grinding preset as an image that could not be read. These specific lines and values are quoted verbatim from Grandis Library's page data, which credits its Inner Ability section to the class doc.",
+      "consensus": "weak",
+      "consensusNote": "One source family, and the underlying doc's own version of this preset was not readable, so Grandis is the only actual text for the line values.",
       "sources": [
         "https://grandislibrary.com/explorers/arch-mage-ice-lightning"
-      ]
+      ],
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
+      "correctionNote": "An earlier version recorded 'Meso Obtained +20%', 'Drop Rate +20%', 'Damage to normal monsters +8%'. Two errors: the first two lines are the combined 'Meso Obtained / Item Drop Rate' ability, not separate meso and drop abilities, and the second line caps at +15%, not +20%. As previously recorded the file described an inner ability that cannot be rolled. Corrected to Grandis's exact strings."
     },
     "rollingStrategy": {
-      "why": "Roll first for Boss Damage +10%, which is the harder line to hit, using Miracle Circulators on a second preset so the working inner ability is preserved. Miracle Circulators are the route of choice in GMS Heroic because they are purchasable with meso in the Cash Shop, they are the only way to reset inner ability without spending honor (which is scarce on Heroic), and they always roll the top value for a line - Unique Boss Damage otherwise ranges from 5% to 10%. Budget around 5 billion meso on average, with 10 to 20 billion realistic on bad luck. Then wait for a discounted honor event, lock the boss damage line, and roll the remaining two lines. A separate party-bossing preset is worth keeping if you regularly party with attack speed buffers such as Buccaneer.",
-      "consensus": "weak - single source (class doc), text-confirmed",
+      "why": "Roll first for Boss Damage +10%, which the class doc calls 'the harder line to get', using Miracle Circulators on a second preset 'to maintain your original IA'. The doc gives two reasons for circulators verbatim: 'first because it's the only way to reset your inner ability without using honor (a very hard to come by resource in Heroic servers), and second because Miracle Circulators always provide the highest value for a given inner ability line (Unique Boss Damage ranges from 5%-10%)'. They are purchasable for meso in the GMS Heroic Cash Shop. On cost: 'the average cost for this roll is around 5B, and can easily cost upwards of 10-20B if you get unlucky'. Then 'ideally wait for a discount honor event, lock the boss damage, and roll for Attack Speed +1 and Abnormal Status Damage.' A separate party-bossing preset is worth keeping if you regularly party with attack speed buffers such as Buccaneer.",
+      "consensus": "weak",
+      "consensusNote": "Single source (class doc), text-confirmed verbatim throughout.",
       "sources": [
         "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk"
-      ]
+      ],
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "The doc's ideal-bossing and grinding presets are both published as images; the three bossing lines above are recovered from the doc's surrounding prose, which names each of them, not from the image. The party-bossing preset's exact contents could not be read and are not recorded."
+    "notes": "The doc's ideal-bossing and grinding presets are both published as images; the three bossing lines above are recovered from the doc's surrounding prose, which names each of them, and from Grandis Library's text, which supplies the exact values. The party-bossing preset's exact contents are image-only and are not recorded."
   },
   "gearingNotes": "STAFF, NOT WAND - this is the class-specific gearing call most likely to be got wrong. A wand offers extra critical rate, but the class doc says the staff's higher base magic attack outweighs it. The common counter-argument that a staff's slower weapon attack speed is a drawback is wrong for a mage: mages use casting speed, not weapon attack speed, and casting speed has a base attack speed level of 4 regardless of which weapon is held. ATTACK SPEED - the GMS cap is 10 and I/L reaches it from the sources the doc lists; the soft cap of 8 cannot be broken without a Green Potion, so a Green Potion is part of the endgame buff set rather than optional. CRITICAL RATE - the target is 100%. The doc's route is the baseline account sources it lists plus 3% from Familiar Badges plus 9% from level 7 Critical Rate hyper stat. Because Infinity was reworked into a passive skill, Legion critical rate blocks became affordable for this class, so critical rate can be shifted between hyper stat and Legion; the doc recommends optimising that split with Maple Scouter rather than fixing it. Phantom link skill is a stopgap for less progressed accounts. SECONDARY - Deimos Sage Shield, crafted from a recipe dropped by Cygnus. It is preferred over magic book secondaries because it can be starforced to 20 stars, giving more magic attack and stat. It later converts to the Astra Arcane Shield; a shield above 15 stars can only transfer into a Stage 2 or higher Astra Arcane Shield, and a fully starforced transfer costs around 10 billion meso. On Interactive servers the shield is cheap on the Auction House. WSE - the target is 9 lines of attack across weapon, secondary and emblem, but the doc says to check Maple Scouter for whether boss damage lines beat attack lines on your specific setup, and not to worry about temporarily settling for a boss line on the Genesis weapon or the shield. COOLDOWN HAT - a -2s line is the standard because it smooths the burst rotation. I/L does not directly profit from cooldown reduction the way some classes do, so casual players clearing around the 15 minute mark can stay on a stat hat. Late and endgame players may want -4s on Heroic or -5s on Interactive for tight-timer fights such as Baldrix, Limbo and Seren. Note the doc's own update on this: once the KMS change reducing the maximum boss timer to 20 minutes lands, the threshold for squeezing in an extra burst becomes -6s, so the doc's recommendation is to stay at -2s rather than buy an intermediate cooldown hat, unless you specifically want a dedicated culvert hat. FREEZE STACKS - the resource the whole kit is built on. Ice skills apply stacks, lightning skills consume them, and Frozen Orb used off cooldown is the primary source. The payouts are: +20 final damage from Storm Magic at one or more stacks; +10% critical damage from Frost Clutch at five stacks, rising to 16% with Glacial Fury at 2% per stack; +1% final damage on lightning skills per stack consumed; and +10% ignore DEF from Shatter, rising to 16% with Glacial Fury at 2% per stack. Glacial Fury also raises the stack cap from 5 to 8, which is what scales all of the above. Notably Jupiter Thunder is net positive on stacks - it consumes 6 over its full duration but returns about 21 on average, because a stack is only consumed every third proc while Blizzard can final-attack on every proc.",
   "commonMistakes": [
@@ -308,33 +403,37 @@
   "sources": [
     {
       "url": "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
-      "what": "The Arch Mage (Ice, Lightning) class doc, maintained by PommeCuite (Discord zatchounet) for the Explorer Mage Discord, inherited from Vivillon. Scoped explicitly to GMS Heroic and Interactive. The authoritative judgement source for this class: boost nodes, V-skill priority, HEXA matrix priority (chart credited to Ebola and captioned 'Made for Reboot'), HEXA stat, hyper skill passives, attack speed, critical rate, inner ability, legion grid, link skills, freeze stack mechanics, burst order and rotations, culvert, and a boss/champion mule assessment. MAJOR LIMITATION: every ordered priority list in this doc is published as an embedded image, not text. Retrieve as plain text with /export?format=txt; the /mobilebasic and normal document URLs return less. The HEXA priority image was extracted and inspected but its ~130 icon steps are not individually identifiable, so the ordering is not transcribed anywhere in this file.",
+      "what": "The Arch Mage (Ice, Lightning) class doc, maintained by PommeCuite (Discord zatchounet) for the Explorer Mage Discord, inherited from Vivillon. Scoped explicitly to GMS Heroic and Interactive. The authoritative judgement source for this class: boost nodes, V-skill priority, HEXA matrix priority (chart credited to Ebola and captioned 'Made for Reboot'), HEXA stat, hyper skill passives, attack speed, critical rate, inner ability, legion grid, link skills, freeze stack mechanics, burst order and rotations, culvert, and a boss/champion mule assessment. MAJOR LIMITATION: every ordered priority list in this doc is published as an embedded image, not text. Retrieve as plain text with /export?format=txt; the /mobilebasic and normal document URLs return less. The HEXA priority image was extracted and inspected but its icon steps are not individually identifiable, so the ordering is not transcribed anywhere in this file.",
       "dated": "2026-07-25 (latest changelog entry; header reads 2026-06-18, GMS Ride The Lightning / KMS Crown)",
-      "independent": true
+      "independent": true,
+      "refetchedAt": "2026-09-12"
     },
     {
       "url": "https://grandislibrary.com/explorers/arch-mage-ice-lightning",
-      "what": "Grandis Library class page. Supplies the six boost node groups with their contents, the full example skill build path for jobs 1 to 4, the five hyper skill passive picks, recommended inner ability split into bossing and training, and base stats from skills. Has NO 6th job or HEXA investment section.",
+      "what": "Grandis Library class page. Supplies the six boost node groups with their contents AND their Primary/Secondary/Other tiers, two recommended boost node trios labelled Primary and Secondary, the full example skill build path for jobs 1 to 4, the five hyper skill passive picks, recommended inner ability split into bossing and training with exact values, and base stats from skills. Has NO 6th job or HEXA investment section, though its metadata does credit a '6th Job' infographic to Ebola dated 2026-06-25. READING NOTE: the rendered page text extracts the tier labels unreliably - two earlier reads disagreed, and a third disagreed again. The page's embedded structured data is unambiguous and is what this file now relies on: primary = node groups 1-4, secondary = group 5, other = group 6.",
       "dated": "GMS Ver. 269 [Ride the Lightning Update] sitewide stamp - two patches behind the v.271 target",
       "independent": false,
       "dependsOn": "https://docs.google.com/document/d/1fVI8tdEwBDigRD9HTcVIYtoFhm1ggXzsJMlIG_9_lAk",
-      "dependencyEvidence": "The page's own Credits block reads: Skill Icons + Animations: Ikasuu | Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc. Those are precisely the three judgement fields taken from it, so it is a restatement of the class doc and must not be counted as a second opinion."
+      "dependencyEvidence": "The page's own Credits block reads: Skill Icons + Animations: Ikasuu | Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc. Those are precisely the three judgement fields taken from it, so it is a restatement of the class doc and must not be counted as a second opinion.",
+      "refetchedAt": "2026-09-12"
     },
     {
       "url": "https://en.namu.wiki/w/%EC%95%84%ED%81%AC%EB%A9%94%EC%9D%B4%EC%A7%80(%EC%8D%AC%2C%EC%BD%9C)/%EC%8A%A4%ED%82%AC",
-      "what": "NamuWiki KMS skill page for Arch Mage (Ice, Lightning), read machine-translated to English. Genuinely independent of the Western guide-writing community. Independently confirms the six boost node groups and their contents, names the same four as essential and pairs each with the mastery core it unlocks, notes Ice Strike's narrow use in training builds before HEXA Frozen Orb, and is the only source found that states an explicit HEXA enhancement core order. Also lists a third HEXA skill core not yet live in GMS. CAUTION: KMS balance, no Reboot fragment economy, and skill names arrive machine-translated (Thunder Break = Bolt Barrage, Lightning Spear = Lightning Orb, Thunder Spear = Thunder Sphere, Glacial Wall = Frost Ward, Frost Arc = Frost Ark), so every name was re-validated against maplestorywiki before use.",
-      "dated": "2026-08-14 (page last-modified stamp)",
-      "independent": true
+      "what": "NamuWiki KMS skill page for Arch Mage (Ice, Lightning), read machine-translated to English. Genuinely independent of the Western guide-writing community. Independently confirms the six boost node groups and their contents, names the same four as an 'Essential Reinforcing Core' set headed by the matching 6th job core names, marks Glacial Wall / Ice Strike as the 'select strengthening core' and leaves Cold Beam / Thunderbolt out of both tiers, notes Ice Strike's narrow use in training builds before HEXA Frozen Orb, and is the only source found that states an explicit V-skill and HEXA enhancement core order. Also lists a third HEXA skill core not yet live in GMS. CAUTION: KMS balance, no Reboot fragment economy, and skill names arrive machine-translated (Thunder Break = Bolt Barrage, Lightning Spear = Lightning Orb, Thunder Spear = Thunder Sphere, Glacial Wall = Frost Ward, Frost Arc = Frost Ark), so every name was re-validated against maplestorywiki before use. ACCESS NOTE: returns 403 to plain fetching including with a browser user agent; readable only through a real browser session.",
+      "dated": "2026-08-14 (page last-modified stamp, re-read 2026-09-12)",
+      "independent": true,
+      "refetchedAt": "2026-09-12"
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. Independently authored. Gives Arch Mage (I/L) two trios with no bossing/mobbing split. Corroboration only - it predates a V-matrix change the class doc logs on 2026-06-19.",
-      "dated": "2024-11-21 (page stamp); underlying test data 2024-05-14",
-      "independent": true
+      "what": "mastermysty's cross-class boost node trio reference. Independently authored. Gives Arch Mage (I/L) two trios, Trio #1 Chain Lightning / Thunder Sphere / Lightning Orb and Trio #2 Frozen Orb / Blizzard / Elquines, with no bossing/mobbing split. Its trios match Grandis Library's Primary and Secondary trios exactly, which is what lifts the trio claim off single-source.",
+      "dated": "2024-11-21 (page stamp: 'Last update: November 21st, 2024'); underlying test data 'May 14th, 2024'",
+      "independent": true,
+      "refetchedAt": "2026-09-12"
     },
     {
       "url": "https://maplestorywiki.net/w/Arch_Mage_(Ice,_Lightning)/Skills",
-      "what": "Name-validation table, carrying no judgement. Used as a hard allowlist so no fabricated node or skill name could enter this file. Confirmed exactly: Class-Specific V Skills are Frost Ark, Bolt Barrage, Spirit of Snow, Jupiter Thunder; Class-Specific HEXA Skills are Frozen Lightning and Parabolic Bolt; Mastery Skills include HEXA Chain Lightning, HEXA Frozen Orb, HEXA Blizzard and HEXA Lightning Orb; HEXA Enhancements are Frost Ark Boost, Bolt Barrage Boost, Spirit of Snow Boost and Jupiter Thunder Boost. Also the source for the Empirical Knowledge link skill wording. Returns 403 to plain fetching; readable only through a real browser session.",
+      "what": "Name-validation table, carrying no judgement. Used as a hard allowlist so no fabricated node or skill name could enter this file. Confirmed exactly: Class-Specific V Skills are Frost Ark, Bolt Barrage, Spirit of Snow, Jupiter Thunder; Class-Specific HEXA Skills are Frozen Lightning and Parabolic Bolt; Mastery Skills include HEXA Chain Lightning, HEXA Frozen Orb, HEXA Blizzard and HEXA Lightning Orb; HEXA Enhancements are Frost Ark Boost, Bolt Barrage Boost, Spirit of Snow Boost and Jupiter Thunder Boost. Also the source for the Empirical Knowledge link skill wording. Returns 403 to plain fetching; readable only through a real browser session. NOTE: in the 2026-09-12 pass the same four mastery cores and four enhancement cores were independently re-confirmed from the class doc's own VI Job Skills section, so this file no longer depends on the wiki alone for node structure.",
       "dated": "living wiki; revision date not verifiable (page history unreachable)",
       "independent": true
     }
@@ -345,7 +444,7 @@
       "topic": "HEXA enhancement (boost) core investment order",
       "positions": [
         {
-          "claim": "Bolt Barrage Boost > Jupiter Thunder Boost > Spirit of Snow Boost = Frost Ark Boost, on the reasoning that these cores carry only final damage so their order simply mirrors the 5th job skill order.",
+          "claim": "Bolt Barrage Boost > Jupiter Thunder Boost > Spirit of Snow Boost = Frost Ark Boost, on the reasoning that these cores carry only final damage so their order simply mirrors the 5th job skill order. Verbatim: 'Both skills have no options other than the final damage. That's why the reinforcement priority and order are the same as the fifth in the order of Thunder Brake > Jupiter Thunder > Spirit of Snow = Frost Arc.'",
           "source": "https://en.namu.wiki/w/%EC%95%84%ED%81%AC%EB%A9%94%EC%9D%B4%EC%A7%80(%EC%8D%AC%2C%EC%BD%9C)/%EC%8A%A4%ED%82%AC",
           "dated": "2026-08-14",
           "caveat": "KMS balance, machine-translated, and KMS has no Reboot Sol Erda Fragment economy."
@@ -357,7 +456,7 @@
           "caveat": "The chart itself is an image and could not be transcribed, so this position is an inference from surrounding prose rather than a read of the order."
         }
       ],
-      "status": "unresolved - recorded, not resolved. Needs someone who can read the Ebola infographic or ask in the Explorer Mage Discord."
+      "status": "unresolved - recorded, not resolved, and re-confirmed unresolved on 2026-09-12. Needs someone who can read the Ebola infographic or ask in the Explorer Mage Discord. Both positions are accurately attributed; the disagreement is real, not an extraction error."
     },
     {
       "topic": "Boost node trio packing",
@@ -368,49 +467,106 @@
           "dated": "2024-11-21"
         },
         {
-          "claim": "Not a competing claim so much as a different unit of description: Grandis Library and NamuWiki both describe node GROUPS (Chain Lightning; Frozen Orb + Blizzard; Lightning Orb; Thunder Sphere + Elquines; Frost Ward + Ice Strike; Thunder Bolt + Cold Beam), not trio packing. All three sources agree on which six skills matter.",
+          "claim": "Identical packing, labelled 'Primary Trio' and 'Secondary Trio', with the note 'Any combination of these skills are good but preferred from same category as you want to max primary first'.",
           "source": "https://grandislibrary.com/explorers/arch-mage-ice-lightning",
           "dated": "GMS v269"
         }
       ],
-      "status": "compatible on substance, but the trio packing is stale - it predates the V-matrix change the class doc records on 2026-06-19. Re-verify before presenting trios to a user."
+      "status": "RESOLVED 2026-09-12 - not a conflict. Both sources give the same two trios in the same order. The earlier staleness worry about mystyjl predating the class doc's 2026-06-19 V-matrix change is mitigated by Grandis (GMS v269) giving the same packing. Recorded in vMatrix.trios at moderate consensus."
     },
     {
       "topic": "Grandis Library boost node tier labels",
       "positions": [
         {
-          "claim": "Two separate reads of the same Grandis page returned different Primary/Secondary/Other labels for node groups 2 and 4, while returning identical group CONTENTS both times.",
+          "claim": "Successive reads of the rendered page returned different Primary/Secondary/Other labels for node groups 2 and 4, while returning identical group CONTENTS every time.",
           "source": "https://grandislibrary.com/explorers/arch-mage-ice-lightning",
           "dated": "GMS v269"
         }
       ],
-      "status": "extraction unreliable. Group contents recorded as trustworthy; tier labels deliberately not recorded anywhere in this file."
+      "status": "RESOLVED 2026-09-12 - extraction artifact, not source ambiguity. The page's embedded structured data states the tiers unambiguously: primary = node groups 1, 2, 3, 4; secondary = group 5 (Frost Ward + Ice Strike); other = group 6 (Thunder Bolt + Cold Beam). Tier labels are now recorded in vMatrix.priority, sourced to that data rather than to rendered text."
     }
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "sourceCurrency": "Best source is current to 2026-07-25, which is the v269/v270 era. The v.271 target patch is not covered by any source read for this class, so anything v.271 changed is unverified here.",
   "coverageGaps": [
-    "Full HEXA investment order - exists (Ebola infographic, Reboot-specific) but is image-only and was not transcribed.",
+    "Full HEXA investment order - exists (Ebola infographic, Reboot-specific, credited by both the class doc and Grandis Library metadata, the latter dating it 2026-06-25) but is image-only and was not transcribed. No readable copy was found at any URL reachable in this environment.",
     "Full V-skill node leveling order - image-only in the class doc; only a KMS-side ordering could be sourced.",
-    "Hyper stat allocation beyond the critical rate target - not published as a list by any source; the class doc deliberately defers to Maple Scouter.",
-    "HEXA Stat I/II/III line priority - the doc's prose confirms Magic Attack is the highest priority but the ordered chart is an image; it also warns that highest priority does not mean it belongs in the main stat slot, and defers to Maple Scouter.",
-    "Legion effect for this class - no source read stated it.",
-    "Active hyper skill recommendations - not sourced.",
+    "Hyper stat allocation beyond the critical rate target - not published as a list by any source; the class doc deliberately defers to Maple Scouter. hyperStats is therefore stored as an explicitly unordered set of one.",
+    "HEXA Stat I/II/III line priority - the doc's prose confirms Magic Attack is the highest priority but the ordered chart is an image; it also warns that highest priority does not mean it belongs in the main stat slot, and defers to Maple Scouter. Not recorded as a claim.",
+    "Legion effect for this class - no source read stated it. NOTE: Grandis Library's page data does carry a legion field ('Grants flat INT', 10/20/40/80/100) but that was not cross-checked in this pass and legionEffect is left null rather than filled from an unverified read.",
+    "Active hyper skill recommendations - not sourced. The class doc's hyper section covers passives only.",
     "r/Maplestory was unreachable in this environment, so no reddit thread was read for this class."
   ],
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "innerAbility.training records 'Drop Rate +20%' as the second line, sourced solely to Grandis Library. Grandis actually says 'Meso Obtained/Item Drop Rate +20%, Meso Obtained/Item Drop Rate +15%, Damage to Normal Monsters +8%'. The second line is +15%, not +20%, reflecting the real second/third-slot value cap. As recorded, the file describes an inner ability that cannot be rolled. This is the only place a number was altered rather than dropped.",
-      "'so boost node investment is also the gate on 6th job progress' (vMatrix.priority[0].why) states a gating mechanic no source asserts. The class doc, asked in two separate reads, presents boost nodes and mastery cores as separate upgrade tracks and never says one gates the other. The group-to-core alignment is real and wiki-confirmed; the causal gate is invented connective tissue."
+    "resolvedAt": "2026-09-12",
+    "resolutionMethod": "Endgame-only resolution pass. Every claim in vMatrix, hexa, hyperSkills, hyperStats and innerAbility was re-opened at its own cited page - class doc via /export?format=txt, Grandis Library including its embedded page data, NamuWiki through a browser session (it 403s plain fetches), mystyjl NodeGuide - and each was confirmed verbatim, corrected to match the source, or deleted. No new sources were introduced.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "innerAbility.training records 'Drop Rate +20%' as the second line, sourced solely to Grandis Library. Grandis actually says 'Meso Obtained/Item Drop Rate +20%, Meso Obtained/Item Drop Rate +15%, Damage to Normal Monsters +8%'. The second line is +15%, not +20%, reflecting the real second/third-slot value cap. As recorded, the file describes an inner ability that cannot be rolled.",
+        "action": "CORRECTED",
+        "what": "Re-read Grandis Library's page data. The defect is upheld and was in fact understated: the file had split one combined ability into two, as well as getting the second value wrong. The lines are now recorded exactly as the source gives them - 'Meso Obtained / Item Drop Rate +20%', 'Meso Obtained / Item Drop Rate +15%', 'Damage to Normal Monsters +8%' - together with Grandis's own note that the first and second lines are the two halves of the same pair. An ordered:true flag now says the array is slot order, sourced.",
+        "scope": "in-scope (innerAbility)"
+      },
+      {
+        "defect": "'so boost node investment is also the gate on 6th job progress' (vMatrix.priority[0].why) states a gating mechanic no source asserts. The class doc presents boost nodes and mastery cores as separate upgrade tracks and never says one gates the other. The group-to-core alignment is real and wiki-confirmed; the causal gate is invented connective tissue.",
+        "action": "CORRECTED",
+        "what": "The gating clause is deleted - re-reading the class doc's BOOST NODES and VI JOB SKILLS sections confirms it says only 'Ice/Lightning has four relevant boost nodes that must be upgraded first' and describes the two tracks separately. The underlying correspondence is real and is now stated in each source's own words instead: Grandis Library defines its PRIMARY tier as 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used', NamuWiki heads its Essential Reinforcing Core table with the matching VI core names, and the class doc describes each of the five skills as 'Boosted by V Boost nodes' and 'given a VI Job Mastery Core'. The word 'unlock' now appears only as a quotation attributed to Grandis, never as a progression gate asserted by this file.",
+        "scope": "in-scope (vMatrix)"
+      },
+      {
+        "defect": "FOUND DURING THIS PASS, not in the original defect list: vMatrix.priority[1] claimed 'Grandis Library ranks both in its lowest tier' about Frost Ward + Ice Strike and Thunder Bolt + Cold Beam.",
+        "action": "CORRECTED",
+        "what": "A citation inversion of the same kind the pass was looking for. Grandis's page data puts Frost Ward + Ice Strike in SECONDARY ('don't unlock a 6th Job HEXA Mastery but are still used') and only Thunder Bolt + Cold Beam in OTHER ('do not need to be upgraded or has least priority'). NamuWiki agrees with the split, calling Glacial Wall / Ice Strike a 'select strengthening core' and omitting Cold Beam / Thunderbolt entirely. The entry now records two tiers rather than one and is upgraded to two-source moderate consensus.",
+        "scope": "in-scope (vMatrix)"
+      },
+      {
+        "defect": "FOUND DURING THIS PASS: the file's conflicts block said Grandis's tier labels were unrecordable because rendered-text extraction disagreed across reads, yet vMatrix.priority[0] recorded a tier claim anyway ('Grandis Library tiers these same four above the remaining two'). An internal contradiction.",
+        "action": "CONFIRMED and upgraded",
+        "what": "The tier claim turned out to be true and is now properly sourced. The instability was a rendering artifact; the page's embedded data gives primary = groups 1-4, secondary = group 5, other = group 6. Tier labels are now recorded with that provenance stated, and the conflicts entry is marked resolved instead of left open.",
+        "scope": "in-scope (vMatrix)"
+      },
+      {
+        "defect": "FOUND DURING THIS PASS: vMatrix.trios were labelled 'weak - single source' and flagged as possibly stale.",
+        "action": "CONFIRMED and upgraded",
+        "what": "Grandis Library's recommended-nodes data gives the identical two trios, labelled 'Primary Trio' and 'Secondary Trio', matching mystyjl's Trio #1 and Trio #2 exactly. Both claims re-verified at both pages. Upgraded to moderate, sourceCount 2, with the independence caveat stated (Grandis credits the class doc). A triosOrdered flag records that the rank field reflects a ranking the sources actually state, rather than array position.",
+        "scope": "in-scope (vMatrix)"
+      },
+      {
+        "defect": "FOUND DURING THIS PASS: hexa.order[3] compressed Sol Janus Dawn's summon scaling to 'from one at level 1 to three at level 20+', dropping the intermediate step.",
+        "action": "CORRECTED",
+        "what": "The class doc says '1 at level 1, up to 2 at level 10, up to 3 at level 20+' and that they 'last up to 2m at max rank'. Restored to the doc's exact figures.",
+        "scope": "in-scope (hexa)"
+      },
+      {
+        "defect": "FOUND DURING THIS PASS: innerAbility.bossing listed the three lines in an order that did not match its source and paraphrased the third line without its value.",
+        "action": "CORRECTED",
+        "what": "Reordered to Grandis's own listing order, which corresponds to inner ability slots 1/2/3, and the third line restored to 'Damage to monsters inflicted with Abnormal Status +8%'. An orderingNote now distinguishes slot order from the doc's rolling order, where Boss Damage is rolled first because it is the hardest line to hit.",
+        "scope": "in-scope (innerAbility)"
+      },
+      {
+        "defect": "FOUND DURING THIS PASS: hyperSkills.passives and hyperStats.priority were bare arrays whose position could be read as a ranking.",
+        "action": "CORRECTED (shape)",
+        "what": "Both now carry ordered:false plus an orderingNote. The class doc groups the hyper passives (three damage lines always taken, one utility pick, one flexible fifth) rather than ranking them, and explicitly declines to publish a hyper stat order, deferring to Maple Scouter. Each hyper passive's sourceCount was also corrected from an implied 2 to 1, because Grandis credits its Hyper Passive Build to the class doc and is a transcription rather than a second opinion.",
+        "scope": "in-scope (hyperSkills, hyperStats)"
+      }
     ],
+    "outOfScope": [],
     "clearedOnInspection": [
-      "NO fabricated node or skill names were found. Every name in the file was checked against maplestorywiki raw wikitext and confirmed: Frost Ark, Bolt Barrage, Spirit of Snow, Jupiter Thunder, Frozen Lightning, Parabolic Bolt, all four HEXA Enhancement Boost cores, all six boost node groups with contents, Empirical Knowledge (Master Level 9 / 31% / +5% / 3 stacks, verbatim correct), and all freeze-stack values (Frost Clutch 2%/stack, Shatter 2%/stack, Storm Magic 20 FD, Glacial Fury cap 5-to-8). The fourth mastery core HEXA Thunder Sphere / HEXA Elquines, which I initially suspected was fabricated, is confirmed real by the wiki."
+      "NO fabricated node or skill names were found. Every name in the file was checked against maplestorywiki raw wikitext and confirmed: Frost Ark, Bolt Barrage, Spirit of Snow, Jupiter Thunder, Frozen Lightning, Parabolic Bolt, all four HEXA Enhancement Boost cores, all six boost node groups with contents, Empirical Knowledge (Master Level 9 / 31% / +5% / 3 stacks, verbatim correct), and all freeze-stack values (Frost Clutch 2%/stack, Shatter 2%/stack, Storm Magic 20 FD, Glacial Fury cap 5-to-8). The fourth mastery core HEXA Thunder Sphere / HEXA Elquines, which I initially suspected was fabricated, is confirmed real by the wiki.",
+      "Re-cleared 2026-09-12: the four mastery cores and four enhancement cores were additionally confirmed straight from the class doc's own VI Job Skills section, so the name validation no longer rests on the wiki alone.",
+      "Re-cleared 2026-09-12: the two CONTESTED ordering claims (V-skill order and HEXA enhancement core order) are accurately attributed - NamuWiki states both, in those words, with that reasoning. They remain labelled weak and contested because they are single-source and KMS-side, not because the citation is wrong."
     ],
-    "shipReady": false
+    "shipReady": true
   },
-  "written": false,
-  "blockedReason": "2 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null,
+  "endgameVerification": {
+    "scope": "vMatrix, hexa, hyperSkills, hyperStats, innerAbility",
+    "verifiedAt": "2026-09-12",
+    "statement": "Every claim in the five endgame sections was re-opened at its own cited page in this pass and is now either quoted from that page or explicitly labelled as the gap it is. Two claims were corrected for value errors, three for mis-stated attributions, two array shapes were flagged as unordered, and two claims were upgraded after finding genuine corroboration. Nothing was invented and nothing survives that points at a source which does not support it. Sections outside this scope - skillBuilds, coefficients, damageLine, job tiers, rotations, gearingNotes, commonMistakes - were deliberately not touched in this pass and carry their earlier provenance."
+  }
 }

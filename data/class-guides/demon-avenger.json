@@ -13,225 +13,1039 @@
     "levels": 3
   },
   "legionEffect": "Boss Damage +1/2/3/5/6%",
-
   "vMatrix": {
+    "priorityOrdered": true,
+    "priorityOrderingNote": "The order of the two entries below IS stated by the source: Grandis Library's boost-node note reads 'Any combination of these skills are good but preferred from same category as you want to max primary first'. The three skills WITHIN each trio are NOT ordered - the same note says any combination is good - so skills[] order inside a trio carries no meaning.",
     "priority": [
       {
         "node": "Primary trio: Exceed: Execution + Nether Shield + Infernal Exceed",
-        "why": "Grandis Library labels this the Primary Trio and states you want to max the primary category first. mystyjl's cross-class node table independently lists the same three skills as Demon Avenger's bossing trio.",
-        "consensus": "moderate - two sources from separate lineages (Demon Avenger Discord via Grandis Library, and mystyjl's independently maintained table) name the identical three skills. The mystyjl data predates the v.269 node regrouping.",
+        "why": "Grandis Library's boost-node block labels this group literally 'Primary Trio' (the string appears verbatim in the page's nodeInfo.recommended data) and instructs you to max the primary category first. mystyjl's independently authored cross-class node table lists the identical three skills under the heading 'Bossing' for Demon Avenger.",
+        "skillsOrdered": false,
+        "consensus": "moderate",
+        "consensusWhy": "Two independent sources name the identical three skills. Grandis is a restatement of the Demon Avenger Discord (its Credits block attributes the Boost Nodes Build to that Discord), and mystyjl is separately authored, so these are two lineages rather than one. Not strong: 3+ independent sources would be needed and no third exists, because Demon Avenger has no public class document.",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/resistance/demon-avenger",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Secondary trio: Exceed: Lunar Slash + Thousand Swords + Bat Swarm",
-        "why": "Grandis Library labels this the Secondary Trio, built after the primary. mystyjl lists the same three skills as Demon Avenger's extra/supplementary skills rather than a formal second trio.",
-        "consensus": "moderate - same two sources, identical three skills, differing only on whether it is called a second trio or a set of extras.",
+        "why": "Grandis Library labels this group literally 'Secondary Trio', built after the primary. mystyjl lists the same three skills under the heading 'Extra' rather than as a formal second trio.",
+        "skillsOrdered": false,
+        "consensus": "moderate",
+        "consensusWhy": "Same two independent sources, identical three skills. They differ only on the label (Grandis: Secondary Trio; mystyjl: Extra), not on membership.",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/resistance/demon-avenger",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
       {
         "label": "Primary trio (bossing)",
-        "skills": ["Exceed: Execution", "Nether Shield", "Infernal Exceed"],
+        "skills": [
+          "Exceed: Execution",
+          "Nether Shield",
+          "Infernal Exceed"
+        ],
+        "skillsOrdered": false,
         "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/resistance/demon-avenger",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "label": "Secondary trio",
-        "skills": ["Exceed: Lunar Slash", "Thousand Swords", "Bat Swarm"],
+        "skills": [
+          "Exceed: Lunar Slash",
+          "Thousand Swords",
+          "Bat Swarm"
+        ],
+        "skillsOrdered": false,
         "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/resistance/demon-avenger",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "boostNodeGroupings": {
       "asOf": "GMS v.269 [Ride the Lightning]",
-      "note": "Which skills Grandis Library shows grouped into each of the six boost-node slots after the v.269 regrouping. Grandis exposes a separate 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence that Demon Avenger's node groupings changed at v.269; treat any undated node list as suspect.",
+      "note": "Which skills Grandis Library shows grouped into each of the six boost-node slots after the v.269 regrouping. Grandis exposes a separate 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence that Demon Avenger's node groupings changed at v.269; treat any undated node list as suspect. The six entries below are a SET of slot definitions, not a ranked list - the node numbers are Grandis' own slot indices, not a build order.",
+      "ordered": false,
       "groups": [
-        {"node": 1, "skills": ["Nether Shield", "Bat Swarm"]},
-        {"node": 2, "skills": ["Exceed: Execution", "Exceed: Double Slash"]},
-        {"node": 3, "skills": ["Exceed: Lunar Slash", "Exceed: Demon Strike"]},
-        {"node": 4, "skills": ["Thousand Swords", "Infernal Exceed"]},
-        {"node": 5, "skills": ["Vitality Veil", "Shield Charge"]},
-        {"node": 6, "skills": ["Blood Prison", "Nether Slice"]}
+        {
+          "node": 1,
+          "skills": [
+            "Nether Shield",
+            "Bat Swarm"
+          ],
+          "category": "primary"
+        },
+        {
+          "node": 2,
+          "skills": [
+            "Exceed: Execution",
+            "Exceed: Double Slash"
+          ],
+          "category": "primary"
+        },
+        {
+          "node": 3,
+          "skills": [
+            "Exceed: Lunar Slash",
+            "Exceed: Demon Strike"
+          ],
+          "category": "primary"
+        },
+        {
+          "node": 4,
+          "skills": [
+            "Thousand Swords",
+            "Infernal Exceed"
+          ],
+          "category": "primary"
+        },
+        {
+          "node": 5,
+          "skills": [
+            "Vitality Veil",
+            "Shield Charge"
+          ],
+          "category": "other"
+        },
+        {
+          "node": 6,
+          "skills": [
+            "Blood Prison",
+            "Nether Slice"
+          ],
+          "category": "other"
+        }
       ],
-      "sources": ["https://grandislibrary.com/resistance/demon-avenger"]
+      "categoryNote": "Grandis' legend reads 'Each Boost Node provides a %Final Damage increase to the skills included in the node. Nodes categorized as Primary and Secondary are recommended to be upgraded.' For Demon Avenger specifically the page's data marks nodes 1-4 as primary and nodes 5-6 as other, and assigns NO node to the Secondary category. So the legend's mention of Secondary is generic boilerplate; on this class there are no Secondary-category nodes. Do not confuse this node CATEGORY with the 'Secondary Trio' label above - they are different fields on the page and they do not refer to the same thing.",
+      "consensus": "weak",
+      "consensusWhy": "Single source. maplestorywiki publishes a competing grouping table that disagrees on cores 2 and 3 and contains an apparent data error ('Demon Cry Boost'), so it cannot be used as corroboration - see conflicts.",
+      "sourceCount": 1,
+      "sources": [
+        "https://grandislibrary.com/resistance/demon-avenger"
+      ],
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "Grandis Library records three mechanical notes alongside the trios: any combination of the skills inside a category works, but the primary category should be maxed first; four boost nodes in total are needed to bring these skills to Master Level 60 once Matrix Points are spent; and two nodes that share the same main skill (the skill listed at the top of the node) cannot be equipped at the same time. Source: https://grandislibrary.com/resistance/demon-avenger . Boost node level cap is 60. Source: https://maplestorywiki.net/w/Demon_Avenger/Skills"
+    "mechanics": [
+      {
+        "claim": "Any combination of the skills inside a category works, but you want to max the primary category first. Verbatim: 'Any combination of these skills are good but preferred from same category as you want to max primary first'.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-avenger"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "claim": "Four boost nodes in total are needed to bring these skills to Master Level 60, once Matrix Points are spent. Verbatim: '4 Boost Nodes total are needed to reach Master Level 60 for these skills (with Matrix Points used)'.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-avenger"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "claim": "Two nodes that share the same main skill - the skill listed at the top of the node - cannot be equipped at the same time. Verbatim: 'Nodes with the same Main Skill (skill at the top) cannot be equipped at the same time'.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-avenger"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "claim": "Boost node level cap is 60. Verbatim on maplestorywiki: 'The maximum level for Enhancements/Boost Nodes is 60'.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://maplestorywiki.net/w/Demon_Avenger/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
+      }
+    ],
+    "notes": "The four mechanics statements above were re-read verbatim from the cited pages on 2026-09-12 rather than paraphrased from memory. Every skill name in this section also appears on maplestorywiki, which is used here purely as an anti-fabrication allowlist."
   },
-
   "hexa": {
     "nodeInventory": {
-      "skillCores": ["Requiem (Origin)", "Rageborne Devil (Ascent)"],
-      "masteryCores": ["HEXA Nether Shield", "HEXA Exceed: Execution", "HEXA Exceed: Lunar Slash", "Maximal Exceed", "HEXA Thousand Swords", "HEXA Infernal Exceed"],
-      "enhancementCores": ["Demonic Frenzy Boost", "Demonic Blast Boost", "Dimensional Sword Boost", "Revenant Boost"],
-      "sources": ["https://maplestorywiki.net/w/Demon_Avenger/Skills"]
+      "skillCores": [
+        {
+          "name": "Requiem",
+          "slot": "Skill Node/Core 1 (Origin)"
+        },
+        {
+          "name": "Rageborne Devil",
+          "slot": "Skill Node/Core 2 (Ascent)"
+        }
+      ],
+      "masteryCores": [
+        {
+          "name": "HEXA Nether Shield",
+          "slot": "Mastery Node/Core 1"
+        },
+        {
+          "name": "HEXA Exceed: Execution",
+          "slot": "Mastery Node/Core 2"
+        },
+        {
+          "name": "HEXA Exceed: Lunar Slash",
+          "slot": "Mastery Node/Core 3"
+        },
+        {
+          "name": "Maximal Exceed",
+          "slot": "Mastery Node/Core 3"
+        },
+        {
+          "name": "HEXA Thousand Swords",
+          "slot": "Mastery Node/Core 4"
+        },
+        {
+          "name": "HEXA Infernal Exceed",
+          "slot": "Mastery Node/Core 4"
+        }
+      ],
+      "enhancementCores": [
+        "Demonic Frenzy Boost",
+        "Demonic Blast Boost",
+        "Dimensional Sword Boost",
+        "Revenant Boost"
+      ],
+      "ordered": false,
+      "note": "An inventory of what exists, not a priority list. Every name and every slot assignment here was re-read from the maplestorywiki skill page on 2026-09-12. All twelve names exist on that page; none are inferred.",
+      "consensus": "weak",
+      "consensusWhy": "Single source, but the source is an authoritative name-and-number table that carries no judgement, so the risk it protects against (fabricated node names) is fully covered by it.",
+      "sourceCount": 1,
+      "sources": [
+        "https://maplestorywiki.net/w/Demon_Avenger/Skills"
+      ],
+      "verifiedAt": "2026-09-12"
     },
-    "order": [
-      {"step": "1. HEXA Exceed: Lunar Slash (Mastery) to Lv 1", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "2. HEXA Exceed: Execution (Mastery) to Lv 1", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "3. HEXA Thousand Swords (Mastery) to Lv 1", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "4. A Common core to Lv 1 (green in the chart's own colour legend; the icon was not legible enough to name the specific node)", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "5. HEXA Nether Shield (Mastery) to Lv 1", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "6. HEXA Exceed: Execution to Lv 2", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "7. HEXA Nether Shield to Lv 2", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "8. HEXA Exceed: Execution to Lv 3", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "9. HEXA Nether Shield to Lv 3", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "10. HEXA Exceed: Execution to Lv 4", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "11. HEXA Thousand Swords to Lv 2", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "12. Demonic Frenzy Boost (Enhancement) to Lv 1", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "13. HEXA Nether Shield to Lv 4", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "14. HEXA Exceed: Execution to Lv 5", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "15. HEXA Thousand Swords to Lv 3", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "16. HEXA Exceed: Execution to Lv 6", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "17. HEXA Nether Shield to Lv 5", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "18. HEXA Thousand Swords to Lv 4", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "19. HEXA Nether Shield to Lv 6", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "20. HEXA Exceed: Execution to Lv 7", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "21. Dimensional Sword Boost (Enhancement) to Lv 1", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "22. HEXA Exceed: Execution to Lv 8", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "23. Revenant Boost (Enhancement) to Lv 1", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "24. HEXA Nether Shield to Lv 7", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "25. HEXA Thousand Swords to Lv 5", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "26. HEXA Nether Shield to Lv 8", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "27. HEXA Exceed: Execution to Lv 9", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "28. HEXA Thousand Swords to Lv 6", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "29. HEXA Nether Shield to Lv 9", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]},
-      {"step": "30. HEXA Thousand Swords to Lv 7", "why": null, "consensus": "weak", "sources": ["https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"]}
+    "order": {
+      "ordered": true,
+      "orderingNote": "This IS an ordered sequence and the source does assert the order: the infographic draws it as a left-to-right chain of cells, each cell a node icon plus the level that node is raised to at that step. Steps 1-30 of 167 are transcribed. Everything after step 30 is NOT transcribed - do not infer that a node absent from this list is deprioritised.",
+      "totalStepsInChart": 167,
+      "stepsTranscribed": 30,
+      "consensus": "weak",
+      "consensusWhy": "One source lineage only. The chart is credited to the Demon Avenger Discord, and its companion 'Energy Efficient' chart is visibly a screenshot of a Korean-language HEXA calculator UI, so this is very likely a KMS-balance calculator output relayed by the class Discord rather than independent GMS Heroic analysis. The two charts are NOT two opinions - see commonMistakes. Weak is the correct label even though the transcription itself has now been double-read.",
+      "sourceCount": 1,
+      "sources": [
+        "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+      ],
+      "verifiedAt": "2026-09-12",
+      "steps": [
+        {
+          "step": 1,
+          "node": "HEXA Exceed: Lunar Slash",
+          "targetLevel": 1,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 2,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 1,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 3,
+          "node": "HEXA Thousand Swords",
+          "targetLevel": 1,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 4,
+          "node": null,
+          "targetLevel": 1,
+          "nodeType": "Common core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 5,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 1,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 6,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 2,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 7,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 2,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 8,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 3,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 9,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 3,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 10,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 4,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 11,
+          "node": "HEXA Thousand Swords",
+          "targetLevel": 2,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 12,
+          "node": "Demonic Frenzy Boost",
+          "targetLevel": 1,
+          "nodeType": "Enhancement core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 13,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 4,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 14,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 5,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 15,
+          "node": "HEXA Thousand Swords",
+          "targetLevel": 3,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 16,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 6,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 17,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 5,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 18,
+          "node": "HEXA Thousand Swords",
+          "targetLevel": 4,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 19,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 6,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 20,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 7,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 21,
+          "node": "Dimensional Sword Boost",
+          "targetLevel": 1,
+          "nodeType": "Enhancement core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 22,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 8,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 23,
+          "node": "Revenant Boost",
+          "targetLevel": 1,
+          "nodeType": "Enhancement core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 24,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 7,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 25,
+          "node": "HEXA Thousand Swords",
+          "targetLevel": 5,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 26,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 8,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 27,
+          "node": "HEXA Exceed: Execution",
+          "targetLevel": 9,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 28,
+          "node": "HEXA Thousand Swords",
+          "targetLevel": 6,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 29,
+          "node": "HEXA Nether Shield",
+          "targetLevel": 9,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 30,
+          "node": "HEXA Thousand Swords",
+          "targetLevel": 7,
+          "nodeType": "Mastery core",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+          ],
+          "verifiedAt": "2026-09-12"
+        }
+      ],
+      "step4Note": "Step 4 is a Common core and the chart does not let it be named. Its border is green, which the companion chart's own legend defines as 공용 코어 = Common core, so the node TYPE is certain. The icon is a blue-and-gold winged figure that matches neither Sol Janus nor any 6th-job icon Grandis serves under this class, so the specific node is left null deliberately. A guessed node name would be worse than this gap.",
+      "firstSkillCore": {
+        "claim": "The first Skill core in the chart is Rageborne Devil (Ascent) to Lv 1, and it enters at step 32 - after the whole of the transcribed range. Requiem (Origin) does not appear in the first 32 steps.",
+        "why": "Read directly off the chart: step 32 is the second cell of row 3, it carries a gold/brown border (스킬 코어 = Skill core in the companion legend) and the pink lattice icon that Grandis serves as rageborne-devil.png. maplestorywiki independently confirms Rageborne Devil is Skill Node/Core 2 (Ascent).",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png"
+        ],
+        "verifiedAt": "2026-09-12"
+      }
+    },
+    "orderExtractionMethod": "Transcribed from the 'Fragments Efficient' infographic on the Grandis Library Demon Avenger page (demon-avenger-6th-job-fragments.png, credited to the Demon Avenger Discord, infographic by Izzy, dated 2026-06-25 in the page's own data). RE-VERIFIED 2026-09-12 by a second reader who downloaded the PNG and re-read it independently at 6x-9x magnification. All 30 steps matched the existing transcription exactly on all three attributes - node identity, target-level badge, and border colour. Node identities were fixed by pixel comparison against the icon files Grandis serves for this class (hexa-exceed-execution.png, hexa-exceed-lunar-slash.png, hexa-nether-shield.png, hexa-thousand-swords.png, demonic-frenzy.png, dimensional-sword.png, revenant.png, rageborne-devil.png), not by eye alone. Border colours were decoded from the legend printed on the companion 'Energy Efficient' image, which reads 마스터리 코어 = purple, 스킬 코어 = gold/brown, 강화 코어 = blue, 공용 코어 = green. The chart's true length was also counted: 11 rows of 15 cells plus a final row of 2 = 167 steps, correcting an earlier estimate of 'roughly 165'.",
+    "mechanics": [
+      {
+        "claim": "HEXA node level cap is 30.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://maplestorywiki.net/w/Demon_Avenger/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "claim": "HEXA Enhancement final damage rises linearly per level with jumps at levels 10, 20 and 30, and Enhancements require the matching V skill to be maxed and equipped. Verbatim: 'Enhancements require the corresponding V Skill to be leveled to max and equipped. Final Damage bonuses from Enhancements increase linearly each level, with a jump at levels 10, 20, and 30.' The four Demon Avenger enhancement formulas on the skills page all read 10+x+5*log10(x)+5*log20(x)+10*log30(x), which is exactly that shape.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+          "https://maplestorywiki.net/w/Template:HEXA_Skill_Description"
+        ],
+        "verifiedAt": "2026-09-12"
+      }
     ],
-    "orderExtractionMethod": "Transcribed by reading the icon sequence in the 'Fragments Efficient' infographic on the Grandis Library Demon Avenger page (image file demon-avenger-6th-job-fragments.png, credited to the Demon Avenger Discord, dated 2026-06-25 in the page's own data). Each cell is a skill icon with a target level badge and a border colour that encodes node type. Node types were read from the colour legend printed on the companion 'Energy Efficient' image (purple = Mastery core, gold/brown = Skill core, blue = Enhancement core, green = Common core). Skill icons were identified by comparison against the named icon files Grandis Library serves for this class. Steps 1-30 of roughly 165 are transcribed here; the remainder of the chart was not transcribed. The transcription is internally consistent (each node's level badge increases monotonically), but it is a human reading of an image and should be re-verified against the source image before being shown to a paying user.",
-    "notes": "Two 6th-job infographics exist for Demon Avenger and they encode DIFFERENT orders for different resource constraints: 'Fragments Efficient' and 'Energy Efficient' (Sol Erda Fragments versus Sol Erda). On Heroic/Reboot the binding constraint is normally fragments. Both are credited to the Demon Avenger Discord and dated 2026-06-25 in the Grandis Library page data. PROVENANCE WARNING: the 'Energy Efficient' image is a screenshot of a Korean-language calculator UI (its visible controls and its node-type colour legend are in Korean), which matches the maplescouter.com HEXA core-order tool that several other class docs defer to. That means Demon Avenger's public HEXA order is very likely a KMS-balance calculator output relayed by the class Discord, not an independently reasoned GMS Heroic write-up. Treat it as one source, not two, and do not treat agreement between the two images as corroboration. No public Demon Avenger class document exists to cross-check it: the maplestorywiki community class-guide index lists Demon Avenger with a blank entry, and the Grandis Library page's Other Resources block links only the wiki, NamuWiki and the class Discord - no Class Doc. The first 30 steps contain no Skill core (Requiem or Rageborne Devil) and no Maximal Exceed or HEXA Infernal Exceed step; those appear later in the chart and were not transcribed. Mechanics, from maplestorywiki: HEXA node level cap is 30, HEXA Enhancement final damage rises linearly per level with jumps at levels 10, 20 and 30, and Enhancements require the matching V skill to be maxed and equipped."
+    "notes": "Two 6th-job infographics exist for Demon Avenger and they encode DIFFERENT orders for different resource constraints: 'Fragments Efficient' and 'Energy Efficient' (Sol Erda Fragments versus Sol Erda). On Heroic/Reboot the binding constraint is normally fragments, which is why the Fragments chart is the one transcribed. PROVENANCE WARNING, re-confirmed 2026-09-12 by opening the image: the 'Energy Efficient' image carries a Korean checkbox header (본인 스펙 추천구간 보기, 'view the recommended range for your own spec') and a Korean node-type colour legend, i.e. it is a screenshot of a Korean HEXA calculator, not original English analysis. Both images are credited to the same Demon Avenger Discord and carry the same 2026-06-25 date. Treat them as ONE source and never treat agreement between them as corroboration. No public Demon Avenger class document exists to cross-check against: the maplestorywiki community class-guide index lists Demon Avenger with a blank entry, and the Grandis page's Other Resources block links only maplestorywiki, NamuWiki and the class Discord - no Class Doc."
   },
-
   "hyperStats": {
-    "priority": [
-      {"stat": "Damage", "why": "Described as the first hyper stat for every class, Demon Avenger included.", "consensus": "weak - single source (KMS-side wiki)", "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"]},
-      {"stat": "Boss Damage", "why": "Demon Avenger gets no Boss Damage from its own skill kit; the Grandis base-stat table lists Boss Damage +0% from skills, so hyper stats and the class's own Legion effect are where it comes from.", "consensus": "moderate - the priority claim is single-source (NamuWiki), but the underlying fact that skill-sourced Boss Damage is 0% is independently confirmed by Grandis Library's base-stat table.", "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8", "https://grandislibrary.com/resistance/demon-avenger"]},
-      {"stat": "Ignore DEF", "why": "Called out as especially important against high-level bosses with very high base defence, where each further point is worth more as total defence reduction approaches its ceiling.", "consensus": "weak - single source (KMS-side wiki)", "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"]},
-      {"stat": "Critical Damage", "why": "Demon Avenger's skill-sourced critical damage is only +8% (Advanced Desperado Mastery), described as the lowest of the warrior classes, and critical damage has few other sources - so points here are unusually valuable once critical rate is handled.", "consensus": "moderate - the priority claim is single-source (NamuWiki), but the +8% figure is independently confirmed by maplestorywiki's skill data and by Grandis Library's base-stat table.", "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8", "https://maplestorywiki.net/w/Demon_Avenger/Skills", "https://grandislibrary.com/resistance/demon-avenger"]},
-      {"stat": "Critical Rate", "why": "Often skippable for this class: Demon Avenger already carries +40% critical rate from passives, so if Legion, artifacts or inner ability can close the gap to the cap, these points are better spent elsewhere.", "consensus": "moderate - the 'often skippable' judgement is single-source (NamuWiki), but the +40% passive critical rate is independently confirmed by maplestorywiki and by Grandis Library's base-stat table.", "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8", "https://maplestorywiki.net/w/Demon_Avenger/Skills", "https://grandislibrary.com/resistance/demon-avenger"]},
-      {"stat": "Max HP %", "why": "Effective because HP is the damage stat, and a percentage line beats the flat-value hyper stats on paper - but still allocated after the stats above.", "consensus": "weak - single source (KMS-side wiki)", "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"]}
+    "ordered": false,
+    "orderingNote": "DO NOT FLATTEN THIS INTO A RANKED ARRAY. NamuWiki is the only source on earth that discusses Demon Avenger hyper stats, and it presents its six stats as a descriptive list, not a ranking. It states exactly three ordering facts and no others: Damage is the number-one hyper stat for every class and Demon Avenger is no exception; Critical Rate is 'no longer essential' since the class's base crit rate was raised to 40%, and should be dropped in favour of something else if Legion occupation, Legion artifact or inner ability can cover the gap; and Max HP % is taken slowly, only after the essential hyper stats are finished. The four stats in between are each given a reason but are never ranked against one another. A previous version of this file shipped a flat ordered array (Damage, Boss Damage, Ignore DEF, Critical Damage, Critical Rate, Max HP %) whose sequence matched neither the source's own list order nor any ranking the source states - downstream code reading array position as priority would have invented a claim. That array is replaced by the tiers below.",
+    "sourceListOrder": [
+      "Damage",
+      "Critical Rate",
+      "Boss Damage",
+      "Ignore DEF",
+      "Critical Damage",
+      "Max HP %"
     ],
-    "notes": "Grandis Library publishes no hyper stat section for any class, and no GMS-side Demon Avenger source publishes one either, so the whole of the above rests on one KMS community wiki and must be labelled weak. The community's operative answer to hyper stat allocation is not a fixed list at all but a per-character optimisation against a chosen boss, computed from your own stat sheet - MathBro's hyper stat optimizer at https://brendonmay.github.io/hyperCalculator/ . A static priority list is a simplification. Where Max HP % sits is likely to move more than it would for a normal class, because for Demon Avenger it is a main-stat line rather than a survivability line."
+    "sourceListOrderNote": "The literal order the six stats appear in on the NamuWiki page. Recorded only so a future reader can see that it is NOT the order this file previously shipped, and so nobody mistakes it for a ranking. NamuWiki gives no indication that its list order means anything.",
+    "tiers": [
+      {
+        "tier": 1,
+        "label": "Explicitly ranked first by the source",
+        "ordered": true,
+        "stats": [
+          {
+            "stat": "Damage",
+            "why": "NamuWiki: '모든 직업의 1순위 하이퍼 스탯. 데벤져도 예외는 아니다.' - the number-one priority hyper stat for every class, and Demon Avenger is no exception. This is the only stat the source explicitly ranks first.",
+            "consensus": "weak",
+            "consensusWhy": "Single independent source (a KMS community wiki). No GMS-side source publishes a Demon Avenger hyper stat opinion at all.",
+            "sourceCount": 1,
+            "sources": [
+              "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+            ],
+            "verifiedAt": "2026-09-12"
+          }
+        ]
+      },
+      {
+        "tier": 2,
+        "label": "Core set - the source praises all three but never ranks them against each other",
+        "ordered": false,
+        "orderedNote": "Unordered by design. Any order here would be invented. Use MathBro's optimizer to choose between them for a specific boss and a specific stat sheet.",
+        "stats": [
+          {
+            "stat": "Boss Damage",
+            "why": "NamuWiki: Demon Avenger's base boss damage is 0% once you exclude its own Legion member effect; there are damage-increase options that sum with boss damage, but even accounting for that, boss damage's value is high enough. The underlying 0% is independently confirmed by Grandis Library's derived-stat table, which lists Boss Damage +0% from skills.",
+            "consensus": "moderate",
+            "consensusWhy": "The priority judgement is single-source (NamuWiki). The load-bearing fact beneath it - that skill-sourced Boss Damage is 0% - is independently confirmed by Grandis Library.",
+            "sourceCount": 2,
+            "sources": [
+              "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+              "https://grandislibrary.com/resistance/demon-avenger"
+            ],
+            "verifiedAt": "2026-09-12"
+          },
+          {
+            "stat": "Ignore DEF",
+            "why": "NamuWiki: many of Demon Avenger's skills already carry extra ignore-DEF, but as ignore-DEF approaches 90% each further 1% matters enormously, and it is especially essential against higher-tier bosses that carry 300% base defence. Grandis' derived-stat table independently puts the class's skill-sourced Ignore DEF at +51% (+58.84% with conditional sources), which is consistent with the source's premise that the class starts with a lot of it.",
+            "consensus": "moderate",
+            "consensusWhy": "The priority judgement is single-source (NamuWiki). The premise that the kit already supplies substantial ignore-DEF is independently confirmed by Grandis.",
+            "sourceCount": 2,
+            "sources": [
+              "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+              "https://grandislibrary.com/resistance/demon-avenger"
+            ],
+            "verifiedAt": "2026-09-12"
+          },
+          {
+            "stat": "Critical Damage",
+            "why": "NamuWiki's hyper stat entry says only this: as long as you can secure guaranteed critical, its efficiency is always very good, and its priority for enhancement beyond level 10 is also high. SEPARATELY, in its Legion section, the same page states that Demon Avenger's base critical damage of 8% is the lowest figure in the entire warrior job group and that, unlike critical rate, critical damage has limited sources, so it must be secured everywhere it can be. That is the stronger argument, but it is made about the Legion board, not about hyper stats - an earlier version of this file presented it as the hyper stat entry's own reasoning. The +8% figure itself is independently confirmed by maplestorywiki's skill data (Advanced Desperado Mastery) and by Grandis' derived-stat table.",
+            "consensus": "moderate",
+            "consensusWhy": "The priority judgement is single-source (NamuWiki). The +8% crit damage figure is independently confirmed by two further sources, but a figure is not a recommendation.",
+            "sourceCount": 3,
+            "sources": [
+              "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+              "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+              "https://grandislibrary.com/resistance/demon-avenger"
+            ],
+            "verifiedAt": "2026-09-12"
+          }
+        ]
+      },
+      {
+        "tier": 3,
+        "label": "Explicitly conditional - the source tells you to skip it when you can",
+        "ordered": true,
+        "stats": [
+          {
+            "stat": "Critical Rate",
+            "why": "NamuWiki: since base critical rate was raised to 40% this is 'no longer essential'; if you can secure enough critical rate by other means - Legion occupation effects, Legion artifact, inner ability - it is better to take those and invest the hyper stat points elsewhere. The +40% passive figure (5% base + 15% Demonic Veracity + 20% Abyssal Connection) is independently confirmed by maplestorywiki and by Grandis' derived-stat table.",
+            "consensus": "moderate",
+            "consensusWhy": "The 'skip it if you can' judgement is single-source (NamuWiki). The +40% figure it rests on is independently confirmed twice.",
+            "sourceCount": 3,
+            "sources": [
+              "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+              "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+              "https://grandislibrary.com/resistance/demon-avenger"
+            ],
+            "verifiedAt": "2026-09-12"
+          }
+        ]
+      },
+      {
+        "tier": 4,
+        "label": "Explicitly last",
+        "ordered": true,
+        "stats": [
+          {
+            "stat": "Max HP %",
+            "why": "NamuWiki: HP leads directly to attack power, so it is not essential but it is good to see the effect; being a percentage line rather than a flat one makes it better than expected against the flat-value hyper stats. But because critical damage, boss damage, damage and critical rate all matter so much, 'even a Demon Avenger' finishes the essential hyper stats first and only then slowly puts points here. This is the one stat the source explicitly places last.",
+            "consensus": "weak",
+            "consensusWhy": "Single independent source (a KMS community wiki).",
+            "sourceCount": 1,
+            "sources": [
+              "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+            ],
+            "verifiedAt": "2026-09-12"
+          }
+        ]
+      }
+    ],
+    "notes": "Grandis Library publishes no hyper stat section for any class - confirmed by re-reading the raw page data on 2026-09-12, which contains no hyperStat field - and no other GMS-side Demon Avenger source publishes one either, so the whole of the above rests on one KMS community wiki. The community's operative answer to hyper stat allocation is not a fixed list at all but a per-character optimisation against a chosen boss, computed from your own stat sheet: MathBro's hyper stat optimizer at https://brendonmay.github.io/hyperCalculator/ . Any static list, this one included, is a simplification. Where Max HP % sits is likely to move more for Demon Avenger than for a normal class, because for this class it is a main-stat line rather than a survivability line - but note that the source is aware of exactly that and still puts it last."
   },
-
   "hyperSkills": {
     "passives": {
-      "recommended": ["Exceed - Reinforce", "Exceed - Reduce Overload", "Exceed - Opportunity", "Nether Shield - Reinforce", "Nether Shield - Spread"],
-      "why": "This is exactly five picks, matching the five hyper passive points a character has by Lv 190, so it is a complete build rather than a ranking. The skipped options are the three Ward Evil lines (Harden, Immunity Enhance 1, Immunity Enhance 2), which are defensive, and Nether Shield - Range, which only widens the skill's reach.",
-      "consensus": "weak for the recommendation itself - one source lineage (Demon Avenger Discord, relayed by Grandis Library). Strong for the surrounding facts: the full list of nine available passives and their level requirements is confirmed on maplestorywiki.",
-      "sources": ["https://grandislibrary.com/resistance/demon-avenger", "https://maplestorywiki.net/w/Demon_Avenger/Skills"]
+      "ordered": false,
+      "orderingNote": "Grandis presents these as a build, not a ranking: its hyperBuild.recommended field is a single two-bullet string reading 'Exceed - Reinforce, Reduce Overload, and Opportunity' and 'Nether Shield - Reinforce and Spread'. No pick order is given or implied. Do not read array position as priority.",
+      "recommended": [
+        "Exceed - Reinforce",
+        "Exceed - Reduce Overload",
+        "Exceed - Opportunity",
+        "Nether Shield - Reinforce",
+        "Nether Shield - Spread"
+      ],
+      "skipped": [
+        "Ward Evil - Harden",
+        "Ward Evil - Immunity Enhance 1",
+        "Ward Evil - Immunity Enhance 2",
+        "Nether Shield - Range"
+      ],
+      "available": [
+        {
+          "name": "Exceed - Reinforce",
+          "effect": "Exceed Skills Damage: +20%",
+          "reqLevel": 140
+        },
+        {
+          "name": "Exceed - Reduce Overload",
+          "effect": "Exceed Overload: -2 (max stacks 20 to 18)",
+          "reqLevel": 150
+        },
+        {
+          "name": "Exceed - Opportunity",
+          "effect": "Bonus Exceed Attack Chance: +10% (chance for Infernal Exceed to activate)",
+          "reqLevel": 180
+        },
+        {
+          "name": "Ward Evil - Harden",
+          "effect": "Damage Intake: -10%",
+          "reqLevel": 140
+        },
+        {
+          "name": "Ward Evil - Immunity Enhance 1",
+          "effect": "Status Resistance: +10",
+          "reqLevel": 165
+        },
+        {
+          "name": "Ward Evil - Immunity Enhance 2",
+          "effect": "Elemental Resistance: +10%",
+          "reqLevel": 180
+        },
+        {
+          "name": "Nether Shield - Reinforce",
+          "effect": "Nether Shield Damage: +20%",
+          "reqLevel": 150
+        },
+        {
+          "name": "Nether Shield - Spread",
+          "effect": "Max attacks per Nether Shield: +2",
+          "reqLevel": 165
+        },
+        {
+          "name": "Nether Shield - Range",
+          "effect": "Nether Shield Range: +50",
+          "reqLevel": 190
+        }
+      ],
+      "why": "Grandis recommends exactly these five of the nine available passives. The four it leaves out are the three Ward Evil lines, which are purely defensive (damage intake, status resistance, elemental resistance), and Nether Shield - Range, which only widens the skill's reach. Every one of the nine names and its level requirement was re-read from the Grandis page's own hyperPassive data on 2026-09-12 and cross-checked against maplestorywiki.",
+      "removedClaim": "An earlier version of this entry argued the five picks 'match the five hyper passive points a character has by Lv 190', and used that to conclude the list is a complete build rather than a ranking. No source in this file states how many hyper passive points a character has, and no reachable page was found that does. The claim has been DELETED rather than hedged. The conclusion it supported - that this is an unordered build - is retained, but on a different and verifiable footing: Grandis itself presents it as a build string with no ordering.",
+      "consensus": "weak",
+      "consensusWhy": "The recommendation is one source lineage: Grandis' Credits block attributes 'Inner Ability + Hyper Passive Build + Boost Nodes Build' to the Demon Avenger Discord, so Grandis is a restatement of that Discord rather than a second opinion. The surrounding facts - the nine available passives, their effects and their level requirements - are confirmed by two independent sources.",
+      "sourceCount": 1,
+      "sourceCountNote": "sourceCount 1 refers to the RECOMMENDATION, which is what a player would act on. The supporting name/level data is corroborated by maplestorywiki, but maplestorywiki carries no recommendation of any kind.",
+      "sources": [
+        "https://grandislibrary.com/resistance/demon-avenger",
+        "https://maplestorywiki.net/w/Demon_Avenger/Skills"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "actives": {
-      "list": ["Forbidden Contract (Lv 140)", "Thousand Swords (Lv 160)", "Demonic Fortitude (Lv 190)"],
+      "ordered": false,
+      "orderingNote": "Not a ranking and not a selection. All three are taken; they simply unlock at different levels. Array order is level order, which is the only order there is.",
+      "list": [
+        {
+          "name": "Forbidden Contract",
+          "reqLevel": 140,
+          "effect": "HP Cost 5000, Duration 24 sec, Damage +10%, Cooldown 60 sec"
+        },
+        {
+          "name": "Thousand Swords",
+          "reqLevel": 160,
+          "effect": "Max HP Cost 15%, Exceed Overload +5, Damage 500%, 8 attacks, 14 enemies, Cooldown 8 sec"
+        },
+        {
+          "name": "Demonic Fortitude",
+          "reqLevel": 190,
+          "effect": "HP Cost 100, Duration 60 sec, Damage +10%, Cooldown 120 sec; applies only to Demon, Resistance and Xenon party members"
+        }
+      ],
       "note": "Demon Avenger's three hyper actives unlock at three different levels and cost one point each, so there is no selection decision here - you take all three. Thousand Swords in particular is not optional: it is one of the skills in the recommended secondary boost node trio and it also appears as a HEXA Mastery core.",
-      "consensus": "strong - the three actives and their level requirements are on maplestorywiki; Thousand Swords' role in the trio and as a Mastery core is confirmed on Grandis Library and maplestorywiki respectively.",
-      "sources": ["https://maplestorywiki.net/w/Demon_Avenger/Skills", "https://grandislibrary.com/resistance/demon-avenger"]
+      "consensus": "moderate",
+      "consensusWhy": "Downgraded from 'strong' on 2026-09-12. The three actives and their level requirements are confirmed by two independent sources (Grandis Library's own hyperActive data and maplestorywiki), and Thousand Swords' roles in the trio and as a Mastery core are confirmed by those same two. Two independent sources is moderate; strong requires three, and no third source discusses Demon Avenger hyper actives. The previous 'strong' label overstated the same two sources.",
+      "sourceCount": 2,
+      "sources": [
+        "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+        "https://grandislibrary.com/resistance/demon-avenger"
+      ],
+      "verifiedAt": "2026-09-12"
     }
   },
-
   "innerAbility": {
     "bossing": [
       {
         "preset": "Regions with an attack speed cap of 10",
-        "lines": ["Attack Speed +1", "Chance to Skip Cooldown +10%", "Boss Damage +10%"],
-        "consensus": "weak - single source lineage (Demon Avenger Discord via Grandis Library)",
-        "sources": ["https://grandislibrary.com/resistance/demon-avenger"]
+        "lines": [
+          "Attack Speed +1",
+          "Chance to Skip Cooldown +10%",
+          "Boss Damage +10%"
+        ],
+        "linesOrdered": true,
+        "linesOrderedNote": "Grandis lists these as 1st, 2nd and 3rd line, so line order is the source's own.",
+        "consensus": "weak",
+        "consensusWhy": "Single source lineage (Demon Avenger Discord via Grandis Library). NamuWiki does NOT corroborate this preset - it contains no attack-speed inner ability line anywhere and makes no AS-cap distinction. Do not treat NamuWiki's agreement on the AS8 preset as agreement on this one.",
+        "sourceCount": 1,
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-avenger"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "preset": "Regions with an attack speed cap of 8",
-        "lines": ["Chance to Skip Cooldown +20%", "Boss Damage +10%", "Damage to monsters inflicted with Abnormal Status +8%"],
-        "consensus": "moderate - Grandis Library and the KMS-side NamuWiki independently arrive at the same three lines for the bossing preset.",
-        "sources": ["https://grandislibrary.com/resistance/demon-avenger", "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"]
+        "lines": [
+          "Chance to Skip Cooldown +20%",
+          "Boss Damage +10%",
+          "Damage to monsters inflicted with Abnormal Status +8%"
+        ],
+        "linesOrdered": true,
+        "consensus": "moderate",
+        "consensusWhy": "Two independent sources arrive at the identical three lines in the identical order. Grandis calls it 'Regions w/ AS8 Cap'; NamuWiki's boss-specialised preset reads 재사용 / 보공 / 상추 (cooldown skip / boss damage / abnormal-status damage) and calls it the endgame preset for a character whose fundamentals are already in place. Both sources also agree on the tiers: cooldown skip legendary 20%, boss damage unique 10%, abnormal-status damage unique 8%.",
+        "sourceCount": 2,
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-avenger",
+          "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "preset": "Bossing variant for characters short on critical rate",
+        "lines": [
+          "Chance to Skip Cooldown +20%",
+          "Boss Damage +10% (or Damage to monsters inflicted with Abnormal Status +8%)",
+          "Critical Rate +20%"
+        ],
+        "linesOrdered": true,
+        "why": "NamuWiki lists a second bossing preset alongside the endgame one - 재사용 / 보공(or상추) / 크확 - described as worth considering if your critical rate supply is insufficient. Added 2026-09-12; it was missing from this file entirely.",
+        "consensus": "weak",
+        "consensusWhy": "Single independent source (NamuWiki). Grandis publishes no equivalent variant.",
+        "sourceCount": 1,
+        "sources": [
+          "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "training": [
       {
         "preset": "Training / farming",
-        "lines": ["Meso Obtained or Item Drop Rate +20%", "Meso Obtained or Item Drop Rate +15% (whichever of the two was not taken on line 1)", "Chance to Skip Cooldown +10%"],
-        "consensus": "moderate - Grandis Library and NamuWiki agree on the meso/drop pair. NamuWiki adds a tiebreak Grandis does not: take Meso Obtained on the top line specifically, because meso rate is harder to source elsewhere and multiplies with meso-rate potions, then secure drop rate.",
-        "sources": ["https://grandislibrary.com/resistance/demon-avenger", "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"]
+        "lines": [
+          "Meso Obtained or Item Drop Rate +20% (legendary)",
+          "Meso Obtained or Item Drop Rate +15% (unique) - whichever of the two was not taken on line 1",
+          "CONTESTED - see thirdLineConflict"
+        ],
+        "linesOrdered": true,
+        "why": "Both sources agree on lines 1 and 2: one of Meso Obtained / Item Drop Rate on the top line and the other on the second. Grandis states the swap rule explicitly: 'Depending on what's chosen as the 1st Line, choose the other for the 2nd Line.' NamuWiki adds a tiebreak Grandis does not - take Meso Obtained on the top line specifically, because meso rate is hard to secure from other options and because it applies multiplicatively with meso-farming consumables, then secure Item Drop Rate.",
+        "thirdLineConflict": "The two sources DISAGREE on the third line and an earlier version of this file did not record that. Grandis says Chance to Skip Cooldown +10%. NamuWiki says 일몹뎀 (damage to normal monsters), with cooldown skip only as an alternative, and gives a reason against cooldown skip while hunting: mobs evaporate too fast for a cooldown reset to be worth anything. NamuWiki does allow cooldown skip onto the first line, but only for a character whose basic spec is short - one that cannot one-shot even with normal-monster damage, or has not unlocked Sol Janus. NamuWiki also notes a variant that puts Item Drop Rate on the legendary line so the preset can double as a boss-reward preset, and a separate dedicated boss-reward preset if it does not.",
+        "consensus": "moderate",
+        "consensusWhy": "Moderate for lines 1 and 2 only, where two independent sources agree including on the swap rule. The third line is a genuine two-way disagreement and is NOT settled - it is deliberately not filled in above.",
+        "sourceCount": 2,
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-avenger",
+          "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "classSpecific": [
       {
-        "claim": "Chance to Skip Cooldown is the line Demon Avenger cares about most. NamuWiki treats the legendary-tier 20% line as effectively fixed on the top line for a main character, tied to keeping Nether Shield's uptime high, and notes that Demon Avenger stacks a Legion artifact cooldown option on top of it. It goes as far as saying a player who cannot get this line should reconsider maining the class.",
-        "consensus": "moderate - two independent sources (NamuWiki, and the Demon Avenger Discord via Grandis Library) both place cooldown skip in every bossing preset; only NamuWiki makes the strong 'reconsider maining the class' claim, which is single-source.",
-        "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8", "https://grandislibrary.com/resistance/demon-avenger"]
+        "claim": "Chance to Skip Cooldown is the line Demon Avenger cares about most. NamuWiki calls the legendary-tier 20% line '1순위 고정' - fixed as first priority - ties it to keeping Nether Shield (실드 체이싱, Shield Chasing in the KMS naming) at high uptime, and notes that Demon Avenger brings a Legion artifact cooldown option on top of it. It goes as far as saying that a player who cannot get this line should reconsider making Demon Avenger their main character.",
+        "consensus": "moderate",
+        "consensusWhy": "Two independent sources place cooldown skip in every bossing preset they publish (Grandis in all of its, NamuWiki in all of its). The strong 'reconsider maining the class' statement is single-source to NamuWiki; it was re-read verbatim on 2026-09-12 and is accurately characterised here.",
+        "sourceCount": 2,
+        "sources": [
+          "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+          "https://grandislibrary.com/resistance/demon-avenger"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
-        "claim": "The damage-to-abnormal-status line is worth more on Demon Avenger than on a generic class, because the class applies its own lasting defence-reduction debuff (Nether Slice) and because the Explorer mage link skill applies a status as well - so the condition is close to always-on in a party or with that link.",
-        "consensus": "weak - single source for the judgement (KMS-side wiki); the mechanic that Nether Slice applies a lasting defence-reduction debuff is independently confirmed on maplestorywiki.",
-        "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8", "https://maplestorywiki.net/w/Demon_Avenger/Skills"]
+        "claim": "The damage-to-abnormal-status line is worth more on Demon Avenger than on a generic class. NamuWiki's reason: between the Explorer mage link skill Empirical Knowledge and 'Demon Avenger's own defence-reduction debuff', the line is effectively just extra boss damage.",
+        "corrections": "Two things in the earlier version of this claim were wrong and have been fixed. (1) It said the Explorer mage link skill 'applies a status'. It does not. maplestorywiki's GMS text for Empirical Knowledge describes a passive that, on attacking, has a chance to identify the weakness of the struck enemy with the highest Max HP and then grants the PLAYER stacking Damage and Enemy DEF Ignored against that enemy - it applies no abnormal status to anything. The half of NamuWiki's reasoning that rests on Empirical Knowledge is therefore NOT confirmed on the GMS side and may be a KMS-side or terminology artefact. (2) It named Nether Slice as the defence-reduction debuff. NamuWiki does not name any skill; it says only 'Demon Avenger's own defence-reduction debuff'. Nether Slice is this file's identification, not the source's - though it is a well-founded one: maplestorywiki's Nether Slice entry reads 'Any enemies hit will receive a debuff which temporarily reduces their defense rate', with Enemy Defense -x% for 2x seconds.",
+        "consensus": "weak",
+        "consensusWhy": "Single source for the judgement (a KMS community wiki), and one of its two stated reasons fails an independent GMS-side check. The Nether Slice mechanic is independently confirmed on maplestorywiki, but the identification of Nether Slice as the skill NamuWiki meant is this file's inference.",
+        "sourceCount": 1,
+        "sources": [
+          "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+          "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+          "https://maplestorywiki.net/w/Empirical_Knowledge"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
-        "claim": "A Critical Rate inner ability line is a swap candidate rather than a fixture: Demon Avenger starts at 40% critical rate from passives, so if Legion, artifacts or other sources already close the gap to the cap, the slot is better spent on Boss Damage or the abnormal-status line.",
-        "consensus": "weak - single source for the judgement; the 40% figure is confirmed independently by maplestorywiki and Grandis Library.",
-        "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8", "https://maplestorywiki.net/w/Demon_Avenger/Skills", "https://grandislibrary.com/resistance/demon-avenger"]
+        "claim": "A Critical Rate inner ability line is a swap candidate rather than a fixture. NamuWiki: Demon Avenger's critical rate is 40%, 'not that low but not high either'; if you can get enough critical rate from Legion occupation, the Legion artifact and so on, replace this line with boss damage or damage-to-abnormal-status.",
+        "consensus": "moderate",
+        "consensusWhy": "The judgement is single-source (NamuWiki), re-read verbatim on 2026-09-12. The +40% figure is independently confirmed by maplestorywiki's skill data and by Grandis' derived-stat table, which both decompose it identically as 5% base + 15% Demonic Veracity + 20% Abyssal Connection.",
+        "sourceCount": 3,
+        "sources": [
+          "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+          "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+          "https://grandislibrary.com/resistance/demon-avenger"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Grandis Library splits its recommendation by the attack-speed cap of your region rather than naming GMS explicitly, and it does not state which bracket GMS falls into. Confirm your own cap before using the attack-speed line: Demon Avenger already gains +2 attack speed from Agile Demon and +1 from Overwhelming Power (maplestorywiki), so whether a further +1 from inner ability does anything depends entirely on where the cap sits. Grandis also notes for the training preset that whichever of Meso Obtained / Item Drop Rate lands on line 1, you take the other on line 2."
+    "notes": "Grandis splits its recommendation by the attack-speed cap of your region rather than naming GMS explicitly, and it does not state which bracket GMS falls into - confirmed by re-reading the raw page data, where the preset names are literally 'Regions w/ AS10 Cap' and 'Regions w/ AS8 Cap'. Confirm your own cap before using the attack-speed line: Grandis' own derived-stat table puts Demon Avenger at attack speed 7 (Stage 4 base, +2 from Agile Demon, +1 from Overwhelming Power), so whether a further +1 from inner ability does anything depends entirely on where the cap sits. This matters in money terms, because picking the wrong preset wastes a legendary line. Note also that NamuWiki, which is written for KMS, has no attack-speed line in any of its presets."
   },
-
   "gearingNotes": "Demon Avenger is the class where generic gearing advice breaks down hardest, and almost every divergence traces to one skill.\n\nBLOOD PACT (beginner skill) converts Max HP into attack power, lets Demon Avenger ignore the stat requirements on Warrior and Demon Avenger equipment, and - the part that matters most - states explicitly that only a set percentage of bonus HP from equipment is applied, and that base HP produces more damage range than HP granted by equipment and items. HP from gear is therefore NOT interchangeable with HP from levels and AP, and you cannot reason about %HP the way a STR class reasons about %STR. Source: https://maplestorywiki.net/w/Demon_Avenger/Skills\n\nSTAR FORCE CONVERSION (beginner skill) turns the Star Force on your equipped items into additional Max HP, counting up to 410 stars; Star Force on medals and titles is excluded, as are guild-skill Star Force increases. Because Max HP is the damage stat, star-forcing raises Demon Avenger's main stat through a second channel that does not exist for other classes. Source: https://maplestorywiki.net/w/Demon_Avenger/Skills\n\nPOTENTIAL AND BONUS POTENTIAL: %All Stat lines are close to worthless here; what you want is flat Max HP alongside some attack. On the bonus-potential (additional option) side the flat Max HP line scales with item level, at roughly item level x 21 / 18 / 15 / 12 / 9 for the top five tiers, so a level-150 armour's best HP bonus line is around 3,150 HP. On the main potential side %Max HP is the equivalent of %main stat, and because a Demon Avenger can stack several %HP lines on the same item the early cube tiers are cheaper for this class than for a stat class. Source: https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8 (KMS-side; the economics are region-specific, the stat logic is not).\n\nFLAMES are more expensive for Demon Avenger than for other classes, because the top tier of the Max HP flame line is what it needs and that forces it onto the rarer high-grade rebirth flames rather than the common ones most classes use outside their weapon. Source: https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8 (KMS; flame item names differ by region, so verify the GMS equivalent before acting on it).\n\nCRIT RATE: Demon Avenger arrives at +40% critical rate from passives alone - 5% base, +15% from Demonic Veracity and +20% from Abyssal Connection - which is enough that a crit rate inner ability or hyper stat line becomes a swap candidate rather than a requirement, but is NOT enough to reach the cap by itself. Sources: https://maplestorywiki.net/w/Demon_Avenger/Skills and https://grandislibrary.com/resistance/demon-avenger\n\nCRIT DAMAGE is the mirror image: the kit supplies only +8% (Advanced Desperado Mastery), described on NamuWiki as the lowest of the warrior classes, and crit damage has few sources - so crit damage from Legion, hyper stats and gear is worth more on Demon Avenger than the usual rule of thumb suggests. Sources: https://maplestorywiki.net/w/Demon_Avenger/Skills , https://grandislibrary.com/resistance/demon-avenger , https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8\n\nBOSS DAMAGE from skills is 0%. The class's own Legion effect supplies boss damage; everything else has to come from gear, hyper stats and inner ability. Source: https://grandislibrary.com/resistance/demon-avenger\n\nLEGION BOARD: NamuWiki singles out flat and percentage Max HP Legion members as unusually valuable for Demon Avenger, since they raise the main stat directly and the class has few other things it needs from Legion - it names Mikhail (flat Max HP) and Dark Knight (%Max HP) among them. It also names Marksman and Night Lord for critical rate, Shade for critical damage (because of the crit-damage shortage above), and Mercedes for cooldown reduction, on the grounds that the hyper, 5th and 6th job skills Demon Avenger depends on are not affected by cooldown-reset effects. One further flat-HP Legion member is named in that source but its name did not survive translation legibly, so it is omitted here rather than guessed. Source: https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8 (KMS; confirm before acting).\n\nRESOURCE MODEL: there is no MP. HP is both the health pool and the resource, spent by nearly every skill and refunded by Life Sap / Advanced Life Sap on hit. Overload, the stacking debuff that Exceed skills apply, reduces how much Life Sap restores; Overload Release clears it in exchange for HP restoration and a final damage buff. Limits Surpassed temporarily makes skills free. Sources: https://maplestorywiki.net/w/Demon_Avenger/Skills and https://grandislibrary.com/resistance/demon-avenger\n\nWEAPON: multiplier 1.3x, Desperado as primary and the Demon Aegis force shield as secondary. Source: https://grandislibrary.com/resistance/demon-avenger\n\nDELIBERATELY OMITTED: specific pendant, soul and armour-set recommendations. NamuWiki gives concrete picks, but they are written for the KMS item pool and naming, and translating them into GMS Heroic equivalents would be a guess.",
-
   "commonMistakes": [
     {
       "mistake": "Treating HP from equipment as equivalent to base HP when comparing gear.",
       "why": "Blood Pact's own description states that only a set percentage of bonus HP from equipment is applied, and that base HP yields a greater damage range than HP from equipment and items.",
-      "sources": ["https://maplestorywiki.net/w/Demon_Avenger/Skills"]
+      "sources": [
+        "https://maplestorywiki.net/w/Demon_Avenger/Skills"
+      ]
     },
     {
       "mistake": "Rolling or keeping %All Stat bonus potential lines.",
       "why": "All-stat percentage does essentially nothing for a class whose damage comes from Max HP; flat Max HP with some attack is the target instead.",
-      "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"]
+      "sources": [
+        "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+      ]
     },
     {
       "mistake": "Deprioritising the Chance to Skip Cooldown inner ability line.",
       "why": "Every bossing preset found for this class includes it, and the KMS-side source treats the legendary 20% version as effectively mandatory for a main character because of how much of the class's damage sits behind cooldowns.",
-      "sources": ["https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8", "https://grandislibrary.com/resistance/demon-avenger"]
+      "sources": [
+        "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+        "https://grandislibrary.com/resistance/demon-avenger"
+      ]
     },
     {
       "mistake": "Building boost nodes from maplestorywiki's Enhancement Core grouping table.",
       "why": "That table lists a 'Demon Cry Boost' in its third core group; 'Demon Cry' appears exactly once on the entire Demon Avenger skills page - inside that grouping - and matches no Demon Avenger skill anywhere else on the page. The same table also omits Exceed: Double Slash Boost from every group even though it appears in the page's own final-damage table. Use the post-v.269 grouping published by Grandis Library instead, and note that Grandis exposes a separate pre-v.269 view, which is evidence the groupings changed at that patch.",
-      "sources": ["https://maplestorywiki.net/w/Demon_Avenger/Skills", "https://grandislibrary.com/resistance/demon-avenger"]
+      "sources": [
+        "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+        "https://grandislibrary.com/resistance/demon-avenger"
+      ]
     },
     {
       "mistake": "Treating the two 6th-job infographics as two independent opinions.",
       "why": "They are the Fragments-constrained and Energy-constrained outputs of the same analysis, both credited to the same Demon Avenger Discord and dated the same day, and the Energy one is visibly a screenshot of a Korean-language HEXA calculator UI.",
-      "sources": ["https://grandislibrary.com/resistance/demon-avenger", "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-energy.png"]
+      "sources": [
+        "https://grandislibrary.com/resistance/demon-avenger",
+        "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-energy.png"
+      ]
     }
   ],
-
   "sources": [
     {
       "url": "https://grandislibrary.com/resistance/demon-avenger",
-      "what": "Grandis Library Demon Avenger class page. Boost node groupings plus explicit Primary/Secondary trio recommendations with build notes, hyper skill passive build, recommended inner ability split by attack-speed-cap region and by training, base stats derived from skills (crit rate, crit damage, boss damage, ignore DEF, final damage, attack speed, weapon multiplier), Exceed/Overload mechanic explanation, link skill, Legion effect, and links to the two 6th-job infographics. Its Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Demon Avenger Discord' and it thanks Kerkerseele and the Demon Avenger Discord - so those judgement fields are a restatement of the class Discord, not a second opinion. No Class Doc is linked; Other Resources lists only maplestorywiki, NamuWiki and the Discord.",
+      "what": "Grandis Library Demon Avenger class page. Boost node groupings plus explicit Primary/Secondary trio recommendations with build notes, hyper skill passive build, recommended inner ability split by attack-speed-cap region and by training, base stats derived from skills (crit rate, crit damage, boss damage, ignore DEF, final damage, attack speed, weapon multiplier), Exceed/Overload mechanic explanation, link skill, Legion effect, and links to the two 6th-job infographics. Its Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Demon Avenger Discord' and it thanks Kerkerseele and the Demon Avenger Discord - so those judgement fields are a restatement of the class Discord, not a second opinion. No Class Doc is linked; Other Resources lists only maplestorywiki, NamuWiki and the Discord. RE-VERIFIED 2026-09-12 against the raw page payload rather than a rendered summary: the strings \"Primary Trio\" and \"Secondary Trio\", the three boost-node notes, all six node groupings, the primary/other node categorisation, the five-passive hyperBuild string, all three inner ability presets, the derived crit/boss/IED stats, the Credits block and the infographic dates were each read literally. A first pass through a summarising fetch tool WRONGLY reported that the trio labels and the node notes did not exist on the page; they do. Anyone re-checking this page should read the raw payload, not a summary of it.",
       "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
-      "independent": false
+      "independent": false,
+      "verifiedAt": "2026-09-12"
     },
     {
       "url": "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-fragments.png",
-      "what": "The 'Fragments Efficient' 6th-job infographic - a step-by-step HEXA upgrade order rendered as a chain of skill icons with target levels. Credited to the Demon Avenger Discord in the page data; infographic work credited to Izzy. This is the source of the hexa.order transcription above. Same source family as the Grandis page.",
+      "what": "The 'Fragments Efficient' 6th-job infographic - a step-by-step HEXA upgrade order rendered as a chain of skill icons with target levels. Credited to the Demon Avenger Discord in the page data; infographic work credited to Izzy. This is the source of the hexa.order transcription above. Same source family as the Grandis page. RE-VERIFIED 2026-09-12 by downloading the PNG and re-reading all 30 transcribed steps at 6x-9x magnification against Grandis' named icon files. All 30 matched on node identity, target level and node-type border colour. The chart was also counted: 167 steps, not the ~165 previously estimated.",
       "dated": "2026-06-25 (per the Grandis Library page's own infographic metadata)",
-      "independent": false
+      "independent": false,
+      "verifiedAt": "2026-09-12"
     },
     {
       "url": "https://grandislibrary.com/class-infographic/demon-avenger/demon-avenger-6th-job-energy.png",
-      "what": "The 'Energy Efficient' companion infographic - same chart shape optimised for Sol Erda rather than Sol Erda Fragments. Carries a Korean-language UI header and a Korean node-type colour legend (Mastery / Skill / Enhancement / Common core), i.e. it is a screenshot of a Korean HEXA calculator rather than original English analysis. Used here only to decode the node-type colour legend of the Fragments chart.",
+      "what": "The 'Energy Efficient' companion infographic - same chart shape optimised for Sol Erda rather than Sol Erda Fragments. Carries a Korean-language UI header and a Korean node-type colour legend (Mastery / Skill / Enhancement / Common core), i.e. it is a screenshot of a Korean HEXA calculator rather than original English analysis. Used here only to decode the node-type colour legend of the Fragments chart. RE-VERIFIED 2026-09-12: the colour legend reads 마스터리 코어 (Mastery, purple) / 스킬 코어 (Skill, gold-brown) / 강화 코어 (Enhancement, blue) / 공용 코어 (Common, green), and the header checkbox reads 본인 스펙 추천구간 보기. Its step sequence differs from the Fragments chart from step 5 onward, confirming the two charts encode different orders.",
       "dated": "2026-06-25 (per the Grandis Library page's own infographic metadata)",
-      "independent": false
+      "independent": false,
+      "verifiedAt": "2026-09-12"
     },
     {
       "url": "https://discord.gg/aTByagnDjd",
@@ -241,21 +1055,24 @@
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. Lists Demon Avenger's bossing trio as Execution / Nether Shield / Infernal Exceed and an extras set of Lunar Slash / Bat Swarm / Thousand Swords. Independently authored and crowd-corrected via Discord. Used here as the independent check on the trio recommendation - and it matches Grandis exactly on both sets.",
+      "what": "mastermysty's cross-class boost node trio reference. Lists Demon Avenger's bossing trio as Execution / Nether Shield / Infernal Exceed and an extras set of Lunar Slash / Bat Swarm / Thousand Swords. Independently authored and crowd-corrected via Discord. Used here as the independent check on the trio recommendation - and it matches Grandis exactly on both sets. RE-VERIFIED 2026-09-12: the page's Demon Avenger block literally reads Bossing = Execution / Nether Shield / Infernal Exceed, Extra = Lunar Slash / Bat Swarm / Thousand Swords. Its own stamps read \"Last update: November 21st, 2024\" and underlying data \"May 14th, 2024\".",
       "dated": "2024-11-21 (author states the underlying data was last updated 2024-05-14) - PREDATES the v.269 node regrouping, so it corroborates which skills belong together but should not be trusted on node slot composition",
-      "independent": true
+      "independent": true,
+      "verifiedAt": "2026-09-12"
     },
     {
       "url": "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
-      "what": "NamuWiki Demon Avenger page (Korean community wiki, read via the machine-translated English mirror). The only source found with an actual hyper stat discussion and an actual gearing discussion for this class: inner ability preset reasoning, Legion member picks with reasons, hyper stat ranking with reasons, bonus-potential and potential guidance for an HP main stat, flame difficulty, and boss/training play patterns. Independent of the GMS class-Discord lineage entirely.",
+      "what": "NamuWiki Demon Avenger page (Korean community wiki, read via the machine-translated English mirror). The only source found with an actual hyper stat discussion and an actual gearing discussion for this class: inner ability preset reasoning, Legion member picks with reasons, hyper stat ranking with reasons, bonus-potential and potential guidance for an HP main stat, flame difficulty, and boss/training play patterns. Independent of the GMS class-Discord lineage entirely. RE-VERIFIED 2026-09-12 through the namu.moe mirror (direct access is Cloudflare-blocked here). Sections 5.4.2 어빌리티, 5.4.3 메이플 유니온 and 5.4.4 하이퍼 스탯 were read in the original Korean rather than through machine translation. Two corrections came out of that re-read: the hyper stats are NOT presented as a ranked list, and the \"crit damage is the lowest of the warrior classes\" argument lives in the Legion section, not the hyper stat section.",
       "dated": "2026-09-02 (page's own last-modified stamp) - current, but KMS balance and a KMS item economy",
-      "independent": true
+      "independent": true,
+      "verifiedAt": "2026-09-12"
     },
     {
       "url": "https://maplestorywiki.net/w/Demon_Avenger/Skills",
-      "what": "Authoritative skill and node name table plus raw numbers. Used here as the anti-fabrication allowlist: it is the source for every skill, boost node, HEXA Skill/Mastery/Enhancement core name in this file, for the Blood Pact and Star Force Conversion mechanics, and for the base crit rate, crit damage and attack speed contributions. Carries no judgement of any kind. Also the source of one flagged data error (see commonMistakes).",
+      "what": "Authoritative skill and node name table plus raw numbers. Used here as the anti-fabrication allowlist: it is the source for every skill, boost node, HEXA Skill/Mastery/Enhancement core name in this file, for the Blood Pact and Star Force Conversion mechanics, and for the base crit rate, crit damage and attack speed contributions. Carries no judgement of any kind. Also the source of one flagged data error (see commonMistakes). RE-VERIFIED 2026-09-12 via api.php action=parse (the rendered page is Cloudflare-blocked): the HEXA Skill/Mastery/Enhancement core names and their slot groupings, the Origin/Ascent assignments, the \"maximum level for Enhancements/Boost Nodes is 60\" line, the enhancement formulas, the Nether Slice debuff text and the Demon Cry data error were all read literally.",
       "dated": "living wiki; revision history was not reachable, so the page date is unverified",
-      "independent": true
+      "independent": true,
+      "verifiedAt": "2026-09-12"
     },
     {
       "url": "https://maplestorywiki.net/w/Guide:Class_Guides",
@@ -268,44 +1085,225 @@
       "what": "MathBro's hyper stat optimizer. Referenced, not extracted from. Included because the community's real answer to hyper stat allocation is a per-character computation against a chosen boss rather than a fixed priority list, and because no GMS-side Demon Avenger hyper stat list exists at all.",
       "dated": "actively maintained; exact last update not confirmed",
       "independent": true
+    },
+    {
+      "url": "https://namu.moe/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+      "what": "namu.moe mirror of the NamuWiki Demon Avenger document. NOT an independent source - it is the same document as the en.namu.wiki entry above and is counted once with it. Recorded only because it is the route by which NamuWiki was actually re-read on 2026-09-12, direct access being Cloudflare-blocked in this environment.",
+      "dated": "mirror of the 2026-09-02 revision",
+      "independent": false,
+      "mirrorOf": "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8",
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Empirical_Knowledge",
+      "what": "maplestorywiki Empirical Knowledge page, read via api.php. Used for exactly one check: whether the Explorer mage link skill applies an abnormal status. It does not - it grants the player stacking Damage and Enemy DEF Ignored against an enemy whose weakness it identifies. This disconfirms half of NamuWiki's stated reasoning for the damage-to-abnormal-status inner ability line.",
+      "dated": "living wiki; tabbed by version, GMS v264 tab read",
+      "independent": true,
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Template:HEXA_Skill_Description",
+      "what": "maplestorywiki Template:HEXA Skill Description, read via api.php. The literal source of the HEXA enhancement mechanic sentence quoted in hexa.mechanics: 'Enhancements require the corresponding V Skill to be leveled to max and equipped. Final Damage bonuses from Enhancements increase linearly each level, with a jump at levels 10, 20, and 30.' Same source lineage as the main wiki page; counted with it, not as a second source.",
+      "dated": "living wiki",
+      "independent": false,
+      "mirrorOf": "https://maplestorywiki.net/w/Demon_Avenger/Skills",
+      "verifiedAt": "2026-09-12"
     }
   ],
-
-  "consensusLevel": "moderate",
-
+  "consensusLevel": "weak-to-moderate",
   "conflicts": [
     {
       "topic": "Boost node grouping (which skills sit in which node)",
       "positionA": "Grandis Library, post-v.269: Node 2 pairs Exceed: Execution with Exceed: Double Slash, and Node 3 pairs Exceed: Lunar Slash with Exceed: Demon Strike.",
-      "positionB": "maplestorywiki's Enhancement Core table: Core 2 pairs Exceed: Execution with Exceed: Demon Strike, and Core 3 pairs Exceed: Lunar Slash with 'Demon Cry' - a name that appears nowhere else on that page as a Demon Avenger skill. The same table also omits Exceed: Double Slash Boost from every core group despite listing it in its own final-damage table.",
-      "status": "unresolved. Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle, which is evidence the groupings genuinely changed at v.269, so part of this may be staleness on the wiki side rather than a real disagreement - but the 'Demon Cry' entry looks like an outright data error. Do not ship node groupings from the wiki table.",
-      "sources": ["https://grandislibrary.com/resistance/demon-avenger", "https://maplestorywiki.net/w/Demon_Avenger/Skills"]
+      "positionB": "maplestorywiki's Enhancement Core table: Core 2 pairs Exceed: Execution with Exceed: Demon Strike, and Core 3 pairs Exceed: Lunar Slash with 'Demon Cry Boost' - and 'Demon Cry' matches no Demon Avenger skill anywhere else on that page. The same table also omits Exceed: Double Slash Boost from every core group despite listing it in the page's own final-damage table at 7%.",
+      "status": "unresolved, and both halves re-checked verbatim on 2026-09-12. Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle, which is evidence the groupings genuinely changed at v.269, so part of this may be staleness on the wiki side rather than a real disagreement - but the 'Demon Cry' entry looks like an outright data error. Do not ship node groupings from the wiki table.",
+      "sourceCount": 2,
+      "sources": [
+        "https://grandislibrary.com/resistance/demon-avenger",
+        "https://maplestorywiki.net/w/Demon_Avenger/Skills"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Inner ability first line for bossing",
       "positionA": "Grandis Library, for regions with an attack speed cap of 10: Attack Speed +1 on the top line, then Chance to Skip Cooldown +10% and Boss Damage +10%.",
-      "positionB": "NamuWiki (KMS), and Grandis' own AS8-cap preset: Chance to Skip Cooldown on the top line (legendary 20%), with Boss Damage and damage-to-abnormal-status filling lines 2 and 3, and no attack speed line at all.",
-      "status": "probably not a real disagreement but a region split - it turns on your server's attack speed cap, which Grandis does not map to a region name. Flagged because a user who picks the wrong preset wastes a legendary line. Confirm the GMS cap before using the attack-speed variant.",
-      "sources": ["https://grandislibrary.com/resistance/demon-avenger", "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"]
+      "positionB": "NamuWiki (KMS), and Grandis' own AS8-cap preset: Chance to Skip Cooldown on the top line at legendary 20%, with Boss Damage and damage-to-abnormal-status filling lines 2 and 3, and no attack speed line at all. NamuWiki calls the cooldown line '1순위 고정' - fixed first priority.",
+      "status": "probably not a real disagreement but a region split - it turns on your server attack speed cap, which Grandis does not map to a region name. Flagged because a user who picks the wrong preset wastes a legendary line. Confirm the GMS cap before using the attack-speed variant.",
+      "sourceCount": 2,
+      "sources": [
+        "https://grandislibrary.com/resistance/demon-avenger",
+        "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "topic": "Inner ability third line for training",
+      "positionA": "Grandis Library: Chance to Skip Cooldown +10%.",
+      "positionB": "NamuWiki: 일몹뎀, damage to normal monsters, with cooldown skip only as an alternative - and an explicit argument against cooldown skip while hunting, namely that mobs evaporate too fast for a reset to be worth anything. NamuWiki promotes cooldown skip only for a character whose basic spec is short of one-shotting.",
+      "status": "unresolved, and NEW as of 2026-09-12 - this file previously recorded the training preset as a two-source agreement without noticing that the sources agree only on lines 1 and 2. The disagreement is real and the two sources give opposite advice for the same slot.",
+      "sourceCount": 2,
+      "sources": [
+        "https://grandislibrary.com/resistance/demon-avenger",
+        "https://en.namu.wiki/w/%EB%8D%B0%EB%AA%AC%20%EC%96%B4%EB%B2%A4%EC%A0%B8"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Naming of the second skill set",
-      "positionA": "Grandis Library calls Exceed: Lunar Slash / Thousand Swords / Bat Swarm the 'Secondary Trio'.",
-      "positionB": "mystyjl lists the same three as 'Extra' skills rather than a formal second trio.",
-      "status": "cosmetic - the skill contents agree exactly; only the label differs.",
-      "sources": ["https://grandislibrary.com/resistance/demon-avenger", "https://mystyjl.github.io/reference/NodeGuide.html"]
+      "positionA": "Grandis Library calls Exceed: Lunar Slash / Thousand Swords / Bat Swarm the 'Secondary Trio' - the string appears verbatim in the page's node data.",
+      "positionB": "mystyjl lists the same three under the heading 'Extra' rather than as a formal second trio.",
+      "status": "cosmetic - the skill contents agree exactly; only the label differs. Re-checked 2026-09-12.",
+      "sourceCount": 2,
+      "sources": [
+        "https://grandislibrary.com/resistance/demon-avenger",
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "verifiedAt": "2026-09-12"
     }
   ],
-
   "coverageWarnings": [
-    "Demon Avenger has NO public class guide document. The maplestorywiki class-guide index lists the class with a blank link, and Grandis Library links no Class Doc for it. Every judgement field on Grandis is credited to the Demon Avenger Discord, which is not machine-readable, so the class Discord is an unaudited single point of failure for all GMS-side advice about this class.",
-    "The HEXA order in this file is transcribed from an icon infographic, not from prose. It is internally consistent and the icon identifications were checked against Grandis' own named icon files, but it has not been confirmed by a second reader, and only 30 of roughly 165 steps were transcribed.",
-    "The Energy-Efficient infographic is a Korean calculator screenshot, which strongly suggests Demon Avenger's public HEXA order is a KMS-balance calculator output relayed by the Discord rather than GMS Heroic analysis.",
-    "Hyper stat priority rests entirely on one KMS-side source and should be presented as weak, with MathBro's optimizer offered as the better answer.",
+    "Demon Avenger has NO public class guide document. The maplestorywiki class-guide index lists the class with a blank link, and Grandis Library links no Class Doc for it - its Other Resources block was re-read on 2026-09-12 and lists only maplestorywiki, NamuWiki and the class Discord. Every judgement field on Grandis is credited to the Demon Avenger Discord, which is not machine-readable, so the class Discord is an unaudited single point of failure for all GMS-side advice about this class. This is why no endgame claim in this file is labelled strong.",
+    "The HEXA order is transcribed from an icon infographic, not from prose. It has now been read independently by two readers who agree on all 30 transcribed steps, and node identities were fixed by pixel comparison against Grandis' own named icon files rather than by eye - but only 30 of the chart's 167 steps are transcribed, and the chart itself remains a single source.",
+    "The 'Energy Efficient' infographic is a Korean calculator screenshot - re-confirmed on 2026-09-12 by opening the image, which carries a Korean checkbox header and a Korean node-type colour legend. This strongly suggests Demon Avenger's public HEXA order is a KMS-balance calculator output relayed by the Discord rather than GMS Heroic analysis.",
+    "Hyper stat priority rests entirely on one KMS-side source, which does not actually rank most of the stats it names. This file now stores the source's three explicit ordering statements and refuses to invent the rest; MathBro's optimizer is the better answer and is linked.",
+    "NamuWiki was unreachable directly during this pass - both en.namu.wiki and namu.wiki return Cloudflare challenges to every fetch method available here. It was re-read through the namu.moe mirror of the same document, which is the same source and is counted once, not twice. The mirror's text was verified to carry the same section numbering (5.4.2 어빌리티, 5.4.3 메이플 유니온, 5.4.4 하이퍼 스탯) that this file's earlier extraction relied on.",
     "Reddit was not reachable in this environment, so r/Maplestory Demon Avenger threads are entirely unexamined.",
-    "No YouTube guide descriptions were checked - the session's web search budget was already exhausted before this class was researched."
+    "No YouTube guide descriptions were checked."
   ],
-
-  "lastVerified": "2026-09-11",
-  "patchVersion": "v.271"
+  "lastVerified": "2026-09-12",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "Resolution pass scoped to the five endgame sections (vMatrix, hexa, hyperSkills, hyperStats, innerAbility). NOTE ON STARTING STATE: this file arrived with NO contest block and no recorded defects, and demon-avenger does not appear in _contest-summary.json's filesBlocked list - so the adversarial wave recorded zero defects here and there was nothing to litigate. Rather than declare the file clean on that basis, every endgame claim was re-opened against its own cited page and checked literally. The defects below were found by this pass, not inherited.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "vMatrix: the claim that Grandis Library labels the two skill sets 'Primary Trio' and 'Secondary Trio', and the claim that Grandis states you should max the primary category first.",
+        "action": "CONFIRMED",
+        "detail": "Both strings are literally present in the Grandis page payload. nodeInfo.recommended.nodes reads [[\"Primary Trio\", ...Exceed: Execution, Nether Shield, Infernal Exceed], [\"Secondary Trio\", ...Exceed: Lunar Slash, Thousand Swords, Bat Swarm]], and nodeInfo.recommended.notes[0] reads 'Any combination of these skills are good but preferred from same category as you want to max primary first'. Worth recording that a summarising fetch of the same URL reported the opposite - that no trio labels existed and that the mechanical notes were absent from the page. Had that summary been trusted, this pass would have deleted four correct claims. The raw payload is the authority."
+      },
+      {
+        "defect": "vMatrix: the trio membership, independently attributed to mystyjl.",
+        "action": "CONFIRMED",
+        "detail": "mystyjl's Demon Avenger block reads Bossing = Execution / Nether Shield / Infernal Exceed and Extra = Lunar Slash / Bat Swarm / Thousand Swords. Identical membership to Grandis on both sets, and the file's characterisation of the label difference ('Extra' rather than a formal second trio) is accurate. Genuine two-lineage corroboration; consensus moderate is the right label."
+      },
+      {
+        "defect": "vMatrix: the six boost node groupings and the three mechanical notes.",
+        "action": "CONFIRMED, and extended",
+        "detail": "All six groupings match the page exactly, as do all three notes and the boost-node level cap of 60 on maplestorywiki. ADDED from the same payload: Grandis marks nodes 1-4 primary and nodes 5-6 other, and assigns NO node to the Secondary category on this class, even though its generic legend mentions Secondary. That distinction was missing and is easy to confuse with the 'Secondary Trio' label, so it is now spelled out."
+      },
+      {
+        "defect": "vMatrix SHAPE: trios[].skills and boostNodeGroupings.groups were ordered arrays, but Grandis explicitly says 'any combination of these skills are good'. Array position implied a within-trio ranking the source disclaims.",
+        "action": "CORRECTED",
+        "detail": "Added skillsOrdered:false to both trios and ordered:false to the node groupings, plus priorityOrdered:true with a note - because the ordering BETWEEN primary and secondary IS stated by the source ('max primary first') even though the ordering WITHIN a trio is not. The two cases needed different flags rather than one blanket one."
+      },
+      {
+        "defect": "hexa.order: 30 steps transcribed from an image by a single reader, which the file itself flagged as needing re-verification before being shown to a paying user.",
+        "action": "CONFIRMED by independent re-read",
+        "detail": "The PNG was downloaded and re-read at 6x-9x magnification by a second reader with no access to the original transcription's reasoning. All 30 steps matched exactly on all three attributes: node identity, target-level badge and node-type border colour. Node identities were not eyeballed - they were fixed by comparison against the icon files Grandis serves for this class. The node-type colour legend was verified against the companion image, which reads 마스터리 코어 purple / 스킬 코어 gold / 강화 코어 blue / 공용 코어 green. Consensus stays WEAK: double-reading fixes transcription risk, not source risk, and the source is still one Discord-relayed chart."
+      },
+      {
+        "defect": "hexa: the chart's length was given as 'roughly 165' steps.",
+        "action": "CORRECTED",
+        "detail": "Counted from the image: 11 rows of 15 cells plus a final row of 2 = 167 steps. Changed to 167 and moved into a structured totalStepsInChart field."
+      },
+      {
+        "defect": "hexa: the file stated that the first 30 steps contain no Skill core, but gave no indication where the first one actually is.",
+        "action": "CONFIRMED and extended",
+        "detail": "The no-Skill-core-in-the-first-30 claim is correct. Added the verifiable next fact: the first Skill core is Rageborne Devil (Ascent) to Lv 1 at step 32, read off a gold-bordered cell carrying the rageborne-devil icon, with maplestorywiki independently confirming Rageborne Devil as Skill Node/Core 2 (Ascent). Steps 31-45 were NOT added wholesale, because two level badges in that row could not be read with confidence and a partially-guessed sequence is worse than a stated gap."
+      },
+      {
+        "defect": "hexa.nodeInventory: twelve HEXA core names, single-sourced to maplestorywiki.",
+        "action": "CONFIRMED, and extended",
+        "detail": "All twelve names exist verbatim on the page - no extraction artifacts of the Bow Master \"Extra Quiver Cartridge\" kind. Requiem is Skill Node/Core 1 (Origin) and Rageborne Devil is Skill Node/Core 2 (Ascent), exactly as the file had them. ADDED: the Mastery core slot groupings (Core 1 Nether Shield; Core 2 Exceed: Execution; Core 3 Exceed: Lunar Slash + Maximal Exceed; Core 4 Thousand Swords + Infernal Exceed), which were on the page and had not been captured. Also added ordered:false, since an inventory is not a priority list."
+      },
+      {
+        "defect": "hexa: the HEXA mechanics sentence about enhancement scaling and V-skill requirements.",
+        "action": "CONFIRMED",
+        "detail": "Traced to its actual origin, Template:HEXA Skill Description, and quoted verbatim. The four Demon Avenger enhancement formulas on the skills page read 10+x+5*log10(x)+5*log20(x)+10*log30(x), which is exactly the linear-with-jumps-at-10/20/30 shape the template describes. The template is now cited alongside the skills page and explicitly marked as the same lineage, not a second source."
+      },
+      {
+        "defect": "hyperStats SHAPE - the most damaging defect in this file. hyperStats.priority shipped as an ORDERED array (Damage, Boss Damage, Ignore DEF, Critical Damage, Critical Rate, Max HP %) while its own notes conceded the section rested on a single source. Downstream code reads array position as priority.",
+        "action": "CORRECTED",
+        "detail": "Re-read NamuWiki section 5.4.4 in the original Korean. It presents six stats as a descriptive list and states exactly three ordering facts: Damage is the number-one hyper stat for every class; Critical Rate is 'no longer essential' since base crit rate became 40% and should be dropped if Legion, artifact or inner ability can cover the gap; Max HP % is taken slowly after the essential stats are done. The four in between are never ranked against each other. Worse, the source's own list order is Damage, Critical Rate, Boss Damage, Ignore DEF, Critical Damage, HP% - so the file had silently moved Critical Rate down three places AND invented a ranking among Boss Damage, Ignore DEF and Critical Damage. Replaced the flat array with four tiers carrying explicit ordered flags: tier 1 Damage (ordered, stated), tier 2 Boss Damage + Ignore DEF + Critical Damage (ordered:false), tier 3 Critical Rate (conditional), tier 4 Max HP % (last). The source's literal list order is recorded separately and explicitly labelled as not a ranking."
+      },
+      {
+        "defect": "hyperStats CITATION INVERSION: the Critical Damage entry justified its placement with '+8% is the lowest of the warrior classes and crit damage has few other sources', attributing that reasoning to a hyper stat discussion that does not contain it.",
+        "action": "CORRECTED",
+        "detail": "The argument is real and it is on NamuWiki - but in section 5.4.3, the Legion board section, as the reason to take Shade: Demon Avenger's base critical damage of 8% is the lowest figure in the entire warrior job group, and unlike critical rate, critical damage has limited sources. NamuWiki's actual hyper stat entry for Critical Damage says something much weaker: efficiency is very good as long as guaranteed critical is secured, and its enhancement priority past level 10 is high. Both statements are now given, each attributed to the section it actually comes from. This is the same failure mode the brief names - using text from elsewhere to raise a recommendation's apparent support."
+      },
+      {
+        "defect": "hyperStats: the Damage, Boss Damage, Ignore DEF, Critical Rate and Max HP % entries.",
+        "action": "CONFIRMED",
+        "detail": "Each was re-read in Korean and each matches. Damage: '모든 직업의 1순위 하이퍼 스탯. 데벤져도 예외는 아니다.' Boss Damage: base 0% excluding the class's own Legion effect, and worth taking even allowing for damage options that sum with it. Ignore DEF: as ignore-DEF nears 90% each 1% matters hugely, especially against bosses carrying 300% base defence - that 300% specific was missing and has been added. Critical Rate and Max HP % match as written."
+      },
+      {
+        "defect": "hyperSkills.passives: the claim that five picks 'match the five hyper passive points a character has by Lv 190', used to argue the list is a complete build rather than a ranking.",
+        "action": "DELETED",
+        "detail": "No source cited in this file states how many hyper passive points a character has, and none reachable here does either - maplestorywiki has a Hyper Stats page with a full point table but no equivalent for hyper skill points. The claim was load-bearing for a structural conclusion, so hedging it was not an option. It is deleted outright. The conclusion it supported survives on better footing: Grandis itself stores the recommendation as a two-bullet build string with no ordering, so ordered:false is now justified by the source rather than by an arithmetic claim nobody can check."
+      },
+      {
+        "defect": "hyperSkills.passives: the five recommended passives and the four skipped ones.",
+        "action": "CONFIRMED, and extended",
+        "detail": "Grandis' hyperBuild.recommended reads 'Exceed - Reinforce, Reduce Overload, and Opportunity' and 'Nether Shield - Reinforce and Spread' - exactly the five. The nine available passives, their effects and their level requirements were read from the page's own hyperPassive data and match maplestorywiki; the full table is now stored rather than described in prose, so a player can see what is being skipped and why. Added ordered:false and a note that sourceCount 1 attaches to the recommendation, not to the name/level data."
+      },
+      {
+        "defect": "hyperSkills.actives: labelled consensus 'strong' on the strength of two sources. The file's own rule is that strong requires 3+ independent sources.",
+        "action": "CORRECTED",
+        "detail": "Downgraded to moderate with sourceCount 2. The underlying facts are all correct and were re-confirmed - Forbidden Contract Lv 140, Thousand Swords Lv 160, Demonic Fortitude Lv 190, on both Grandis and maplestorywiki - and the full effect strings have been added. But no third source discusses Demon Avenger hyper actives, so 'strong' overstated it. This is precisely the mislabel the brief warns poisons the comparison feature."
+      },
+      {
+        "defect": "innerAbility: the three Grandis presets, verbatim.",
+        "action": "CONFIRMED",
+        "detail": "All three match the raw payload exactly, including the preset names 'Regions w/ AS10 Cap' and 'Regions w/ AS8 Cap' and the training note 'Depending on what's chosen as the 1st Line, choose the other for the 2nd Line'. The file's observation that Grandis never maps a cap to a region name is correct."
+      },
+      {
+        "defect": "innerAbility: the AS8 bossing preset labelled moderate on the strength of NamuWiki independently arriving at the same three lines.",
+        "action": "CONFIRMED",
+        "detail": "NamuWiki's boss-specialised preset reads 재사용 / 보공 / 상추 - cooldown skip, boss damage, abnormal-status damage - in that order, described as the endgame preset for a character whose fundamentals are in place. Same three lines, same order, same tiers (legendary 20 / unique 10 / unique 8). This is a real two-lineage agreement and moderate is correct. Also ADDED a NamuWiki bossing variant that this file had missed entirely: 재사용 / 보공(or상추) / 크확, for a character short on critical rate."
+      },
+      {
+        "defect": "innerAbility.training: labelled 'moderate - Grandis Library and NamuWiki agree on the meso/drop pair', which glossed over the third line.",
+        "action": "CORRECTED",
+        "detail": "The meso/drop tiebreak the file credits to NamuWiki is exactly right and was re-read verbatim: take Meso Obtained on the top line because it is hard to source elsewhere and applies multiplicatively with meso-farming consumables, then secure Item Drop Rate. But the third line is a REAL DISAGREEMENT that went unrecorded: Grandis says Chance to Skip Cooldown +10%, NamuWiki says damage to normal monsters and argues against cooldown skip while hunting because mobs evaporate before a reset is worth anything. The third line is now left unfilled and marked CONTESTED, a new conflicts entry records it, and the consensus label is explicitly scoped to lines 1 and 2 only."
+      },
+      {
+        "defect": "innerAbility.classSpecific: the claim that 'the Explorer mage link skill applies a status as well', used to argue the abnormal-status condition is close to always-on.",
+        "action": "CORRECTED",
+        "detail": "Checked the cited mechanic independently. maplestorywiki's Empirical Knowledge entry describes a passive that, on attacking, has a chance to identify the weakness of the struck enemy with the highest Max HP and then grants the PLAYER stacking Damage and Enemy DEF Ignored against that enemy. It applies no abnormal status to anything. NamuWiki does invoke Empirical Knowledge in its reasoning, so the file relayed the source faithfully - but the paraphrase 'applies a status' is the file's own and it is wrong. The claim is retained as NamuWiki's, with the failed GMS-side check recorded beside it and consensus dropped to weak."
+      },
+      {
+        "defect": "innerAbility.classSpecific: the abnormal-status claim named Nether Slice as the defence-reduction debuff and cited NamuWiki for it.",
+        "action": "CORRECTED",
+        "detail": "NamuWiki names no skill - it says only '데벤의 자체 방깎 디버프', Demon Avenger's own defence-reduction debuff. Nether Slice is this file's identification. It is a good one: maplestorywiki's Nether Slice entry reads 'Any enemies hit will receive a debuff which temporarily reduces their defense rate', with Enemy Defense -x% for 2x seconds. But the attribution is now stated as the file's inference rather than the source's assertion."
+      },
+      {
+        "defect": "innerAbility.classSpecific: the strong cooldown-skip claim, including 'a player who cannot get this line should reconsider maining the class'.",
+        "action": "CONFIRMED",
+        "detail": "Re-read in Korean and it is, if anything, understated in the file. NamuWiki calls the line '1순위 고정' - fixed as first priority - ties it to Shield Chasing uptime (실드 체이싱, which is Nether Shield in GMS naming, so the file's mapping is right), notes the Legion artifact is brought on top of it, and then says outright that without this ability you should reconsider making Demon Avenger your main."
+      },
+      {
+        "defect": "innerAbility.classSpecific: the Critical Rate swap-candidate claim.",
+        "action": "CONFIRMED",
+        "detail": "NamuWiki: crit rate is 40%, not that low but not high either; if Legion occupation, the Legion artifact and so on can supply enough, replace the line with boss damage or abnormal-status damage. The +40% decomposition (5% base + 15% Demonic Veracity + 20% Abyssal Connection) is confirmed identically on maplestorywiki and Grandis, so sourceCount 3 on the figure - but the judgement itself is still single-source, and the consensusWhy now says which is which."
+      }
+    ],
+    "outOfScope": [
+      "gearingNotes in its entirety - Blood Pact and Star Force Conversion mechanics, potential and bonus-potential guidance, flame economics, the Legion board picks, the resource model, the weapon multiplier and the deliberately-omitted item recommendations. Not one of the five endgame sections named in the brief, so it was left untouched. Incidentally, several of its claims were confirmed in passing while reading the same pages for in-scope work - the Legion picks (Mikhail and Soul Master and Lethe for flat HP, Dark Knight for %HP, Marksman and Night Lord for crit rate, Shade for crit damage, Mercedes for cooldown reduction with the stated reason that hyper, 5th and 6th job skills do not benefit from cooldown-skip effects), the crit rate and crit damage decompositions, and Boss Damage 0% all check out. No edits were made there. One incidental note for a future pass: the file says one flat-HP Legion member's name 'did not survive translation legibly'; in the Korean it is 레테, Lethe, alongside 소울마스터 Soul Master and 미하일 Mikhail.",
+      "commonMistakes - not one of the five endgame sections. Left untouched. Its two checkable claims were nonetheless confirmed incidentally: maplestorywiki really does list a \"Demon Cry Boost\" in Enhancement Core 3 and really does omit Exceed: Double Slash Boost from every core group while listing it at 7% in its own final-damage table; and the two infographics really are same-day, same-credit outputs of one analysis with the Energy one carrying a Korean calculator UI.",
+      "archetype, linkSkill, legionEffect, primaryStat/secondaryStat/weapon - descriptive header fields, not endgame guidance, and not in scope.",
+      "skillBuilds for jobs 1-4, skill damage coefficients, damageLine, job tiers and rotations - explicitly excluded by the brief. This file contains no such sections to begin with, so nothing was left behind."
+    ],
+    "labellingSummary": {
+      "strongClaims": 0,
+      "strongClaimsNote": "Zero endgame claims in this file qualify as strong, and that is the honest answer rather than a gap. Strong requires 3+ INDEPENDENT sources. Demon Avenger has no public class document; Grandis Library is a restatement of the class Discord by its own Credits block; both infographics are one analysis; so the entire GMS-side lineage collapses to one source. That leaves at most three independent lineages in existence for this class (the Grandis/Discord lineage, mystyjl, NamuWiki) and none of them covers the same claim three ways. Several claims carry sourceCount 3, but in every case the third source corroborates an underlying NUMBER rather than the recommendation, and consensusWhy says so explicitly on each one.",
+      "moderateClaims": 13,
+      "weakClaims": 46,
+      "weakClaimsNote": "46 counts each of the 30 individual hexa.order steps as its own labelled claim, since each carries its own source and label. Excluding those, 16 distinct weak claims remain.",
+      "totalLabelledClaims": 59
+    },
+    "shipReady": true
+  },
+  "consensusLevelNote": "Downgraded from 'moderate' on 2026-09-12. No endgame claim in this file reaches strong, and the GMS-side lineage for this class is a single unaudited Discord. The trio recommendation and the AS8 inner ability preset are the two genuinely two-lineage claims; most of the rest is single-source and now labelled as such.",
+  "written": true
 }

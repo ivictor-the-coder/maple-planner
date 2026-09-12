@@ -22,85 +22,278 @@
     "consensus": "moderate",
     "sources": [
       "https://grandislibrary.com/nova/angelic-buster",
-      "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+      "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+      "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
     ]
   },
   "vMatrix": {
-    "priority": [
-      {
-        "node": "Trinity / Trinity Fusion",
-        "why": "Ranked first of the four primary boost node groups. Trinity is also the first skill the class doc upgrades in HEXA, and it is the fixed member of the bossing trio in every trio list found.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Soul Seeker / Soul Seeker Expert / Star Crash",
-        "why": "Second primary boost node group. Soul Seeker Expert auto-creates Soul Seekers off other attacking skills, so boosting the Soul Seeker pair scales damage that is generated passively throughout the rotation.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      },
-      {
-        "node": "Supreme Supernova",
-        "why": "Third primary boost node group; one of the six skills the class doc says a main should have boosted.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Celestial Roar",
-        "why": "Fourth primary boost node group; the main mobbing line and one of the six boosted skills for a main.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Finale Ribbon / Soul Resonance",
-        "why": "Classified as the secondary boost node group. Both are in the class doc's list of six skills a main boosts, but they sit behind the four primary groups.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-        ]
-      },
-      {
-        "node": "Soul Buster / Star Bubble / Lovely Sting / Pink Pummel",
-        "why": "Classified as the 'other' boost node group - low-value fillers, not part of the six skills a main is told to boost.",
-        "consensus": "weak",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster"
-        ]
-      },
-      {
-        "node": "Overdrive (skill node, not a boost node)",
-        "why": "Levelling it raises its ATT bonus and shortens its cooldown, which is what lets it line up with the 1-minute miniburst.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-        ]
-      },
-      {
-        "node": "Grandis Goddess's Blessing (skill node, not a boost node)",
-        "why": "Levelled after Overdrive for the additional Damage% it gives.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-        ]
-      }
-    ],
+    "boostNodes": {
+      "ordered": false,
+      "shapeNote": "Stored as TIERS, not as a ranked list. No reachable source publishes a 1-through-6 ranking of Angelic Buster boost node groups. Grandis Library numbers its groups Node 1..6 but its own legend defines only three priority bands (PRIMARY / SECONDARY / OTHER) and says nothing about order inside a band. The Angelic Buster Compendium prints its 'Skills To Boost' entries as a flat list with no ranking marks. Array position inside each tier below carries NO meaning.",
+      "tiers": [
+        {
+          "tier": "primary",
+          "tierDefinition": "Grandis Library: 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used.' Recommended to be upgraded.",
+          "groups": [
+            {
+              "node": "Trinity / Trinity Fusion",
+              "why": "Grandis Node 1, PRIMARY. Also the first of the six skills the Compendium tells a main to boost, and the first of the three the Compendium tells a boss mule to boost. Unlocks HEXA Mastery Core 1.",
+              "consensus": "strong",
+              "sourceCount": 4,
+              "sources": [
+                "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+                "https://grandislibrary.com/nova/angelic-buster",
+                "https://mystyjl.github.io/reference/NodeGuide.html",
+                "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+                "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+              ],
+              "verifiedAt": "2026-09-12"
+            },
+            {
+              "node": "Soul Seeker / Soul Seeker Expert / Star Crash",
+              "why": "Grandis Node 2, PRIMARY - the group contains Soul Seeker (3rd Job), Soul Seeker Expert (4th Job) and Star Crash (3rd Job). In the Compendium's boost lists for mains, boss mules and legion/link levelling alike. Unlocks HEXA Mastery Core 2.",
+              "consensus": "strong",
+              "sourceCount": 4,
+              "sources": [
+                "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+                "https://grandislibrary.com/nova/angelic-buster",
+                "https://mystyjl.github.io/reference/NodeGuide.html",
+                "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+                "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+              ],
+              "verifiedAt": "2026-09-12"
+            },
+            {
+              "node": "Supreme Supernova",
+              "why": "Grandis Node 3, PRIMARY. In the Compendium's main, boss-mule and legion/link boost lists. Unlocks HEXA Mastery Core 3.",
+              "consensus": "strong",
+              "sourceCount": 4,
+              "sources": [
+                "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+                "https://grandislibrary.com/nova/angelic-buster",
+                "https://mystyjl.github.io/reference/NodeGuide.html",
+                "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+                "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+              ],
+              "verifiedAt": "2026-09-12"
+            },
+            {
+              "node": "Celestial Roar",
+              "why": "Grandis Node 4, PRIMARY (it unlocks HEXA Mastery Core 4). The main mobbing line. CONTESTED TIER: the Compendium includes it in the six skills a main boosts and makes it the FIRST boost for a legion/link levelling character, but excludes it from the boss-mule trio except past Lv 260, where boosting it is what activates HEXA Encore Ribbon. mystyjl and The Digital Crowns both place it in the mobbing trio rather than the bossing one.",
+              "consensus": "moderate",
+              "sourceCount": 2,
+              "sources": [
+                "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+                "https://grandislibrary.com/nova/angelic-buster"
+              ],
+              "verifiedAt": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "tier": "secondary",
+          "tierDefinition": "Grandis Library: 'Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used.' Recommended to be upgraded.",
+          "groups": [
+            {
+              "node": "Finale Ribbon / Soul Resonance",
+              "why": "Grandis Node 5, SECONDARY - one group containing both skills. Both are in the Compendium's six skills a main boosts, and neither is in its boss-mule set. mystyjl and The Digital Crowns both place the pair in the mobbing trio.",
+              "consensus": "moderate",
+              "sourceCount": 3,
+              "sources": [
+                "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+                "https://grandislibrary.com/nova/angelic-buster",
+                "https://mystyjl.github.io/reference/NodeGuide.html",
+                "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+              ],
+              "verifiedAt": "2026-09-12"
+            }
+          ]
+        },
+        {
+          "tier": "other",
+          "tierDefinition": "Grandis Library: 'Boost Nodes that do not need to be upgraded or has least priority.'",
+          "groups": [
+            {
+              "node": "Soul Buster / Star Bubble / Lovely Sting / Pink Pummel",
+              "why": "Grandis Node 6, OTHER. Not part of the six skills the Compendium tells a main to boost.",
+              "consensus": "weak",
+              "sourceCount": 1,
+              "sources": [
+                "https://grandislibrary.com/nova/angelic-buster"
+              ],
+              "verifiedAt": "2026-09-12"
+            }
+          ]
+        }
+      ]
+    },
+    "boostSetsByRole": {
+      "ordered": false,
+      "shapeNote": "These are the Compendium's 'Skills To Boost' lists, reproduced as SETS. The document prints them as plain lists with no ranking marks, so nothing here should be read as a 1st/2nd/3rd order.",
+      "sets": [
+        {
+          "role": "main",
+          "skills": [
+            "Trinity",
+            "Soul Seeker / Soul Seeker Expert",
+            "Celestial Roar",
+            "Supreme Supernova",
+            "Soul Resonance",
+            "Finale Ribbon"
+          ],
+          "note": "Six skills, which fit into four boost node slots.",
+          "consensus": "moderate",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "role": "bossMule",
+          "skills": [
+            "Trinity",
+            "Soul Seeker / Soul Seeker Expert",
+            "Supreme Supernova"
+          ],
+          "note": "Verbatim: 'Bossing mules should prioritize the trio of Trinity, Soul Seeker, and Supreme Supernova.' Mules past Lv 260 should also consider boosting Celestial Roar, because that is what activates HEXA Encore Ribbon.",
+          "consensus": "strong",
+          "sourceCount": 4,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://mystyjl.github.io/reference/NodeGuide.html",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "role": "legionLinkLevelling",
+          "skills": [
+            "Celestial Roar",
+            "Soul Seeker / Soul Seeker Expert",
+            "Supreme Supernova"
+          ],
+          "note": "Verbatim: 'if leveling AB only for legion/link purposes, prioritize Celestial Roar instead of Trinity for mobbing.'",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    "skillNodeLevellingOrder": {
+      "ordered": true,
+      "shapeNote": "This one IS an order - the Compendium states it as prose ('The first four skills to level are...', 'We then level...', 'Of the remaining skills, prioritize...', 'Finally...', 'Finish up by...', 'lastly'). The accompanying icon strip is an image and was not used.",
+      "steps": [
+        {
+          "step": 1,
+          "nodes": [
+            "three of the primary 5th job damage skills (NOT NAMED in the document's text - the icon strip is an image; AB's 5th job class damage skills are Mighty Mascot, Superstar Spotlight, Trinity Fusion and Sparkle Burst)",
+            "Overdrive"
+          ],
+          "why": "Verbatim: 'The first four skills to level are 3 of the primary 5th job damage skills along with Overdrive. Overdrive is high-priority as leveling it increases its ATT boosting effect and reduces its cooldown to align with our 1 minute miniburst.'",
+          "unresolved": "Which three of the four class damage skills is not stated in text. Deliberately left unnamed rather than guessed.",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 2,
+          "nodes": [
+            "Grandis Goddess' Blessing"
+          ],
+          "why": "Verbatim: 'We then level Grandis Goddess' Blessing for the additional Damage%.'",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 3,
+          "nodes": [
+            "Loaded Dice",
+            "Blink"
+          ],
+          "why": "Verbatim: 'Of the remaining skills, prioritize Loaded Dice and Blink for their passive +ATT.'",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 4,
+          "nodes": [
+            "Erda Nova"
+          ],
+          "why": "Levelled alongside step 3 to bring its cooldown down to about 2 minutes. Move it earlier if primarily solo bossing; it can be delayed when bossing in a party and alternating binds with party members.",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 5,
+          "nodes": [
+            "Might of the Nova"
+          ],
+          "why": "Verbatim: 'Finally, level Might of the Nova.' Levels only extend the Door effect duration and its damage, neither of which the doc rates as important.",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "step": 6,
+          "nodes": [
+            "Rope Lift",
+            "all equipped Decent skills"
+          ],
+          "why": "Verbatim: 'Finish up by maxing Rope Lift, and lastly all your equipped Decent skills. These give you slight stat bonuses as a passive effect.'",
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        }
+      ],
+      "trainingAdjustment": "The order above optimises for bossing damage only. When grinding in the early game, level Decent Holy Symbol (to max) and Erda Fountain (enough to one-shot mobs; aim to two-shot with Fountain once in Grandis) instead. True Arachnid Reflection and Solar Crest are left to the player's discretion.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    "slotPriority": {
+      "alwaysInclude": "Verbatim: 'Boost nodes and the four Skill Nodes above should always be in your V Matrix. They are used all the time, and are extremely important.' The four skill nodes are shown as icons only and are NOT named in text, so they are not reproduced here.",
+      "droppableWhenShort": [
+        "Might of the Nova - can be left out if not struggling to survive at bosses",
+        "Erda Nova - can be left out in party bossing if party members have class binds or Erda Nova",
+        "Blink and Will of Erda - only critically important at some bosses",
+        "Decent Hyper Body and Decent Mystic Door - 'never used and are lowest priority', but do NOT disassemble them; the Milestone V Matrix expansion gives room to slot them for passive stats"
+      ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
     "trios": [
       {
         "purpose": "bossing",
@@ -109,12 +302,16 @@
           "Supreme Supernova",
           "Soul Seeker"
         ],
-        "consensus": "moderate",
+        "consensus": "strong",
+        "sourceCount": 4,
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
         ],
-        "caveat": "Both sources are from 2024 and therefore predate the v269 boost-node regrouping that Grandis Library exposes via its 'View Pre-V.269 Boost Nodes' toggle. Verify against a current class-doc infographic before committing nodestones."
+        "verifiedAt": "2026-09-12",
+        "caveat": "The three trio-reference pages are all 2024 and predate the v269 boost-node regrouping that Grandis Library exposes via its 'View Pre-V.269 Boost Nodes' toggle. The Compendium (2026-07-06) independently gives the same three skills as the boss-mule boost set, which is what raises this to strong."
       },
       {
         "purpose": "mobbing / training",
@@ -124,286 +321,527 @@
           "Finale Ribbon"
         ],
         "consensus": "moderate",
+        "sourceCount": 3,
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
         ],
-        "caveat": "Same 2024 dating caveat as the bossing trio."
+        "verifiedAt": "2026-09-12",
+        "caveat": "Three independent 2024 sources agree on this trio, but the current Compendium does NOT endorse it: its legion/link levelling set is Celestial Roar + Soul Seeker/Soul Seeker Expert + Supreme Supernova. Held at moderate because the corroborating sources are all pre-v269 and the current class doc disagrees."
       }
     ],
-    "notes": "A main should end up with six skills boosted - Trinity, Soul Seeker/Soul Seeker Expert, Celestial Roar, Supreme Supernova, Soul Resonance and Finale Ribbon - which takes four boost node slots. A boss mule needs a minimum of three boosted skills. Source: Angelic Buster Compendium. IMPORTANT GAP: the Compendium publishes its full node-levelling priority as embedded images, not text, so the ordered levelling list could not be extracted by scraping; only the Overdrive and Grandis Goddess's Blessing statements above are present as readable text. That list needs a human or OCR pass before the planner can present a complete levelling order. The V Matrix itself only opens at Lv 200 (5th job), so none of this applies to a Lv 149 character yet.",
+    "notes": "A main should end up with six boosted skills, taking four boost node slots; a boss mule can settle for three. The V Matrix only opens at Lv 200 (5th job). IMAGE-ONLY CONTENT, verified 2026-09-12: the Compendium's levelling-priority icon strip and its Slot Priority table (Always Include / Mobbing / Bossing / Situational / Low priority) print the skill names as images, so the specific node names in those two tables are not text-extractable. Everything else in the section - the three 'Skills To Boost' lists, the levelling prose, and the drop-when-short guidance - IS readable text and is reproduced above.",
     "sources": [
       "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-      "https://grandislibrary.com/nova/angelic-buster"
-    ]
+      "https://grandislibrary.com/nova/angelic-buster",
+      "https://mystyjl.github.io/reference/NodeGuide.html",
+      "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+      "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "hexa": {
-    "order": [
+    "masteryCores": {
+      "ordered": true,
+      "isInvestmentOrder": false,
+      "shapeNote": "CRITICAL: this is the GAME's mastery core numbering (Nexon's Mastery Node/Core 1-4), not a recommended investment order. maplestorywiki.net labels exactly these four groups 'Mastery Node/Core 1' through 'Mastery Node/Core 4' with the same contents, and the Compendium's 'First Mastery / Second Mastery / Third Mastery / Fourth Mastery' headings are that same numbering. An earlier version of this file presented these four headings as a 6th-job investment order; no source says that.",
+      "cores": [
+        {
+          "core": 1,
+          "name": "HEXA Trinity",
+          "mechanics": "Raises Trinity's Max Enemies Hit from 3 to 4 and changes the animation to a single forward blast without changing the attack interval. With Legion Artifact's +1 target it becomes viable for mobbing, including Grandis maps (the doc recommends AS10 when mobbing this way).",
+          "consensus": "strong",
+          "sourceCount": 3,
+          "sources": [
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills",
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "core": 2,
+          "name": "HEXA Soul Seeker / HEXA Soul Seeker Expert",
+          "mechanics": "Straight damage increase; the Compendium's own comment is 'There isn't much to comment on, the damage number just goes up.'",
+          "consensus": "strong",
+          "sourceCount": 3,
+          "sources": [
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills",
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "core": 3,
+          "name": "HEXA Supreme Supernova",
+          "mechanics": "Turns Supernova into a 30-second install (up from 12 seconds), but it vanishes instantly after hitting the same enemy 18 times. Also adds percentage points to HEXA Trinity.",
+          "consensus": "moderate",
+          "sourceCount": 2,
+          "sources": [
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills",
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "core": 4,
+          "name": "HEXA Celestial Roar / Encore Ribbon",
+          "mechanics": "Potency and slight range increase on Celestial Roar, plus the new passive Encore Ribbon (no relation to Finale Ribbon) - a chaser that triggers 80% of the time on direct and active attacking skills. The Compendium calls this worthwhile for bossing as well as mobbing. On a boss mule, boosting Celestial Roar past Lv 260 is what activates Encore Ribbon.",
+          "consensus": "moderate",
+          "sourceCount": 2,
+          "sources": [
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills",
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    "investmentOrder": null,
+    "investmentOrderBlockedReason": "NOT SOURCED. The Compendium does publish a full HEXA Leveling Order (credited to Rai, 'up to date as of v269', with its own caveats about HEXA Stat RNG and Sol Janus being omitted), but it is an infographic IMAGE - no part of the order is present as text. Grandis Library has no HEXA section on any class page. The only class-specific optimiser, auxilism.github.io/ab_hexa_op, declares itself outdated as of March 2026. Rather than invent an order from the mastery core numbering, this is left null.",
+    "partialInvestmentGuidance": [
       {
-        "step": "HEXA Trinity (first Mastery core)",
-        "why": "The class doc puts Trinity first. Mechanically, HEXA Trinity raises Trinity's max enemies hit from 3 to 4, and both HEXA Soul Seeker and HEXA Supreme Supernova carry passive effects that add further damage to HEXA Trinity, so it is the skill the rest of the mastery investment feeds.",
+        "claim": "A party-play Angelic Buster should prioritise HEXA Trinity, Grand Finale and Mighty Mascot to maximise burst. A solo-progression player is directed to the infographics online and in the Angelic Buster Discord.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
+          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+        ],
+        "verifiedAt": "2026-09-12",
+        "caveat": "Single low-quality source, dated 2024-06-28. Not a substitute for the current leveling-order infographic."
       },
       {
-        "step": "HEXA Soul Seeker / HEXA Soul Seeker Expert (second Mastery core)",
-        "why": "Second in the class doc's mastery order. HEXA Soul Seeker also carries an additive HEXA Trinity damage passive that scales to +90% at level 30.",
+        "claim": "Sol Hecate is a HEXA Common node worth priority in the leveling order because it contributes both damage and utility (Styx bind, Charon death-save, Phlegethon damage). Sol Janus is a pure mobbing skill, is omitted from the leveling order infographic entirely, and should be invested in at the player's own discretion - its Dawn form has breakpoints at Lv 10, 20 and 30, its Dusk form at Lv 15 and 30.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      },
-      {
-        "step": "HEXA Supreme Supernova (third Mastery core)",
-        "why": "Third in the class doc's mastery order. Extends the orb to 30 seconds, caps at 18 hits on one enemy, and adds a HEXA Trinity damage passive scaling to +120 percentage points at level 30.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      },
-      {
-        "step": "HEXA Celestial Roar / Encore Ribbon (fourth Mastery core)",
-        "why": "Last of the four mastery cores in the class doc's order. Encore Ribbon is a passive that adds an extra hit off direct attacking skills, which is mainly a mobbing gain.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
+          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "This is the ordering of the four MASTERY cores only, and it comes from a single source lineage (the Angelic Buster Compendium, restated by Grandis Library, whose 6th-job infographic credits Rai, Aux and Boosty - Aux is also a Compendium contributor). Treat it as single-source. NOT SOURCED, deliberately left empty rather than guessed: where the Skill cores (Origin: Grand Finale, Ascent: Surprise Encore) sit relative to the mastery cores; the order of the four HEXA Enhancement cores (Sparkle Burst Boost, Superstar Spotlight Boost, Mighty Mascot Boost, Trinity Fusion Boost); Common node investment (Sol Janus, Sol Hecate); and HEXA Stat line priority - the Compendium contains no HEXA Stat section at all. A class-specific bossing optimiser exists at auxilism.github.io/ab_hexa_op (initial battle-analysis data credited to Rudy/Anandea) but its own header declares it outdated as of March 2026 with no plans to update, so it should not be used as a current order. Grandis Library has no HEXA section on any class page. HEXA only opens at Lv 260.",
+    "hexaStat": {
+      "stats": [
+        "Attack (ATT)",
+        "DEX",
+        "Boss Damage or Critical Damage"
+      ],
+      "guidance": "Assign ATT, DEX, and either Boss Damage or Critical Damage; which of the last two is better varies by gear, so the Compendium says to use a meta calculator. Starting out, set ATT as main stat with DEX and the third stat as substats, level the HEXA stat node to 20, then reassign if needed so that ATT is the highest level (main or sub), followed by DEX and then the third stat.",
+      "consensus": "moderate",
+      "sourceCount": 2,
+      "sources": [
+        "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+        "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+      ],
+      "verifiedAt": "2026-09-12",
+      "divergence": "The Digital Crowns names the third stat as Critical Damage specifically, and says to stop at level 20 and not reroll until 6th job is otherwise maxed. The Compendium leaves Boss Damage vs Critical Damage to a calculator. Both agree on ATT main and level 20 as the first checkpoint.",
+      "caution": "The Compendium warns that HEXA Stat levels 'should be taken with a grain of salt' because of the random cost scaling - no universal optimal stopping level exists."
+    },
+    "notSourced": [
+      "Where the Skill cores (Origin: Grand Finale, Ascent: Surprise Encore) sit relative to the mastery cores.",
+      "The order of the four HEXA Enhancement cores (Sparkle Burst Boost, Superstar Spotlight Boost, Mighty Mascot Boost, Trinity Fusion Boost). The Compendium's only comment is 'Nothing to say here, boosts simply increase the Final Damage of their respective skill.'",
+      "Relative investment order of Common nodes (Sol Janus, Sol Hecate) against everything else."
+    ],
+    "notes": "CORRECTED 2026-09-12: a previous version of this section claimed 'the Compendium contains no HEXA Stat section at all'. It does - see hexaStat above. It also presented the Compendium's First/Second/Third/Fourth Mastery headings as a 6th-job investment order; those headings are the game's own Mastery Core 1-4 numbering, confirmed identical on maplestorywiki.net, so the investment order is now null. The real HEXA Leveling Order exists but only as an image. HEXA only opens at Lv 260.",
     "sources": [
       "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
       "https://maplestorywiki.net/w/Angelic_Buster/Skills",
-      "https://auxilism.github.io/ab_hexa_op/"
-    ]
+      "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "hyperStats": {
-    "priority": [
+    "ordered": false,
+    "priority": null,
+    "shapeNote": "Stored as an UNORDERED set. No reachable source publishes an Angelic Buster hyper stat allocation order, so there is deliberately no ranked array here - array position must not be read as priority.",
+    "statsWorthPoints": [
       {
         "stat": "Critical Rate",
-        "why": "Angelic Buster has 40% base Critical Rate and needs to reach 100% from all other sources; hyper stat points are one of the named contributors. Reaching 100% matters more than for most classes because Mighty Mascot grants no crit rate of its own, so any shortfall directly cuts miniburst damage.",
+        "why": "Angelic Buster has 40% base Critical Rate and the Compendium's instruction is to 'Always aim to achieve 100% CR after all sources (not including Final Contract)'. Hyper Stats appear in its list of ways to get more Crit Rate, annotated 'don't put too many points'. Reaching 100% matters more than for most classes because, while Trinity and Soul Seekers gain 5% CR at V Matrix Boost Level 20, Mighty Mascot has no such additional CR - so a shortfall shows up in miniburst damage.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "stat": "Ignore Enemy DEF (IED)",
+        "why": "The Compendium lists 'Up to 45% from Hyper Stats' among the ways to improve IED, against visible-IED targets of 97% for Grandis bosses (380% PDR) and 95% for others (300% PDR). It also stresses this is a ballpark that assumes solo bossing and drops significantly with party IED support, and that IED must be weighed against the opportunity cost of other upgrades.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "No published Angelic Buster hyper stat allocation order could be sourced. The Compendium has no hyper stat section beyond the crit-rate point above and a caution against overspending points there; Grandis Library carries no hyper stat data for any class; and the two independent third-party pages checked (DigitalTQ, The Digital Crowns) both omit hyper stats entirely. The community's operative answer to hyper stat allocation is a per-character optimisation rather than a fixed list - MathBro's Hyper Stat Optimizer at brendonmay.github.io/hyperCalculator. A static priority list here would be a fabrication.",
+    "notes": "Re-verified 2026-09-12 against every cited page. There is still no published Angelic Buster hyper stat allocation order. The Compendium mentions Hyper Stats only as a contributor to Critical Rate (with a 'don't put too many points' caution) and to IED (up to 45%); Grandis Library carries no hyper stat data for any class; The Digital Crowns and DigitalTQ both omit hyper stats entirely. The community's operative answer is per-character optimisation via MathBro's Hyper Stat Optimizer. A static ranked list here would be a fabrication, so the ranked field is explicitly null.",
     "sources": [
       "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
       "https://brendonmay.github.io/hyperCalculator/"
-    ]
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "hyperSkills": {
-    "passives": [
-      {
-        "name": "Soul Seeker - Reinforce",
-        "effect": "Soul Seeker Damage +20%",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
-          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      },
-      {
-        "name": "Soul Seeker - Make Up",
-        "effect": "Soul Seeker recreation chance +10%",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
-          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      },
-      {
-        "name": "Finale Ribbon - Armorbreak",
-        "effect": "Ignore Defense +15%, permanent once Finale Ribbon is learned",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      },
-      {
-        "name": "Trinity - Reinforce",
-        "effect": "Trinity and Trinity Fusion Damage +20%",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
-          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      },
-      {
-        "name": "Trinity - Extra Strike",
-        "effect": "Trinity Number of Attacks +1",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
-          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      }
-    ],
-    "conditionalSwaps": [
-      {
-        "rule": "If Soul Seeker or Trinity is hitting the damage cap while running its Reinforce passive, switch that skill's passive to its Ignore Defense option instead (Piercing Soul Seeker +10% IED, or Piercing Trinity +20% IED).",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-        ]
-      }
-    ],
-    "actives": null,
-    "notes": "The five passives above are the set two independently-authored sources agree on (Grandis Library, restating the class doc, and The Digital Crowns). The Compendium itself does not publish an ordered passive list - only the damage-cap swap rule. Hyper skill passives unlock from Lv 140 onward, so a Lv 149 character can take Soul Seeker - Reinforce and Trinity - Reinforce now and the rest as levels allow. See conflicts for DigitalTQ's differing set.",
-    "sources": [
-      "https://grandislibrary.com/nova/angelic-buster",
-      "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
-      "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-    ]
-  },
-  "innerAbility": {
-    "bossing": [
-      {
-        "line": 1,
-        "roll": "Attack Speed +1",
-        "why": "Angelic Buster is soft-capped at Attack Speed 8. The +1 inner ability line is required to reach the Attack Speed 10 cap, which the class doc values at roughly 7% Final Damage over AS8 (about 3% of that coming from AS9 to AS10).",
-        "consensus": "moderate",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://grandislibrary.com/nova/angelic-buster",
-          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
-        ]
-      },
-      {
-        "line": 2,
-        "roll": "Boss Damage +10%",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://grandislibrary.com/nova/angelic-buster"
-        ]
-      },
-      {
-        "line": 3,
-        "roll": "Buff Duration +38%",
-        "why": "Terms and Conditions is a +120% Damage buff lasting 10 seconds on a 60-second cooldown. The class doc works +38% Buff Duration out to roughly an 8% damage gain averaged over the cycle, which is why Buff Duration is a real damage line for this class rather than a convenience line.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://grandislibrary.com/nova/angelic-buster"
-        ]
-      }
-    ],
-    "training": [
-      {
-        "line": 1,
-        "roll": "Attack Speed +1 (class doc) - see conflicts",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-        ]
-      },
-      {
-        "line": 2,
-        "roll": "Mesos Obtained +20%",
-        "consensus": "moderate",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://grandislibrary.com/nova/angelic-buster"
-        ]
-      },
-      {
-        "line": 3,
-        "roll": "Item Drop Rate +15%",
-        "consensus": "moderate",
-        "sources": [
-          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-          "https://grandislibrary.com/nova/angelic-buster"
-        ]
-      }
-    ],
-    "muleNote": {
-      "text": "For an Angelic Buster used as a boss mule rather than a main, one independently-authored source recommends Boss Damage on the top line instead of Attack Speed +1.",
-      "consensus": "weak",
-      "sources": [
-        "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+    "passives": {
+      "ordered": false,
+      "shapeNote": "Unordered set. Five passive points are available and these are the five selections; no source ranks them against each other. Selection is constrained by level requirement, given per entry.",
+      "selections": [
+        {
+          "name": "Soul Seeker - Reinforce",
+          "effect": "Soul Seeker Damage +20%",
+          "levelRequirement": 140,
+          "consensus": "strong",
+          "sourceCount": 3,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+            "https://grandislibrary.com/nova/angelic-buster",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "name": "Soul Seeker - Make Up",
+          "effect": "Soul Seeker recreation chance +10%",
+          "levelRequirement": 150,
+          "consensus": "strong",
+          "sourceCount": 3,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+            "https://grandislibrary.com/nova/angelic-buster",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "name": "Finale Ribbon - Armorbreak",
+          "effect": "Ignore Defense +15%, permanent once Finale Ribbon is learned",
+          "levelRequirement": 165,
+          "consensus": "moderate",
+          "sourceCount": 2,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://grandislibrary.com/nova/angelic-buster",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12",
+          "contested": "DigitalTQ substitutes Finale Ribbon - Cooldown Cutter (Cooldown -25%) here. See conflicts."
+        },
+        {
+          "name": "Trinity - Reinforce",
+          "effect": "Trinity and Trinity Fusion Damage +20%",
+          "levelRequirement": 150,
+          "consensus": "strong",
+          "sourceCount": 3,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+            "https://grandislibrary.com/nova/angelic-buster",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "name": "Trinity - Extra Strike",
+          "effect": "Trinity Number of Attacks +1",
+          "levelRequirement": 190,
+          "consensus": "strong",
+          "sourceCount": 3,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+            "https://grandislibrary.com/nova/angelic-buster",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12"
+        }
       ]
     },
-    "notes": "The bossing top line is the strongest-supported inner ability claim for this class: three sources name Attack Speed +1, and the attack-speed soft cap gives a mechanical reason for it. Rolling strategy (which circulators to use in what order) could not be verified from the class doc text and is deliberately left out.",
+    "actives": {
+      "ordered": false,
+      "shapeNote": "Unordered set. Angelic Buster has exactly three hyper actives and three active hyper points, so all three are taken; there is no selection decision and therefore no ranking.",
+      "selections": [
+        {
+          "name": "Pretty Exaltation",
+          "effect": "Final Damage +5%, Soul Seeker Expert creation chance +15%, Soul Seeker re-creation chance +5%, Number of Soul Seekers created +2, Soul Seeker Final Damage -45% (multiplicative with Soul Seeker Expert's reduction). 20s duration, 60s cooldown. Part of the 1-minute burst cycle; no end lag.",
+          "levelRequirement": 140,
+          "consensus": "strong",
+          "sourceCount": 4,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "name": "Supreme Supernova",
+          "effect": "Installation-type energy orb, 12s duration, Max Enemies Hit 15, Damage 600% x3 periodically. 60s cooldown. Castable in the air; not affected by Summon Duration.",
+          "levelRequirement": 160,
+          "consensus": "strong",
+          "sourceCount": 4,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "name": "Final Contract",
+          "effect": "ATT +50, Damage +10%, Ignore Defense +30%, Boss Damage +20%, Critical Rate +30%, Abnormal Status Resistance +100, Elemental Resistance +100%. 30s duration, 120s cooldown. Part of the 2-minute burst cycle; has end lag.",
+          "levelRequirement": 190,
+          "consensus": "strong",
+          "sourceCount": 4,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+            "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+            "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+          ],
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    "conditionalSwaps": [
+      {
+        "rule": "If Soul Seeker or Trinity is hitting the damage cap while running its Reinforce passive, switch that skill's passive to its Ignore Defense option instead (Piercing Soul Seeker, Ignore Defense +10%; or Piercing Trinity, Ignore Defense +20%).",
+        "sourceQuote": "'In the exceedingly unlikely scenario you are hitting the damage cap with Soul Seeker or Trinity with their Reinforce options, consider choosing their IED ones.'",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+          "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+        ],
+        "verifiedAt": "2026-09-12",
+        "note": "The rule itself is the Compendium's, stated for an 'exceedingly unlikely' scenario. The two IED percentages come from maplestorywiki.net, which supplies the numbers but no recommendation."
+      }
+    ],
+    "notes": "CORRECTED 2026-09-12. The Compendium does publish the five passives - they are listed with their effects under Hyper Skills > Passives - so this is not a Grandis-only claim as a previous version of this file said. Four of the five (both Soul Seeker passives and both Trinity passives) are agreed by three independent lineages; only Finale Ribbon - Armorbreak is contested, with DigitalTQ picking Cooldown Cutter instead. ALSO CORRECTED: a previous version said a Lv 149 character could take Soul Seeker - Reinforce and Trinity - Reinforce now. Trinity - Reinforce requires Lv 150. At Lv 149 the only selectable passives on this list are Soul Seeker - Reinforce (Lv 140); Finale Ribbon - Reinforce is also available at Lv 140 but is not part of the recommended set.",
     "sources": [
       "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-      "https://grandislibrary.com/nova/angelic-buster"
-    ]
+      "https://grandislibrary.com/nova/angelic-buster",
+      "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+      "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+      "https://maplestorywiki.net/w/Angelic_Buster/Skills"
+    ],
+    "verifiedAt": "2026-09-12"
   },
-  "gearingNotes": "Crit rate is the class-specific gearing constraint. Angelic Buster has 40% base Critical Rate and needs 100% total from all other sources, counted WITHOUT Final Contract (the 30-second burst buff that grants +30% Critical Rate) - because Mighty Mascot receives no extra crit rate of its own, any shortfall shows up directly as lost miniburst damage. Named crit sources: Decent Sharp Eyes +10%, Lynn link skill Lv3 +10%, Phantom link skill Lv3 +20%, plus Night Lord/Marksman legion blocks, legion artifact, hyper stats, outer legion grid and familiars. IED is the second constraint: visible sources are thin (Dragon Whistle 16%, Finale Ribbon - Armorbreak 15%), with the rest arriving situationally from Final Contract (30% during burst), Trinity/Trinity Fusion (30% on that skill), Explorer Mage link (up to 9%) and 20% IED on V Matrix boosted skills at node level 40+; the commonly cited targets are 97% visible IED for Grandis bosses (380% PDR) and 95% for others (300% PDR). Attack speed: capped at Attack Speed 8 unless an Extreme Green Potion is active, and reaching the AS10 cap also requires the +1 Attack Speed inner ability line. Secondary weapon: the class doc names the Evolving Green Soul Ring as best in slot, bought from the secondary weapon vendor Neville for 100 million mesos via the Evolving Secondary Weapon Selection Box. WSE (weapon/secondary/emblem) potential: the doc's endgame target is 9/0/0 attack lines, with 8/1/0 or 7/2/0 acceptable when boss damage familiars are not in play. All gearing statements here come from the Angelic Buster Compendium (2026-07-06) unless noted; none of them were independently corroborated.",
+  "innerAbility": {
+    "bossing": {
+      "firstLine": {
+        "roll": "Attack Speed +1",
+        "why": "Angelic Buster is soft-capped at Attack Speed 8. The +1 inner ability line is required to reach the Attack Speed 10 cap, which the Compendium values at roughly 7% Final Damage over AS8 (about 3% of that coming from AS9 to AS10). It is a Legendary-tier line, and both the Compendium and Grandis Library place it first.",
+        "consensus": "strong",
+        "sourceCount": 3,
+        "sources": [
+          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+          "https://grandislibrary.com/nova/angelic-buster",
+          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      "remainingLines": {
+        "ordered": false,
+        "shapeNote": "Unordered pair. Both are Unique-tier lines and the two cited sources print them in opposite orders - the Compendium as Boss Damage then Buff Duration, Grandis Library as Buff Duration then Boss Damage - so no order is asserted here.",
+        "rolls": [
+          {
+            "roll": "Boss Damage +10%",
+            "consensus": "weak",
+            "sourceCount": 1,
+            "sources": [
+              "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+              "https://grandislibrary.com/nova/angelic-buster"
+            ],
+            "verifiedAt": "2026-09-12",
+            "note": "Grandis Library credits the Class Doc for its inner ability data, so these two are one lineage, not two votes."
+          },
+          {
+            "roll": "Buff Duration +38%",
+            "why": "Terms and Conditions is a +120% Damage buff lasting 10 seconds on a 60-second cooldown. The Compendium's worked figure (credited to Tony) is '+38% Buff Duration = 120% Damage * 3.8s / (60s * 0.95) = 8% Damage', which is why Buff Duration is a damage line for this class rather than a convenience line. The doc notes this replaced the pre-remaster third line (+8% damage vs enemies with abnormal status), which Buff Duration is now 'strictly better' than.",
+            "consensus": "weak",
+            "sourceCount": 1,
+            "sources": [
+              "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+              "https://grandislibrary.com/nova/angelic-buster"
+            ],
+            "verifiedAt": "2026-09-12"
+          }
+        ]
+      }
+    },
+    "training": {
+      "ordered": false,
+      "shapeNote": "CORRECTED 2026-09-12. A previous version listed 'Attack Speed +1 / Mesos Obtained +20% / Item Drop Rate +15%', which is a mashup of the Compendium's primary mobbing preset and its alternative preset - that combination appears in no source. The two presets are kept separate below.",
+      "presets": [
+        {
+          "preset": "mobbing (primary)",
+          "rolls": [
+            "Mesos Obtained +20%",
+            "Item Drop Rate +15%",
+            "Damage to Normal Monsters +8%"
+          ],
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12",
+          "divergence": "Grandis Library's primary training set is 'Meso Obtained / Item Drop Rate +20%, Meso Obtained / Item Drop Rate +15%, Chance to Skip Cooldown +10%' - it agrees on the first two lines and differs on the third."
+        },
+        {
+          "preset": "mobbing (alternative, with attack speed)",
+          "rolls": [
+            "Attack Speed +1",
+            "Mesos Obtained +15%",
+            "Item Drop Rate +15%"
+          ],
+          "why": "The Compendium's stated reasons for a mobbing preset with an attack speed line: fresh Hyper Burns entering Grandis maps may not one-shot mobs with Celestial Roar and so mob with HEXA Trinity instead, where AS10 gives more casts for a full clear (such players also often lack Sol Janus, which is the main reason AS10 is otherwise unnecessary for mobbing); and many players simply find movement smoother at AS10, which the doc explicitly calls preference rather than optimisation.",
+          "consensus": "moderate",
+          "sourceCount": 2,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+            "https://grandislibrary.com/nova/angelic-buster"
+          ],
+          "verifiedAt": "2026-09-12",
+          "note": "Grandis Library lists this under 'For Training (Alternative)' as 'Attack Speed +1, Item Drop Rate +15%, Meso Obtained +15%' - the same three lines."
+        },
+        {
+          "preset": "drop",
+          "rolls": [
+            "Item Drop Rate +20%"
+          ],
+          "consensus": "weak",
+          "sourceCount": 1,
+          "sources": [
+            "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+          ],
+          "verifiedAt": "2026-09-12",
+          "incomplete": "The Compendium recommends a third preset for drop but only fills in the first line of it. The other two lines are blank in the source and are not guessed here."
+        }
+      ]
+    },
+    "rollingStrategy": {
+      "steps": [
+        "Use Honor or a Legendary Circulator to tier up to a Legendary inner ability (the line itself does not matter).",
+        "Use Miracle Circulators until you obtain one of the two Unique lines (+10% Boss Damage or +38% Buff Duration).",
+        "Lock that line and roll with Honor until you obtain the Legendary +1 Attack Speed line.",
+        "Lock that line as well and roll with Honor for the correct last line (do not worry about its exact value).",
+        "Use Black Circulators to slowly improve the third line's value without losing the other two."
+      ],
+      "preference": "Of the two Unique lines, roll Buff Duration in step 2. Buff Duration has no substitute, whereas an Abnormal Damage line can stand in for Boss Damage on the last roll - so securing Buff Duration early is the less risky order given how expensive the final Honor rolls are.",
+      "cost": "The Compendium's figure for a perfect three-line inner ability is roughly 3-6 million Honor on average; it recommends new players settle for a single Legendary line.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12",
+      "note": "ADDED 2026-09-12. A previous version of this file said rolling strategy 'could not be verified from the class doc text'. It is readable text in the doc's 'How should I roll my IA?' section."
+    },
+    "muleNote": {
+      "text": "For an Angelic Buster used as a boss mule rather than a main, one independently-authored source recommends settling for Boss Damage +15-20% on the top line instead of Attack Speed +1, because it is much easier to obtain - while adding that harder bosses still want +1 Attack Speed.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "The bossing top line is the strongest-supported inner ability claim for this class: four pages across three independent lineages name Attack Speed +1, and the attack-speed soft cap gives a mechanical reason for it. Everything below that first line is one lineage (the Compendium, restated by Grandis Library) and is labelled weak accordingly.",
+    "sources": [
+      "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
+      "https://grandislibrary.com/nova/angelic-buster",
+      "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
+      "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+    ],
+    "verifiedAt": "2026-09-12"
+  },
+  "gearingNotes": "Crit rate is the class-specific gearing constraint. Angelic Buster has 40% base Critical Rate and needs 100% total after all other sources, explicitly not counting Final Contract (the 30-second burst buff that grants +30% Critical Rate) - the class doc's wording is 'Always aim to achieve 100% CR after all sources (not including Final Contract)'. Its stated reason: Trinity and Soul Seekers gain 5% CR at V Matrix Boost Level 20 but Mighty Mascot has no such additional CR, so any shortfall shows up in miniburst damage. The doc allows 95% as a bare minimum for a brand-new player, since the 2-minute burst still reaches 100% CR through Final Contract, while stressing that 100% should be the highest priority. Named crit sources: Decent Sharp Eyes +10%, Lynn link skill Lv3 +10%, Phantom link skill Lv3 +20%, Night Lord/Marksman legion blocks (4% at Lv200, 5% at Lv250), up to 20% from Legion Artifact, hyper stats (don't overspend), outer legion grid (fill only as needed), Commerci/Rebel familiar badges (1% each) and familiars. IED is the second constraint: visible sources are thin (Dragon Whistle 16%, Finale Ribbon - Armorbreak 15%), with the rest arriving situationally from Final Contract (30% during burst), Trinity/Trinity Fusion (30% on that skill), Explorer Mage link (up to 9%) and 20% IED on V Matrix boosted skills at node level 40+; the commonly cited targets are 97% visible IED for Grandis bosses (380% PDR) and 95% for others (300% PDR), both of which the doc calls ballpark figures that assume solo play. Attack speed: capped at Attack Speed 8 unless an Extreme Green Potion is active, and reaching the AS10 cap also requires the +1 Attack Speed inner ability line. Secondary weapon: the class doc names the Evolving Green Soul Ring as best in slot, bought from the secondary weapon vendor Neville for 100 million mesos via the Evolving Secondary Weapon Selection Box. WSE (weapon/secondary/emblem) potential: the doc's endgame target is 9/0/0 attack lines, with 8/1/0 or 7/2/0 acceptable when boss damage familiars are not in play. All gearing statements here come from the Angelic Buster Compendium (2026-07-06) unless noted; the crit-rate and IED statements were re-read against the document on 2026-09-12.",
   "commonMistakes": [
     {
       "mistake": "Disassembling Decent Hyper Body nodes because they look low priority.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12",
+      "sourceQuote": "'Do not disassemble them - with the Milestone update expanding the V Matrix, there will be space for you to slot these in for the passive stats.'"
     },
     {
-      "mistake": "Treating 100% crit rate as optional. Because Mighty Mascot supplies no crit rate of its own, being short of 100% reduces miniburst damage rather than just averaging out.",
+      "mistake": "Treating 100% crit rate as optional. Trinity and Soul Seekers pick up 5% CR at V Matrix Boost Level 20, but Mighty Mascot gains no such CR, so falling short of 100% reduces miniburst damage.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12",
+      "sourceQuote": "'While Trinity and Soul Seekers gain 5% CR at V Matrix Boost Level 20, Mighty Mascot has no such additional CR, and so any less than 100% CR will reduce the damage of your minibursts.'"
     },
     {
-      "mistake": "Counting Final Contract's +30% Critical Rate toward the 100% crit target. It is a 30-second burst buff on a 120-second cooldown, so it is excluded when checking whether the crit requirement is met.",
+      "mistake": "Counting Final Contract's +30% Critical Rate toward the 100% crit target. It is a 30-second burst buff on a 120-second cooldown, and the class doc excludes it when checking whether the crit requirement is met.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
         "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-      ]
+      ],
+      "verifiedAt": "2026-09-12",
+      "sourceQuote": "'Always aim to achieve 100% CR after all sources (not including Final Contract).'"
     },
     {
       "mistake": "Using Pink Pummel without watching where it leaves you - it has end lag and moves the character through enemies.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
       ]
     },
     {
-      "mistake": "Expecting Attack Speed 10 without an Extreme Green Potion active - without it the class is hard-capped at Attack Speed 8 regardless of gear or inner ability.",
+      "mistake": "Expecting Attack Speed 10 without an Extreme Green Potion active - without it the class is capped at Attack Speed 8 even with both Decent Speed Infusion and +1 AS inner ability.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     }
   ],
   "skillNameReference": {
     "note": "Names validated against maplestorywiki.net so the planner never emits a nonexistent node or skill. Facts only, no judgement attached.",
     "fifthJobClassSkills": [
-      "Sparkle Burst",
+      "Mighty Mascot",
       "Superstar Spotlight",
-      "Mighty Mascot"
+      "Trinity Fusion",
+      "Sparkle Burst"
+    ],
+    "fifthJobPirateSkills": [
+      "Overdrive",
+      "Loaded Dice"
     ],
     "hexaSkillCores": {
       "origin": "Grand Finale",
       "ascent": "Surprise Encore"
     },
     "hexaMasteryCores": [
-      "HEXA Trinity",
-      "HEXA Soul Seeker / HEXA Soul Seeker Expert",
-      "HEXA Supreme Supernova",
-      "HEXA Celestial Roar / Encore Ribbon"
+      "Mastery Core 1: HEXA Trinity",
+      "Mastery Core 2: HEXA Soul Seeker / HEXA Soul Seeker Expert",
+      "Mastery Core 3: HEXA Supreme Supernova",
+      "Mastery Core 4: HEXA Celestial Roar / Encore Ribbon"
     ],
     "hexaEnhancementCores": [
       "Sparkle Burst Boost",
@@ -412,37 +850,39 @@
       "Trinity Fusion Boost"
     ],
     "hyperPassivesAvailable": [
-      "Soul Seeker - Reinforce",
-      "Soul Seeker - Make Up",
-      "Piercing Soul Seeker",
-      "Finale Ribbon - Reinforce",
-      "Finale Ribbon - Armorbreak",
-      "Finale Ribbon - Cooldown Cutter",
-      "Trinity-Reinforce",
-      "Piercing Trinity",
-      "Trinity-Extra Strike"
+      "Soul Seeker - Reinforce (Lv140)",
+      "Soul Seeker - Make Up (Lv150)",
+      "Piercing Soul Seeker (Lv180)",
+      "Finale Ribbon - Reinforce (Lv140)",
+      "Finale Ribbon - Armorbreak (Lv165)",
+      "Finale Ribbon - Cooldown Cutter (Lv180)",
+      "Trinity-Reinforce (Lv150)",
+      "Piercing Trinity (Lv165)",
+      "Trinity-Extra Strike (Lv190)"
     ],
     "hyperActivesAvailable": [
-      "Pretty Exaltation",
-      "Supreme Supernova",
-      "Final Contract"
+      "Pretty Exaltation (Lv140)",
+      "Supreme Supernova (Lv160)",
+      "Final Contract (Lv190)"
     ],
     "sources": [
       "https://maplestorywiki.net/w/Angelic_Buster/Skills"
-    ]
+    ],
+    "verifiedAt": "2026-09-12",
+    "changeNote": "2026-09-12: added Trinity Fusion to fifthJobClassSkills (the Compendium lists it under 5th Job > Class Skills and the wiki carries it as a 5th job skill; the previous three-name list was incomplete), split out the pirate-job 5th job skills, relabelled the mastery cores with Nexon's own Mastery Core 1-4 numbering, and added level requirements to the hyper skill lists."
   },
   "sources": [
     {
       "url": "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
-      "what": "The Angelic Buster Compendium - the class Discord's maintained community doc. Primary judgement source for boost node selection, the HEXA mastery order, inner ability, crit/IED/attack-speed/buff-duration targets and gearing. Its node-levelling priority is published as images and could not be text-extracted.",
+      "what": "The Angelic Buster Compendium - the class Discord's maintained community doc. Primary judgement source for boost node selection, skill node levelling, HEXA Stat, inner ability, crit/IED/attack-speed/buff-duration targets and gearing. Re-read in full as raw text on 2026-09-12. IMAGE-ONLY sections: the HEXA Leveling Order infographic (credit Rai, v269), the V Matrix levelling-priority icon strip, and the Slot Priority table. Everything else cited from it here is readable text.",
       "dated": "2026-07-06",
       "independent": true,
       "quality": "high"
     },
     {
       "url": "https://grandislibrary.com/nova/angelic-buster",
-      "what": "Grandis Library class page - boost node groups classified Primary/Secondary/Other, hyper skill passive build, recommended inner ability split bossing/training, class properties, legion effect. NOT an independent vote: its credits block attributes inner ability and boost nodes to the Class Doc, and its 6th Job infographic to Rai, Aux and Boosty (Aux is also a Compendium contributor).",
-      "dated": "site footer stamped GMS Ver. 269 (two patches behind v.271)",
+      "what": "Grandis Library class page - boost node groups classified Primary/Secondary/Other (Node 1: Trinity + Trinity Fusion; Node 2: Soul Seeker + Soul Seeker Expert + Star Crash; Node 3: Supreme Supernova; Node 4: Celestial Roar; Node 5: Finale Ribbon + Soul Resonance; Node 6: Soul Buster + Star Bubble + Lovely Sting + Pink Pummel), hyper skill passive build, inner ability for bossing/training plus a training alternative, class properties, legion effect. NOT an independent vote: its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', and its 6th Job infographic is credited to Rai, Aux and Boosty (Aux is also a Compendium contributor).",
+      "dated": "site footer stamped GMS Ver. 269 [Ride the Lightning Update] (two patches behind v.271)",
       "independent": false,
       "quality": "high"
     },
@@ -455,35 +895,35 @@
     },
     {
       "url": "https://maplestorywiki.net/w/Angelic_Buster/Skills",
-      "what": "Complete skill tables - 4th job, hyper passives and actives, shared and class-specific V skills, HEXA skill/mastery/enhancement core names and their numeric effects. Used as the name-validation allowlist and to confirm mechanical claims. Carries no judgement or priority order. Requires a real browser; returns 403 to plain fetching.",
+      "what": "Complete skill tables - 4th job, hyper passives and actives with level requirements and exact values, shared and class-specific V skills, HEXA skill/mastery/enhancement core names and numeric effects, and Nexon's Mastery Node/Core 1-4 numbering. Used as the name-validation allowlist and to confirm mechanical claims. Carries no judgement or priority order. Needs a browser user-agent; returns 403 to plain fetching.",
       "dated": "2026-08-26 (per search index; page history not reachable)",
       "independent": true,
       "quality": "high"
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "Cross-class boost node trio reference by mastermysty. Gives Angelic Buster a bossing trio (Trinity / Supreme Supernova / Soul Seeker) and a mobbing trio (Celestial Roar / Soul Resonance / Finale Ribbon). Independently authored, but predates the v269 boost-node regrouping.",
+      "what": "Cross-class boost node trio reference by mastermysty. Gives Angelic Buster a bossing trio (Trinity / Supreme Supernova / Soul Seeker) and a mobbing trio (Celestial Roar / Soul Resonance / Finale Ribbon). Re-read 2026-09-12; both trios confirmed verbatim. Independently authored, but predates the v269 boost-node regrouping.",
       "dated": "2024-11-21 (author notes underlying data last updated 2024-05-14)",
       "independent": true,
       "quality": "medium"
     },
     {
       "url": "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/",
-      "what": "Independently-authored third-party class guide (James Chow). Corroborates the five hyper skill passives, the Attack Speed +1 inner ability top line, the legion DEX values and the trio composition; adds a boss-mule inner ability note. Shallow, uncited, pre-v269, and this site's sibling boost-node article is a 2021 pre-6th-job page that must not be used.",
+      "what": "Independently-authored third-party class guide (James Chow). Re-read 2026-09-12. Confirms the five hyper skill passives, the three hyper actives, the Attack Speed +1 inner ability top line with a Boss Damage 15-20% mule alternative, the legion DEX values, both trios (labelled 'Primary Bossing Node' and 'Secondary Mobbing Node'), a HEXA stat recommendation (ATT main / STAT / Critical Damage, stop at level 20) and a party-play HEXA priority (HEXA Trinity, Grand Finale, Mighty Mascot). Shallow, uncited, pre-v269, and this site's sibling boost-node article is a 2021 pre-6th-job page that must not be used.",
       "dated": "2024-06-28",
       "independent": true,
       "quality": "low"
     },
     {
       "url": "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
-      "what": "Independently-authored skill-build page (Aleph). Corroborates the two trios and names Grand Finale as the origin skill. Contains no HEXA investment order, no node priority ranking and no hyper stat allocation; its hyper passive list differs from the other sources. Stale.",
+      "what": "Independently-authored skill-build page (Aleph). Re-read 2026-09-12. Confirms both trios verbatim, the three hyper actives, the +1 Attack Speed inner ability line and Grand Finale as the origin skill. Contains no HEXA investment order, no node priority ranking and no hyper stat allocation; its hyper passive list swaps Finale Ribbon - Cooldown Cutter for Armorbreak. Stale.",
       "dated": "2024-12-11, self-declared for v.251 Go West",
       "independent": true,
       "quality": "low"
     },
     {
       "url": "https://auxilism.github.io/ab_hexa_op/",
-      "what": "Angelic Buster HEXA bossing optimiser - simulates upgrade paths and reports damage per fragment rather than publishing a fixed order. Initial battle-analysis data credited to Rudy (Anandea). Author handle 'auxilism' ties it to the Compendium contributor Aux, so it is the same source family, and its own header declares it outdated.",
+      "what": "Angelic Buster HEXA bossing optimiser - simulates upgrade paths and reports damage per fragment rather than publishing a fixed order. Initial battle-analysis data credited to Rudy (Anandea). Author handle 'auxilism' ties it to the Compendium contributor Aux, so it is the same source family, and its own header declares it outdated. Not used for any claim in this file.",
       "dated": "self-declared outdated as of 2026-03",
       "independent": false,
       "quality": "medium"
@@ -510,33 +950,34 @@
       "positionA": {
         "claim": "Five passives: Soul Seeker - Reinforce, Soul Seeker - Make Up, Finale Ribbon - Armorbreak, Trinity - Reinforce, Trinity - Extra Strike.",
         "sources": [
+          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic",
           "https://grandislibrary.com/nova/angelic-buster",
           "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
         ]
       },
       "positionB": {
-        "claim": "Substitutes Finale Ribbon - Cooldown Cutter for Finale Ribbon - Armorbreak in its passive list.",
+        "claim": "Substitutes Finale Ribbon - Cooldown Cutter (Cooldown -25%) for Finale Ribbon - Armorbreak (Ignore Defense +15%).",
         "sources": [
           "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
         ]
       },
-      "status": "contested; position B is the lower-quality and staler source (v.251) and is outvoted, but it is recorded rather than discarded"
+      "status": "contested; re-verified 2026-09-12. Position A is now confirmed to include the Compendium itself, which lists all five under Hyper Skills > Passives. Position B is the lower-quality and staler source (v.251) and is outvoted, but it is recorded rather than discarded. The other four passives are agreed by all three independent lineages."
     },
     {
-      "topic": "Inner ability top line for training/mobbing",
+      "topic": "Primary training / mobbing inner ability third line",
       "positionA": {
-        "claim": "Attack Speed +1, then Mesos Obtained +20%, then Item Drop Rate +15%.",
+        "claim": "Mesos Obtained +20%, Item Drop Rate +15%, Damage to Normal Monsters +8%.",
         "sources": [
           "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
         ]
       },
       "positionB": {
-        "claim": "Mesos Obtained/Item Drop Rate +20%, Mesos Obtained/Item Drop Rate +15%, Chance to Skip Cooldown +10% - no attack speed line.",
+        "claim": "Meso Obtained / Item Drop Rate +20%, Meso Obtained / Item Drop Rate +15%, Chance to Skip Cooldown +10%.",
         "sources": [
           "https://grandislibrary.com/nova/angelic-buster"
         ]
       },
-      "status": "contested. Notable because these two are normally the same source family - Grandis credits the class doc for inner ability - so the divergence suggests one of the two has drifted out of sync. Unresolved."
+      "status": "CORRECTED 2026-09-12. A previous version of this file claimed Grandis Library gives a training set with 'no attack speed line' and inferred that the two sources had drifted out of sync. That was wrong: Grandis explicitly publishes a 'For Training (Alternative)' set of Attack Speed +1 / Item Drop Rate +15% / Meso Obtained +15%, which is the same three lines as the Compendium's own alternative mobbing preset. The only real divergence is the third line of the PRIMARY training set - Damage to Normal Monsters +8% versus Chance to Skip Cooldown +10%. Minor, and not evidence of drift."
     },
     {
       "topic": "Boost node trio groupings vs Grandis node groups",
@@ -544,37 +985,120 @@
         "claim": "Fixed trios: bossing Trinity/Supreme Supernova/Soul Seeker, mobbing Celestial Roar/Soul Resonance/Finale Ribbon.",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide"
+          "https://www.digitaltq.com/maplestory-angelic-buster-skill-build-guide",
+          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
         ]
       },
       "positionB": {
-        "claim": "Six node groups with Trinity/Trinity Fusion, Soul Seeker/Soul Seeker Expert/Star Crash, Supreme Supernova and Celestial Roar as the four primaries and Finale Ribbon/Soul Resonance as secondary.",
+        "claim": "Six node groups: Trinity/Trinity Fusion, Soul Seeker/Soul Seeker Expert/Star Crash, Supreme Supernova and Celestial Roar as the four PRIMARY groups (all four unlock a HEXA mastery), Finale Ribbon/Soul Resonance as SECONDARY, and Soul Buster/Star Bubble/Lovely Sting/Pink Pummel as OTHER.",
         "sources": [
           "https://grandislibrary.com/nova/angelic-buster"
         ]
       },
-      "status": "not necessarily a contradiction - the two describe different groupings - but both trio sources are 2024 and predate the v269 boost node regrouping that Grandis itself flags with a pre-v269 toggle. Trust the v269-era grouping over the 2024 trios where they disagree."
+      "status": "not a contradiction - the two describe different things. The trios are three-skill node compositions; the Grandis groups are which skills share a boost node and which tier that node sits in. They only really diverge on Celestial Roar, which Grandis rates PRIMARY (it unlocks HEXA Mastery Core 4) while the trio sources put it in the mobbing trio and the Compendium leaves it out of the boss-mule set until Lv 260. All three trio sources are 2024 and predate the v269 regrouping that Grandis itself flags with a pre-v269 toggle; trust the v269-era grouping where they disagree."
+    },
+    {
+      "topic": "HEXA stat third stat",
+      "positionA": {
+        "claim": "ATT, DEX, and either Boss Damage or Critical Damage - use a meta calculator to decide which, since it varies by gear.",
+        "sources": [
+          "https://docs.google.com/document/d/13ceGRfEU9iULpAX7Fm3xtO1zrkDL4lWMqY3jmcbZOpc/mobilebasic"
+        ]
+      },
+      "positionB": {
+        "claim": "ATT main, main stat and Critical Damage as the additional stats.",
+        "sources": [
+          "https://thedigitalcrowns.com/angelic-buster-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      "status": "compatible - position B picks one of the two options position A allows. Both agree on ATT as the main stat and on stopping at level 20 for the first node."
     }
   ],
-  "evidenceNotes": "Three independently-authored lineages were reached: (1) the Angelic Buster Compendium and its Discord, restated by Grandis Library and by the auxilism optimiser - one family, current to 2026-07-06; (2) mastermysty's cross-class node guide, 2024-11-21; (3) two independent third-party guides, The Digital Crowns 2024-06-28 and DigitalTQ 2024-12-11, both low quality and both pre-v269. maplestorywiki.net supplied facts and name validation but no judgement. Honest summary of strength: boost node selection, the trio composition, the five hyper skill passives and the bossing inner ability top line are corroborated across independent lineages and rated moderate. The HEXA mastery order, the bossing inner ability lines 2 and 3, and every gearing target are single-source (the Compendium) and rated weak. HEXA Stat priority, HEXA Enhancement and Common node order, full node-levelling order and hyper stat allocation are NOT SOURCED and were left null rather than filled in. Reddit could not be reached from this environment, so r/Maplestory threads are unexamined; maplerhouse.com and maplestorywiki.net both refuse plain fetching.",
-  "lastVerified": "2026-09-11",
+  "evidenceNotes": "Three independently-authored lineages were reached: (1) the Angelic Buster Compendium and its Discord, restated by Grandis Library and by the auxilism optimiser - one family, current to 2026-07-06; (2) mastermysty's cross-class node guide, 2024-11-21; (3) two independent third-party guides, The Digital Crowns 2024-06-28 and DigitalTQ 2024-12-11, both low quality and both pre-v269. maplestorywiki.net supplied facts and name validation but no judgement. Honest summary of strength after the 2026-09-12 resolution pass: the bossing trio / boss-mule boost set, four of the five hyper skill passives, all three hyper actives, and the bossing inner ability top line are corroborated across three or more independent lineages and rated strong. Boost node tiering, Finale Ribbon - Armorbreak, the mobbing trio, HEXA Stat and the attack-speed mobbing inner ability are two-lineage and rated moderate. The skill node levelling order, the bossing inner ability lines 2 and 3, the training presets, the rolling strategy and every gearing target are single-source (the Compendium) and rated weak. NOT SOURCED and left null rather than filled in: the HEXA investment order (published only as an image), HEXA Enhancement and Common node order, the position of the Skill cores, the names of the four 'always include' skill nodes and the first three skill nodes in the levelling order (image-only), the last two lines of the drop inner ability preset, and hyper stat allocation ranking. Reddit could not be reached from this environment, so r/Maplestory threads are unexamined; maplerhouse.com was rejected.",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
-    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "FABRICATED RATIONALE: 'Mighty Mascot grants/supplies/receives no crit rate of its own, so any shortfall directly cuts miniburst damage' appears three times (hyperStats.priority[0].why, gearingNotes, commonMistakes[1]), each time sourced to the Angelic Buster Compendium. The Compendium does not connect Mighty Mascot to critical rate anywhere. The reasoning is also mechanically incoherent - a crit rate shortfall reduces damage on every attack, it is not specific to a miniburst. This is the researcher's own construction presented as sourced fact.",
-      "FABRICATED RULE: commonMistakes[2] - 'Counting Final Contract's +30% Critical Rate toward the 100% crit target... it is excluded when checking whether the crit requirement is met.' The Compendium says to aim for 100% CR 'after all sources' and never states this exclusion. The same exclusion is repeated as fact in gearingNotes ('counted WITHOUT Final Contract').",
-      "WRONG PRIORITY ORDER, contradicting its own cited source: the Compendium's readable text gives the main boost node order as Trinity > Soul Seeker/Soul Seeker Expert > Celestial Roar > Supreme Supernova > Soul Resonance > Finale Ribbon. The file lists Supreme Supernova third and Celestial Roar fourth, and writes the pair as 'Finale Ribbon / Soul Resonance' - positions 3/4 and 5/6 both inverted relative to the document it cites.",
-      "FALSE GAP CLAIM: vMatrix.notes says the Compendium 'publishes its full node-levelling priority as embedded images, not text, so the ordered levelling list could not be extracted by scraping; only the Overdrive and Grandis Goddess's Blessing statements above are present as readable text.' All of it is readable text: the main order, a boss mule order (Trinity > Soul Seeker/Soul Seeker Expert > Supreme Supernova, with a note that mules past Lv260 should boost Celestial Roar to enable HEXA Encore Ribbon), and a full skill-node levelling priority - Final Contract, Pretty Exaltation, Overdrive and Supreme Supernova first, then Grandis Goddess' Blessing, then Loaded Dice and Blink, then Erda Nova, Might of the Nova, and Rope Lift/Decent skills last.",
-      "MISLEADING OMISSION following from the above: the file's two skill-node entries present Overdrive as the first skill node and Grandis Goddess's Blessing as second. The Compendium puts Final Contract and Pretty Exaltation ahead of both. A planner built on this file would tell a player to level the wrong nodes first.",
-      "MISSTATED CONFLICT: conflicts[1] claims Grandis Library gives a training inner ability set with 'no attack speed line'. Grandis explicitly lists a training alternative of 'Attack Speed +1, Item Drop Rate +15%, Meso Obtained +15%'. The divergence from the Compendium is minor (which set is primary, and Meso +20% vs 15%), and the file's inference that 'one of the two has drifted out of sync' rests on a reading of Grandis that is simply wrong."
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm. A resolution pass on 2026-09-12 re-opened every cited page as raw text and settled each defect.",
+    "resolutionMethod": "Every source was re-fetched and read as raw extracted text rather than through a summarising reader, because the summariser demonstrably mis-reported the Compendium's boost node section on the first attempt. The Google Doc was read as full HTML with table structure preserved; Grandis Library's boost node groups were read from the img alt attributes and the tier colour classes in its markup, since the node names render as icons.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "FABRICATED RATIONALE: 'Mighty Mascot grants/supplies/receives no crit rate of its own, so any shortfall directly cuts miniburst damage' - claimed to be the researcher's own construction, absent from the Compendium.",
+        "disposition": "REJECTED - the claim is in the source. The Compendium's 'Can I settle for 95%?' section reads verbatim: 'While Trinity and Soul Seekers gain 5% CR at V Matrix Boost Level 20, Mighty Mascot has no such additional CR, and so any less than 100% CR will reduce the damage of your minibursts.' The critic's secondary objection (that a crit shortfall is not miniburst-specific) is an argument with the source, not with this file; the source's own reasoning is that the boost-node CR makes up the shortfall on Trinity and Soul Seeker but not on Mighty Mascot. The wording in this file has been tightened to include the boost-node half of the mechanism, and the verbatim quote is now stored alongside the claim.",
+        "scope": "in-scope (hyperStats, commonMistakes)"
+      },
+      {
+        "defect": "FABRICATED RULE: excluding Final Contract's +30% Critical Rate from the 100% crit target.",
+        "disposition": "REJECTED - the exclusion is stated verbatim in the Compendium: 'Always aim to achieve 100% CR after all sources (not including Final Contract).' The doc's nuance that a brand-new player may settle at 95% because the 2-minute burst still reaches 100% through Final Contract has now been added to gearingNotes, which previously omitted it.",
+        "scope": "in-scope (gearingNotes, commonMistakes)"
+      },
+      {
+        "defect": "WRONG PRIORITY ORDER: the Compendium's main boost order is Trinity > Soul Seeker/Expert > Celestial Roar > Supreme Supernova > Soul Resonance > Finale Ribbon, but the file listed Supreme Supernova third and Celestial Roar fourth.",
+        "disposition": "CORRECTED, and the underlying shape defect fixed. The critic is right that the file's array order did not match the Compendium's list order. But re-reading both sources shows neither publishes a RANKING at all: the Compendium prints 'Skills To Boost (Mains)' as a plain list with no ordering marks, and Grandis Library's Node 1-6 numbering carries only three priority bands (PRIMARY/SECONDARY/OTHER) with nothing said about order inside a band. Storing this as an ordered array asserted a claim no source makes, and that is what produced the mismatch. vMatrix.priority has been replaced by vMatrix.boostNodes.tiers with ordered:false, plus vMatrix.boostSetsByRole reproducing the Compendium's three lists as unordered sets in the document's own sequence.",
+        "scope": "in-scope (vMatrix)"
+      },
+      {
+        "defect": "FALSE GAP CLAIM: vMatrix.notes said the node-levelling priority is image-only and that just the Overdrive and Grandis Goddess's Blessing statements are readable.",
+        "disposition": "CORRECTED, partially upheld. The icon strip on the Leveling Priority line and the Slot Priority table are genuinely images - the skill names there are not text. But the prose beneath them is fully readable and gives an order: first four = three of the primary 5th job damage skills plus Overdrive, then Grandis Goddess' Blessing, then Loaded Dice and Blink, then Erda Nova, then Might of the Nova, then Rope Lift, and all equipped Decent skills last. That order is now stored in vMatrix.skillNodeLevellingOrder with ordered:true, along with the training adjustment and the drop-when-short guidance. The three unnamed damage skills are left unnamed because the text does not say which three of the four they are.",
+        "scope": "in-scope (vMatrix)"
+      },
+      {
+        "defect": "MISLEADING OMISSION: the file presented Overdrive as the first skill node and Grandis Goddess's Blessing as second; the critic said the Compendium puts Final Contract and Pretty Exaltation ahead of both.",
+        "disposition": "PARTIALLY UPHELD, and the critic's own correction rejected. The file was wrong that Overdrive is first - it is one of four first-tier skill nodes. But Final Contract and Pretty Exaltation are hyper skill ACTIVES, not V Matrix skill nodes, and they appear nowhere in the Compendium's levelling priority. That part of the defect report was itself an error and is not adopted. The corrected six-step order is in vMatrix.skillNodeLevellingOrder.",
+        "scope": "in-scope (vMatrix)"
+      },
+      {
+        "defect": "MISSTATED CONFLICT: conflicts[1] claimed Grandis Library's training inner ability set has 'no attack speed line'.",
+        "disposition": "UPHELD and corrected. Grandis Library publishes 'For Training (Alternative): Attack Speed +1, Item Drop Rate +15%, Meso Obtained +15%' - the same three lines as the Compendium's own alternative mobbing preset. The 'one of the two has drifted out of sync' inference is removed. The conflict is rewritten to the real divergence, which is only the third line of the primary training set (Damage to Normal Monsters +8% vs Chance to Skip Cooldown +10%).",
+        "scope": "in-scope (innerAbility)"
+      }
+    ],
+    "additionalDefectsFoundDuringResolution": [
+      {
+        "finding": "hexa.order presented the Compendium's 'First / Second / Third / Fourth Mastery' headings as a 6th-job investment order. Those headings are Nexon's own mastery core numbering - maplestorywiki.net labels the identical four groups 'Mastery Node/Core 1' through 'Mastery Node/Core 4'. No source says invest in that sequence, and the Compendium's actual HEXA Leveling Order is a separate infographic image credited to Rai.",
+        "action": "hexa.order removed. Replaced with hexa.masteryCores (isInvestmentOrder:false) and hexa.investmentOrder:null with a blocked reason. This is the single largest correction in this pass: the section no longer offers a 6th-job investment order, because none is sourceable."
+      },
+      {
+        "finding": "hexa.notes asserted 'the Compendium contains no HEXA Stat section at all'. It has one.",
+        "action": "Corrected. hexa.hexaStat added: ATT, DEX, and either Boss Damage or Critical Damage; ATT as main stat to start; level the node to 20 then reassign so ATT is highest, then DEX, then the third stat. Corroborated independently by The Digital Crowns, so rated moderate."
+      },
+      {
+        "finding": "innerAbility.training listed Attack Speed +1 / Mesos Obtained +20% / Item Drop Rate +15%. That exact set appears in no source - it merges the Compendium's primary mobbing preset with its alternative preset.",
+        "action": "Corrected. The two presets are now stored separately, plus the drop preset (whose last two lines are blank in the source and are not guessed)."
+      },
+      {
+        "finding": "innerAbility.notes said rolling strategy 'could not be verified from the class doc text and is deliberately left out'. The doc's 'How should I roll my IA?' section is readable text.",
+        "action": "Added as innerAbility.rollingStrategy, five steps plus the Buff-Duration-first preference and the 3-6 million Honor cost figure."
+      },
+      {
+        "finding": "hyperSkills.notes said 'The Compendium itself does not publish an ordered passive list - only the damage-cap swap rule.' The Compendium lists all five passives with their effects under Hyper Skills > Passives.",
+        "action": "Corrected. Per-passive consensus recalculated: four passives now strong (three independent lineages), Armorbreak moderate and contested."
+      },
+      {
+        "finding": "hyperSkills.notes said a Lv 149 character 'can take Soul Seeker - Reinforce and Trinity - Reinforce now'. Trinity - Reinforce requires Lv 150 per maplestorywiki.net.",
+        "action": "Corrected, and level requirements added to every hyper skill entry."
+      },
+      {
+        "finding": "hyperSkills.actives was null. All three hyper actives (Pretty Exaltation, Supreme Supernova, Final Contract) are named by the Compendium, The Digital Crowns and DigitalTQ, and the wiki confirms only three exist against three available points, so there is no selection decision.",
+        "action": "Filled in as an unordered set, rated strong."
+      },
+      {
+        "finding": "hyperStats.priority was a single-element ordered array under a key named 'priority', which invites downstream code to read it as a ranking.",
+        "action": "priority set to null with ordered:false; the two stats the Compendium names as worth hyper stat points are stored in statsWorthPoints as an explicitly unordered set."
+      },
+      {
+        "finding": "skillNameReference.fifthJobClassSkills omitted Trinity Fusion, which both the Compendium and the wiki carry as a 5th job class skill.",
+        "action": "Added. Pirate-job 5th job skills split out separately."
+      }
     ],
     "clearedOnInspection": [
-      "NOT FABRICATED, verified clean: every skill and node name in the file validates against maplestorywiki.net - Star Crash (3rd job), Soul Resonance (4th job), Encore Ribbon, Surprise Encore, Grand Finale, Dragon Whistle (+16% IED, 3rd job), and all four enhancement cores (Sparkle Burst Boost, Superstar Spotlight Boost, Mighty Mascot Boost, Trinity Fusion Boost). The HEXA numeric claims also check out exactly: Trinity base Max Enemies Hit 3 vs HEXA Trinity 4; HEXA Soul Seeker passive HEXA Trinity Damage +90% additive at Lv30; HEXA Supreme Supernova 30s orb, destroyed after 18 hits on one enemy, +120% points at Lv30. The link skill values are correct. Base crit 40% (Base 5% + Affinity Heart II 25% + 10%) is corroborated by Grandis' stat table as well as the doc."
+      "NOT FABRICATED, verified clean: every skill and node name in the file validates against maplestorywiki.net - Star Crash (3rd job), Soul Resonance (4th job), Encore Ribbon, Surprise Encore, Grand Finale, Dragon Whistle (+16% IED, 3rd job), and all four enhancement cores (Sparkle Burst Boost, Superstar Spotlight Boost, Mighty Mascot Boost, Trinity Fusion Boost). The HEXA numeric claims also check out exactly: Trinity base Max Enemies Hit 3 vs HEXA Trinity 4; HEXA Soul Seeker passive HEXA Trinity Damage +90% additive at Lv30; HEXA Supreme Supernova 30s orb, destroyed after 18 hits on one enemy, +120% points at Lv30. The link skill values are correct. Base crit 40% (Base 5% + Affinity Heart II 25% + 10%) is corroborated by Grandis' stat table as well as the doc.",
+      "Re-confirmed 2026-09-12 against maplestorywiki.net: Soul Seeker - Reinforce Damage +20%, Soul Seeker - Make Up recreation chance +10%, Piercing Soul Seeker Ignore Defense +10%, Finale Ribbon - Armorbreak Ignore Defense +15%, Finale Ribbon - Cooldown Cutter Cooldown -25%, Trinity-Reinforce Damage +20%, Piercing Trinity Ignore Defense +20%, Trinity-Extra Strike Number of Attacks +1. The conditionalSwaps IED percentages are correct.",
+      "Re-confirmed 2026-09-12: both boost node trios appear verbatim on mystyjl.github.io (bossing Trinity / Supreme Supernova / Soul Seeker; mobbing Celestial Roar / Soul Resonance / Finale Ribbon) and in both third-party guides."
     ],
-    "shipReady": false
+    "shipReady": true
   },
-  "written": false,
-  "blockedReason": "6 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null
 }

@@ -14,385 +14,647 @@
   },
   "legionEffect": "Legion block grants flat LUK (+10 / +20 / +40 / +80 / +100 by block rank).",
   "vMatrix": {
-    "priority": [
+    "boostNodes": {
+      "ordered": false,
+      "orderedReason": "The class doc names six mandatory boost nodes under a single 'Mandatory Boost Nodes' heading with an unranked icon row above them. The icon row order (Assassinate, Meso Explosion, Shadow Veil, Sudden Raid, Dark Flare, Cruel Stab) does not match the order of the prose bullets below it (Assassinate/Meso Explosion, Shadow Veil, Cruel Stab, Dark Flare, Sudden Raid), so neither sequence is a ranking. The doc states only a partial ordering in prose, recorded in statedEmphasis. No reachable source ranks all six against each other, so this is stored as an unordered set.",
+      "statedEmphasis": "The class doc says of Assassinate / Meso Explosion: 'Since weaving is the majority of Shadower's damage this takes major priority.' It says of Sudden Raid: 'doesn't really add much damage to the kit, can use it off cd after 6th job to apply a DoT.' Those two prose statements are the only relative ranking the document makes among the six.",
+      "mandatory": [
+        {
+          "node": "Assassinate",
+          "why": "Named under 'Mandatory Boost Nodes' and singled out in prose as taking major priority because weaving is the majority of Shadower's damage. Present in the first trio of both the class doc's recommended 2-node setup and the independent trio table.",
+          "sources": [
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": "Meso Explosion",
+          "why": "Named under 'Mandatory Boost Nodes' alongside Assassinate and singled out in prose as taking major priority. Present in the first trio of both the class doc's 2-node setup and the independent trio table. Its boost node is also a hard unlock requirement for the 2nd Mastery Node (see hexa.cores).",
+          "sources": [
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": "Shadow Veil",
+          "why": "Named under 'Mandatory Boost Nodes'. The class doc's stated reason, verbatim: 'This skill is used to keep us in dark sight during our 60 second burst.' Third member of the first trio in both the class doc's 2-node setup and the independent trio table. Shadow Veil is a Lv. 160 hyper active, not a 4th job skill.",
+          "sources": [
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": "Cruel Stab",
+          "why": "Named under 'Mandatory Boost Nodes'. The class doc's stated reason, verbatim: 'is useful for mobbing. Especially later into the game when meso explosion does not one shot we count on cruel stab to kill most of the map.' Member of the second trio in both the class doc's 2-node setup and the independent trio table, and one of the two options shown for the third slot of the 1-node setup.",
+          "sources": [
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": "Dark Flare",
+          "why": "Named under 'Mandatory Boost Nodes'. The class doc's stated reason, verbatim: 'used mainly as a summon for farming in combination with erda fountain... It is useful damage estimated to equal about 1-2 fd.' Member of the second trio in both the class doc's 2-node setup and the independent trio table, and one of the two options shown for the third slot of the 1-node setup.",
+          "sources": [
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": "Sudden Raid",
+          "why": "Named under 'Mandatory Boost Nodes' - it IS in the mandatory set - but the class doc deprioritises it in prose: 'doesn't really add much damage to the kit, can use it off cd after 6th job to apply a DoT.' Member of the second trio in both the class doc's 2-node setup and the independent trio table. Its boost node is also a hard unlock requirement for the 4th Mastery Node.",
+          "sources": [
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://mystyjl.github.io/reference/NodeGuide.html"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    "specialNodes": [
       {
-        "node": "Assassinate",
-        "why": "Named as a mandatory boost node and appears in the top trio in both judgement sources. It is also the skill behind Mastery Node/Core 1 (HEXA Assassinate / HEXA Pulverize), so its boost node is a prerequisite for the first HEXA mastery.",
-        "consensus": "moderate",
+        "node": "Decent Holy Symbol",
+        "type": "5th job common skill node (not a boost node)",
+        "why": "The class doc's V-Matrix section states verbatim: 'Decent Holy Symbol is important to level up as it provides a notable EXP Buff as well as an additional Item Drop Rate with 100% uptime. It is recommended to level this up due to its benefits to training.' It is also the 5th-highest entry in the doc's own Node Priority row.",
         "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "node": "Meso Explosion",
-        "why": "Mandatory boost node in the class doc and present in the top trio in the independent trio table. Corresponds to Mastery Node/Core 2 (HEXA Meso Explosion). The class doc also states HEXA Meso Explosion requires the Meso Explosion boost node at Lv. 40 or higher.",
-        "consensus": "moderate",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "node": "Shadow Veil",
-        "why": "Listed as mandatory in the class doc and as the third member of the main trio in the independent trio table.",
-        "consensus": "moderate",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Cruel Stab",
-        "why": "Mandatory in the class doc, placed in the second trio by the independent trio table. Sits behind Mastery Node/Core 3 together with Dark Flare.",
+          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+        ],
+        "sourceCount": 1,
         "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "node": "Dark Flare",
-        "why": "Mandatory in the class doc and the trio partner used for the single-node bossing-mule setup. Sits behind Mastery Node/Core 3 together with Cruel Stab.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "node": "Sudden Raid",
-        "why": "The class doc explicitly ranks it below the mandatory group. Grandis Library places it in the same secondary grouping as Shadow Veil, but that is a dependent restatement of the class doc rather than a second opinion. Sits behind Mastery Node/Core 4 together with Shadow Veil and Covert Edge.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
+        "verifiedAt": "2026-09-12"
       }
     ],
+    "nodeTypePriority": {
+      "ordered": true,
+      "orderedReason": "The class doc's V-Matrix section opens with a single-row table captioned 'Node Priority', labelled 'Highest' at the left end and 'Lowest' at the right end, containing 22 node icons. Left-to-right is therefore an explicit ranking stated by the source.",
+      "derivation": "The row is images with no text. Each of the 22 icons was resolved by downloading it and MD5-matching its bytes against the icons in the same document's own labelled per-skill reference tables. 19 of 22 matched a labelled skill exactly; 3 matched nothing in the document and are recorded as unidentified rather than guessed.",
+      "order": [
+        "Boost Nodes (as a group - the cell is labelled 'Boost Nodes' and carries the Assassinate icon)",
+        "Trickblade",
+        "Sonic Blow",
+        "Slash Shadow Formation",
+        "Decent Holy Symbol",
+        "Maple World Goddess's Blessing",
+        "Shadow Walker",
+        "Last Resort",
+        "Erda Nova",
+        "Will of Erda",
+        "Blink",
+        "Rope Lift",
+        "UNIDENTIFIED (position 13 - icon matches nothing labelled in the source document)",
+        "Decent Sharp Eyes",
+        "UNIDENTIFIED (position 15 - icon matches nothing labelled in the source document)",
+        "Decent Combat Orders",
+        "Erda Shower / Erda Fountain",
+        "True Arachnid Reflection",
+        "Solar Crest",
+        "UNIDENTIFIED (position 20 - icon matches nothing labelled in the source document)",
+        "Decent Mystic Door",
+        "Decent Hyper Body"
+      ],
+      "sources": [
+        "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
     "trios": [
       {
-        "name": "Main trio (2-node setup)",
+        "name": "2-node setup, trio 1",
         "skills": [
           "Assassinate",
           "Meso Explosion",
           "Shadow Veil"
         ],
-        "purpose": "Main character / primary bossing setup",
-        "consensus": "moderate",
+        "purpose": "The class doc heads this block 'Example: 2 Node Setup (Recommended)' and captions it 'Ideal for those looking to make Shadower a main.' The independent trio table lists the identical three skills as its Trio 1.",
         "sources": [
           "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "name": "Bossing-mule trio (1-node setup)",
+        "name": "2-node setup, trio 2",
+        "skills": [
+          "Sudden Raid",
+          "Dark Flare",
+          "Cruel Stab"
+        ],
+        "purpose": "The second trio of the class doc's recommended 2-node (main character) setup. The independent trio table lists the identical three skills as its Trio 2. Neither source labels this trio bossing or mobbing.",
+        "sources": [
+          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "name": "1-node setup (bossing mule) - two variants shown",
         "skills": [
           "Assassinate",
           "Meso Explosion",
-          "Dark Flare"
+          "Dark Flare OR Cruel Stab"
         ],
-        "purpose": "Bossing mule that will only ever build one perfect trio",
-        "consensus": "weak",
+        "variants": [
+          [
+            "Assassinate",
+            "Meso Explosion",
+            "Dark Flare"
+          ],
+          [
+            "Assassinate",
+            "Meso Explosion",
+            "Cruel Stab"
+          ]
+        ],
+        "purpose": "The class doc heads this block 'Example: 1 Node Setup' and captions it 'Ideal for those looking to make Shadower a bossing mule. You can use cruel stab node to help level.' It shows two icon rows, not one: both start Assassinate / Meso Explosion and differ only in the third slot (Dark Flare in the first row, Cruel Stab in the second). The prose sentence about Cruel Stab explains the second variant.",
         "sources": [
           "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-        ]
-      },
-      {
-        "name": "Second trio (alternative)",
-        "skills": [
-          "Cruel Stab",
-          "Sudden Raid",
-          "Dark Flare"
         ],
-        "purpose": "Listed as the second / alternative trio; the source does not label it bossing or mobbing",
+        "sourceCount": 1,
         "consensus": "weak",
-        "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "The V Matrix does not exist for a Lv 140 character - 5th job is reached at Lv 200 - so this section is forward-planning only at the level given. Grandis Library's Primary/Secondary/Other tiering for Shadower (Node 1 Assassinate; Node 2 Meso Explosion; Node 3 Dark Flare + Cruel Stab; Node 4 Sudden Raid + Shadow Veil; Node 5 Phase Dash; Node 6 Midnight Carnival + Savage Blow) is a restatement of the class doc per its own credits block, so it is not an independent confirmation. No source reachable in this pass gives a numeric node-leveling roadmap (which node to take to 25/30/40/50/60 in what order); the class doc explicitly does not contain one."
+    "levelingRoadmap": null,
+    "notes": "How the trio and mandatory-node memberships were verified: the class doc conveys all of them as bare skill-icon images with no text captions, which is exactly the failure mode that produced the original defect in this file. Every icon in the 'Mandatory Boost Nodes' row, the '2 Node Setup' block and the '1 Node Setup' block was downloaded and MD5-matched, byte for byte, against the icons in the same document's own labelled per-skill reference tables. All 18 matched exactly, so these memberships are decoded, not inferred. The class doc and the independent trio table agree on BOTH trios of the 2-node setup, which is stronger than this file previously recorded. Grandis Library's Primary/Secondary/Other tiering for Shadower (Node 1 Assassinate; Node 2 Meso Explosion; Node 3 Dark Flare + Cruel Stab; Node 4 Sudden Raid + Shadow Veil; Node 5 Phase Dash; Node 6 Midnight Carnival + Savage Blow) is credited in its own credits block to the class doc, so it is a dependent restatement and is not counted as a second opinion. No source reachable in this pass gives a numeric node-leveling roadmap (which node to take to 25/30/40/50/60 in what order), so levelingRoadmap is null. The V Matrix does not exist below Lv 200, so this section is forward-planning only for a Lv 140 character."
   },
   "hexa": {
-    "order": [
-      {
-        "step": "Halve Cut (Skill Node/Core 1, Origin)",
-        "why": "The class doc places the origin skill first. It is a long-cooldown burst that grants invincibility during the cast and carries Ignore Defense and Boss Damage breakpoints at node levels 10, 20 and 30.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "step": "HEXA Assassinate, then HEXA Pulverize (Mastery Node/Core 1)",
-        "why": "The class doc ranks this mastery core second. Assassinate periodically upgrades into Pulverize, so both halves of the core are part of the main attack cycle.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "step": "HEXA Meso Explosion (Mastery Node/Core 2)",
-        "why": "The class doc ranks it third and states it is gated behind having the Meso Explosion boost node at Lv. 40 or higher.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "step": "HEXA Dark Flare and HEXA Cruel Stab (Mastery Node/Core 3)",
-        "why": "The class doc ranks this core fourth and states each half is gated behind the matching 3rd/4th job skill's boost node being at Lv. 40 or higher.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "step": "HEXA Sudden Raid, HEXA Shadow Veil, Covert Edge (Mastery Node/Core 4)",
-        "why": "The class doc ranks this core fifth.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "step": "Covetous Darkness (Skill Node/Core 2, Ascent)",
-        "why": "The class doc places the second skill core after the four mastery cores.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      },
-      {
-        "step": "Sol Janus: Dusk / Sol Janus: Dawn (common nodes)",
-        "why": "The class doc places these last and says the level chosen depends on the individual player's needs rather than giving a fixed target.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-          "https://maplestorywiki.net/w/Shadower/Skills"
-        ]
-      }
-    ],
+    "cores": {
+      "ordered": false,
+      "orderedReason": "The class doc has a section headed 'Sixth Job Upgrade Order', but that section contains no text whatsoever - it is a single 1053x810 image showing a grid of roughly 150 skill-icon cells, each stamped with a target skill level and grouped by coloured border, i.e. a granular level-by-level roadmap rather than a coarse core ordering. The icons in that grid could not be resolved to skill names, so no order can be published from it. No other reachable source publishes a Shadower HEXA investment order. The seven-step order this file previously published was identical to MapleStory Wiki's game-data slot numbering and was NOT supported by the document it was attributed to; it has been deleted rather than rewritten.",
+      "list": [
+        {
+          "slot": "Skill Node/Core 1 (Origin)",
+          "skills": [
+            "Halve Cut"
+          ],
+          "facts": "Long-cooldown burst (360 sec), invincible during casting. Node-level breakpoints: Lv. 10 Ignore Defense +20%; Lv. 20 Boss Damage +20%; Lv. 30 Ignore Defense +30% and Boss Damage +30%.",
+          "unlockRequirement": null,
+          "sources": [
+            "https://maplestorywiki.net/w/Shadower/Skills",
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "slot": "Mastery Node/Core 1",
+          "skills": [
+            "HEXA Assassinate",
+            "HEXA Pulverize"
+          ],
+          "facts": "HEXA Assassinate periodically upgrades into HEXA Pulverize (every 10 sec). Using Shadow Veil or Smokescreen adds Pulverize charges.",
+          "unlockRequirement": null,
+          "sources": [
+            "https://maplestorywiki.net/w/Shadower/Skills",
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "slot": "Mastery Node/Core 2",
+          "skills": [
+            "HEXA Meso Explosion"
+          ],
+          "facts": "Enhanced Meso Explosion with separate training and bossing behaviour.",
+          "unlockRequirement": "Class doc, verbatim: 'Requires Meso Explosion enhanced with V Matrix at least Lv. 40 (before Matrix Points) to unlock.'",
+          "sources": [
+            "https://maplestorywiki.net/w/Shadower/Skills",
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "slot": "Mastery Node/Core 3",
+          "skills": [
+            "HEXA Dark Flare",
+            "HEXA Cruel Stab"
+          ],
+          "facts": null,
+          "unlockRequirement": "Class doc, verbatim: 'Requires Dark Flare (3rd Job) Cruel Stab (4th Job) enhanced with V Matrix at least Lv. 40 (before Matrix Points) to unlock.'",
+          "sources": [
+            "https://maplestorywiki.net/w/Shadower/Skills",
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "slot": "Mastery Node/Core 4",
+          "skills": [
+            "HEXA Sudden Raid",
+            "HEXA Shadow Veil",
+            "Covert Edge"
+          ],
+          "facts": "Covert Edge carries passive damage points for HEXA Assassinate and HEXA Pulverize.",
+          "unlockRequirement": "Class doc, verbatim: 'Requires Sudden Raid (4th Job) Shadow Veil (Hyper Skill) enhanced with V Matrix at least Lv. 40 (before Matrix Points) to unlock.'",
+          "sources": [
+            "https://maplestorywiki.net/w/Shadower/Skills",
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "slot": "Skill Node/Core 2 (Ascent)",
+          "skills": [
+            "Covetous Darkness"
+          ],
+          "facts": "Node-level breakpoints per the class doc: Lv. 10 Ignore Defense +10% and Boss Damage +10%, rising with level.",
+          "unlockRequirement": null,
+          "sources": [
+            "https://maplestorywiki.net/w/Shadower/Skills",
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "slot": "Common nodes",
+          "skills": [
+            "Sol Janus",
+            "Sol Janus: Dusk",
+            "Sol Janus: Dawn",
+            "Sol Hecate"
+          ],
+          "facts": "The class doc's only guidance on these, verbatim, is the sentence printed directly above the Sixth Job Upgrade Order image: 'Level these based on your own needs.' It states no target level.",
+          "unlockRequirement": null,
+          "sources": [
+            "https://maplestorywiki.net/w/Shadower/Skills",
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
     "hexaStatPriority": null,
-    "notes": "SINGLE-SOURCE WARNING: the entire HEXA investment order above comes from one document, the Shadower Discord's class doc. No second independent source for Shadower HEXA ordering was reachable in this pass. Grandis Library has no HEXA section for any class. MapleDoro's Shadower page shows 'Coming soon' for both its Heroic and Interactive 6th-job leveling tabs. MapleGains, a GMS-data HEXA optimizer, does not yet support Shadower. The class doc's own HEXA Stat section is a stub that links into the Shadower Discord, so no HEXA Stat line priority could be sourced at all and that field is null. The class doc carries no last-updated date and no named author, so its currency against v.271 cannot be established from the document itself. Every node name above was validated against MapleStory Wiki's Shadower skill table. Mechanically HEXA opens at Lv 260, so none of this is actionable for a Lv 140 character."
+    "notes": "NO SOURCED HEXA INVESTMENT ORDER EXISTS FOR SHADOWER in anything reachable. The class doc's 'Sixth Job Upgrade Order' heading is followed immediately by its 'Hexa Stat' heading with a single image between them and no text at all; that image is a level-by-level icon roadmap that could not be decoded. The doc's Hexa Stat section is empty apart from a hyperlink into the Shadower Discord, so hexaStatPriority is null rather than guessed. Grandis Library has no HEXA section for any class. MapleDoro's Shadower 6th-job leveling tabs read 'Coming soon' for both Heroic and Interactive. MapleGains does not support Shadower. What IS verified above is the game-data slot membership of each core (from MapleStory Wiki, cross-checked against the class doc's own 6th job skill tables) and the three Lv. 40 boost-node unlock gates, which are quoted verbatim from the class doc. Slot numbering is the game's, not a recommendation - do not read the list order as an investment order. HEXA opens at Lv 260."
   },
   "hyperStats": {
-    "priority": [
+    "ordered": false,
+    "orderedReason": "The class doc prints five stats under 'Bossing' and five under 'Training' as a plain stacked list of paragraphs with no numbering and no statement that the list is a priority ranking, and it explicitly undercuts a strict ranking in the same section: 'As always, try to split your hyper stat points evenly as the cost of hyper stats gets higher at each level. You can also use calculators to optimize your hyper skills later into the game.' Storing these as an ordered array would assert a ranking the source does not state, so they are stored as unordered sets with the document's literal print sequence preserved separately.",
+    "sets": [
       {
         "context": "Bossing",
-        "order": [
+        "stats": [
           "Critical Damage",
           "Ignore Enemy Defense",
           "Damage",
           "Boss Damage",
           "Critical Rate"
         ],
-        "consensus": "weak",
+        "documentPrintSequence": "Critical Damage, Ignore Enemy Defense, Damage, Boss Damage, Critical Rate - this is the top-to-bottom order the class doc prints them in, recorded as a fact about the document, NOT as a stated priority order.",
         "sources": [
           "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "context": "Training",
-        "order": [
+        "stats": [
           "Critical Damage",
           "Damage",
           "Normal Monster Damage",
           "Bonus EXP",
-          "Arcane Force (early game only)"
+          "Arcane Force (for early game)"
         ],
-        "consensus": "weak",
+        "documentPrintSequence": "Critical Damage, Damage, Normal Monster Damage, Bonus EXP, Arcane Force (For early game) - the top-to-bottom order the class doc prints them in, NOT a stated priority order.",
         "sources": [
           "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Single-source. Grandis Library publishes no hyper stat data for any class, and neither MapleDoro nor the independent trio table covers hyper stats, so no second opinion was reachable. Treat the ordering as indicative, not settled: hyper stat allocation depends on a character's current crit rate, IED and boss damage, and the community's operative answer is a per-character calculator rather than a fixed list. Hyper stats unlock at Lv 140, so this is the layer that is actually actionable at the level given."
+    "caveats": [
+      "Class doc, verbatim: 'Hyper Stats for Shadower are the same as most other classes in the game.'",
+      "Class doc, verbatim: 'As always, try to split your hyper stat points evenly as the cost of hyper stats gets higher at each level. You can also use calculators to optimize your hyper skills later into the game.'",
+      "Class doc, verbatim: 'Please note that the Boss Damage and Normal Damage Hyper Stat gives more % per level than Damage at later levels.'"
+    ],
+    "notes": "Single-source. Grandis Library publishes no hyper stat data for any class, MapleDoro's Shadower page has no hyper stat section, and the independent trio table does not cover hyper stats, so no second opinion was reachable. The community's operative answer is a per-character calculator, not a fixed list - the class doc says so itself. Hyper stats unlock at Lv 140, so this is the layer that is actually actionable at low level."
   },
   "hyperSkills": {
     "passives": {
       "mandatory": [
         {
           "name": "Assassinate - Reinforce",
-          "effect": "Damage +20%",
-          "consensus": "moderate",
+          "effect": "Damage +20% (Lv. 150 requirement)",
           "sources": [
             "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-            "https://www.digitaltq.com/maplestory-shadower-skill-build"
-          ]
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "sourceNote": "The class doc is the only independent source for the SELECTION. MapleStory Wiki is cited only as the factual validator of the skill name and effect and casts no vote on what to pick, so sourceCount counts one."
         },
         {
           "name": "Assassinate - Boss Rush",
-          "effect": "Boss Damage +20%",
-          "consensus": "moderate",
+          "effect": "Boss Damage +20% (Lv. 165 requirement)",
           "sources": [
             "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-            "https://www.digitaltq.com/maplestory-shadower-skill-build"
-          ]
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "sourceNote": "Selection is class-doc only; wiki validates name and effect."
         },
         {
-          "name": "Assassinate - Guard Break",
-          "effect": "Enemy DEF Ignored +10%",
-          "consensus": "moderate",
+          "name": "Assassinate - Guardbreak",
+          "effect": "Enemy DEF Ignored +10% (Lv. 190 requirement)",
           "sources": [
             "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-            "https://www.digitaltq.com/maplestory-shadower-skill-build"
-          ]
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "sourceNote": "The class doc spells this 'Assassinate - Guard Break'; the in-game name per MapleStory Wiki is 'Assassinate - Guardbreak' (one word), which is the spelling used here."
         },
         {
           "name": "Meso Explosion - Reinforce",
-          "effect": "Damage +20%",
-          "consensus": "moderate",
+          "effect": "Damage +20% (Lv. 140 requirement)",
           "sources": [
             "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-            "https://www.digitaltq.com/maplestory-shadower-skill-build"
-          ]
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "sourceNote": "Selection is class-doc only; wiki validates name and effect."
         },
         {
           "name": "Meso Explosion - Enhance",
-          "effect": "Max mesos usable raised to 5; drop chance +10%",
-          "consensus": "moderate",
+          "effect": "Max number of usable Mesos dropped from Pick Pocket and Blood Money: 5. Chance for Mesos to drop from Pick Pocket and Blood Money: +10%. (Lv. 180 requirement)",
           "sources": [
             "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-            "https://www.digitaltq.com/maplestory-shadower-skill-build"
-          ]
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "sourceNote": "Selection is class-doc only; wiki validates name and effect."
         }
       ],
       "situational": [
         {
           "name": "Cruel Stab - Reinforce",
-          "effect": "Damage +20%",
-          "consensus": "weak",
+          "effect": "Damage +20% (Lv. 140 requirement)",
+          "when": "Class doc, verbatim: 'If you are close to one shotting with cruel stab, you can max out your cruel stab instead of your assassinate hyper skills to cheese some extra damage.'",
           "sources": [
-            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-          ]
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12"
         },
         {
           "name": "Cruel Stab - Spread",
-          "effect": "Max Enemies Hit +2; Number of Attacks +1",
-          "consensus": "weak",
+          "effect": "Max Enemies Hit +2 (Lv. 165 requirement)",
+          "when": "Same trade-off as Cruel Stab - Reinforce.",
           "sources": [
-            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-          ]
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "name": "Cruel Stab - Extra Strike",
+          "effect": "Number of Attacks +1 (Lv. 180 requirement)",
+          "when": "Same trade-off as Cruel Stab - Reinforce.",
+          "sources": [
+            "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+            "https://maplestorywiki.net/w/Shadower/Skills"
+          ],
+          "sourceCount": 1,
+          "consensus": "weak",
+          "verifiedAt": "2026-09-12",
+          "sourceNote": "NAME CORRECTION. The class doc prints two consecutive rows both labelled 'Cruel Stab - Spread', one with 'Max Enemies Hit +2' and one with 'Number of Attacks +1'. Per MapleStory Wiki the second of those is a different hyper passive, 'Cruel Stab - Extra Strike' (Lv. 180, Number of Attacks +1). The class doc's label is wrong and the previous version of this file had merged the two effects into a single entry. Both are recorded separately here under their in-game names."
         }
       ]
     },
-    "actives": null,
-    "notes": "The five mandatory passives are the only Shadower claim in this file with two genuinely independent sources behind it, and the second of those is stale (a 2022 page, pre-6th-job), so treat it as corroboration of a long-stable pick list rather than a fresh second opinion. Grandis Library lists the identical five picks but credits the class doc, so it adds nothing. Hyper skill actives could not be sourced from a current page and are left null rather than guessed. Hyper skills unlock at Lv 140."
+    "actives": {
+      "selectionRequired": false,
+      "list": [
+        "Flip of the Coin (Lv. 140) - passive effects Critical Rate +25%, Damage +24%",
+        "Shadow Veil (Lv. 160) - summons a dark ally dealing damage over time; raises Advanced Dark Sight chance in its range; Dark Sight does not deactivate on use",
+        "Epic Adventure (Lv. 190) - Damage +10% for 60 sec, applies to any Explorer in the party"
+      ],
+      "why": "Shadower has exactly three active hyper skills and their level requirements are 140, 160 and 190 - one per active hyper point - so there is no selection decision to make. This is a game-data statement, not a recommendation, which is why no source 'recommends' it. The class doc carries reference tables for all three and makes no active-hyper recommendation of its own.",
+      "sources": [
+        "https://maplestorywiki.net/w/Shadower/Skills",
+        "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "CONSENSUS DOWNGRADED IN THIS PASS. The previous version labelled the five mandatory passives 'moderate' on the strength of a second independent source, the 2022 DigitalTQ page. Re-reading that page shows it does not list those five picks: under its hyper-skill heading it names Flip The Coin, Shadow Veil and Epic Adventure - which are the three ACTIVES, not passives - and describes the passives only loosely as damage reinforcements and enhancements for Meso Explosion and Assassinate plus guardbreak effects. That is not a corroborating five-pick list, so DigitalTQ has been dropped as a source here and the five picks are now correctly labelled weak / single-source. Grandis Library lists exactly the same five ('Meso Explosion - Reinforce and Enhance', 'Assassinate - Reinforce, Boss Rush, and Guardbreak') but its own credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so it is the class doc agreeing with itself and adds no independent weight. Note also that MapleStory Wiki lists a sixth passive the class doc does not pick, 'Meso Explosion - Guardbreak' (Lv. 150, Ignore Defense +10%). Hyper skills unlock at Lv 140."
   },
   "innerAbility": {
-    "bossing": {
-      "lines": [
-        "Legendary first line: Boss Damage +20% (on Reboot/Heroic the class doc instead recommends Meso Obtained +20% - see notes)",
-        "Unique: Attack +21",
-        "Unique/Epic: Damage to enemies with Abnormal Status +8%",
-        "Unique: Item Drop Rate +15-20%"
-      ],
-      "consensus": "moderate",
-      "sources": [
-        "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-        "https://www.mapledoro.com/guides/character-guides/shadower",
-        "https://grandislibrary.com/explorers/shadower"
-      ]
+    "idealLines": {
+      "legendary": {
+        "ordered": false,
+        "options": [
+          "Meso Obtained 15-20%",
+          "Boss Damage 15-20%",
+          "Item Drop Rate 15-20%"
+        ],
+        "note": "These three are the class doc's Legendary-line column, printed without a ranking between them. The doc adds, verbatim: 'Meso Obtain is recommended in Reboot due to Reboot's passive 6x meso gain.' MapleDoro, independently of the class-doc lineage, recommends Boss Damage +20% as the Legendary line for both bossing and mobbing.",
+        "sources": [
+          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+          "https://www.mapledoro.com/guides/character-guides/shadower"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
+      },
+      "unique": {
+        "ordered": false,
+        "options": [
+          "Attack +21",
+          "Damage to monsters inflicted with Abnormal Status 7-8%",
+          "Meso Obtained 13-15%",
+          "Item Drop Rate 13-15%"
+        ],
+        "note": "The class doc's Unique-line column, printed without a ranking between them. MapleDoro independently recommends Attack +21 at Unique and Damage to enemies with Abnormal Status +8% (which it files at Epic). The class doc also says, verbatim: 'It is okay to settle on EPIC lines if funds (honor Xp, Meso) are not available.'",
+        "sources": [
+          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+          "https://www.mapledoro.com/guides/character-guides/shadower"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
+      }
     },
-    "training": {
-      "lines": [
-        "Meso Obtained +20% and/or Item Drop Rate +20% on the available lines"
-      ],
-      "consensus": "weak",
-      "sources": [
-        "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-        "https://grandislibrary.com/explorers/shadower"
-      ]
-    },
+    "exampleBisSetups": [
+      {
+        "lines": [
+          "Meso Obtained 20%",
+          "Item Drop Rate 15%",
+          "Damage to monsters with Abnormal Status 8%"
+        ],
+        "note": "Column 1 of the class doc's 'Example BIS Inner Abilities' table (verified from the table's row/cell structure, not from a visual reading). The doc does not label the two columns bossing or training; the labels this file previously carried were invented and have been removed.",
+        "sources": [
+          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "lines": [
+          "Boss Damage 20%",
+          "Attack +21",
+          "Damage to monsters with Abnormal Status 8%"
+        ],
+        "note": "Column 2 of the class doc's 'Example BIS Inner Abilities' table. Unlabelled by the doc. Matches MapleDoro's independent recommendation on two of its three lines (Boss Damage +20%, Attack +21).",
+        "sources": [
+          "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+          "https://www.mapledoro.com/guides/character-guides/shadower"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
+      }
+    ],
     "earlyGame": {
       "lines": [
-        "Unique: Critical Rate +15-20% while the Legion is still small. The class doc frames this as a stopgap for players below roughly 8k Legion, to be replaced once crit rate is covered from other sources."
+        "Unique: Critical Rate 15-20%"
       ],
-      "consensus": "weak",
+      "note": "Class doc, verbatim and in full: 'Unique 15 - 20% Critical Rate is early game or sub 8k legion.' The doc says nothing further about when to replace it; the previous version of this file added that reasoning and it has been removed.",
       "sources": [
         "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "The class doc specifically recommends Meso Obtained on Reboot/Heroic because of the server's multiplied meso rate, which compounds with Shadower's own meso mechanics. MapleDoro is the one independent page found that publishes a Shadower inner ability recommendation; it lists Boss Damage +20% (Legendary), Attack +21 (Unique) and Damage to enemies with Abnormal Status +8% (Epic) for both bossing and mobbing, and it is undated with no maintainer named. Grandis Library's inner ability block is credited to the class doc, so it is not a third vote."
+    "notes": "STRUCTURE CORRECTED IN THIS PASS. The class doc does not split inner ability by bossing versus training, which is how the previous version of this file presented it. It gives one 'Ideal Inner Ability Lines' table (Legendary column / Unique column), two example BIS setups side by side in a two-column table, and two prose caveats. That structure is reproduced above. Two rank corrections: Item Drop Rate 15-20% is a LEGENDARY line in the doc, not Unique as previously recorded, and Damage to monsters with Abnormal Status 7-8% is a UNIQUE line in the doc, not 'Unique/Epic'. The doc's reason for Meso Obtained on Reboot is its 6x meso gain, compounding with Shadower's own 20% additive Meso Obtained. MapleDoro is the one independent page found that publishes a Shadower inner ability recommendation - Boss Damage +20% (Legendary), Attack +21 (Unique), Damage to enemies with Abnormal Status +8% (Epic), applying to both bossing and mobbing - and it is undated with no maintainer named. Grandis Library's inner ability block is credited in its own credits line to the class doc, so it is not a third vote."
   },
-  "gearingNotes": "Crit rate is unusually cheap for this class. The class doc says Shadower assembles most of it from its own kit - roughly 50% between Flip the Coin and Critical Edge, plus base crit - and then tops up to 100% with Decent Sharp Eyes, the Beast Tamer link, Night Lord and Marksman Legion ranks and Legion/hyper stat points, leaving roughly 15% to buy. The practical consequence is that once 100% is reached, hyper stat and inner ability points other classes spend on crit rate are free to go elsewhere. Ignore Enemy Defense: Shadower Instinct supplies a 20% IED buff, and the class doc gives visual-IED targets of roughly 96-97% for 380 PDR bosses, 93-95% for Black Mage and Chaos Tenebris, and 91%+ for earlier bosses. Meso: the class doc states Shadower carries a 20% additive Meso Obtained effect that other classes do not have, which is why Meso Obtained lines are recommended on Reboot/Heroic. Attack speed: the doc's stack is base 6, Booster +2, green potion +1, Decent Speed Infusion +1, and it takes the position that reaching 0 attack speed is not required. Secondary weapon: the doc names Deimos Shield as BIS - note Shadower can equip a shield rather than a throwing-star-class secondary, which is a real gearing difference from Night Lord. Potential: the doc recommends at least two lines of 8% critical damage on gloves. All of the above is single-sourced to the class doc; none of it was confirmed by a second independent page in this pass.",
+  "gearingNotes": "Crit rate is unusually cheap for this class. The class doc says Shadower assembles most of it from its own kit - roughly 50% between Flip of the Coin and Critical Edge, plus base crit - and then tops up to 100% with Decent Sharp Eyes, the Beast Tamer link, Night Lord and Marksman Legion ranks and Legion/hyper stat points, leaving roughly 15% to buy. The practical consequence is that once 100% is reached, hyper stat and inner ability points other classes spend on crit rate are free to go elsewhere. Ignore Enemy Defense: Shadower Instinct supplies a 20% IED buff, and the class doc gives visual-IED targets of roughly 96-97% for 380 PDR bosses, 93-95% for Black Mage and Chaos Tenebris, and 91%+ for earlier bosses. Meso: the class doc states Shadower carries a 20% additive Meso Obtained effect that other classes do not have, which is why Meso Obtained lines are recommended on Reboot/Heroic. Attack speed: the doc's stack is base 6, Booster +2, green potion +1, Decent Speed Infusion +1, and it takes the position that reaching 0 attack speed is not required. Secondary weapon: the doc names Deimos Shield as BIS - note Shadower can equip a shield rather than a throwing-star-class secondary, which is a real gearing difference from Night Lord. Potential: the doc recommends at least two lines of 8% critical damage on gloves. All of the above is single-sourced to the class doc; none of it was confirmed by a second independent page in this pass. NAME CORRECTION 2026-09-12: this field previously read 'Flip the Coin'. The in-game name is 'Flip of the Coin' per MapleStory Wiki (Hyper Skill, Active, Lv. 140, Critical Rate +25%, Damage +24%), and the class doc's own skill table spells it 'Flip of the coin'. The wrong spelling appears to have come from the 2022 DigitalTQ page, which writes 'Flip The Coin'.",
   "commonMistakes": [
     {
-      "mistake": "Building a HEXA mastery core before its underlying boost node is high enough. The class doc states HEXA Meso Explosion requires the Meso Explosion boost node at Lv. 40+, and that HEXA Dark Flare and HEXA Cruel Stab carry the same requirement on their own boost nodes.",
+      "mistake": "Building a HEXA mastery core before its underlying boost node is at Lv. 40. The class doc states this gate verbatim for three of the four mastery cores: Core 2 requires Meso Explosion at V Matrix Lv. 40+, Core 3 requires Dark Flare and Cruel Stab at Lv. 40+, Core 4 requires Sudden Raid and Shadow Veil at Lv. 40+ (all 'before Matrix Points'). It states no such gate for Core 1.",
       "sources": [
         "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Chasing 0 attack speed. The class doc says it is not necessary for Shadower.",
       "sources": [
         "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     {
-      "mistake": "Treating Grandis Library's Shadower page as a second opinion on inner ability, hyper passives or boost nodes. Its own credits block attributes exactly those three fields to the class doc, so agreement between the two is one source agreeing with itself.",
+      "mistake": "Treating Grandis Library's Shadower page as a second opinion on inner ability, hyper passives or boost nodes. Its own credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so agreement between the two is one source agreeing with itself.",
       "sources": [
         "https://grandislibrary.com/explorers/shadower"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "mistake": "Reading a Shadower guide's build diagrams as text. Every V-matrix trio, every mandatory-node list, the node priority row and the entire sixth job upgrade order in the class doc are images with no text captions. Automated extraction of that document silently drops or scrambles them - which is exactly how the previous version of this file ended up publishing a HEXA order the document never states.",
+      "sources": [
+        "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     }
   ],
   "sources": [
     {
       "url": "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
-      "what": "Shadower Guide - the Shadower Discord's class document, and the root of essentially all public Shadower judgement. Covers inner ability, V-matrix mandatory nodes and perfect trios with 1-node and 2-node example setups, 6th job / HEXA investment order, hyper skill passives, hyper stats for bossing and training, crit rate and IED sourcing, attack speed stack, gear and secondary weapon. Its HEXA Stat section and its State of Shadower / Change Log are both stubs that link into Discord.",
+      "what": "Shadower Guide - the Shadower Discord's class document, and the root of essentially all public Shadower judgement. Covers inner ability, V-matrix node priority, mandatory boost nodes and perfect trios with 1-node and 2-node example setups, 6th job HEXA skill tables with unlock gates, hyper skill passives, hyper stats for bossing and training, crit rate and IED sourcing, attack speed stack, gear and secondary weapon. Its Sixth Job Upgrade Order is an image with no text; its Hexa Stat section and its State of Shadower / Change Log are stubs that link into Discord.",
       "dated": null,
       "independent": true,
-      "notes": "No last-updated date and no named author inside the document. Post-6th-job (Sol Janus and HEXA content present) but cannot be pinned to a patch. Written from a GMS Reboot point of view per its own introduction. Grandis Library credits Poro and the members of the Shadower Discord for the same material."
+      "notes": "No last-updated date and no named author inside the document. Post-6th-job (Sol Janus, Sol Hecate and HEXA content present) but cannot be pinned to a patch. Written from a GMS Reboot point of view per its own introduction. Grandis Library credits Poro and the members of the Shadower Discord for the same material. Read in full as raw HTML in this pass; all image-only build diagrams were decoded by byte-matching their icons against the document's own labelled skill tables."
     },
     {
       "url": "https://grandislibrary.com/explorers/shadower",
       "what": "Grandis Library Shadower page. Boost node tiering (Node 1 Assassinate; Node 2 Meso Explosion; Node 3 Dark Flare + Cruel Stab; Node 4 Sudden Raid + Shadow Veil; Node 5 Phase Dash; Node 6 Midnight Carnival + Savage Blow), hyper skill passive build, recommended inner ability, link skill, class properties, Legion bonus, base stats from skills. No HEXA section, no hyper stats.",
       "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
       "independent": false,
-      "notes": "Credits block reads: skill icons and animations by Ikasuu; inner ability, hyper passive build and boost nodes build from the Class Doc. Dependent restatement of the class doc for exactly the three judgement fields this project cares about."
+      "notes": "Credits block re-read 2026-09-12 and reads: 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc'. Dependent restatement of the class doc for exactly the three judgement fields this project cares about, so it is never counted in sourceCount."
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "All-class boost node trio reference by mastermysty. For Shadower it gives Trio 1 = Assassinate / Shadow Veil / Meso Explosion and Trio 2 = Cruel Stab / Sudden Raid / Dark Flare, without labelling either bossing or mobbing.",
+      "what": "All-class boost node trio reference by mastermysty. Re-read 2026-09-12: for Shadower it gives Trio 1 = Assassinate / Shadow Veil / Meso Explosion and Trio 2 = Cruel Stab / Sudden Raid / Dark Flare, without labelling either bossing or mobbing. Both trios match the class doc's decoded 2-node setup exactly.",
       "dated": "2024-11-21 (page); the author states the underlying data was last updated 2024-05-14",
       "independent": true,
-      "notes": "Genuinely independent of the class doc, but predates the 2025 freshness bar and predates the v269 boost-node grouping changes. Corroboration only, never the sole source."
+      "notes": "Genuinely independent of the class doc, but predates the 2025 freshness bar and predates the v269 boost-node grouping changes. Its agreement with the class doc on both trios is the strongest corroboration in this file."
     },
     {
       "url": "https://maplestorywiki.net/w/Shadower/Skills",
-      "what": "Factual skill table used as a name-validation allowlist. Confirms Skill Node/Core 1 (Origin) = Halve Cut; Skill Node/Core 2 (Ascent) = Covetous Darkness; Mastery Node/Core 1 = HEXA Assassinate + HEXA Pulverize; Core 2 = HEXA Meso Explosion; Core 3 = HEXA Dark Flare + HEXA Cruel Stab; Core 4 = HEXA Sudden Raid + HEXA Shadow Veil + Covert Edge. Also confirms the Thief's Cunning link skill values, the V skills (Shadow Assault, Trickblade, Sonic Blow, Slash Shadow Formation) and the Sol Janus / Sol Hecate common skills.",
+      "what": "Factual skill table. Re-read in full 2026-09-12 through a browser session. Confirms Skill Node/Core 1 (Origin) = Halve Cut; Skill Node/Core 2 (Ascent) = Covetous Darkness; Mastery Node/Core 1 = HEXA Assassinate + HEXA Pulverize; Core 2 = HEXA Meso Explosion; Core 3 = HEXA Dark Flare + HEXA Cruel Stab; Core 4 = HEXA Sudden Raid + HEXA Shadow Veil + Covert Edge. Confirms the complete hyper skill list, passive and active, with level requirements. Confirms Thief's Cunning Lv. 9 = Damage +27%.",
       "dated": null,
       "independent": true,
-      "notes": "Carries zero judgement - no priority order, no recommendation. Returns HTTP 403 to plain fetching; read through a browser session. Page history was not reachable, so the page date is unverified."
+      "notes": "Carries zero judgement - no priority order, no recommendation - so it is used only to validate names and effects and is not counted toward sourceCount on any selection or ordering claim. Returns HTTP 403 to plain fetching; must be read through a browser session. Page history was not reachable, so the page date is unverified."
     },
     {
       "url": "https://www.mapledoro.com/guides/character-guides/shadower",
-      "what": "MapleDoro community tool, Shadower page. Publishes an inner ability recommendation (Boss Damage +20% Legendary, Attack +21 Unique, Damage to enemies with Abnormal Status +8% Epic) applying to both bossing and mobbing. Its Heroic and Interactive 6th-job leveling tabs both read 'Coming soon'. No boost node priorities, no hyper stats.",
+      "what": "MapleDoro community tool, Shadower page. Re-read 2026-09-12. Publishes an inner ability recommendation (Boss Damage +20% Legendary, Attack +21 Unique, Damage to enemies with Abnormal Status +8% Epic) applying to both bossing and mobbing. Its 6th-job leveling tabs read 'Coming soon'. No boost node priorities, no hyper stats, no hyper skill picks.",
       "dated": null,
       "independent": true,
       "notes": "No maintainer named and no published date; an image filename on the page suggests 2025-07-23. Thin, but genuinely outside the class-doc lineage, and the only independent corroboration found for the inner ability lines."
     },
     {
       "url": "https://www.digitaltq.com/maplestory-shadower-skill-build",
-      "what": "DigitalTQ Shadower skill build page. Lists the same five hyper skill passives as the class doc. Also lists trinode pairings that differ from both current sources.",
+      "what": "DigitalTQ Shadower skill build page. Re-read 2026-09-12. Under its hyper skill heading it names Flip The Coin, Shadow Veil and Epic Adventure - the three ACTIVES - and describes the passives only loosely. Also lists trinode pairings (Cruel Stab / Meso Explosion / Dark Flare and Assassinate / Shadow Veil / Sudden Raid) that disagree with both current sources.",
       "dated": "2022-09-29, stated as updated for the Destiny v.233 update",
       "independent": true,
-      "notes": "STALE - predates 6th job entirely and predates the v269 boost-node regrouping. Used here only as corroboration of the long-stable hyper passive picks. Its trinode pairings are recorded under conflicts and should not be used."
+      "notes": "STALE AND DEMOTED. Predates 6th job entirely and predates the v269 boost-node regrouping. It was previously cited as the second source for the five hyper passive picks; re-reading shows it does not list those five, so that citation was an inversion and has been removed. It is now cited nowhere as support for any claim. Its 'Flip The Coin' spelling is the likely origin of the wrong skill name previously in gearingNotes."
     },
     {
       "url": "https://discord.gg/3NKFYxR2T3",
-      "what": "Shadower class Discord. The class doc's HEXA Stat section and its change log both defer to this server, so current Shadower HEXA Stat judgement and any post-v269 node changes live here.",
+      "what": "Shadower class Discord. The class doc's Hexa Stat section and its change log both defer to this server, so current Shadower HEXA Stat judgement and any post-v269 node changes live here.",
       "dated": null,
       "independent": true,
       "notes": "NOT READ. Not machine-readable from this environment. This is the single highest-value unopened source for Shadower."
@@ -408,15 +670,15 @@
   "consensusLevel": "weak",
   "conflicts": [
     {
-      "topic": "Second boost node trio composition",
+      "topic": "Boost node trio composition",
       "positions": [
         {
-          "claim": "Second trio is Cruel Stab / Sudden Raid / Dark Flare",
+          "claim": "Trio 1 = Assassinate / Shadow Veil / Meso Explosion; Trio 2 = Cruel Stab / Sudden Raid / Dark Flare",
           "source": "https://mystyjl.github.io/reference/NodeGuide.html",
           "dated": "2024-11-21"
         },
         {
-          "claim": "A single-node bossing mule should run Assassinate / Meso Explosion / Dark Flare; the doc gives no second full trio for a main character",
+          "claim": "2 Node Setup (Recommended, for a main): trio 1 = Assassinate / Meso Explosion / Shadow Veil, trio 2 = Sudden Raid / Dark Flare / Cruel Stab. 1 Node Setup (for a bossing mule): Assassinate / Meso Explosion plus either Dark Flare or Cruel Stab.",
           "source": "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
           "dated": null
         },
@@ -426,8 +688,8 @@
           "dated": "2022-09-29"
         }
       ],
-      "status": "contested",
-      "note": "The two current sources agree on the main trio (Assassinate / Meso Explosion / Shadow Veil) and diverge only on what the second trio is for. The 2022 pairings disagree with both and are pre-6th-job; recorded for completeness, not for use."
+      "status": "resolved",
+      "note": "RESOLVED 2026-09-12. This was previously recorded as contested on the strength of a misread: the class doc's trio images had been decoded by eye and produced a wrong membership. Decoding them by byte-matching the icons shows the class doc and the independent trio table agree on BOTH trios of the 2-node setup, as identical sets. The doc additionally gives a 1-node bossing-mule setup with two variants, which the trio table does not cover - that is a difference in coverage, not a disagreement. Only the 2022 DigitalTQ pairings disagree, and they are pre-6th-job and pre-v269; recorded for completeness, not for use."
     },
     {
       "topic": "Thief's Cunning link skill value at master level",
@@ -438,13 +700,18 @@
           "dated": null
         },
         {
+          "claim": "Lv. 9: Damage +27%, Duration 10 sec, Cooldown 20 sec (the doc's link skill comparison table reads 'Damage + 3 / 6 / 9 / 12 / 15 / 18 / 21 / 24 / 27%')",
+          "source": "https://docs.google.com/document/d/1NKBCWe9a2P2RKo8jScEv5EjAj4hVWsBu-9DW9dZMTvI/mobilebasic",
+          "dated": null
+        },
+        {
           "claim": "Master Level 9: Damage +18%, Duration 10 sec, Cooldown 20 sec",
           "source": "https://grandislibrary.com/explorers/shadower",
           "dated": "GMS Ver. 269"
         }
       ],
-      "status": "contested",
-      "note": "Most likely a stale value on the v269-stamped page rather than a genuine disagreement, but recorded rather than resolved by preference. The wiki figure is the one used in the linkSkill field because the wiki is the living factual table."
+      "status": "resolved",
+      "note": "RESOLVED 2026-09-12. The class doc's own link skill table independently gives the same 27% at Lv. 9 as MapleStory Wiki, so two independent sources agree and the v269-stamped Grandis figure is stale. 27% is the value used in the linkSkill field."
     },
     {
       "topic": "Which 6th job skill is the Origin skill",
@@ -461,33 +728,102 @@
         }
       ],
       "status": "resolved-on-game-data",
-      "note": "The wiki's node-slot labelling is a factual game-data statement and is the one used in this file. The class doc's wording appears to be loose usage rather than a competing claim about build order - both sources put Halve Cut first."
+      "note": "The wiki's node-slot labelling is a factual game-data statement and is the one used in this file. The class doc's wording appears to be loose usage rather than a competing claim. This no longer affects any published ordering, since this file publishes no HEXA investment order."
     }
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "coverageWarnings": [
-    "HEXA investment order rests on ONE source. Do not present it with the same confidence as the V matrix trios or the hyper passives.",
-    "HEXA Stat line priority could not be sourced at all - the class doc's section is a stub pointing into Discord. Field left null rather than guessed.",
-    "No numeric V-matrix node leveling roadmap (which node to 25/30/40/50/60 in what order) exists in any reachable source.",
-    "Hyper skill actives could not be sourced from a current page and are null.",
-    "The class doc has no date and no named author, so its currency against v.271 is unknown. This is the weakest link in the whole file.",
+    "NO HEXA investment order is published for Shadower and none exists in any reachable source. The class doc has a 'Sixth Job Upgrade Order' section but it is a single undecodable image. The seven-step order previously in this file was reconstructed from game-data slot numbering and has been deleted.",
+    "HEXA Stat line priority could not be sourced at all - the class doc's section is empty apart from a Discord link. Field left null rather than guessed.",
+    "No numeric V-matrix node leveling roadmap (which node to 25/30/40/50/60 in what order) exists in any reachable source; vMatrix.levelingRoadmap is null.",
+    "Hyper stat allocation is stored as an UNORDERED set with the document's print sequence recorded separately. The class doc prints a list but never calls it a ranking and advises splitting points evenly and using a calculator. Do not read array position as priority.",
+    "The six mandatory boost nodes are stored as an UNORDERED set. Only two relative statements exist in any source: Assassinate/Meso Explosion take major priority, and Sudden Raid adds little damage.",
+    "Three of the 22 icons in the class doc's Node Priority row could not be matched to any labelled skill in the document and are recorded as UNIDENTIFIED placeholders rather than guessed names.",
+    "The five mandatory hyper passives are SINGLE-SOURCED to the class doc. The second source previously credited (DigitalTQ, 2022) does not in fact list them; Grandis Library lists them but credits the class doc.",
+    "The class doc has no date and no named author, so its currency against v.271 is unknown. This remains the weakest link in the whole file.",
     "reddit.com was unreachable in this environment, so r/Maplestory Shadower threads are entirely unexamined.",
     "The Shadower Discord was not read; it is the stated home of the HEXA Stat guidance and the change log.",
-    "The web search budget was exhausted during this pass, so a YouTube guide-description sweep for current Shadower creators was not performed."
+    "Content outside the five endgame sections - jobs 1-4 skill points, damage coefficients, rotations, job tiers - was out of scope for this pass and was neither re-verified nor changed."
   ],
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "Bossing-mule trio third member: the file states the 1-node setup is Assassinate / Meso Explosion / Dark Flare. The class doc's actual text names Cruel Stab ('You can use cruel stab node to help level'), not Dark Flare. Trio memberships in the doc are image icons with no text enumeration, so Dark Flare was reconstructed. Recorded conflict #1 is built on this incorrect reading.",
-      "The entire seven-step hexa.order sequence as a sourced priority order. The class doc conveys its 'Sixth Job Upgrade Order' only as an embedded image; no text list states any ordering. The published sequence is identical to MapleStory Wiki's game-data slot numbering (Skill Node/Core 1, Mastery Node/Core 1, 2, 3, 4, Skill Node/Core 2, common), which is the expected signature of an order reconstructed from a data table and then attributed to a guide's judgement.",
-      "'Flip the Coin' in gearingNotes - the actual skill name on MapleStory Wiki is 'Flip of the Coin' (Hyper Skill, Active, Level Requirement 140, Critical Rate +25%, Damage +24%).",
-      "OMISSION rather than invention, but equally material: Decent Holy Symbol is named a mandatory boost node by the class doc and appears nowhere in the file. This also falsifies the file's claim that 'the doc gives no second full trio for a main' - the doc has a 2-node setup with two trios."
+    "resolvedAt": "2026-09-12",
+    "resolutionMethod": "Every disputed endgame claim was re-checked against the exact page already cited. The class doc was fetched as raw HTML and read verbatim. Because its build diagrams are images with no text, each icon in the Mandatory Boost Nodes row, the 2 Node Setup block, the 1 Node Setup block and the Node Priority row was downloaded and MD5-matched byte-for-byte against the icons in the same document's own labelled per-skill reference tables, giving a deterministic decode rather than a visual guess. MapleStory Wiki was read through a browser session (it 403s plain fetches). The independent trio table, MapleDoro, Grandis Library and DigitalTQ were each re-fetched.",
+    "resolved": [
+      {
+        "defect": "Bossing-mule trio third member: the file states the 1-node setup is Assassinate / Meso Explosion / Dark Flare. The class doc's actual text names Cruel Stab ('You can use cruel stab node to help level'), not Dark Flare. Trio memberships in the doc are image icons with no text enumeration, so Dark Flare was reconstructed. Recorded conflict #1 is built on this incorrect reading.",
+        "scope": "vMatrix",
+        "action": "CORRECTED",
+        "what": "Both the file and the critic were half right. Byte-matching the icons shows the class doc's 'Example: 1 Node Setup' block contains TWO icon rows, not one: Assassinate / Meso Explosion / Dark Flare and Assassinate / Meso Explosion / Cruel Stab. Dark Flare is genuinely shown, and the Cruel Stab variant the critic pointed at was genuinely missing. The trio entry now records both variants, and the prose sentence about Cruel Stab is quoted as the explanation for the second one."
+      },
+      {
+        "defect": "The entire seven-step hexa.order sequence as a sourced priority order. The class doc conveys its 'Sixth Job Upgrade Order' only as an embedded image; no text list states any ordering. The published sequence is identical to MapleStory Wiki's game-data slot numbering, which is the expected signature of an order reconstructed from a data table and then attributed to a guide's judgement.",
+        "scope": "hexa",
+        "action": "DELETED",
+        "what": "Defect upheld in full. The doc's 'Sixth Job Upgrade Order' heading is followed immediately by its 'Hexa Stat' heading with one image between them and zero words of text; the image is a grid of roughly 150 icon cells each stamped with a target level - a granular roadmap, not the coarse seven-step core ordering the file published. The icons in that grid could not be resolved, so nothing can be published from it. hexa.order has been deleted and replaced by hexa.cores, an UNORDERED inventory flagged ordered:false, carrying only what is actually verifiable: each core's game-data slot membership (MapleStory Wiki, cross-checked against the class doc's own 6th job skill tables) and the three Lv. 40 boost-node unlock gates quoted verbatim from the class doc."
+      },
+      {
+        "defect": "'Flip the Coin' in gearingNotes - the actual skill name on MapleStory Wiki is 'Flip of the Coin' (Hyper Skill, Active, Level Requirement 140, Critical Rate +25%, Damage +24%).",
+        "scope": "gearingNotes - strictly outside the five endgame sections, but a cheap verified factual name error, so corrected rather than left",
+        "action": "CORRECTED",
+        "what": "Confirmed against MapleStory Wiki (Flip of the Coin, Lv. 140, Critical Rate +25%, Damage +24%) and against the class doc's own skill table, which spells it 'Flip of the coin'. gearingNotes now reads 'Flip of the Coin' with a note recording the correction. The wrong spelling traces to the 2022 DigitalTQ page, which writes 'Flip The Coin'."
+      },
+      {
+        "defect": "OMISSION rather than invention, but equally material: Decent Holy Symbol is named a mandatory boost node by the class doc and appears nowhere in the file. This also falsifies the file's claim that 'the doc gives no second full trio for a main' - the doc has a 2-node setup with two trios.",
+        "scope": "vMatrix",
+        "action": "CORRECTED",
+        "what": "Both halves upheld, with one precision fix. Decent Holy Symbol is now recorded, under vMatrix.specialNodes rather than under boost nodes, because it is a 5th job common skill node and not a boost node - the class doc discusses it inside its V-Matrix section and ranks it 5th in its own Node Priority row. Its recommendation is quoted verbatim. Separately, the false claim that the doc gives no second full trio for a main has been removed: the doc's recommended 2-node setup has two trios, Assassinate / Meso Explosion / Shadow Veil and Sudden Raid / Dark Flare / Cruel Stab, and those are the same two sets the independent trio table gives."
+      },
+      {
+        "defect": "NOT RAISED BY THE CRITIC - found during resolution. hyperSkills.passives claimed 'moderate' consensus on the strength of DigitalTQ as a second independent source for the five mandatory passive picks.",
+        "scope": "hyperSkills",
+        "action": "CORRECTED (consensus downgraded)",
+        "what": "Re-reading DigitalTQ shows it does not list those five picks: under its hyper skill heading it names Flip The Coin, Shadow Veil and Epic Adventure, which are the three ACTIVES, and describes the passives only loosely. The citation was an inversion. DigitalTQ has been dropped as a source for the passives, and all five picks are now labelled sourceCount 1 / consensus weak. Grandis lists the same five but credits the class doc."
+      },
+      {
+        "defect": "NOT RAISED BY THE CRITIC - found during resolution. hyperStats shipped two ORDERED arrays labelled 'priority'.",
+        "scope": "hyperStats",
+        "action": "CORRECTED (shape changed)",
+        "what": "The class doc prints the stats as an unnumbered stacked list and never calls it a ranking; in the same section it says to split points evenly and to use a calculator. Array order was therefore asserting a claim the source does not make. hyperStats is now ordered:false with the stats as unordered sets, the document's literal print sequence preserved in a separate clearly-labelled field, and the doc's three hedging sentences quoted verbatim under caveats."
+      },
+      {
+        "defect": "NOT RAISED BY THE CRITIC - found during resolution. hyperSkills.passives.situational merged two distinct hyper passives into one entry, 'Cruel Stab - Spread: Max Enemies Hit +2; Number of Attacks +1'.",
+        "scope": "hyperSkills",
+        "action": "CORRECTED",
+        "what": "The class doc prints two consecutive rows both labelled 'Cruel Stab - Spread', one with each effect. Per MapleStory Wiki these are two different skills: Cruel Stab - Spread (Lv. 165, Max Enemies Hit +2) and Cruel Stab - Extra Strike (Lv. 180, Number of Attacks +1). The class doc's label on the second is wrong. Both are now separate entries under their in-game names."
+      },
+      {
+        "defect": "NOT RAISED BY THE CRITIC - found during resolution. vMatrix.priority said of Sudden Raid that 'The class doc explicitly ranks it below the mandatory group.'",
+        "scope": "vMatrix",
+        "action": "CORRECTED",
+        "what": "Citation inversion. Sudden Raid IS inside the class doc's mandatory boost node icon row and is described under the 'Mandatory Boost Nodes' heading. What the doc actually says is that it 'doesn't really add much damage to the kit' - a lukewarm description inside the mandatory set, not a demotion out of it. The entry now states that it is in the mandatory set and quotes the deprioritising sentence as such."
+      },
+      {
+        "defect": "NOT RAISED BY THE CRITIC - found during resolution. innerAbility was split into bossing / training / earlyGame blocks with line ranks that do not match the source.",
+        "scope": "innerAbility",
+        "action": "CORRECTED",
+        "what": "The class doc does not split inner ability by bossing versus training. It gives one Ideal Inner Ability Lines table with a Legendary column and a Unique column, two unlabelled example BIS setups in a two-column table, and prose caveats. Two rank errors fixed: Item Drop Rate 15-20% is a LEGENDARY line, not Unique; Damage to monsters with Abnormal Status 7-8% is a UNIQUE line, not 'Unique/Epic'. The invented bossing/training labels on the two BIS setups were removed, as was an added clause about when to replace the early-game crit rate line that the doc does not contain."
+      },
+      {
+        "defect": "NOT RAISED BY THE CRITIC - found during resolution. hyperSkills.actives was null with the note that actives 'could not be sourced from a current page'.",
+        "scope": "hyperSkills",
+        "action": "CORRECTED (gap filled with game data)",
+        "what": "There is nothing to source, because there is no decision to make: MapleStory Wiki lists exactly three active hyper skills for Shadower, at Lv. 140, 160 and 190, one per active hyper point. The field now lists Flip of the Coin, Shadow Veil and Epic Adventure with selectionRequired:false and an explicit note that this is game data rather than a recommendation."
+      },
+      {
+        "defect": "NOT RAISED BY THE CRITIC - found during resolution. The class doc's ordered 'Node Priority' row (Highest to Lowest) was never captured at all, because it is an image.",
+        "scope": "vMatrix",
+        "action": "ADDED",
+        "what": "The row's 22 icons were decoded by byte-matching and are now published as vMatrix.nodeTypePriority with ordered:true - this is the one genuinely ordered V-matrix claim any source makes for Shadower. Three icons matched nothing labelled in the document and are recorded as UNIDENTIFIED placeholders rather than guessed."
+      }
     ],
+    "outOfScope": [],
+    "defects": [],
     "clearedOnInspection": [],
-    "shipReady": false
+    "shipReady": true
   },
-  "written": false,
-  "blockedReason": "4 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null
 }

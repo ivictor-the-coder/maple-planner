@@ -14,78 +14,107 @@
   },
   "legionEffect": "Flat INT: +10 / 20 / 40 / 80 / 100",
   "vMatrix": {
+    "orderingBasis": "Array order reflects Grandis Library's three named boost node categories, read verbatim on 2026-09-12: PRIMARY ('Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used'), SECONDARY ('Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used'), OTHER ('Boost Nodes that do not need to be upgraded or has least priority'). Neither cited source ranks skills WITHIN a category, so positions inside a tier carry no claim. Nodes Grandis files under OTHER and that no source recommends building are NOT in this array; see notRecommended.",
     "priority": [
       {
         "node": "Essence Sprinkle",
-        "why": "Listed in the top boost node tier. Grandis Library groups the top tier under the heading noting these are the skills that unlock 6th Job HEXA Mastery.",
-        "consensus": "strong",
+        "tier": "Primary",
+        "why": "Grandis Library lists it under PRIMARY, defined verbatim as 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used'. mystyjl lists it in Lara's first recommended trio.",
+        "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Dragon Vein Eruption",
-        "why": "Top boost node tier; same 6th Job HEXA Mastery grouping.",
-        "consensus": "strong",
+        "tier": "Primary",
+        "why": "Grandis Library lists it under PRIMARY (unlocks a 6th Job HEXA Mastery, frequently used). mystyjl lists it in Lara's first recommended trio.",
+        "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Dragon Vein Absorption",
-        "why": "Top boost node tier; same 6th Job HEXA Mastery grouping.",
-        "consensus": "strong",
+        "tier": "Primary",
+        "why": "Grandis Library lists it under PRIMARY (unlocks a 6th Job HEXA Mastery, frequently used). mystyjl lists it in Lara's first recommended trio.",
+        "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Wakeup Call",
-        "why": "Grandis Library places it one tier below the top three, in the tier it labels as frequently used skills. mystyjl places it in the second recommended trio.",
+        "tier": "Secondary",
+        "why": "Grandis Library places it alone under SECONDARY, defined verbatim as 'Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used' - the tier split is about HEXA Mastery unlock, not about usage frequency. mystyjl includes it in Lara's second recommended trio. Both sources therefore rate it below the Primary three but still worth building.",
         "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Mountain Kid",
-        "why": "Grandis Library lists it in its lowest boost node tier; mystyjl includes it in the second recommended trio.",
-        "consensus": "moderate",
+        "tier": "Other (per Grandis) / second trio (per mystyjl)",
+        "why": "SOURCES DISAGREE. Only mystyjl recommends building it, as part of Lara's second trio ('Mountain Seed, Mountain Kids, Wake Up Call'). Grandis Library files it under OTHER, defined verbatim as 'Boost Nodes that do not need to be upgraded or has least priority', so Grandis is NOT corroboration for building it.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "contradictedBy": [
+          "https://grandislibrary.com/anima/lara"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Mountain Seeds",
-        "why": "Grandis Library lists it in its lowest boost node tier; mystyjl includes it in the second recommended trio.",
-        "consensus": "moderate",
+        "tier": "Other (per Grandis) / second trio (per mystyjl)",
+        "why": "SOURCES DISAGREE. Only mystyjl recommends building it, as part of Lara's second trio. Grandis Library files it under OTHER ('Boost Nodes that do not need to be upgraded or has least priority'), so Grandis is NOT corroboration for building it.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
+        ],
+        "contradictedBy": [
+          "https://grandislibrary.com/anima/lara"
+        ],
+        "verifiedAt": "2026-09-12"
+      }
+    ],
+    "notRecommended": [
       {
         "node": "Dragon Vein Traces",
-        "why": "Lowest boost node tier on Grandis Library. mystyjl flags this skill as not needed for 6th Job Mastery.",
+        "why": "Grandis Library files it under OTHER ('Boost Nodes that do not need to be upgraded or has least priority'). mystyjl lists it explicitly under 'Not needed for 6th job Mastery'. Both sources agree it is not a build target.",
         "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Vine Coil",
-        "why": "Lowest boost node tier on Grandis Library. mystyjl flags this skill as not needed for 6th Job Mastery.",
+        "why": "Grandis Library files it under OTHER ('Boost Nodes that do not need to be upgraded or has least priority'). mystyjl lists it explicitly under 'Not needed for 6th job Mastery'. Both sources agree it is not a build target.",
         "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://grandislibrary.com/anima/lara",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
@@ -96,12 +125,14 @@
           "Dragon Vein Eruption",
           "Dragon Vein Absorption"
         ],
-        "role": "Stated as the first recommended trio. Not split by bossing vs mobbing in either source.",
-        "consensus": "strong",
+        "role": "mystyjl states this verbatim as Lara's first trio. The same three skills are exactly Grandis Library's PRIMARY boost node group. Not split by bossing vs mobbing in either source, and no leveling order within the trio is stated.",
+        "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "label": "Trio 2",
@@ -110,22 +141,35 @@
           "Mountain Kid",
           "Wakeup Call"
         ],
-        "role": "Stated as the second recommended trio.",
-        "consensus": "moderate",
+        "role": "mystyjl states this verbatim as Lara's second trio ('Mountain Seed, Mountain Kids, Wake Up Call'; spelling variants of the same skills). SINGLE SOURCE - Grandis Library is not corroboration here: it places Wakeup Call in SECONDARY but places Mountain Kid and Mountain Seeds in OTHER, its least-priority tier. Treat this trio as one source's judgement.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "partiallyContradictedBy": [
+          "https://grandislibrary.com/anima/lara"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "The two sources agree on which skills matter and disagree only in presentation, not substance: Grandis Library lists skills grouped per boost node (Wakeup Call alone in one group, Mountain Kid and Mountain Seeds in another), while mystyjl combines the same three skills into a single second trio. Neither source gives an explicit leveling order within a trio, and neither splits Lara's trios into bossing versus mobbing variants. Staleness caveat: Grandis Library exposes a 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence that boost node groupings changed at v.269; mystyjl's page is dated 2024-11-21 with underlying data from 2024-05-14 and therefore predates that regrouping. That its trios still match the post-v.269 Grandis listing is corroborating, but the agreement should be re-checked against the Lara Discord."
+    "notes": "Corrected 2026-09-12 after re-reading both cited pages. The earlier claim that Grandis labels Wakeup Call's tier 'frequently used skills' was wrong: 'frequently used' appears in the PRIMARY definition, and PRIMARY's actual distinguishing property is unlocking a 6th Job HEXA Mastery. Wakeup Call sits in SECONDARY, which Grandis defines as nodes that do NOT unlock a HEXA Mastery but are still used. The earlier file also treated the two sources as agreeing across the board; they do not. They agree on the Primary three and on Dragon Vein Traces / Vine Coil being skippable, and they DISAGREE on Mountain Kid and Mountain Seeds, which mystyjl builds and Grandis calls least priority. Consensus labels lowered accordingly: no vMatrix claim here reaches 'strong', because only two independent lanes exist (Grandis, whose boost node section is credited to the Lara Discord, and mystyjl) against a 3-independent-source bar. Staleness caveat unchanged: Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle, direct evidence groupings changed at v.269; mystyjl is dated 2024-11-21 with trio data from 2024-05-14 and predates that change. Neither is current to v.271."
   },
   "hexa": {
     "order": [],
-    "notes": "NO PUBLIC SOURCE FOR LARA'S HEXA INVESTMENT ORDER COULD BE READ. Findings, each sourced: (1) Grandis Library's Lara page has no HEXA section and lists no class doc under Other Resources, only the class Discord and a HEXA Matrix Tracker sheet (https://grandislibrary.com/anima/lara). (2) The linked Lara HEXA Progression sheet is a fill-in calculator - it asks for your current HEXA progress and your target levels and derives recommendations from them, rather than publishing a fixed order; its credits line traces the template through a chain of other class Discords before reaching the Lara Discord (https://docs.google.com/spreadsheets/d/1KsSTOkGa5yU5lKb10RCjMQlXNWiThNT3TanLWcONYaU). (3) MapleDoro's Lara page displays a single image captioned as a Heroic HEXA guide and marks its own 6th job leveling-order section as work in progress, directing readers to the class Discord for infographics (https://www.mapledoro.com/guides/character-guides/lara). (4) DigitalTQ's Lara page contains skill descriptions but explicitly no HEXA investment order (https://www.digitaltq.com/maplestory-lara-skill-build). The order therefore exists publicly only as a Discord-distributed infographic image, which was not readable here. Do not populate this field from inference. Skill names appearing in Lara's HEXA/6th job context, recorded for name validation only and with no priority attached: Universe in Bloom (identified as the Origin skill by DigitalTQ), Sol Janus and Sol Hecate (common skills), and HEXA versions of Essence Sprinkle and Dragon Vein Eruption. 'Cornucopia' also appears as a tracked entry in the Lara HEXA Progression sheet but its node type was not confirmed by any source read here."
+    "ranked": false,
+    "sourceCount": 0,
+    "consensus": "none",
+    "verifiedAt": "2026-09-12",
+    "notes": "NO PUBLIC SOURCE FOR LARA'S HEXA INVESTMENT ORDER COULD BE READ. Re-checked 2026-09-12. Findings, each sourced: (1) Grandis Library's Lara page has no HEXA section and lists no class doc under Other Resources, only the class Discord and a HEXA Matrix Tracker sheet (https://grandislibrary.com/anima/lara) - re-confirmed on re-fetch. (2) The linked Lara HEXA Progression sheet is a fill-in calculator - it asks for your current HEXA progress and your target levels and derives recommendations from them, rather than publishing a fixed order; its credits line traces the template through a chain of other class Discords before reaching the Lara Discord (https://docs.google.com/spreadsheets/d/1KsSTOkGa5yU5lKb10RCjMQlXNWiThNT3TanLWcONYaU). (3) MapleDoro's Lara page displays a single image captioned as a Heroic HEXA guide and marks its own 6th job leveling-order section as work in progress, directing readers to the class Discord for infographics (https://www.mapledoro.com/guides/character-guides/lara). (4) DigitalTQ's Lara page contains skill descriptions but explicitly no HEXA investment order - re-confirmed on re-fetch 2026-09-12 (https://www.digitaltq.com/maplestory-lara-skill-build). The order therefore exists publicly only as a Discord-distributed infographic image, which was not readable here. Do not populate this field from inference. Skill names appearing in Lara's HEXA/6th job context, recorded for NAME VALIDATION ONLY with no priority attached: Universe in Bloom (Origin skill, confirmed by DigitalTQ and Grandis); HEXA Essence Sprinkle, HEXA Dragon Vein Eruption, HEXA Eruption: Heaving River, HEXA Eruption: Whirlwind, HEXA Eruption: Sunrise Well (all listed on DigitalTQ, re-read 2026-09-12); Sol Janus (common skill, DigitalTQ); Sol Hecate and Cornucopia (appear as tracked entries in the Lara HEXA Progression sheet only; Cornucopia's node type was not confirmed by any source read here)."
   },
   "hyperStats": {
     "priority": [],
-    "notes": "NO SOURCE FOUND. Grandis Library carries no hyper stat allocation for any class, there is no public Lara class document, and no other reachable page gave a Lara hyper stat ordering. Note the cross-class position recorded elsewhere in this project: the community's operative answer to hyper stat priority is a per-character computation (MathBro's hyper stat optimizer at https://brendonmay.github.io/hyperCalculator/), not a fixed list, and at least one class doc in this ecosystem declines to publish a fixed order for that reason. Leaving this empty is the correct state until the Lara Discord is read."
+    "ranked": false,
+    "sourceCount": 0,
+    "consensus": "none",
+    "verifiedAt": "2026-09-12",
+    "notes": "NO SOURCE FOUND, re-confirmed 2026-09-12. Grandis Library's Lara page carries no hyper stat section at all (re-fetched and checked), there is no public Lara class document, and no other reachable page gave a Lara hyper stat ordering. 'ranked' is false and the array is empty, so nothing here may be read as a ranking. Cross-class position recorded elsewhere in this project: the community's operative answer to hyper stat priority is a per-character computation (MathBro's hyper stat optimizer at https://brendonmay.github.io/hyperCalculator/), not a fixed list. Leaving this empty is the correct state until the Lara Discord is read."
   },
   "hyperSkills": {
     "recommendedPassives": [
@@ -136,9 +180,11 @@
           "Boss Rush"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Essence Sprinkle",
@@ -146,9 +192,11 @@
           "Boss Rush"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Wakeup Call",
@@ -156,9 +204,11 @@
           "Cooldown Cutter"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "finalPointOptions": [
@@ -168,9 +218,11 @@
           "Extra Shield"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Dragon Vein",
@@ -178,9 +230,11 @@
           "Enhance"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Dragon Vein Eruption / Dragon Vein Absorption",
@@ -188,9 +242,11 @@
           "Guardbreak"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Mountain Seeds",
@@ -198,13 +254,16 @@
           "Reinforce"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
+    "finalPointOptionsRanked": false,
     "activeSkills": null,
-    "notes": "Single source, and that source credits the Lara Discord for this section, so it is one community's position restated rather than independently confirmed. Grandis Library presents the last point as a genuine choice between four listed options rather than naming one pick. No training-versus-bossing split is given for Lara, unlike several other classes on the same site."
+    "notes": "Re-verified verbatim against Grandis Library 2026-09-12; all three passive recommendations and all four final-point options match the page exactly. Single source, and that source credits the Lara Discord for this section, so it is one community's position restated rather than independently confirmed - hence 'weak' throughout. Grandis presents the last point as a genuine CHOICE between four listed options rather than naming one pick, so finalPointOptions is an unordered set: 'finalPointOptionsRanked' is false and array position carries no claim. No training-versus-bossing split is given for Lara, unlike several other classes on the same site. Hyper skill ACTIVE selections are not covered by any source read."
   },
   "innerAbility": {
     "bossing": [
@@ -212,25 +271,31 @@
         "line": "Passive Skills +1",
         "slot": 1,
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Boss Damage +10%",
         "slot": 2,
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Damage to monsters inflicted with Abnormal Status +8%",
         "slot": 3,
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "training": [
@@ -238,52 +303,72 @@
         "line": "Meso Obtained / Item Drop Rate +20%",
         "slot": 1,
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Meso Obtained / Item Drop Rate +15%",
         "slot": 2,
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Damage to Normal Monsters +8%",
         "slot": 3,
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/anima/lara"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Single source, credited by that source to the Lara Discord. Worth flagging for the planner: Lara's recommended bossing top line is Passive Skills +1 rather than the boss damage or attack speed line that heads several other classes' recommendations on the same site. No source read here explains why, so no reason is recorded. Grandis Library's Lara recommendation contains no attack speed line."
+    "notes": "Re-verified verbatim against Grandis Library 2026-09-12; both the bossing and training line sets match the page exactly, in the order shown. Single source, credited by that source to the Lara Discord, so 'weak' throughout. Slot numbers reflect the order Grandis prints the lines, which corresponds to inner ability's first/second/third line slots. Worth flagging for the planner: Lara's recommended bossing top line is Passive Skills +1 rather than a boss damage or attack speed line. No source read here explains why, so no reason is recorded. Grandis Library's Lara recommendation contains no attack speed line.",
+    "verifiedAt": "2026-09-12"
   },
   "gearingNotes": "Sourced facts that bear on gearing, all from the base-stats-from-skills table on https://grandislibrary.com/anima/lara (single source, GMS v.269 stamp): Lara's own passives supply +45% crit rate, +20% crit damage, +10% boss damage before class-skill conditionals, and +40% ignore DEF before conditionals; attack speed contributions from skills are +2 (Wand Booster) and +1 (Manifestation / Advanced Mastery); weapon mastery 95%; weapon multiplier 1.2x; INT +40 and +15% to assigned AP. The crit rate figure is the one with real gearing consequence, since it sets how much additional crit rate must come from links, legion, hyper stats and inner ability - but no source read here states a crit rate target for Lara, so none is recorded. No source was found describing any unusual stat weighting, resource mechanic or gauge interaction for Lara in gearing terms; Lara's Dragon Vein mechanic is described on the wiki-style pages but none of the reachable sources tie it to a gearing decision.",
   "commonMistakes": [
     {
       "mistake": "Treating Dragon Vein Traces and Vine Coil as boost node targets worth building.",
-      "why": "Both sources place these skills in the bottom grouping, and mystyjl additionally flags them as not needed for 6th Job Mastery.",
+      "why": "Grandis Library files both under OTHER, defined verbatim as 'Boost Nodes that do not need to be upgraded or has least priority', and mystyjl lists both under 'Not needed for 6th job Mastery'. The two sources agree here.",
       "consensus": "moderate",
+      "sourceCount": 2,
       "sources": [
         "https://grandislibrary.com/anima/lara",
         "https://mystyjl.github.io/reference/NodeGuide.html"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "mistake": "Assuming Mountain Kid and Mountain Seeds are agreed boost node targets.",
+      "why": "Only mystyjl builds them, inside its second trio. Grandis Library puts both in its least-priority OTHER tier. Anyone quoting 'two sources' for these nodes is misreading Grandis.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://grandislibrary.com/anima/lara"
+      ],
+      "verifiedAt": "2026-09-12"
     }
   ],
   "sources": [
     {
       "url": "https://grandislibrary.com/anima/lara",
-      "what": "Class properties, link skill, legion bonus, base stats from skills, example skill build path, hyper skill passive build, boost node tiering (top tier / frequently-used tier / other), and recommended inner ability split bossing vs training. Its Credits block attributes the inner ability, hyper passive and boost node sections to the Lara Discord, so it is a restatement of that Discord rather than an independent opinion. Carries no HEXA section and no hyper stat data, and lists no class doc for Lara under Other Resources.",
-      "dated": "GMS Ver. 269 site-wide stamp (two patches behind the v.271 target); fetched 2026-09-11",
+      "what": "Class properties, link skill, legion bonus, base stats from skills, example skill build path, hyper skill passive build, boost node tiering under three named headings (PRIMARY / SECONDARY / OTHER, each with a verbatim definition), and recommended inner ability split bossing vs training. Its Credits block attributes the inner ability, hyper passive and boost node sections to the Lara Discord, so it is a restatement of that Discord rather than an independent opinion. Carries no HEXA section and no hyper stat data, and lists no class doc for Lara under Other Resources.",
+      "dated": "GMS Ver. 269 site-wide stamp (two patches behind the v.271 target); re-fetched 2026-09-12",
       "independent": false
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. Lara entry gives two recommended trios and flags Dragon Vein Traces and Vine Coil as not needed for 6th Job Mastery. Authored outside the class-doc and Grandis lineage, so this is the one genuinely independent judgement source reached for Lara.",
-      "dated": "Page states last update 2024-11-21; underlying trio data stated as 2024-05-14. Predates the v.269 boost node regrouping.",
+      "what": "mastermysty's cross-class boost node trio reference. Lara entry gives two recommended trios ('Essence Sprinkle, Dragon Vein Eruption, Dragon Vein Absorption' and 'Mountain Seed, Mountain Kids, Wake Up Call') and flags Dragon Vein Traces and Vine Coil as not needed for 6th job Mastery. Authored outside the class-doc and Grandis lineage, so this is the one genuinely independent judgement source reached for Lara.",
+      "dated": "Page states last update 2024-11-21; underlying trio data stated as 2024-05-14. Predates the v.269 boost node regrouping. Re-fetched 2026-09-12.",
       "independent": true
     },
     {
@@ -294,7 +379,7 @@
     },
     {
       "url": "https://www.digitaltq.com/maplestory-lara-skill-build",
-      "what": "Skill-name and skill-build reference only. Independently authored, and used here solely to cross-check Lara skill names (5th job: Big Stretch, Land's Connection, Surging Essence, Winding Mountain Ridge; Universe in Bloom identified as the Origin skill; Sol Janus as a common skill). The page contains no HEXA investment order, no boost node priority, no hyper stat allocation and no inner ability recommendation.",
+      "what": "Skill-name and skill-build reference only. Independently authored, and used here solely to cross-check Lara skill names (5th job boost skills: Big Stretch, Land's Connection, Surging Essence, Winding Mountain Ridge; 6th job: HEXA Essence Sprinkle, HEXA Dragon Vein Eruption, HEXA Eruption: Heaving River, HEXA Eruption: Whirlwind, HEXA Eruption: Sunrise Well; Universe in Bloom identified as the Origin skill; Sol Janus as a common skill). Re-fetched 2026-09-12 and re-confirmed to contain NO HEXA investment order, NO boost node priority, NO hyper stat allocation and NO inner ability recommendation.",
       "dated": "Page states last updated 2024-12-11 and names an old target patch (v228); treat as stale for anything but skill names",
       "independent": true
     },
@@ -314,24 +399,37 @@
   "consensusLevel": "weak",
   "conflicts": [
     {
-      "topic": "Boost node trio composition (presentation difference, not a substantive conflict)",
-      "positionA": "Grandis Library lists Wakeup Call as its own boost node grouping, with Mountain Kid and Mountain Seeds in a separate lower grouping.",
-      "positionB": "mystyjl combines Wakeup Call, Mountain Seeds and Mountain Kid into a single second recommended trio.",
-      "assessment": "The two describe the same set of skills at the same relative priority; they differ in how the groupings are drawn, not in which skills matter. Recorded rather than resolved.",
+      "topic": "Mountain Kid and Mountain Seeds: build target or least priority?",
+      "positionA": "Grandis Library files both under OTHER, verbatim 'Boost Nodes that do not need to be upgraded or has least priority'.",
+      "positionB": "mystyjl includes both in Lara's second recommended trio.",
+      "assessment": "A real substantive conflict, not a presentation difference. Resolved in the data by recording these nodes at weak consensus on mystyjl alone, with Grandis listed under contradictedBy. Earlier versions of this file cited Grandis alongside mystyjl as if it corroborated building them; it does the opposite.",
       "sources": [
         "https://grandislibrary.com/anima/lara",
         "https://mystyjl.github.io/reference/NodeGuide.html"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "topic": "Wakeup Call grouping (presentation difference, not a substantive conflict)",
+      "positionA": "Grandis Library places Wakeup Call alone in SECONDARY - nodes that do not unlock a 6th Job HEXA Mastery but are still used.",
+      "positionB": "mystyjl folds Wakeup Call into a single second recommended trio alongside Mountain Seeds and Mountain Kid.",
+      "assessment": "Both rate Wakeup Call below the Primary three and still worth building. The disagreement is about its companions, which is captured in the conflict above.",
+      "sources": [
+        "https://grandislibrary.com/anima/lara",
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Source currency across the v.269 boost node regrouping",
       "positionA": "Grandis Library's Lara boost node listing is stamped GMS v.269 and the site offers a separate pre-v.269 view, indicating groupings changed at that patch.",
       "positionB": "mystyjl's Lara trios date to 2024 and therefore describe the pre-v.269 arrangement.",
-      "assessment": "Unresolved. The two agree on content despite spanning the change, which is reassuring but not proof; neither source is current to v.271. Flagged rather than resolved.",
+      "assessment": "Unresolved. Neither source is current to v.271. This is a currency risk on every vMatrix claim here and is the main reason none of them is labelled stronger than moderate.",
       "sources": [
         "https://grandislibrary.com/anima/lara",
         "https://mystyjl.github.io/reference/NodeGuide.html"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     }
   ],
   "evidenceGaps": [
@@ -340,23 +438,59 @@
     "Hyper stat priority: no source at all for Lara.",
     "Hyper skill active selections: not covered by any source read.",
     "Archetype classification and any class-specific gearing quirk beyond the raw passive stat totals: not sourced.",
-    "Only two independent lanes were reachable (Grandis/Lara Discord family, and mystyjl), against a three-independent-source standard. Reddit is blocked by policy in this environment, maplestorywiki.net and maplerhouse.com returned 403 to fetching, the browser pane returned content from pages other than the ones requested and was discarded as unreliable, and the web search budget was exhausted before this task began."
+    "Only two independent lanes were reachable (Grandis/Lara Discord family, and mystyjl), against a three-independent-source standard. No endgame claim in this file can therefore reach 'strong' consensus, and none is labelled so. Reddit is blocked by policy in this environment, maplestorywiki.net and maplerhouse.com returned 403 to fetching, and the browser pane returned content from pages other than the ones requested and was discarded as unreliable."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
-    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "MISATTRIBUTION (not an invented name, but a claim a source does not make): the Wakeup Call entry says 'Grandis Library places it one tier below the top three, in the tier it labels as frequently used skills.' Wrong label. 'Frequently used' belongs to Grandis's PRIMARY definition - verbatim: 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used'. SECONDARY is defined verbatim as 'Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used'. The file attaches the wrong label and loses the actual reason for the tier split, which is HEXA Mastery unlock.",
-      "UNDERSTATED FACT: gearingNotes says 'attack speed contributions from skills are +2 (Wand Booster) and +1 (Manifestation / Advanced Mastery)'. Grandis lists THREE separate contributions: +2 Wand Booster (2nd Job), +1 Manifestation: Wind Swing - Passive (3rd Job), +1 Advanced Wand Mastery (4th Job), totalling Stage 4. The file collapses two distinct +1 sources into one and never records the total 'Stage 4', which is the number that actually drives attack-speed gearing decisions."
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm. A resolution pass then re-opened every cited page and settled each defect in the endgame sections.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "MISATTRIBUTION: the Wakeup Call vMatrix entry said 'Grandis Library places it one tier below the top three, in the tier it labels as frequently used skills.' 'Frequently used' actually belongs to Grandis's PRIMARY definition; SECONDARY is defined as nodes that do not unlock a 6th Job HEXA Mastery but are still used.",
+        "scope": "vMatrix - in scope",
+        "action": "CORRECTED",
+        "what": "Re-fetched https://grandislibrary.com/anima/lara on 2026-09-12 and confirmed the defect. PRIMARY reads 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used'; SECONDARY reads 'Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used'; OTHER reads 'Boost Nodes that do not need to be upgraded or has least priority'. Rewrote the Wakeup Call 'why' to quote the SECONDARY definition and to name HEXA Mastery unlock as the actual basis of the tier split. Added a verbatim 'tier' field to every vMatrix entry and an 'orderingBasis' field recording where the ordering comes from and that within-tier position carries no claim."
+      },
+      {
+        "defect": "Additional citation inversion found during resolution, not in the original defect list: Mountain Kid and Mountain Seeds were recorded at 'moderate' consensus citing BOTH Grandis and mystyjl, while Grandis in fact files both under OTHER, its least-priority tier. A deprioritisation was being used as corroboration.",
+        "scope": "vMatrix - in scope",
+        "action": "CORRECTED",
+        "what": "Dropped both to consensus 'weak' with sourceCount 1 (mystyjl only), added a 'contradictedBy' field naming Grandis, rewrote both 'why' strings to state the disagreement, downgraded Trio 2 from 'moderate' to 'weak' with sourceCount 1, added a conflicts entry, and added a commonMistakes entry warning against reading Grandis as corroboration here."
+      },
+      {
+        "defect": "Additional shape defect found during resolution: the Primary three nodes and Trio 1 were labelled consensus 'strong' while only two independent lanes exist for Lara (Grandis, whose boost node section is credited to the Lara Discord, and mystyjl). 'Strong' requires 3+ independent sources.",
+        "scope": "vMatrix - in scope",
+        "action": "CORRECTED",
+        "what": "Downgraded Essence Sprinkle, Dragon Vein Eruption, Dragon Vein Absorption and Trio 1 from 'strong' to 'moderate' with sourceCount 2. Content of those claims was re-verified against both pages and stands; only the confidence label was wrong."
+      },
+      {
+        "defect": "Additional shape defect found during resolution: Dragon Vein Traces and Vine Coil sat at positions 7 and 8 of an array named 'priority' even though both sources say not to build them. Downstream code reading array membership as a build list would tell players to get them.",
+        "scope": "vMatrix - in scope",
+        "action": "CORRECTED",
+        "what": "Moved both into a new 'vMatrix.notRecommended' array with their (re-verified, two-source) reasons intact. Nothing was deleted; the claims simply no longer sit in a structure that asserts the opposite of what they say."
+      },
+      {
+        "defect": "Additional shape defect found during resolution: hyperSkills.finalPointOptions is an ordered array, but Grandis presents the last hyper skill point as an open choice among four options and ranks none of them.",
+        "scope": "hyperSkills - in scope",
+        "action": "CORRECTED",
+        "what": "Added 'finalPointOptionsRanked': false and stated in the notes that array position carries no claim. The four options were re-verified verbatim against Grandis on 2026-09-12 and all four stand."
+      },
+      {
+        "defect": "UNDERSTATED FACT: gearingNotes collapses Grandis's three separate attack speed contributions (+2 Wand Booster 2nd Job, +1 Manifestation: Wind Swing 3rd Job, +1 Advanced Wand Mastery 4th Job) into two, and never records the resulting Stage 4 total.",
+        "scope": "gearingNotes / job 1-4 skill data - OUT OF SCOPE",
+        "action": "OUT OF SCOPE",
+        "what": "This defect concerns job 1-4 skill contributions, which the product owner has explicitly excluded from this wave. Left untouched per instruction; not counted as unresolved for the purpose of the 'written' flag, which covers the five endgame sections only."
+      }
     ],
     "clearedOnInspection": [
-      "NO invented node or skill names found. I checked every one. All eight boost node names (Essence Sprinkle, Dragon Vein Eruption, Dragon Vein Absorption, Wakeup Call, Mountain Kid, Mountain Seeds, Dragon Vein Traces, Vine Coil) are attested by both Grandis Library and mystyjl. Hyper skill names (Mountain Embrace, Dragon Vein, Vine Coil) and all inner ability lines are verbatim-attested on Grandis. Universe in Bloom is confirmed as Lara's 6th job skill by BOTH Grandis and DigitalTQ. I specifically suspected 'Sol Hecate' and 'Cornucopia' as fabrications and tried to break them - both appear in the linked Lara HEXA Progression sheet (fetched via the gviz CSV endpoint), alongside Big Stretch, Land's Connection, Surging Essence and Winding Mountain Ridge. The researcher's caution on Cornucopia ('node type not confirmed') was correctly calibrated.",
-      "NO invented priority order. hexa.order and hyperStats.priority are correctly left empty with the reason documented, and the empty-field discipline is the strongest part of this file."
+      "NO invented node or skill names found. All eight boost node names (Essence Sprinkle, Dragon Vein Eruption, Dragon Vein Absorption, Wakeup Call, Mountain Kid, Mountain Seeds, Dragon Vein Traces, Vine Coil) are attested by both Grandis Library and mystyjl. Hyper skill names (Mountain Embrace, Dragon Vein, Vine Coil) and all inner ability lines are verbatim-attested on Grandis. Universe in Bloom is confirmed as Lara's Origin skill by both Grandis and DigitalTQ. 'Sol Hecate' and 'Cornucopia' were specifically attacked as suspected fabrications and both appear in the linked Lara HEXA Progression sheet (fetched via the gviz CSV endpoint), alongside Big Stretch, Land's Connection, Surging Essence and Winding Mountain Ridge. The caution on Cornucopia ('node type not confirmed') was correctly calibrated and is retained.",
+      "NO invented priority order. hexa.order and hyperStats.priority are correctly left empty with the reason documented; both now also carry an explicit 'ranked': false so no downstream reader can infer a ranking from them."
     ],
-    "shipReady": false
+    "shipReady": true
   },
-  "written": false,
-  "blockedReason": "2 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null,
+  "residualRisk": "Every endgame claim in this file is verified against a re-read source, but nothing reaches 'strong': only two independent lanes are publicly reachable for Lara, and neither is current to v.271. hexa.order and hyperStats.priority are legitimately empty - Lara's HEXA investment order and hyper stat guidance exist only inside the class Discord as infographic images. The planner should present this class's vMatrix guidance as moderate-confidence and offer no HEXA or hyper stat comparison until the Discord is read."
 }

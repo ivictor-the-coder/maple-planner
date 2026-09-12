@@ -14,62 +14,130 @@
   },
   "legionEffect": "Flat DEX at legion ranks: +10 / +20 / +40 / +80 / +100.",
   "vMatrix": {
+    "structureNote": "Since v.269 Grandis Library presents Wind Archer's boost nodes as six FIXED nodes (its heading is 'Skills Boosted by Each Nodes', listing Node 1 through Node 6), not as craftable random trios. The older trio recommendation is still on the page but is hidden behind a chip labelled 'View Pre-V.269 Boost Nodes' and is not part of the default rendering — verified 2026-09-12 by fetching the page and confirming the string 'Primary Trio' appears only in the page's JSON payload, never in the server-rendered body, while 'Node 1'..'Node 6' with their skill contents do render. Any 'trio' advice for this class is therefore pre-v.269 material.",
+    "priorityIsOrdered": false,
+    "priorityOrderNote": "Grandis Library assigns Wind Archer's six nodes to exactly two buckets — primary (nodes 1-4) and other (nodes 5-6). It does NOT rank within a bucket, and it assigns NO node to its 'secondary' bucket for this class. The array below is in node-number order, which is Grandis' own display order, and must not be read as a ranking. Downstream code should use the 'tier' field, not array position.",
     "priority": [
       {
-        "node": "Song of Heaven Boost",
-        "why": "Grandis Library places Song of Heaven in the top (primary) boost-node tier for Wind Archer. Song of Heaven is the channelled main attack used in boss fights, and mastermysty's cross-class trio table also puts it in the recommended bossing trio.",
-        "consensus": "moderate",
+        "node": "Node 1 - Song of Heaven Boost",
+        "skills": [
+          "Song of Heaven"
+        ],
+        "tier": "primary",
+        "why": "Grandis Library's current (v.269) node data marks nodes 1-4 as primary ('primary':[0,1,2,3] against its six-entry node list). Its legend defines primary as 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used'. Song of Heaven is the channelled main attack used in boss fights and is also HEXA Mastery Core 1. mastermysty's independent cross-class table also names Song of Heaven in its Wind Archer bossing trio, though that data predates v.269.",
         "sources": [
           "https://www.grandislibrary.com/cygnus-knights/wind-archer",
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Trifling Wind Boost",
-        "why": "Second primary-tier node on Grandis Library, and the second skill of mastermysty's recommended bossing trio. Trifling Wind is a passive soul-energy attack that fires continuously while other skills are used.",
+        ],
+        "sourceCount": 2,
         "consensus": "moderate",
-        "sources": [
-          "https://www.grandislibrary.com/cygnus-knights/wind-archer",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://maplestorywiki.net/w/Wind_Archer/Skills"
-        ]
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Storm Bringer Boost",
-        "why": "Grandis Library tiers it as secondary; mastermysty pairs it with Song of Heaven and Trifling Wind as the third skill of the bossing trio. It sits in the same in-game boost-node group as Fairy Spiral and Monsoon, so only one of the three can occupy that slot of a trio.",
-        "consensus": "weak",
+        "node": "Node 2 - Trifling Wind Boost",
+        "skills": [
+          "Trifling Wind"
+        ],
+        "tier": "primary",
+        "why": "Second of Grandis Library's four primary nodes, and HEXA Mastery Core 2. Trifling Wind is a passive soul-energy attack that fires continuously while other skills are used. mastermysty independently names Trifling Wind in its Wind Archer bossing trio (pre-v.269 data).",
         "sources": [
           "https://www.grandislibrary.com/cygnus-knights/wind-archer",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://maplestorywiki.net/w/Wind_Archer/Skills"
-        ]
-      },
-      {
-        "node": "Fairy Spiral Boost / Monsoon Boost / Pinpoint Pierce Boost",
-        "why": "mastermysty lists these three as the mobbing/training trio. Single source and the underlying data is dated 2024-05-14, so this is unverified for v.271.",
-        "consensus": "weak",
-        "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Storm Whim Boost",
-        "why": "Grandis Library tiers Storm Whim as secondary. It is alone in its in-game boost-node group.",
-        "consensus": "weak",
+        "node": "Node 3 - Fairy Spiral / Storm Bringer / Monsoon Boost",
+        "skills": [
+          "Fairy Spiral",
+          "Storm Bringer",
+          "Monsoon"
+        ],
+        "tier": "primary",
+        "why": "CORRECTED 2026-09-12. This node is primary on Grandis Library, not 'secondary' as this file previously claimed — Grandis assigns no node at all to its secondary bucket for Wind Archer. Node 3 maps to HEXA Mastery Core 3, which is why it falls under the primary legend. mastermysty names Storm Bringer in its bossing trio and Fairy Spiral and Monsoon in its mobbing trio (pre-v.269 data), so every skill on this node is independently attested as used.",
         "sources": [
           "https://www.grandislibrary.com/cygnus-knights/wind-archer",
-          "https://maplestorywiki.net/w/Wind_Archer/Skills"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Sentient Arrow Boost, Gust Shot Boost, Spiraling Vortex Boost, Breeze Arrow Boost",
-        "why": "Grandis Library places these in its lowest (other) tier.",
-        "consensus": "weak",
+        "node": "Node 4 - Storm Whim Boost",
+        "skills": [
+          "Storm Whim"
+        ],
+        "tier": "primary",
+        "why": "CORRECTED 2026-09-12. Previously recorded here as 'Grandis Library tiers Storm Whim as secondary'; the page's current data places node 4 in the primary bucket. Node 4 maps to HEXA Mastery Core 4 (HEXA Storm Whim / Anemoi), which is what the primary legend keys on. Grandis' hidden pre-v.269 trio block also names Storm Whim as an accepted alternative in the first slot of its Primary Trio. Only Grandis (whose boost node build is credited to the class doc) states this tier, so one lineage.",
         "sources": [
           "https://www.grandislibrary.com/cygnus-knights/wind-archer"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Node 5 - Pinpoint Pierce / Sentient Arrow Boost",
+        "skills": [
+          "Pinpoint Pierce",
+          "Sentient Arrow"
+        ],
+        "tier": "other",
+        "why": "Grandis Library puts nodes 5 and 6 in its 'other' bucket, legend: 'Boost Nodes that do not need to be upgraded or has least priority'. The Wind Archer class doc says the same thing in its own words: 'A node for Pinpoint Pierce is not needed as you use the skill once per 60 seconds (maximum optimality). The extra damage on the singular hit is very miniscule... do not aim for a pinpoint pierce node slot if you are low on nodes.' Grandis credits its boost node build to that same class doc, so these are one lineage expressed twice, not two sources.",
+        "sources": [
+          "https://www.grandislibrary.com/cygnus-knights/wind-archer",
+          "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "contested": true,
+        "contestedBy": "mastermysty's pre-v.269 table puts Pinpoint Pierce in its recommended Wind Archer mobbing trio. See conflicts.",
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Node 6 - Gust Shot / Spiraling Vortex / Breeze Arrow Boost",
+        "skills": [
+          "Gust Shot",
+          "Spiraling Vortex",
+          "Breeze Arrow"
+        ],
+        "tier": "other",
+        "why": "Grandis Library's lowest bucket: 'Boost Nodes that do not need to be upgraded or has least priority'. No source recommends investing here.",
+        "sources": [
+          "https://www.grandislibrary.com/cygnus-knights/wind-archer"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
+    "specialNodes": {
+      "bossing": [
+        "Boss Slayer",
+        "Fatal Strike (if the boss is more burst-oriented)"
+      ],
+      "training": [
+        "Relentless Attack (if you one- or two-shot with Lucid soul)",
+        "Character Building (for experience)"
+      ],
+      "decentSkills": [
+        "Decent Holy Symbol - beneficial for both training and bossing",
+        "Decent Combat Orders - recommended, but not crucial until node slots are plentiful",
+        "Decent Advanced Blessing - not required, a minmax endgame node only",
+        "Decent Speed Infusion - not required; the class is a hurricane class with few skills affected by attack speed"
+      ],
+      "ordered": false,
+      "sources": [
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "note": "Read verbatim from the class doc on 2026-09-12. The doc is dated 2023-11-23, so these are 5th-job-era special node calls; they are not contradicted anywhere but they are also not re-confirmed by any 2026 source."
+    },
     "trios": [
       {
         "purpose": "Bossing",
@@ -78,12 +146,17 @@
           "Trifling Wind",
           "Storm Bringer"
         ],
+        "era": "pre-V.269",
+        "superseded": true,
+        "contested": true,
         "consensus": "weak",
-        "contested": false,
         "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html"
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.grandislibrary.com/cygnus-knights/wind-archer"
         ],
-        "note": "Single-source recommendation, but it is consistent with the current in-game boost-node grouping (groups 1, 2 and 3) recorded on MapleStory Wiki and Grandis Library."
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "note": "CORRECTED 2026-09-12 in two directions. Upward: this file previously called it single-source; Grandis Library states the identical trio as its 'Primary Trio', so two independent lineages agree. Downward: Grandis files that block behind a 'View Pre-V.269 Boost Nodes' toggle and mastermysty's underlying data is stamped 2024-05-14, so BOTH are pre-v.269. Do not present this as current guidance. Its skills map onto current nodes 1, 2 and 3, all of which are primary, so it does not conflict with the current tiering — it is just the wrong shape for the post-v.269 fixed-node system."
       },
       {
         "purpose": "Mobbing / training",
@@ -92,12 +165,17 @@
           "Monsoon",
           "Pinpoint Pierce"
         ],
+        "era": "pre-V.269",
+        "superseded": true,
+        "contested": true,
         "consensus": "weak",
-        "contested": false,
         "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html"
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.grandislibrary.com/cygnus-knights/wind-archer"
         ],
-        "note": "Single source, data stamped 2024-05-14. Fairy Spiral and Monsoon share boost-node group 3, which means they cannot both be in one trio slot; verify against a current in-game node before acting on this."
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "note": "Same correction as the bossing trio: Grandis states it verbatim as its 'Secondary Trio', but only behind the pre-v.269 toggle. This one actively conflicts with the current data: Fairy Spiral and Monsoon both live on node 3 now, and Pinpoint Pierce lives on node 5, which Grandis buckets as least priority and which the class doc tells you not to build. Do not act on this trio."
       }
     ],
     "boostNodeGroups": {
@@ -128,40 +206,57 @@
       "sources": [
         "https://maplestorywiki.net/w/Wind_Archer/Skills",
         "https://www.grandislibrary.com/cygnus-knights/wind-archer"
-      ]
+      ],
+      "sourceCount": 2,
+      "verifiedAt": "2026-09-12",
+      "note": "Grandis Library's rendered node list and MapleStory Wiki's 'Boost Node/Enhancement Core 1..6' tables agree skill-for-skill. The contest pass read the wiki in a browser (it 403s plain fetching) and confirmed the groups verbatim; this pass independently confirmed the Grandis side from the raw page."
     },
-    "notes": "Boost nodes cap at level 50, or 60 with Matrix Points (MapleStory Wiki). The boost-node groupings above are game data, not opinion, and MapleStory Wiki and Grandis Library state them identically. Grandis Library exposes a 'View Pre-V.269 Boost Nodes' toggle on this page, which is direct evidence that Wind Archer's boost-node groupings changed at v.269; any trio recommendation dated before v.269 (including mastermysty's) has to be re-checked against a live node. Grandis Library credits its boost-node build to the class doc, so those two are one source, not two."
+    "notes": "Boost nodes cap at level 50, or 60 with Matrix Points (MapleStory Wiki). The six-node grouping above is game data, not opinion. The only judgement layered on top of it is Grandis Library's two-bucket split — primary = nodes 1-4, other = nodes 5-6 — and Grandis' Credits block states that its Boost Nodes Build comes from the class doc, so that judgement is ONE source, not two. There is no ranking within a bucket from any source."
   },
   "hexa": {
+    "orderIsOrdered": true,
     "order": [
       {
         "step": "Mastery Core 4 to level 1",
-        "why": "First step in Grandis Library's Wind Archer 6th Job infographic, which labels its opening three steps M4, M1, M2. Mastery Core 4 holds HEXA Storm Whim and Anemoi.",
-        "consensus": "weak",
+        "why": "First cell of Grandis Library's Wind Archer 6th Job infographic. Re-verified 2026-09-12 by downloading the image: the first three cells carry the only text labels on the whole chart — M4, M1, M2 — and all three are set to level 1 with the purple border the chart uses for Mastery cores.",
+        "caveat": "Mastery Core 4 contains TWO skills, HEXA Storm Whim and Anemoi. The infographic cell does not say which of the two this point goes into, and no source resolves it. Do not present this step as naming a skill.",
         "sources": [
           "https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png",
           "https://maplestorywiki.net/w/Wind_Archer/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "sourceNote": "One lineage. The infographic is the only source for the ORDER; MapleStory Wiki appears here only because it supplies the Mastery-Core-number-to-skill mapping that makes the label 'M4' readable, and it carries no ordering judgement of its own."
       },
       {
         "step": "Mastery Core 1 (HEXA Song of Heaven) to level 1",
-        "why": "Second step in the same infographic (labelled M1). Mastery Core 1 is HEXA Song of Heaven.",
-        "consensus": "weak",
+        "why": "Second cell of the same infographic, labelled M1, level 1. MapleStory Wiki lists Mastery Core 1 as HEXA Song of Heaven, so unlike Mastery Core 4 this step does resolve to a single skill.",
         "sources": [
           "https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png",
           "https://maplestorywiki.net/w/Wind_Archer/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Mastery Core 2 (HEXA Trifling Wind) to level 1",
-        "why": "Third step in the same infographic (labelled M2). The icon in that cell matches HEXA Trifling Wind, which MapleStory Wiki lists as Mastery Core 2 — this cross-check is what confirms the infographic's M-numbers are the Mastery Core numbers.",
-        "consensus": "weak",
+        "why": "Third cell of the same infographic, labelled M2, level 1. MapleStory Wiki lists Mastery Core 2 as HEXA Trifling Wind, a single skill.",
         "sources": [
           "https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png",
           "https://maplestorywiki.net/w/Wind_Archer/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
+    "orderTruncatedAt": {
+      "afterStep": 3,
+      "why": "The fourth cell of the infographic is ALSO set to level 1 but is drawn with a different border colour and a different icon from the three Mastery cells, i.e. it is a different node type. It carries no text label — the M4/M1/M2 labels stop after the third cell — and it could not be identified from the icon alone. It is therefore NOT recorded as a step. Everything from cell 4 onward (roughly 180 cells) is icon-only and was not transcribed.",
+      "verifiedAt": "2026-09-12"
+    },
     "nodes": {
       "originSkill": "Mistral Spring",
       "ascentSkill": "Elemental Tempest",
@@ -201,17 +296,34 @@
       "consensus": "mechanical fact, not judgement",
       "sources": [
         "https://maplestorywiki.net/w/Wind_Archer/Skills"
-      ]
+      ],
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
+      "note": "Every name here was read off MapleStory Wiki in a browser by the contest pass and matched verbatim, including 'Skill Node/Core 1 (Origin) Mistral Spring' and 'Core 2 (Ascent) Elemental Tempest'. This is game data, not a recommendation."
     },
-    "notes": "THIS IS THE HOLE FOR WIND ARCHER. Beyond the three opening steps above, no usable public GMS HEXA investment order could be sourced. What was checked and why each failed: (a) the Wind Archer class doc does have a Sixth Job section, but the doc's own header says it was last updated 2023-11-23 and its content there is two images with no accompanying text; (b) Grandis Library's 'HEXA Tracker' link on the Wind Archer page points at a Google Sheet that now returns HTTP 410 Gone, i.e. it has been deleted; (c) Grandis Library's own class page has no HEXA section at all, only the infographic image; (d) the infographic itself is roughly 180 icon cells with level numbers and no text labels past the first three, and transcribing it by icon matching was judged too error-prone to record here — a human or OCR pass on https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png is the cheapest way to recover the full order. Mechanical facts that do hold: HEXA nodes cap at level 30 with final-damage jumps at levels 10, 20 and 30; HEXA Enhancement nodes require the matching V skill to be maxed and equipped; Mastery Skills are affected by Hyper Skill passives and by the boost-node enhancement on the base skill (so a levelled Song of Heaven Boost also improves HEXA Song of Heaven). Current Wind Archer HEXA judgement lives in the class Discord (https://discord.gg/4pbZMeThgP)."
+    "infographicProvenance": {
+      "url": "https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png",
+      "credit": "Wind Archer Discord",
+      "date": "2026-09-04",
+      "verifiedAt": "2026-09-12",
+      "note": "CORRECTED 2026-09-12. This file previously said the infographic's provenance was 'not stated on the page' and that there was 'no date on the image itself'. Both are wrong: Grandis Library's page data carries an explicit infographics entry giving credit 'Wind Archer Discord' and date '2026-09-04'. That is eight days before this verification, so the HEXA opening order is CURRENT, not stale — even though the surrounding Grandis page is still stamped GMS Ver. 269. It remains a single lineage (the Wind Archer class community), so consensus stays weak, but the staleness objection against it is withdrawn."
+    },
+    "notes": "THIS IS STILL THE HOLE FOR WIND ARCHER, but a smaller one than previously recorded. Beyond the three opening steps, no usable public GMS HEXA investment order could be sourced in text form. What was checked and why each failed: (a) the class doc's Sixth Job section was re-read in full on 2026-09-12 — it contains a note that the guide applies to all GMS servers, a 'Confused what this symbol means? Watch this video' link, and images, with no textual ordering; the doc's own header says last updated 2023-11-23; (b) Grandis Library's 'HEXA Tracker' link points at a Google Sheet that returns HTTP 410 Gone; (c) Grandis Library's class page has no HEXA section, only the infographic image; (d) the infographic itself is roughly 180 icon cells with level numbers and text labels only on the first three, and transcribing it by icon matching was judged too error-prone to record — an OCR or human pass on the PNG is the cheapest way to recover the full order, and as of 2026-09-04 that image is current. Mechanical facts that hold: HEXA nodes cap at level 30 with final-damage jumps at levels 10, 20 and 30; HEXA Enhancement nodes require the matching V skill to be maxed and equipped; Mastery Skills are affected by Hyper Skill passives and by the boost-node enhancement on the base skill (so a levelled Song of Heaven Boost also improves HEXA Song of Heaven). Current Wind Archer HEXA judgement lives in the class Discord (https://discord.gg/4pbZMeThgP)."
   },
   "hyperStats": {
     "priority": null,
-    "notes": "No class-specific hyper stat order could be sourced, and one of the two sources that addresses it declines to give one on purpose. The Wind Archer class doc states that hyper stats are extremely character- and account-dependent and tells the reader to fill out a character calculator instead of following a list. NamuWiki's Wind Archer page has no hyper stat section. That refusal is itself the finding worth encoding: the community's operative answer to hyper stat priority is a per-character computation (MathBro's Hyper Stat Optimizer, https://brendonmay.github.io/hyperCalculator/), not a fixed ranking. A static list here would be an invention.",
+    "priorityIsUnordered": true,
+    "refusedBySource": true,
+    "notes": "No class-specific hyper stat order exists to record, and the primary source refuses to give one on purpose. Re-verified verbatim on 2026-09-12 from the class doc: 'What Hyper Stats should I focus on? This is extremely character and account dependent. Depending on your overall progression, the hyper stats that would benefit you can greatly differ. It is recommended to fill out this character calculator to see what configuration of hyper stats will benefit you the most.' Independently checked the same day: Grandis Library's Wind Archer page has no hyper stat section at all (its only section headings are 'Hyper Skill Passive Build', 'Skills Boosted by Each Nodes' and 'Recommended Inner Ability'), and NamuWiki's Wind Archer page has no hyper stat section either. That refusal is the finding: the community's operative answer is a per-character computation (MathBro's Hyper Stat Optimizer, https://brendonmay.github.io/hyperCalculator/), not a fixed ranking. A static ordered list here would be an invention, so this field stays null rather than being filled with a plausible-looking order.",
     "sources": [
       "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic",
+      "https://www.grandislibrary.com/cygnus-knights/wind-archer",
       "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-    ]
+    ],
+    "sourceCount": 1,
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12",
+    "sourceNote": "Only the class doc makes a positive statement (the refusal). Grandis and NamuWiki contribute silence, which corroborates 'no order is published' but is not itself a source for a claim. Counted as one."
   },
   "hyperSkills": {
     "bossingPassives": {
@@ -222,30 +334,49 @@
         "Song of Heaven - Reinforce",
         "Song of Heaven - Boss Rush"
       ],
-      "consensus": "weak",
+      "ordered": false,
+      "orderNote": "This is a set of five, not a ranking. Grandis Library presents it as two grouped lines ('Trifling Wind - Reinforce, Enhance and Double Chance' / 'Song of Heaven - Reinforce and Boss Rush') with no order between or within them.",
       "sources": [
         "https://www.grandislibrary.com/cygnus-knights/wind-archer"
       ],
-      "note": "Single source lineage. Grandis Library credits its hyper passive build to the class doc, and the class doc's own hyper skill section is an image with no text, so this is one opinion presented twice."
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "note": "CONFIRMED verbatim against the cited page on 2026-09-12. Single source lineage: Grandis' Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', and the class doc's own hyper skill section is a link to an image ('Suggested Hyper Skills set-up'), so this is one opinion presented twice."
     },
     "trainingPassives": {
       "picks": [
         "Trifling Wind - Reinforce",
         "Trifling Wind - Enhance",
         "Trifling Wind - Double Chance",
-        "Fairy Spiral - Spread",
-        "Fairy Spiral - Extra Strike"
+        "Fairy Spiral - Extra Strike",
+        "Fairy Spiral - Spread"
       ],
-      "consensus": "weak",
+      "ordered": false,
+      "orderNote": "A set of five, not a ranking. Grandis' wording is 'Fairy Spiral - Extra Strike and Spread'.",
       "sources": [
         "https://www.grandislibrary.com/cygnus-knights/wind-archer"
       ],
-      "note": "Same single lineage as the bossing build."
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "note": "CONFIRMED verbatim 2026-09-12. Same single lineage as the bossing build."
     },
-    "notTaken": [
-      "Fairy Spiral - Reinforce",
-      "Song of Heaven - Guardbreak"
-    ],
+    "notTaken": {
+      "picks": [
+        "Fairy Spiral - Reinforce",
+        "Song of Heaven - Guardbreak"
+      ],
+      "derived": true,
+      "derivation": "Not stated by any source. Computed here as the two passives that appear in NEITHER Grandis' bossing set nor its training set, out of the nine Wind Archer hyper passives MapleStory Wiki lists. Everything else omitted from one build is present in the other.",
+      "sources": [
+        "https://www.grandislibrary.com/cygnus-knights/wind-archer",
+        "https://maplestorywiki.net/w/Wind_Archer/Skills"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
     "activeHypers": [
       "Storm Whim (unlocks Lv 140)",
       "Monsoon (unlocks Lv 160)",
@@ -265,7 +396,11 @@
     "levelNote": "At Lv 140 only the two 140-requirement passives (Trifling Wind - Reinforce, Fairy Spiral - Reinforce) and the active Storm Whim are available. Of the recommended bossing set, Trifling Wind - Reinforce is the only pick unlocked at 140.",
     "sources": [
       "https://maplestorywiki.net/w/Wind_Archer/Skills"
-    ]
+    ],
+    "sourceCount": 1,
+    "consensus": "mechanical fact, not judgement",
+    "verifiedAt": "2026-09-12",
+    "mechanicalNote": "The nine passive names and their 140/140/150/150/165/165/180/180/190 requirements were read off MapleStory Wiki in a browser by the contest pass and matched exactly. The three active hypers (Storm Whim, Monsoon, Glory of the Guardians) are real Wind Archer hyper skills — Grandis Library's skill data labels Storm Whim and Monsoon 'Hyper Skill' and shows Glory of the Guardians with a 60s/120s cooldown — and their 140/160/190 unlocks follow the universal hyper-active schedule."
   },
   "innerAbility": {
     "bossing": {
@@ -274,12 +409,14 @@
         "Critical Rate +20%",
         "Damage to monsters inflicted with an abnormal status +8%"
       ],
-      "consensus": "moderate",
       "sources": [
         "https://www.grandislibrary.com/cygnus-knights/wind-archer",
         "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
       ],
-      "note": "This is the one field with two genuinely independent lineages agreeing. Grandis Library (restating the GMS class doc) and NamuWiki (written by the Korean community, outside that lineage) name the same three lines, with NamuWiki putting boss damage on line 1 and crit rate plus abnormal-status damage on lines 2 and 3."
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12",
+      "note": "CONFIRMED against both cited pages on 2026-09-12, and this remains the one field with two genuinely independent lineages agreeing. Grandis Library (restating the GMS class doc) lists 'Boss Damage +20% / Crit Rate +20% / Damage to monsters inflicted with Abnormal Status +8%'. NamuWiki, written by the Korean community outside that lineage, independently puts 'Increased damage when attacking boss monsters' on Line 1 ('the most acceptable option among all classes. Up to 20% additional damage') and 'Increased critical probability' plus 'Increased damage when attacking an enemy with a status ailment' on lines 2 and 3."
     },
     "training": {
       "lines": [
@@ -287,70 +424,115 @@
         "Meso Obtained or Item Drop Rate +15%",
         "Damage to Normal Monsters +8%"
       ],
-      "consensus": "weak",
       "sources": [
         "https://www.grandislibrary.com/cygnus-knights/wind-archer",
         "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
       ],
-      "note": "Grandis Library gives the exact three lines. NamuWiki independently calls drop rate / meso obtained essential for both hunting and boss reward rooms but does not give a full three-line preset."
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "note": "Only Grandis Library gives these exact three lines with these exact values; confirmed verbatim 2026-09-12. NamuWiki is listed because it independently states 'Item drop rate/meso acquisition increase: Essential Ability when hunting and boss rewards', which supports the direction but not the specific preset, so the source count for the preset stays at one."
     },
     "budgetAlternative": {
-      "line": "NamuWiki records a cost-efficiency compromise: crit rate on line 1, and stop rolling once a Unique-grade Boss Damage line appears on line 2 or 3, on the grounds that hitting Critical Rate on lines 2/3 is very hard to roll. It states plainly that this is a compromise and not the optimal result.",
-      "consensus": "weak",
+      "line": "NamuWiki records a cost-efficiency compromise: put Critical Rate on line 1 and stop rolling once a Unique-grade Boss Damage line appears on line 2 or 3, because Critical Rate is extremely difficult to obtain on lines 2 and 3. It states plainly that this is a probability compromise and that the best result is still Boss Damage on line 1 with abnormal-status damage and Critical Rate on lines 2/3.",
       "sources": [
         "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "note": "CONFIRMED verbatim 2026-09-12 from the cited page."
     },
     "doNotRoll": {
       "line": "Attack speed +1",
-      "why": "Wind Archer already reaches the attack speed cap from its own passives, so the attack speed inner ability line buys nothing.",
-      "consensus": "moderate",
+      "why": "DERIVED, not directly stated. No source says 'do not take the attack speed inner ability line'. What the sources do say: NamuWiki's Wind Archer stat table reads 'attack speed: Able to reach maximum attack speed (level 8)' and 'Song of the Sky [Song of Heaven] is not affected by attack speed'; the class doc says 'Speed infusion is not required. We are a hurricane class with few additional skills impacted by attack speed.' Neither recommended inner ability preset includes attack speed. The conclusion that the line buys nothing follows from those, but it is this file's inference.",
+      "derived": true,
       "sources": [
-        "https://maplestorywiki.net/w/Wind_Archer/Skills",
         "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
-        "https://www.grandislibrary.com/cygnus-knights/wind-archer"
-      ]
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12",
+      "note": "CORRECTED 2026-09-12. This entry previously cited Grandis Library and MapleStory Wiki as supporting it. Neither addresses the inner ability attack speed line — the wiki carries no judgement at all and Grandis simply omits attack speed from its preset. Both were dropped; silence is not support. The two remaining sources support the PREMISE (the class is already at the attack speed cap), which is why this is labelled derived."
     },
-    "notes": "Wind Archer's Lv 140 is the level at which inner ability first becomes worth investing in at all. Nothing in the sources splits inner ability by Heroic vs Interactive for this class."
+    "serverSplit": {
+      "exists": true,
+      "recovered": false,
+      "note": "CORRECTED 2026-09-12. This file previously stated 'Nothing in the sources splits inner ability by Heroic vs Interactive for this class.' That is false. The class doc's inner ability question offers two separate answers, 'Suggested Inner Ability for Reboot' and 'Suggested Inner Ability for Regular Servers'. Both are hyperlinks into the Wind Archer Discord and neither target is publicly readable, so the split content could not be recovered. What is recorded above is Grandis Library's single bossing/training preset, which is NOT server-split. For GMS Heroic specifically the doc has a Reboot-specific answer that this file does not have.",
+      "sources": [
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "A previous claim here — that Lv 140 is the level at which inner ability first becomes worth investing in for Wind Archer — was DELETED on 2026-09-12. No cited source states it and it could not be verified anywhere reachable."
   },
-  "gearingNotes": "Four things change gearing advice for Wind Archer specifically.\n\n1. CRIT RATE DOES NOT STOP MATTERING AT 100%. Wind Archer has the archer skill Vicious Shot, which for 30 seconds lets critical rate exceed 100% and converts critical rate into critical damage (at max level, critical damage increases by 50% of critical rate). Grandis Library's base-stat table lists that conversion as one of the class's crit damage sources. So crit rate above the normal 100% cap still converts to damage inside the burst window, and crit rate should not be treated as a stat to hard-cap. Sources: maplestorywiki.net/w/Wind_Archer/Skills (Vicious Shot description), grandislibrary.com Wind Archer base stats.\n\n2. ATTACK SPEED IS ALREADY CAPPED FROM PASSIVES. Agile Bows gives +2 attack speed, Eagle Eye +1 and Albatross Max +1 on top of the bow's base stage. NamuWiki states outright that Wind Archer can reach maximum attack speed from its own skills. Consequence: no attack speed inner ability line, and no need to slot Decent Speed Infusion for the attack speed. NamuWiki adds that Song of Heaven, the bossing main attack, is not affected by attack speed at all. Sources: maplestorywiki.net/w/Wind_Archer/Skills, en.namu.wiki Wind Archer.\n\n3. COOLDOWN REDUCTION IS WORTH MORE THAN USUAL. NamuWiki flags Wind Archer as cooldown-dependent because Howling Gale, a short-cooldown skill, carries a large share of both sustained and burst damage, and says burst and sustain both drop if cooldown reduction is insufficient. The class doc agrees in the other direction: it says a -4 second cooldown hat is optimal for damage, while a -2 second hat does not beat a stat hat of 30% or more. Sources: en.namu.wiki Wind Archer, Wind Archer FAQ doc.\n\n4. NO ARROW COST, AND A JEWEL SECONDARY. Sylvan Aid lets Wind Archer use skills without consuming arrows, so arrow supply is not a constraint; the class doc still suggests Titanium Arrows for the flat attack. The secondary weapon is a Jewel, which NamuWiki notes cannot be scroll-enhanced but can take potential; the emblem is the Cygnus gold emblem and is untradeable. Sources: maplestorywiki.net/w/Wind_Archer/Skills, Wind Archer FAQ doc, en.namu.wiki Wind Archer.\n\nNothing unusual about the stat model otherwise: DEX main, STR secondary, normal archer weighting, no HP-as-damage or crit-capping quirk. Wind Archer has no native buff duration from skills (NamuWiki), though HEXA Storm Bringer adds buff duration when built (MapleStory Wiki).",
+  "gearingNotes": "Four things change gearing advice for Wind Archer specifically.\n\n1. CRIT RATE DOES NOT STOP MATTERING AT 100%. Wind Archer has the archer skill Vicious Shot, which for 30 seconds lets critical rate exceed 100% and converts critical rate into critical damage (at max level, critical damage increases by 50% of critical rate). Grandis Library's base-stat table lists that conversion as one of the class's crit damage sources. So crit rate above the normal 100% cap still converts to damage inside the burst window, and crit rate should not be treated as a stat to hard-cap. Sources: maplestorywiki.net/w/Wind_Archer/Skills (Vicious Shot description), grandislibrary.com Wind Archer base stats.\n\n2. ATTACK SPEED IS ALREADY CAPPED FROM PASSIVES. Agile Bows gives +2 attack speed, Eagle Eye +1 and Albatross Max +1 on top of the bow's base stage. NamuWiki states outright that Wind Archer can reach maximum attack speed (level 8) from its own skills. Consequence: no attack speed inner ability line, and no need to slot Decent Speed Infusion for the attack speed. NamuWiki adds that Song of Heaven, the bossing main attack, is not affected by attack speed at all. Sources: maplestorywiki.net/w/Wind_Archer/Skills, en.namu.wiki Wind Archer.\n\n3. COOLDOWN REDUCTION IS WORTH MORE THAN USUAL. NamuWiki flags Wind Archer as cooldown-dependent because Howling Gale, a short-cooldown skill, carries a large share of both sustained and burst damage, and says burst and sustain both drop if cooldown reduction is insufficient. The class doc agrees in the other direction: it says a -4 second cooldown hat is optimal for damage, while a -2 second hat does not beat a stat hat of 30% or more. Sources: en.namu.wiki Wind Archer, Wind Archer FAQ doc.\n\n4. NO ARROW COST, AND A JEWEL SECONDARY. Sylvan Aid lets Wind Archer use skills without consuming arrows, so arrow supply is not a constraint; the class doc still suggests Titanium Arrows for the flat attack. The secondary weapon is a Jewel, which NamuWiki notes cannot be scroll-enhanced but can take potential; the emblem is the Cygnus gold emblem and is untradeable. Sources: maplestorywiki.net/w/Wind_Archer/Skills, Wind Archer FAQ doc, en.namu.wiki Wind Archer.\n\nNothing unusual about the stat model otherwise: DEX main, STR secondary, normal archer weighting, no HP-as-damage or crit-capping quirk. Wind Archer has no native buff duration from skills (NamuWiki), though HEXA Storm Bringer adds buff duration when built (MapleStory Wiki).",
   "commonMistakes": [
     {
       "mistake": "Treating 100% critical rate as the point to stop stacking crit.",
       "why": "Vicious Shot allows critical rate above 100% and converts critical rate into critical damage during its 30-second window.",
       "sources": [
         "https://maplestorywiki.net/w/Wind_Archer/Skills"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak"
     },
     {
       "mistake": "Rolling an attack speed line on inner ability.",
-      "why": "The class reaches the attack speed cap from Agile Bows, Eagle Eye and Albatross Max alone.",
+      "why": "NamuWiki states the class reaches maximum attack speed (level 8) from its own passives, and the class doc says attack speed investment is not required. See innerAbility.doNotRoll — this is a derived conclusion, not a directly sourced recommendation.",
       "sources": [
-        "https://maplestorywiki.net/w/Wind_Archer/Skills",
-        "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-      ]
+        "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Using the linked Wind Archer class doc for 6th job planning.",
-      "why": "The doc's own header says it was last updated 2023-11-23. It is still the doc linked from both MapleStory Wiki's class-guide index and Grandis Library, which makes it the first thing a player finds.",
+      "why": "The doc's own header says it was last updated 2023-11-23 and its Sixth Job section is images plus a video link, with no textual ordering. It is still the doc linked from both MapleStory Wiki's class-guide index and Grandis Library, which makes it the first thing a player finds. Grandis' 6th job INFOGRAPHIC is a separate and much newer artifact (dated 2026-09-04) — use that, not the doc.",
       "sources": [
-        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic"
-      ]
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic",
+        "https://www.grandislibrary.com/cygnus-knights/wind-archer"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Following Grandis Library's 'HEXA Tracker' link from the Wind Archer page.",
-      "why": "Verified 2026-09-11: that Google Sheet returns HTTP 410 Gone. It has been deleted.",
+      "why": "That Google Sheet returns HTTP 410 Gone. It has been deleted. The link is still on the page.",
       "sources": [
         "https://docs.google.com/spreadsheets/d/1c6M-TLl04h_9-eZUwT1dBBrAZrs_e4ZZehOi6bECGS8"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "mechanical fact, not judgement",
+      "verifiedAt": "2026-09-11"
     },
     {
-      "mistake": "Copying a pre-v.269 boost node trio.",
-      "why": "Grandis Library's Wind Archer page carries a 'View Pre-V.269 Boost Nodes' toggle, which means the groupings changed at v.269. The only consolidated cross-class trio table (mastermysty) is dated 2024-11-21 with data from 2024-05-14, so it predates that change.",
+      "mistake": "Building a boost node 'trio' at all, or copying a pre-v.269 trio.",
+      "why": "Grandis Library now presents Wind Archer's boost nodes as six fixed nodes under the heading 'Skills Boosted by Each Nodes', and hides its old trio recommendation behind a chip labelled 'View Pre-V.269 Boost Nodes'. The only other consolidated trio table (mastermysty) is dated 2024-11-21 with data from 2024-05-14, so it predates that change too. Both trio lists are historical.",
       "sources": [
         "https://www.grandislibrary.com/cygnus-knights/wind-archer",
         "https://mystyjl.github.io/reference/NodeGuide.html"
-      ]
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "mistake": "Building a Pinpoint Pierce boost node.",
+      "why": "The class doc says directly that a Pinpoint Pierce node is not needed because the skill is used once per 60 seconds and the extra damage on the single hit is minimal, and Grandis buckets node 5 (Pinpoint Pierce / Sentient Arrow) as least priority. The widely-copied mastermysty mobbing trio contradicts this, but it is pre-v.269.",
+      "sources": [
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic",
+        "https://www.grandislibrary.com/cygnus-knights/wind-archer"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Trusting search results that use names like 'Song of Heaven VI' or 'Howling Gale VI'.",
@@ -358,49 +540,51 @@
       "sources": [
         "https://maplestorywiki.net/w/Wind_Archer/Skills",
         "https://gg-pass.com/en/guide/wind-archer-patch-all-in-one-guide-part2"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "mechanical fact, not judgement"
     }
   ],
   "sources": [
     {
       "url": "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic",
-      "what": "Wind Archer FAQ, the class Discord's public doc and the upstream of Grandis Library's Wind Archer judgement fields. Read in full. Usable content: cooldown hat guidance, arrows/Sylvan Aid, Gale Barrier behaviour, special V nodes (Boss Slayer / Fatal Strike for bossing, Relentless Attack / Character Building for training), and an explicit refusal to give a hyper stat order. Its boost node, hyper skill and inner ability sections are images with no surrounding text, and its Sixth Job section is two infographics.",
+      "what": "Wind Archer FAQ, the class Discord's public doc and the upstream of Grandis Library's Wind Archer judgement fields. Re-read in full 2026-09-12. Usable text content: cooldown hat guidance, arrows/Sylvan Aid, Gale Barrier behaviour, special V nodes (Boss Slayer / Fatal Strike for bossing, Relentless Attack / Character Building for training), Decent skill guidance, an explicit statement that a Pinpoint Pierce node is not needed, an explicit refusal to give a hyper stat order, and a burst rotation. Its boost node, hyper skill and inner ability answers are hyperlinks into the class Discord (including SEPARATE Reboot and Regular Server inner ability links), which are not publicly readable; its Sixth Job section is images plus a video link.",
       "dated": "2023-11-23 (stated in the doc)",
       "independent": true
     },
     {
       "url": "https://www.grandislibrary.com/cygnus-knights/wind-archer",
-      "what": "Grandis Library Wind Archer page. Boost node tiering, hyper skill passive builds (bossing and training), recommended inner ability (bossing and training), base stats from skills, link skill, legion effect, Other Resources links. NOT an independent opinion: its Credits block reads that inner ability, hyper passive build and boost node build come from the class doc.",
+      "what": "Grandis Library Wind Archer page. Re-fetched raw 2026-09-12. Current boost node data is six fixed nodes with a two-bucket tiering ('primary':[0,1,2,3], 'other':[4,5]) — there is NO secondary assignment for this class. The 'Primary Trio' / 'Secondary Trio' block exists only in the page's JSON payload and renders only behind a 'View Pre-V.269 Boost Nodes' chip. Also carries hyper skill passive builds (bossing and training), recommended inner ability (bossing and training), base stats from skills, link skill, legion effect, Other Resources links. It has NO hyper stat section. NOT an independent opinion for judgement fields: its Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc'.",
       "dated": "GMS Ver. 269 [Ride the Lightning Update] — two patches behind the v.271 target",
       "independent": false
     },
     {
       "url": "https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png",
-      "what": "Grandis Library's Wind Archer 6th Job infographic — roughly 180 sequential node cells, each showing a node icon and the level it is taken to. The only public artifact found that encodes a Wind Archer HEXA investment order. Only its first three steps carry text labels (M4, M1, M2); the rest is icon-only and was not transcribed. Provenance is not stated on the page and is probably the class Discord, so treat it as the same family as the class doc until confirmed otherwise.",
-      "dated": "Page stamped GMS Ver. 269; no date on the image itself",
+      "what": "Grandis Library's Wind Archer 6th Job infographic — roughly 180 sequential node cells, each showing a node icon and the level it is taken to. The only public artifact found that encodes a Wind Archer HEXA investment order. Only its first three cells carry text labels (M4, M1, M2); the fourth cell is also level 1 but is a different node type and is unlabelled, and the rest is icon-only and was not transcribed. Provenance IS stated in the page data: credit 'Wind Archer Discord', date '2026-09-04'. Same family as the class doc, but far more recent than it.",
+      "dated": "2026-09-04 (from Grandis Library's own infographics metadata)",
       "independent": false
     },
     {
       "url": "https://maplestorywiki.net/w/Wind_Archer/Skills",
-      "what": "Name-validation table and mechanical reference. Every skill name in this file was checked against it: 1st-4th job skills, all nine hyper passives with their level requirements, V skills, the six boost-node groups, the HEXA Skill cores (Mistral Spring as Origin, Elemental Tempest as Ascent), the four Mastery cores and their contents, the four HEXA Enhancement nodes, and the shared Sol Janus / Sol Hecate skills. Carries no priority judgement at all. Returns 403 to plain fetching; readable in a browser.",
+      "what": "Name-validation table and mechanical reference. Every skill name in this file was checked against it: 1st-4th job skills, all nine hyper passives with their level requirements, V skills, the six boost-node groups, the HEXA Skill cores (Mistral Spring as Origin, Elemental Tempest as Ascent), the four Mastery cores and their contents, the four HEXA Enhancement nodes, and the shared Sol Janus / Sol Hecate skills. Carries no priority judgement at all — it must never be cited as supporting a recommendation. Returns 403 to plain fetching; readable in a browser (the contest pass did so).",
       "dated": "Living wiki; search index shows 2026-08-11",
       "independent": true
     },
     {
       "url": "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
-      "what": "NamuWiki's Wind Archer (Windbreaker) page, machine-translated. The one judgement source outside the GMS class-doc lineage. Gives an inner ability recommendation with a stated budget compromise, a full stat-sources table (crit rate 60% from passives, attack speed reaching the cap from passives, no native buff duration), a cooldown-dependence warning tied to Howling Gale, and a KMS-side assessment that Mistral Spring is one of the weaker Origin skills. KMS balance, so gear and content assumptions can diverge from GMS Heroic. Returns 403 to plain fetching; readable in a browser.",
+      "what": "NamuWiki's Wind Archer (Windbreaker) page, machine-translated. Re-fetched and re-read 2026-09-12. The one judgement source outside the GMS class-doc lineage. Gives an inner ability recommendation with a stated budget compromise, a full stat-sources table (attack speed reaching the cap at level 8 from passives, Song of Heaven unaffected by attack speed, no native buff duration), a cooldown-dependence warning tied to Howling Gale, and a KMS-side assessment that Mistral Spring is 'one of the worst Origins'. Has no hyper stat section. KMS balance, so gear and content assumptions can diverge from GMS Heroic.",
       "dated": "Continuously edited; no per-revision date visible",
       "independent": true
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio table. Gives Wind Archer a bossing trio (Song of Heaven, Trifling Wind, Storm Bringer) and a mobbing trio (Fairy Spiral, Monsoon, Pinpoint Pierce). The only consolidated trio recommendation found outside Grandis Library.",
-      "dated": "Page states 2024-11-21; author notes the underlying data is from 2024-05-14 — predates the v.269 boost node regrouping",
+      "what": "mastermysty's cross-class boost node trio table. Re-read 2026-09-12: gives Wind Archer a bossing trio (Song of Heaven, Trifling Wind, Storm Bringer) and a mobbing trio (Fairy Spiral, Monsoon, Pinpoint Pierce), and says nothing about v.269. Its methodology note ('200 nodes: chance to find all trios. 10000 tests per class (May 14th, 2024)') is a simulation of the old random node-crafting RNG, which is the mechanic v.269 replaced.",
+      "dated": "Page states 'Last update: November 21st, 2024'; underlying data 2024-05-14 — predates the v.269 boost node change",
       "independent": true
     },
     {
       "url": "https://discord.gg/4pbZMeThgP",
-      "what": "Wind Archer class Discord. Given that the public doc is from 2023-11-23 and the HEXA tracker sheet has been deleted, this is effectively the only current source of Wind Archer HEXA and node judgement. Not machine-readable; not read for this file.",
+      "what": "Wind Archer class Discord. The public doc is from 2023-11-23, the HEXA tracker sheet has been deleted, and the class doc's inner ability / hyper skill / node answers all link into this Discord, so it is effectively the only current source of Wind Archer HEXA and node judgement. Not machine-readable; not read for this file.",
       "dated": "Live",
       "independent": true
     },
@@ -428,64 +612,121 @@
     {
       "topic": "HEXA investment order",
       "positions": [
-        "Grandis Library's Wind Archer 6th Job infographic opens by putting one point into Mastery Core 4, then Mastery Core 1, then Mastery Core 2 — i.e. mastery nodes first (https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png, GMS v269).",
+        "Grandis Library's Wind Archer 6th Job infographic opens by putting one point into Mastery Core 4, then Mastery Core 1, then Mastery Core 2 — i.e. mastery nodes first (https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png, credited to the Wind Archer Discord, dated 2026-09-04).",
         "No second Wind Archer-specific source exists to agree or disagree. The widely repeated cross-class ordering (mastery nodes, then boost nodes, then HEXA Stat) traces to one aggregator cluster and is not class-specific, so it does not count as corroboration."
       ],
-      "status": "unresolved — one source, and it is inside the Grandis/class-doc family",
+      "status": "still one source, and it is inside the Grandis / class-community family — but the staleness objection is withdrawn: the infographic is dated 2026-09-04. The first three steps are confirmed to be exactly what the image shows.",
       "sources": [
         "https://www.grandislibrary.com/class-infographic/wind-archer/wind-archer-6th-job.png"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Inner ability line placement",
       "positions": [
         "Grandis Library / class doc: Boss Damage +20%, Critical Rate +20%, Damage to abnormal-status monsters +8%, presented as one preset.",
-        "NamuWiki: same three lines, but explicitly puts Boss Damage on line 1 and adds a budget compromise — keep Critical Rate on line 1 and settle for a Unique-grade Boss Damage line on line 2 or 3, because Critical Rate is very hard to roll on the lower lines."
+        "NamuWiki: same three lines, but explicitly puts Boss Damage on line 1 and adds a budget compromise — keep Critical Rate on line 1 and settle for a Unique-grade Boss Damage line on line 2 or 3, because Critical Rate is very hard to roll on the lower lines. NamuWiki says outright this is a probability compromise, not the optimum."
       ],
-      "status": "not a contradiction on which lines to take, but the two disagree on placement and on whether a compromise roll is acceptable. Both recorded.",
+      "status": "not a contradiction on which lines to take; the two differ only on placement and on whether a compromise roll is acceptable. Both recorded. Re-verified against both pages 2026-09-12.",
       "sources": [
         "https://www.grandislibrary.com/cygnus-knights/wind-archer",
         "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
-      "topic": "Boost node trios for v.271",
+      "topic": "Pinpoint Pierce boost node",
       "positions": [
-        "mastermysty (data 2024-05-14): bossing trio Song of Heaven / Trifling Wind / Storm Bringer; mobbing trio Fairy Spiral / Monsoon / Pinpoint Pierce.",
-        "Grandis Library's Wind Archer page exposes a 'View Pre-V.269 Boost Nodes' toggle, which establishes that the groupings changed at v.269 — after mastermysty's data."
+        "Class doc and Grandis Library (one lineage): do not build one. Grandis buckets node 5 as least priority; the doc says a Pinpoint Pierce node is not needed because the skill fires once per 60 seconds.",
+        "mastermysty: Pinpoint Pierce is one third of the recommended Wind Archer mobbing trio."
       ],
-      "status": "contested by staleness. The bossing trio is still consistent with the current groupings; the mobbing trio pairs two skills (Fairy Spiral, Monsoon) that share one group, so it needs re-checking.",
+      "status": "resolved in favour of not building it. mastermysty's data is from 2024-05-14 and models the pre-v.269 random-trio crafting system; the class doc's reasoning is mechanical (once per 60 seconds) and is not time-sensitive.",
       "sources": [
-        "https://mystyjl.github.io/reference/NodeGuide.html",
-        "https://www.grandislibrary.com/cygnus-knights/wind-archer"
-      ]
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic",
+        "https://www.grandislibrary.com/cygnus-knights/wind-archer",
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Value of the Origin skill",
       "positions": [
-        "NamuWiki (KMS): rates Mistral Spring as one of the weaker Origin skills, citing no boss-priority targeting on its spirit-energy phase and low damage relative to its long cast.",
-        "No GMS source found rates it either way."
+        "NamuWiki (KMS): rates Mistral Spring as 'one of the worst Origins', citing no boss-priority targeting on its spirit-energy phase and insufficient damage relative to its long cutscene.",
+        "The GMS class doc treats Mistral Spring as a normal part of the burst sequence ('Mistral Spring, our 6th job origin skill should be used after applying burst buffs but before your V skills'), but does not rate its strength either way."
       ],
-      "status": "single source, KMS balance. Recorded because it would bear on whether to rush the Origin node, but it must not be acted on for GMS Heroic without a second source.",
+      "status": "single source for the negative rating, KMS balance. Recorded because it would bear on whether to rush the Origin node, but it must not be acted on for GMS Heroic without a second source.",
       "sources": [
-        "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-      ]
+        "https://en.namu.wiki/w/%EC%9C%88%EB%93%9C%EB%B8%8C%EB%A0%88%EC%9D%B4%EC%BB%A4(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+        "https://docs.google.com/document/d/1oqZegwzp5pzOArQ_NKYpoYZTxkV_8kq_3W_EQ8SzSDc/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12"
     }
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
-    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "Priority attribution not supported by the cited source: 'Grandis Library tiers it as secondary' for Storm Bringer Boost, and 'Grandis Library tiers Storm Whim as secondary'. The page's own data marks nodes 1-4 primary and nodes 5-6 other ('primary':[0,1,2,3], 'other':[4,5] against a six-entry node list) - there is no secondary assignment for Wind Archer at all. Grandis' legend defines primary as 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used', which is exactly why nodes 1-4 (mapping to Mastery Cores 1-4) are all primary.",
-      "The HEXA opening order is NOT fabricated. I downloaded the infographic and read it: the first three cells are labelled M4, M1, M2, each set to level 1, exactly as the file reports. Two caveats the file does not state - the fourth cell is also level 1 and is a visibly different node type, and Mastery Core 4 contains both HEXA Storm Whim and Anemoi, so 'Mastery Core 4 to level 1' does not say which skill."
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm. A resolution pass then re-opened every cited page for the endgame sections (vMatrix, hexa, hyperSkills, hyperStats, innerAbility) and confirmed, corrected or deleted each disputed claim.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "Priority attribution not supported by the cited source: 'Grandis Library tiers it as secondary' for Storm Bringer Boost, and 'Grandis Library tiers Storm Whim as secondary'. The page's own data marks nodes 1-4 primary and nodes 5-6 other ('primary':[0,1,2,3], 'other':[4,5] against a six-entry node list) — there is no secondary assignment for Wind Archer at all.",
+        "action": "CORRECTED",
+        "what": "Re-fetched the raw Grandis Library page 2026-09-12 and confirmed the defect exactly: nodeInfo carries 'primary':[0,1,2,3],'other':[4,5] and the rendered body shows 'Node 1'..'Node 6'. Both nodes were re-tiered to primary. The whole vMatrix.priority array was rebuilt around Grandis' actual two-bucket structure with an explicit 'tier' field, plus priorityIsOrdered:false and a note telling downstream code to read the tier and not the array position — Grandis does not rank within a bucket. The 'other' entry was also corrected: it had listed Sentient Arrow / Gust Shot / Spiraling Vortex / Breeze Arrow but silently omitted Pinpoint Pierce, which is in the same bucket.",
+        "scope": "vMatrix"
+      },
+      {
+        "defect": "The HEXA opening order is NOT fabricated — the infographic's first three cells really are labelled M4, M1, M2 at level 1. Two caveats the file does not state: the fourth cell is also level 1 and is a visibly different node type, and Mastery Core 4 contains both HEXA Storm Whim and Anemoi, so 'Mastery Core 4 to level 1' does not say which skill.",
+        "action": "CONFIRMED with both caveats added",
+        "what": "Downloaded the infographic independently and read the first row magnified. Confirmed: cells 1-3 are purple-bordered (Mastery) at level 1 with the only text labels on the chart, M4/M1/M2; cell 4 is level 1 with a different border colour, a different icon and no label. Added hexa.orderTruncatedAt recording that cell 4 exists, is unlabelled and was deliberately NOT recorded as a step because it could not be identified. Added a 'caveat' field to step 1 stating that Mastery Core 4 holds two skills and the cell does not disambiguate. Also corrected the infographic's provenance while there: Grandis' page data gives credit 'Wind Archer Discord' and date '2026-09-04', so the file's previous claims that provenance was unstated and the image undated were both wrong, and the staleness objection against the HEXA order is withdrawn.",
+        "scope": "hexa"
+      },
+      {
+        "defect": "Found during resolution, not in the original defect list: vMatrix.trios claimed the bossing and mobbing trios were single-source (mastermysty only) and marked contested:false.",
+        "action": "CORRECTED in both directions",
+        "what": "Grandis Library states both trios verbatim as its 'Primary Trio' and 'Secondary Trio', so the source count rises from 1 to 2. But that block renders only behind a chip labelled 'View Pre-V.269 Boost Nodes' — verified by confirming 'Primary Trio' appears only in the page's JSON payload and never in the server-rendered body — and mastermysty's data is from 2024-05-14. Both trios are therefore pre-v.269 artifacts. Marked era:'pre-V.269', superseded:true, contested:true, and added vMatrix.structureNote explaining that the current shape is six fixed nodes, not craftable trios.",
+        "scope": "vMatrix"
+      },
+      {
+        "defect": "Found during resolution: several vMatrix priority entries cited https://maplestorywiki.net/w/Wind_Archer/Skills as a source for a PRIORITY claim, and innerAbility.doNotRoll cited both MapleStory Wiki and Grandis Library.",
+        "action": "CORRECTED",
+        "what": "MapleStory Wiki carries no priority judgement at all — this file's own source note says so — and Grandis simply omits attack speed from its inner ability preset. Silence is not support. The wiki was removed from every priority-claim source list (it is retained for boostNodeGroups and hexa.nodes, which are mechanical), and Grandis and the wiki were removed from innerAbility.doNotRoll, which is now labelled derived:true with only the two sources that support its premise.",
+        "scope": "vMatrix, innerAbility"
+      },
+      {
+        "defect": "Found during resolution: innerAbility.notes asserted 'Nothing in the sources splits inner ability by Heroic vs Interactive for this class.'",
+        "action": "CORRECTED",
+        "what": "False. The class doc's inner ability question offers two separate answers, 'Suggested Inner Ability for Reboot' and 'Suggested Inner Ability for Regular Servers'. Both link into the Wind Archer Discord and are not publicly readable. Added innerAbility.serverSplit recording that the split exists and was not recovered, so a GMS Heroic player knows a Reboot-specific answer exists that this file does not hold.",
+        "scope": "innerAbility"
+      },
+      {
+        "defect": "Found during resolution: innerAbility.notes asserted 'Wind Archer's Lv 140 is the level at which inner ability first becomes worth investing in at all.'",
+        "action": "DELETED",
+        "what": "No cited source states it and it could not be verified anywhere reachable. Removed rather than hedged.",
+        "scope": "innerAbility"
+      },
+      {
+        "defect": "Found during resolution: hyperSkills picks and hyperSkills.notTaken were stored as bare arrays, which downstream code reads as ordered.",
+        "action": "CORRECTED (shape)",
+        "what": "Grandis presents each build as two grouped lines with no ordering. Added ordered:false plus an orderNote to both bossingPassives and trainingPassives. notTaken is stated by no source at all — it is the set-difference of Grandis' two builds against MapleStory Wiki's nine passives — so it was restructured with derived:true and its derivation written out.",
+        "scope": "hyperSkills"
+      }
+    ],
+    "confirmedUnchanged": [
+      "hyperSkills.bossingPassives and trainingPassives: re-read verbatim off Grandis Library 2026-09-12. 'For Bossing: Trifling Wind - Reinforce, Enhance and Double Chance / Song of Heaven - Reinforce and Boss Rush. For Training: Trifling Wind - Reinforce, Enhance and Double Chance / Fairy Spiral - Extra Strike and Spread.' Exactly as recorded. Single lineage confirmed from Grandis' Credits block: 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc'.",
+      "hyperStats.priority = null: re-read the class doc 2026-09-12. Its refusal is verbatim as recorded. Independently confirmed that Grandis Library has no hyper stat section (its only h5 headings are 'Hyper Skill Passive Build', 'Skills Boosted by Each Nodes', 'Recommended Inner Ability') and that NamuWiki has none either. The null-with-explanation shape is correct and was left alone.",
+      "innerAbility.bossing: re-read both sources 2026-09-12. Grandis lists the three lines exactly; NamuWiki independently puts boss damage on line 1 ('the most acceptable option among all classes. Up to 20% additional damage is given') and critical rate plus abnormal-status damage on lines 2 and 3. Two independent lineages, consensus moderate stands.",
+      "innerAbility.budgetAlternative: re-read NamuWiki 2026-09-12. It states the compromise and calls it 'merely a cost-effective option that compromises on probability'. Recorded accurately.",
+      "innerAbility.training: Grandis' three lines confirmed verbatim; NamuWiki's 'Item drop rate/meso acquisition increase: Essential Ability when hunting and boss rewards' confirmed but does not give the preset, so sourceCount stays 1."
     ],
     "clearedOnInspection": [
-      "No invented skill or node names. Every name in the file checks out against maplestorywiki.net/w/Wind_Archer/Skills, which I read through a browser because it 403s plain fetching: boost node groups 1-6 verbatim ('Boost Node/Enhancement Core 1..6'), Mastery Node/Core 1 HEXA Song of Heaven, 2 HEXA Trifling Wind, 3 HEXA Storm Bringer/Fairy Spiral/Monsoon, 4 HEXA Storm Whim/Anemoi, 'Skill Node/Core 1 (Origin) Mistral Spring', 'Core 2 (Ascent) Elemental Tempest', all nine hyper passives with level requirements 140/140/150/150/165/165/180/180/190 exactly as recorded, Vicious Shot (30 sec, crit rate may exceed 100%, crit damage +50% of crit rate at Lv 30), Agile Bows +2 attack speed, Eagle Eye +1, Albatross Max +1, Sylvan Aid no-arrow, Monsoon 3 sec invincibility, Merciless Winds as a real class-specific V skill. The dead HEXA Tracker sheet really does return 410."
+      "No invented skill or node names. Every name in the file checks out against maplestorywiki.net/w/Wind_Archer/Skills, which the contest agent read through a browser because it 403s plain fetching: boost node groups 1-6 verbatim ('Boost Node/Enhancement Core 1..6'), Mastery Node/Core 1 HEXA Song of Heaven, 2 HEXA Trifling Wind, 3 HEXA Storm Bringer/Fairy Spiral/Monsoon, 4 HEXA Storm Whim/Anemoi, 'Skill Node/Core 1 (Origin) Mistral Spring', 'Core 2 (Ascent) Elemental Tempest', all nine hyper passives with level requirements 140/140/150/150/165/165/180/180/190 exactly as recorded, Vicious Shot (30 sec, crit rate may exceed 100%, crit damage +50% of crit rate at Lv 30), Agile Bows +2 attack speed, Eagle Eye +1, Albatross Max +1, Sylvan Aid no-arrow, Monsoon 3 sec invincibility, Merciless Winds as a real class-specific V skill. The dead HEXA Tracker sheet really does return 410."
+    ],
+    "outOfScope": [
+      "No defect in this file concerned jobs 1-4 skill builds, skill damage coefficients, damage lines, job tiers or rotations, so nothing was counted out of scope. The gearingNotes and rotation text were left untouched regardless."
     ],
     "shipReady": false
   },
   "written": false,
-  "blockedReason": "2 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "blockedReason": "All 2 recorded defects are resolved and 5 further defects found during resolution are resolved, but the endgame sections still contain content that is not fully verified, so this stays false. Specifically: (1) hexa carries only the first 3 of roughly 180 steps — the remaining order exists as an unreadable icon-only infographic and is not recorded, so hexa is a known gap rather than a verified section; (2) the class doc holds a Reboot-specific inner ability answer behind a Discord link that could not be read, so innerAbility is incomplete for the GMS Heroic target; (3) hyperStats is deliberately null because every source refuses to rank, which is correct but means the section carries no guidance. Every claim that IS present is now labelled with sources, sourceCount, consensus and verifiedAt, and nothing points at a source that does not support it."
 }

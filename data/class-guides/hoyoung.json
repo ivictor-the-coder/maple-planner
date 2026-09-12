@@ -16,281 +16,554 @@
   "vMatrix": {
     "priority": [
       {
-        "node": "SYSTEM CHANGE FIRST - as of GMS v269 there are no craftable boost node trios. Every job is handed a fixed set of nodes and Nodestones now grant V Points used to level them. Hoyoung's fixed set is six boost nodes.",
-        "why": "This is the single biggest trap for anyone reading older Hoyoung material: guides written before June 2026 tell you which three skills to pair in a trio, and that decision no longer exists. The only remaining decision is which of the six given nodes to spend points on.",
-        "consensus": "strong - two independent sources. The wiki's dated V Matrix update history records the v269 overhaul explicitly, and its per-class page lists Hoyoung's six fixed boost node cores; Grandis Library independently shows the same six numbered nodes and keeps a separate toggle for the pre-v269 layout.",
+        "node": "SYSTEM CHANGE FIRST - as of GMS v269 there are no craftable boost node trios. Every job is handed a fixed set of nodes and Nodestones now grant V Points used to level them. Hoyoung's fixed set is six boost nodes and four job nodes.",
+        "why": "This is the single biggest trap for anyone reading older Hoyoung material: guides written before 17 June 2026 tell you which three skills to pair in a trio, and that decision no longer exists. The only remaining decision is which of the six given boost nodes to spend V Points on.",
+        "verifiedClaim": "maplestorywiki.net's V Matrix Update History entry reads, verbatim: 'update GMS 269 June 17 2026 (Ride the Lightning): The V Matrix received an overhaul. Nodestones now grant V Points to upgrade Nodes. Each job receives a fixed amount of Nodes to upgrade.' The same page's body reads 'Each player will receive 4 job nodes' and 'Each player will receive 6 boost nodes, with each one enhancing between 1 and 4 individual skills.' Grandis Library and NamuWiki each list exactly six fixed Hoyoung boost node groupings rather than a trio-crafting scheme, which corroborates the outcome.",
+        "sources": [
+          "https://maplestorywiki.net/w/V_Matrix",
+          "https://grandislibrary.com/anima/hoyoung",
+          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ],
+        "sourceCount": 3,
+        "consensus": "moderate",
+        "consensusNote": "Three independent sources, but only maplestorywiki carries the dated patch entry itself; Grandis and NamuWiki corroborate the outcome (six fixed nodes) rather than the patch statement. Deliberately not labelled strong for that reason.",
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Spend on boost nodes 1-4 (the four that feed a 6th job HEXA Mastery) before nodes 5-6.",
+        "why": "Nodes 1-4 are exactly the four whose skill sets match the four HEXA Mastery cores, so points spent there keep paying out after 260; nodes 5-6 have no Mastery attached.",
+        "verifiedClaim": "Three checks, all re-run 2026-09-12. (a) Mechanical criterion: maplestorywiki's V Matrix page states boost nodes have 'maximum Level is 60, and they must be Level 40 to unlock their corresponding HEXA Mastery Nodes.' (b) Contents match: maplestorywiki's Hoyoung Mastery Node/Core 1-4 contain exactly the skills in Boost Node/Enhancement Core 1-4, skill for skill. (c) Tiering: Grandis Library's page data marks nodes 1-4 PRIMARY and nodes 5-6 SECONDARY, with the legend 'PRIMARY: Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used' / 'SECONDARY: Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used'. NamuWiki independently splits the same six groupings into 필수 강화 코어 (essential, the same four) and 선택 강화 코어 (optional, the same two).",
         "sources": [
           "https://maplestorywiki.net/w/V_Matrix",
           "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://grandislibrary.com/anima/hoyoung"
-        ]
-      },
-      {
-        "node": "Boost nodes 1-4 (the four that feed a 6th job HEXA Mastery) before nodes 5-6",
-        "why": "Grandis tiers a boost node PRIMARY when it both unlocks a HEXA Mastery and covers frequently used skills. Hoyoung's nodes 1-4 are exactly the four whose skill sets match the four HEXA Mastery cores, so points spent there keep paying out after 260; nodes 5-6 have no Mastery attached.",
-        "consensus": "moderate - the tiering itself is one lineage (Grandis restates the class doc), but the criterion is independently verifiable: the wiki's HEXA Mastery core contents match boost node cores 1-4 skill-for-skill, and the wiki states a boost node must reach Lv.40 to unlock its HEXA Mastery node.",
-        "sources": [
           "https://grandislibrary.com/anima/hoyoung",
-          "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://maplestorywiki.net/w/V_Matrix"
-        ]
+          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ],
+        "sourceCount": 3,
+        "consensus": "strong",
+        "consensusNote": "Three independent lanes: maplestorywiki (two pages, counted once), Grandis Library, NamuWiki. Grandis credits its Boost Nodes Build field to the class doc, so Grandis and the class doc are one lineage - but NamuWiki's essential/optional split is genuinely outside that lineage and lands on the same 4/2 division.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Overall V-matrix spend order stated by the class doc: boost nodes, then Decent Holy Symbol, then Sage: Clone Rampage, then Sage: Wrath of Gods, then Sage: Three Paths Apparition (roughly tied with Scroll: Tiger of Songyu), then Last Resort, then Grandis Goddess's Blessing, then the remaining Decent skills, then Will of Erda, then everything else.",
+        "node": "Overall V Matrix spend order stated by the class doc, verbatim: 'Boosts > Decent Holy Symbol > Clone Rampage > Wrath of Gods > Apparition >= Tiger > Last Resort > Grandis Blessing > Other Decents > Will of Erda > Other'.",
         "why": "Boost nodes come first because they scale every use of the skills underneath them and gate the HEXA Masteries; the four job skills are then ranked by how much of Hoyoung's burst each one actually contributes.",
-        "consensus": "strong on the job-skill ordering - two independent lineages produce the same ranking. The class doc gives Clone Rampage > Wrath of Gods > Apparition >= Tiger; the Korean community wiki, written outside the GMS guide ecosystem, gives the identical order and explains it as Clone Rampage having the greatest utility, Wrath of Gods second, Apparition third, and Tiger of Songyu last because it is the smallest share of 5th job damage. The doc's own caveat is that it is a general recommendation, not a rule.",
+        "verifiedClaim": "The order string above was read verbatim off the class doc's V Matrix page on 2026-09-12, together with its own caveat: 'This order is just a general recommendation, feel free to upgrade based on personal preference and play style.' NamuWiki independently states the same job-node ranking: '직업 코어는 선기 : 극대 분신난무 > 선기 : 강림 괴력난신 ≥ 선기 : 천지인 환영 > 권술 : 산령소환 순으로 강화한다' - Clone Rampage, then Wrath of Gods, then Three Paths Apparition, then Tiger of Songyu, with the reason that Clone Rampage's utility is greatest and Tiger of Songyu is the smallest share of 5th job damage. The two sources place the tie marker differently (the doc writes Apparition >= Tiger, NamuWiki writes Wrath of Gods >= Apparition); the sequence is identical.",
         "sources": [
           "https://www.hoyoung.directory/basics/v-matrix",
           "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "consensusNote": "Downgraded from the previous 'strong' label: two independent lineages is moderate under the 3+ rule, not strong. Both sources publish it as a recommendation, and the class doc explicitly disclaims it as a rule.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Non-boost nodes the class doc names as worth slotting, by role - General: Decent Holy Symbol, Decent Speed Infusion, Decent Sharp Eyes, Decent Combat Orders, Advanced Blessing, Erda Shower. Damage: Grandis Goddess's Blessing, Last Resort, Arachnid Reflection (Lv.235), Solar Crest (after Hard Seren). Bossing utility: Lotus Flower, Decent Holy Fountain, Blink, Erda Nova, Will of Erda. Equipped for passive stats only: Decent Hyper Body, Rope Lift.",
-        "why": "Decent Speed Infusion is not optional for Hoyoung specifically - the class doc states Hoyoung reaches attack speed 0 with only its own Booster plus Decent Speed Infusion plus a green potion, which is what makes the attack-speed inner ability line unnecessary.",
-        "consensus": "weak to moderate - single lineage (class doc) for the list itself; the attack-speed consequence is stated twice within that lineage (V Matrix page and FAQ) and is consistent with Grandis's base-stat table showing Hoyoung at attack speed stage 6 with a further +2 from skills.",
+        "node": "Non-boost nodes the class doc names as worth slotting, by role. General: Decent Holy Symbol, Decent Speed Infusion, Decent Sharp Eyes, Decent Combat Orders, Advanced Blessing, Erda Shower. Damage: Grandis Goddess's Blessing, Last Resort, Arachnid Reflection (obtained at Lv. 235), Solar Crest (obtained after defeating Hard Seren). Bossing utility: Lotus Flower (extra door), Decent Holy Fountain, Blink, Erda Nova (mid-air bind), Will of Erda. Equipped for passive stats only: Decent Hyper Body, Rope Lift.",
+        "why": "Decent Speed Infusion is not optional for Hoyoung specifically - the class doc's FAQ states Hoyoung reaches attack speed 0 with only its own Booster plus Decent Speed Infusion plus a green potion, which is what makes the attack-speed inner ability line unnecessary.",
+        "verifiedClaim": "The four role groups and every node name above were read verbatim off the class doc's V Matrix page on 2026-09-12, including the 'obtained at Lv. 235' and 'obtained after defeating Hard Seren' annotations. The attack-speed consequence is a separate page: the FAQ reads 'Booster, Decent Speed Infusion AND Green Pot' for AS0 and 'We do not need AS+1 IA'. Grandis Library's own attack-stat table independently shows Hoyoung at Attack Speed Stage 6 with +2 from Ritual Fan Acceleration, which is consistent with that.",
         "sources": [
           "https://www.hoyoung.directory/basics/v-matrix",
           "https://www.hoyoung.directory/introduction/faq",
           "https://grandislibrary.com/anima/hoyoung"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "The node list itself has exactly one independent publisher - the class doc. Grandis credits its boost-node and inner-ability fields to the class doc and carries no equivalent non-boost-node list, so it is the same lineage. Grandis's attack-stat table is Grandis's own compilation and corroborates only the attack-speed sub-claim, not the list.",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "trios": [
-      {
-        "trio": "Node 1 - Heaven: Consuming Flames, Earth: Stone Tremor, Humanity: Gold-Banded Cudgel (the three cooldown-gated Attribute skills)",
-        "labelledAs": "PRIMARY. Feeds HEXA Mastery core 1, Universal Harmony.",
-        "consensus": "strong - the node's contents are stated identically by two independent sources (wiki and Grandis), and the Korean wiki lists the same three skills as the first Mastery core.",
-        "sources": [
-          "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
-      },
-      {
-        "trio": "Node 2 - Heaven: Iron Fan Gale, Earth: Ground-Shattering Wave, Humanity: As-You-Will Fan (the three spammable Attribute skills)",
-        "labelledAs": "PRIMARY. Feeds HEXA Mastery core 2, nicknamed Basics Mastery.",
-        "consensus": "strong - same three independent sources agree on the contents.",
-        "sources": [
-          "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
-      },
-      {
-        "trio": "Node 3 - Talisman: Clone, Talisman: Seeking Ghost Flame",
-        "labelledAs": "PRIMARY. Feeds HEXA Mastery core 3, nicknamed Talisman Mastery.",
-        "consensus": "strong - same three independent sources agree.",
-        "sources": [
-          "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
-      },
-      {
-        "trio": "Node 4 - Scroll: Star Vortex, Scroll: Butterfly Dream",
-        "labelledAs": "PRIMARY. Feeds HEXA Mastery core 4, nicknamed Scroll Mastery.",
-        "consensus": "strong - same three independent sources agree.",
-        "sources": [
-          "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
-        ]
-      },
-      {
-        "trio": "Node 5 - Sage: Tai Yu Clone, Scroll: Degeneration",
-        "labelledAs": "SECONDARY. No HEXA Mastery attached, but the skills are still used.",
-        "consensus": "moderate - contents confirmed by two independent sources (wiki and Grandis); the SECONDARY grading is Grandis only and therefore one lineage.",
-        "sources": [
-          "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://grandislibrary.com/anima/hoyoung"
-        ]
-      },
-      {
-        "trio": "Node 6 - Talisman: Evil-Sealing Gourd, Thousand-Ton Stone, Swift Sally",
-        "labelledAs": "SECONDARY. No HEXA Mastery attached.",
-        "consensus": "moderate - contents confirmed by two independent sources; the grading is Grandis only.",
-        "sources": [
-          "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://grandislibrary.com/anima/hoyoung"
-        ]
-      },
-      {
-        "trio": "HISTORICAL, PRE-V269, DO NOT BUILD TO THIS - trio compositions from the craftable-trio era. The class doc offered two layouts. Thematic build (grouped by skill family, aimed at burning/fast levelling): humanity + earth + heaven, then clone + ghost + gourd, then vortex + degeneration + butterfly. Standard build (aimed at low-level bossing): clone + earth + humanity first, then heaven + ghost + vortex, then gourd + degeneration + butterfly.",
-        "labelledAs": "obsolete after the v269 V Matrix overhaul",
-        "consensus": "strong that this WAS the pre-v269 advice - two independent sources describe the same standard grouping. mastermysty's cross-class trio table lists Hoyoung's Essential #1 as Humanity: As-You-Will Fan, Earth: Ground-Shattering Wave and Talisman: Clone; Essential #2 as Scroll: Star Vortex, Talisman: Seeking Ghost Flame and Heaven: Iron Fan Gale; and a third tier of Talisman: Evil-Sealing Gourd, Scroll: Butterfly Dream and Scroll: Degeneration - the same three sets as the class doc's Standard build. Both predate v269.",
-        "sources": [
-          "https://www.hoyoung.directory/basics/v-matrix",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      }
-    ],
-    "notes": "At Lv.200 you open the V Matrix with 12 node slots (raised from 7 in GMS v255) and gain 1 Matrix point per level to 220, then 2 per level to 260, where point gain stops. Extra slots open at 210, 220, 230, 240, 250 and 260, capping at 30. Boost nodes cap at Lv.60 and must reach Lv.40 to unlock their HEXA Mastery node; job (skill) nodes cap at Lv.30 and must reach Lv.25 to unlock their HEXA Enhancement node. Those two thresholds are the concrete Lv.200-to-Lv.260 bridge for this class: the four PRIMARY boost nodes need 40 and the four job skills need 25 before any of Hoyoung's HEXA Mastery or Enhancement cores can be touched. Sources: https://maplestorywiki.net/w/V_Matrix. The class doc's V Matrix page still shows the old trio images and has not been rewritten for the v269 overhaul, so read its Node Upgrade Order line and ignore its trio tables."
+    "fixedNodeSet": {
+      "shapeNote": "These six entries are the FIXED boost node set handed to every Hoyoung as of GMS v269. They are not trios you compose and their numbering is the game's, not a priority ranking - priority is carried by the 'tier' field, which has only two values because the sources give only two. Formerly keyed 'trios'; the key was renamed because the old name implied a composition choice that no longer exists.",
+      "ordered": false,
+      "nodes": [
+        {
+          "node": 1,
+          "contents": [
+            "Heaven: Consuming Flames",
+            "Earth: Stone Tremor",
+            "Humanity: Gold-Banded Cudgel"
+          ],
+          "tier": "PRIMARY",
+          "feedsHexaMastery": "Mastery Node/Core 1, which contains the HEXA versions of those three skills plus the Universal Harmony buff.",
+          "verifiedClaim": "Contents identical across maplestorywiki (Boost Node/Enhancement Core 1), Grandis Library (Node 1) and NamuWiki (멸화염 : 천 / 지진쇄 : 지 / 금고봉 : 인). Mastery Core 1 membership read directly off maplestorywiki. PRIMARY tier from Grandis's node tiering and NamuWiki's 필수 강화 코어 grouping.",
+          "sources": [
+            "https://maplestorywiki.net/w/Hoyoung/Skills",
+            "https://grandislibrary.com/anima/hoyoung",
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+          ],
+          "sourceCount": 3,
+          "consensus": "strong",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": 2,
+          "contents": [
+            "Heaven: Iron Fan Gale",
+            "Earth: Ground-Shattering Wave",
+            "Humanity: As-You-Will Fan"
+          ],
+          "tier": "PRIMARY",
+          "feedsHexaMastery": "Mastery Node/Core 2, which contains the HEXA versions of those three skills.",
+          "verifiedClaim": "Contents identical across maplestorywiki (Core 2), Grandis Library (Node 2) and NamuWiki (파초풍 : 천 / 토파류 : 지 / 여의선 : 인). The community nickname 'Basics Mastery' was DELETED: it appears in no source reached this session.",
+          "sources": [
+            "https://maplestorywiki.net/w/Hoyoung/Skills",
+            "https://grandislibrary.com/anima/hoyoung",
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+          ],
+          "sourceCount": 3,
+          "consensus": "strong",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": 3,
+          "contents": [
+            "Talisman: Clone",
+            "Talisman: Seeking Ghost Flame"
+          ],
+          "tier": "PRIMARY",
+          "feedsHexaMastery": "Mastery Node/Core 3, which contains the HEXA versions of those two skills.",
+          "verifiedClaim": "Contents identical across maplestorywiki (Core 3), Grandis Library (Node 3) and NamuWiki (환영 분신부 / 추적 귀화부). The nickname 'Talisman Mastery' was DELETED as unsourced.",
+          "sources": [
+            "https://maplestorywiki.net/w/Hoyoung/Skills",
+            "https://grandislibrary.com/anima/hoyoung",
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+          ],
+          "sourceCount": 3,
+          "consensus": "strong",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": 4,
+          "contents": [
+            "Scroll: Star Vortex",
+            "Scroll: Butterfly Dream"
+          ],
+          "tier": "PRIMARY",
+          "feedsHexaMastery": "Mastery Node/Core 4, which contains the HEXA versions of those two skills.",
+          "verifiedClaim": "Contents identical across maplestorywiki (Core 4), Grandis Library (Node 4) and NamuWiki (권술 : 흡성와류 / 권술 : 호접지몽). The nickname 'Scroll Mastery' was DELETED as unsourced.",
+          "sources": [
+            "https://maplestorywiki.net/w/Hoyoung/Skills",
+            "https://grandislibrary.com/anima/hoyoung",
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+          ],
+          "sourceCount": 3,
+          "consensus": "strong",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": 5,
+          "contents": [
+            "Sage: Tai Yu Clone",
+            "Scroll: Degeneration"
+          ],
+          "tier": "SECONDARY",
+          "feedsHexaMastery": null,
+          "verifiedClaim": "Contents identical across maplestorywiki (Core 5), Grandis Library (Node 5) and NamuWiki (선기 : 분신 둔갑 태을선인 / 권술 : 미생강변). SECONDARY tier: Grandis marks it secondary; NamuWiki files the same pair under 선택 강화 코어 (optional) and adds that 권술 : 미생강변 contributes little to damage or one-shot thresholds, so some players skip it by preference.",
+          "sources": [
+            "https://maplestorywiki.net/w/Hoyoung/Skills",
+            "https://grandislibrary.com/anima/hoyoung",
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+          ],
+          "sourceCount": 3,
+          "consensus": "strong",
+          "consensusNote": "Contents strong across three independent sources. The SECONDARY grading itself is two independent sources (Grandis, NamuWiki) - previously recorded as 'Grandis only', which was wrong.",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "node": 6,
+          "contents": [
+            "Talisman: Evil-Sealing Gourd",
+            "Thousand-Ton Stone",
+            "Swift Sally"
+          ],
+          "tier": "SECONDARY",
+          "feedsHexaMastery": null,
+          "verifiedClaim": "Contents identical across maplestorywiki (Core 6), Grandis Library (Node 6) and NamuWiki (마봉 호로부 / 둔갑 천근석 / 무운쇄도). SECONDARY tier from Grandis plus NamuWiki's 선택 강화 코어 grouping.",
+          "sources": [
+            "https://maplestorywiki.net/w/Hoyoung/Skills",
+            "https://grandislibrary.com/anima/hoyoung",
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+          ],
+          "sourceCount": 3,
+          "consensus": "strong",
+          "verifiedAt": "2026-09-12"
+        }
+      ]
+    },
+    "historicalPreV269": {
+      "doNotBuildToThis": true,
+      "what": "Trio compositions from the craftable-trio era, kept only so a player who finds them in an old guide can recognise them as obsolete.",
+      "classDocThematicBuild": [
+        "humanity + earth + heaven",
+        "clone + ghost + gourd",
+        "vortex + degen + butterfly"
+      ],
+      "classDocStandardBuild": [
+        "clone + earth + humanity",
+        "heaven + ghost + vortex",
+        "gourd + degen + butterfly"
+      ],
+      "verifiedClaim": "Both builds were read off the class doc's V Matrix page on 2026-09-12, still live and unretracted, labelled 'Option 1: Thematic Boost Build' (hinted 'Streamlined for hyperburns and fast leveling') and 'Option 2: Standard Boost Build' (hinted 'Optimized for low-level bossing'), with the Standard build's rows labelled most important / important / least important. mastermysty's cross-class node table lists Hoyoung's Essential #1 as Humanity: As-You-Will Fan, Earth: Ground-Shattering Wave and Talisman: Clone; Essential #2 as Scroll: Star Vortex, Talisman: Seeking Ghost Flame and Heaven: Iron Fan Gale; and a '6th Job Mastery' tier of Talisman: Evil-Sealing Gourd, Scroll: Butterfly Dream and Scroll: Degeneration - the same three sets as the class doc's Standard build. Grandis Library separately retains a legacy 'Primary Trio / Secondary Trio / Tertiary Trio' block whose grouping matches the class doc's THEMATIC build instead. mastermysty's page is dated 2024-11-21 with underlying data from 2024-05-14; the class doc's trio tables are undated images. All predate 2026-06-17.",
+      "sources": [
+        "https://www.hoyoung.directory/basics/v-matrix",
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://grandislibrary.com/anima/hoyoung"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "consensusNote": "Two independent lineages for what the pre-v269 advice WAS: the class doc family (class doc plus Grandis's legacy trio block, credited to the class doc) and mastermysty. Moderate, and irrelevant to building today.",
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "Mechanics re-read off maplestorywiki.net/w/V_Matrix on 2026-09-12. At Lv.200 you open the V Matrix with 12 node slots (raised from 7 by GMS v255, 2024-11-20) and the maximum is 30. Matrix points: 1 per level from 200-220, then 2 per level from 221-260, after which point gain stops; an additional node slot opens at Lv. 210, 220, 230, 240, 250 and 260. Boost nodes cap at Lv.60 and 'must be Level 40 to unlock their corresponding HEXA Mastery Nodes'. Job nodes cap at Lv.30 and 'must be Level 25 to unlock their corresponding HEXA Boost Nodes' - note that this is the V Matrix page's wording, while the Hoyoung skill page's HEXA Enhancements section says instead that Enhancements 'require the corresponding V Skill to be leveled to max and equipped'. The same wiki is internally inconsistent about whether the job-node gate is 25 or 30; both statements are recorded rather than picking one. Practical bridge for this class: the four PRIMARY boost nodes need 40 and the four job skills need at least 25 before Hoyoung's HEXA Mastery or Enhancement cores can be touched. Separately, the class doc's V Matrix page still shows the pre-v269 trio images and has not been rewritten for the overhaul, so read its Node Upgrade Order line and ignore its trio tables."
   },
   "hexa": {
-    "order": [
-      {
-        "step": "Hoyoung's HEXA node set, so that nothing below refers to an invented name. Skill (Origin) core: Sage: Apotheosis. Second skill core (Ascent): listed as Millennium Spirit on the wiki and as Heavenly World in the class doc's tracker - see conflicts. Third skill core: Sage: Liberated Taotie. Mastery cores: Universal Harmony (core 1), Basics Mastery (core 2), Talisman: Clone and Ghost (core 3), Scroll: Vortex and Butterfly (core 4). Enhancement cores: Sage: Clone Rampage Boost, Scroll: Tiger of Songyu Boost, Sage: Wrath of Gods Boost, Sage: Three Paths Apparition Boost. Common cores: Sol Janus, Sol Hecate, plus the Anima common node Lotus Flower.",
-        "why": "Name validation. The four Mastery and four Enhancement cores are confirmed by two independent wikis plus the class doc's own tracker; the third skill core and the Anima common node appear in the Korean wiki and the class doc's 2026-08 tracker but not on the English wiki's Hoyoung page.",
-        "consensus": "strong for the Origin, four Masteries and four Enhancements; moderate for the third skill core and Lotus Flower as a common node, which two sources carry and one does not yet.",
+    "nodeSet": {
+      "why": "Name validation, so that nothing below refers to an invented name. Re-read against maplestorywiki's Hoyoung skill page, Grandis Library's 6th Job skill list and NamuWiki on 2026-09-12.",
+      "originSkillCore": {
+        "name": "Sage: Apotheosis",
+        "verifiedClaim": "maplestorywiki labels it 'Skill Node/Core 1 (Origin)'. Grandis Library's 6th Job list carries it (spelled 'Sage: Apothesis' there, a typo on Grandis's side). NamuWiki gives 선기 : 파천황 with the GMS name field filled in as 'Sage: Apotheosis'.",
         "sources": [
           "https://maplestorywiki.net/w/Hoyoung/Skills",
-          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-          "https://docs.google.com/spreadsheets/d/187ymaOCrk9tbMztgVuQkPj5U3lJmqaMAhO1DsvCbp5Y"
-        ]
+          "https://grandislibrary.com/anima/hoyoung",
+          "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ],
+        "sourceCount": 3,
+        "consensus": "strong",
+        "verifiedAt": "2026-09-12"
       },
+      "ascentSkillCore": {
+        "name": "Millennium Spirit",
+        "verifiedClaim": "maplestorywiki labels it 'Skill Node/Core 2 (Ascent)' and names it Millennium Spirit; Grandis Library's 6th Job list also names it Millennium Spirit. NamuWiki's entry is 천세휘령, whose GMS name field is EMPTY and whose MSEA field reads 'Millennial Sweep' - so NamuWiki does not contradict the GMS name, it simply does not supply one. This resolves the previously recorded conflict against the class doc tracker's 'Heavenly World': two independent GMS-facing sources say Millennium Spirit and none reached this session says Heavenly World.",
+        "sources": [
+          "https://maplestorywiki.net/w/Hoyoung/Skills",
+          "https://grandislibrary.com/anima/hoyoung"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
+      },
+      "masteryCores": [
+        {
+          "core": 1,
+          "contents": [
+            "HEXA Heaven: Consuming Flames (and its [Enhanced] and Clone/True variants)",
+            "HEXA Earth: Stone Tremor (and its [Enhanced] and Clone/True variants)",
+            "HEXA Humanity: Gold-Banded Cudgel (and its [Enhanced] variant)",
+            "Universal Harmony"
+          ]
+        },
+        {
+          "core": 2,
+          "contents": [
+            "HEXA Heaven: Iron Fan Gale (and Clone/True)",
+            "HEXA Earth: Ground-Shattering Wave (and Clone/True)",
+            "HEXA Humanity: As-You-Will Fan"
+          ]
+        },
+        {
+          "core": 3,
+          "contents": [
+            "HEXA Talisman: Clone",
+            "HEXA Talisman: Seeking Ghost Flame"
+          ]
+        },
+        {
+          "core": 4,
+          "contents": [
+            "HEXA Scroll: Star Vortex",
+            "HEXA Scroll: Butterfly Dream"
+          ]
+        }
+      ],
+      "masteryCoresVerifiedClaim": "Membership read verbatim off maplestorywiki's 'Mastery Skills' section on 2026-09-12; NamuWiki's HEXA 마스터리 코어 section lists the same four groupings (멸화염/지진쇄/금고봉 VI plus 천지만물; 파초풍/토파류/여의선 VI; 환영 분신부/추적 귀화부 VI; 흡성와류/호접지몽 VI). The nicknames 'Basics Mastery', 'Talisman Mastery' and 'Scroll Mastery' previously carried here were DELETED - no source reached this session uses them, and a mastery-core name a player cannot find in-game is worse than none.",
+      "masteryCoresSources": [
+        "https://maplestorywiki.net/w/Hoyoung/Skills",
+        "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ],
+      "masteryCoresSourceCount": 2,
+      "masteryCoresConsensus": "moderate",
+      "enhancementCores": [
+        "Sage: Clone Rampage Boost",
+        "Scroll: Tiger of Songyu Boost",
+        "Sage: Wrath of Gods Boost",
+        "Sage: Three Paths Apparition Boost"
+      ],
+      "enhancementCoresOrdered": false,
+      "enhancementCoresVerifiedClaim": "All four read off maplestorywiki's 'HEXA Enhancements' section on 2026-09-12; NamuWiki's HEXA 강화 코어 section lists the same four (극대 분신난무 강화, 산령소환 강화, 강림 괴력난신 강화, 천지인 환영 강화). Stored as an UNORDERED set: neither source ranks them, and the previous file ranked them by borrowing the 5th job job-node order, which neither source states about Enhancement cores. See the Clone Rampage caveat below for the one Enhancement-core judgement that IS sourced.",
+      "enhancementCoresSources": [
+        "https://maplestorywiki.net/w/Hoyoung/Skills",
+        "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ],
+      "enhancementCoresSourceCount": 2,
+      "enhancementCoresConsensus": "moderate",
+      "commonCores": [
+        "Sol Janus (with Sol Janus: Dawn and Sol Janus: Dusk)",
+        "Sol Hecate (with Sol Hecate: Styx and Sol Hecate: Phlegethon)"
+      ],
+      "commonCoresVerifiedClaim": "maplestorywiki's 'Shared HEXA Skills' section lists Sol Janus and Sol Hecate and nothing else for Hoyoung; NamuWiki's HEXA 공용 코어 section lists the same two. A third HEXA common node, 화중군자 VI (아니마 공통), appears on NamuWiki only, and its GMS/MSEA/JMS/CMS/TMS name fields all read the placeholder 'aaaa' - i.e. it has no released English name. Its 5th job counterpart 화중군자 IS named (GMS 'Lotus Flower'), which is what the earlier draft confused it with. 'Lotus Flower as a HEXA common node' was therefore DEMOTED from the confirmed node set to the notConfirmedInGms list below.",
+      "commonCoresSources": [
+        "https://maplestorywiki.net/w/Hoyoung/Skills",
+        "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ],
+      "commonCoresSourceCount": 2,
+      "commonCoresConsensus": "moderate",
+      "notConfirmedInGms": [
+        {
+          "name": "Sage: Liberated Taotie (KMS 선기 : 사흉해방 도철), a third class-specific HEXA skill core",
+          "status": "Listed on NamuWiki with an EMPTY GMS name field (and empty MSEA/JMS/CMS/TMS fields). Absent from maplestorywiki's Class-Specific HEXA Skills section, which lists only Core 1 and Core 2. Absent from Grandis Library's 6th Job skill list, which carries only Sage: Apotheosis and Millennium Spirit. Best reading: KMS content not yet named or released in GMS at v.271. Do not plan around it.",
+          "sources": [
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+            "https://maplestorywiki.net/w/Hoyoung/Skills",
+            "https://grandislibrary.com/anima/hoyoung"
+          ],
+          "sourceCount": 3,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        },
+        {
+          "name": "A HEXA (6th job) version of the Anima common node Lotus Flower (KMS 화중군자 VI)",
+          "status": "Listed on NamuWiki with placeholder 'aaaa' in every localisation name field. Absent from maplestorywiki's Shared HEXA Skills. Note that the 5TH JOB Lotus Flower is real and named in GMS - the class doc lists it under V Matrix bossing utility - so the two must not be conflated.",
+          "sources": [
+            "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+            "https://maplestorywiki.net/w/Hoyoung/Skills"
+          ],
+          "sourceCount": 2,
+          "consensus": "moderate",
+          "verifiedAt": "2026-09-12"
+        }
+      ],
+      "masteryCoresVerifiedAt": "2026-09-12",
+      "enhancementCoresVerifiedAt": "2026-09-12",
+      "commonCoresVerifiedAt": "2026-09-12"
+    },
+    "order": [
       {
-        "step": "Universal Harmony (Mastery core 1) is the first HEXA core to invest in.",
-        "why": "The core's payoff is not only the upgraded Heaven/Earth/Humanity attacks but the Universal Harmony buff they trigger, and the buff's final damage grows by one percentage point every six levels - so the core carries more value per level than the other 6th job cores. The class doc's tracker independently arrives at the same answer: from an untouched matrix its computed first step is Universal Harmony, and its next Harmony checkpoint is level 6, which lines up with that six-level breakpoint.",
-        "consensus": "strong - two independent lineages. The Korean community wiki states the priority and the reason; the class doc's tracker, which derives its ordering from MapleScouter rather than from the Korean wiki, produces the same first step and the same six-level cadence.",
+        "step": "Mastery Core 1 - the Consuming Flames / Stone Tremor / Gold-Banded Cudgel core carrying the Universal Harmony buff - is the first HEXA core to invest in.",
+        "why": "The payoff is not only the upgraded Heaven/Earth/Humanity attacks but the Universal Harmony buff they trigger, whose effect grows by 1 percentage point every 6 levels - so the core carries more value per level than the other 6th job cores.",
+        "verifiedClaim": "NamuWiki states, verbatim: '강화된 천지인 스킬의 피해량 자체도 강력하지만, 그보다도 최종 데미지 증가로 인한 전반적인 피해량 증가폭이 크다. 특히 버프 효과가 6레벨당 1%p씩 증가하므로, 호영은 멸화염/지진쇄/금고봉 마스터리 코어의 강화를 다른 6차 코어보다 우선해야 한다.' - the enhanced Heaven/Earth/Humanity skills hit hard, but the broader gain from the Final Damage increase is larger, and because the buff effect rises 1%p every 6 levels, Hoyoung should prioritise the Consuming Flames / Stone Tremor / Gold-Banded Cudgel mastery core over the other 6th job cores. maplestorywiki independently confirms Universal Harmony sits inside Mastery Node/Core 1.",
         "sources": [
           "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-          "https://docs.google.com/spreadsheets/d/187ymaOCrk9tbMztgVuQkPj5U3lJmqaMAhO1DsvCbp5Y"
-        ]
+          "https://maplestorywiki.net/w/Hoyoung/Skills"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "DOWNGRADED from the previous 'strong - two independent lineages'. The judgement has exactly one publisher, NamuWiki. The second lineage previously claimed was the class doc's HEXA tracker spreadsheet, whose grid could not be read this session and which is in any case derived from MapleScouter and from the class doc family - not an independent vote. maplestorywiki is cited here only to confirm that Universal Harmony really is in Mastery Core 1; it makes no priority judgement. NamuWiki is KMS-balance, so the conclusion may not transfer cleanly to GMS Heroic.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Sol Janus to level 1 early, unless the character is a pure boss mule that neither trains nor farms.",
-        "why": "The class doc justifies it on time saved in dailies and farming rather than on damage. Beyond level 1 it says 10, 20 and 30 are all defensible stopping points depending on the training map and on whether the goal is level 290, and notes Hoyoung can already clear most maps with one or two Dawn Orbs or with Dusk Lightning, so the case for pushing Sol Janus further is weaker than for classes that need it to clear.",
-        "consensus": "weak - one lineage (class doc). No independent source located for the Sol Janus timing on this class.",
-        "sources": ["https://www.hoyoung.directory/basics/hexa-matrix/sol-janus"]
-      },
-      {
-        "step": "The class doc's current computed Heroic (Reboot) sequence, read from its tracker under the Lotus-Flower Heroic preset starting from an untouched matrix with Apotheosis already at 1. Each entry is a target level, not a single level-up: Universal Harmony to 1, Talisman Mastery to 1, Scroll Mastery to 1, Sol Hecate to 1, Universal Harmony to 6, Scroll to 2, Talisman to 2, Scroll to 3, HEXA Stat I to 20, Scroll to 4, Talisman to 4, Scroll to 6, Talisman to 5, Scroll to 7, HEXA Stat II to 20, Talisman to 6, Basics Mastery to 6, Scroll to 8.",
-        "why": "This is the class community's operative answer to what to build next, and it is recomputed per character rather than fixed. Two things about its shape are worth keeping: the four Mastery cores are opened at level 1 almost immediately and then raised in an interleaved pattern rather than one at a time, and the HEXA Stats are slotted in at defined points rather than left to the end.",
-        "consensus": "weak - single lineage, and conditional. The tracker's presets are labelled Scouter, meaning the ordering is derived from the Korean MapleScouter optimizer, so this and MapleScouter are one source, not two. The list is also preset-dependent (separate Hecate, Lotus and Taotie presets exist, each with Heroic and Interactive variants) and input-dependent, and it is what the sheet displays for default inputs rather than a published static order. Treat it as a worked example, not doctrine.",
+        "why": "The class doc justifies it on time saved rather than on damage. Beyond level 1 it names 10, 20 and 30 as all valid stopping points depending on training map and progression, and notes Hoyoung can already clear most maps with one or two Dawn Orbs or with Dusk Lightning, so the case for pushing Sol Janus further is weaker than for classes that need it to clear.",
+        "verifiedClaim": "Read verbatim off the class doc's Sol Janus page on 2026-09-12: unlocking Sol Janus to level 1 'should be a top priority due to the significant time savings in dailies and farming', 'unless your Hoyoung is just a boss mule that doesn't do either'; 'Depending on your training map and progression, level 10, 20, or 30 are all valid options'; and 'Hoyoung can clear most maps easily with one or two Dawn Orbs (or with Dusk Lightning)'. The previous draft's extra clause 'and on whether the goal is level 290' was DELETED - the page talks about level advantage providing more FD in general terms and names no such target.",
         "sources": [
-          "https://docs.google.com/spreadsheets/d/187ymaOCrk9tbMztgVuQkPj5U3lJmqaMAhO1DsvCbp5Y",
-          "https://maplescouter.com/optimizer"
-        ]
+          "https://www.hoyoung.directory/basics/hexa-matrix/sol-janus"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single lineage (class doc). No independent source for Sol Janus timing on this class was located.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "step": "Enhancement cores, when you get to them, follow the 5th job skill ranking: Sage: Clone Rampage, then Sage: Wrath of Gods, then Sage: Three Paths Apparition, then Scroll: Tiger of Songyu last.",
-        "why": "Tiger of Songyu is last because it is the smallest share of Hoyoung's 5th job damage. A class-specific wrinkle on Clone Rampage: unlike Hoyoung's other Enhancement cores its gain per level is flat, with no jump at the level-30 breakpoint, while the Sol Erda and fragment cost of that breakpoint is unchanged - so at 29 the Korean wiki advises putting the resources into another core first.",
-        "consensus": "moderate. The ranking itself is strong, since the class doc's V-matrix upgrade order gives the identical sequence for the same four skills and the two sources are independent. The flat-scaling caveat on Clone Rampage is weak - Korean wiki only, and the maths behind it is not restated in any GMS source located.",
+        "step": "Sage: Clone Rampage Boost is the one Enhancement core with a class-specific wrinkle: taking it from 29 to 30 is worse value than starting another core.",
+        "why": "Unlike Hoyoung's other Enhancement cores, its gain per level is flat with no jump at the level-30 breakpoint, while the Sol Erda and fragment cost of that breakpoint is unchanged.",
+        "verifiedClaim": "UPGRADED this pass from weak to moderate because maplestorywiki's own level tables independently demonstrate the claim NamuWiki makes. NamuWiki: '다른 강화 코어와 달리 레벨당 증가량이 일정하다. 단, 10의 단위 레벨마다 요구하는 솔 에르다 및 조각의 요구량에는 변동이 없다. 따라서 29레벨에서 30레벨로 넘어가는 단계라면 다른 코어를 먼저 강화할 것이 권장된다.' Independently, maplestorywiki's HEXA Enhancements section states 'Final Damage bonuses from Enhancements increase linearly each level, with a jump at levels 10, 20, and 30', and its per-level tables show Sage: Clone Rampage Boost going 452 at Lv.1, 548 at 9, 560 at 10, 668 at 19, 680 at 20, 788 at 29, 800 at 30 - a flat +12 per level with no breakpoint jump - while Scroll: Tiger of Songyu Boost goes +49% at 29 to +60% at 30, an eleven-point jump. The numbers confirm the caveat.",
         "sources": [
           "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-          "https://www.hoyoung.directory/basics/v-matrix"
-        ]
+          "https://maplestorywiki.net/w/Hoyoung/Skills"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "step": "HEXA Stat unlock gates, which are what actually paces the HEXA Stat steps above. HEXA Stat I opens at Lv.260 and the class doc says to unlock it after raising Sage: Clone Rampage's Enhancement to 5 on Heroic, or 4 on Interactive. HEXA Stat II opens at Lv.265 and the doc says to unlock it once Universal Harmony reaches Lv.18, on both server types. HEXA Stat III opens at Lv.270 and the doc says after Sage: Apotheosis reaches 5 on Heroic, or Scroll: Tiger of Songyu reaches 1 on Interactive.",
+        "step": "HEXA Stat unlock gates. HEXA Stat I opens at Lv.260; the class doc says to unlock it after raising Rampage to level 5 on Heroic, or 4 on Interactive. HEXA Stat II opens at Lv.265; unlock it once Universal Harmony (Mastery I) reaches Lv.18, on both server types. HEXA Stat III opens at Lv.270; after Apotheosis reaches 5 on Heroic, or Tiger reaches 1 on Interactive.",
         "why": "These are the doc's own checkpoints for when a HEXA Stat is worth opening relative to skill investment, and they are the one place the doc separates Heroic from Interactive explicitly.",
-        "consensus": "weak - single lineage (class doc), but stated as plain text rather than buried in an image, and internally consistent with the tracker's HEXA Stat placements.",
-        "sources": ["https://www.hoyoung.directory/basics/hexa-matrix/hexa-stat"]
+        "verifiedClaim": "Read off the class doc's HEXA Stat page on 2026-09-12, matching level-for-level. One correction: the doc writes 'Rampage' and 'Apotheosis' plainly; the previous draft rendered the HEXA Stat I gate as 'Sage: Clone Rampage's Enhancement to 5', which adds a specificity (skill node versus Enhancement core) the page does not state. That specificity was removed.",
+        "sources": [
+          "https://www.hoyoung.directory/basics/hexa-matrix/hexa-stat"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single lineage (class doc), but stated as plain text rather than encoded in an image.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "step": "HEXA Stat line setup. Opening configuration: main stat to ATT, the two additional stats to Crit Damage and LUK. Keep enhancing until the main stat reaches level 3, which is where the reroll cost steps from 10 to 20 fragments, then decide whether to finish the node now for a small across-the-board gain or park it and come back after upgrading other HEXA skills. Once maxed, the doc's ordering is ATT above LUK above Crit Damage, on the reasoning that ATT is multiplied by percentage lines while LUK arrives as a flat final-stat bonus. For HEXA Stats II and III the doc declines to give a fixed answer and points at MapleScouter's optimizer instead.",
-        "why": "Recorded as stated because the doc deliberately stops short of a universal answer on the second and third stat nodes.",
-        "consensus": "weak - single lineage. Note the doc itself treats the later HEXA Stats as a per-character computation, which is worth surfacing to a user rather than replacing with a static list.",
-        "sources": ["https://www.hoyoung.directory/basics/hexa-matrix/hexa-stat"]
+        "step": "HEXA Stat line setup. Opening configuration: main stat to ATT, the two additional stats to Crit Damage and LUK. Keep enhancing until the main stat reaches level 3, where the cost steps from 10 to 20, then decide whether to finish the node now for a small across-the-board gain or park it and focus on specific skills. Once maxed, prioritise ATT above LUK above Crit Damage. For HEXA Stats II and III the doc declines to give a fixed answer and points at MapleScouter instead.",
+        "why": "Recorded as stated because the doc deliberately stops short of a universal answer on the second and third stat nodes - it says to use MapleScouter to check what is best personally.",
+        "verifiedClaim": "Read off the class doc's HEXA Stat page on 2026-09-12: 'MAIN STAT to ATT', 'ADDITIONAL STATS to Crit Damage and LUK', 'Keep Enhancing until MAIN STAT gets to level 3 (cost increase from 10 to 20)', 'Prioritise highest levels/stat for ATT > LUK > Crit Damage' because 'ATT is affected by % lines, LUK is a flat bonus (final stat)', and 'Use MapleScouter to check what is best for you personally' for Stats II and III. One correction: the previous draft said the cost steps 'from 10 to 20 fragments'; the page does not name the unit, so 'fragments' was removed.",
+        "sources": [
+          "https://www.hoyoung.directory/basics/hexa-matrix/hexa-stat"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single lineage. The doc itself treats HEXA Stats II and III as a per-character computation, which should be surfaced to a user rather than replaced with a static list.",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Deliberately left out rather than guessed: the full step-by-step HEXA order beyond the 18 checkpoints listed above, and any Sol Erda versus Sol Erda Fragment budgeting split. The class doc publishes its full Heroic priority only as an infographic, and that infographic is stamped 2025-02-26 while the doc's own tracker spreadsheet (updated 2026-08-23) carries a note flagging the infographic as out of date and directing readers to the tracker or the simplified guide instead - so the image was not transcribed. The doc separately warns that even the displayed Heroic priority is a simplified version chosen to give similar final damage in fewer steps, and that full optimization and the extra breakpoints live in MapleScouter or the tracker. General HEXA mechanic worth knowing here: because the Sol Erda and fragment cost of the level-30 step is identical for every core, going 29 to 30 on a core is usually worse than starting another core.",
+    "orderShapeNote": "This array is an ordered PRIORITY list only for its first two entries, which are the only genuinely sequenced claims any reachable source makes (Mastery Core 1 first; Sol Janus to 1 early). The remaining entries are gates and configuration advice that apply when their level thresholds arrive, not further steps in a ranking. Downstream code must not read positions 3-5 as 'third, fourth, fifth priority'.",
+    "deletedThisPass": "A previously recorded 18-step HEXA sequence ('Universal Harmony to 1, Talisman Mastery to 1, Scroll Mastery to 1, Sol Hecate to 1, Universal Harmony to 6, ...') was DELETED. It was attributed to a live-computed cell in the class doc's tracker spreadsheet; the spreadsheet grid could not be read this session, the value is input-dependent and preset-dependent by the file's own admission, and it used two mastery-core nicknames that appear in no reachable source. An ordered 18-step array that a planner would diff a player's build against is exactly the shape that must not outrun its evidence. Also DELETED: the claim that the four Enhancement cores should be levelled in the order Clone Rampage, Wrath of Gods, Three Paths Apparition, Tiger of Songyu. That ordering is real for the 5TH JOB job nodes (see vMatrix.priority) but neither the class doc nor NamuWiki states it for HEXA Enhancement cores; carrying it over was an inference presented as a citation.",
+    "notes": "Deliberately left out rather than guessed: any full step-by-step HEXA order, and any Sol Erda versus Sol Erda Fragment budgeting split. The class doc publishes its Heroic priority only as an infographic, and the doc's own hint above that image reads, verbatim: 'The heroic hexa priority displayed is a simplifed version, which gives similar FD with fewer steps. For full optimization and extra breakpoints, check MapleScouter or the Hoyoung HEXA Matrix Tracker sheet.' That warning is the doc's, re-read 2026-09-12, and is why the image was not transcribed; the page's tracker section self-stamps 'Updated 26/02/2025'. General HEXA mechanic worth knowing: because the Sol Erda and fragment cost of the level-30 step is identical for every core, going 29 to 30 on a core is often worse than starting another core - and for Sage: Clone Rampage Boost specifically it always is, since that core has no level-30 jump.",
     "resources": {
       "tracker": "https://docs.google.com/spreadsheets/d/187ymaOCrk9tbMztgVuQkPj5U3lJmqaMAhO1DsvCbp5Y",
-      "trackerAuthor": "Soushi",
-      "trackerUpdated": "2026-08-23",
-      "trackerNote": "Covers Hoyoung and Ren. Six priority presets, split by which second common node you assume (Hecate, Lotus or Taotie) and by Heroic versus Interactive. All presets are labelled Scouter, i.e. derived from MapleScouter."
+      "trackerTitle": "Hoyoung and Ren HEXA Matrix Tracker",
+      "trackerVerifiedAt": "2026-09-12",
+      "trackerVerificationNote": "Only the URL's reachability and its document title were verified this session - the Google Sheets htmlview returned the page shell without grid data, so no cell contents could be read. Previously recorded interior details (author name, a 2026-08-23 revision date, six named priority presets, a notes cell flagging the class doc's infographic as out of date) are NOT re-verified and have been removed from the claim body rather than restated. Treat this as a link to hand the player, not as a source of claims.",
+      "upstreamOptimizer": "https://maplescouter.com/optimizer",
+      "upstreamOptimizerNote": "The class doc's HEXA Stat page defers to MapleScouter for HEXA Stats II and III, and the tracker's priority presets are derived from it. Upstream of the class doc's ordering, not a second opinion on it."
     }
   },
   "hyperStats": {
     "priority": [],
-    "notes": "No Hoyoung-specific Hyper Stat allocation was found in any source reached. The class doc has no Hyper Stats page at all - its documentation index lists Inner Ability, Hyper Skills, V Matrix, HEXA Matrix, HEXA Stat and Sol Janus, and nothing on hyper stats - and a direct query against the doc returned only its HEXA Stat guidance, which is a different system. Grandis Library carries no hyper stat section for any class. Leaving this empty rather than importing a generic cross-class list. Two class-specific facts that would feed a real calculation are recorded under gearingNotes: Hoyoung's skills already supply +55% critical rate, and the class reaches attack speed 0 without an attack speed inner ability line."
+    "ordered": false,
+    "noSourceFound": true,
+    "verifiedClaim": "Re-checked 2026-09-12. The class doc has no Hyper Stats page at all: its machine-readable index at https://www.hoyoung.directory/llms.txt lists Welcome, Class Overview, Class Drawbacks, FAQ, Link Skills, Optimizing Link Skills for Culvert, Inner Ability, Rolling your Inner Ability, Hyper Skills, Weapon/Secondary/Emblem, Genesis Weapon Flames, Legion Artifact, V Matrix, HEXA Matrix, Sol Janus, HEXA Stat, Common Questions, Sequences, Training, Skills, the Hoyoung Gauge, three Seeking Ghost Flame lore pages, Culvert, Rotation, Bossing, General Rotation, Damage Distribution, Three Paths Apparition, Proper Apparition Usage, Oz Ring Guide and Dark Sight Guide - and nothing on hyper stats. Grandis Library's Hoyoung page likewise carries no hyper stat section. HEXA Stat is a different system and is recorded under hexa, not here.",
+    "sources": [
+      "https://www.hoyoung.directory/llms.txt",
+      "https://grandislibrary.com/anima/hoyoung"
+    ],
+    "sourceCount": 2,
+    "consensus": "moderate",
+    "consensusNote": "This label describes an ABSENCE, not a recommendation - two independent checks (the class doc's own page index and Grandis Library) confirm no Hoyoung-specific hyper stat guidance exists. It is not 'strong' because strong requires 3+ independent sources and because there is no claim here to be confident about. priority is empty and ordered:false; any downstream ranking must come from somewhere else.",
+    "verifiedAt": "2026-09-12",
+    "notes": "Left empty on purpose rather than importing a generic cross-class hyper stat list. Two class-specific facts that would feed a real calculation are recorded under gearingNotes: Hoyoung's own skills already supply +55% critical rate (Grandis: base +5%, Third Eye +30%, Asura +10%, Dragon's Eye +10%), and the class reaches attack speed 0 without an attack speed inner ability line."
   },
   "hyperSkills": {
-    "passivePicks": [
-      {
-        "pick": "Empowered Harmony - Damage +10%",
-        "consensus": "moderate on the pick, weak on the position. Both the class doc and Grandis list it among the five taken, but they are one lineage - Grandis credits its Hyper Passive Build to the class doc. The wiki independently confirms the skill name exists.",
-        "sources": [
-          "https://www.hoyoung.directory/basics/hyper-skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://maplestorywiki.net/w/Hoyoung/Skills"
-        ]
-      },
-      {
-        "pick": "Boss Rush Harmony - Boss Damage +15%",
-        "consensus": "moderate on the pick, weak on the position. Same single lineage; name confirmed by the wiki.",
-        "sources": [
-          "https://www.hoyoung.directory/basics/hyper-skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://maplestorywiki.net/w/Hoyoung/Skills"
-        ]
-      },
-      {
-        "pick": "Guardbreaking Clones - Ignore Enemy Defense +25%",
-        "consensus": "moderate on the pick, weak on the position. Same single lineage; name confirmed by the wiki, which spells it Guardbreaking Clones while the class doc writes Guard Breaking Clones.",
-        "sources": [
-          "https://www.hoyoung.directory/basics/hyper-skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://maplestorywiki.net/w/Hoyoung/Skills"
-        ]
-      },
-      {
-        "pick": "Hasty Ghost Flame - Attack Interval -25%",
-        "consensus": "moderate on the pick, weak on the position. Same single lineage; name confirmed by the wiki.",
-        "sources": [
-          "https://www.hoyoung.directory/basics/hyper-skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://maplestorywiki.net/w/Hoyoung/Skills"
-        ]
-      },
-      {
-        "pick": "Hasty Vortex - Attack Interval -20%",
-        "consensus": "moderate on the pick, weak on the position. Same single lineage; name confirmed by the wiki.",
-        "sources": [
-          "https://www.hoyoung.directory/basics/hyper-skills",
-          "https://grandislibrary.com/anima/hoyoung",
-          "https://maplestorywiki.net/w/Hoyoung/Skills"
-        ]
-      }
-    ],
-    "pickOrder": {
-      "order": "Empowered Harmony and Boss Rush Harmony first, then Guardbreaking Clones, then Hasty Ghost Flame, then Hasty Vortex.",
-      "consensus": "weak - one source, and not an independent one. Grandis presents its Hyper Skill Passive Build as an ordered list but credits that field to the class doc; the class doc itself lists the same five passives with no ordering at all, which a direct query against it confirmed. So the order has one publisher and no corroboration.",
-      "sources": ["https://grandislibrary.com/anima/hoyoung"]
+    "passivePicks": {
+      "ordered": false,
+      "orderedNote": "Stored as an UNORDERED set. The class doc presents these five in a plain table with no ranking, confirmed by re-reading the page on 2026-09-12. Downstream code must not read array position as priority; the one ordering anyone publishes is recorded separately under pickOrder and is weak.",
+      "picks": [
+        {
+          "pick": "Empowered Harmony",
+          "effect": "Damage +10%",
+          "boosts": "Humanity: As-You-Will Fan, Ground-Shattering Wave skills, Iron Fan Gale skills, Stone Tremor skills, Consuming Flames skills, Humanity: Gold-Banded Cudgel",
+          "levelRequirement": 140
+        },
+        {
+          "pick": "Boss Rush Harmony",
+          "effect": "Boss Damage +15%",
+          "levelRequirement": null
+        },
+        {
+          "pick": "Guardbreaking Clones",
+          "effect": "Ignore Defense +25%",
+          "levelRequirement": null,
+          "spellingNote": "maplestorywiki spells it Guardbreaking Clones; the class doc writes Guard Breaking Clones. Same skill."
+        },
+        {
+          "pick": "Hasty Ghost Flame",
+          "effect": "Attack Interval -25%",
+          "levelRequirement": null
+        },
+        {
+          "pick": "Hasty Vortex",
+          "effect": "Attack Interval -20%",
+          "levelRequirement": null
+        }
+      ],
+      "verifiedClaim": "The five picks were re-read off the class doc's Hyper Skills page on 2026-09-12 (Empowered Harmony, Boss Rush Harmony, Guard Breaking Clones, Hasty Ghost Flame, Hasty Vortex, presented as a table with no ranking). Grandis Library lists the same five but explicitly credits its 'Hyper Skill Passive Build' field to 'Class Doc', so it is the same lineage, not a second vote. Every name and every effect value above was independently confirmed against maplestorywiki's Passive Skill Boost table, which makes no recommendation.",
+      "sources": [
+        "https://www.hoyoung.directory/basics/hyper-skills",
+        "https://grandislibrary.com/anima/hoyoung",
+        "https://maplestorywiki.net/w/Hoyoung/Skills"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "consensusNote": "DOWNGRADED from 'moderate on the pick'. The recommendation has exactly one independent publisher: the class doc. Grandis mirrors it under an explicit Class Doc credit. maplestorywiki confirms the names and numbers are real but recommends nothing, so it raises name confidence, not recommendation confidence.",
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "The wiki lists Piercing Harmony as an additional Hyper passive that exists for Hoyoung; no source located recommends taking it, and none explicitly rejects it either. No source located gives a Hyper active recommendation for this class. Source for the skill's existence: https://maplestorywiki.net/w/Hoyoung/Skills"
+    "pickOrder": {
+      "order": "Empowered Harmony and Boss Rush Harmony, then Guardbreaking Clones, then Hasty Ghost Flame, then Hasty Vortex.",
+      "verifiedClaim": "Grandis Library prints the five in exactly that sequence under 'Hyper Skill Passive Build', with the first two paired. Two cautions, both re-verified 2026-09-12: (1) Grandis credits that very field to the class doc, and the class doc gives no ordering at all, so the sequence has one publisher and no corroboration; (2) Grandis renders it as a comma-separated icon row, not a numbered list, so reading it as a priority ranking is an interpretation, not a quotation.",
+      "sources": [
+        "https://grandislibrary.com/anima/hoyoung"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
+    "notAmongPicks": {
+      "what": "Hoyoung has nine hyper passives and can take five. The four the sources do not pick, with the effects maplestorywiki gives them: Piercing Harmony (Ignore Defense +15%), Empowered Gourd (Damage +25%), Empowered Degeneration (Damage +35%), Butterfly Rush (Boss Damage +20%). No source located recommends any of them and none explicitly rejects them.",
+      "verifiedClaim": "The full nine-entry Passive Skill Boost list was read off maplestorywiki on 2026-09-12: Empowered Harmony, Piercing Harmony, Boss Rush Harmony, Empowered Gourd, Guardbreaking Clones, Hasty Ghost Flame, Empowered Degeneration, Butterfly Rush, Hasty Vortex. The previous draft named only Piercing Harmony as an unpicked passive, which understated the choice by three skills; corrected.",
+      "sources": [
+        "https://maplestorywiki.net/w/Hoyoung/Skills"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "consensusNote": "Weak as guidance because it is not guidance - it is a factual listing from a judgement-free source, recorded so the app does not tell a player these skills do not exist.",
+      "verifiedAt": "2026-09-12"
+    },
+    "actives": {
+      "skills": [
+        "Sage: Tai Yu's Miracle Tonic",
+        "Sage: Dream of Shangri-La",
+        "Sage: Tai Yu Clone"
+      ],
+      "recommendation": null,
+      "verifiedClaim": "These are the three hyper actives maplestorywiki lists for Hoyoung, read 2026-09-12. No source reached gives a Hyper active recommendation for this class, and the class doc's Hyper Skills page does not discuss actives at all - so no recommendation is recorded. Names only.",
+      "sources": [
+        "https://maplestorywiki.net/w/Hoyoung/Skills"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    }
   },
   "innerAbility": {
-    "bossing": [
-      "First line: Passive Skills +1 Level",
-      "Second and third lines: Boss Damage +10% and Damage to enemies with Abnormal Status +8%"
-    ],
-    "training": [
-      "First line: Item Drop Rate +20%",
-      "Second line: Mesos Obtained +15% - the doc treats drop rate and meso obtained as interchangeable between the first two lines",
-      "Third line: Damage to Normal Monsters, or Abnormal Status damage"
-    ],
+    "bossing": {
+      "firstLine": "Passive Skills +1 Level",
+      "otherTwoLines": [
+        "Boss Damage +10%",
+        "Damage to enemies with Abnormal Status +8%"
+      ],
+      "otherTwoLinesOrdered": false,
+      "orderedNote": "The second and third lines are stored unordered on purpose: the class doc lists them as Abnormal 8% then Boss 10%, Grandis lists them as Boss 10% then Abnormal 8%, and the doc's own rolling method says to take Boss Damage on 'either the 2nd or 3rd line' and Abnormal on whichever is left. Line order between those two is not a claim any source makes."
+    },
+    "training": {
+      "firstTwoLines": [
+        "Item Drop Rate +20%",
+        "Mesos Obtained +15%"
+      ],
+      "firstTwoLinesOrdered": false,
+      "thirdLine": "Damage to Normal Monsters, or Abnormal Status damage",
+      "orderedNote": "Grandis states it outright: 'Depending on what's chosen as the 1st Line, choose the other for the 2nd Line'. The class doc's third line reads 'Abnormal/Normal Damage'; Grandis gives 'Damage to Normal Monsters +8%'. Both readings are preserved rather than collapsed."
+    },
     "acceptableSettles": [
       "Buff Duration",
       "Critical Rate"
     ],
     "explicitlyNotNeeded": [
-      "Attack Speed +1 - stated outright by the class doc, because Hoyoung reaches attack speed 0 with its own Booster plus Decent Speed Infusion plus a green potion",
-      "Cooldown skip - the class doc's FAQ calls it unreliable and notes Hoyoung gets natural cooldown resets from its V skill"
+      "Attack Speed +1 - the class doc's FAQ states 'We do not need AS+1 IA', because Hoyoung reaches attack speed 0 with 'Booster, Decent Speed Infusion AND Green Pot'",
+      "Cooldown skip - the FAQ states 'cooldown skipping IA is unreliable and we have natural resets from our V skill', and 'We don't need CDR Hat or CD reset IA'"
     ],
-    "rollingMethod": "The doc gives a preferred route and a fallback. Preferred: use Miracle Circulators to land Boss Damage on either the second or third line, then switch to Honor EXP rolling to put Abnormal Status Damage on whichever of those two lines is still free and Passive Skills +1 on the first line - the argument being that Abnormal Status Damage has a narrower value range and so is easier to max. Fallback: roll all three lines with Honor EXP until Passive Skills +1, Boss Damage and Abnormal Status Damage are all present, locking each as it lands, then push the two secondary lines to their top values with Chaos Circulators.",
-    "whyPassiveSkillsFirstLine": "The doc works this out rather than asserting it. The +1 level applies to Dragon's Eye, Enlightenment and Advanced Ritual Fan Mastery, whose combined single-level gain it treats as roughly equal to a 20% Boss Damage line. The reason to prefer the passives line is that it frees the other two lines: Passive Skills +1 with Boss Damage 10% and Abnormal 8% beats a 20% Boss Damage line that leaves the third line with nothing good to take.",
-    "consensus": "moderate on the lines themselves - the class doc and Grandis state the identical bossing and training sets, but Grandis credits its Recommended Inner Ability to the class doc, so this is one lineage stated twice rather than two votes. No independent third source for Hoyoung inner ability was located. Weak-but-reasoned on the passives-versus-boss-damage comparison, which is the class doc's own working and is not corroborated elsewhere.",
+    "rollingMethod": "The doc gives a preferred route and a fallback, both re-read verbatim on 2026-09-12. Ideal Approach: start with Miracle Circulators and roll Boss Damage on either the 2nd or 3rd line; then switch to Honor EXP and roll Abnormal Status Damage on whichever of those two does not already have Boss Damage, AND roll Passive Skills +1 on the 1st line. The doc's stated reason: 'This method is efficient because Abnormal Status Damage has a smaller range variance, making it easier to maximize.' Alternative Method: use Honor EXP on all three lines until you have Passive Skills +1, Boss Damage and Abnormal Status Damage, locking each one you want to keep as you go, then use Chaos Circulators to push both secondary lines to their maximum values.",
+    "whyPassiveSkillsFirstLine": "The doc works this out rather than asserting it. The +1 level applies to Dragon's Eye (attack, final damage, crit rate and damage, IED, avoid), Enlightenment (damage multipliers) and Advanced Ritual Fan Mastery (mastery, attack, final damage). It states that '20% Boss Damage is more or less the same as +1 passives', and prefers the passives line because it frees the other two: passives / 10 boss / 8 abnormal beats a 20% Boss Damage line that leaves the third line with nothing good to take.",
+    "verifiedClaim": "Every line above was re-read on 2026-09-12 against the class doc's Inner Ability page, its Rolling your Inner Ability page and its FAQ, and cross-checked against Grandis Library's page data, which gives bossing as 'Passive Skills +1 / Boss Damage +10% / Damage to monsters inflicted with Abnormal Status +8%' and training as 'Meso Obtained / Item Drop Rate +20%, Meso Obtained / Item Drop Rate +15%, Damage to Normal Monsters +8%'. Two corrections made: the bossing second and third lines are now explicitly unordered, and the first two training lines are now explicitly interchangeable per Grandis's own note, instead of being fixed by array position.",
     "sources": [
       "https://www.hoyoung.directory/basics/inner-ability",
       "https://www.hoyoung.directory/basics/inner-ability/rolling-your-inner-ability",
       "https://www.hoyoung.directory/introduction/faq",
       "https://grandislibrary.com/anima/hoyoung"
-    ]
+    ],
+    "sourceCount": 1,
+    "consensus": "weak",
+    "consensusNote": "DOWNGRADED from 'moderate'. Grandis credits its 'Recommended Inner Ability' field to 'Class Doc', so the class doc and Grandis are one lineage stated twice, not two votes - three class doc pages plus one mirror is still sourceCount 1. No independent third source for Hoyoung inner ability was located. The passives-versus-boss-damage comparison is the class doc's own working and is corroborated nowhere.",
+    "verifiedAt": "2026-09-12"
   },
   "gearingNotes": "Four things change Hoyoung's gearing relative to a generic thief. (1) Crit rate is largely self-supplied: Grandis's base-stat table totals +55% critical rate from Hoyoung's own skills, on top of the 5% base. Source: https://grandislibrary.com/anima/hoyoung. (2) Attack speed needs no help from inner ability or gear beyond the usual: the class doc states Hoyoung hits attack speed 0 with its own Booster plus a Decent Speed Infusion node plus a green potion, and says outright that the attack speed +1 inner ability line is not needed. It also notes GMS gains roughly 6-7% final damage from reaching attack speed 0 on a dummy compared to KMS, less in a real fight. Source: https://www.hoyoung.directory/introduction/faq. (3) No cooldown-reduction hat for bossing. The class doc's position is that a CD hat only trims a second or two off Hoyoung's AoE cooldowns, that cooldown-skip inner ability is unreliable, and that Hoyoung already gets natural resets from its V skill - and that the main stat given up on a CD hat costs more across the burst skills than the Gold-Banded Cudgel gain is worth. It allows one exception: a CD hat can be worth it for training if Consuming Flames is wanted in every rotation. Source: https://www.hoyoung.directory/introduction/faq. (4) The Lv.200 storyline is not optional. Completing Sealing the Fiends: The Final Act 2 at Lv.200 grants Fiend Seal, a permanent ATT +10% and Final Damage +10%, plus the Exclusive Spell echo. For a character sitting at Lv.200 this is the single largest free damage source available and it is gated behind quest text, not gear. Source: https://www.hoyoung.directory/introduction/faq. Base stat reference, all from https://grandislibrary.com/anima/hoyoung: weapon multiplier 1.3x, weapon mastery 90%, boss damage +20% and ignore defense roughly +41.7% from skills before the Bravado link skill.",
   "commonMistakes": [
     {
       "mistake": "Skipping the Hoyoung storyline. Two quests matter: The Missing Trainee 3 at Lv.10 grants Nimbus Cloud, and Sealing the Fiends: The Final Act 2 at Lv.200 grants Fiend Seal, worth ATT +10% and Final Damage +10% permanently.",
-      "sources": ["https://www.hoyoung.directory/introduction/faq"]
+      "sources": [
+        "https://www.hoyoung.directory/introduction/faq"
+      ]
     },
     {
       "mistake": "Not locking Nimbus Cloud after receiving it. The class doc says to lock the skill so that up jump keeps working.",
-      "sources": ["https://www.hoyoung.directory/introduction/faq"]
+      "sources": [
+        "https://www.hoyoung.directory/introduction/faq"
+      ]
     },
     {
-      "mistake": "Not locking Universal Harmony once HEXA Mastery core 2 is unlocked. Universal Harmony empowers both the spammable Attribute attacks and the cooldown ones, so once the Basics Mastery is in play the enhanced charges get eaten by basic attacks unless the buff is right-clicked to lock, leaving them for Stone Tremor or Gold-Banded Cudgel instead. The class doc states this twice, on the skills page and again in its HEXA common questions.",
+      "mistake": "Not locking Universal Harmony once HEXA Mastery core 2 is unlocked. Universal Harmony empowers both the spammable Attribute attacks and the cooldown ones, so once Mastery Node/Core 2 is in play the enhanced charges get eaten by basic attacks unless the buff is right-clicked to lock, leaving them for Stone Tremor or Gold-Banded Cudgel instead. The class doc states this twice, on the skills page and again in its HEXA common questions.",
       "sources": [
         "https://www.hoyoung.directory/knowledge-base/skills",
         "https://www.hoyoung.directory/basics/hexa-matrix/common-questions"
@@ -298,7 +571,9 @@
     },
     {
       "mistake": "Releasing Sage: Apotheosis early. For full damage the key is held until the full-screen mountains appear.",
-      "sources": ["https://www.hoyoung.directory/basics/hexa-matrix/common-questions"]
+      "sources": [
+        "https://www.hoyoung.directory/basics/hexa-matrix/common-questions"
+      ]
     },
     {
       "mistake": "Building to a boost node trio guide. Trio composition stopped being a decision in GMS v269, when each job began receiving a fixed set of nodes. Any Hoyoung guide dated before June 2026 - including the class doc's own V Matrix page images and mastermysty's cross-class trio table - describes a system that no longer exists.",
@@ -331,37 +606,37 @@
     },
     {
       "url": "https://docs.google.com/spreadsheets/d/187ymaOCrk9tbMztgVuQkPj5U3lJmqaMAhO1DsvCbp5Y",
-      "what": "Hoyoung and Ren HEXA Matrix Tracker by Soushi - the current tracker, reached via bit.ly/HexaTracker. Holds the authoritative node dictionary (ids, types and names for every Hoyoung HEXA node), the full Sol Erda and fragment cost table per node type and level, the HEXA Stat value table, and a live-computed next-upgrade priority list under six presets. This is where the class's actual HEXA ordering lives now.",
-      "dated": "2026-08-23",
+      "what": "Hoyoung and Ren HEXA Matrix Tracker - the document title was verified on 2026-09-12 by fetching the sheet, but the htmlview returned only the page shell with no grid data, so NO cell contents could be read this session. Previously recorded interior details (author, revision date, six named priority presets, a node dictionary, cost tables, a notes cell about the class doc infographic) are unverified and every claim that rested solely on them has been deleted from this file. Kept as a link to hand the player, not as a source of claims.",
+      "dated": "Not verified this session",
       "independent": false
     },
     {
       "url": "https://docs.google.com/spreadsheets/d/1o0iLtIwLwmrpkD0190OyR9JVv7thRIRLI8ar9yFN68Q",
-      "what": "The previous Hoyoung HEXA Matrix Tracker, still the target of the bit.ly/HoyoungHexaPlanner link printed on the class doc's HEXA page. Same author. Its notes cell is what flags the class doc's infographic as out of date.",
-      "dated": "2026-08-23, titled Update In Progress",
+      "what": "A second Hoyoung HEXA Matrix Tracker spreadsheet, the target of the bit.ly/HoyoungHexaPlanner link printed on the class doc's HEXA Matrix page (the link itself was re-confirmed on the page 2026-09-12). Its contents were NOT readable this session and no claim in this file now depends on it.",
+      "dated": "Not verified this session",
       "independent": false
     },
     {
       "url": "https://grandislibrary.com/anima/hoyoung",
-      "what": "Grandis Library's Hoyoung page. Used for class properties, the Bravado link skill, the legion bonus, the base-stats-from-skills table, the six boost nodes with PRIMARY/SECONDARY tiering, the hyper passive build order, the recommended inner ability, the Talisman and Scroll energy explanation and the Dark Sight avoidability chart.",
-      "dated": "Site footer reads GMS Ver. 269 [Ride the Lightning], two patches behind v.271. Its class infographic block carries a 2026-06-04 date credited to the Hoyoung Discord.",
+      "what": "Grandis Library's Hoyoung page. Read directly from the page's embedded data on 2026-09-12. Used for: class properties; the Bravado link skill; the legion bonus; the base-stats-from-skills table (crit rate +55%, crit damage +40%, boss damage +20%, ignore DEF +41.68%, weapon multiplier 1.3x, mastery 90%, attack speed Stage 6 with +2 from Ritual Fan Acceleration); the six boost nodes with their explicit primary/secondary tiering (nodes 1-4 primary, 5-6 secondary) and the legend defining PRIMARY, SECONDARY and OTHER; the hyper passive build sequence; the recommended inner ability; a legacy pre-v269 Primary/Secondary/Tertiary Trio block; a 6th Job skill list carrying Sage: Apotheosis and Millennium Spirit and nothing else; and the Talisman/Scroll energy explanation. CRITICAL for independence accounting: the page explicitly credits its Hyper Skill Passive Build, Recommended Inner Ability and Boost Nodes Build fields to 'Class Doc', so on those three fields it is NOT a second source. Its own compiled data (base stats, 6th job skill list) is treated as independent.",
+      "dated": "Site footer reads GMS Ver. 269 [Ride the Lightning], behind the v.271 patch this file targets.",
       "independent": false
     },
     {
       "url": "https://maplestorywiki.net/w/Hoyoung/Skills",
-      "what": "Name-validation table and node contents. Gives the exact contents of boost node cores 1-6, HEXA Mastery cores 1-4, the HEXA Enhancement list, the two class-specific HEXA skill cores, Bravado's per-level values and the full hyper passive list. Carries no priority judgement whatsoever, which is exactly what makes it useful as an anti-fabrication check. Returns 403 to a plain fetch; a normal browser user agent gets through.",
+      "what": "Name-validation table and node contents, re-read 2026-09-12. Gives the exact contents of Boost Node/Enhancement Cores 1-6; Mastery Node/Cores 1-4 with Universal Harmony inside Core 1; the four HEXA Enhancements with full per-level value tables; exactly two Class-Specific HEXA Skills (Core 1 Origin = Sage: Apotheosis, Core 2 Ascent = Millennium Spirit); Shared HEXA Skills = Sol Janus and Sol Hecate only; all nine hyper passives with their effect values; the three hyper actives; and Bravado's per-level values. Carries no priority judgement whatsoever, which is exactly what makes it the anti-fabrication check. Returns 403 to a plain fetch; a normal browser user agent gets through.",
       "dated": "Living wiki; per-page revision date not verified",
       "independent": true
     },
     {
       "url": "https://maplestorywiki.net/w/V_Matrix",
-      "what": "The dated V Matrix update history, which records the GMS 269 overhaul of 2026-06-17 - Nodestones now grant V Points and each job receives a fixed number of nodes - plus the current per-node rules: six boost nodes per job capping at Lv.60 and needing Lv.40 to unlock their HEXA Mastery, four job nodes capping at Lv.30 and needing Lv.25 to unlock their HEXA Enhancement, and the Lv.200-to-260 matrix point and slot schedule.",
-      "dated": "Living wiki; the entries themselves are dated, GMS 269 entry 2026-06-17",
+      "what": "The dated V Matrix update history and current per-node rules, re-read 2026-09-12 (page last edited 11 August 2026). Records the GMS 269 entry of June 17 2026 verbatim: 'The V Matrix received an overhaul. Nodestones now grant V Points to upgrade Nodes. Each job receives a fixed amount of Nodes to upgrade.' Also: 4 job nodes per job, max Lv.30, Lv.25 to unlock their corresponding HEXA Boost Nodes; 6 boost nodes per job, max Lv.60, Lv.40 to unlock their corresponding HEXA Mastery Nodes; 12 node slots at Lv.200 rising to 30; 1 matrix point per level 200-220 then 2 per level to 260.",
+      "dated": "Living wiki, last edited 2026-08-11; the GMS 269 entry is dated 2026-06-17.",
       "independent": true
     },
     {
       "url": "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-      "what": "NamuWiki's Hoyoung skill page, machine-translated from Korean. The only judgement source located that is genuinely outside the GMS guide ecosystem. Supplies the 5th job skill core upgrade order with reasoning, the argument for prioritising the Universal Harmony mastery core, the flat-scaling caveat on the Clone Rampage enhancement, and an independent listing of the HEXA node structure including the third skill core and the Anima common node.",
+      "what": "NamuWiki's Hoyoung skill page. The only judgement source located that is genuinely outside the GMS guide ecosystem. Supplies: the 5th job job-node upgrade order with reasoning; the argument for prioritising the Mastery Core 1 / Universal Harmony core (buff effect +1%p every 6 levels); the flat-scaling caveat on the Clone Rampage Enhancement core and the 29-to-30 advice; an essential/optional split of the six boost nodes matching Grandis's primary/secondary; and a full HEXA node listing including a third skill core and a 6th job Anima common node whose GMS name fields are empty or placeholder. ACCESS NOTE: this en. mirror returned HTTP 403 on 2026-09-12; the identical article was read from the Korean original at https://namu.wiki/w/호영(메이플스토리)/스킬. Same document, same source - it counts once.",
       "dated": "Continuously edited, undated per revision. KMS-balance, so content and gear assumptions can diverge from GMS Heroic.",
       "independent": true
     },
@@ -388,41 +663,40 @@
   "conflicts": [
     {
       "topic": "Name of Hoyoung's second HEXA skill core (the Ascent skill)",
-      "positionA": "Millennium Spirit, per the English wiki's Hoyoung skill page, which lists it as Skill Node/Core 2 (Ascent).",
-      "positionB": "Heavenly World, per the class doc's HEXA tracker, which uses that name for node id 2b, typed Skill. The Korean wiki's equivalent entry translates as Cheon Se-ryeong, which resolves to neither English name directly.",
-      "status": "unresolved - the three sources agree there is one second skill core and disagree on what to call it in English. Likely a translation or patch-naming difference rather than two different skills, but not confirmed.",
+      "positionA": "Millennium Spirit - maplestorywiki's Hoyoung skill page lists it as Skill Node/Core 2 (Ascent) under that name, and Grandis Library's 6th Job skill list independently names it Millennium Spirit.",
+      "positionB": "Heavenly World - previously attributed to node id 2b in the class doc's HEXA tracker spreadsheet.",
+      "status": "RESOLVED 2026-09-12 in favour of Millennium Spirit. Two independent GMS-facing sources give that name; the tracker's grid could not be read this session, so 'Heavenly World' has no reachable support. NamuWiki does not arbitrate: its entry is 천세휘령 with an EMPTY GMS name field and MSEA 'Millennial Sweep'. The earlier note that NamuWiki 'translates as Cheon Se-ryeong' misread the Korean and is withdrawn.",
       "sources": [
         "https://maplestorywiki.net/w/Hoyoung/Skills",
-        "https://docs.google.com/spreadsheets/d/187ymaOCrk9tbMztgVuQkPj5U3lJmqaMAhO1DsvCbp5Y",
+        "https://grandislibrary.com/anima/hoyoung",
         "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
       ]
     },
     {
-      "topic": "Whether Hoyoung has a third HEXA skill core and a Lotus Flower common node live in GMS v.271",
-      "positionA": "Present. The class doc's tracker lists Sage: Liberated Taotie as node 7a typed Skill II and Lotus Flower as node 6a typed Common II, and offers Taotie and Lotus priority presets. The Korean wiki lists three skill cores and names an Anima common core translating as Prince of Flowers.",
-      "positionB": "Absent. The English wiki's Hoyoung page lists only Skill Node/Core 1 and Core 2, and Grandis Library at GMS v269 has no HEXA section at all.",
-      "status": "unresolved here. The two sources carrying them are the more recent (2026-08-23 and a continuously edited KMS wiki), which favours position A, but GMS availability at v.271 was not confirmed against a GMS patch note.",
+      "topic": "Whether Hoyoung has a third HEXA skill core and a 6th job Lotus Flower common node live in GMS v.271",
+      "positionA": "Present in KMS. NamuWiki lists 선기 : 사흉해방 도철 as a third skill core and 화중군자 VI (아니마 공통) as a HEXA common node.",
+      "positionB": "Not live in GMS. maplestorywiki's Class-Specific HEXA Skills section lists only Core 1 and Core 2; its Shared HEXA Skills section lists only Sol Janus and Sol Hecate; Grandis Library's 6th Job list carries only Sage: Apotheosis and Millennium Spirit.",
+      "status": "RESOLVED 2026-09-12 in favour of position B for GMS. The decisive evidence is on position A's own source: NamuWiki's localisation table gives 선기 : 사흉해방 도철 an EMPTY GMS name field, and gives 화중군자 VI the placeholder 'aaaa' in all five localisation fields - i.e. neither has a released English name. Both are recorded under hexa.nodeSet.notConfirmedInGms so a player is told they exist in KMS without being told to plan for them.",
       "sources": [
-        "https://docs.google.com/spreadsheets/d/187ymaOCrk9tbMztgVuQkPj5U3lJmqaMAhO1DsvCbp5Y",
         "https://en.namu.wiki/w/%ED%98%B8%EC%98%81(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
-        "https://maplestorywiki.net/w/Hoyoung/Skills"
+        "https://maplestorywiki.net/w/Hoyoung/Skills",
+        "https://grandislibrary.com/anima/hoyoung"
       ]
     },
     {
       "topic": "Which HEXA priority artefact to follow",
-      "positionA": "The class doc's HEXA Matrix page presents a Heroic priority infographic, updated for NEXT with Mastery 3 and 4, stamped 2025-02-26.",
-      "positionB": "The same author's tracker spreadsheet, updated 2026-08-23, carries a notes cell stating the infographic is out of date and directing readers to the tracker or the simplified matrix guide.",
-      "status": "resolved within one lineage in favour of the tracker, but recorded because the infographic is still the first thing a player sees on the doc and is the only place the full ordering is published.",
+      "positionA": "The class doc's HEXA Matrix page presents a Heroic priority infographic, 'Updated for NEXT (added Mastery 3 & 4)'; the page's tracker section self-stamps 'Updated 26/02/2025'.",
+      "positionB": "The doc's own hint above that infographic says the displayed Heroic priority 'is a simplifed version, which gives similar FD with fewer steps' and directs readers to 'MapleScouter or the Hoyoung HEXA Matrix Tracker sheet' for full optimization and extra breakpoints.",
+      "status": "Resolved within one lineage in favour of the tracker/optimizer, on the doc's own instruction, re-read 2026-09-12. Note this is a weaker resolution than previously recorded: the earlier version cited a notes cell in the tracker spreadsheet calling the infographic out of date, and that cell could not be read this session, so the resolution now rests only on the doc's own simplification warning. Recorded because the infographic is still the first thing a player sees.",
       "sources": [
-        "https://www.hoyoung.directory/basics/hexa-matrix",
-        "https://docs.google.com/spreadsheets/d/1o0iLtIwLwmrpkD0190OyR9JVv7thRIRLI8ar9yFN68Q"
+        "https://www.hoyoung.directory/basics/hexa-matrix"
       ]
     },
     {
       "topic": "Boost node trio composition",
-      "positionA": "The class doc's V Matrix page and mastermysty's table both describe choosing trio compositions, and agree with each other on the standard grouping.",
-      "positionB": "The wiki's V Matrix update history records that GMS v269 removed that choice - each job now receives a fixed set of nodes - and both the wiki and Grandis list Hoyoung's six fixed boost nodes.",
-      "status": "resolved in favour of position B on date grounds. Both position A sources predate 2026-06-17. Recorded because the class doc has not removed its trio tables, so the stale advice is still live on the class's primary source.",
+      "positionA": "The class doc's V Matrix page still shows two trio builds, and mastermysty's table also describes choosing trio compositions; they agree with each other on the standard grouping.",
+      "positionB": "maplestorywiki's V Matrix Update History records that GMS 269 on 17 June 2026 removed that choice - 'Each job receives a fixed amount of Nodes to upgrade' - and the wiki, Grandis and NamuWiki all list Hoyoung's six fixed boost nodes.",
+      "status": "Resolved in favour of position B on date grounds, re-verified 2026-09-12. mastermysty's page is dated 2024-11-21 with data from 2024-05-14; the class doc's trio tables are images that have not been revised. Recorded because the class doc has not removed its trio tables, so stale advice is still live on the class's primary source.",
       "sources": [
         "https://maplestorywiki.net/w/V_Matrix",
         "https://www.hoyoung.directory/basics/v-matrix",
@@ -431,16 +705,120 @@
     },
     {
       "topic": "Hyper skill passive ordering",
-      "positionA": "Grandis Library publishes an ordered build: Empowered Harmony and Boss Rush Harmony, then Guardbreaking Clones, then Hasty Ghost Flame, then Hasty Vortex.",
-      "positionB": "The class doc lists the same five passives with no ordering, confirmed by a direct query against the doc.",
-      "status": "not a contradiction, but the order has exactly one publisher and Grandis credits that field to the class doc it does not match. Treat the order as weak.",
+      "positionA": "Grandis Library prints an ordered-looking build: Empowered Harmony and Boss Rush Harmony, then Guardbreaking Clones, then Hasty Ghost Flame, then Hasty Vortex.",
+      "positionB": "The class doc lists the same five passives with no ordering, re-confirmed by reading the page on 2026-09-12.",
+      "status": "Not a contradiction, but the order has exactly one publisher, Grandis credits that field to the class doc it does not match, and Grandis's own rendering is an icon row rather than a numbered list. Treated as weak and stored separately from the unordered pick set so array position cannot imply it.",
       "sources": [
         "https://grandislibrary.com/anima/hoyoung",
         "https://www.hoyoung.directory/basics/hyper-skills"
       ]
     }
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
-  "evidenceNotes": "Independence audit for this class. Grandis Library's Hoyoung page credits Inner Ability, Hyper Passive Build and Boost Nodes Build to Class Doc, so Grandis and hoyoung.directory are one source on every judgement field, not two. The HEXA trackers are by the same author and are linked from the class doc, so they belong to that lineage as well, and their priority presets are labelled Scouter, meaning the ordering itself comes from MapleScouter. That leaves three genuinely independent lanes: the class doc family, NamuWiki's Korean skill page (the only outside judgement source found), and maplestorywiki.net (independent but judgement-free, used for node contents, skill names and the dated v269 system change). mastermysty's node table is a fourth independent source but is obsolete for building. Reddit could not be reached from this environment and the web search budget was exhausted, so r/Maplestory Hoyoung threads and any 2025-2026 video guides are entirely unexamined; the Hoyoung Discord was not read. Consequence: V matrix node contents, the v269 system change and the 5th job skill core order are well corroborated; inner ability, hyper passives and the detailed HEXA step order rest on a single lineage and are marked accordingly."
+  "evidenceNotes": "Independence audit, re-run 2026-09-12. Grandis Library's Hoyoung page credits Inner Ability, Hyper Passive Build and Boost Nodes Build to 'Class Doc', so Grandis and hoyoung.directory are ONE source on every judgement field. Grandis's own compiled data - the base-stats-from-skills table and the 6th Job skill list - is not credited to the class doc and is treated as independent for those facts only. The HEXA trackers are by the class doc's own community and their priority presets derive from MapleScouter, so tracker, class doc and MapleScouter are one lineage. That leaves three genuinely independent lanes: (1) the class doc family; (2) NamuWiki's Korean skill page, the only outside judgement source found, KMS-balance; (3) maplestorywiki.net, independent but judgement-free, used for node contents, skill names, effect values, per-level enhancement tables and the dated v269 system change. mastermysty's node table is a fourth independent lane but is obsolete for building. Reachability this pass: hoyoung.directory (all pages, via .md siblings and /llms.txt), grandislibrary.com (page data read directly), maplestorywiki.net (403 to a plain fetch, 200 with a browser user agent) and mystyjl.github.io all responded. en.namu.wiki returned 403; the Korean original at namu.wiki served the same article and was used instead - same document, same source, different host. The class doc's HEXA tracker spreadsheet returned only its page shell with no grid data, so nothing inside it could be verified and every claim resting solely on it was deleted or demoted. Consequence: V Matrix node contents and tiering, the v269 system change, the 5th job job-node order and the Clone Rampage flat-scaling caveat are well corroborated; the Universal Harmony HEXA priority, inner ability, hyper passives, Sol Janus timing and all HEXA Stat guidance rest on a single lineage and are labelled weak accordingly.",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [],
+    "clearedOnInspection": [],
+    "resolutionPass": {
+      "ranAt": "2026-09-12",
+      "scope": "vMatrix, hexa, hyperSkills, hyperStats, innerAbility only. Jobs 1-4 skill builds, skill damage coefficients, damage lines, job tiers and rotations were out of scope and were not touched.",
+      "inheritedDefects": 0,
+      "inheritedDefectsNote": "This file carried no contest block and does not appear in _contest-summary.json's filesBlocked list, so the adversarial pass recorded zero defects against it. The pass below is therefore a from-scratch re-verification of every endgame claim against its own cited pages, not a defect clean-up.",
+      "resolved": [
+        {
+          "finding": "CITATION INVERSION (self-found). hexa.order attributed an Enhancement-core levelling order - Clone Rampage, Wrath of Gods, Three Paths Apparition, Tiger of Songyu - to NamuWiki and the class doc.",
+          "action": "DELETED the Enhancement-core ordering; enhancementCores is now an explicitly unordered set.",
+          "why": "NamuWiki's ranking sentence is in its 직업 코어 (5th job JOB node) section and its HEXA 강화 코어 section makes no priority statement at all; the class doc's matching order line is likewise its V Matrix Node Upgrade Order. Neither source ranks HEXA Enhancement cores. The ranking is real for the 5th job nodes and is kept there, under vMatrix.priority, where both sources actually support it."
+        },
+        {
+          "finding": "SHAPE ASSERTS WHAT SOURCES DECLINE (self-found). hexa.order shipped an 18-step ordered sequence read from a live-computed cell in the class doc's tracker spreadsheet.",
+          "action": "DELETED the sequence.",
+          "why": "The spreadsheet returned only its page shell this session, so not one of the eighteen steps could be verified. By the file's own admission the value is preset-dependent and input-dependent. An 18-step array is precisely what a build-diff feature would compare a player against; shipping an unverifiable one would poison exactly the feature it feeds."
+        },
+        {
+          "finding": "EXTRACTION ARTIFACT (self-found). The mastery-core nicknames 'Basics Mastery', 'Talisman Mastery' and 'Scroll Mastery'.",
+          "action": "DELETED all three.",
+          "why": "They appear in no source reached: maplestorywiki calls them Mastery Node/Core 2, 3 and 4; Grandis has no HEXA section; NamuWiki names them by their skill contents. A mastery-core name a player cannot find in-game sends them looking for something that does not exist."
+        },
+        {
+          "finding": "CITATION INVERSION (self-found). 'Lotus Flower' was listed as one of Hoyoung's HEXA common cores, citing NamuWiki and the tracker.",
+          "action": "CORRECTED and demoted to hexa.nodeSet.notConfirmedInGms.",
+          "why": "NamuWiki has two distinct entries: 화중군자, a 5TH JOB Anima common node whose GMS name field reads 'Lotus Flower', and 화중군자 VI, a 6th job common node whose GMS, MSEA, JMS, CMS and TMS name fields all read the placeholder 'aaaa'. The file had promoted the unnamed 6th job version using the 5th job version's English name. maplestorywiki's Shared HEXA Skills lists only Sol Janus and Sol Hecate."
+        },
+        {
+          "finding": "CITATION INVERSION (self-found). The Ascent skill conflict claimed NamuWiki's entry 'translates as Cheon Se-ryeong, which resolves to neither English name'.",
+          "action": "CORRECTED, and the conflict is now marked resolved in favour of Millennium Spirit.",
+          "why": "NamuWiki's entry is 천세휘령 with an empty GMS field and MSEA 'Millennial Sweep' - it declines to name the skill in GMS rather than offering a third name. Meanwhile Grandis Library's 6th Job list, which the file had described as having no HEXA content, does carry 'Millennium Spirit - 6th Job', giving that name two independent GMS-facing sources."
+        },
+        {
+          "finding": "OVERSTATED LABEL (self-found). vMatrix node tiering was recorded as 'the SECONDARY grading is Grandis only and therefore one lineage'.",
+          "action": "CORRECTED upward. NamuWiki independently splits the same six groupings into 필수 강화 코어 (the same four) and 선택 강화 코어 (the same two).",
+          "why": "Under-labelling is a defect too. The tiering has two independent lineages, and the node contents have three."
+        },
+        {
+          "finding": "OVERSTATED LABEL (self-found). 'Universal Harmony first' was labelled 'strong - two independent lineages', the second lineage being the class doc's tracker.",
+          "action": "DOWNGRADED to weak, sourceCount 1.",
+          "why": "The tracker is derived from MapleScouter and belongs to the class doc family, so it was never an independent vote; and its grid could not be read this session in any case. NamuWiki is the sole publisher of this judgement, and it is KMS-balance."
+        },
+        {
+          "finding": "OVERSTATED LABEL (self-found). The V Matrix spend order and the Hoyoung hyper passive picks were labelled 'strong' and 'moderate' respectively.",
+          "action": "DOWNGRADED to moderate (2 independent) and weak (1 independent).",
+          "why": "Strong requires 3+ independent sources. The spend order has two lanes. The hyper passive picks have one, because Grandis explicitly credits its Hyper Skill Passive Build field to the class doc - maplestorywiki confirms the names and numbers but recommends nothing."
+        },
+        {
+          "finding": "UNDERSTATED FACT (self-found). hyperSkills.notes named Piercing Harmony as the only hyper passive not picked.",
+          "action": "CORRECTED. Four are not picked: Piercing Harmony, Empowered Gourd, Empowered Degeneration, Butterfly Rush, with effects from maplestorywiki. The three hyper actives are now listed by name with an explicit null recommendation.",
+          "why": "Hoyoung has nine hyper passives and takes five; naming only one alternative misrepresents the size of the choice a player is making."
+        },
+        {
+          "finding": "UNDER-SOURCED CLAIM (self-found). The Clone Rampage flat-scaling caveat was labelled 'weak - Korean wiki only, and the maths behind it is not restated in any GMS source located'.",
+          "action": "UPGRADED to moderate, sourceCount 2.",
+          "why": "maplestorywiki's own per-level tables demonstrate it independently: Sage: Clone Rampage Boost runs 452 / 548 / 560 / 668 / 680 / 788 / 800 at levels 1, 9, 10, 19, 20, 29 and 30 - flat +12 per level with no breakpoint - while Scroll: Tiger of Songyu Boost jumps from +49% at 29 to +60% at 30, and the wiki's section header states that Enhancement Final Damage bonuses normally jump at 10, 20 and 30."
+        },
+        {
+          "finding": "SHAPE ASSERTS WHAT SOURCES DECLINE (self-found). innerAbility stored bossing lines 2 and 3, and training lines 1 and 2, in fixed array positions.",
+          "action": "CORRECTED to explicitly unordered pairs with a note.",
+          "why": "The class doc's rolling guide says to take Boss Damage on 'either the 2nd or 3rd line' and Abnormal on whichever is left, and Grandis states outright 'Depending on what's chosen as the 1st Line, choose the other for the 2nd Line'. The sources deny the ordering the array shape implied. The class doc and Grandis also happen to print the bossing pair in opposite orders, which the fixed array silently picked a winner between."
+        },
+        {
+          "finding": "OVER-SPECIFIED QUOTATION (self-found). Three small additions the cited pages do not make: 'Sage: Clone Rampage's Enhancement to 5' for the HEXA Stat I gate, 'from 10 to 20 fragments' for the HEXA Stat reroll step, and 'whether the goal is level 290' for Sol Janus.",
+          "action": "CORRECTED all three to what the pages say - 'Rampage to level 5', 'cost increase from 10 to 20', and no level target.",
+          "why": "Each addition is small and each is invented. The Enhancement-versus-skill-node distinction in particular changes what a player is told to level."
+        },
+        {
+          "finding": "UNVERIFIABLE SOURCE INTERIOR (self-found). The hexa.resources block asserted the tracker's author, a 2026-08-23 revision date, six named priority presets and a notes cell flagging the class doc's infographic as out of date.",
+          "action": "TRIMMED to the URL and the document title, with an explicit note that nothing inside was readable this session.",
+          "why": "The Google Sheets htmlview returned the page shell without grid data. The title 'Hoyoung and Ren HEXA Matrix Tracker' is verified; none of the rest is. The same deletion removed the tracker-notes-cell support from the infographic conflict, which now rests on the class doc's own simplification warning instead - a weaker but real resolution."
+        },
+        {
+          "finding": "KEY NAME IMPLIES A DEAD SYSTEM. vMatrix.trios held six fixed nodes under a key named for a composition choice removed in v269.",
+          "action": "RENAMED to vMatrix.fixedNodeSet with ordered:false, and the pre-v269 material moved to vMatrix.historicalPreV269 with doNotBuildToThis:true.",
+          "why": "The whole point of the v269 entry at the top of the section is that trios are no longer a decision; a key called 'trios' invites downstream code and readers to treat the node numbers as a composition."
+        }
+      ],
+      "outOfScope": [],
+      "outOfScopeNote": "No defects concerning jobs 1-4 skill builds, damage coefficients, damage lines, job tiers or rotations were recorded against this file, and no such content was modified. skillBuilds, gearingNotes and commonMistakes were left untouched except that nothing in them was re-labelled.",
+      "stillOpen": [],
+      "countsForReporting": {
+        "defectsInScope": 0,
+        "defectsInScopeNote": "This file carried no contest.defects array and is absent from _contest-summary.json's filesBlocked list, so the adversarial wave recorded nothing against it. All fourteen findings resolved below were found by this pass re-reading the cited pages.",
+        "confirmed": 25,
+        "confirmedNote": "Distinct endgame claims re-opened against their cited page and found to be supported as stated.",
+        "corrected": 9,
+        "correctedNote": "Claims rewritten to match what the source actually says, or whose consensus label was moved to match the independent-source count (4 downgrades, 2 upgrades).",
+        "deleted": 5,
+        "deletedNote": "An 18-step HEXA sequence, an Enhancement-core ranking, three mastery-core nicknames, a HEXA-tier Lotus Flower, and three over-specified quotation details.",
+        "outOfScope": 0,
+        "strongClaims": 8,
+        "strongClaimsNote": "Claims labelled strong AND carrying 3+ independent sources: vMatrix.priority[1] and all six fixedNodeSet nodes, plus hexa.nodeSet.originSkillCore."
+      }
+    },
+    "shipReady": true
+  },
+  "written": true,
+  "blockedReason": null,
+  "writtenNote": "Set true on 2026-09-12. Every claim now standing in vMatrix, hexa, hyperStats, hyperSkills and innerAbility was re-read this session against the page it cites, and carries sources, sourceCount (independent lineages, mirrors counted once), a consensus label and verifiedAt. Five claims were deleted outright because they could not be verified - an 18-step HEXA sequence from an unreadable spreadsheet, an Enhancement-core ranking no source states, three unsourced mastery-core nicknames, a HEXA-tier Lotus Flower that has no released English name, and three small over-specifications. Four labels were downgraded and two upgraded. Two previously unresolved conflicts are now resolved. Nothing unverified is presented as guidance, and where the sources give an unordered set the file now stores an unordered set with a flag."
 }

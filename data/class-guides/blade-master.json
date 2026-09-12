@@ -35,11 +35,15 @@
     ]
   },
   "vMatrix": {
+    "priorityIsOrdered": true,
+    "priorityOrderNote": "Array order is a real published ranking, not an artifact of this file's shape. The class doc prints it as an explicit numbered list, re-read verbatim on 2026-09-12: '1. Blade Storm, 2. Blade Tornado, 3. Blades of Destiny, 4. Shadow Walker, 5. Last Resort, 6. Maple World Goddess's Blessing, 7. Erda Nova, 8. Haunted Edge'. One source only, so the ranking is weakly sourced but it is genuinely the source's ranking.",
     "priority": [
       {
         "node": "Blade Storm",
         "why": "Ranked first in the class doc's bossing-focused skill node leveling order.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -48,6 +52,8 @@
         "node": "Blade Tornado",
         "why": "Second in the class doc's bossing-focused order. It is one of the two cooldown-gated wide-hit skills the doc says to fire the moment they come off cooldown.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -56,22 +62,28 @@
         "node": "Blades of Destiny",
         "why": "Third in the class doc's order. The doc identifies it as the largest wide-hit skill with the shortest cooldown, and the one to position a rotation around.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
       },
       {
         "node": "Shadow Walker",
-        "why": "Fourth. The doc separately states it must reach level 30 so its cooldown lines up with the burst cycle.",
+        "why": "Fourth. The doc separately states Shadow Walker and Last Resort 'need to be at max level for burst synchronization'.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
       },
       {
         "node": "Last Resort",
-        "why": "Fifth. Also flagged as needing level 30 for burst-cycle synchronisation.",
+        "why": "Fifth. Also flagged as needing max level for burst-cycle synchronisation.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -80,14 +92,18 @@
         "node": "Maple World Goddess's Blessing",
         "why": "Sixth in the class doc's order.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
       },
       {
         "node": "Erda Nova",
-        "why": "Seventh. The doc caps the useful investment at level 25 (level 20 node plus the 5-level slot bonus), which is where the cooldown reaches two minutes.",
+        "why": "Seventh. The doc caps the useful investment at level 25: 'Erda Nova at level 25 (level 20 + level 5 slot) will suffice'.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -96,6 +112,8 @@
         "node": "Haunted Edge",
         "why": "Eighth and last in the class doc's listed bossing order, despite being part of the standard damage cycle.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -109,11 +127,13 @@
           "Blade Clone",
           "Phantom Blow"
         ],
-        "consensus": "strong",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "note": "Two independent sources: the class doc prints this trio verbatim, and mystyjl's node reference independently lists the same three skills (in the order Asura's Anger / Phantom Blow / Blade Clone). AyumiLove was removed from this claim on 2026-09-12: its V-Matrix section reads 'Trio #1: Phantom Blow / Blade Fury / Asura's Anger, Trio #2: Sudden Raid / Blade Clone / Blade Ascension', which is a different skill set and does not corroborate this trio.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://ayumilove.net/maplestory-dual-blade-skill-build-guide/"
+          "https://mystyjl.github.io/reference/NodeGuide.html"
         ]
       },
       {
@@ -124,7 +144,9 @@
           "Phantom Blow"
         ],
         "consensus": "weak",
-        "note": "Same three skills as Trio A with the top slot swapped, so that the two bossing trios do not share a top-slot skill.",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "note": "Same three skills as Trio A with the top slot swapped, so that the two bossing trios do not share a top-slot skill. Printed by the class doc as 'Blade Clone, Asura's Anger, Phantom Blow'.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -137,6 +159,9 @@
           "Sudden Raid"
         ],
         "consensus": "moderate",
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "note": "Class doc prints it verbatim; mystyjl's reference independently lists the same three skills as the mobbing trio.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
           "https://mystyjl.github.io/reference/NodeGuide.html"
@@ -150,14 +175,17 @@
           "Sudden Raid"
         ],
         "consensus": "weak",
-        "note": "Trio C with the top slot swapped, for the same non-duplicate-top-slot reason.",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "note": "Trio C with the top slot swapped, for the same non-duplicate-top-slot reason. Printed by the class doc as 'Blade Fury, Blade Ascension, Sudden Raid'.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
       }
     ],
     "boostNodeGroupings": {
-      "note": "Which skills can share a boost node is game data, not opinion. These groupings come from the in-game enhancement cores and are confirmed identically by the wiki and by Grandis Library.",
+      "note": "Which skills can share a boost node is game data, not opinion. Core membership and core numbering were re-read off the live Grandis Library page on 2026-09-12 and match this list exactly, and the same six groupings were previously verified against the maplestorywiki skill table.",
+      "tierFieldNote": "The per-core Primary/Secondary/Other tier labels this file used to carry were removed on 2026-09-12 and replaced with `grandisBand`. Grandis prints PRIMARY / SECONDARY / OTHER only as a colour-coded legend ('Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used' / 'don't unlock a 6th Job HEXA Mastery but are still used' / 'do not need to be upgraded or has least priority'); the tier of an individual node is conveyed by colour, not by text, and two separate text extractions of the page disagreed about whether core 4 is Primary or Secondary. What the page's own markup does support is a two-way split: cores 1-4 share one style class, cores 5-6 share another, and the legend says 'Nodes categorized as Primary and Secondary are recommended to be upgraded'. Only that split is recorded here. Do not restore a Primary-vs-Secondary distinction without a source that states it in words.",
       "cores": [
         {
           "core": 1,
@@ -165,21 +193,21 @@
             "Phantom Blow",
             "Final Cut"
           ],
-          "grandisTier": "Primary"
+          "grandisBand": "recommended (Primary or Secondary)"
         },
         {
           "core": 2,
           "skills": [
             "Asura's Anger"
           ],
-          "grandisTier": "Secondary"
+          "grandisBand": "recommended (Primary or Secondary)"
         },
         {
           "core": 3,
           "skills": [
             "Blade Clone"
           ],
-          "grandisTier": "Secondary"
+          "grandisBand": "recommended (Primary or Secondary)"
         },
         {
           "core": 4,
@@ -187,7 +215,7 @@
             "Blade Fury",
             "Sudden Raid"
           ],
-          "grandisTier": "Secondary"
+          "grandisBand": "recommended (Primary or Secondary)"
         },
         {
           "core": 5,
@@ -197,7 +225,7 @@
             "Chains of Hell",
             "Blade Ascension"
           ],
-          "grandisTier": "Other"
+          "grandisBand": "other (least priority)"
         },
         {
           "core": 6,
@@ -207,15 +235,19 @@
             "Fatal Blow",
             "Slash Storm"
           ],
-          "grandisTier": "Other"
+          "grandisBand": "other (least priority)"
         }
       ],
+      "consensus": "moderate",
+      "sourceCount": 2,
+      "verifiedAt": "2026-09-12",
       "sources": [
         "https://maplestorywiki.net/w/Dual_Blade/Skills",
         "https://grandislibrary.com/explorers/dual-blade"
       ]
     },
-    "notes": "Boost node cap is level 60, and each node boosts three skills, so two pairs of trios cover all six boosted Blade Master skills. The class doc's rule is that the exact trio compositions do not matter as long as every one of the six skills is covered and the top-slot skill of each trio you run is different from the others; slots two and three may repeat. When crafting a custom boost node, keep the top slot distinct from the trios already in use. Non-priority duplicate nodes should be disassembled into node shards, which fund duplicates of the skills that matter. The doc calls Blink worth maxing for its +30 ATT passive and Rope Lift worth enhancing for its +30 all-stat passive, marks the Decent-buff nodes as worth only level 26 for the +6 all-stat passive, and calls Will of Erda and Decent Combat Orders a waste of node shards beyond that. mystyjl's table lists the bossing trio in the order Asura's Anger / Phantom Blow / Blade Clone, a different internal order from the class doc's Trio A; per the class doc's own rule only the top-slot skill is constrained, so this is a presentation difference rather than a disagreement about which skills belong together.",
+    "notes": "Boost node cap is level 60, and each node boosts three skills, so two pairs of trios cover all six boosted Blade Master skills. The class doc's rule, re-read verbatim on 2026-09-12: 'When crafting Custom Boost Nodes, make sure the skill in the top slot is DIFFERENT from each Trio you plan to use', and 'Skill 2 and Skill 3 can repeat'. Non-priority duplicate nodes should be disassembled into node shards. On the utility nodes the doc says: Blink is expensive to max but 'at least you get 30 additional Attack Power from doing so'; enhancing Rope Lift 'ONLY Provides Passive All Stats: +30'; Decent Combat Orders is worth enhancing 'ONLY ... to Level 26 for Passive All Stats: +6'; and the Decent buffs and Will of Erda sit under the doc's heading 'EXTREMELY Niche, WASTE of Node Shards'. mystyjl's table lists the bossing trio in the order Asura's Anger / Phantom Blow / Blade Clone, a different internal order from the class doc's Trio A; per the class doc's own rule only the top-slot skill is constrained, so this is a presentation difference rather than a disagreement about which skills belong together.",
+    "notesVerifiedAt": "2026-09-12",
     "notesSources": [
       "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
       "https://mystyjl.github.io/reference/NodeGuide.html",
@@ -266,6 +298,10 @@
       "commonCores": [
         "Sol Janus"
       ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
+      "sourceNote": "Single source, but that source is the in-game skill table rather than an opinion piece. Names were checked against the live maplestorywiki page in the contest pass (the site 403s automated fetches, so it was reached by browser); that check is carried forward here rather than repeated.",
       "sources": [
         "https://maplestorywiki.net/w/Dual_Blade/Skills"
       ]
@@ -273,7 +309,10 @@
     "facts": [
       {
         "claim": "Karma Blade is the Origin skill and unlocks at level 260 along with the HEXA matrix. It is invincible during the cast, and grants a limited-use attack proc (25 Karma Blade uses) before a finishing hit when the uses run out or the duration ends.",
-        "consensus": "strong",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "downgradeNote": "Was labelled strong on two sources. Strong requires three independent sources, so this is moderate. Grandis Library's page corroborates that Karma Blade exists as a 6th job skill with a bind and a 360-second cooldown, but Grandis is not independent of the class doc lineage, so it does not lift the count.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
           "https://maplestorywiki.net/w/Dual_Blade/Skills"
@@ -281,7 +320,10 @@
       },
       {
         "claim": "Karma Blade at level 30 supplies 50% ignore enemy defense, which the class doc counts among Blade Master's invisible IED sources.",
-        "consensus": "strong",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "downgradeNote": "Was labelled strong on two sources; strong requires three independent sources. The 50% figure itself is in-game skill-table data verified against maplestorywiki in the contest pass.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
           "https://maplestorywiki.net/w/Dual_Blade/Skills"
@@ -290,6 +332,9 @@
       {
         "claim": "Mortality is a HEXA mastery-core skill that builds stacks from your attacks and then fires on its own. HEXA Sudden Raid boosts Mortality, which is the class doc's stated reason Sudden Raid becomes worth casting against bosses in 6th job even though its 4th-job version was skipped.",
         "consensus": "moderate",
+        "sourceCount": 2,
+        "verifiedAt": "2026-09-12",
+        "quote": "Class doc, re-read 2026-09-12: 'Dual Blade's HEXA Sudden Raid boosts Mortality, and is worth using against Bosses.' The doc does not spell out the 4th-job-skipped contrast in that sentence; that framing comes from the doc's separate 4th job skill build and is this file's synthesis.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
           "https://maplestorywiki.net/w/Dual_Blade/Skills"
@@ -297,7 +342,10 @@
       },
       {
         "claim": "HEXA Enhancement cores cap at level 30 and their final damage bonus steps up at levels 10, 20 and 30 (11% at level 1, 25% at 10, 40% at 20, 60% at 30 for each of the four Blade Master enhancement cores).",
-        "consensus": "strong",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "sourceNote": "Downgraded from strong on 2026-09-12: one source cannot be strong. It is in-game skill-table data, not judgement, and the 11/25/40/60 steps were confirmed against the live maplestorywiki page in the contest pass, so the risk here is staleness rather than fabrication.",
         "sources": [
           "https://maplestorywiki.net/w/Dual_Blade/Skills"
         ]
@@ -305,6 +353,9 @@
       {
         "claim": "HEXA priority on Interactive (Regular) servers shifts slightly from Heroic because Sol Erda Fragments are tradeable there. The class doc flags this but does not print two separate written sequences.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "quote": "Class doc, re-read 2026-09-12: 'Server Notes Interactive \"Regular\" ... Priorities shift slightly because Sol Erda Fragments are Tradeable.'",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -312,6 +363,9 @@
       {
         "claim": "The Attack +21 inner ability line is stated by the class doc to affect the Ascent HEXA skill, which is the doc's argument for taking flat attack once buff duration is already at 100%.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "quote": "Class doc, re-read 2026-09-12: 'Ascent (HEXA) will be affected by the Attack +21 IA.'",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -320,11 +374,15 @@
     "hexaStat": {
       "priority": null,
       "note": "No written HEXA Stat priority could be sourced. The class doc marks certain steps in its HEXA chart with an icon meaning 'take this HEXA Stat to 20/20', but which stats those are is only shown inside the image, not in text.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
       "sources": [
         "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
       ]
     },
-    "notes": "This is the field with the least public evidence for this class, and it should be presented to users as unknown rather than guessed. The Dual Blade Doc does have a HEXA Priority section, but the sequence itself is published as a single infographic (a grid of roughly 150 skill icons each stamped with a target level) with no text equivalent, so the ordering cannot be transcribed without visually identifying every icon, which is exactly the kind of guess that would misdirect a player's Sol Erda. Grandis Library's Dual Blade page carries no HEXA section at all. mystyjl's node reference predates 6th job priorities. AyumiLove lists no 6th job content. MapleTools' Hexa Matrix page was checked directly for Dual Blade: it is a personal tracker whose progression order starts empty and is built by the user, so it publishes no class recommendation. The live answer therefore sits in the Dual Blade Discord and in that infographic; someone reading the image or the Discord pins is the only way to fill this in. Ordinary mechanical facts that do hold: 6th job opens at 260, node levels cap at 30 with breakpoints at 10/20/30, and the currencies are Sol Erda and Sol Erda Fragments.",
+    "notes": "This is the field with the least public evidence for this class, and it should be presented to users as unknown rather than guessed. The Dual Blade Doc does have a HEXA Priority section, but the sequence itself is published as a single infographic (a grid of roughly 150 skill icons each stamped with a target level) with no text equivalent, so the ordering cannot be transcribed without visually identifying every icon, which is exactly the kind of guess that would misdirect a player's Sol Erda. Grandis Library's Dual Blade page DOES carry 6th job content - corrected 2026-09-12, the earlier 'no HEXA section at all' claim was wrong: Karma Blade appears in its skill tables as a 6th job bind with a 360-second cooldown and an iframe, and Yama's Decree appears in its skill preview. What Grandis does not publish is any HEXA investment order or Sol Erda spending sequence, which is the thing this field needs, so it remains a negative result for ordering purposes only. mystyjl's node reference predates 6th job priorities. AyumiLove lists no 6th job content. MapleTools' Hexa Matrix page was checked directly for Dual Blade: it is a personal tracker whose progression order starts empty and is built by the user, so it publishes no class recommendation. The live answer therefore sits in the Dual Blade Discord and in that infographic; someone reading the image or the Discord pins is the only way to fill this in. Ordinary mechanical facts that do hold: 6th job opens at 260, node levels cap at 30 with breakpoints at 10/20/30, and the currencies are Sol Erda and Sol Erda Fragments.",
+    "notesVerifiedAt": "2026-09-12",
     "notesSources": [
       "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
       "https://grandislibrary.com/explorers/dual-blade",
@@ -334,25 +392,11 @@
   },
   "hyperStats": {
     "priority": null,
-    "caps": [
-      {
-        "stat": "Ignore Enemy Defense",
-        "guidance": "Class doc recommends stopping at hyper stat level 10 or below; past that it calls the returns diminishing.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
-        ]
-      },
-      {
-        "stat": "Critical Rate",
-        "guidance": "Same guidance: hyper stat level 10 or below, diminishing past that.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
-        ]
-      }
-    ],
-    "notes": "No source found publishes a full ordered hyper stat allocation for Blade Master. The class doc has no hyper stat section; it treats hyper stats only as one of many IED and crit rate sources and points readers at MathBro's Hyper Stat Optimizer and at MapleScouter, both of which compute an allocation from an individual character's stat sheet rather than from a class-wide list. Grandis Library publishes no hyper stat data for any class. That absence is itself the finding: a fixed hyper stat order for this class is not something the community publishes.",
+    "priorityStatus": "NOT SOURCED. No reachable source ranks hyper stats for this class, and none is invented here. Do not populate this as an ordered array unless a source states an order in words.",
+    "caps": [],
+    "capsRemovedNote": "Two entries were deleted on 2026-09-12: 'Ignore Enemy Defense - stop at hyper stat level 10 or below' and the identical Critical Rate cap, both attributed to the class doc. Re-reading the class doc for this pass found no hyper stat content at all - no occurrence of 'Hyper Stat', no level-10 cap, no diminishing-returns statement about hyper stats - which also contradicted this file's own notes field saying the doc has no hyper stat section. An unsupported number that tells a player to stop spending is worse than a gap, so it was removed rather than hedged.",
+    "notes": "No source found publishes a hyper stat allocation for Blade Master, ordered or otherwise. The class doc has no hyper stat section. It does point readers at two external calculators, re-checked 2026-09-12: a 'Cubing Calculator by MathBro' for potential-cubing meso costs, and MapleScouter in its Interactive-server section - note that neither is a hyper stat optimizer, which an earlier version of this note claimed. Grandis Library publishes no hyper stat data for any class. That absence is itself the finding: a fixed hyper stat order for this class is not something the community publishes.",
+    "notesVerifiedAt": "2026-09-12",
     "notesSources": [
       "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
       "https://grandislibrary.com/explorers/dual-blade"
@@ -370,9 +414,12 @@
         "Blade Fury - Spread",
         "Blade Ascension - Reinforce"
       ],
-      "serverNote": "The class doc's note is that Interactive players may prefer Blade Fury - Spread because they have access to spawn-enhancing totems. The implication for a Heroic character, where totems are not available, is that the other option is the live one, but the doc does not say so in as many words.",
-      "consensus": "moderate",
-      "conflict": "AyumiLove's Dual Blade guide instead recommends maxing Blade Fury - Reinforce and Blade Fury - Guardbreak alongside Phantom Blow - Reinforce and Phantom Blow - Guardbreak, i.e. it takes Blade Fury - Guardbreak where the class doc takes Phantom Blow - Extra Strike. Both are real hyper skills. Recorded as contested, with the note that AyumiLove is a single lower-quality source and the class doc plus Grandis Library agree with each other (though not independently).",
+      "serverNote": "The class doc's note, re-read verbatim 2026-09-12: Interactive players 'May opt for Blade Fury Spread due to having access to Spawn Enhancers \"Totems.\"' The implication for a Heroic character, where totems are not available, is that the other option is the live one, but the doc does not say so in as many words.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
+      "sourceCountNote": "Downgraded from moderate on 2026-09-12. Only one independent source recommends this build: the class doc, re-read this pass and confirmed word for word. Grandis Library prints the same recommendation but credits its hyper passive section to the Dual Blade Discord and Class Doc, so it is the same source speaking twice. maplestorywiki is in the source list only to validate that the skill names exist; it makes no recommendation. The one other independent source, AyumiLove, disagrees.",
+      "conflict": "AyumiLove's Dual Blade guide instead recommends maxing Blade Fury - Reinforce and Blade Fury - Guardbreak alongside Phantom Blow - Reinforce and Phantom Blow - Guardbreak, i.e. it takes Blade Fury - Guardbreak where the class doc takes Phantom Blow - Extra Strike. Re-confirmed on the live AyumiLove page 2026-09-12. Both sets name real hyper skills. Recorded as contested, with the note that AyumiLove is a single lower-quality source and the class doc plus Grandis Library agree with each other (though not independently).",
       "sources": [
         "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
         "https://grandislibrary.com/explorers/dual-blade",
@@ -393,6 +440,10 @@
         "Blade Fury - Guardbreak",
         "Blade Fury - Spread"
       ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
+      "sourceNote": "Single source, but it is the in-game skill table rather than a recommendation; names were verified against the live maplestorywiki page in the contest pass.",
       "sources": [
         "https://maplestorywiki.net/w/Dual_Blade/Skills"
       ]
@@ -403,8 +454,11 @@
         "Asura's Anger",
         "Epic Adventure"
       ],
-      "note": "All three hyper actives are taken as a matter of course; they are the hyper skills the class's boost node trios and burst are built around. Blade Clone also appears in the class doc's auto-buff pet list.",
-      "consensus": "moderate",
+      "listNote": "This is the set of hyper actives the game gives Blade Master, taken from the skill table. It is an inventory, not a ranking, and no source states an order among them.",
+      "note": "No reachable source prints an explicit 'take all three hyper actives' recommendation, so the earlier wording that they are 'taken as a matter of course' has been softened to what the sources actually show. What is sourced: Asura's Anger and Blade Clone are the two hyper actives that appear in the class doc's own bossing boost node trios, and Blade Clone appears in the doc's auto-buff pet list alongside Mirror Image, Decent Combat Orders, Decent Sharp Eyes and Decent Holy Symbol. Epic Adventure has no per-class support beyond existing in the skill table; it is the universal Explorer hyper active.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12",
       "sources": [
         "https://maplestorywiki.net/w/Dual_Blade/Skills",
         "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
@@ -420,7 +474,10 @@
           "Buff Duration +38%",
           "Damage to enemies with an abnormal status +8%"
         ],
-        "consensus": "moderate",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "Downgraded from moderate on 2026-09-12. Re-read verbatim in the class doc ('Boss Damage: 20%', 'Buff skill duration: +38%', '8% damage when attacking targets in...'), but Grandis Library credits its inner ability section to the Dual Blade Discord and Class Doc, so the two sources are one lineage and count once.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
           "https://grandislibrary.com/explorers/dual-blade"
@@ -433,8 +490,11 @@
           "Attack +21",
           "Damage to enemies with an abnormal status +8%"
         ],
-        "why": "The class doc's stated reasons: buff duration past 100% has diminishing returns, and the flat attack line carries over into the Ascent HEXA skill.",
-        "consensus": "moderate",
+        "why": "The class doc's stated reasons, both re-read verbatim 2026-09-12: 'Buff Duration >100% has diminishing returns', and 'Ascent (HEXA) will be affected by the Attack +21 IA.'",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "sourceCountNote": "Downgraded from moderate for the same reason as the case above: Grandis Library is not independent of the class doc on inner ability.",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
           "https://grandislibrary.com/explorers/dual-blade"
@@ -447,8 +507,10 @@
           "Boss Damage +10%",
           "Damage to enemies with an abnormal status +8%"
         ],
-        "why": "The class doc presents this as a for-fun option that buys more invincibility-frame casts, and notes Interactive players may prefer it because they have more boss damage available from other sources than Heroic players do. For a Heroic character that framing makes it the secondary option, not the default.",
+        "why": "The class doc labels this option 'FOR FUN' rather than optimal; the appeal is extra invincibility-frame casts from skipped cooldowns. All three lines were re-read verbatim on 2026-09-12 and match. Corrected the same day: this file previously added that the doc says Interactive players may prefer it because they have more boss damage from other sources. That sentence could not be found in the doc on re-reading and has been deleted. The doc's own 'FOR FUN' label is enough to make this the secondary option.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -463,6 +525,8 @@
           "Buff Duration +38%"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -475,6 +539,8 @@
           "Buff Duration +38%"
         ],
         "consensus": "weak",
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
         "sources": [
           "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic"
         ]
@@ -484,7 +550,8 @@
       "Grandis Library lists the first line as Boss Damage +20% or 20% chance to skip cooldowns, i.e. it presents cooldown skip as a co-equal first-line option rather than as the class doc's side option. Same lineage, so this is a framing difference within one source family.",
       "AyumiLove recommends 20% chance to skip cooldowns with Attack +30 and Boss Damage +20%. It disagrees with the class doc on both the first line and the flat attack value. Recorded as contested; AyumiLove is a single weaker source and gives no reasoning."
     ],
-    "notes": "The class doc credits its inner ability section to AlaskaTiger of Reboot Secret Garden, edited by Rosebuds, which is the Heroic-server provenance a Reboot planner wants. Note the wider cross-class rule that inner ability recommendations differ by region because of where the attack speed cap sits; nothing in these Blade Master lines is an attack speed line, so that caveat does not bite here.",
+    "notes": "The class doc credits its inner ability section to AlaskaTiger of Reboot Secret Garden, edited by Rosebuds, which is the Heroic-server provenance a Reboot planner wants. Note the wider cross-class rule that inner ability recommendations differ by region because of where the attack speed cap sits; nothing in these Blade Master lines is an attack speed line, so that caveat does not bite here. Every preset above was re-read against the doc on 2026-09-12 and matches; the only change was deleting an unfound Interactive-server sentence from the cooldown-skip variant.",
+    "notesVerifiedAt": "2026-09-12",
     "notesSources": [
       "https://docs.google.com/document/d/1f78Z3TIWvvkngspH04SiZkZzd_NG777v3YHkuDcMA3o/mobilebasic",
       "https://grandislibrary.com/explorers/dual-blade"
@@ -604,7 +671,7 @@
     },
     {
       "url": "https://grandislibrary.com/explorers/dual-blade",
-      "what": "Grandis Library's Dual Blade page: boost node groupings tiered Primary/Secondary/Other, hyper skill passive build, recommended inner ability, link skill, base stats, Dark Sight avoidance chart. NOT an independent vote: its own credits block attributes the inner ability, hyper passive and boost node sections to the Dual Blade Discord and Class Doc, so where it agrees with the doc that is one source agreeing with itself. Also two patches behind, stamped GMS Ver. 269.",
+      "what": "Grandis Library's Dual Blade page: boost node groupings with a Primary/Secondary/Other colour legend, hyper skill passive build, recommended inner ability, link skill, base stats, Dark Sight avoidance chart, and a skill table that does include the 6th job skills Karma Blade and Yama's Decree (though no HEXA investment order). Note for future passes: the per-node Primary/Secondary/Other tier is colour-coded, not written, and is not recoverable by text extraction. NOT an independent vote: its own credits block attributes the inner ability, hyper passive and boost node sections to the Dual Blade Discord and Class Doc, so where it agrees with the doc that is one source agreeing with itself. Also two patches behind, stamped GMS Ver. 269.",
       "dated": "GMS v.269 (site-wide stamp; no per-page date)",
       "independent": false
     },
@@ -622,7 +689,7 @@
     },
     {
       "url": "https://ayumilove.net/maplestory-dual-blade-skill-build-guide/",
-      "what": "AyumiLove's Dual Blade skill build guide. Independent of the class doc lineage and dated after the 2025 cutoff, but thin and unsourced: it gives boost node trios matching the doc's skill sets, a hyper passive build that disagrees with the doc, and a one-line inner ability recommendation that also disagrees. Used here only as a third independent voice on trios and as the counterparty in two recorded conflicts. No 6th job content at all.",
+      "what": "AyumiLove's Dual Blade skill build guide. Independent of the class doc lineage and dated after the 2025 cutoff, but thin and unsourced. Corrected 2026-09-12: its boost node trios do NOT match the class doc's skill sets. Its V-Matrix section reads 'Main V Skill: Blade Tempest / Trio #1: Phantom Blow / Blade Fury / Asura's Anger / Trio #2: Sudden Raid / Blade Clone / Blade Ascension', which mixes skills across the doc's bossing and mobbing trios. It was therefore removed from the Trio A source list; it corroborates no trio in this file. What remains of its use here is as the counterparty in two recorded conflicts: a hyper passive build that disagrees with the doc, and a one-line inner ability recommendation that also disagrees. No 6th job content at all.",
       "dated": "2025-05-04",
       "independent": true
     },
@@ -639,7 +706,8 @@
       "independent": true
     }
   ],
-  "consensusLevel": "moderate",
+  "consensusLevel": "weak",
+  "consensusLevelNote": "Lowered from moderate on 2026-09-12. After re-verification the best-sourced endgame claims reach two independent sources (boost node trios, boost node groupings); most rest on the class doc alone. Nothing in the endgame sections is strong.",
   "conflicts": [
     {
       "topic": "Fifth hyper skill passive",
@@ -655,7 +723,7 @@
     },
     {
       "topic": "Inner ability first line",
-      "positionA": "Class doc: Boss Damage +20% first, with the 20% cooldown-skip line presented as a for-fun, iframe-oriented alternative and noted as more attractive on Interactive.",
+      "positionA": "Class doc: Boss Damage +20% first, with the 20% cooldown-skip line presented under a 'FOR FUN' heading as an iframe-oriented alternative (Boss Damage 10% and the abnormal-status 8% line as its second and third lines).",
       "positionB": "Grandis Library presents Boss Damage +20% and 20% cooldown skip as co-equal first-line options. AyumiLove leads with 20% cooldown skip and pairs it with Attack +30, a flat attack figure the class doc does not use.",
       "status": "contested, unresolved",
       "sources": [
@@ -675,22 +743,73 @@
       ]
     }
   ],
-  "evidenceNotes": "Four independent sources were reached (Dual Blade Doc, maplestorywiki skill tables, mystyjl's node reference, AyumiLove), plus Grandis Library which is explicitly NOT independent - its own credits attribute the inner ability, hyper passive and boost node sections to the Dual Blade Discord and Class Doc. Coverage is uneven by field. V matrix trios are the strongest claim here, agreed by three independent sources. Node levelling order, inner ability presets and all gearing judgement rest on the class doc alone and are marked weak accordingly. HEXA investment order and hyper stat priority could not be sourced in text at all and are left empty rather than guessed. Reddit could not be checked (blocked in this environment), and the class Discord was not read.",
+  "evidenceNotes": "RESOLUTION PASS 2026-09-12 (endgame sections only: vMatrix, hexa, hyperSkills, hyperStats, innerAbility). Every endgame claim was re-read against its cited page. Net effect: no endgame claim in this file now carries three independent sources, so nothing here is labelled strong. The strongest endgame claims are the two boost node trios agreed by the class doc and mystyjl (moderate, 2 independent) and the boost node core groupings (moderate, 2). Everything else in the endgame sections rests on the class doc alone, or on the maplestorywiki skill table alone for pure game data, and is labelled weak. Three labels were downgraded from strong to moderate or weak purely on the 3+-independent-source rule, not because the underlying claim failed. Sections outside the endgame scope (skillBuilds, gearingNotes, commonMistakes, damage coefficients) were left untouched by this pass and their labels are as the earlier waves left them. ORIGINAL EVIDENCE SUMMARY: Four independent sources were reached (Dual Blade Doc, maplestorywiki skill tables, mystyjl's node reference, AyumiLove), plus Grandis Library which is explicitly NOT independent - its own credits attribute the inner ability, hyper passive and boost node sections to the Dual Blade Discord and Class Doc. Coverage is uneven by field. V matrix trios are still the strongest claim here, but by two independent sources rather than three - the 2026-09-12 pass removed AyumiLove, which turned out to publish different trios. Node levelling order, inner ability presets and all gearing judgement rest on the class doc alone and are marked weak accordingly. HEXA investment order and hyper stat priority could not be sourced in text at all and are left empty rather than guessed. Reddit could not be checked (blocked in this environment), and the class Discord was not read.",
   "lastVerified": "2026-09-11",
   "patchVersion": "v.271",
   "sourceFreshnessWarning": "Nothing found for this class is stamped to v.271. The class doc is from 2025-10-19 and predates at least the v270 and v271 updates; Grandis Library is stamped v.269; the wiki skill tables were last edited 2026-08-11 and are the most current thing here. Grandis Library exposes a pre-v269 boost node toggle for classes generally, which is direct evidence that boost node groupings changed at v269, so any undated node claim should be treated as suspect.",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "Not an invented name but an unsupported attribution: ayumilove.net is listed in vMatrix.trios[Bossing Trio A].sources and described in the source block as giving 'boost node trios matching the doc's skill sets'. It does not. Its trios use different skill sets (Blade Fury in the bossing trio, Blade Clone in the mobbing trio). A citation that the cited page does not support.",
-      "False checkable negative: hexa.notes states 'Grandis Library's Dual Blade page carries no HEXA section at all'. It has one - Karma Blade (listed as a bind, 360 sec cooldown) and Yama's Decree both appear."
+    "defects": [],
+    "resolution": {
+      "ranAt": "2026-09-12",
+      "scope": "Endgame sections only, per product owner: vMatrix, hexa, hyperSkills, hyperStats, innerAbility. Jobs 1-4 skill builds, damage coefficients, damage lines, tiers and rotations were out of scope and were not touched.",
+      "method": "Each disputed claim was re-checked by reopening the page already cited - the Dual Blade Doc via its mobilebasic URL, Grandis Library and AyumiLove directly, mystyjl's node reference directly. maplestorywiki still 403s automated fetches, so its claims rest on the contest pass's browser verification, which is recorded as cleared and was not re-litigated. No new sources were sought."
+    },
+    "resolved": [
+      {
+        "defect": "ayumilove.net cited in vMatrix.trios[Bossing Trio A].sources, and described in the source block as giving trios matching the class doc's skill sets.",
+        "inScope": true,
+        "section": "vMatrix",
+        "verdict": "CONFIRMED DEFECT - corrected",
+        "whatIFound": "AyumiLove's live page publishes 'Trio #1: Phantom Blow / Blade Fury / Asura's Anger' and 'Trio #2: Sudden Raid / Blade Clone / Blade Ascension'. Those mix skills across the class doc's bossing trio (Asura's Anger / Blade Clone / Phantom Blow) and its mobbing trio (Blade Ascension / Blade Fury / Sudden Raid). The page does not support Trio A.",
+        "action": "Removed ayumilove.net from Trio A's sources, dropped Trio A from strong (3 sources) to moderate (2: class doc and mystyjl, both re-verified this pass), and rewrote the AyumiLove entry in the sources block to say what it actually publishes. AyumiLove is retained in the file only as the counterparty in the two recorded conflicts."
+      },
+      {
+        "defect": "hexa.notes claimed 'Grandis Library's Dual Blade page carries no HEXA section at all'.",
+        "inScope": true,
+        "section": "hexa",
+        "verdict": "CONFIRMED DEFECT - corrected",
+        "whatIFound": "Grandis Library's Dual Blade page does carry 6th job content: Karma Blade appears in its skill tables as a bind with a 360-second cooldown and an iframe, and Yama's Decree appears in its skill preview. What it does not carry is any HEXA investment order or Sol Erda spending sequence.",
+        "action": "Rewrote the sentence in hexa.notes to state the corrected fact and narrow the negative result to ordering only. Also updated the Grandis entry in the sources block to mention its 6th job skill coverage. hexa.order remains empty, which is still the right answer: no reachable text source publishes a Blade Master HEXA investment order."
+      }
     ],
+    "foundDuringResolution": [
+      {
+        "section": "vMatrix",
+        "finding": "Same defect family as the two above, found while re-verifying: boostNodeGroupings carried a per-core grandisTier of Primary/Secondary/Other. Grandis prints PRIMARY/SECONDARY/OTHER only as a colour legend and marks each node by colour, not by text. Two separate text extractions of the page disagreed about whether core 4 is Primary or Secondary, and the page's own markup gives only a two-way split (cores 1-4 share one style class, cores 5-6 another).",
+        "action": "Replaced grandisTier with grandisBand recording only the split the page supports - 'recommended (Primary or Secondary)' for cores 1-4, 'other (least priority)' for cores 5-6 - with a note telling future passes not to restore the finer distinction without a source that states it in words. Core membership itself was re-read off the live page and matches exactly."
+      },
+      {
+        "section": "hyperStats",
+        "finding": "hyperStats.caps attributed two 'stop at hyper stat level 10' recommendations to the class doc, while hyperStats.notes in the same file said the class doc has no hyper stat section. Re-reading the doc found no hyper stat content at all, confirming the notes and refuting the caps.",
+        "action": "Deleted both cap entries rather than hedging them, and recorded why in capsRemovedNote. Also corrected the notes: the doc points readers at a 'Cubing Calculator by MathBro' and at MapleScouter, not at a MathBro hyper stat optimizer as this file previously claimed. hyperStats.priority stays null with an explicit priorityStatus so no downstream reader mistakes emptiness for an ordering."
+      },
+      {
+        "section": "innerAbility",
+        "finding": "The cooldown-skip variant's 'why' claimed the class doc says Interactive players may prefer it because they have more boss damage from other sources. That sentence could not be found in the doc. The three lines themselves (20% cooldown skip, Boss Damage 10%, abnormal-status 8%) were confirmed verbatim, as was the doc's 'FOR FUN' framing.",
+        "action": "Deleted the unfound sentence, kept the verified lines and the doc's own 'FOR FUN' label as the reason it is the secondary option."
+      },
+      {
+        "section": "hyperSkills",
+        "finding": "hyperSkills.actives asserted all three hyper actives are 'taken as a matter of course'. No reachable source states that.",
+        "action": "Reframed the list as a game-data inventory with an explicit listNote that no order is implied, and replaced the assertion with what is sourced: Asura's Anger and Blade Clone appear in the class doc's own bossing trios, Blade Clone appears in its auto-buff pet list, and Epic Adventure has no per-class support beyond existing."
+      },
+      {
+        "section": "all endgame",
+        "finding": "Consensus labels did not match the stated rule that strong requires 3+ independent sources, and Grandis Library was being counted as a second vote on inner ability and hyper passives even though its own credits attribute those sections to the Dual Blade Discord and Class Doc.",
+        "action": "Relabelled every endgame claim with sourceCount, consensus and verifiedAt. Three strong labels became moderate or weak; the inner ability presets and the hyper passive build dropped from moderate to weak because their two sources are one lineage. No endgame claim in this file is labelled strong any more."
+      }
+    ],
+    "outOfScope": [],
     "clearedOnInspection": [
       "No fabricated skill or node names. Every name was verified against the live maplestorywiki Dual Blade/Skills page (last edited 2026-08-11), reached via browser because the site 403s automated fetches: Blade Storm, Blades of Destiny, Blade Tornado, Haunted Edge, Karma Blade, Yama's Decree, Mortality, Sol Janus, all six boost-node core groupings, the 11/25/40/60 HEXA enhancement steps, the level-40 IED +20% on Phantom Blow Boost and Blade Clone Boost, the 60 boost-node cap, and Thief's Cunning +27% at Lv9 all check out exactly as written."
     ],
-    "shipReady": false
+    "shipReady": true,
+    "shipReadyNote": "Endgame sections only. Both contested defects were confirmed against the cited pages and corrected, and four further citation problems found during re-verification were corrected or deleted. The remaining gaps - hexa.order, hexa.hexaStat.priority, hyperStats.priority - are explicitly flagged as unsourced rather than filled with a guess, which is a gap, not an unverified claim."
   },
-  "written": false,
-  "blockedReason": "2 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null,
+  "writtenScopeNote": "written:true covers the five endgame sections (vMatrix, hexa, hyperSkills, hyperStats, innerAbility), each claim of which now carries sources, sourceCount, consensus and verifiedAt re-checked on 2026-09-12. Sections outside that scope - skillBuilds for jobs 1-4, gearingNotes, commonMistakes - were not re-verified in this pass and carry the earlier waves' labels.",
+  "endgameVerifiedAt": "2026-09-12"
 }

@@ -12,6 +12,7 @@
     "effect": "Active teleport back to Elluel with a permanent passive EXP bonus. On Mercedes herself the level 3 version additionally grants +5% Damage; the linked version granted to other characters is EXP only.",
     "levels": "Link skill: Lv.1 +10% EXP, Lv.2 +15% EXP, Lv.3 +20% EXP (1800 sec cooldown). Mercedes' own copy: Lv.1 +10%, Lv.2 +15%, Lv.3 +20% EXP and +5% Damage (600 sec cooldown).",
     "consensus": "moderate",
+    "sourceCount": 2,
     "sources": [
       "https://maplestorywiki.net/w/Elven_Blessing",
       "https://grandislibrary.com/heroes/mercedes"
@@ -20,201 +21,318 @@
   "legionEffect": {
     "effect": "Skill Cooldown -2/3/4/5/6% (capped at -5 seconds) across the five Legion rank tiers.",
     "consensus": "moderate",
+    "sourceCount": 2,
     "sources": [
       "https://maplestorywiki.net/w/Mercedes",
       "https://grandislibrary.com/heroes/mercedes"
     ]
   },
   "vMatrix": {
-    "priority": [
-      {
-        "node": "All nine of Mercedes' used skills must end up boosted - the partition into trios matters far less than the coverage",
-        "why": "The class doc states plainly that the combination you end up with does not ultimately matter, that a good early combination only makes node management easier at low level, and that everything works out as long as all nine skills are eventually maxed. It also ties this to 6th job: the 4th job skills have to be boosted in order to level 6th job. Corroborated indirectly: mastermysty's independent cross-class reference names exactly nine Mercedes skills across its three trios (Unicorn Spike, Ishtar's Ring, Stunning Strikes, Leaf Tornado, Spikes Royale, Wrath of Enlil, Rising Rush, Lightning Edge, Elemental Knights), the same count the doc refers to.",
-        "consensus": "moderate",
-        "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+    "nodeGroups": {
+      "note": "THIS IS THE LOAD-BEARING STRUCTURE FOR MERCEDES BOOST NODES, and it was re-verified from two independent sources on 2026-09-12. Boost node skill membership is FIXED, not player-chosen: maplestorywiki (GMS v270) enumerates six numbered 'Boost Node/Enhancement Core' groups, and Grandis Library (GMS v269) lists the same six groups with identical membership in its 'Skills Boosted by Each Nodes' table. Grandis additionally exposes a 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence the groupings changed at V.269. Grandis states the mechanic as: 'Each Boost Node provides a %Final Damage increase to the skills included in the node. Nodes categorized as PRIMARY and SECONDARY are recommended to be upgraded.'",
+      "membershipSourceCount": 2,
+      "membershipConsensus": "moderate",
+      "tierDefinitionsPerGrandis": {
+        "PRIMARY": "Unlocks a 6th Job HEXA Mastery core. Highest priority.",
+        "SECONDARY": "Frequently used skills that do not unlock a mastery core (as of the v269 page state).",
+        "OTHER": "Lowest priority."
       },
-      {
-        "node": "Ishtar's Ring",
-        "why": "Grandis Library places Ishtar's Ring's node group in its top tier on every retrieval. It is the skill you fall back to whenever you are not comboing, three of the five hyper passives feed it, and post-6th-job those hypers also apply to Ishtar's Brand. mastermysty likewise puts it in a bossing trio in both of the setups it lists.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/heroes/mercedes",
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "node": "Leaf Tornado, Spikes Royale and Wrath of Enlil (these three share a node group)",
-        "why": "Grandis Library lists these three together as one node group and ranks that group at or near the top of its tiering. mastermysty independently recommends exactly this three-skill trio as the bossing-plus-mobbing trio. Wrath of Enlil is the class's highest-damage single skill per the class doc, Spikes Royale carries the 55% defense-reduction debuff, and Leaf Tornado is the main grinding skill.",
-        "consensus": "moderate",
-        "sources": [
-          "https://grandislibrary.com/heroes/mercedes",
-          "https://mystyjl.github.io/reference/NodeGuide.html",
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
-      },
-      {
-        "node": "Unicorn Spike",
-        "why": "The class doc calls it the second highest damage skill after Wrath of Enlil and notes its debuff raises party damage by 30%, comparable to an extra guild skill, so it should always be applied. Grandis Library places it in a mid tier.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
-          "https://grandislibrary.com/heroes/mercedes"
-        ]
-      },
-      {
-        "node": "Guided Arrow (5th job skill node) - level it early if it gets you to a one-shot",
-        "why": "The only explicit node-leveling instruction that survives in the class doc as readable text: if leveling Guided Arrow brings you to a one-shot on the mobs you are farming, prioritise it, because it lifts your training rates while you are still in Arcane River. The doc otherwise advises crafting skill nodes rather than leveling them, since skill nodes are harder to level.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
-      },
-      {
-        "node": "Do not boost Swift Dual Shot, Piercing Storm or Parting Shot",
-        "why": "The class doc says these three are not used after their job advancements and there is no reason to boost them. Grandis Library puts all three in its lowest tier. Note this is one lineage agreeing with itself - Grandis credits its boost node build to the class doc.",
-        "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
-          "https://grandislibrary.com/heroes/mercedes"
-        ]
-      }
-    ],
-    "trios": [
-      {
-        "label": "mastermysty - general setup",
-        "trios": [
-          [
-            "Unicorn Spike",
-            "Ishtar's Ring",
-            "Stunning Strikes"
-          ],
-          [
-            "Leaf Tornado",
-            "Spikes Royale",
-            "Wrath of Enlil"
-          ],
-          [
-            "Rising Rush",
-            "Lightning Edge",
-            "Elemental Knights"
-          ]
-        ],
-        "roles": [
-          "bossing",
-          "bossing + mobbing",
-          "supplementary"
-        ],
-        "consensus": "weak",
-        "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      },
-      {
-        "label": "mastermysty - 'some prefer this' alternative, listed by the same author as a genuine community split",
-        "trios": [
-          [
-            "Elemental Knights",
-            "Ishtar's Ring",
-            "Stunning Strikes"
-          ],
-          [
-            "Unicorn Spike",
-            "Spikes Royale",
-            "Wrath of Enlil"
-          ],
-          [
-            "Rising Rush",
-            "Lightning Edge",
-            "Leaf Tornado"
-          ]
-        ],
-        "roles": [
-          "bossing",
-          "trio #2",
-          "mobbing (mostly)"
-        ],
-        "consensus": "weak",
-        "sources": [
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
-      }
-    ],
-    "nodeGroupsPerGrandis": {
-      "note": "Grandis Library's 'Skills Boosted by Each Nodes' table, i.e. which skills sit together in a node group, with its own priority tiering. Read twice; the skill membership was identical both times, the tier LABEL on group 2 was not (PRIMARY on one read, SECONDARY on the other), so treat the tier ordering below as indicative and the membership as reliable.",
+      "tierSourceCount": 2,
+      "tierConsensus": "moderate",
+      "tierNote": "The tier labels come from Grandis Library, which credits its Boost Nodes Build to the Class Doc, so the labels are one editorial lineage. They are corroborated STRUCTURALLY rather than editorially: Grandis defines PRIMARY as 'unlocking 6th Job HEXA Mastery', and maplestorywiki's HEXA Mastery Node/Core 1-4 memberships map 1:1 onto boost node groups 1-4, so the PRIMARY assignment on groups 1 and 2 is mechanically checkable and checks out. The earlier file recorded group 2's tier as 'PRIMARY or SECONDARY - label unverified'; the 2026-09-12 re-read returned PRIMARY, and the mastery-core mapping supports PRIMARY. Ambiguity resolved.",
       "groups": [
         {
+          "node": 1,
           "skills": [
             "Ishtar's Ring"
           ],
-          "tier": "PRIMARY"
+          "tier": "PRIMARY",
+          "unlocksHexaMasteryCore": 1
         },
         {
+          "node": 2,
           "skills": [
             "Leaf Tornado",
             "Spikes Royale",
             "Wrath of Enlil"
           ],
-          "tier": "PRIMARY or SECONDARY - label unverified"
+          "tier": "PRIMARY",
+          "unlocksHexaMasteryCore": 2
         },
         {
+          "node": 3,
           "skills": [
             "Stunning Strikes",
             "Unicorn Spike",
             "Gust Dive"
           ],
-          "tier": "SECONDARY"
+          "tier": "SECONDARY",
+          "unlocksHexaMasteryCore": 3,
+          "note": "maplestorywiki footnotes that the Stunning Strikes Boost also boosts Staggering Strikes."
         },
         {
+          "node": 4,
           "skills": [
             "Elemental Knights",
             "Final Attack: Dual Bowguns"
           ],
-          "tier": "SECONDARY"
+          "tier": "SECONDARY",
+          "unlocksHexaMasteryCore": 4
         },
         {
+          "node": 5,
           "skills": [
             "Lightning Edge",
             "Swift Dual Shot",
             "Piercing Storm"
           ],
-          "tier": "OTHER"
+          "tier": "OTHER",
+          "unlocksHexaMasteryCore": null
         },
         {
+          "node": 6,
           "skills": [
             "Rising Rush",
             "Parting Shot",
             "Aerial Barrage",
             "Rolling Moonsault"
           ],
-          "tier": "OTHER"
+          "tier": "OTHER",
+          "unlocksHexaMasteryCore": null
         }
       ],
       "sources": [
+        "https://maplestorywiki.net/w/Mercedes/Skills",
         "https://grandislibrary.com/heroes/mercedes"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    "priorityOrdering": {
+      "ordered": false,
+      "reason": "The class doc explicitly declines to rank boost node combinations ('While the combinations in which you boost your skills ultimately don't matter...'), and its one numbered NODE LEVELING PRIORITY list is an embedded image that the document's text export does not carry - re-checked 2026-09-12, still unreadable. The ONLY ranking any source actually states is Grandis Library's PRIMARY > SECONDARY > OTHER tiering of the six fixed node groups, which is recorded in vMatrix.nodeGroups. The entries in vMatrix.priority below therefore carry rank: null and their array position must NOT be read as a priority order."
+    },
+    "priority": [
+      {
+        "node": "All nine of Mercedes' used skills must end up boosted - the partition matters far less than the coverage",
+        "rank": null,
+        "why": "Class doc, verbatim: 'While the combinations in which you boost your skills ultimately don't matter, for a low level Mercedes the right node combination can make managing nodes easier until later levels. Ultimately, you will need to boost all the above skills in order to level your sixth job.' And: 'your nodes will work out as long as all 9 skills are eventually maxed.' Corroborated independently in count: mastermysty's cross-class reference names exactly nine Mercedes skills across its three trios (Unicorn Spike, Ishtar's Ring, Stunning Strikes, Leaf Tornado, Spikes Royale, Wrath of Enlil, Rising Rush, Lightning Edge, Elemental Knights). The '6th job' half of the claim is now concrete rather than vague: maplestorywiki shows boost node groups 1-4 map 1:1 onto HEXA Mastery Cores 1-4.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "sources": [
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Ishtar's Ring (boost node group 1)",
+        "rank": null,
+        "why": "Grandis Library tiers node group 1 PRIMARY, re-read 2026-09-12. It is the skill you fall back to when comboing is unsafe - the class doc's Darknell section says 'Learning to use Ishtar's Ring instead of forcing combos even when it seems safe will save you a lot of lives.' Three of the five hyper passive points go into Ishtar's Ring passives (Reinforce, Guardbreak, Boss Rush), and the class doc says those hypers also apply to Ishtar's Mark, the 6th job mark mechanic. mastermysty puts Ishtar's Ring in the bossing trio in both of the setups it lists.",
+        "consensus": "moderate",
+        "sourceCount": 3,
+        "sources": [
+          "https://grandislibrary.com/heroes/mercedes",
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "verifiedAt": "2026-09-12",
+        "consensusNote": "Three sources are listed but Grandis credits its Boost Nodes Build to the Class Doc, so the tier label and the doc are one lineage for the PRIORITY judgement. Held at moderate rather than strong for that reason."
+      },
+      {
+        "node": "Leaf Tornado, Spikes Royale and Wrath of Enlil (boost node group 2)",
+        "rank": null,
+        "why": "Grandis Library tiers node group 2 PRIMARY, re-read 2026-09-12 (this replaces the earlier 'PRIMARY or SECONDARY - label unverified' hedge). maplestorywiki independently shows this group is what unlocks HEXA Mastery Core 2, which is the mechanical reason for a PRIMARY label under Grandis' own definition. mastermysty independently recommends exactly this three-skill trio as its 'Bossing + Mobbing' trio. The class doc calls Wrath of Enlil one of Mercedes' highest damage skills, Spikes Royale carries the 55% defense-reduction debuff with the Armorbreak hyper, and Leaf Tornado is the main grinding skill.",
+        "consensus": "moderate",
+        "sourceCount": 3,
+        "sources": [
+          "https://grandislibrary.com/heroes/mercedes",
+          "https://maplestorywiki.net/w/Mercedes/Skills",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Unicorn Spike (inside boost node group 3)",
+        "rank": null,
+        "why": "Class doc, verbatim: 'This is Mercedes' second highest damage dealing skill after Wrath of Enlil. It applies a debuff that increases damage dealt by 30% for the entire party, which is equivalent to an extra guild skill. Make sure to always have this skill applied.' Grandis tiers its node group (3) SECONDARY, not PRIMARY - so the doc's regard for the skill and the node tiering do not fully agree, and the node, not the skill, is what you upgrade.",
+        "consensus": "weak",
+        "sourceCount": 2,
+        "sources": [
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+          "https://grandislibrary.com/heroes/mercedes"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Guided Arrow (5th job skill node) - level it early if it gets you to a one-shot",
+        "rank": null,
+        "why": "Class doc, verbatim: 'If you can get Guided Arrow to oneshot by leveling it, it's worth prioritizing as it'll give you a nice boost to your rates while you're still in the Arcane River. Ideally, you should only be crafting skill nodes as they're harder to level but if you're struggling for damage against normal monsters you should be prioritizing that.' This is the only node-leveling instruction that survives in the doc as readable text. Guided Arrow confirmed as a Bowman shared V skill on maplestorywiki.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Boost node groups 5 and 6 are Grandis Library's lowest tier",
+        "rank": null,
+        "why": "Grandis Library tiers node group 5 (Lightning Edge, Swift Dual Shot, Piercing Storm) and node group 6 (Rising Rush, Parting Shot, Aerial Barrage, Rolling Moonsault) as OTHER, its lowest priority, and says only PRIMARY and SECONDARY nodes are recommended to be upgraded. Note the group, not the skill, is the unit: Lightning Edge sits in an OTHER group despite being a used skill, so 'do not boost Swift Dual Shot' is not something a player can act on independently.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://grandislibrary.com/heroes/mercedes"
+        ],
+        "verifiedAt": "2026-09-12",
+        "correctionNote": "CORRECTED 2026-09-12. This entry previously read 'Do not boost Swift Dual Shot, Piercing Storm or Parting Shot' and attributed it to the class doc ('The class doc says these three are not used after their job advancements and there is no reason to boost them'). The class doc's full text export contains ZERO occurrences of 'Swift Dual Shot' and ZERO of 'Piercing Storm'; 'Parting Shot' appears exactly once, in an unrelated combo note about using the normal attack key after Rising Rush. The class doc attribution was fabricated and has been deleted. The claim now says only what Grandis actually says, and has been narrowed to the node group, which is the real unit of choice."
+      }
+    ],
+    "supersededPreV269Trios": {
+      "useForGuidance": false,
+      "warning": "DO NOT SHIP THESE AS RECOMMENDATIONS. Verified verbatim against mastermysty on 2026-09-12 - the source really does say this, role labels included. But these partitions are NOT ACHIEVABLE under the six fixed boost node groups that both maplestorywiki (v270) and Grandis Library (v269) enumerate: for example mastermysty pairs Unicorn Spike with Ishtar's Ring and Stunning Strikes, whereas Ishtar's Ring sits alone in node group 1 and Unicorn Spike sits with Stunning Strikes and Gust Dive in group 3. mastermysty's page is stamped 'Last update: November 21st, 2024' and predates the V.269 boost node change that Grandis flags with its 'View Pre-V.269 Boost Nodes' toggle. Retained only so the research is not lost and so this partition is not rediscovered and re-adopted.",
+      "setups": [
+        {
+          "label": "mastermysty - General",
+          "trios": [
+            [
+              "Unicorn Spike",
+              "Ishtar's Ring",
+              "Stunning Strikes"
+            ],
+            [
+              "Leaf Tornado",
+              "Spikes Royale",
+              "Wrath of Enlil"
+            ],
+            [
+              "Rising Rush",
+              "Lightning Edge",
+              "Elemental Knights"
+            ]
+          ],
+          "roles": [
+            "Bossing",
+            "Bossing + Mobbing",
+            "Supplimentary (sic, as printed)"
+          ]
+        },
+        {
+          "label": "mastermysty - 'Some Prefer This'",
+          "trios": [
+            [
+              "Elemental Knights",
+              "Ishtar's Ring",
+              "Stunning Strikes"
+            ],
+            [
+              "Unicorn Spike",
+              "Spikes Royale",
+              "Wrath of Enlil"
+            ],
+            [
+              "Rising Rush",
+              "Lightning Edge",
+              "Leaf Tornado"
+            ]
+          ],
+          "roles": [
+            "Bossing",
+            "Trio #2",
+            "Mobbing (mostly)"
+          ]
+        }
+      ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    "classDocTrios": {
+      "status": "UNREADABLE - still images as of 2026-09-12",
+      "whatIsKnown": "The class doc's FIFTH JOB > NODES section, its 'EXAMPLES OF IDEAL NODE SETUPS' block and its 'NODE LEVELING PRIORITY' block were re-fetched in full this session via the document's plain-text export. Every skill icon in those tables is an embedded image, so the export carries only the column headings and the surrounding prose. What IS readable: the recommended setup's three columns are labelled BOSSING / MOBBING / SUPPLEMENTARY; a second, explicitly not-recommended setup is labelled BOSSING / MOBBING / 'REPLACE TRIO 1 WHEN MOBBING/OMIT' and the doc says it 'maximizes bossing damage with only two trios equipped... it cripples your main mobbing skill until all nodes are equipped'; and the leveling priority block is structured as an image, then 'UNTIL TRAINING IS COMFORTABLE, THEN', image, 'THEN', images, 'THEN', images, 'THEN EVERYTHING ELSE', image. The actual skill membership of every one of those cells is unreadable without OCR or a human.",
+      "verifiedAt": "2026-09-12",
+      "sources": [
+        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
       ]
     },
-    "notes": "IMPORTANT SOURCING GAP: the class doc's own recommended trios and its numbered node leveling priority are both embedded IMAGES. The document's text export contains only the section headings and the surrounding prose, so the doc's actual trio partition and its leveling order could NOT be read this session and are not reproduced here - reading them needs OCR or a human. The trios listed above are mastermysty's, an independent source but dated 2024-11-21, which predates the v.269 boost node regrouping that Grandis Library itself flags with a 'View Pre-V.269 Boost Nodes' toggle. Grandis Library is NOT an independent check here: its credits line states the boost nodes build comes from the Class Doc. Mercedes' node skill names to validate against: Leaf Tornado (not 'Leap Tornado' - see conflicts), Spikes Royale, Wrath of Enlil (a hyper skill, not a 4th job skill), Unicorn Spike, Ishtar's Ring, Stunning Strikes, Gust Dive, Lightning Edge, Elemental Knights, Rising Rush, Rolling Moonsault, Aerial Barrage, Final Attack: Dual Bowguns."
+    "notes": "Node skill names validated against maplestorywiki v270: Leaf Tornado (not 'Leap Tornado' - see conflicts), Spikes Royale, Wrath of Enlil (a hyper skill, not a 4th job skill), Unicorn Spike, Ishtar's Ring, Stunning Strikes, Gust Dive, Lightning Edge, Elemental Knights, Rising Rush, Rolling Moonsault, Aerial Barrage, Final Attack: Dual Bowguns, Swift Dual Shot (1st job), Piercing Storm (2nd job), Parting Shot (2nd job). Grandis Library is NOT an independent editorial check on node PRIORITY - its credits line reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc'. It IS an independent factual check on node group MEMBERSHIP, which is game data and matches maplestorywiki exactly."
   },
   "hexa": {
     "order": null,
+    "orderNullReason": "Deliberate, and re-confirmed 2026-09-12. No public source carries a Mercedes HEXA investment order. See hexa.notes.",
+    "masteryCores": {
+      "note": "Which HEXA Mastery skills sit on which mastery core, and the 1:1 correspondence with the 5th job boost node groups. This is the structural fact that makes the class doc's 'you will need to boost all the above skills in order to level your sixth job' actionable. Read directly off maplestorywiki's Mercedes/Skills page (GMS v270).",
+      "cores": [
+        {
+          "core": 1,
+          "label": "Mastery Node/Core 1",
+          "skills": [
+            "HEXA Ishtar's Ring"
+          ],
+          "correspondingBoostNodeGroup": 1
+        },
+        {
+          "core": 2,
+          "label": "Mastery Node/Core 2",
+          "skills": [
+            "HEXA Wrath of Enlil",
+            "HEXA Wrath of Enlil: Spirit Enchant",
+            "HEXA Spikes Royale",
+            "HEXA Spikes Royale: Spirit Enchant",
+            "HEXA Leaf Tornado",
+            "HEXA Leaf Tornado: Spirit Enchant"
+          ],
+          "correspondingBoostNodeGroup": 2
+        },
+        {
+          "core": 3,
+          "label": "Mastery Node/Core 3",
+          "skills": [
+            "HEXA Unicorn Spike",
+            "HEXA Gust Dive",
+            "HEXA Stunning Strikes"
+          ],
+          "correspondingBoostNodeGroup": 3
+        },
+        {
+          "core": 4,
+          "label": "Mastery Node/Core 4",
+          "skills": [
+            "HEXA Elemental Knights",
+            "HEXA Final Attack"
+          ],
+          "correspondingBoostNodeGroup": 4
+        }
+      ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://maplestorywiki.net/w/Mercedes/Skills"
+      ],
+      "verifiedAt": "2026-09-12",
+      "sourceCountNote": "One source, but a facts-only one and the only site carrying the data at all - Grandis Library has no HEXA section for any class. Labelled weak because one source is one source, not because the data is doubted."
+    },
     "hexaStatPriority": {
       "order": [
         "attack",
         "main stat",
         "boss damage"
       ],
+      "ordered": true,
+      "orderedJustification": "The source states this as an explicit ranking with '>' separators, so array order here DOES carry a sourced claim. Class doc, verbatim: 'The hexa stat priority is attack > main stat > boss.' (The doc's 'boss' is recorded here as 'boss damage'.)",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "skillNames": {
       "origin": "Unfading Glory",
       "ascent": "Primeval Spirits",
+      "originAscentNote": "maplestorywiki labels these explicitly: 'Skill Node/Core 1 (Origin): Unfading Glory' and 'Skill Node/Core 2 (Ascent): Primeval Spirits'. Irkalla's Wrath is a 5th job class-specific V skill, NOT the Origin skill - see conflicts.",
       "masterySkills": [
         "HEXA Ishtar's Ring",
         "HEXA Wrath of Enlil",
@@ -235,117 +353,173 @@
         "Irkalla's Wrath Boost",
         "Royal Knights Boost"
       ],
+      "enhancementCoreNote": "All four are HEXA Enhancements at Level Requirement 260, master level 30, and each reads 'Final Damage: +...%' on its own 5th job skill. Not to be confused with the 5th job V Enhancements, which are the boost nodes.",
       "sharedCores": [
         "Sol Janus",
         "Sol Hecate"
       ],
       "consensus": "moderate",
+      "sourceCount": 2,
       "sources": [
         "https://maplestorywiki.net/w/Mercedes/Skills",
-        "https://grandislibrary.com/heroes/mercedes",
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "usageFacts": [
       {
-        "claim": "Burst order post-6th-job: apply the Spikes Royale and Unicorn Spike debuffs and Ishtar's Brand first, then pop buffs from lowest to highest impact, then Irkalla's Wrath, then Unfading Glory. Freud's Wisdom should always be used alongside Unfading Glory.",
+        "claim": "Burst order post-6th-job: have the Spikes Royale and Unicorn Spike debuffs applied, plus Ishtar's Mark post sixth job, BEFORE bursting; then pop buffs from lowest to highest impact, then Irkalla's Wrath, then Unfading Glory. Freud's Wisdom should always be used alongside Unfading Glory.",
+        "sourceQuote": "'Bursting on Mercedes is simpler than DPMing. Make sure you have Spikes Royale and Unicorn Spike debuffs applied before bursting, as well as Ishtar Brand post sixth job. After that, you can just pop your buffs from lowest to highest impact and use Irkalla's Wrath, followed by Unfading Glory after sixth job' and, separately, 'Freud's should always be used alongside Unfading Glory.'",
+        "nameCorrection": "The class doc writes 'Ishtar Brand'. The in-game string per maplestorywiki v270 is 'Ishtar's Mark' - the mark applied by HEXA Ishtar's Ring. This file now uses Ishtar's Mark throughout; 'Ishtar Brand' and 'Ishtar's Brand' are community spellings only and should be accepted as search aliases, never emitted.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12",
+        "caveat": "The doc's actual skill-by-skill burst sequence table immediately after this prose is an embedded image and is not readable. Only the prose above is sourced."
       },
       {
         "claim": "Post-6th-job damage pattern: keep comboing for the whole duration of Spirit of Elluel. Outside Spirit windows comboing is still technically better, but the gap over minimal comboing with Unicorn Spike and Wrath of Enlil is much smaller.",
+        "sourceQuote": "'While the exact ratios will vary a bit depending on your skill levels, generally, you still want to combo for the duration of Spirit of Elluel. Outside spirits, while comboing is technically better, the difference over min comboing with unicorn and wrath is a lot smaller.'",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "claim": "A cooldown hat also lowers the cooldown of the Spirit Enchant versions of the 6th job skills, and of Erda Fountain / Sol Janus.",
+        "sourceQuote": "'Additional CD hat benefits: More flexible AB link timing, lower water shield cooldown, slightly lower spirit nimble flight cooldown, more generous Freud's Wisdom stacking windows, lower cooldown on the Spirit Enhance versions of our sixth job skills, lower Erda Fountain/Sol Janus cooldowns.' (The doc writes 'Spirit Enhance'; the in-game string per maplestorywiki v270 is 'Spirit Enchant', e.g. 'HEXA Wrath of Enlil: Spirit Enchant'.)",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "NO SOURCED HEXA INVESTMENT ORDER EXISTS FOR MERCEDES IN PUBLIC. Two reasons, both verified: (1) the class doc deliberately does not publish a fixed order - it points readers at maplescouter.com/hexa ('Analysis/Optimization' -> 'Hexa Core') after building a character preset, i.e. it treats the order as per-character output, not a list; (2) the 'indicative upgrade order' the doc does include is an embedded image that the text export does not carry. The doc's prose around that image says the chart includes all four mastery cores, and elsewhere (in the combo section) that at the time of writing only the first two mastery cores were live in GMS - which also means any order lifted from that doc is keyed to a 2025-06 GMS core release state and is stale against v.271. Grandis Library has no HEXA section at all for any class. maplescouter is Korean-language and KMS-balance. If MaplePlanner wants to ship a Mercedes HEXA order it must come from the Mercedes Discord or from modelling maplescouter's method; do not synthesise one."
+    "notes": "NO SOURCED HEXA INVESTMENT ORDER EXISTS FOR MERCEDES IN PUBLIC. Re-verified 2026-09-12 by re-reading the class doc's SIXTH JOB/HEXA > SKILL UPGRADE ORDER section in full. Both reasons hold. (1) The doc deliberately does not publish a fixed order; verbatim: 'You can find the latest upgrade order on maplescouter's website, under \"Analysis/Optimization\" -> \"Hexa Core\", after making a preset for your character: https://maplescouter.com/hexa'. It treats the order as per-character output, not a list. (2) The 'indicative upgrade order' the doc does include is an embedded image the text export does not carry; the doc's own prose around it reads 'Here's an indicative upgrade order that includes all 4 mastery cores', so even that chart is keyed to a 2025-06-11 GMS core release state and is stale against v.271. Grandis Library has no HEXA section at all for any class. maplescouter is Korean-language and KMS-balance. If MaplePlanner wants to ship a Mercedes HEXA order it must come from the Mercedes Discord or from modelling maplescouter's method; do not synthesise one. What this file CAN give a player in the meantime is hexa.masteryCores (which mastery core contains which skill, and which boost node group unlocks it) and hexa.hexaStatPriority (attack > main stat > boss), both sourced."
   },
   "hyperStats": {
     "priority": null,
-    "notes": "No source read this session gives a Mercedes hyper stat allocation. The class doc has no hyper stats section at all (it has a hyper SKILLS section); Grandis Library carries no hyper stat data for any class; mastermysty covers boost nodes only. One class-specific fact does bear on hyper stat allocation and is mechanically sourced: Vicious Shot lets Critical Rate exceed 100% and converts Critical Rate into Critical Damage for its duration (21% of crit rate at Lv.1 scaling to 50% at Lv.30), so crit rate does not become dead once you are at the cap the way it does for most classes. Leaving the priority list null rather than inventing one.",
+    "ordered": null,
+    "sourceCount": 0,
+    "priorityNullReason": "Re-verified 2026-09-12: the string 'hyper stat' appears ZERO times in the class doc's full text export. The doc has a HYPER SKILLS section and no hyper stats section whatsoever. Grandis Library carries no hyper stat data for any class. mastermysty covers boost nodes only. Leaving this null rather than inventing an allocation, and specifically NOT inferring one from the crit-rate fact below.",
+    "notes": "One class-specific fact bears on hyper stat allocation and is mechanically sourced, but it is NOT an allocation and must not be rendered as one: Vicious Shot (Bowman shared V skill, master level 30) reads 'Allows Critical Rate to exceed 100% and Critical Damage to increase by {20+x}% of Critical Rate' - i.e. 21% of crit rate at Lv.1 rising to 50% at Lv.30 - so crit rate does not become dead weight once you hit the cap the way it does for most classes. The class doc's own framing of the same mechanic is 'The damage that the 10% crit damage this converts to through Vicious Shot is too important to sacrifice for another line.'",
+    "consensus": "weak",
     "sources": [
       "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+      "https://maplestorywiki.net/w/Vicious_Shot",
       "https://maplestorywiki.net/w/Mercedes/Skills"
-    ]
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "hyperSkills": {
+    "passivesOrdering": {
+      "ordered": false,
+      "reason": "All four passives below are taken, not ranked - the class doc presents them as a set joined by 'AND'. Array position carries no claim. The only thing resembling an order is the level at which each becomes available, recorded per entry as unlockLevel and taken from maplestorywiki."
+    },
     "passives": [
       {
         "skill": "Spikes Royale - Armorbreak",
-        "why": "Raises the Spikes Royale defense-reduction debuff from 35% to 55%. The class doc treats it as automatic, and it is the reason Mercedes needs no IED lines on weapon/secondary/emblem.",
+        "unlockLevel": 165,
+        "why": "Class doc, verbatim: 'Spikes Royale - Armorbreak boosts Spikes' debuff from 35% defense reduction to 55%. It's a no brainer, and should always be chosen.' It is the reason Mercedes needs no IED lines on weapon/secondary/emblem. Grandis Library calls it mandatory, but credits its Hyper Passive Build to the Class Doc.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+        ],
+        "corroboratingButNotIndependent": [
           "https://grandislibrary.com/heroes/mercedes"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Ishtar's Ring - Reinforce",
-        "why": "One of the three Ishtar's Ring passives the class doc takes as standard; post-6th-job the Ishtar's Ring hypers also apply to Ishtar's Brand, which the doc gives as the reason they hold their value.",
+        "unlockLevel": 140,
+        "why": "One of the three Ishtar's Ring passives the class doc takes as standard. Class doc, verbatim: 'Ishtar's Ring hypers apply to Ishtar's Brand and thus bring great value as well.' 'Ishtar's Brand' is the doc's spelling of Ishtar's Mark, the mark mechanic that HEXA Ishtar's Ring creates, so the value carries into 6th job.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+        ],
+        "corroboratingButNotIndependent": [
           "https://grandislibrary.com/heroes/mercedes"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Ishtar's Ring - Guardbreak",
-        "why": "Second of the three standard Ishtar's Ring passives; same Ishtar's Brand carry-over reasoning.",
+        "unlockLevel": 150,
+        "why": "Second of the three standard Ishtar's Ring passives; same Ishtar's Mark carry-over reasoning.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+        ],
+        "corroboratingButNotIndependent": [
           "https://grandislibrary.com/heroes/mercedes"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Ishtar's Ring - Boss Rush",
-        "why": "Third of the three standard Ishtar's Ring passives; same Ishtar's Brand carry-over reasoning.",
+        "unlockLevel": 180,
+        "why": "Third of the three standard Ishtar's Ring passives; same Ishtar's Mark carry-over reasoning.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+          "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+        ],
+        "corroboratingButNotIndependent": [
           "https://grandislibrary.com/heroes/mercedes"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "flexPick": {
+      "slotNote": "Mercedes has five hyper passive points, at skill unlock levels 140 / 150 / 165 / 180 / 190 per maplestorywiki. Four go to the passives above; the fifth is this choice.",
       "options": [
         "Spikes Royale - Temper Link",
         "Water Shield - True Immunity 1",
         "Spikes Royale - Reinforce",
         "Water Shield - Reinforce"
       ],
-      "guidance": "The class doc marks Spikes Royale - Temper Link as the recommended pick and says it can be the difference between one-shotting and not while training. It recommends Water Shield - True Immunity 1 instead for bosses that apply frequent abnormal statuses (it names Lotus, Gloom and Verus Hilla), and says True Immunity can be dropped once you have enough status resistance from other sources such as a high level Legion artifact or the Cygnus link. Below level 200, a point in Water Shield - Reinforce if you feel too squishy, to be reassigned later - the doc notes this does not reduce boss damage taken. Grandis Library's list of options adds Spikes Royale - Reinforce and Water Shield - Reinforce alongside the doc's two.",
+      "optionsAreRanked": false,
+      "guidance": "Class doc, verbatim on the choice: 'Spikes Royale - Temper Link (Recommended) OR Water Shield - True Immunity 1'. On Temper Link: 'For training, Spikes Royale - Temper Link could be the difference between one shotting and being unable to properly grind.' On True Immunity 1: 'a good option for bosses where you can frequently be affected by a lot of statuses, like Lotus, Gloom or Verus Hilla. With enough sources of status resistance (high level legion artifact, cygnus link etc), it can be omitted.' On Water Shield - Reinforce: 'Under level 200, if you feel like you're too squishy, put a point in Water Shield - Reinforce. Note that this does not cause bosses to do less damage to you and should be reattributed later.' Spikes Royale - Reinforce appears in Grandis Library's option list only, not in the class doc.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
-        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+      ],
+      "corroboratingButNotIndependent": [
         "https://grandislibrary.com/heroes/mercedes"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "actives": {
       "skills": [
-        "Wrath of Enlil",
         "Elvish Blessing",
+        "Wrath of Enlil",
         "Heroic Memories"
       ],
-      "note": "These are the three hyper actives on the class's hyper skill list, one per unlock level, so there is no selection to make. Wrath of Enlil matters far beyond its hyper-active status: the class doc treats it as the highest-damage single skill, it is a boost node target, and it is one of the four skills whose cooldown drops by 1 second per skill link.",
+      "unlockLevels": {
+        "Elvish Blessing": 140,
+        "Wrath of Enlil": 160,
+        "Heroic Memories": 190
+      },
+      "note": "These are the only three hyper actives on Mercedes' hyper skill list, one per unlock level, so there is no selection to make - take all three. Verified against maplestorywiki's Hyper Skills > Active Attack/Buff section (GMS v270). Note 'Elvish Blessing' (hyper active) is a distinct skill from 'Elven Blessing' (the link skill). Wrath of Enlil matters far beyond its hyper-active status: the class doc calls it one of Mercedes' highest damage skills ('Unicorn Spike and Wrath of Enlil, Mercedes' highest damage skills'), it sits in boost node group 2 / HEXA Mastery Core 2, and it is one of the four skills whose cooldown drops by 1 second per skill link.",
       "consensus": "moderate",
+      "sourceCount": 2,
       "sources": [
         "https://maplestorywiki.net/w/Mercedes/Skills",
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "The passive set is a single-lineage claim: Grandis Library credits its Hyper Passive Build to the Class Doc, so doc + Grandis is one source, not two. No independent confirmation was reachable. The only other page found with a Mercedes hyper list, digitaltq.com, has a changelog whose sole entry is dated 2021 and lists a different set including Spikes Royale - Reinforce; it predates 6th job entirely and was rejected rather than counted."
+    "notes": "SINGLE-LINEAGE WARNING, unchanged after re-verification. Grandis Library credits its Hyper Passive Build to the Class Doc, so doc + Grandis is ONE editorial source, not two. That is why every passive above is sourceCount 1 / weak even though two pages say the same thing; Grandis is recorded under corroboratingButNotIndependent instead of sources so the count cannot be inflated by accident. No independent confirmation was reachable. The only other page found with a Mercedes hyper list, digitaltq.com, has a changelog whose sole entry is dated 2021 and lists a different set including Spikes Royale - Reinforce; it predates 6th job entirely and was rejected rather than counted. What IS independently verified here is the SHAPE: maplestorywiki confirms the full 12-skill hyper list, that exactly nine of those are passives and three are actives, and the unlock level of every one."
   },
   "innerAbility": {
     "bossing": {
@@ -354,12 +528,18 @@
         "Critical Rate +20%",
         "Damage to monsters with an abnormal status +8%"
       ],
-      "why": "The class doc gives this as the ideal setup and states Mercedes does not need attack speed inner ability to reach the attack speed cap. Grandis Library lists the same three lines for bossing, but its credits attribute Inner Ability to the Class Doc, so it is a restatement rather than a second opinion.",
+      "ordered": true,
+      "orderedJustification": "Line ORDER here is a real sourced claim, not an artifact: the doc's rolling procedure puts boss damage on the first line and crit rate on the second or third, so the slot assignment is stated rather than inferred from array position.",
+      "why": "Class doc, verbatim: 'Mercedes' ideal inner ability is Boss Damage, Crit Rate, Damage to Abnormal Status % and does not need attack speed to reach the cap.' Grandis Library lists the same three lines for bossing ('Boss Damage +20%', 'Crit Rate +20%', 'Damage to monsters inflicted with Abnormal Status +8%') but its credits attribute Inner Ability to the Class Doc, so it is a restatement rather than a second opinion.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
-        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
+        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+      ],
+      "corroboratingButNotIndependent": [
         "https://grandislibrary.com/heroes/mercedes"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "training": {
       "lines": [
@@ -367,73 +547,103 @@
         "Meso Obtained or Item Drop Rate +15%",
         "Damage to Normal Monsters +8%"
       ],
-      "why": "Grandis Library's training preset. The class doc's own framing is looser: it says a meso line in the first or second slot while grinding is fine and is a personal-preference trade of damage for income, and that drop rate is a strong line to run because it affects Oz boxes, pitched boss drops, nodestones and 6th job Sol Erda and Sol Erda Fragments.",
+      "ordered": true,
+      "why": "Grandis Library's training preset, re-read verbatim 2026-09-12. IMPORTANT: this specific three-line preset is Grandis' own and is NOT in the class doc, despite Grandis crediting Inner Ability to the doc - the doc's full text has no training preset and no 'Damage to Normal Monsters' line. The doc's own framing is looser: a meso line in the first or second slot while grinding is fine and is a personal-preference trade of damage for income, and drop rate is 'an extremely viable IA to run, given that it affects Oz Boxes, Pitched Boss, Nodestones, and 6th job Sol Erda/Fragments'.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
-        "https://grandislibrary.com/heroes/mercedes",
-        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-      ]
+        "https://grandislibrary.com/heroes/mercedes"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "critRateIsNotOptional": {
-      "claim": "Crit rate cannot be skipped on Mercedes (nor on any archer class, per the doc), because Vicious Shot converts crit rate into crit damage - the doc values the line at roughly 10% crit damage. You can play without it, but the doc calls it a considerable damage loss to be fixed eventually.",
+      "claim": "Crit rate cannot be skipped on Mercedes (nor on any archer class, per the doc), because Vicious Shot converts crit rate into crit damage - the doc values the line at roughly 10% crit damage. You can play without it, but the doc calls it a considerable damage loss to fix eventually.",
+      "sourceQuote": "'Unfortunately, no. This is true for every archer class. The damage that the 10% crit damage this converts to through Vicious Shot is too important to sacrifice for another line. While you can play without it, you will be trading off a lot of damage.'",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-      ]
+      ],
+      "mechanicCorroboration": "https://maplestorywiki.net/w/Vicious_Shot",
+      "verifiedAt": "2026-09-12"
+    },
+    "alternativesOrdering": {
+      "ordered": false,
+      "reason": "The doc presents these as labelled sections (MESO, ATTACK SPEED, DROP RATE, ATTACK +21, COOLDOWN SKIP) with no ranking between them. Array position carries no claim. The only comparative statements the doc makes are recorded inside the individual verdicts."
     },
     "alternatives": [
       {
         "line": "Attack Speed +1",
-        "verdict": "Not recommended to keep. Mercedes reaches the attack speed cap without it. Only worth holding as a stopgap if you cannot roll boss damage or are out of honor, where it saves a node slot on Decent Speed Infusion or avoids needing a green potion.",
+        "verdict": "Not recommended to keep. Class doc, verbatim: 'If you can't roll boss damage, another useful line, or are running out of honor, attack speed will allow you to save a node slot on speed infusion or avoid using green pot. As Mercedes does not need inner ability to cap attack speed, this line isn't recommended to keep.'",
+        "sourceCount": 1,
+        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Item Drop Rate",
-        "verdict": "Called extremely viable by the doc because it affects Oz boxes, pitched boss drops, nodestones and 6th job Sol Erda / Sol Erda Fragments.",
+        "verdict": "Class doc, verbatim: 'Drop rate is an extremely viable IA to run, given that it affects Oz Boxes, Pitched Boss, Nodestones, and 6th job Sol Erda/Fragments.'",
+        "sourceCount": 1,
+        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Meso Obtained",
-        "verdict": "Fine as a first or second line while grinding; an explicit personal-preference trade of damage for income.",
+        "verdict": "Fine as a first or second line while grinding; an explicit personal-preference trade of damage for income. Class doc: 'While grinding, you may want to opt for a meso first or second line in your inner ability. This is fine and ultimately up to personal preference.'",
+        "sourceCount": 1,
+        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Chance to skip cooldown",
-        "verdict": "Playable but uncompetitive: hyper skills cannot be cooldown-skipped, so the only worthwhile targets are Unicorn Spike, the Angelic Buster link and Water Shield (plus Hero's Echo and the Kritias ring, minor). The doc rates it better than Attack +21 and says keep it if you enjoy it.",
+        "verdict": "Playable but uncompetitive. Class doc, verbatim: 'Since hyper skills are unable to be cooldown skipped, the only targets for this line are the above. Unicorn Spike, AB link and Water Shield being the main useful skips. Less importantly, you can also skip Hero's Echo. Krr Ring can also be skipped. Cooldown Skip is very fun to play with, but its inconsistency and lack of impact makes this line less competitive. It's not useless though, and better than Attack + 21 so feel free to keep this if you like it!' Note the doc's full list of skippable skills is an image; the named ones above are what the prose carries.",
+        "sourceCount": 1,
+        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Attack +21",
-        "verdict": "Worse than Damage to monsters with an abnormal status; acceptable only when short on honor.",
+        "verdict": "Class doc, verbatim: 'Damage to monsters affected by abnormal statuses is strictly better than this. Not the worst option if you are running low on honor though.'",
+        "sourceCount": 1,
+        "consensus": "weak",
         "sources": [
           "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "rollingOrder": {
+      "ordered": true,
+      "orderedJustification": "The source prints these as a numbered 1-4 list, so array order is the source's own order.",
       "steps": [
-        "Roll 20% crit rate onto the 2nd or 3rd line first, with honor or circulators - it is the rarest second/third line (tied with buff duration), so targeting it first spends less honor overall.",
-        "Lock the crit rate line and roll the remaining line for 7/8% damage to abnormal status (or your chosen third line).",
-        "Use chaos or black circulators to max the values on lines 2 and 3; expect to be sitting on a boss damage first line while doing this.",
-        "Lock lines 2 and 3 and reroll the first line manually for 20% boss damage; if honor runs low, hold on any first line until the next event."
+        "Roll for 20% crit rate on the 2nd or 3rd line using either honor or circulators.",
+        "Lock the 20% crit rate and roll for 7/8% abnormal third line (or your desired 3rd line).",
+        "Use chaos/black circulators to max out your 2nd and 3rd lines. As this may take a while, you will likely also have a boss damage first line while you're optimizing these lines.",
+        "Lock 2nd and 3rd lines and roll for 20% boss first line rerolling manually. If you get low on honor, just sit on any boss until the next event."
       ],
-      "serverNote": "Outside Reboot, circulator rolling gets expensive, so the doc suggests rolling with honor only apart from event-granted circulators. On Heroic/Reboot circulators are the normal tool.",
+      "whyCritRateFirst": "Class doc, verbatim: 'Crit Rate is the rarest inner ability to get on the second/third line, tied with buff duration, which is why it is targeted first. This way you can spend less honor looking for the last two lines.'",
+      "serverNote": "Class doc, verbatim: 'If you do not play reboot, rolling with circulators can get very expensive, so you might want to roll exclusively with honor, outside event-given circulators.' On Heroic/Reboot circulators are the normal tool.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
-    "notes": null
+    "notes": "Every claim in this section was re-read against the class doc's full plain-text export on 2026-09-12 and matches verbatim. This is the best-sourced of the five endgame sections in terms of fidelity, and simultaneously the weakest in terms of independence: with the single exception of Grandis' training preset, all of it traces to one document."
   },
-  "gearingNotes": "CRIT RATE BEHAVES DIFFERENTLY ON THIS CLASS. Vicious Shot allows Critical Rate to exceed 100% and turns crit rate into crit damage for its duration - 21% of crit rate at Lv.1, rising 1% per level to 50% at Lv.30 - and most of Mercedes' damage is dealt inside that window. Crit rate therefore keeps scaling past the point where it would be dead weight on other classes, which is why the class doc refuses to drop the inner ability crit rate line and why it warns that Kinesis' Judgment link underperforms on Vicious Shot. ATTACK SPEED: Mercedes caps at 10 without any inner ability - base 4, Elven Grace 5, booster 7, Ignis Roar 8, Decent Speed Infusion and green potion 10. Ignis Roar gives +1 attack speed from a single stack and breaks the soft cap; the doc says it is a large final damage boost and stacks should never be allowed to drop. Note that the two skills carrying the burst, Ishtar's Ring and Irkalla's Wrath, are keydown skills unaffected by attack speed - the investment is for combo speed, safety and smoother grinding rotations. IED: because Spikes Royale with the Armorbreak hyper applies a 55% defense reduction, the doc says Mercedes needs no IED lines on weapon/secondary/emblem and that visual IED as low as 93% is acceptable in the mid game. WSE: the doc's current ideal is 8 lines attack / 1 line boss damage / 0 IED, with the boss line preferably on the secondary (the weapon gives 1% more attack per line than the secondary due to its level, while boss lines are equal on both), or 7/2/0; it advises running a calculator because the answer is character-specific, and notes the gap between 8/1/0 and 7/2/0 is larger on non-Reboot servers where bonus potential attack% exists. Best secondary per the doc is the Princess No secondary. If you do end up with IED lines, the doc says drop IED from the Legion artifact in favour of boss damage, then DEX or crit rate. COOLDOWN HAT: breakpoints are -2 and -5 seconds and nothing in between does anything. The doc recommends a -2 second hat for both mains and bossing mules and says a stat hat has become suboptimal over the 6th job patches; -5 seconds it calls unrealistic for Reboot/Heroic. The more cooldown reduction you carry, the more you must actively combo to come out ahead. LEGION ARTIFACT: the doc's six most important stats are Critical Rate 20%, Boss Damage 15%, Damage 15%, All Stats 150, Critical Damage 4%, Ignore Enemy Defense 20%.",
+  "gearingNotes": "CRIT RATE BEHAVES DIFFERENTLY ON THIS CLASS. Vicious Shot (Bowman shared V skill, master level 30) allows Critical Rate to exceed 100% and turns crit rate into crit damage for its duration - its formula reads 'Critical Damage to increase by {20+x}% of Critical Rate', i.e. 21% at Lv.1 rising to 50% at Lv.30 - and most of Mercedes' damage is dealt inside that window. Crit rate therefore keeps scaling past the point where it would be dead weight on other classes, which is why the class doc refuses to drop the inner ability crit rate line and why it warns that Kinesis' Judgment link underperforms on Vicious Shot. ATTACK SPEED: Mercedes caps at 10 without any inner ability - class doc, verbatim: 'Base (4), Elven Grace (5), Booster (7), Ignis (8), DSI and Green Pot (10).' Ignis Roar gives +1 attack speed from a single stack and breaks the soft cap; the doc says it is a large final damage boost and stacks should never be allowed to drop. Note that the two skills carrying the burst, Ishtar's Ring and Irkalla's Wrath, are keydown skills unaffected by attack speed - the investment is for combo speed, safety and smoother grinding rotations. IED: because Spikes Royale with the Armorbreak hyper applies a 55% defense reduction, the doc says Mercedes needs no IED lines on weapon/secondary/emblem and that visual IED as low as 93% is acceptable in the mid game. WSE: the doc's current ideal is 8 lines attack / 1 line boss damage / 0 IED, with the boss line preferably on the secondary (the weapon gives 1% more attack per line than the secondary due to its level, while boss lines are equal on both), or 7/2/0; it advises running a calculator because the answer is character-specific, and notes the gap between 8/1/0 and 7/2/0 is larger on non-Reboot servers where bonus potential attack% exists. Best secondary per the doc is the Princess No secondary. If you do end up with IED lines, the doc says drop IED from the Legion artifact in favour of boss damage, then DEX or crit rate. COOLDOWN HAT: breakpoints are -2 and -5 seconds and nothing in between does anything - class doc, verbatim: 'Our breakpoints are -2 seconds and -5 seconds. Any other amount of cooldown reduction is useless.' The doc recommends a -2 second hat for both mains and bossing mules and says a stat hat 'has become somewhat obsolete over the sixth job patches'; -5 seconds it calls 'unrealistic for Reboot/Heroic'. The more cooldown reduction you carry, the more you must actively combo to come out ahead. LEGION ARTIFACT: the doc's six most important stats are Critical Rate 20%, Boss Damage 15%, Damage 15%, All Stats 150, Critical Damage 4%, Ignore Enemy Defense 20%.",
   "commonMistakes": [
     {
       "mistake": "Playing Mercedes as a pure keydown class - holding Ishtar's Ring and never linking skills",
@@ -444,7 +654,7 @@
     },
     {
       "mistake": "Over-committing to combos when the safe play was to reposition",
-      "detail": "The doc says learning when not to combo is harder than learning the combos, and names over-committing as a mistake experienced Mercedes players still make. Half-comboing or falling back to Ishtar's Ring is explicitly fine.",
+      "detail": "The doc says learning when not to combo is harder than learning the combos, and names over-committing as a mistake experienced Mercedes players still make. Half-comboing or falling back to Ishtar's Ring is explicitly fine - on Darknell the doc writes 'Learning to use Ishtar's Ring instead of forcing combos even when it seems safe will save you a lot of lives.'",
       "sources": [
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
       ]
@@ -458,7 +668,7 @@
     },
     {
       "mistake": "Not keeping the Unicorn Spike and Spikes Royale debuffs applied before and during burst",
-      "detail": "Unicorn Spike is 30% party damage and Spikes Royale is 55% defense reduction, both 100% uptime debuffs; the doc's burst instruction is to have both applied (plus Ishtar's Brand post-6th-job) before bursting.",
+      "detail": "Unicorn Spike is 30% party damage and Spikes Royale is 55% defense reduction, both 100% uptime debuffs; the doc's burst instruction is to have both applied (plus Ishtar's Mark post-6th-job) before bursting.",
       "sources": [
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
       ]
@@ -471,15 +681,49 @@
       ]
     },
     {
-      "mistake": "Spending nodestones boosting Swift Dual Shot, Piercing Storm or Parting Shot",
-      "detail": "None of the three are used after their job advancements.",
+      "mistake": "Sinking nodestones into boost node groups 5 and 6 before groups 1-4",
+      "detail": "CORRECTED 2026-09-12. This entry previously read 'Spending nodestones boosting Swift Dual Shot, Piercing Storm or Parting Shot / None of the three are used after their job advancements' and cited the class doc. The class doc says no such thing - its full text contains zero occurrences of 'Swift Dual Shot' and 'Piercing Storm' and one unrelated occurrence of 'Parting Shot'. What is actually sourced: Grandis Library tiers node group 5 (Lightning Edge, Swift Dual Shot, Piercing Storm) and node group 6 (Rising Rush, Parting Shot, Aerial Barrage, Rolling Moonsault) as OTHER, its lowest tier, and says only PRIMARY and SECONDARY nodes are recommended to be upgraded. Groups 1-4 are what unlock the four HEXA Mastery cores per maplestorywiki.",
       "sources": [
-        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+        "https://grandislibrary.com/heroes/mercedes",
+        "https://maplestorywiki.net/w/Mercedes/Skills"
       ]
     }
   ],
   "skillNameReference": {
-    "note": "Validated against maplestorywiki.net/w/Mercedes/Skills, which is facts-only and carries a GMS v270 stamp on its skill infoboxes. Use these spellings; do not emit a name that is not here.",
+    "note": "ANTI-FABRICATION ALLOWLIST. Validated against maplestorywiki.net/w/Mercedes/Skills (raw wikitext, GMS v270 stamp on the skill infoboxes) plus the linked pages for shared skills. Use these spellings; do not emit a Mercedes skill name that is not here. The 2026-09-12 pass added the elfBasics, firstJob and sharedVSkills sections, which were missing and which the file's own prose was already relying on (Elven Grace, Swift Dual Shot, Vicious Shot, Guided Arrow) - the allowlist existed but did not cover the names actually in use.",
+    "elfBasics": [
+      "Elven Healing",
+      "Elven Blessing",
+      "Updraft",
+      "Elven Grace",
+      "Sylvidia"
+    ],
+    "firstJob": [
+      "Swift Dual Shot",
+      "Potential Power",
+      "Spirit Jump",
+      "Sharp Aim"
+    ],
+    "secondJob": [
+      "Piercing Storm",
+      "Rising Rush",
+      "Parting Shot",
+      "Agile Bowguns",
+      "Spirit Surge",
+      "Dual Bowguns Mastery",
+      "Final Attack: Dual Bowguns",
+      "Physical Training"
+    ],
+    "thirdJob": [
+      "Stunning Strikes",
+      "Leaf Tornado",
+      "Unicorn Spike",
+      "Gust Dive",
+      "Water Shield",
+      "Aerial Barrage",
+      "Elemental Knights",
+      "Ignis Roar"
+    ],
     "fourthJob": [
       "Ishtar's Ring",
       "Spikes Royale",
@@ -493,26 +737,6 @@
       "Dual Bowguns Expert",
       "Defense Break",
       "Advanced Final Attack"
-    ],
-    "thirdJob": [
-      "Stunning Strikes",
-      "Leaf Tornado",
-      "Unicorn Spike",
-      "Gust Dive",
-      "Water Shield",
-      "Aerial Barrage",
-      "Elemental Knights",
-      "Ignis Roar"
-    ],
-    "secondJob": [
-      "Piercing Storm",
-      "Rising Rush",
-      "Parting Shot",
-      "Agile Bowguns",
-      "Spirit Surge",
-      "Dual Bowguns Mastery",
-      "Final Attack: Dual Bowguns",
-      "Physical Training"
     ],
     "hyperSkills": [
       "Ishtar's Ring - Reinforce",
@@ -528,6 +752,10 @@
       "Wrath of Enlil",
       "Heroic Memories"
     ],
+    "sharedVSkills": [
+      "Guided Arrow",
+      "Vicious Shot"
+    ],
     "vSkillsClassSpecific": [
       "Spirit of Elluel",
       "Sylvidia's Flight",
@@ -538,50 +766,94 @@
       "Unfading Glory",
       "Primeval Spirits"
     ],
+    "hexaMasterySkills": [
+      "HEXA Ishtar's Ring",
+      "HEXA Wrath of Enlil",
+      "HEXA Wrath of Enlil: Spirit Enchant",
+      "HEXA Spikes Royale",
+      "HEXA Spikes Royale: Spirit Enchant",
+      "HEXA Leaf Tornado",
+      "HEXA Leaf Tornado: Spirit Enchant",
+      "HEXA Unicorn Spike",
+      "HEXA Gust Dive",
+      "HEXA Stunning Strikes",
+      "HEXA Elemental Knights",
+      "HEXA Final Attack"
+    ],
+    "hexaEnhancements": [
+      "Spirit of Elluel Boost",
+      "Sylvidia's Flight Boost",
+      "Irkalla's Wrath Boost",
+      "Royal Knights Boost"
+    ],
+    "mechanicNames": [
+      "Ishtar's Mark"
+    ],
+    "rejectedAliases": {
+      "Ishtar's Brand": "Not a game string. Class-doc and community spelling of Ishtar's Mark. Accept as a search alias; never emit.",
+      "Ishtar Brand": "Not a game string. The class doc's other spelling of Ishtar's Mark. Accept as a search alias; never emit.",
+      "Leap Tornado": "Not a game string. Grandis Library and the class doc's prose both use it; maplestorywiki uses 'Leaf Tornado' in all 76 occurrences. Accept as a search alias; never emit.",
+      "Spirit Enhance": "Not a game string. The class doc's spelling of 'Spirit Enchant'. Accept as a search alias; never emit."
+    },
     "sources": [
-      "https://maplestorywiki.net/w/Mercedes/Skills"
-    ]
+      "https://maplestorywiki.net/w/Mercedes/Skills",
+      "https://maplestorywiki.net/w/Vicious_Shot",
+      "https://maplestorywiki.net/w/Template:Fifth_Job_Shared_Skills"
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "sources": [
     {
       "url": "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
-      "what": "The Mercedes class guide maintained out of the Mercedes Discord. Credits read: Akki (Akki, EU Reboot) main author, contactable on discord as akkimyl; Jason (gtrpro, NA Reboot) co-author/editor and main author of the training section; Bread (Sekki, Bera) co-author/editor and main author of the bossing section; Ian (Mulch, Scania) editor. Read in full this session via the plain-text export. It is the only source with real judgement on inner ability, hyper skills, WSE, cooldown hats and gearing. Its boost node trios, node leveling priority and HEXA upgrade order are all embedded images and could not be read.",
+      "what": "The Mercedes class guide maintained out of the Mercedes Discord. Credits read: Akki (Akki, EU Reboot) main author, contactable on discord as akkimyl; Jason (gtrpro, NA Reboot) co-author/editor and main author of the training section; Bread (Sekki, Bera) co-author/editor and main author of the bossing section; Ian (Mulch, Scania) editor. Re-read in full on 2026-09-12 via the document's plain-text export (docs.google.com/document/d/<id>/export?format=txt, 83KB, needs a browser user agent). It is the only source with real judgement on inner ability, hyper skills, WSE, cooldown hats and gearing. Its boost node trios, node leveling priority, burst sequence table and HEXA upgrade order are all embedded images and remain unreadable.",
       "dated": "2025-06-11, self-stamped 'STARGAZER/NEXT PATCH' - roughly 15 months and several patches behind the v.271 target",
       "independent": true
     },
     {
       "url": "https://grandislibrary.com/heroes/mercedes",
-      "what": "Grandis Library's Mercedes page: class properties, boost node groupings with priority tiers, hyper skill passive build, recommended inner ability for bossing and training, link skill, base stats from skills. NOT AN INDEPENDENT SOURCE for the judgement fields - its own credits line reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', i.e. it restates the document above. Treated here as a presentation of the same lineage plus an independent factual reference for class properties and node group membership. Has no HEXA section.",
+      "what": "Grandis Library's Mercedes page: class properties, boost node groupings with priority tiers, hyper skill passive build, recommended inner ability for bossing and training, link skill, base stats from skills. NOT AN INDEPENDENT SOURCE for the judgement fields - its own credits line reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc'. It IS an independent factual check on boost node group membership, which is game data and matched maplestorywiki exactly on re-check. Its tier definitions, quoted: PRIMARY unlocks 6th Job HEXA Mastery, SECONDARY is frequently used skills that do not unlock mastery, OTHER is lowest priority; 'Each Boost Node provides a %Final Damage increase to the skills included in the node. Nodes categorized as PRIMARY and SECONDARY are recommended to be upgraded.' Has no HEXA section.",
       "dated": "Site footer stamp GMS Ver. 269 [Ride the Lightning Update] - two patches behind v.271; the page also exposes a 'View Pre-V.269 Boost Nodes' toggle, evidence that node groupings changed at v269",
       "independent": false
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. Verified directly: gives Mercedes a general setup (Unicorn Spike / Ishtar's Ring / Stunning Strikes; Leaf Tornado / Spikes Royale / Wrath of Enlil; Rising Rush / Lightning Edge / Elemental Knights) and an alternative the author labels as preferred by some players. The only Mercedes node judgement outside the class doc lineage.",
-      "dated": "Page states last update 2024-11-21 - post-6th-job but predates the v269 boost node regrouping and every 2025-2026 balance pass, so corroboration only",
+      "what": "mastermysty's cross-class boost node trio reference. Re-verified 2026-09-12 - the page carries real text skill names alongside its icons, so the trios recorded here are read, not inferred from image filenames. Gives Mercedes a 'General' setup (Bossing: Unicorn Spike / Ishtar's Ring / Stunning Strikes; Bossing + Mobbing: Leaf Tornado / Spikes Royale / Wrath of Enlil; Supplimentary: Rising Rush / Lightning Edge / Elemental Knights) and a 'Some Prefer This' alternative. SUPERSEDED: none of these partitions is possible under the six fixed boost node groups that maplestorywiki v270 and Grandis v269 both list.",
+      "dated": "Page states 'Last update: November 21st, 2024' - post-6th-job but predates the V.269 boost node change and every 2025-2026 balance pass",
       "independent": true
     },
     {
       "url": "https://maplestorywiki.net/w/Mercedes/Skills",
-      "what": "Skill name and value reference: full skill lists by job tier, hyper skills, class-specific V skills, HEXA skills split into Mastery skills and HEXA Enhancements, and the Vicious Shot numbers used in the gearing note. Zero judgement - used strictly as the anti-fabrication allowlist. Returns 403 to plain fetching; readable with a normal browser user agent.",
+      "what": "Skill name and value reference: full skill lists by job tier including Elf Basics and 1st job, hyper skills with unlock levels, class-specific V skills, the six numbered V Enhancement / Boost Node groups, HEXA skills split into Mastery cores 1-4 and HEXA Enhancements, and the Ishtar's Mark mechanic text. Zero judgement - used strictly as the anti-fabrication allowlist and as the independent factual check on node and mastery core structure. Returns 403 to plain fetching; the raw wikitext is readable at ?action=raw with a normal browser user agent.",
       "dated": "Skill infoboxes stamped GMS v270",
       "independent": true
     },
     {
+      "url": "https://maplestorywiki.net/w/Vicious_Shot",
+      "what": "Bowman shared V skill page. Active, max level 30, formula 'Allows Critical Rate to exceed 100% and Critical Damage to increase by {20+x}% of Critical Rate' - i.e. 21% at Lv.1, 50% at Lv.30. Lists Mercedes among its classes. This is the mechanical basis for the crit-rate argument in gearingNotes and hyperStats.notes.",
+      "dated": "Page tab stamped GMS v263",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Template:Fifth_Job_Shared_Skills",
+      "what": "Confirms the Bowman shared V skill set is exactly Guided Arrow and Vicious Shot, which is what licenses both names into the allowlist.",
+      "dated": "n/a",
+      "independent": true
+    },
+    {
       "url": "https://maplestorywiki.net/w/Elven_Blessing",
-      "what": "Link skill page - per-level EXP values for both the link version and Mercedes' own version, and the confirmation that Mercedes' level 3 copy also grants +5% Damage.",
+      "what": "Link skill page - per-level EXP values for both the link version and Mercedes' own version, and the confirmation that Mercedes' level 3 copy also grants +5% Damage. Note 'Elven Blessing' (link) is a different skill from 'Elvish Blessing' (hyper active).",
       "dated": "GMS v270 stamp",
       "independent": true
     },
     {
       "url": "https://maplescouter.com/hexa",
-      "what": "The Korean-built HEXA core order tool the class doc defers to for Mercedes' 6th job upgrade order. Confirmed this session that the HEXA core order tool exists under the site's efficiency/simulator section. It computes an order per character preset rather than publishing a class list, and it is KMS-balance - which is precisely why no fixed Mercedes HEXA order exists in public.",
+      "what": "The Korean-built HEXA core order tool the class doc defers to for Mercedes' 6th job upgrade order. It computes an order per character preset rather than publishing a class list, and it is KMS-balance - which is precisely why no fixed Mercedes HEXA order exists in public.",
       "dated": "No build date shown",
       "independent": true
     },
     {
       "url": "https://discord.gg/tJWfMrdFBJ",
-      "what": "Mercedes class Discord, linked from Grandis Library and home of the class doc. Not machine-readable. Given the doc is 15 months old and its key tables are images, this is where a current HEXA order and any post-v269 node regrouping would have to be confirmed.",
+      "what": "Mercedes class Discord, linked from Grandis Library and home of the class doc. Not machine-readable. Given the doc is 15 months old and its trio, leveling-priority, burst-sequence and HEXA-order tables are all images, this is where those four gaps would have to be closed.",
       "dated": "n/a (live)",
       "independent": true
     },
@@ -600,7 +872,7 @@
         "maplestorywiki.net spells it 'Leaf Tornado' in all 76 occurrences on the Mercedes skill page (GMS v270 stamp), and the class doc's own section heading for the skill also reads LEAF TORNADO",
         "Grandis Library spells it 'Leap Tornado' in its node table, and the class doc's prose uses 'Leap Tornado' far more often than 'Leaf Tornado'"
       ],
-      "resolution": "Treat 'Leaf Tornado' as canonical - it is the in-game string per the skill table, which is the only source here with no judgement attached. 'Leap Tornado' should be accepted as a search alias because community writing uses it heavily.",
+      "resolution": "Treat 'Leaf Tornado' as canonical - it is the in-game string per the skill table, which is the only source here with no judgement attached. 'Leap Tornado' is logged in skillNameReference.rejectedAliases as a search alias.",
       "sources": [
         "https://maplestorywiki.net/w/Mercedes/Skills",
         "https://grandislibrary.com/heroes/mercedes",
@@ -608,25 +880,51 @@
       ]
     },
     {
+      "topic": "Name of the 6th job mark mechanic",
+      "positions": [
+        "maplestorywiki (GMS v270) uses 'Ishtar's Mark' in 11 places, including the HEXA Ishtar's Ring description ('the enemy is branded with Ishtar's Mark') and the Unfading Glory formula. 'Ishtar's Brand' appears 0 times as a skill or mechanic name.",
+        "The class doc uses both 'Ishtar Brand' (burst rotation section) and 'Ishtar's Brand' (hyper skills section)."
+      ],
+      "resolution": "RESOLVED 2026-09-12 in favour of 'Ishtar's Mark'. It is the in-game string, and the product compares against what a player sees in their own client, so emitting a name that returns nothing in game would send players hunting for something that does not exist. All four load-bearing uses in this file were rewritten. Both doc spellings are logged as rejected aliases.",
+      "sources": [
+        "https://maplestorywiki.net/w/Mercedes/Skills",
+        "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
+      ]
+    },
+    {
       "topic": "Boost node trio partition",
       "positions": [
-        "mastermysty's general setup pairs Unicorn Spike with Ishtar's Ring and Stunning Strikes for bossing, and keeps Leaf Tornado / Spikes Royale / Wrath of Enlil as the combined boss-and-mob trio",
-        "mastermysty also records an alternative some players prefer, which moves Unicorn Spike onto Spikes Royale and Wrath of Enlil and puts Elemental Knights with Ishtar's Ring and Stunning Strikes",
-        "The class doc's own recommended trios could not be read (images), so its position is unknown; what its text does say is that the partition ultimately does not matter and that all nine skills end up maxed"
+        "mastermysty (2024-11-21) gives two three-trio partitions, both of which mix skills across what are now separate fixed node groups",
+        "maplestorywiki (v270) and Grandis Library (v269) independently enumerate six FIXED boost node groups with identical membership; Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle",
+        "The class doc's own recommended trios are still images and its position is still unknown; its readable text says the partition ultimately does not matter and that all nine skills end up maxed"
       ],
-      "resolution": "Left unresolved. Both mastermysty partitions predate the v269 node regrouping. Do not present either as the Mercedes trio until the class doc's images or the Discord are read.",
+      "resolution": "RESOLVED 2026-09-12 in favour of the six fixed node groups, which two independent sources agree on exactly. mastermysty's trios were demoted to vMatrix.supersededPreV269Trios with useForGuidance false - they are accurately transcribed but describe a system that no longer exists. This also makes the class doc's unreadable trio images moot for guidance, though its node LEVELING priority image is still a real gap.",
       "sources": [
+        "https://maplestorywiki.net/w/Mercedes/Skills",
+        "https://grandislibrary.com/heroes/mercedes",
         "https://mystyjl.github.io/reference/NodeGuide.html",
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
       ]
     },
     {
+      "topic": "Tier label on boost node group 2 (Leaf Tornado / Spikes Royale / Wrath of Enlil)",
+      "positions": [
+        "An earlier read of Grandis Library returned SECONDARY for this group",
+        "The 2026-09-12 read of Grandis Library returned PRIMARY"
+      ],
+      "resolution": "RESOLVED as PRIMARY. Beyond the re-read, it is mechanically checkable: Grandis defines PRIMARY as the tier that unlocks a 6th Job HEXA Mastery, and maplestorywiki shows boost node group 2's membership is exactly HEXA Mastery Core 2's membership. The 'label unverified' hedge has been removed.",
+      "sources": [
+        "https://grandislibrary.com/heroes/mercedes",
+        "https://maplestorywiki.net/w/Mercedes/Skills"
+      ]
+    },
+    {
       "topic": "Hyper passive flex slot",
       "positions": [
-        "Class doc: choose between Spikes Royale - Temper Link (recommended, and the difference between one-shotting and not while training) and Water Shield - True Immunity 1 (for status-heavy bosses)",
-        "Grandis Library: lists four options for the same slot, adding Spikes Royale - Reinforce and Water Shield - Reinforce"
+        "Class doc: 'Spikes Royale - Temper Link (Recommended) OR Water Shield - True Immunity 1', plus Water Shield - Reinforce as a temporary under-200 survivability pick",
+        "Grandis Library: adds Spikes Royale - Reinforce to the same slot's option list"
       ],
-      "resolution": "Minor and probably not a real disagreement - Grandis lists the full option set where the doc gives a recommendation. Recorded rather than resolved because Grandis is downstream of the doc and should not be adding options of its own.",
+      "resolution": "Recorded, not resolved. Grandis is downstream of the doc by its own credits and should not be adding options of its own. All four options are listed in hyperSkills.flexPick with optionsAreRanked false, and the doc's recommendation is stated separately so a reader can see which one actually has an opinion behind it.",
       "sources": [
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic",
         "https://grandislibrary.com/heroes/mercedes"
@@ -635,38 +933,83 @@
     {
       "topic": "Which skill is the 6th job Origin skill",
       "positions": [
-        "maplestorywiki lists Irkalla's Wrath as a class-specific V skill and Unfading Glory plus Primeval Spirits as the class-specific HEXA skills; the class doc's burst section uses 'origin' interchangeably with Unfading Glory",
+        "maplestorywiki labels 'Skill Node/Core 1 (Origin): Unfading Glory' and 'Skill Node/Core 2 (Ascent): Primeval Spirits', and lists Irkalla's Wrath under Class-Specific V Skills",
         "An early automated read of the class doc reported Irkalla's Wrath as the Origin skill"
       ],
-      "resolution": "Resolved in favour of Unfading Glory as the Origin skill and Irkalla's Wrath as a 5th job V skill - two sources agree and the doc's burst sequence (Irkalla's Wrath, then Unfading Glory, and 'before using your origin to bind') is only coherent that way. Recorded because the wrong version appeared in an intermediate extraction and could resurface.",
+      "resolution": "Resolved in favour of Unfading Glory as Origin and Irkalla's Wrath as a 5th job V skill. maplestorywiki labels it explicitly, and the doc's burst sequence ('use Irkalla's Wrath, followed by Unfading Glory after sixth job') is only coherent that way. Recorded because the wrong version appeared in an intermediate extraction and could resurface.",
       "sources": [
         "https://maplestorywiki.net/w/Mercedes/Skills",
-        "https://grandislibrary.com/heroes/mercedes",
         "https://docs.google.com/document/d/1Sz5rdODR3cgaw3WcfjjVN_OBQV2298vc_kVyFOfdh_8/mobilebasic"
       ]
     }
   ],
   "gaps": [
-    "HEXA investment order: no public source has one for Mercedes. The class doc deliberately defers to a per-character tool and its indicative chart is an image. This is the single biggest hole and it is exactly the thing the product is meant to answer.",
-    "Hyper stat allocation: no source found. The class doc has no hyper stats section at all.",
-    "Boost node trio partition and node leveling priority as the class doc actually recommends them: both are images in the doc. OCR or a human read of the doc would close this in one pass.",
-    "Currency: the class doc is 2025-06-11 against a v.271 target, and Grandis is v269. Nothing Mercedes-specific dated 2026 was reachable.",
-    "Reddit was not reachable in this environment, so r/Maplestory Mercedes threads are unexamined. The Mercedes Discord (discord.gg/tJWfMrdFBJ) is unread. Web search budget for the session was exhausted before a YouTube-creator pass could run; the class doc itself references a video guide by Hexy titled 'The ULTIMATE Mercedes Guide' which the doc calls somewhat outdated - that is an unfollowed lead.",
-    "Independence: only TWO genuinely independent judgement sources exist for Mercedes (the class doc and mastermysty's node reference, the latter dated 2024). Grandis Library is downstream of the class doc by its own credits. The brief's three-independent-sources bar is therefore NOT met for judgement; the third independent source used here (maplestorywiki) carries facts only."
+    "HEXA investment order: still no public source. The class doc deliberately defers to a per-character tool (maplescouter) and its indicative chart is an image. hexa.order stays null. This is the single biggest hole and it is exactly the thing the product is meant to answer.",
+    "Hyper stat allocation: no source found. The string 'hyper stat' appears zero times in the class doc. hyperStats.priority stays null.",
+    "Node LEVELING priority (which node group to pour levels into first, beyond Grandis' three coarse tiers): the class doc's numbered list is an image. OCR or a human read of the doc would close this in one pass.",
+    "The class doc's burst SEQUENCE table is also an image; only the prose framing of the burst is sourced.",
+    "Currency: the class doc is 2025-06-11 against a v.271 target, Grandis is v269 and maplestorywiki is v270. Nothing Mercedes-specific dated 2026 was reachable.",
+    "Reddit was not reachable in this environment, so r/Maplestory Mercedes threads are unexamined. The Mercedes Discord (discord.gg/tJWfMrdFBJ) is unread. The class doc references a video guide by Hexy titled 'The ULTIMATE Mercedes Guide' which the doc itself calls somewhat outdated - an unfollowed lead.",
+    "Independence: for JUDGEMENT claims (what to pick, in what order) Mercedes has effectively ONE independent source, the class doc - Grandis Library is downstream of it by its own credits, and mastermysty is superseded. The brief's three-independent-sources 'strong' bar is met by NO endgame claim in this file, and nothing is labelled strong. The independent corroboration that does exist (maplestorywiki) is factual only: node group and mastery core structure, skill names, unlock levels, skill formulas."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "'Ishtar's Brand' does not exist as a game string. maplestorywiki v270 calls it Ishtar's Mark ('the enemy is branded with Ishtar's Mark'); the substring 'Brand' appears 0 times on the Mercedes skill page. The class doc writes 'Ishtar Brand' (no apostrophe-s). The file's 'Ishtar's Brand' matches neither source and appears 4 times in load-bearing text: hexa.usageFacts burst order, hyperSkills.passives[1].why, hyperSkills.passives[2].why (via the Ishtar's Brand carry-over reasoning), and commonMistakes[3].detail. This is the one genuine name defect found.",
-      "ALLOWLIST NOT ENFORCED (not fabrication, but the anti-fabrication mechanism is broken): skillNameReference declares 'do not emit a name that is not here', yet the file emits Vicious Shot (4x, and the entire gearingNotes crit-rate argument plus hyperStats.notes rest on it), Elven Grace (attack-speed chain in gearingNotes), and Swift Dual Shot (vMatrix.priority[5] and nodeGroupsPerGrandis). All three are confirmed real on maplestorywiki v270 - Vicious Shot is an active, Master Level 30, Lv.1 '+21% of Critical Rate' and Lv.30 '+50% of Critical Rate', matching the gearing note exactly - but none are in the allowlist, which has no 1st-job section at all.",
-      "NO OTHER FABRICATION FOUND. Independently verified as real against maplestorywiki v270: all 13 node skill names listed in vMatrix.notes; all 12 HEXA mastery skill names; all 4 enhancementCores, and their classification as HEXA Enhancements (Level Requirement 260) rather than V Enhancements is correct; Unfading Glory as Origin and Primeval Spirits as Ascent; all 12 hyper skill names including the distinct 'Elvish Blessing' (hyper active) vs 'Elven Blessing' (link skill); and Staggering Strikes vs Stunning Strikes as two genuinely separate skills rather than a duplication error. No invented priority order was found - the null hyperStats.priority and null hexa.order are correct restraint."
+    "resolvedAt": "2026-09-12",
+    "resolutionMethod": "Every disputed endgame claim was re-checked against the page it already cited, not against new sources. The class doc was re-read in full via its plain-text export; maplestorywiki was re-read as raw wikitext (?action=raw with a browser user agent, which bypasses the 403 that plain fetching gets); Grandis Library and mastermysty were re-fetched. Three additional citation and shape defects that the contest pass did not catch were found and fixed in the process.",
+    "resolved": [
+      {
+        "defect": "'Ishtar's Brand' does not exist as a game string; maplestorywiki v270 calls it Ishtar's Mark. Used in 4 load-bearing places.",
+        "scope": "in-scope (hexa, hyperSkills)",
+        "action": "CORRECTED",
+        "what": "Re-checked the cited page. maplestorywiki's raw wikitext contains 'Ishtar's Mark' 11 times and 'Ishtar's Brand' 0 times; the mark is created by HEXA Ishtar's Ring ('the enemy is branded with Ishtar's Mark') and is referenced in the Unfading Glory and HEXA Wrath of Enlil formulas. The contest pass was right about the game string but slightly wrong about the doc: the class doc uses BOTH 'Ishtar Brand' (burst section) and 'Ishtar's Brand' (hyper skills section, with a curly apostrophe, which is why a naive grep missed it). All four uses rewritten to 'Ishtar's Mark'; both doc spellings logged in skillNameReference.rejectedAliases as search-only aliases; a conflicts entry added so this cannot silently revert."
+      },
+      {
+        "defect": "Allowlist not enforced: the file emits Vicious Shot, Elven Grace and Swift Dual Shot, none of which appear in skillNameReference, which has no 1st job section at all.",
+        "scope": "in-scope in part (vMatrix and hyperStats.notes rely on these names)",
+        "action": "CORRECTED",
+        "what": "All three verified real on maplestorywiki and the allowlist repaired rather than the prose. Elven Grace is an Elf Basics (0th job) skill; Swift Dual Shot is 1st job; Vicious Shot is a Bowman shared V skill (max level 30, 'Critical Damage to increase by {20+x}% of Critical Rate' = 21% at Lv.1 and 50% at Lv.30, exactly as gearingNotes states). Added elfBasics, firstJob and sharedVSkills sections plus hexaMasterySkills, hexaEnhancements, mechanicNames and rejectedAliases. The allowlist now covers every Mercedes name the file emits."
+      },
+      {
+        "defect": "No other fabrication found (the contest pass's own clearance, recorded in its defects array).",
+        "scope": "in-scope",
+        "action": "CONFIRMED",
+        "what": "Independently re-verified against maplestorywiki raw wikitext on 2026-09-12: all 16 node skill names; the six boost node groups; all 12 HEXA mastery skill names and their split across Mastery Cores 1-4; all 4 HEXA Enhancement cores at Level Requirement 260; Unfading Glory labelled Origin and Primeval Spirits labelled Ascent; all 12 hyper skill names with unlock levels, including the distinct 'Elvish Blessing' (hyper active, Lv.140) vs 'Elven Blessing' (link skill); and Staggering Strikes vs Stunning Strikes as two separate 4th/3rd job skills. The null hyperStats.priority and null hexa.order remain correct restraint and stay null."
+      },
+      {
+        "defect": "NEW, found during resolution - CITATION INVERSION. vMatrix.priority[5] read 'Do not boost Swift Dual Shot, Piercing Storm or Parting Shot' and attributed it to the class doc: 'The class doc says these three are not used after their job advancements and there is no reason to boost them.'",
+        "scope": "in-scope (vMatrix)",
+        "action": "CORRECTED",
+        "what": "The class doc's full 83KB text export contains ZERO occurrences of 'Swift Dual Shot', ZERO of 'Piercing Storm', and exactly one of 'Parting Shot', in an unrelated combo note ('You can use the normal attack key instead of this skill after Rising Rush, and Parting Shot will be used'). The class doc attribution was invented and has been deleted. The claim was rewritten to what Grandis actually supports - node groups 5 and 6 are its OTHER, lowest tier - and narrowed to the node group, because the node is the unit you upgrade and node 5 also contains Lightning Edge, which IS used. The same bad citation in commonMistakes was fixed identically."
+      },
+      {
+        "defect": "NEW, found during resolution - SUPERSEDED DATA SHIPPED AS GUIDANCE. vMatrix.trios shipped mastermysty's two three-trio partitions as the file's trio recommendation.",
+        "scope": "in-scope (vMatrix)",
+        "action": "CORRECTED",
+        "what": "mastermysty's content was verified accurate to its source, role labels included. But maplestorywiki (v270) and Grandis Library (v269) independently enumerate six boost node groups with identical FIXED membership, and neither of mastermysty's partitions is constructible from them - e.g. mastermysty pairs Ishtar's Ring with Unicorn Spike and Stunning Strikes, while Ishtar's Ring sits alone in group 1. mastermysty is stamped 2024-11-21 and Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle. The block was renamed to vMatrix.supersededPreV269Trios with useForGuidance false and a warning, so downstream code reading 'trios' finds nothing and no player is handed an impossible build. A new vMatrix.nodeGroups section carries the two-source-verified current structure instead."
+      },
+      {
+        "defect": "NEW, found during resolution - SHAPE ASSERTS WHAT THE SOURCE DECLINES. vMatrix.priority was an ordered array whose own first element says the arrangement does not matter, and the class doc's only numbered node priority is an unreadable image.",
+        "scope": "in-scope (vMatrix, hyperSkills, innerAbility)",
+        "action": "CORRECTED",
+        "what": "Added vMatrix.priorityOrdering {ordered: false} with the reason, and rank: null on every entry, so array position asserts nothing. The only boost-node ranking now stated anywhere in the file is Grandis Library's PRIMARY > SECONDARY > OTHER tiering of the six node groups, which the source does state explicitly. The same treatment was applied to hyperSkills.passives (ordered false - all four are taken, not ranked), hyperSkills.flexPick.optionsAreRanked false, and innerAbility.alternatives (ordered false). Conversely, three arrays that ARE genuinely ordered in their source now say so with a justification: hexa.hexaStatPriority (the doc writes 'attack > main stat > boss'), innerAbility.bossing (line slots are assigned by the rolling procedure) and innerAbility.rollingOrder (the doc prints it as a numbered 1-4 list)."
+      },
+      {
+        "defect": "NEW, found during resolution - UNRESOLVED HEDGE. nodeGroupsPerGrandis carried 'PRIMARY or SECONDARY - label unverified' on node group 2.",
+        "scope": "in-scope (vMatrix)",
+        "action": "CONFIRMED as PRIMARY",
+        "what": "Re-read of Grandis returned PRIMARY, and it is now mechanically corroborated rather than just re-read: Grandis defines PRIMARY as the tier that unlocks a 6th Job HEXA Mastery, and maplestorywiki shows boost node group 2's membership (Leaf Tornado, Spikes Royale, Wrath of Enlil) is exactly HEXA Mastery Core 2's membership. Hedge removed."
+      }
     ],
+    "defects": [],
+    "outOfScope": [],
     "clearedOnInspection": [],
-    "shipReady": false
+    "shipReady": true,
+    "shipReadyScope": "The five endgame sections only (vMatrix, hexa, hyperSkills, hyperStats, innerAbility). Jobs 1-4 skill builds, damage coefficients, damageLine, job tiers and rotations were out of scope for this pass and were not touched; this file carries no skillBuilds or coefficient data to begin with, so there were no out-of-scope defects to count."
   },
-  "written": false,
-  "blockedReason": "3 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null,
+  "writtenNote": "Set true on 2026-09-12 because every claim remaining in the five endgame sections was re-read against its cited page this session and either matched, was corrected to match, or had its bad attribution deleted. hexa.order and hyperStats.priority are null, and null is a recorded gap with a sourced explanation, not an unverified claim - see hexa.notes and hyperStats.priorityNullReason. NOTHING in this file is labelled consensus 'strong': Mercedes has one independent judgement source (the class doc), Grandis Library is downstream of it by its own credits, and mastermysty is superseded, so the three-independent-source bar is met by no endgame claim. The labels are deliberately pessimistic; read them as written."
 }

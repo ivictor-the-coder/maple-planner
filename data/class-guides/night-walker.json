@@ -16,209 +16,355 @@
   "vMatrix": {
     "priority": [
       {
-        "node": "Boost Node 1 - Quintuple Star",
-        "why": "Grandis Library tiers this PRIMARY, defined on the page as a boost node that unlocks a 6th Job HEXA Mastery and boosts a frequently used skill. Quintuple Star is the 4th job main attack and has a matching HEXA Quintuple Star mastery. maplestorywiki records that Quintuple Star Boost grants Critical Rate +5% at node level 20.",
-        "consensus": "weak - the tiering comes from one source family (Grandis Library, whose page credits the Night Walker Discord for the boost node build). Node contents and the level-20 effect are independently confirmed by maplestorywiki. mystyjl also places Quintuple Star in its first trio.",
+        "node": "Core 1 - Quintuple Star",
+        "tier": "primary",
+        "why": "Grandis Library places this core in its primary tier (page data: \"primary\":[0,1,2,3]). Primary is defined on the page as a boost node that unlocks a 6th Job HEXA Mastery and boosts a frequently used skill; Quintuple Star is the 4th job main attack and has a matching HEXA Quintuple Star mastery on maplestorywiki. maplestorywiki's V Enhancements table records Quintuple Star Boost granting Critical Rate +5% at node level 20 and no level 40 effect.",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
-          "https://maplestorywiki.net/w/Night_Walker/Skills",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://maplestorywiki.net/w/Night_Walker/Skills"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Two independent JUDGEMENT sources name this skill as a boost target: Grandis Library (crediting the Night Walker Discord, GMS v.269) and mystyjl's node reference (which puts Quintuple Star in its Trio #1). maplestorywiki is a third independent source but supplies only the node's existence, contents and level-20 effect - no recommendation - so it does not raise the count.",
+        "consensus": "moderate",
+        "consensusNote": "Two independent judgement sources agree this skill is worth boosting, but the second (mystyjl) is stamped 21 Nov 2024 and predates the v.269 node regrouping.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Boost Node 2 - Shadow Bat / Ravenous Bat",
-        "why": "Tiered PRIMARY by Grandis Library. Both bats are covered by one boost node core and both have HEXA masteries (HEXA Shadow Bat, HEXA Ravenous Bat).",
-        "consensus": "weak - single source family for the tiering; node contents confirmed by maplestorywiki's V Enhancements table, and mystyjl also puts Shadow Bats in its first trio.",
+        "node": "Core 2 - Shadow Bat + Ravenous Bat",
+        "tier": "primary",
+        "why": "In Grandis Library's primary tier. Both bats sit in one boost node core and both have HEXA masteries (HEXA Shadow Bat, HEXA Ravenous Bat on maplestorywiki). maplestorywiki records no level 20 or level 40 breakpoint effect for either Boost.",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
-          "https://maplestorywiki.net/w/Night_Walker/Skills",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://maplestorywiki.net/w/Night_Walker/Skills"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Grandis Library (Discord-credited) plus mystyjl, which lists \"Shadow Bats\" in its Trio #1. maplestorywiki confirms the core's contents only.",
+        "consensus": "moderate",
+        "consensusNote": "Second source is stale (2024) and predates the v.269 regrouping.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Boost Node 3 - Dark Omen / Shadow Stitch",
-        "why": "Tiered PRIMARY by Grandis Library. Dark Omen has a HEXA mastery (HEXA Dark Omen). maplestorywiki records that Dark Omen Boost grants Max Targets +1 at node level 20 and Shadow Stitch Boost grants Critical Rate +5%.",
-        "consensus": "weak - single source family for the tiering; node contents and level-20 effects confirmed by maplestorywiki. mystyjl also puts Dark Omen in its first trio.",
+        "node": "Core 3 - Dark Omen + Shadow Stitch",
+        "tier": "primary",
+        "why": "In Grandis Library's primary tier. Dark Omen has a HEXA mastery (HEXA Dark Omen). maplestorywiki records Dark Omen Boost granting Max Targets +1 and Shadow Stitch Boost granting Critical Rate +5% at their level 20 breakpoints.",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
-          "https://maplestorywiki.net/w/Night_Walker/Skills",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://maplestorywiki.net/w/Night_Walker/Skills"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Grandis Library plus mystyjl, which lists Dark Omen in its Trio #1. NOTE: mystyjl corroborates DARK OMEN only - it places Shadow Stitch in a different trio (with Dominion and Shadow Spark), not alongside Dark Omen. Shadow Stitch is in this entry because Grandis Library and maplestorywiki both put it in the same physical core as Dark Omen, not because a second source recommends it.",
+        "consensus": "moderate",
+        "consensusNote": "Moderate for Dark Omen; the Shadow Stitch half of the core is single-source (weak).",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Boost Node 4 - Dominion",
-        "why": "Tiered PRIMARY by Grandis Library. Dominion is a Hyper Skill active (Lv160) with a HEXA mastery (HEXA Dominion / Abyssal Darkness). maplestorywiki records Dominion itself as granting Final Damage +20% and Critical Rate +100% while active.",
-        "consensus": "weak - single source family for the tiering; skill effects and node contents confirmed by maplestorywiki. mystyjl also lists Dominion, but in its second trio rather than its first.",
+        "node": "Core 4 - Dominion",
+        "tier": "primary",
+        "why": "In Grandis Library's primary tier. Dominion is the Lv160 hyper active and has a HEXA mastery (HEXA Dominion / Abyssal Darkness). maplestorywiki records Dominion itself as granting Final Damage +20% and Critical Rate +100% while active, on a 120 sec cooldown, and records no level 20 or 40 breakpoint for Dominion Boost.",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
-          "https://maplestorywiki.net/w/Night_Walker/Skills",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://maplestorywiki.net/w/Night_Walker/Skills"
+        ],
+        "sourceCount": 2,
+        "sourceCountNote": "Grandis Library plus mystyjl, which lists Dominion in its Trio #2 (not its first trio).",
+        "consensus": "moderate",
+        "consensusNote": "Both judgement sources name Dominion, but they place it differently (Grandis primary tier vs mystyjl second trio), and mystyjl is stale.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Boost Node 5 - Lucky Seven / Soundless Rush",
-        "why": "Tiered OTHER (lowest) by Grandis Library. Note that maplestorywiki nevertheless records Lucky Seven Boost as granting Critical Rate +5% at node level 20 and Ignored Enemy Defense +20% at node level 40 - the only Night Walker boost node with a level-40 IED bonus.",
-        "consensus": "weak - tiering from one source family. The level 20/40 effects are a maplestorywiki fact, not a recommendation; no reachable source discusses whether that IED bonus is worth chasing.",
+        "node": "Core 5 - Lucky Seven + Soundless Rush",
+        "tier": "other",
+        "why": "Grandis Library places this core in its lowest tier, \"other\" (page data: \"other\":[4,5]), i.e. outside the set it recommends upgrading. Recorded here only so a player's build can be compared against it. Separately, maplestorywiki records Lucky Seven Boost as the only Night Walker boost with a level 40 effect: Critical Rate +5% at 20 and Ignored Enemy Defense +20% at 40.",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
           "https://maplestorywiki.net/w/Night_Walker/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "Only Grandis Library tiers this. maplestorywiki supplies the breakpoint numbers and no recommendation. NO reachable source argues that the level 40 IED bonus is worth chasing - the number is a fact, not an endorsement, and must not be presented as one.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Boost Node 6 - Triple Throw / Shadow Spark / Quad Star",
-        "why": "Tiered OTHER (lowest) by Grandis Library.",
-        "consensus": "weak - tiering from one source family; contested, see conflicts (mystyjl's 2024 trio 2 uses Shadow Spark).",
+        "node": "Core 6 - Triple Throw + Shadow Spark + Quad Star",
+        "tier": "other",
+        "why": "Grandis Library places this core in its lowest tier, \"other\". maplestorywiki records Shadow Spark Boost granting Max Targets +1 at level 20; Triple Throw Boost and Quad Star Boost have no recorded breakpoints.",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
           "https://maplestorywiki.net/w/Night_Walker/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The deprioritisation is Grandis Library's alone. mystyjl is deliberately NOT cited as support here: it places Shadow Spark in its Trio #2, i.e. it CONTRADICTS this deprioritisation. See conflicts.",
+        "consensus": "weak",
+        "consensusNote": "Weak and contested.",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
       {
-        "trio": "Any combination of Shadow Bat + Ravenous Bat, Quintuple Star, Dark Omen and Dominion",
-        "why": "Grandis Library does not prescribe fixed trio pairings. Its stated rule is that any combination of those four skills is good; that three boost nodes in total are needed to bring those skills to Master Level 60 (with matrix points spent); that two nodes with the same main skill (the skill listed at the top of the node) cannot be equipped at the same time; and that each of those skills should therefore appear in two nodes.",
-        "consensus": "weak - single source family (Grandis Library, crediting the Night Walker Discord), current to GMS v.269",
-        "sources": ["https://grandislibrary.com/cygnus-knights/night-walker"]
+        "trio": "Any combination of Quintuple Star, Shadow Bat + Ravenous Bat, Dark Omen and Dominion",
+        "why": "Grandis Library does not prescribe fixed trio pairings for Night Walker. Its \"Skills To Boost\" block names exactly those four, and its two notes read verbatim: \"Any combination of these skills are good\" and \"3 Boost Nodes total are needed to reach Master Level 60 for these skills (with Matrix Points used)\", with the sub-points \"Nodes with the same Main Skill (skill at the top) cannot be equipped at the same time\" and \"Each skill above should appear in 2 nodes\".",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/night-walker"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source family (Grandis Library, crediting the Night Walker Discord), current to GMS v.269.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "trio": "Trio 1: Quintuple Star, Shadow Bats, Dark Omen",
-        "why": "mystyjl's cross-class boost node reference lists this as Night Walker's first trio. Compatible with Grandis Library's primary set.",
-        "consensus": "weak - single source, and the page self-reports its data as last updated 2024-05-14 (page stamped 2024-11-21), which predates the v.269 boost node regrouping",
-        "sources": ["https://mystyjl.github.io/reference/NodeGuide.html"]
+        "why": "mystyjl's cross-class boost node reference lists this verbatim as Night Walker's \"Trio #1\". Compatible with Grandis Library's primary set.",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source, and stale: the page is stamped \"Last update: November 21st, 2024\", which predates the v.269 boost node regrouping.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "trio": "Trio 2: Dominion, Shadow Spark, Shadow Stitch",
-        "why": "mystyjl's second listed Night Walker trio. CONTESTED - see conflicts: Grandis Library's current (v.269) page places Shadow Spark in its lowest 'Other' tier and pairs Shadow Stitch inside the Dark Omen node.",
-        "consensus": "weak and contested - single source, pre-v.269 data",
-        "sources": ["https://mystyjl.github.io/reference/NodeGuide.html"]
+        "why": "mystyjl's \"Trio #2\" for Night Walker, verbatim. CONTESTED - see conflicts: Grandis Library's current (v.269) page puts Shadow Spark in its lowest \"other\" tier and groups Shadow Stitch inside the Dark Omen core rather than with Dominion.",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Weak and contested; single stale source.",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Boost node / V Enhancement max level is 60 (maplestorywiki). The six Night Walker boost node cores are, exactly: (1) Quintuple Star Boost; (2) Shadow Bat Boost + Ravenous Bat Boost; (3) Dark Omen Boost + Shadow Stitch Boost; (4) Dominion Boost; (5) Lucky Seven Boost + Soundless Rush Boost; (6) Triple Throw Boost + Shadow Spark Boost + Quad Star Boost - confirmed against maplestorywiki, which matches Grandis Library's grouping exactly. Node-level breakpoint effects recorded by maplestorywiki: Quintuple Star Boost Crit Rate +5% at 20; Shadow Stitch Boost Crit Rate +5%; Dark Omen Boost Max Targets +1 at 20; Shadow Spark Boost Max Targets +1 at 20; Lucky Seven Boost Crit Rate +5% at 20 and Ignored Enemy Defense +20% at 40. The final-damage-per-level column of that wiki table uses row spans and could not be attributed to individual skills with confidence, so it is deliberately omitted rather than guessed. Grandis Library exposes a 'Pre-V.269 Boost Nodes' toggle on this page, which is direct evidence that Night Walker's node groupings changed at v.269 - date every node claim.",
+    "notes": "Boost node / V Enhancement max level is 60 (maplestorywiki, verbatim: \"The maximum level for Enhancements/Boost Nodes is 60.\"). The six Night Walker boost node cores are, exactly: (1) Quintuple Star Boost; (2) Shadow Bat Boost + Ravenous Bat Boost; (3) Dark Omen Boost + Shadow Stitch Boost; (4) Dominion Boost; (5) Lucky Seven Boost + Soundless Rush Boost; (6) Triple Throw Boost + Shadow Spark Boost + Quad Star Boost. Re-confirmed 2026-09-12 against BOTH maplestorywiki's V Enhancements table and Grandis Library's page data; the two match each other exactly. Level-20/40 breakpoint effects per maplestorywiki: Lucky Seven Boost - Crit Rate +5% at 20, Ignored Enemy Defense +20% at 40 (the only level-40 effect on the class); Shadow Spark Boost - Max Targets +1; Quintuple Star Boost - Crit Rate +5%; Dark Omen Boost - Max Targets +1; Shadow Stitch Boost - Crit Rate +5%. Soundless Rush, Shadow Bat, Ravenous Bat, Triple Throw, Quad Star and Dominion Boost have no recorded breakpoint. The final-damage-per-level column of that wiki table uses row spans and cannot be attributed to individual skills with confidence, so it is deliberately omitted rather than guessed. Grandis Library exposes a \"View Pre-V.269 Boost Nodes\" control on this page, which is direct evidence that Night Walker's node groupings changed at v.269 - date every node claim.",
     "sources": [
       "https://grandislibrary.com/cygnus-knights/night-walker",
       "https://maplestorywiki.net/w/Night_Walker/Skills",
       "https://mystyjl.github.io/reference/NodeGuide.html"
-    ]
+    ],
+    "ordered": false,
+    "orderingNote": "The six entries below are numbered exactly as Grandis Library numbers its own boost node cores on the page (its embedded page data reads \"primary\":[0,1,2,3],\"other\":[4,5], re-read from the page source on 2026-09-12). That numbering is a LAYOUT INDEX, not a ranking. Grandis assigns Night Walker only two tiers - primary (cores 1-4) and other (cores 5-6) - and states in the same block \"Any combination of these skills are good\". No reachable source ranks the four primary cores against each other. Do not read array position as priority; read the \"tier\" field.",
+    "tiers": {
+      "primary": [
+        "Quintuple Star",
+        "Shadow Bat / Ravenous Bat",
+        "Dark Omen / Shadow Stitch",
+        "Dominion"
+      ],
+      "other": [
+        "Lucky Seven / Soundless Rush",
+        "Triple Throw / Shadow Spark / Quad Star"
+      ],
+      "tierDefinitionsVerbatim": {
+        "PRIMARY": "Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used",
+        "SECONDARY": "Boost Nodes that don't unlock a 6th Job HEXA Mastery [Night Walker has NO nodes in this tier]",
+        "recommendation": "Nodes categorized as Primary and Secondary are recommended to be upgraded"
+      },
+      "sources": [
+        "https://grandislibrary.com/cygnus-knights/night-walker"
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
+    "sourceCount": 3,
+    "sourceCountNote": "Three independent sources were reached, but only two of them (Grandis Library / Night Walker Discord, mystyjl) issue judgements; maplestorywiki supplies names, contents and breakpoints with no recommendations. No recommendation in this section reaches the 3-independent-judgement-source bar.",
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "hexa": {
     "order": [
       {
-        "step": "1. Silence (Skill Node / Origin) - unlocked; the chart marks this step 'free'",
-        "why": "Both Night Walker HEXA leveling charts start here and label the step free.",
-        "consensus": "weak - single source (Night Walker Discord infographic hosted on Grandis Library, file-dated 2026-09-04); identical on both chart variants",
+        "step": "1. Silence (Skill Node) - unlocked; the chart marks this step \"free\"",
+        "why": "First step on both the Fragment Limited and Energy Limited charts, labelled \"free\" under the Silence icon on both. Re-read directly from both PNGs as images on 2026-09-12 (not text extraction).",
         "sources": [
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The two charts are one source, not two: both are Night Walker Discord infographics published on Grandis Library and file-dated 2026-09-04. Mirrors of one document count once.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "2. HEXA Shadow Bat / HEXA Ravenous Bat (Mastery Node) to level 1",
-        "why": "Second step on both the Fragment Limited and Energy Limited charts.",
-        "consensus": "weak - single source; identical on both chart variants",
+        "why": "Second step on both charts, level 1 on both.",
         "sources": [
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The two charts are one source, not two: both are Night Walker Discord infographics published on Grandis Library and file-dated 2026-09-04. Mirrors of one document count once.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "3. HEXA Dominion / Abyssal Darkness (Mastery Node) to level 1",
-        "why": "Third step on both chart variants.",
-        "consensus": "weak - single source; identical on both chart variants",
+        "why": "Third step on both charts, level 1 on both.",
         "sources": [
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The two charts are one source, not two: both are Night Walker Discord infographics published on Grandis Library and file-dated 2026-09-04. Mirrors of one document count once.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "4. HEXA Quintuple Star (Mastery Node) - to level 2 on the Fragment Limited chart, to level 1 on the Energy Limited chart",
-        "why": "Fourth step on both variants; the two charts diverge only in how far this is pushed before moving on.",
-        "consensus": "weak - single source",
+        "why": "Fourth step on both charts; this is the first point at which the two routes diverge, and they diverge only in how far this mastery is pushed before moving on.",
         "sources": [
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The two charts are one source, not two: both are Night Walker Discord infographics published on Grandis Library and file-dated 2026-09-04. Mirrors of one document count once.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "5. Sol Hecate (Common Node) to level 1",
-        "why": "Fifth step on both chart variants.",
-        "consensus": "weak - single source; identical on both chart variants",
+        "why": "Fifth step on both charts, level 1 on both.",
         "sources": [
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
           "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The two charts are one source, not two: both are Night Walker Discord infographics published on Grandis Library and file-dated 2026-09-04. Mirrors of one document count once.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "6. Fragment Limited route, steps 6-10: HEXA Quintuple Star to 4, HEXA Phalanx Charge (Common Node) to 1, HEXA Quintuple Star to 5, HEXA Stat Node 1 to 20, HEXA Dark Omen to 2.",
-        "why": "Transcribed directly from the Fragment Limited chart. The fragment-constrained route interleaves smaller mastery increments before committing to the HEXA Stat push.",
-        "consensus": "weak - single source; read from the infographic image",
-        "sources": ["https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png"]
+        "why": "Read icon-by-icon off the Fragment Limited chart on 2026-09-12; the printed level under each of steps 6-10 is 4, 1, 5, 20, 2 respectively. The fragment-constrained route interleaves smaller mastery increments before committing to the HEXA Stat push.",
+        "warning": "Step 7 targets HEXA Phalanx Charge, a node name printed on this chart's legend but ABSENT from maplestorywiki. See hexa.unverifiedNames and conflicts.",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "6b. Energy Limited route, steps 6-9: HEXA Stat Node 1 to 20, HEXA Quintuple Star to 7, HEXA Phalanx Charge (Common Node) to 1, HEXA Dark Omen to 7.",
-        "why": "Transcribed directly from the Energy Limited chart. The Sol-Erda-constrained route takes HEXA Stat Node 1 to 20 three steps earlier than the fragment route and advances masteries in larger jumps.",
-        "consensus": "weak - single source; read from the infographic image",
-        "sources": ["https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png"]
+        "why": "Read icon-by-icon off the Energy Limited chart on 2026-09-12; the printed level under each of steps 6-9 is 20, 7, 1, 7 respectively. The Sol-Erda-constrained route takes HEXA Stat Node 1 to 20 three steps earlier than the fragment route and advances masteries in larger jumps.",
+        "warning": "Step 8 targets HEXA Phalanx Charge - same caveat as the fragment route.",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "The only Night Walker HEXA investment order reachable publicly is a pair of images: 'HEXA Leveling Order - Fragment Limited' and 'HEXA Leveling Order - Energy Limited', credited on Grandis Library to the Night Walker Discord and file-dated 2026-09-04. There is no public Night Walker class document - maplestorywiki's Guide:Class Guides index shows a Night Walker heading with no link, and Grandis Library's Other Resources block for this class links only maplestorywiki, NamuWiki and the Discord (no Class Doc). Both charts carry the subtitle 'Updated for HEXA Common Core (October 2026)', which is AFTER the v.271 target patch, and both include a Common Node named 'HEXA Phalanx Charge' that does not appear anywhere on maplestorywiki's Night Walker skills page as of 2026-09-11 - so these charts appear to be written for a HEXA Common Core change that may not be live in GMS at v.271. Treat the ordering as provisional and re-verify against the Discord. Node names appearing on the charts, all validated against maplestorywiki except HEXA Phalanx Charge: Skill Nodes - Silence, Stygian Command. Mastery Nodes - HEXA Quintuple Star (a 'HEXA Quintuple Star [Jet Black Throwing Stars]' variant also exists on the wiki), HEXA Shadow Bat, HEXA Ravenous Bat, HEXA Dark Omen, HEXA Dominion, Abyssal Darkness. Enhancement Nodes - Shadow Spear, Greater Dark Servant, Shadow Slide, Shadow Bite, Rapid Throw (exactly Night Walker's five class-specific 5th job skills on the wiki). Common Nodes - Sol Hecate (chart notes the icon changes at levels 20 and 30), HEXA Phalanx Charge. HEXA Stats appear as Node 1 / Node 2 / Node 3 with no stat-line recommendation attached, so no Night-Walker-specific HEXA Stat line advice could be sourced. Sol Janus appears in maplestorywiki's shared HEXA skill list for the class but does not appear on either chart. Only the first steps of each chart were transcribed; the full charts run to roughly 200 steps and remain the authoritative artifact.",
+    "notes": "The only Night Walker HEXA investment order reachable publicly is a pair of images: \"HEXA Leveling Order - Fragment Limited\" and \"HEXA Leveling Order - Energy Limited\", credited on Grandis Library to the Night Walker Discord and file-dated 2026-09-04. Both were downloaded and read as images on 2026-09-12, and every step transcribed above was checked icon-against-legend and level-against-printed-label. There is no public Night Walker class document - maplestorywiki's Guide:Class Guides index carries a \"Night Walker:\" heading with NO link under it (re-confirmed 2026-09-12; the next line is \"Novice:\" with its own link), and Grandis Library's Other Resources block for this class links only maplestorywiki, NamuWiki and the Discord. BLOCKING CAVEAT: both charts carry the subtitle \"Updated for HEXA Common Core (October 2026)\", a date AFTER the v.271 target patch, and both route investment through a Common Node named \"HEXA Phalanx Charge\" that does not exist on maplestorywiki. These charts appear to be written for a HEXA Common Core change that may not be live in GMS at v.271. Treat the ordering as PROVISIONAL and re-verify against the Discord before presenting it as current. Node names on the charts, all validated against maplestorywiki except HEXA Phalanx Charge: Skill Nodes - Silence, Stygian Command. Mastery Nodes - HEXA Quintuple Star (a \"HEXA Quintuple Star [Jet Black Throwing Stars]\" variant also exists on the wiki), HEXA Shadow Bat, HEXA Ravenous Bat, HEXA Dark Omen, HEXA Dominion, Abyssal Darkness. Enhancement Nodes - Shadow Spear, Greater Dark Servant / Shadow Slide, Shadow Bite, Rapid Throw (exactly Night Walker's five class-specific 5th job skills on the wiki). Common Nodes - Sol Hecate (legend notes the icon changes at levels 20 and 30), HEXA Phalanx Charge. HEXA Stats appear as Node 1 / Node 2 / Node 3 with no stat-line recommendation attached, so no Night-Walker-specific HEXA Stat line advice could be sourced. Sol Janus appears in maplestorywiki's shared HEXA skill list for the class but appears on neither chart. Only the opening steps of each chart are transcribed here; the full charts run to roughly 200 steps and remain the authoritative artifact.",
     "sources": [
-      "https://grandislibrary.com/cygnus-knights/night-walker",
       "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
       "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png",
+      "https://grandislibrary.com/cygnus-knights/night-walker",
       "https://maplestorywiki.net/w/Night_Walker/Skills",
       "https://maplestorywiki.net/w/Guide:Class_Guides"
-    ]
+    ],
+    "ordered": true,
+    "orderedNote": "Unlike the vMatrix section, this order IS asserted by its source: both charts are explicit step-by-step sequences with a printed target level under every step. Array position here is the source's own claim, not this file's inference.",
+    "unverifiedNames": [
+      {
+        "name": "HEXA Phalanx Charge",
+        "status": "Printed on both chart legends under the \"Common Nodes\" bracket and targeted by one step on each route - re-read as an IMAGE on 2026-09-12, so it is not a text-extraction artifact. But it is absent from maplestorywiki's Night Walker skills page, which lists Phalanx Charge only as a shared 5th job Cygnus skill (Master Level 30) and lists only Sol Janus and Sol Hecate variants under shared HEXA skills.",
+        "handling": "Kept and flagged. It is printed in a source that was actually read, so deleting it would discard real information - but it must never be presented as a live GMS v.271 node. This is the reason hexa is not ship-ready.",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
+          "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png",
+          "https://maplestorywiki.net/w/Night_Walker/Skills"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12"
+      }
+    ],
+    "sourceCount": 1,
+    "sourceCountNote": "Exactly one independent judgement source for the investment ORDER: the Night Walker Discord, via two of its infographics. maplestorywiki and the Grandis class page are used only to validate node names and to establish that no public class document exists.",
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "hyperStats": {
     "priority": null,
-    "notes": "No Night-Walker-specific hyper stat priority could be sourced. Grandis Library carries no hyper stat section for any class; MapleDoro's Night Walker page has no hyper stat section; mystyjl covers boost nodes only; maplestorywiki carries no recommendations. The community's operative answer to hyper stat allocation is a per-character optimisation rather than a fixed list - MathBro's Hyper Stat Optimizer computes it from an individual stat sheet. Two class facts any Night Walker hyper stat optimisation has to account for are recorded under gearingNotes: the class gets +40% Critical Rate from its own passives (100% only while Dominion is up), and 0% Boss Damage from its own passives.",
+    "unranked": true,
+    "unrankedReason": "No reachable source publishes a Night-Walker-specific hyper stat priority, so this file stores NO ordering. Re-checked 2026-09-12: the string \"hyper stat\" does not occur anywhere in Grandis Library's Night Walker page source; MapleDoro's Night Walker page has no hyper stat section; mystyjl covers boost nodes only; maplestorywiki carries no recommendations. Emitting an ordered array here would invent a claim no source makes.",
+    "notes": "The community's operative answer to hyper stat allocation is a per-character optimisation rather than a fixed list - MathBro's Hyper Stat Optimizer computes it from an individual stat sheet. Two class facts any Night Walker hyper stat optimisation has to account for, both recorded under gearingNotes: the class gets +40% Critical Rate from its own passives (100% only inside Dominion's 20-second window), and 0% Boss Damage from its own passives, so every point of boss damage is external.",
     "sources": [
       "https://brendonmay.github.io/hyperCalculator/",
-      "https://grandislibrary.com/cygnus-knights/night-walker"
-    ]
+      "https://grandislibrary.com/cygnus-knights/night-walker",
+      "https://www.mapledoro.com/guides/character-guides/night-walker"
+    ],
+    "sourceCount": 0,
+    "sourceCountNote": "Zero sources support a priority ordering, because no source states one. The URLs above record the pages that were checked and found to carry no hyper stat guidance.",
+    "consensus": "none",
+    "verifiedAt": "2026-09-12"
   },
   "hyperSkills": {
     "passives": [
       {
         "pick": "Quintuple Star - Reinforce (Lv140, Damage +20%)",
-        "consensus": "weak - single source family (Grandis Library, crediting the Night Walker Discord). Skill name and effect validated against maplestorywiki.",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
           "https://maplestorywiki.net/w/Night_Walker/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The RECOMMENDATION to take this passive comes from one source family only: Grandis Library's hyper build block, credited on the page to the Night Walker Discord. maplestorywiki independently confirms the skill's name, level requirement and effect - two independent sources for the FACT, one for the ADVICE.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "factVerified": "Grandis and maplestorywiki agree: Level Requirement 140, Master Level 1, Damage +20%."
       },
       {
         "pick": "Quintuple Star - Boss Rush (Lv150, Boss Damage +20%)",
-        "consensus": "weak - single source family; name and effect validated against maplestorywiki",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
           "https://maplestorywiki.net/w/Night_Walker/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The RECOMMENDATION to take this passive comes from one source family only: Grandis Library's hyper build block, credited on the page to the Night Walker Discord. maplestorywiki independently confirms the skill's name, level requirement and effect - two independent sources for the FACT, one for the ADVICE.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "factVerified": "Both agree: Lv150, Boss Damage +20%."
       },
       {
         "pick": "Dark Omen - Cooldown Cutter (Lv140, Cooldown -50%)",
-        "consensus": "weak - single source family; name and effect validated against maplestorywiki",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
           "https://maplestorywiki.net/w/Night_Walker/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The RECOMMENDATION to take this passive comes from one source family only: Grandis Library's hyper build block, credited on the page to the Night Walker Discord. maplestorywiki independently confirms the skill's name, level requirement and effect - two independent sources for the FACT, one for the ADVICE.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "factVerified": "Both agree: Lv140, Cooldown -50%."
       },
       {
         "pick": "Dark Omen - Reinforce (Lv180, Damage +20%)",
-        "consensus": "weak - single source family; name and effect validated against maplestorywiki",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
           "https://maplestorywiki.net/w/Night_Walker/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The RECOMMENDATION to take this passive comes from one source family only: Grandis Library's hyper build block, credited on the page to the Night Walker Discord. maplestorywiki independently confirms the skill's name, level requirement and effect - two independent sources for the FACT, one for the ADVICE.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "factVerified": "Both agree: Lv180, Damage +20%."
       },
       {
-        "pick": "Vitality Siphon - Reinforce (Lv165, Attack Power +60 while the Vitality Siphon shield exists)",
-        "consensus": "weak - single source family; name and effect validated against maplestorywiki",
+        "pick": "Vitality Siphon - Reinforce (Lv165, Attack Power +60 while a Vitality Siphon Protective Shield exists)",
         "sources": [
           "https://grandislibrary.com/cygnus-knights/night-walker",
           "https://maplestorywiki.net/w/Night_Walker/Skills"
-        ]
+        ],
+        "sourceCount": 1,
+        "sourceCountNote": "The RECOMMENDATION to take this passive comes from one source family only: Grandis Library's hyper build block, credited on the page to the Night Walker Discord. maplestorywiki independently confirms the skill's name, level requirement and effect - two independent sources for the FACT, one for the ADVICE.",
+        "consensus": "weak",
+        "verifiedAt": "2026-09-12",
+        "factVerified": "Both agree: Lv165, Attack Power +60. maplestorywiki's description verbatim: \"Increases the Attack Power when a Protective Shield created with Vitality Siphon exists.\""
       }
     ],
     "notPicked": {
@@ -228,26 +374,48 @@
         "Vitality Siphon - Extra Point (Lv150, Protective Shield +3% of Max HP)",
         "Vitality Siphon - Preparation (Lv190, Status Resistance +20)"
       ],
-      "note": "These are the four hyper passives Grandis Library's recommended build leaves out. No reachable source explains why, and no training-versus-bossing hyper passive split was published for Night Walker (unlike, for example, Grandis Library's Night Lord page, which publishes three variants). Do not present a reason the sources do not give.",
+      "note": "These are the four of Night Walker's nine hyper passives that Grandis Library's recommended build leaves out - re-confirmed 2026-09-12 by diffing the page's full hyperPassive list (9 entries) against its recommended build (5 entries). No reachable source explains why, and no training-versus-bossing hyper passive split was published for Night Walker (unlike, for example, Grandis Library's Night Lord page, which publishes three variants). Do not present a reason the sources do not give.",
       "sources": [
         "https://grandislibrary.com/cygnus-knights/night-walker",
         "https://maplestorywiki.net/w/Night_Walker/Skills"
-      ]
+      ],
+      "sourceCount": 1,
+      "sourceCountNote": "The omission is Grandis Library's alone; maplestorywiki confirms the four skills' names, levels and effects but takes no position on them.",
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     "actives": {
-      "available": ["Shadow Illusion (Lv140)", "Dominion (Lv160)", "Glory of the Guardians (Lv190)"],
-      "note": "maplestorywiki lists these three hyper actives. No reachable source ranks them or says which to take first; all three appear in MapleDoro's published buff sequence. Dominion is also a boost node and HEXA mastery target, which is the only recommendation-adjacent fact any source attaches to them.",
+      "available": [
+        "Shadow Illusion (Lv140)",
+        "Dominion (Lv160)",
+        "Glory of the Guardians (Lv190)"
+      ],
+      "ordered": false,
+      "orderedNote": "Listed in level-requirement order, which is a fact, not a recommendation. No source ranks them or says which to take first.",
+      "note": "maplestorywiki and Grandis Library independently list exactly these three hyper actives with these level requirements (re-confirmed 2026-09-12). All three appear in MapleDoro's published buff sequence (verbatim: \"Dark Servant > Greater Dark Servant > Last Resort > Shadow Spear > Shadow Illusion > Dominion > Glory of the Guardians > Empress Cygnus's Blessing > Transcendent Cygnus's Blessing > Dark Omen > Shadow Slide > Shadow Stitch > Silence > Quintuple Star\"), but MapleDoro is a derived source and a buff sequence is not a selection ranking. Dominion is also a boost node core and a HEXA mastery target, which is the only recommendation-adjacent fact any source attaches to these three.",
       "sources": [
         "https://maplestorywiki.net/w/Night_Walker/Skills",
-        "https://www.mapledoro.com/guides/character-guides/night-walker",
-        "https://grandislibrary.com/cygnus-knights/night-walker"
-      ]
+        "https://grandislibrary.com/cygnus-knights/night-walker",
+        "https://www.mapledoro.com/guides/character-guides/night-walker"
+      ],
+      "sourceCount": 2,
+      "sourceCountNote": "Two independent sources for the FACT that these are the three hyper actives (maplestorywiki, Grandis Library). MapleDoro is derived from Grandis Library and does not raise the count. Zero sources for any ranking among them.",
+      "consensus": "moderate",
+      "consensusNote": "Moderate applies to the factual list only. There is NO sourced recommendation in this block at all.",
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "Relevant to a Lv160 character: of the five recommended passives, Quintuple Star - Reinforce (140), Dark Omen - Cooldown Cutter (140) and Quintuple Star - Boss Rush (150) are already available, while Vitality Siphon - Reinforce (165) and Dark Omen - Reinforce (180) are not yet unlocked. Dominion is the Lv160 hyper active. Level requirements are maplestorywiki facts; the sequencing statement is arithmetic on those level requirements, not a recommendation from any source.",
+    "notes": "Relevant to a Lv160 character: of the five recommended passives, Quintuple Star - Reinforce (140), Dark Omen - Cooldown Cutter (140) and Quintuple Star - Boss Rush (150) are already available, while Vitality Siphon - Reinforce (165) and Dark Omen - Reinforce (180) are not yet unlocked. Dominion is the Lv160 hyper active. The level requirements are facts confirmed independently by maplestorywiki and Grandis Library; the sequencing statement is arithmetic on those level requirements, NOT a recommendation from any source.",
     "sources": [
       "https://grandislibrary.com/cygnus-knights/night-walker",
-      "https://maplestorywiki.net/w/Night_Walker/Skills"
-    ]
+      "https://maplestorywiki.net/w/Night_Walker/Skills",
+      "https://www.mapledoro.com/guides/character-guides/night-walker"
+    ],
+    "passivesOrdered": false,
+    "passivesOrderedNote": "Grandis Library publishes these five as an unordered recommended set (three bullet groups of icons), not a ranked list. Array order above is arbitrary and must not be read as a take-first order. The only ordering fact available is the level requirement, which is carried in each pick string.",
+    "sourceCount": 1,
+    "sourceCountNote": "One independent judgement source for the build (Grandis Library / Night Walker Discord). maplestorywiki supplies facts only; MapleDoro carries no hyper skill recommendation at all - its hyper section reads \"Coming soon\", re-checked 2026-09-12.",
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "innerAbility": {
     "bossing": {
@@ -256,11 +424,18 @@
         "Damage to monsters inflicted with Abnormal Status +8%",
         "Attack +21 / Buff Duration +38%"
       ],
-      "consensus": "weak - one source family. Grandis Library (crediting the Night Walker Discord) lists these three; MapleDoro restates them identically and adds a rarity mapping (Legendary: Boss Damage +20%; Unique: Attack +21 / Buff Duration +38%; Epic: Damage to enemies with Abnormal Status +8%), but MapleDoro self-declares its data structure as derived from Grandis Library and community infographics, so it is not an independent confirmation.",
+      "lineSlotsOrdered": false,
+      "lineSlotsNote": "Array order above is Grandis Library's published list order, NOT a line-slot assignment. Grandis attaches a line-slot note to its TRAINING preset only (\"Depending on what's chosen as the 1st Line, choose the other for the 2nd Line\") and attaches no such note to the bossing preset. MapleDoro, restating the same three lines, maps them to rarities in a DIFFERENT arrangement - Legendary: Boss Damage +20%; Unique: Attack +21 / Buff Duration +38%; Epic: Damage to enemies w/ Abnormal Status +8% - which would put Attack/Buff Duration on line 2 and Abnormal Status on line 3, the reverse of Grandis's list order. The only line assignment the two agree on is the first.",
+      "topLine": "Boss Damage +20%",
+      "topLineNote": "Both Grandis Library (first in its list) and MapleDoro (tagged Legendary, and only line 1 can reach Legendary per maplestorywiki's Inner Ability guide) put Boss Damage +20% on the top line. Lines 2 and 3 are an UNORDERED pair.",
       "sources": [
         "https://grandislibrary.com/cygnus-knights/night-walker",
         "https://www.mapledoro.com/guides/character-guides/night-walker"
-      ]
+      ],
+      "sourceCount": 1,
+      "sourceCountNote": "One source family. Grandis Library (crediting the Night Walker Discord) publishes these three lines; MapleDoro restates them identically but its own footer declares \"Data structure inspired by Grandis Library & community infographics\", so it is a mirror, not a confirmation.",
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     "training": {
       "lines": [
@@ -268,15 +443,27 @@
         "Meso Obtained / Item Drop Rate +15%",
         "Damage to Normal Monsters +8%"
       ],
-      "note": "Grandis Library adds that whichever of Meso Obtained or Item Drop Rate is taken on the first line, the other should be taken on the second.",
-      "consensus": "weak - single source family",
-      "sources": ["https://grandislibrary.com/cygnus-knights/night-walker"]
+      "lineSlotsOrdered": true,
+      "lineSlotsNote": "Order here IS asserted by the source: Grandis Library attaches the note \"Depending on what's chosen as the 1st Line, choose the other for the 2nd Line\" to this preset, which explicitly numbers lines 1 and 2.",
+      "note": "Whichever of Meso Obtained or Item Drop Rate is taken on the first line, take the other on the second.",
+      "sources": [
+        "https://grandislibrary.com/cygnus-knights/night-walker"
+      ],
+      "sourceCount": 1,
+      "sourceCountNote": "Grandis Library / Night Walker Discord only. MapleDoro's \"Mobbing\" block is character-for-character identical to its own \"Bossing\" block and is treated as a data-entry placeholder, not a second opinion - see conflicts.",
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "No attack-speed inner ability line appears in either preset. That is consistent with Grandis Library's own stat table, which puts Night Walker's attack speed at Stage 8 including +2 from Agile Throwing (2nd Job) on a Stage 6 base - i.e. the class reaches its attack speed ceiling from its own kit - but no source states outright that the attack-speed line is therefore unnecessary for Night Walker, so that inference is flagged here rather than asserted. The cross-class inner ability framework on maplestorywiki's Inner Ability guide (Legendary top line first, lines 2 and 3 left alone until late game, 20% Mesos Obtained for the training preset) is the general rule these presets sit inside; it is not Night-Walker-specific.",
+    "notes": "No attack-speed inner ability line appears in either preset. That is consistent with Grandis Library's own stat table, which puts Night Walker's attack speed at Stage 8 (Stage 6 base plus +2 from Agile Throwing, 2nd Job) - i.e. the class reaches its attack speed ceiling from its own kit - and with maplestorywiki's Inner Ability guide, which scopes the Attack Speed line to \"many Explorer classes which do not have a Hurricane-like skill\" (Night Walker is a Cygnus Knight, not an Explorer). No source states outright that the attack-speed line is therefore unnecessary FOR NIGHT WALKER, so this remains a flagged inference rather than an assertion. The cross-class framework these presets sit inside is maplestorywiki's Inner Ability guide, verbatim: \"In early to mid-game, prioritize getting to the Legendary top line only. The most important stat is 20% Mesos Obtained for training, and the bossing preset only needs an optimal top-line stat... The second and third lines can be ignored.\" That is a general rule, not Night-Walker-specific.",
     "sources": [
       "https://grandislibrary.com/cygnus-knights/night-walker",
+      "https://www.mapledoro.com/guides/character-guides/night-walker",
       "https://maplestorywiki.net/w/Guide:Inner_Ability"
-    ]
+    ],
+    "sourceCount": 1,
+    "sourceCountNote": "One independent judgement source for the Night-Walker-specific presets (Grandis Library / Night Walker Discord). MapleDoro is derived from it. The maplestorywiki Inner Ability guide is independent but cross-class and carries no Night Walker content.",
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "gearingNotes": "CRITICAL RATE: Night Walker gets +40% crit rate from its own kit - 5% base plus 35% from Critical Throw (2nd Job). Dominion (Hyper Skill active) adds +100% crit rate, but only for its 20-second window on a 120-second cooldown, so the class is crit-capped inside its burst and sits at 40% from skills outside it; the remaining ~60% for off-burst has to come from links, legion, hyper stats, inner ability and gear. Three boost nodes add crit at node level 20 (Quintuple Star Boost +5%, Shadow Stitch Boost +5%, Lucky Seven Boost +5%), and the unpicked hyper passive Quintuple Star - Critical Chance would add +10% to that skill. Sources: Grandis Library base stats table, maplestorywiki. IGNORE DEF: +44.75% from the kit, built as Dark Blessing (4th Job) +15% stacked multiplicatively with Adaptive Darkness III (+7% per stack, max +35%). Lucky Seven Boost adds Ignored Enemy Defense +20% at node level 40, though Grandis Library tiers that node lowest. Source: Grandis Library, maplestorywiki. BOSS DAMAGE: +0% from the class's own passives - Grandis Library's base stats table lists boss damage with an empty source list. Every point of boss damage is external (gear, potentials, legion, hyper stats, inner ability, and the Quintuple Star - Boss Rush hyper passive, which is boss damage on one skill only). Source: Grandis Library. ATTACK SPEED: Grandis Library lists Stage 8, from a Stage 6 base plus +2 from Agile Throwing (2nd Job). WEAPON: Claw primary, Jewel secondary, Throwing Stars as ammunition; weapon multiplier 1.75x; weapon mastery 85% (base 15% plus Throwing Expert +70%), the thief mastery cap. LUK FROM SKILLS: +80 flat (Agile Throwing +20, Physical Training +60), +1 per 2 character levels from Elemental Harmony, and +15% of assigned AP from Call of Cygnus. DARK ATTRIBUTE: every Night Walker attack is dark-attribute, including the Dark Servant / Shadow Illusion / Greater Dark Servant clones, the Shadow Bats and Ravenous Bats, and Shadow Spears; in 5th job, landing dark-attribute attacks is what builds Shadow Spear. MapleDoro describes Night Walker as the only Cygnus class with Dark Sight (used to dodge boss attacks); that claim comes from a dependent source and was not independently verified here. Final damage from skills is a point of numeric disagreement between sources - see conflicts.",
   "commonMistakes": [],
@@ -284,20 +471,23 @@
     {
       "url": "https://grandislibrary.com/cygnus-knights/night-walker",
       "what": "Class page: boost node groupings tiered PRIMARY (nodes 1-4) and OTHER (nodes 5-6) with an explicit trio-construction rule; hyper skill passive build (5 picks); recommended inner ability split bossing/training; full base-stats-from-skills table (weapon multiplier, attack speed, mastery, LUK, attack, crit rate, crit damage, damage, boss damage, final damage, ignore DEF); buff/toggle/summon/cooldown inventories; Dark Attribute and Throwing Star mechanics; and four class infographics (Overview, Sequence, 6th Job Fragments Efficient, 6th Job Energy Efficient). Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Night Walker Discord' plus 'Special thanks to Dormi and the members of the Night Walker Discord'. Its Other Resources block links only maplestorywiki, NamuWiki and the Discord - there is NO Class Doc link, which is the reliable tell that no public Night Walker document exists.",
-      "dated": "fetched 2026-09-11; site footer stamped GMS Ver. 269 [Ride the Lightning Update], two patches behind the v.271 target; infographic metadata on the page dated 2026-09-04",
-      "independent": false
+      "dated": "re-fetched 2026-09-12; site footer still stamped \"GMS Ver. 269 [Ride the Lightning Update]\", two patches behind the v.271 target; infographic metadata on the page dated 2026-09-04",
+      "independent": false,
+      "reVerifiedAt": "2026-09-12"
     },
     {
       "url": "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
       "what": "'HEXA Leveling Order - Fragment Limited' infographic. Step-by-step HEXA investment order with the target level at each step, plus a legend naming every Skill / Mastery / Enhancement / Common node and the HEXA Stat nodes. Subtitle: 'Updated for HEXA Common Core (October 2026)'. Credited on Grandis Library to the Night Walker Discord. Read directly as an image; the opening steps are transcribed in this file.",
       "dated": "2026-09-04 per Grandis Library metadata; the image itself is labelled for an October 2026 HEXA Common Core update",
-      "independent": false
+      "independent": false,
+      "reVerifiedAt": "2026-09-12"
     },
     {
       "url": "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-energy.png",
       "what": "'HEXA Leveling Order - Energy Limited' infographic, the Sol-Erda-constrained counterpart to the Fragment Limited chart. Same legend, different ordering - notably it takes HEXA Stat Node 1 to 20 several steps earlier. Credited to the Night Walker Discord.",
       "dated": "2026-09-04 per Grandis Library metadata; labelled for an October 2026 HEXA Common Core update",
-      "independent": false
+      "independent": false,
+      "reVerifiedAt": "2026-09-12"
     },
     {
       "url": "https://discord.gg/FR55ADj",
@@ -309,7 +499,8 @@
       "url": "https://maplestorywiki.net/w/Night_Walker/Skills",
       "what": "Name-validation and mechanics table; used to confirm every skill and node name in this file. Carries: the five class-specific 5th job skills (Shadow Spear, Greater Dark Servant, Shadow Slide, Shadow Bite, Rapid Throw); the two class-specific HEXA skills (Silence, Stygian Command); the seven HEXA mastery skills (HEXA Quintuple Star, HEXA Quintuple Star [Jet Black Throwing Stars], HEXA Shadow Bat, HEXA Ravenous Bat, HEXA Dark Omen, HEXA Dominion, Abyssal Darkness); the shared HEXA skills (Sol Janus and Sol Hecate with their four variants); all nine hyper passives and three hyper actives with level requirements and effects; the six V Enhancement boost node cores with their level 20/40 breakpoint effects; and the boost node level cap of 60. Carries no recommendations. Returns HTTP 403 to a plain fetch; loads normally with a browser user agent.",
       "dated": "fetched 2026-09-11; page history not checked",
-      "independent": true
+      "independent": true,
+      "reVerifiedAt": "2026-09-12"
     },
     {
       "url": "https://maplestorywiki.net/w/Link_Skill",
@@ -319,21 +510,24 @@
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. Lists two Night Walker trios: (1) Quintuple Star, Shadow Bats, Dark Omen; (2) Dominion, Shadow Spark, Shadow Stitch. No bossing/mobbing split and no notes for this class. Authored outside the Grandis Library / class Discord lineage, so genuinely independent - but stale.",
-      "dated": "page states 'Last update: November 21st, 2024'; predates the v.269 boost node regrouping",
-      "independent": true
+      "what": "mastermysty's cross-class boost node trio reference. Lists two Night Walker trios verbatim: \"Trio #1\" = Quintuple Star, Shadow Bats, Dark Omen; \"Trio #2\" = Dominion, Shadow Spark, Shadow Stitch. No bossing/mobbing split and no notes for this class. Authored outside the Grandis Library / class Discord lineage, so genuinely independent - but stale. CORRECTION (2026-09-12): an earlier version of this file said the page \"self-reports its data as last updated 2024-05-14\". The May 14th 2024 date on that page belongs to a different statement - \"200 nodes: chance to find all trios. 10000 tests per class (May 14th, 2024)\" - which dates its trio-probability simulation, not its trio listings. The page's own stamp is November 21st, 2024.",
+      "dated": "page stamped \"Last update: November 21st, 2024\"; predates the v.269 boost node regrouping. Re-fetched and re-read 2026-09-12.",
+      "independent": true,
+      "reVerifiedAt": "2026-09-12"
     },
     {
       "url": "https://www.mapledoro.com/guides/character-guides/night-walker",
       "what": "Community tool with a populated Night Walker guide page: class summary, equipment, link skill values, legion bonus, inner ability with rarity tiers, a buff/burst sequence, a Dark Sight and iframe inventory, and a base-stats-from-skills table. NOT INDEPENDENT - the page footer states its data structure is derived from Grandis Library and community infographics. Its '6th job leveling order' (both Heroic and Interactive tabs) and 'Recommended link skills' sections read 'Coming soon', and it carries its own caveat that Night Walker Origin/Ascent naming is unconfirmed and should be verified with the Discord.",
       "dated": "fetched 2026-09-11; no date published on the page",
-      "independent": false
+      "independent": false,
+      "reVerifiedAt": "2026-09-12"
     },
     {
       "url": "https://maplestorywiki.net/w/Guide:Class_Guides",
       "what": "Checked specifically to test whether a public Night Walker class document exists. It does not: the index carries a 'Night Walker:' heading with no link under it. (The Google Doc appearing immediately after it belongs to the Novice / perma-beginner entry, not to Night Walker - verified by opening that doc, which is 'Everything About Perma-Beginners' by PokeMeHarder.) This corroborates the absence of a Class Doc link on Grandis Library's Night Walker page.",
       "dated": "fetched 2026-09-11; page undated",
-      "independent": true
+      "independent": true,
+      "reVerifiedAt": "2026-09-12"
     },
     {
       "url": "https://www.youtube.com/watch?v=YFwJNa5OIqY",
@@ -346,29 +540,38 @@
       "what": "MathBro's Hyper Stat Optimizer - cited only to record that the community's answer to hyper stat allocation is a per-character computation rather than a fixed priority list. Not consulted for any Night Walker-specific claim.",
       "dated": "not verified in this pass",
       "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Guide:Inner_Ability",
+      "what": "maplestorywiki's cross-class Inner Ability guide. Cited only for the general framework the Night Walker presets sit inside - verbatim: \"In early to mid-game, prioritize getting to the Legendary top line only. The most important stat is 20% Mesos Obtained for training... The second and third lines can be ignored\"; \"The top line can reach Legendary, and the second and third lines are capped at Unique\"; and the class-shape note \"Attack Speed: for many Explorer classes which do not have a Hurricane-like skill\". Carries no Night Walker content.",
+      "dated": "fetched 2026-09-12",
+      "independent": true,
+      "reVerifiedAt": "2026-09-12"
     }
   ],
   "consensusLevel": "weak",
   "conflicts": [
     {
       "topic": "Boost node trio composition",
-      "positionA": "mystyjl (data self-dated 2024-05-14, page 2024-11-21) gives Night Walker two trios, the second being Dominion + Shadow Spark + Shadow Stitch.",
+      "positionA": "mystyjl's node reference (page stamped \"Last update: November 21st, 2024\") gives Night Walker two trios, the second being Dominion + Shadow Spark + Shadow Stitch.",
       "positionB": "Grandis Library (GMS v.269, crediting the Night Walker Discord) does not prescribe fixed trios at all. It names four skills worth boosting - Shadow Bat/Ravenous Bat, Quintuple Star, Dark Omen, Dominion - says any combination of them is good, and places Shadow Spark in its lowest 'Other' tier while pairing Shadow Stitch inside the Dark Omen node rather than with Dominion.",
       "note": "Not resolved here. Grandis Library exposes a 'Pre-V.269 Boost Nodes' toggle on the Night Walker page, which is direct evidence that node groupings changed at v.269 - after mystyjl's data was collected. That is an explanation for the divergence, not a verification of either position.",
       "sources": [
         "https://mystyjl.github.io/reference/NodeGuide.html",
         "https://grandislibrary.com/cygnus-knights/night-walker"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "The HEXA charts describe a node that is not documented as live",
       "positionA": "Both Night Walker HEXA leveling charts include a Common Node named 'HEXA Phalanx Charge' and are subtitled 'Updated for HEXA Common Core (October 2026)' - a date after the v.271 target patch (2026-09-09).",
-      "positionB": "maplestorywiki's Night Walker skills page, fetched 2026-09-11, lists Phalanx Charge only as a shared 5th job Cygnus skill (Master Level 30) and contains no 'HEXA Phalanx Charge' entry; its shared HEXA skill list contains only Sol Janus and Sol Hecate variants.",
+      "positionB": "maplestorywiki's Night Walker skills page, re-fetched 2026-09-12, lists Phalanx Charge only as a shared 5th job Cygnus skill (Master Level 30) and contains no \"HEXA Phalanx Charge\" entry; its shared HEXA skill list contains only Sol Janus and Sol Hecate variants.",
       "note": "Unresolved. Either the wiki lags the game, or these charts are written for a HEXA Common Core update that is not live in GMS at v.271. Either way the HEXA order in this file must be re-verified before being presented as current for v.271.",
       "sources": [
         "https://grandislibrary.com/class-infographic/night-walker/night-walker-6th-job-fragments.png",
         "https://maplestorywiki.net/w/Night_Walker/Skills"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Final damage from skills",
@@ -378,7 +581,8 @@
       "sources": [
         "https://grandislibrary.com/cygnus-knights/night-walker",
         "https://www.mapledoro.com/guides/character-guides/night-walker"
-      ]
+      ],
+      "scope": "OUT OF SCOPE for this resolution wave - a stat-total / damage-coefficient disagreement, not an endgame build claim. Recorded as found, not re-litigated."
     },
     {
       "topic": "Mobbing / training inner ability",
@@ -388,10 +592,89 @@
       "sources": [
         "https://grandislibrary.com/cygnus-knights/night-walker",
         "https://www.mapledoro.com/guides/character-guides/night-walker"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     }
   ],
-  "sourcingCaveat": "This file does NOT meet the three-independent-judgement-sources bar, and should not be shipped with the same confidence as a class that does. Night Walker has no public class document: maplestorywiki's class guide index has an empty Night Walker entry, and Grandis Library's Night Walker page carries no Class Doc link. Every current judgement claim here - boost node tiering, hyper passive build, both inner ability presets, and both HEXA leveling orders - traces to a single source family: the Night Walker Discord, presented through Grandis Library and its Discord-credited infographics. Only two independent judgement sources were reachable: that Discord family, and mystyjl's node reference, which is from 2024 and conflicts with the current node grouping. maplestorywiki is a genuine third independent source but carries facts and names only, no recommendations; it was used throughout as a name-validation allowlist, so no node or skill name in this file is unverified - with the single flagged exception of HEXA Phalanx Charge, which appears on the HEXA charts but not on the wiki. Reddit was not reachable in this environment and was not consulted; the web search budget for the session was exhausted before this pass began, so discovery ran through direct fetches and a YouTube listing rather than general search. No 2025-or-later written Night Walker guide exists outside that Discord family as far as this pass could determine. To close the gap, someone needs to read the Night Walker Discord (discord.gg/FR55ADj) directly, and to check r/Maplestory for any Night Walker HEXA discussion.",
-  "lastVerified": "2026-09-11",
-  "patchVersion": "v.271"
+  "sourcingCaveat": "This file does NOT meet the three-independent-judgement-sources bar, and should not be shipped with the same confidence as a class that does. Night Walker has no public class document: maplestorywiki's class guide index has an empty Night Walker entry, and Grandis Library's Night Walker page carries no Class Doc link. Every current judgement claim here - boost node tiering, hyper passive build, both inner ability presets, and both HEXA leveling orders - traces to a single source family: the Night Walker Discord, presented through Grandis Library and its Discord-credited infographics. Only two independent judgement sources were reachable: that Discord family, and mystyjl's node reference, which is from 2024 and conflicts with the current node grouping. maplestorywiki is a genuine third independent source but carries facts and names only, no recommendations; it was used throughout as a name-validation allowlist, so no node or skill name in this file is unverified - with the single flagged exception of HEXA Phalanx Charge, which appears on the HEXA charts but not on the wiki. Reddit was not reachable in this environment and was not consulted; the web search budget for the session was exhausted before this pass began, so discovery ran through direct fetches and a YouTube listing rather than general search. No 2025-or-later written Night Walker guide exists outside that Discord family as far as this pass could determine. To close the gap, someone needs to read the Night Walker Discord (discord.gg/FR55ADj) directly, and to check r/Maplestory for any Night Walker HEXA discussion. RE-VERIFICATION ADDENDUM (2026-09-12): every cited page behind the five endgame sections was re-opened and every endgame claim re-checked against it. Nothing had to be deleted; the two corrections made were a data-shape fix in vMatrix and innerAbility.bossing (array order was implying rankings neither source states) and a date attribution fix on mystyjl. The sourcing picture is unchanged: still one judgement family plus one stale independent node reference, still no claim at strong consensus.",
+  "lastVerified": "2026-09-12",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "Resolution pass, endgame scope only (vMatrix / hexa / hyperSkills / hyperStats / innerAbility). The adversarial critic wave recorded NO defects for night-walker - this file carried no contest block and does not appear in _contest-summary.json's filesBlocked list. With nothing to settle, this pass instead re-opened every cited page behind the five endgame sections and re-checked each claim against it, then applied the sources / sourceCount / consensus / verifiedAt labelling standard and repaired the data shapes that asserted more than their sources do.",
+    "defectsRecordedByCritic": 0,
+    "defects": [],
+    "clearedOnInspection": [
+      "Boost node tiering - Grandis Library's embedded page data reads verbatim \"primary\":[0,1,2,3],\"other\":[4,5]. The file's claim that cores 1-4 are the recommended tier and cores 5-6 the lowest is CORRECT. Near-miss worth recording: a markdown-conversion read of the same page reported cores 2 and 3 as \"SECONDARY\". That came from the page's generic tier-legend text, which defines PRIMARY and SECONDARY for all classes; Night Walker has no nodes in the SECONDARY tier. Verified against the raw page source rather than the conversion.",
+      "All six boost node core groupings - re-confirmed against BOTH maplestorywiki's V Enhancements table and Grandis Library's page data. They match each other exactly and match the file exactly.",
+      "All level-20/40 boost node breakpoints (Lucky Seven Crit +5% / IED +20%, Shadow Spark Max Targets +1, Quintuple Star Crit +5%, Dark Omen Max Targets +1, Shadow Stitch Crit +5%) - confirmed verbatim on maplestorywiki, as is the boost node level cap of 60.",
+      "All five recommended hyper passives and all four unpicked ones - names, level requirements and effects confirmed independently on both Grandis Library and maplestorywiki. The 5-of-9 split is exactly what Grandis publishes.",
+      "Three hyper actives (Shadow Illusion 140, Dominion 160, Glory of the Guardians 190) - confirmed independently on both Grandis Library and maplestorywiki.",
+      "Dominion's effect (Final Damage +20%, Critical Rate +100% while active, 120 sec cooldown) - confirmed verbatim on maplestorywiki.",
+      "Both inner ability presets - confirmed verbatim in Grandis Library's page data, including the training-preset note \"Depending on what's chosen as the 1st Line, choose the other for the 2nd Line\".",
+      "MapleDoro's non-independence - its footer still reads \"Data structure inspired by Grandis Library & community infographics\"; its hyper and 6th-job-order sections still read \"Coming soon\"; its Mobbing inner ability block is still identical to its Bossing block. Correctly treated as a mirror throughout.",
+      "mystyjl's two Night Walker trios - confirmed verbatim (\"Trio #1\": Quintuple Star / Shadow Bats / Dark Omen; \"Trio #2\": Dominion / Shadow Spark / Shadow Stitch).",
+      "The absence of a public Night Walker class document - maplestorywiki's Guide:Class Guides index carries \"Night Walker:\" with NO link beneath it (the following line is \"Novice:\" with its own Google Doc link). The file's earlier correction on this point is right.",
+      "hyperStats.priority being null - re-confirmed correct. The string \"hyper stat\" occurs zero times in Grandis Library's Night Walker page source, and MapleDoro's page has no hyper stat section.",
+      "Every transcribed HEXA step - both PNGs were downloaded and read AS IMAGES (not text-extracted), and each step was matched icon-to-legend and level-to-printed-label. Fragment Limited steps 1-10 read free, 1, 1, 2, 1, 4, 1, 5, 20, 2; Energy Limited steps 1-9 read free, 1, 1, 1, 1, 20, 7, 1, 7. Both match the file exactly."
+    ],
+    "resolved": [
+      {
+        "finding": "SHAPE ASSERTS WHAT ITS SOURCES DECLINE TO - vMatrix.priority shipped as an ordered array keyed \"priority\", numbered \"Boost Node 1\" through \"Boost Node 6\". Downstream code reads array position as priority. But Grandis Library assigns Night Walker only two tiers (primary = cores 1-4, other = cores 5-6), states in the same block \"Any combination of these skills are good\", and its 1-6 numbering is a page layout index. No source ranks the four primary cores against each other.",
+        "action": "CORRECTED. Added vMatrix.ordered=false and an orderingNote; added a vMatrix.tiers block carrying the source's actual two-tier claim with its verbatim tier definitions; gave every entry an explicit \"tier\" field. Entries renamed \"Core N\" so the numbering no longer reads as a rank. Array order is preserved so existing consumers do not break, but it can no longer be mistaken for a ranking.",
+        "sectionsTouched": [
+          "vMatrix"
+        ]
+      },
+      {
+        "finding": "SHAPE ASSERTS WHAT ITS SOURCES DECLINE TO - innerAbility.bossing.lines is a 3-element array whose position implies a line-slot assignment. Grandis Library attaches a line-slot note to its TRAINING preset only; for bossing it publishes a bare list. MapleDoro, restating the same three lines, maps them to rarities in the opposite arrangement for lines 2 and 3 (Unique: Attack/Buff Duration; Epic: Abnormal Status), contradicting Grandis's list order.",
+        "action": "CORRECTED. Added lineSlotsOrdered=false with the evidence, plus an explicit topLine field for the one assignment both sources agree on (Boss Damage +20% on line 1, consistent with maplestorywiki's rule that only line 1 reaches Legendary). Lines 2 and 3 are now stored as an unordered pair. The training preset keeps lineSlotsOrdered=true, because there the source does number the lines.",
+        "sectionsTouched": [
+          "innerAbility"
+        ]
+      },
+      {
+        "finding": "CITATION ACCURACY - the file said mystyjl's page \"self-reports its data as last updated 2024-05-14\". That date on the page belongs to a different statement, \"200 nodes: chance to find all trios. 10000 tests per class (May 14th, 2024)\", which dates its trio-probability simulation rather than its trio listings. The page's own stamp is \"Last update: November 21st, 2024\".",
+        "action": "CORRECTED in vMatrix.trios, conflicts and the sources entry. The staleness conclusion is unchanged - November 2024 still predates the v.269 regrouping - but the claim now matches what the page actually says.",
+        "sectionsTouched": [
+          "vMatrix",
+          "conflicts",
+          "sources"
+        ]
+      },
+      {
+        "finding": "POSSIBLE EXTRACTION ARTIFACT - \"HEXA Phalanx Charge\" appears in the HEXA order and in hexa.notes but exists in no other reachable source. Under the standing rule, a node name that may not exist is worse than a gap.",
+        "action": "INVESTIGATED, KEPT, FLAGGED. Both PNGs were downloaded and read as images rather than text-extracted; \"HEXA Phalanx Charge\" is genuinely printed in both chart legends under the \"Common Nodes\" bracket and is genuinely the target of one step on each route. It is therefore NOT an extraction artifact - it is a real name in a real source that maplestorywiki does not yet document (the wiki lists Phalanx Charge only as a shared 5th job Cygnus skill). Recorded under a new hexa.unverifiedNames block with sourceCount 1, and cross-referenced from the two steps that target it, so it can never be presented as a confirmed live v.271 node.",
+        "sectionsTouched": [
+          "hexa"
+        ]
+      },
+      {
+        "finding": "LABELLING - no endgame claim carried sources / sourceCount / consensus / verifiedAt in the required shape; consensus was free prose rather than one of strong/moderate/weak.",
+        "action": "APPLIED to every claim in all five endgame sections. Independence was assessed per claim: Grandis Library and its Discord-credited infographics count as ONE family; MapleDoro is a declared derivative of Grandis and counts as ZERO; maplestorywiki is independent but factual-only, so it raises the count for facts and never for recommendations; mystyjl is independent for judgements but stale. Result: four vMatrix entries reach moderate (2 independent judgement sources), the hyper-active list reaches moderate as a fact, and everything else is weak or carries no sourced claim at all. NOTHING in this file reaches strong.",
+        "sectionsTouched": [
+          "vMatrix",
+          "hexa",
+          "hyperStats",
+          "hyperSkills",
+          "innerAbility"
+        ]
+      },
+      {
+        "finding": "SOURCE COUNT INFLATION RISK - innerAbility.bossing and hyperSkills.actives each listed MapleDoro alongside Grandis Library, which could be read downstream as two supporting sources.",
+        "action": "CORRECTED. MapleDoro is retained in the sources arrays (it was genuinely consulted) but sourceCount is explicitly 1 for the inner ability preset, with a sourceCountNote naming MapleDoro's own derivation disclaimer. Same treatment for hyperSkills.actives, where sourceCount 2 counts maplestorywiki and Grandis Library only and is explicitly scoped to the factual list rather than to any ranking.",
+        "sectionsTouched": [
+          "innerAbility",
+          "hyperSkills"
+        ]
+      }
+    ],
+    "outOfScope": [
+      "conflicts[2] \"Final damage from skills\" (Grandis +54.56% vs MapleDoro +51.8%) - a stat-total / coefficient disagreement, explicitly out of scope for this wave. Left untouched and marked as such.",
+      "linkSkill, legionEffect, archetype, gearingNotes and skill-coefficient content generally - not endgame build sections. Left untouched."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "Four of the five endgame sections - vMatrix, hyperSkills, hyperStats and innerAbility - are now fully re-verified against their cited pages and accurately labelled. The hexa section is NOT ship-ready: its only source is a pair of Night Walker Discord charts subtitled \"Updated for HEXA Common Core (October 2026)\", a date after the v.271 target patch, and both charts route investment through a Common Node named \"HEXA Phalanx Charge\" that does not exist on maplestorywiki as of 2026-09-12. The transcription is faithful to the charts (re-read as images, step by step, level by level), but the charts themselves may describe a HEXA Common Core state that is not live in GMS at v.271. Until someone confirms against the Night Walker Discord (discord.gg/FR55ADj) whether HEXA Phalanx Charge is live, the 6th job order must not be shipped as current. Separately, and by design rather than as a blocker: hyperStats carries no priority because no source publishes one, and no claim anywhere in this file reaches \"strong\" consensus."
 }

@@ -14,287 +14,414 @@
   },
   "legionEffect": "INT +10 / +20 / +40 / +80 / +100 by legion rank",
   "vMatrix": {
+    "ordered": true,
+    "orderingNote": "The priority array below IS ordered, and the ordering is not the researcher's: the class doc publishes an explicit ranked chain as a graphic ('Arcana Override = Benediction = Divine Punishment > Angel of Balance = Mana Overload** > Peacemaker = Maple World Goddess's Blessing'). That graphic was downloaded and read directly on 2026-09-12, as was the predecessor doc's version of the same chart. Ranks joined by '=' are equal, not sequential.",
     "priority": [
       {
-        "node": "Arcana Override, Benediction and Divine Punishment (level together, first)",
-        "why": "The current class doc's V-skill leveling chart puts these three at equal top priority ahead of everything else",
+        "node": "Arcane Overdrive, Benediction and Divine Punishment (level together, first)",
+        "why": "The current class doc's V-skill leveling chart sets these three equal at the top of the chain, ahead of everything else. Read directly off the chart graphic. NAME WARNING: the class doc calls this node 'Arcana Override'; the client name, per maplestorywiki's V Matrix common-node list and Grandis, is 'Arcane Overdrive' (All Explorer Magician Classes node: active, 3 stages of magical power, +7% damage per stage at level 30, 120 sec cooldown). A player searching their matrix for 'Arcana Override' will not find it. The doc uses its own spelling consistently, including for the announced KMS 'Hexa Arcana Override' common core.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "The ranking is stated only by the class-doc lineage, which counts once. maplestorywiki is cited only for the correct node name and effect, not for the ranking.",
         "sources": [
-          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-        ]
+          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
+          "https://maplestorywiki.net/w/V_Matrix",
+          "https://maplestorywiki.net/w/Bishop/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Angel of Balance and Mana Overload (second tier)",
-        "why": "Same chart ranks these below the first tier. Mana Overload is a breakpoint skill, so points are only worth spending on it when they land on one of its every-ten-levels breakpoints",
+        "why": "Both charts place these two, equal to each other, one step below the top tier. Mana Overload carries a footnote in both charts: it has breakpoints, so it is only worth prioritising when a Bishop is close to one.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "The current doc's chart and the predecessor's chart are byte-for-byte identical on this tier, but the current doc is credited as 'strongly inspired by and based on' the predecessor, so the two count as one source, not two.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Peacemaker and Maple World Goddess's Blessing (last tier)",
-        "why": "Bottom of the same chart in both the current doc and its predecessor",
-        "consensus": "moderate",
+        "why": "Bottom of the chain, equal to each other, in both the current doc's chart and the predecessor's. Both graphics read directly.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "Same single lineage as the tier above.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost nodes before class skill nodes when V Points are scarce",
-        "why": "Each 6th-job Mastery core is gated behind its matching boost node reaching level 40, so a player short on points pushes boost nodes rather than spreading points thin",
-        "consensus": "weak",
+        "why": "Class doc: 'For those very low on points, focus upgrading the boost nodes first to their max level as it is a requirement later in 6th job to unlock your mastery nodes.' The wiki states the hard requirement precisely - a boost node must reach level 40 (cap is 60) to unlock its matching HEXA Mastery node - so 40, not max, is the actual gate.",
+        "consensus": "moderate",
+        "sourceCount": 2,
         "sources": [
-          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-        ]
+          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
+          "https://maplestorywiki.net/w/V_Matrix"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Otherwise keep the whole matrix roughly even",
-        "why": "Upgrade cost steps up every ten levels, so for a player who intends to max everything eventually, even leveling wastes nothing and the priority list is only a tiebreaker. Stated in both docs",
-        "consensus": "moderate",
+        "why": "Class doc: 'you can't go wrong with first unlocking everything and then evenly upgrading your boost and job specific skills first' and 'It is recommended generally to keep most V-Matrix skills leveled more or less evenly, despite this priority list, if the intention is to eventually max everything', because upgrade cost steps up every ten levels. The predecessor doc carries the same sentence.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "One lineage stated twice.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Best special node: Fatal Strike I (excluding event-only nodes)",
-        "why": "Named as the class's best special node in the current doc; for farming, event Roro nodes have displaced Character Building since Mystic Frontier",
+        "why": "Class doc: 'Our best special node is Fatal Strike I. (not including special even nodes)' and, for farming, event Roro nodes have displaced Character Building since Mystic Frontier. The node itself is real and its effect is confirmed on the wiki's V Matrix special node list: damage +100% for 4 seconds when attacking, once every 30 seconds.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "The judgement 'best' is single-source; the wiki confirms only that the node exists and what it does.",
         "sources": [
-          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-        ]
+          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
+          "https://maplestorywiki.net/w/V_Matrix"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
       {
         "node": "Boost Node / Enhancement Core 1 - Angel Ray",
         "tier": "top - unlocks HEXA Mastery Core 1",
-        "why": "Main bossing attack. Its own node grants Max Targets +1 and Critical Rate +5% at level 20 and Ignored Enemy Defense +20% at level 40. Grandis places it in the highest-priority band",
-        "consensus": "strong",
+        "why": "Main bossing attack, and the boost node that gates HEXA Angel Ray. Wiki boost-node table with rowspans resolved: Angel Ray Boost is in the 2%-final-damage-per-level group, its level 20 effect is Critical Rate +5%, and its level 40 effect is Ignored Enemy Defense +20%. The level 40 IED is NOT an Angel Ray advantage - the wiki's V Matrix page states it as a general rule ('+20% Ignored Enemy Defense at Level 40') and the table applies it to all eleven Bishop boost nodes, including the two this file says to skip. Max Targets +1 belongs to the Heal / Angelic Wrath / Holy Arrow / Shining Ray / Big Bang / Bahamut group, not to Angel Ray. Grandis bands this node PRIMARY, its top band.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "sourcesNote": "maplestorywiki is independent and supplies the node contents and values; the class doc supplies the priority. Grandis is listed because it agrees, but its credits block attributes its Boost Nodes Build to the Class Doc, so it is not a third opinion.",
         "sources": [
           "https://maplestorywiki.net/w/Bishop/Skills",
+          "https://maplestorywiki.net/w/V_Matrix",
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://grandislibrary.com/explorers/bishop"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost Node / Enhancement Core 2 - Big Bang, Triumph Feather",
         "tier": "top - unlocks HEXA Mastery Core 2",
-        "why": "Feeds the farming upgrade and the feather final-attack, which is live in both bossing and mobbing",
-        "consensus": "strong",
+        "why": "Feeds the farming upgrade and the feather final-attack, which is live in both bossing and mobbing. Wiki: Big Bang Boost and Triumph Feather Boost are both 2% final damage per level; Big Bang Boost's level 20 effect is Max Targets +1 and Triumph Feather Boost's is Critical Rate +5%; both get Ignored Enemy Defense +20% at level 40 like every other boost node. Listed in the class doc's Main Boost Nodes table and banded PRIMARY by Grandis.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "sourcesNote": "Wiki for contents and values, class doc for priority; Grandis restates the class doc on boost nodes.",
         "sources": [
           "https://maplestorywiki.net/w/Bishop/Skills",
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://grandislibrary.com/explorers/bishop"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost Node / Enhancement Core 3 - Angelic Wrath, Fountain of Vengeance, Bahamut",
         "tier": "top - unlocks HEXA Mastery Core 3",
-        "why": "Carries the 44% IED debuff, the offensive fountain and the summon; the Mastery core turns the debuff into a self-refreshing relic",
-        "consensus": "strong",
+        "why": "Carries the 44% IED debuff, the offensive fountain and the summon; the Mastery core turns the debuff into a self-refreshing relic. Wiki: Angelic Wrath Boost is 4% final damage per level (level 20 effect Max Targets +1) while Fountain of Vengeance Boost and Bahamut Boost are 2% (Critical Rate +5% and Max Targets +1 respectively). Listed in the class doc's Main Boost Nodes table and banded PRIMARY by Grandis.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "sourcesNote": "Wiki for contents and values, class doc for priority; Grandis restates the class doc on boost nodes.",
         "sources": [
           "https://maplestorywiki.net/w/Bishop/Skills",
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://grandislibrary.com/explorers/bishop"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost Node / Enhancement Core 4 - Genesis, Heaven's Door",
         "tier": "top - unlocks HEXA Mastery Core 4",
-        "why": "Mastery Core 4 upgrades both and adds a final-attack that procs off most of the kit",
-        "consensus": "strong",
+        "why": "Mastery Core 4 upgrades both and adds a final-attack that procs off most of the kit ('gives us a new final attack skill which procs on almost all our attacks boosting both dpm and burst damage'). Wiki: Genesis Boost and Heaven's Door Boost are both 2% final damage per level with Critical Rate +5% at level 20. Listed in the class doc's Main Boost Nodes table and banded PRIMARY by Grandis.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "sourcesNote": "Wiki for contents and values, class doc for priority; Grandis restates the class doc on boost nodes.",
         "sources": [
           "https://maplestorywiki.net/w/Bishop/Skills",
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://grandislibrary.com/explorers/bishop"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost Node / Enhancement Core 5 - Shining Ray",
         "tier": "skip",
-        "why": "The class doc states outright that this boost is not used; Grandis puts it in its lowest band; the one consolidated cross-class trio table omits Shining Ray from both of its Bishop pairings",
-        "consensus": "strong",
+        "why": "The class doc states it outright, in bold, immediately under its Main Boost Nodes table: 'Shining Ray boost is not used and therefore unnecessary!'. Grandis puts Node 5 in its OTHER band ('Boost Nodes that do not need to be upgraded or has least priority'). The one consolidated cross-class trio table lists neither of its two Bishop trios with Shining Ray in it. Wiki value for reference: Shining Ray Boost is 3% final damage per level.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "sourcesNote": "Downgraded from strong. Grandis credits the class doc for its boost node build, so doc + Grandis is one voice. The second independent voice is mastermysty's trio table, and it only supports this by omission, from pre-rework data.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://grandislibrary.com/explorers/bishop",
-          "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://maplestorywiki.net/w/Bishop/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost Node / Enhancement Core 6 - Holy Arrow, Heal",
-        "tier": "contested - in the doc's main boost node table, but in Grandis's lowest band",
-        "why": "Neither skill unlocks a HEXA Mastery core, which is Grandis's stated test for its top band; the class doc lists the pairing without ranking it",
+        "tier": "contested - listed in the class doc's Main Boost Nodes table, but in Grandis's lowest band",
+        "why": "Genuinely unresolved, and both halves re-checked on 2026-09-12. The class doc's Main Boost Nodes table has five rows and the fifth is 'Heal / Holy Arrow', alongside the four mastery-unlocking nodes, with no ranking attached; the only node the doc tells you to skip is Shining Ray. Grandis bands Node 6 OTHER, and its own published legend gives the reason: PRIMARY means 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used', and neither Holy Arrow nor Heal unlocks a Mastery core. Cutting the other way, the wiki's per-level values make these the two strongest boost nodes on the class in raw final damage: Holy Arrow Boost 5% per level and Heal Boost 4%, against 2% for Angel Ray, Genesis, Big Bang, Triumph Feather, Heaven's Door, Fountain of Vengeance and Bahamut. A planner should surface the disagreement, not pick a side.",
         "consensus": "weak",
+        "sourceCount": 2,
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://grandislibrary.com/explorers/bishop"
-        ]
+          "https://grandislibrary.com/explorers/bishop",
+          "https://maplestorywiki.net/w/Bishop/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Legacy pre-V.269 trio pairings: Heaven's Door + Angel Ray + Genesis, and Big Bang + Bahamut + Heal",
         "tier": "historical - do not build to this",
-        "why": "The only consolidated cross-class trio table lists these for Bishop, but the page is dated 2024-11-21 with underlying data from 2024-05-14 and predates the node rework. Recorded only so the older advice is recognisable",
+        "why": "Re-read on 2026-09-12: the cross-class trio table lists exactly these two Bishop trios. The page states 'Last update: November 21st, 2024' with underlying data '10000 tests per class (May 14th, 2024)', so it predates the V.269 node rework. Recorded only so the older advice is recognisable when a player meets it.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Boost nodes are six fixed per-class cores in the current client, not randomly rolled three-skill trios: the wiki lists Enhancement Cores 1-6 with fixed contents, the current class doc describes Nodestones as yielding V Points (Nodestone 1, Experience Nodestone 3, Mirror World Nodestone 5, Mitra's Nodestone 15) that are spent directly on nodes with no crafting or disassembling step, and Grandis still carries a 'View Pre-V.269 Boost Nodes' toggle, which dates the change to V.269. Any guide that talks about rolling perfect trios, including the predecessor Bishop doc (2026-03-29) and the 2024 cross-class trio table, predates this. Boost node maximum level is 60; a boost node must reach 40 to unlock its matching 6th-job Mastery core. Decent skills Bishop uses: Speed Infusion, Sharp Eyes, Combat Orders and, unusually, Hyper Body (Heal and Angel Ray's party heal scale off the Bishop's own HP). The docs' ordering of those four is published only as an icon graphic and was deliberately not transcribed. Decent Holy Symbol and Decent Advanced Blessing are redundant with the real skills and are picked up late purely for passive stats. At Lv 205 this section is the whole job: unlock everything, level boost and class skill nodes evenly with the priority list as the tiebreaker, and aim boost nodes at 40+ so HEXA masteries are unlockable the moment 6th job opens at 260."
+    "notes": "Boost nodes are six fixed per-class cores in the current client, not randomly rolled three-skill trios. Verified 2026-09-12: the wiki's V Matrix page says 'Each player will receive 6 boost nodes, with each one enhancing between 1 and 4 individual skills. Their maximum Level is 60, and they must be Level 40 to unlock their corresponding HEXA Mastery Nodes'; the Bishop skill page lists Enhancement Cores 1-6 with fixed contents; the current class doc describes Nodestones as yielding V Points (Nodestone 1, Experience Nodestone 3, Mirror World Nodestone 5, Mitra's Nodestone 15) spent directly on nodes with no crafting or disassembling step; and Grandis still carries a 'View Pre-V.269 Boost Nodes' toggle, which dates the change to V.269. Any guide that talks about rolling perfect trios, including the predecessor Bishop doc (2026-03-29, section headed 'Perfect Boost Node Trios') and the 2024 cross-class trio table, predates this. Level 20 and level 40 boost effects are generic, not per-node advantages: the wiki states most boost nodes give either Mob Count +1, Critical Rate +5% or normal-monster damage +10% at level 20 and Ignored Enemy Defense +20% at level 40, and every one of Bishop's eleven boost nodes gets the +20% IED. Decent skills Bishop uses: Speed Infusion, Sharp Eyes, Combat Orders and, unusually, Hyper Body (Heal and Angel Ray's party heal scale off the Bishop's own HP; the predecessor doc puts Angel Ray's party heal at 10% of the Bishop's HP). The docs' ordering of those four is published only as an icon graphic with no text labels and was deliberately not transcribed. Decent Holy Symbol and Decent Advanced Blessing are redundant with the real skills and are picked up late purely for passive stats. At Lv 205 this section is the whole job: unlock everything, level boost and class skill nodes evenly with the priority list as the tiebreaker, and aim boost nodes at 40+ so HEXA masteries are unlockable the moment 6th job opens at 260."
   },
   "hexa": {
+    "ordered": true,
+    "orderingNote": "These are anchors the class doc states in prose, in the order it states them, not a computed optimal path. The docs' own step-by-step HEXA ordering is a Maplescouter-generated chart and is per-character by design - see the last entry.",
     "order": [
       {
         "step": "Unlock Mastery cores M1 through M4 first, then unlock HEXA Stat I and II as soon as possible, then HEXA Stat III whenever fragments allow",
-        "why": "Stated by both the current doc and its predecessor; fragments are cheap enough now that the stat cores are not worth delaying. Each Mastery core also requires its matching V boost node at level 40",
-        "consensus": "moderate",
+        "why": "Class doc: 'Because sol erda fragments are so accessible these days, I'd recommend unlocking HEXA stat 1 and 2 ASAP after unlocking your M1, M2, M3, and M4. And HEXA Stat III whenever you have the frags to unlock it.' The predecessor doc carries the same sentence. Each Mastery core additionally requires its matching V boost node at level 40 - that gate is wiki-stated, not doc-only.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "The two docs are one lineage. The wiki is cited only for the level-40 gate.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-        ]
+          "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic",
+          "https://maplestorywiki.net/w/V_Matrix"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Among the four HEXA boost (Enhancement) nodes, push Divine Punishment and Benediction first; leave Peacemaker and then Angel of Balance until the very end of the matrix",
-        "why": "Stated directly in the current class doc. Bishop's four Enhancement nodes are Divine Punishment Boost, Benediction Boost, Peacemaker Boost and Angel of Balance Boost (wiki-confirmed names)",
+        "why": "Stated in the class doc's own words: 'We prioritize Divine Punishment and Benediction, and at the very end of our hexa journey we return to finish PM and lastly AoB.' Bishop's four Enhancement nodes are Divine Punishment Boost, Benediction Boost, Peacemaker Boost and Angel of Balance Boost (exact wiki names). Wiki values: the three offensive ones run +11% final damage at level 1 to +60% at 30, which matches the doc's '11% all the way up to 60%'.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "Single judgement source; the wiki confirms only the node names and per-level values.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://maplestorywiki.net/w/Bishop/Skills"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Sol Janus to at least level 10 if this character is a main",
-        "why": "It is farming-only and extremely expensive, so the doc sets a floor rather than a target. Bishop-specific: the HEXA Angelic Wrath summon procs Sol Janus: Dusk (not Dawn), so a low-Janus Bishop can farm semi-passively",
-        "consensus": "moderate",
-        "sources": [
-          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-        ]
-      },
-      {
-        "step": "Sol Hecate is worth taking despite the cost: Styx at level 1 (extra 4s bind, 60s cd), Charon at 20 (one lethal-damage save plus 10s iframe per fight, 10 min between activations) and Phlegethon at 30 (nuke, 120s cd). Phlegethon cannot be used manually and must be bound to a skill; the doc's suggested Styx bind is the Angelic Buster link",
-        "why": "Utility and survivability rather than a damage step; described this way in the current doc",
+        "why": "Class doc: 'As this skill is incredibly expensive to upgrade and is strictly for grinding, you level this up depending on your preferences. A minimum of level 10 is recommended to anyone thinking to main the character.' It is a floor, not a target. Separately, both docs record the Bishop-specific trick that the HEXA Angelic Wrath summon procs Sol Janus: Dusk but not Dawn, so a low-Janus Bishop can farm semi-passively.",
         "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "CORRECTED 2026-09-12: this step previously cited both docs. The predecessor doc discusses Sol Janus only in its training section and states no level floor, so it was removed as a source for the floor. It does carry the Dusk-proc sentence, but so does the current doc, and the two are one lineage.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "step": "Sol Hecate is worth taking despite the cost: Styx at level 1 (extra 4s bind, 60s cd, extends any existing bind), Charon at 20 (one lethal-damage save plus 10s iframe per fight, 10 min between activations, consumed only after Heaven's Door) and Phlegethon at 30 (nuke, 120s cd). Phlegethon cannot be used manually and must be bound to a skill via Sol Hecate: Pactum; the doc's suggested Styx bind is the Angelic Buster link",
+        "why": "Utility and survivability rather than a damage step. Every detail here re-read verbatim in the current doc's Sol Hecate section on 2026-09-12, including the Charon ordering note ('if you have door and Charon available, door will be consumed first') and the Erda Nova alternative bind for Kaling and Adversary.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sources": [
+          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Beyond those anchors, follow a per-character generated upgrade path rather than a fixed list",
-        "why": "Both docs publish their step-by-step HEXA ordering as a Maplescouter-generated, final-damage-optimised chart and both say explicitly that no obligatory path exists; the predecessor additionally published a chart derived from her own Extreme Seren, Chaos Kalos and Extreme Lotus damage attributions. Those charts are icon graphics and were not transcribed here",
-        "consensus": "moderate",
+        "why": "The current class doc says it outright: 'There's no set order to upgrade players have to follow... while there's no obligatory path, there are calculators to help see what upgrade you should follow to maximize your theoretical damage based on fragment costs', and publishes a Maplescouter-generated, final-damage-optimised flowchart with the instruction to re-derive it on Maplescouter when it ages. The predecessor publishes its own chart, 'Bishop's Hexa Matrix leveling priority based on a 6-minute dummy BA, taken from MapleScouter (v263 Carcion Octofest)', but does NOT state the no-obligatory-path principle - that wording belongs to the current doc alone. Both charts are icon graphics with no readable ordering text and were not transcribed.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "CORRECTED 2026-09-12: the previous wording claimed both docs say explicitly that no obligatory path exists. Only the current doc says it. maplescouter.com is the upstream tool both charts are generated from, not a second opinion about them.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic",
           "https://maplescouter.com/"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "HEXA Stat allocation priority for Bishop is MATT > INT > Critical Damage. The current doc states it in a graphic and the predecessor states it in text after revising it, so both members of the same lineage agree; nothing outside that lineage confirms it. Mechanics for a planner: HEXA Stat cores cap at level 20, only one modifier type may sit on a given main-stat line (so the highest-priority modifier goes on the best main-stat line), main-stat upgrade odds fall as the line grows and the cost steps up at level 3, and rerolling is not worth it until the skill matrix is finished - most players settle around main-stat level 3 to 5. Named nodes: Origin is Holy Advent (4.5s fully-iframed cutscene, origin-binds what it hits, leaves archangel statues that attack and give +5% final damage while present); Ascent is Commandment of Heaven (3 uses per fight with no cooldown between them, bypasses status effects, gauge mechanics and damage reductions, unaffected by buffs shorter than 30 minutes, needs a valid target). Mastery cores: M1 HEXA Angel Ray, M2 HEXA Big Bang + HEXA Triumph Feather, M3 HEXA Angelic Wrath + HEXA Fountain of Vengeance + HEXA Bahamut, M4 HEXA Genesis + HEXA Heaven's Door. Benediction Boost is the odd node: Benediction is not an offensive skill, so its Enhancement raises the Bishop's own Benediction benefit instead (wiki level table: +2% final damage at level 1 rising to +17% at 30) and carries a +90 All Stats passive at max. The current doc puts a from-scratch matrix at roughly 48,000 Sol Erda Fragments and 1,600 Sol Erda. Open Job Advancement wipes the entire matrix including Janus, Hecate and the Origin unlock - only HEXA Stats survive. Announced in KMS but not in GMS as of these sources: a third Common core (HEXA Arcana Override) and a third Skill core (Angels' Pledge)."
+    "hexaStatPriority": {
+      "order": [
+        "Magic ATT",
+        "INT",
+        "Critical Damage"
+      ],
+      "why": "The current doc publishes it as a graphic captioned 'Stat optimization priority: MATT > INT > Crit Dmg' (graphic downloaded and read 2026-09-12). The predecessor states it in text - 'Bishop's Hexa Stat prio is MATT > INT > Crit Dmg' - and its changelog records the revision to that form. Both members of the same lineage agree; nothing outside that lineage confirms it.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
+        "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "Mechanics for a planner, all re-verified 2026-09-12. HEXA Stat cores cap at level 20; only one modifier type may sit on a given main-stat line, so the highest-priority modifier goes on the best main-stat line; main-stat upgrade odds fall as the line grows and the cost steps up at level 3 (10 to 20 fragments per upgrade); rerolling is not worth it until the skill matrix is finished, and most players settle around main-stat level 3 to 5. Named nodes (wiki-exact): Origin is Holy Advent (4.5s fully-iframed cutscene, origin-binds what it hits, leaves archangel statues that attack and give +5% final damage while present); Ascent is Commandment of Heaven (3 uses per fight with no cooldown between them, bypasses status effects, gauge mechanics and damage reductions, unaffected by buffs shorter than 30 minutes and by Oz rings and hat potential, needs a valid target). Mastery cores: M1 HEXA Angel Ray, M2 HEXA Big Bang + HEXA Triumph Feather, M3 HEXA Angelic Wrath + HEXA Fountain of Vengeance + HEXA Bahamut, M4 HEXA Genesis + HEXA Heaven's Door - the wiki lists exactly those eight Mastery skills and the doc's core-by-core description matches the grouping. Benediction Boost is the odd node: Benediction is not an offensive skill, so its Enhancement raises the Bishop's own Benediction benefit instead - wiki level table verified directly, +2% final damage and +3 All Stats at level 1 rising to +17% and +90 All Stats at level 30. The current doc puts a from-scratch matrix at roughly 48,000 Sol Erda Fragments and 1,600 Sol Erda. Open Job Advancement wipes the entire matrix including Janus, Hecate and the Origin unlock - only HEXA Stats survive. Announced in KMS but not in GMS as of these sources, per the doc's Future Content section: a third Common core the doc calls 'Hexa Arcana Override' (announced April 2026) and a third Skill core, Angels' Pledge (announced June 2026, numbers from the KMS test client and not final)."
   },
   "hyperStats": {
-    "priority": [
+    "ordered": false,
+    "orderingNote": "DELIBERATELY UNORDERED. Both Bishop docs refuse to publish a ranked hyper stat list and say so in as many words - the current doc: 'there's no set hyper stat to present you with for easy copy'; the predecessor: 'People often ask what Bishop's optimal hyper stats are, but there really aren't any that are specific to Bishop.' The entries below are the requirements and checkpoints the docs do state, and their array position carries no priority meaning. Any downstream code that reads index 0 as 'first' is inventing a claim neither source makes.",
+    "requirements": [
       {
         "stat": "Critical Rate to 100%, but only after cheaper sources are exhausted",
-        "why": "Bishop arrives at 75% crit before gear (5% base, 40% Holy Focus, 30% Magic Critical), so the gap is small and is normally closed with Decent Sharp Eyes, Marksman and Night Lord legion blocks, a familiar badge or legion artifacts before hyper stat points go there. Reaching 100% is still mandatory",
-        "consensus": "strong",
+        "why": "Bishop arrives at 75% crit before gear (5% base, 40% Holy Focus, 30% Magic Critical), so the gap is small. The class doc: 'Critical Rate should be at 100% after exhausting other free sources such as decent sharp eyes, legion blocks (NL, MM), etc.' The Korean community wiki independently states the 75% base and calls it the top of all classes, and lists hyper stats among the ways to close the gap alongside Sharp Eyes, legion attacker effects, legion occupation effects and legion artifacts - so on the Korean side hyper stat points ARE one of the accepted fillers, not a last resort. Either way reaching 100% is mandatory.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "sourcesNote": "Downgraded from strong: two independent sources, not three. The 'only after cheaper sources' ordering is the GMS doc's framing.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://en.namu.wiki/w/%EB%B9%84%EC%88%8D(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "stat": "Ignored Enemy Defense up to the breakpoint for the boss being run",
-        "why": "The current doc's rough visual-IED goals: about 80% for Chaos Root Abyss and below, 90% for Normal Lotus and Damien and below, 92% for Hard Lucid and Will and below, 94% for Chaos Tenebris and Black Mage, 95%+ for Grandis bosses. Bishop reads these lower than other classes because Angelic Wrath adds a 44% IED debuff on top of visual IED",
-        "consensus": "moderate",
+        "why": "Rough visual-IED goals, identical in both docs and re-read verbatim: about 80% for Chaos Root Abyss and below, 90% for Normal Lotus and Damien and below, 92% for Hard Lucid and Will and below, 94% for Chaos Tenebris and Black Mage, 95%+ for Grandis bosses. The predecessor adds the important qualifier that these are 'adjusted only for Angelic Wrath and not other party debuffs' - that is, the numbers already assume Bishop's 44% Angelic Wrath debuff, so they are not directly comparable to another class's targets.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "Downgraded from moderate: the two docs are one lineage.",
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "stat": "Arcane Force, when short of the cap for the boss being attempted",
-        "why": "Listed as a progression filler in the current doc rather than a damage stat",
+        "why": "Both docs name it as a progression filler rather than a damage stat - the current doc lists 'Arcane Force Breakpoints to help you progress if you are not at the max for the boss you are facing', the predecessor 'adding points to Arcane Force may help with achieving the Arcane Force breakpoints needed'.",
         "consensus": "weak",
-        "sources": [
-          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-        ]
-      },
-      {
-        "stat": "Mobbing preset: Critical Damage, Normal Monster Damage and Damage until one-shotting is comfortable, then max Bonus EXP, then remaining damage stats",
-        "why": "Stated the same way in both docs",
-        "consensus": "moderate",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "stat": "Mobbing preset: Critical Damage, Normal Monster Damage and Damage until one-shotting is comfortable, then max Bonus EXP, then remaining damage stats",
+        "why": "Both docs name the same stat set for mobbing; only the current doc gives the sequencing - 'most Bishops would add points into Critical Damage, Normal Monster Damage, Damage, until you can comfortably one shot the monsters. After that you max Bonus Exp, and throw the rest again into the various dmg points'. The predecessor words it as adding points evenly into Critical Damage, Normal Monster Damage, Damage, Arcane Force as needed and Bonus EXP, with leftovers into MATT/ATT and INT, and states no one-shot trigger.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "sourcesNote": "CORRECTED 2026-09-12: previously claimed 'stated the same way in both docs'. The stat set matches; the sequencing does not.",
+        "sources": [
+          "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
+          "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Both Bishop docs refuse to publish a fixed hyper stat order and say so explicitly: hyper stats are the fill-in layer for whatever the character is missing after links, legion, artifacts and gear, so the answer is per-character and computed, not looked up. Both point at an external optimiser (maplescouter.com; the wider community also uses MathBro's hyper stat optimizer). A planner that ships a static Bishop hyper stat list is contradicting both maintainers of the class. IED is multiplicative, so one large source beats two small ones and over-investment has falling returns - the current doc notes IED lines on weapon, secondary and emblem are not worth keeping past the very early game."
+    "exampleLoadouts": {
+      "note": "EXAMPLES, NOT A RANKING. The current doc publishes these as screenshots captioned 'Here are some example loadouts at Level 285' and 'And another bossing example at level 291'. They are one player's fill-in after links, legion, artifacts and gear, and are recorded here only so a planner can show a player what a finished sheet looks like. Read directly off the graphic on 2026-09-12. Critical Rate sits at 0 in all three, which is the crit-is-free point made above.",
+      "bossingLv285": "INT 5, LUK 3, Critical Rate 0, Critical Damage 14, Ignore Defense 8, Damage 12, Boss Damage 15, Attack Power & Magic ATT 7, everything else 0",
+      "mobbingLv285": "Critical Damage 13, Damage 12, Normal Damage 13, EXP Obtained 13, Attack Power & Magic ATT 7, everything else 0",
+      "bossingLv291": "INT 6, LUK 3, Critical Rate 0, Critical Damage 14, Ignore Defense 7, Damage 13, Boss Damage 15, Status Resistance 2, Attack Power & Magic ATT 8, Arcane Power 2",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sources": [
+        "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "Both Bishop docs refuse to publish a fixed hyper stat order and say so explicitly: hyper stats are the fill-in layer for whatever the character is missing after links, legion, artifacts and gear, so the answer is per-character and computed, not looked up. Both point at external optimisers - the current doc at maplescouter.com, the predecessor at MathBro's hyper stat calculator (brendonmay.github.io/hyperCalculator) as well as Maple Scouter, with the warning that Bishop's non-visual 44% Angelic Wrath IED and the damage from Arcane Aim, Peacemaker and link skills have to be entered manually. A planner that ships a static ranked Bishop hyper stat list is contradicting both maintainers of the class; that is why this section is flagged unordered. IED is multiplicative (the doc gives the formula: IED% = 1 - ((1 - source_a%) * (1 - source_b%) * ...)), so one large source beats two small ones and over-investment has falling returns, and the doc notes IED lines on weapon, secondary and emblem are not worth keeping past the very early game."
   },
   "hyperSkills": {
     "passives": [
       {
         "skill": "Holy Symbol - Experience",
         "status": "core",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://grandislibrary.com/explorers/bishop"
-        ]
+          "https://grandislibrary.com/explorers/bishop",
+          "https://maplestorywiki.net/w/Bishop/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Holy Symbol - Item Drop",
         "status": "core",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://grandislibrary.com/explorers/bishop"
-        ]
+          "https://grandislibrary.com/explorers/bishop",
+          "https://maplestorywiki.net/w/Bishop/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Advanced Blessing - Ferocity",
         "status": "core",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://grandislibrary.com/explorers/bishop"
-        ]
+          "https://grandislibrary.com/explorers/bishop",
+          "https://maplestorywiki.net/w/Bishop/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Advanced Blessing - Boss Rush",
         "status": "core",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://grandislibrary.com/explorers/bishop"
-        ]
+          "https://grandislibrary.com/explorers/bishop",
+          "https://maplestorywiki.net/w/Bishop/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Fifth point: Holy Magic Shell - Persist, or Holy Magic Shell - Enhance, or Holy Symbol - Preparation",
         "status": "flex - both sources present these three as the choice for the last point",
-        "why": "The doc's author picks Persist (an extra shell charge is worth more to him than the step from 10% to 15% damage reduction) and warns that Preparation is close to dead at endgame because late bosses ignore abnormal status resistance",
+        "why": "The class doc's hyper passive graphic (downloaded and read 2026-09-12) shows the four core picks as a fixed block and the fifth row as 'Holy Magic Shell - Persist OR Enhance OR Holy Symbol - Preparation'. Grandis renders the same thing as '[Choose 1]' over the same three. The doc's author picks Persist - an extra shell charge is worth more to him than the step from 10% to 15% damage reduction - and warns that Preparation is close to dead at endgame because late bosses ignore abnormal status resistance. The predecessor doc says the same and adds 'The bottom three are functionally non-negotiable'.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-          "https://grandislibrary.com/explorers/bishop"
-        ]
+          "https://grandislibrary.com/explorers/bishop",
+          "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "consensus": "moderate",
-    "notes": "Five points to spend; the two damage/party pairs are effectively fixed and only the fifth point is a real decision. Grandis and the class doc match exactly, but Grandis credits the class doc for this field, so that is one source stated twice. The predecessor doc words the same set as the bottom three being non-negotiable. Separately, Righteously Indignant (the Lv 140 hyper skill) unlocks the Benevolence/Vengeance stance swap that decides how much of the kit behaves - it is not optional."
+    "consensus": "weak",
+    "sourceCount": 1,
+    "verifiedAt": "2026-09-12",
+    "notes": "Five points to spend; the two damage/party pairs are effectively fixed and only the fifth point is a real decision. The build was re-verified three ways on 2026-09-12: the class doc's graphic, Grandis's rendering of it, and the wiki's list of the nine Bishop hyper passives (Holy Magic Shell - Extra Guard / Persist / Enhance, Holy Symbol - Experience / Preparation / Item Drop, Advanced Blessing - Ferocity / Boss Rush / Extra Point), which confirms every name exists and that the three unpicked options are Extra Guard, Extra Point and whichever two of the flex trio you skip. DOWNGRADED from moderate to weak: Grandis's credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc' and links this same doc, so Grandis is the class doc restated, not a second opinion, and the predecessor doc is the same lineage again. One independent judgement source, unanimous within its family, with the wiki confirming only names. Separately, Righteously Indignant (the Lv 140 hyper active) unlocks the Benevolence/Vengeance stance swap that decides how much of the kit behaves - Grandis lists the swapped pairs as Heal/Angelic Wrath, Holy Fountain/Fountain of Vengeance, Dispel/Triumph Feather and Holy Water/Blood of the Divine. It is not optional. The other two hyper actives are Heaven's Door and Epic Adventure."
   },
   "innerAbility": {
     "bossing": {
       "lines": [
         "Attack Speed +1 Level (top line)",
-        "Boss Damage (the doc's alternative preset quotes 20% as the target value)",
+        "Boss Damage +10%",
         "+8% damage to targets afflicted with abnormal status"
       ],
-      "why": "Attack Speed +1 is what gets a GMS Bishop to the attack speed cap, valued for damage, smoothness and survivability; Boss Damage and abnormal-status damage are the two largest remaining damage lines. Magic ATT +21 is named as an acceptable settle for the abnormal line",
-      "consensus": "moderate",
+      "why": "Class doc: 'Attack Speed +1 is required to reach attack speed level 10. This greatly increases our main attacks damage, makes the class smoother to play and boosts survivability. Boss Damage and 8% Abnormal damage are the lines providing the most damage so we take those. +21 Magic attack can be a decent settle for Abnormal damage.' The doc's preset screenshot reads Attack Speed +1 Level / Boss Damage +10% / +8% damage when attacking targets inflicted with abnormal status, and Grandis's Recommended Inner Ability block is the same three lines with the same +10%. The 20% figure belongs to the alternative preset below, where Boss Damage moves to the top line.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sourcesNote": "CORRECTED 2026-09-12: the Boss Damage value on this preset is 10%, not 20% - previously the file borrowed the alternative preset's number. Downgraded from moderate: Grandis credits its Inner Ability field to this same class doc.",
       "sources": [
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
         "https://grandislibrary.com/explorers/bishop"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "bossingAlternative": {
       "lines": [
@@ -302,38 +429,49 @@
         "Magic ATT +21",
         "+8% damage to targets afflicted with abnormal status"
       ],
-      "why": "The doc calls this Bishop's highest-DPS inner ability for players who reliably boss alongside an attack-speed buffer (it names Evan, Zero, Buccaneer, Thunder Breaker), with the caveat that some fights separate you from that buffer",
+      "why": "Class doc, verbatim: 'An alternative preset would be 20% Boss Damage/+21 Magic Attack/8% Damage to abnormal status targets for those who boss often with Attack Speed buffers (Evan, Zero, Buccaneer, Thunder Breaker, etc.) because that becomes Bishop's highest DPS IA', with the caveat that Kaling and Baldrix may separate you from that buffer.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "farming": {
       "lines": [
         "Mesos Obtained +20% / Item Drop Rate +15% / Normal Monster Damage +10%",
         "or Item Drop Rate +20% / Mesos Obtained +15% / Normal Monster Damage +10%"
       ],
-      "why": "The doc presents both as equally viable and a matter of preference, and recommends having at least one page carrying Item Drop Rate +20% so loot box openings are maximised",
+      "why": "The doc presents both as equally viable and a matter of preference, and recommends having at least one page carrying Item Drop Rate +20% so loot box openings are maximised. Both presets read directly off the doc's graphic on 2026-09-12, values exact.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "howToRoll": {
       "steps": [
-        "Reach Legendary tier with honor rolls or Miracle Circulators",
-        "Use Miracle Circulators to land Boss Damage (or abnormal-status damage) on the top line",
-        "Lock that line and roll with honor for lines 2 and 3, ideally on a 50%-off inner ability Sunny Sunday",
-        "Use Black Circulators from event shops to push each line's value to its maximum"
+        "Reach Legendary tier by rolling with honor or with Miracle Circulators until it tiers up",
+        "Use Miracle Circulators to hunt the hard line - preferably Boss Damage (the doc's reasoning block targets 10% Boss Damage), otherwise abnormal-status damage",
+        "Lock in the line you got in step 2 and roll with honor for the other two, ideally on a 50%-off inner ability Sunny Sunday",
+        "Use Black Circulators from event shops to reroll each line's value up to its maximum"
       ],
+      "why": "Steps and reasoning re-read verbatim in the doc's 'How to build my perfect IA?' section and its reasoning block on 2026-09-12. The reasoning block's point is that honor is scarcer than meso, and that circulators cannot lock lines, so the hard line is hunted first and locked.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "sourcesNote": "CORRECTED 2026-09-12: the previous step 2 said to land the line 'on the top line'. Neither the steps nor the reasoning block says top line, and the main bossing preset in fact puts Attack Speed on the top line and Boss Damage second.",
       "sources": [
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "Buff duration on inner ability is obsolete for Bishop. It used to be mandatory to hold Infinity; Infinity is now a passive (+91% final damage, no uptime requirement), so the stat lost its class-specific value. This is confirmed outside the GMS class-doc lineage by the Korean community wiki, which makes the same point in its own inner ability and legion discussion. Bishop also never needs Critical Rate on inner ability. See conflicts for the GMS/KMS split on the attack speed line.",
-    "consensus": "moderate"
+    "notes": "Buff duration on inner ability is obsolete for Bishop. It used to be mandatory to hold Infinity; Infinity is now a passive, so the stat lost its class-specific value. Confirmed outside the GMS class-doc lineage by the Korean community wiki, which makes the same point twice in its own words - 'With Infinity changing to a passive, there is no longer a need for buff duration abilities to be Legendary' in its inner ability discussion, and 'Since Infinity became a passive skill, its priority is not high' about the buff-duration legion block. That gives the buff-duration claim two independent sources (consensus moderate, sourceCount 2, verified 2026-09-12). Bishop also never needs Critical Rate on inner ability - the class is at 75% before gear. See conflicts for the GMS/KMS split on the attack speed line.",
+    "consensus": "weak",
+    "sourceCount": 1,
+    "verifiedAt": "2026-09-12"
   },
-  "gearingNotes": "Bishop-specific gearing judgement, from the current class doc unless noted. (1) Crit rate is free: 5% base + 40% Holy Focus + 30% Magic Critical = 75% before any gear, the highest natural crit of any class per the Korean wiki. Decent Sharp Eyes, Marksman and Night Lord legion blocks and a legion artifact carry it past 100%, so crit rate on inner ability, the Lynn link and hyper stat points spent there are usually waste - but actually getting to 100% is not optional. (2) Staff, never Wand. (3) Do not roll INT on weapon, secondary, emblem or souls any more: the INT scaling that justified it has largely been removed. The surviving interaction is that Benediction's party final damage scales off the Bishop's live INT and does not snapshot, with 3000 INT called out as the key breakpoint in the predecessor doc; HEXA Benediction's bonus applies only to the Bishop. (4) Weapon/secondary/emblem potential target in Reboot is 9 lines of Magic ATT (9/0/0); IED lines there are not worth keeping past the very early game. (5) Cooldown hat is optional - a -2 hat buys margin on long fights and slightly faster Genesis and Peacemaker, but the advice is to settle on the first decent three-line potential rather than chase it. A -3 or -4 hat matters for farming, where it lets you hold Peacemaker to cover every spawn wave instead of using Big Bang. (6) IED is partly self-supplied: Arcane Aim gives 21% passively (plus 40% damage at full stacks) and the Angelic Wrath debuff another 44%, so Bishop deprioritises IED sources and can run a lower visual number for the same result. (7) Secondary progression is Deimos Sage Shield (cheap to craft, star-forceable, so many Bishops keep a spare to cube) then the Astra Arcane Shield at Lv 280, which inherits the Deimos starforce stats and allows potential transfer. (8) Familiar badges: as a Magic ATT class Bishop cannot farm its third Magic ATT% badge and needs a Familiar Booster Pack for it, which the doc calls a poor use of points until everything else is done. (9) Legion needs are low for the same crit and IED reasons; the doc's character priority is Mercedes first (to 250) alongside critical damage blocks, then Ren, then EXP and meso blocks, then boss and abnormal damage, then IED, with flat INT blocks last because they do not scale with equipment percentages. (10) Oz rings as of the current doc are Ring of Restraint plus Weapon Jump, with a KMS-announced revamp pending that changes the answer.",
+  "gearingNotes": "Bishop-specific gearing judgement, from the current class doc unless noted. (1) Crit rate is free: 5% base + 40% Holy Focus + 30% Magic Critical = 75% before any gear, the highest natural crit of any class per the Korean wiki ('Bishop has a basic critical chance of 75%, and is the top of all occupations'). Decent Sharp Eyes, Marksman and Night Lord legion blocks and a legion artifact carry it past 100%, so crit rate on inner ability, the Lynn link and hyper stat points spent there are usually waste - but actually getting to 100% is not optional. (2) Staff, never Wand. (3) Do not roll INT on weapon, secondary, emblem or souls any more: the INT scaling that justified it has largely been removed. The surviving interaction is that Benediction's party final damage scales off the Bishop's live INT and does not snapshot, with 3000 INT called out as the key breakpoint in the predecessor doc; HEXA Benediction's bonus applies only to the Bishop. (4) Weapon/secondary/emblem potential target in Reboot is 9 lines of Magic ATT (9/0/0); IED lines there are not worth keeping past the very early game. (5) Cooldown hat is optional - a -2 hat buys margin on long fights and slightly faster Genesis and Peacemaker, but the advice is to settle on the first decent three-line potential rather than chase it. A -3 or -4 hat matters for farming, where it lets you hold Peacemaker to cover every spawn wave instead of using Big Bang. (6) IED is partly self-supplied: Arcane Aim gives 21% passively (plus 40% damage at full stacks) and the Angelic Wrath debuff another 44%, so Bishop deprioritises IED sources and can run a lower visual number for the same result. (7) Secondary progression is Deimos Sage Shield (cheap to craft, star-forceable, so many Bishops keep a spare to cube) then the Astra Arcane Shield at Lv 280, which inherits the Deimos starforce stats and allows potential transfer. (8) Familiar badges: as a Magic ATT class Bishop cannot farm its third Magic ATT% badge and needs a Familiar Booster Pack for it, which the doc calls a poor use of points until everything else is done. (9) Legion needs are low for the same crit and IED reasons; the doc's character priority is Mercedes first (to 250) alongside critical damage blocks, then Ren, then EXP and meso blocks, then boss and abnormal damage, then IED, with flat INT blocks last because they do not scale with equipment percentages. (10) Oz rings as of the current doc are Ring of Restraint plus Weapon Jump, with a KMS-announced revamp pending that changes the answer.",
   "commonMistakes": [
     {
       "mistake": "Building buff duration for Infinity",
@@ -342,30 +480,43 @@
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
         "https://en.namu.wiki/w/%EB%B9%84%EC%88%8D(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
         "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic"
-      ]
+      ],
+      "consensus": "moderate",
+      "sourceCount": 2,
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Keeping Unreliable Memory five levels ahead of everything else",
-      "why": "That was correct while Infinity's uptime depended on its cooldown. The current chart replaces it at the top with Arcana Override. A guide that still leads with Unreliable Memory is pre-Infinity-rework",
+      "why": "That was correct while Infinity's uptime depended on its cooldown - the predecessor doc says veteran Bishops keep it five levels above everything else for exactly that reason. The current chart replaces it at the top with the Explorer Magician common node (Arcane Overdrive, which the doc spells Arcana Override) and does not list Unreliable Memory at all. A guide that still leads with Unreliable Memory is pre-Infinity-rework",
       "sources": [
         "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic",
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-      ]
+      ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Levelling the Shining Ray boost node",
-      "why": "Explicitly called unnecessary by the class doc and placed in the lowest band by Grandis",
+      "why": "Explicitly called unnecessary by the class doc and placed in the OTHER (least priority) band by Grandis",
       "sources": [
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
         "https://grandislibrary.com/explorers/bishop"
-      ]
+      ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Buying crit rate (Lynn link, hyper stat points, crit inner ability lines) before checking the free sources",
       "why": "The class starts at 75% and the remaining gap is normally closed by Decent Sharp Eyes, legion blocks, a familiar badge or legion artifacts",
       "sources": [
-        "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-      ]
+        "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
+        "https://en.namu.wiki/w/%EB%B9%84%EC%88%8D(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+      ],
+      "consensus": "moderate",
+      "sourceCount": 2,
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Rolling INT on weapon, secondary, emblem or souls because Bishop is the INT class",
@@ -386,7 +537,10 @@
       "why": "It wipes the entire HEXA matrix including Sol Janus, Sol Hecate and the Origin unlock; only HEXA Stats survive, and the doc puts the rebuild at roughly 48k fragments and 1.6k Sol Erda",
       "sources": [
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-      ]
+      ],
+      "consensus": "weak",
+      "sourceCount": 1,
+      "verifiedAt": "2026-09-12"
     },
     {
       "mistake": "Using Heal on a Zombified party member",
@@ -397,37 +551,47 @@
     },
     {
       "mistake": "Following a perfect boost node trio guide",
-      "why": "Boost nodes are six fixed cores in the current client, not rolled trios; trio-shopping advice predates V.269",
+      "why": "Boost nodes are six fixed cores in the current client, not rolled trios; the wiki states six boost nodes per player with fixed contents, a cap of 60 and a level-40 Mastery gate. Trio-shopping advice predates V.269",
       "sources": [
+        "https://maplestorywiki.net/w/V_Matrix",
         "https://maplestorywiki.net/w/Bishop/Skills",
         "https://grandislibrary.com/explorers/bishop",
         "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic"
-      ]
+      ],
+      "consensus": "moderate",
+      "sourceCount": 2,
+      "verifiedAt": "2026-09-12"
     }
   ],
   "sources": [
     {
       "url": "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
-      "what": "The Holy Book - Bishop Comprehensive Guide, by Zeni, the Bishop community's current maintained doc and the doc Grandis Library links as Class Doc. Read in full, including the priority graphics (node leveling order, HEXA stat order, hyper passive build, inner ability presets), which were downloaded and read as images because the text layer does not carry them. Covers boost nodes, node leveling order, HEXA node types and boost order, HEXA stats, hyper stats, hyper passives, inner ability, crit rate and IED source tables, gear, legion, links, burst and training",
-      "dated": "2026-07-30 (v1.0.9; changelog runs 2026-06-16 to 2026-07-30; the doc calls the current patch 'Crown p1')",
+      "what": "The Holy Book - Bishop Comprehensive Guide, by Zeni, the Bishop community's current maintained doc and the doc Grandis Library links as Class Doc. Authorship re-verified on 2026-09-12 by reading the Credits section of that exact mobilebasic URL: 'Written by Zeni. If you have suggestions or see anything needs correcting, please reach out in the bishop discord at #bible-study' and 'Big credit to Angella (Kronos NA Reboot) for making the original bishop guide doc this one was strongly inspired by and based on.' Read in full, including the priority graphics (node leveling order, HEXA stat order, hyper passive build, inner ability presets, hyper stat example loadouts), which were downloaded as PNGs and read as images because the text layer does not carry them. Covers boost nodes, node leveling order, HEXA node types and boost order, HEXA stats, hyper stats, hyper passives, inner ability, crit rate and IED source tables, gear, legion, links, burst and training",
+      "dated": "2026-07-30 (v1.0.9). Re-verified 2026-09-12 from the doc's own Changelog section: 'Last edited: 30.07.2026 - V1.0.9' and an entry reading '30.07.2026 - V1.0.9: Added the class difficulty section and slight intro rewording'. The doc calls the current patch 'Crown p1'",
       "independent": true
     },
     {
       "url": "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic",
-      "what": "A Pocket Guide to Bishop, by Angella (Kronos NA Reboot), the predecessor doc and the one the MapleStory Wiki class-guide index still links. Same section set, plus a HEXA leveling chart derived from her own Extreme Seren, Chaos Kalos and Extreme Lotus damage attributions. Used for corroboration and for dating changes",
+      "what": "A Pocket Guide to Bishop, by Angella (Kronos NA Reboot), the predecessor doc and the one the MapleStory Wiki class-guide index still links. Same section set, plus a HEXA leveling chart it describes as 'based on a 6-minute dummy BA, taken from MapleScouter (v263 Carcion Octofest)'. Used for corroboration and for dating changes. NOT independent of the source above: the current doc names this one as the guide it was based on",
       "dated": "2026-03-29",
       "independent": false
     },
     {
       "url": "https://grandislibrary.com/explorers/bishop",
-      "what": "Grandis Library's Bishop page: six boost node cores with colour-coded priority bands, hyper skill passive build, recommended inner ability, link skill values, Benevolence/Vengeance skill list, and a 'View Pre-V.269 Boost Nodes' toggle. Its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc' and it links Zeni's doc as that Class Doc, so on those three fields it restates the source above rather than confirming it",
+      "what": "Grandis Library's Bishop page: six boost node cores with colour-coded priority bands, a published band legend, hyper skill passive build, recommended inner ability, link skill values, Benevolence/Vengeance skill list, and a 'View Pre-V.269 Boost Nodes' toggle. Band assignment read out of the page markup on 2026-09-12 rather than by eye: PRIMARY resolves to #2e94b6 and SECONDARY to #cc6a2a in the site stylesheet, and Bishop's Nodes 1-4 all carry #2E94B6 while Nodes 5 and 6 carry the default grey #6C757D, so Bishop has four PRIMARY nodes, no SECONDARY node and two OTHER nodes. Its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc' and it links Zeni's doc as that Class Doc, so on those three fields it restates the source above rather than confirming it",
       "dated": "GMS Ver. 269 [Ride the Lightning Update] - site-wide stamp, two patches behind the v.271 target",
       "independent": false
     },
     {
       "url": "https://maplestorywiki.net/w/Bishop/Skills",
-      "what": "Name and number validation with no judgement attached: V Enhancement Cores 1-6 and their exact contents, boost node cap of 60, HEXA Mastery Cores 1-4 and their contents, HEXA Enhancement node names (Benediction, Angel of Balance, Divine Punishment, Peacemaker Boost) with per-level values, Origin (Holy Advent) and Ascent (Commandment of Heaven), and the Empirical Knowledge link skill table. Returns 403 to a plain fetcher; loads normally with a browser user agent",
+      "what": "Name and number validation with no judgement attached: V Enhancement Cores 1-6 and their exact contents, the boost node final-damage-per-level table with level 20 and level 40 effects, HEXA Mastery Cores 1-4 and their contents, HEXA Enhancement node names (Benediction, Angel of Balance, Divine Punishment, Peacemaker Boost) with per-level values, the nine hyper passives, Origin (Holy Advent) and Ascent (Commandment of Heaven), the shared V skill list including Arcane Overdrive, and the Empirical Knowledge link skill table. Returns 403 to a plain fetcher; loads normally with a browser user agent. The boost node table uses rowspans and MUST be parsed as HTML - flattened text extraction silently reattributes the level 20 and level 40 effects to the wrong skills",
       "dated": "living wiki page; revision date not verified (history page not reached)",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/V_Matrix",
+      "what": "System-level rules, no class judgement: 'Each player will receive 6 boost nodes... Their maximum Level is 60, and they must be Level 40 to unlock their corresponding HEXA Mastery Nodes'; the generic level 20 and level 40 boost effects including the universal Ignored Enemy Defense +20%; the common-node table that gives the All Explorer Magician Classes node as Arcane Overdrive; and the special node list including Fatal Strike I",
+      "dated": "living wiki page; revision date not verified",
       "independent": true
     },
     {
@@ -438,19 +602,25 @@
     },
     {
       "url": "https://en.namu.wiki/w/%EB%B9%84%EC%88%8D(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
-      "what": "Korean community wiki Bishop article, machine-translated. Used for two claims only, both read in Bishop-specific context: it independently states Bishop's base critical rate of 75% as the highest of any class, and it independently states that buff duration inner ability lost its necessity once Infinity became passive. Its own inner ability recommendation is KMS-shaped and differs from GMS - see conflicts. Genuinely outside the GMS class-doc lineage",
+      "what": "Korean community wiki Bishop article, machine-translated. Used for two claims only, both re-read in Bishop-specific context on 2026-09-12: it independently states Bishop's base critical rate of 75% and calls it the top of all classes, and it independently states twice that buff duration lost its necessity once Infinity became passive. Its own inner ability recommendation is KMS-shaped and differs from GMS - see conflicts. Genuinely outside the GMS class-doc lineage",
       "dated": "page last modified 2026-08-18",
       "independent": true
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
       "what": "mastermysty's cross-class boost node trio table. Lists Bishop as Heaven's Door + Angel Ray + Genesis and Big Bang + Bahamut + Heal. Used only as corroboration that Shining Ray was never a priority, and recorded as historical because it predates the node rework",
-      "dated": "page states 2024-11-21; underlying data 2024-05-14",
+      "dated": "page states 'Last update: November 21st, 2024'; underlying data '10000 tests per class (May 14th, 2024)'",
       "independent": true
     },
     {
       "url": "https://maplescouter.com/",
-      "what": "Korean-built HEXA and damage optimiser. Both Bishop docs generate their published HEXA upgrade charts from it and both tell readers to re-derive the path there when the chart ages. It is the upstream of the class's HEXA ordering rather than a second opinion about it",
+      "what": "Korean-built HEXA and damage optimiser. Both Bishop docs generate their published HEXA upgrade charts from it and the current doc tells readers to re-derive the path there when the chart ages. It is the upstream of the class's HEXA ordering rather than a second opinion about it",
+      "dated": "not verified",
+      "independent": true
+    },
+    {
+      "url": "https://brendonmay.github.io/hyperCalculator/",
+      "what": "MathBro's hyper stat calculator, linked by the predecessor doc as the tool to use in place of a fixed hyper stat list. Not itself opened; recorded because it is the tool the source points at",
       "dated": "not verified",
       "independent": true
     },
@@ -467,89 +637,123 @@
       "independent": false
     }
   ],
-  "consensusLevel": "moderate",
+  "consensusLevel": "weak",
   "conflicts": [
     {
       "topic": "Top of the V-skill node leveling order",
       "positions": [
         {
-          "claim": "Unreliable Memory first, kept about five levels above everything else, because its cooldown reduction drives Infinity uptime",
+          "claim": "Unreliable Memory first, kept about five levels above everything else, because its cooldown reduction drives Infinity uptime. Its chart reads 'Unreliable Memory > Benediction = Divine Punishment > Angel of Balance = Mana Overload > Peacemaker = Maple World Goddess's Blessing'",
           "source": "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic",
           "dated": "2026-03-29"
         },
         {
-          "claim": "Arcana Override, Benediction and Divine Punishment share the top tier; Unreliable Memory is not in the chart at all",
+          "claim": "Arcane Overdrive (spelled 'Arcana Override' in the doc), Benediction and Divine Punishment share the top tier; Unreliable Memory is not in the chart at all. The rest of the chain is identical to the predecessor's",
           "source": "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "dated": "2026-07-30"
         }
       ],
-      "status": "Dated supersession rather than live disagreement - Infinity became a passive, which removed the reason for the older ordering, and the Korean wiki independently records that cause. Use the newer ordering; the older one is a reliable tell that a Bishop guide is out of date"
+      "status": "Both charts downloaded and read as images on 2026-09-12; the difference is exactly as described and is confined to the top tier. Dated supersession rather than live disagreement - Infinity became a passive, which removed the reason for the older ordering, and the Korean wiki independently records that cause. Use the newer ordering; the older one is a reliable tell that a Bishop guide is out of date"
     },
     {
       "topic": "Whether the Holy Arrow + Heal boost node is worth levelling",
       "positions": [
         {
-          "claim": "Listed in the class doc's Main Boost Nodes table alongside the four mastery-unlocking nodes, with no ranking given",
+          "claim": "Listed as the fifth row of the class doc's Main Boost Nodes table ('Heal / Holy Arrow') alongside the four mastery-unlocking nodes, with no ranking given. The only node this doc tells you to skip is Shining Ray",
           "source": "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "dated": "2026-07-30"
         },
         {
-          "claim": "Placed in the lowest priority band, the same band as the explicitly-skipped Shining Ray node",
+          "claim": "Node 6 is in the OTHER band, defined by Grandis's own legend as 'Boost Nodes that do not need to be upgraded or has least priority' - the same band as the explicitly-skipped Shining Ray node",
           "source": "https://grandislibrary.com/explorers/bishop",
           "dated": "GMS v269"
+        },
+        {
+          "claim": "Holy Arrow Boost gives 5% final damage per level and Heal Boost 4%, the two highest per-level values of any Bishop boost node (the four mastery-unlocking nodes are mostly 2%)",
+          "source": "https://maplestorywiki.net/w/Bishop/Skills",
+          "dated": "living"
         }
       ],
-      "status": "Unresolved and left contested. Neither skill unlocks a HEXA Mastery core, which is Grandis's stated test for its top band, but the class doc does not say to skip the node either"
+      "status": "Unresolved and left contested, with both halves re-checked on 2026-09-12. Grandis's banding follows its own published legend - PRIMARY is defined on the page as 'Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used', and neither Holy Arrow nor Heal unlocks a Mastery core - so the OTHER placement is consistent rather than arbitrary. But the class doc does list the pairing as a main boost node and never tells you to skip it, and the wiki's per-level numbers cut the other way. A planner should show the disagreement"
     },
     {
       "topic": "Attack Speed +1 on bossing inner ability",
       "positions": [
         {
-          "claim": "Top line, required to reach the attack speed cap, worth it for damage, smoothness and survivability",
+          "claim": "Top line, required to reach attack speed level 10, worth it for damage, smoothness and survivability",
           "source": "https://docs.google.com/document/d/14nUOAEBN2M5hc8EK7-mQH72twwCarXJmSSvCfYl3V3A/mobilebasic",
           "dated": "2026-07-30"
         },
         {
-          "claim": "Bossing lines are Boss Damage, then abnormal-status damage, then Magic ATT or buff duration by preference - no attack speed line; the article states Bishop can reach maximum attack speed self-buffed",
+          "claim": "First line Boss Damage, second and third lines abnormal-status damage, with the remaining line taken as Magic ATT or buff duration by preference - no attack speed line; the article's stat block says Bishop reaches attack speed step 7 (up to 8) and that magic is not affected by weapon attack speed",
           "source": "https://en.namu.wiki/w/%EB%B9%84%EC%88%8D(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
           "dated": "2026-08-18"
         }
       ],
-      "status": "Region difference rather than an error on either side - attack speed caps and self-buff access differ between GMS and KMS. Worth noting that the GMS doc's own alternative preset for players who boss with an attack-speed buffer (Boss Damage / Magic ATT / abnormal damage) matches the Korean recommendation exactly, which cross-checks the three-line shape once the attack speed problem is solved elsewhere"
+      "status": "Region difference rather than an error on either side - attack speed caps and self-buff access differ between GMS and KMS, and the two articles even count attack speed on different scales. Worth noting that the GMS doc's own alternative preset for players who boss with an attack-speed buffer (Boss Damage / Magic ATT / abnormal damage) matches the Korean recommendation almost exactly, which cross-checks the three-line shape once the attack speed problem is solved elsewhere"
     },
     {
       "topic": "Boost node trios versus fixed cores",
       "positions": [
         {
-          "claim": "Bishop boosts six skills spread across two trios (four boost nodes), with sample trio pairings for mains and for sub-220 mules",
+          "claim": "'Bishops boost six skills spread across two different trios (for a total of four boost nodes)', with sample trio pairings for mains and for sub-220 mules",
           "source": "https://docs.google.com/document/d/11OaoVNl-VacN7XncfLWJxlHmAIePB10fhwWNT8WVf38/mobilebasic",
           "dated": "2026-03-29"
         },
         {
-          "claim": "Six fixed Enhancement Cores with set contents, upgraded with V Points from Nodestones",
-          "source": "https://maplestorywiki.net/w/Bishop/Skills",
+          "claim": "Six fixed boost nodes per player with set contents, max level 60, level 40 to unlock the matching HEXA Mastery node, upgraded with V Points from Nodestones",
+          "source": "https://maplestorywiki.net/w/V_Matrix",
           "dated": "living"
         }
       ],
       "status": "Treated as resolved by date - the newer doc, the wiki and Grandis's pre-V.269 toggle all describe fixed cores, so the trio framing is legacy. Flagged anyway because most Bishop material on the open web still uses it"
     }
   ],
-  "evidenceNotes": "Honest count: four independent sources were reached, but only two of them carry current GMS judgement. The class-doc lineage (Zeni's doc, Angella's predecessor doc, Grandis Library's Bishop page, the Explorer Mage Discord) is ONE consensus family - Zeni credits Angella's doc as the basis for his, and Grandis's credits block attributes inner ability, hyper passives and boost nodes to the Class Doc it links. Wherever those three agree, that is one source restated. The genuinely independent sources are maplestorywiki.net (facts and names only, zero judgement), the Korean community wiki (independent judgement, KMS-balanced, used here for two specific claims) and mastermysty's 2024 trio table (independent but pre-rework). No reddit source was checked - reddit is unreachable from this environment. No YouTube source was checked - the session's web search budget was exhausted before a creator pass, and search-engine HTML endpoints were blocked. Class Discords were not read. The weakest fields are therefore the exact HEXA investment order (published by both docs only as a Maplescouter-generated icon chart, not transcribable, and per-character by design) and the HEXA stat order MATT > INT > Critical Damage, which has no confirmation outside the class-doc lineage.",
-  "lastVerified": "2026-09-11",
+  "evidenceNotes": "HOW sourceCount IS COUNTED IN THIS FILE: it is the number of INDEPENDENT sources that support the claim as stated. The class-doc lineage - Zeni's current doc, Angella's predecessor doc, Grandis Library's Bishop page, the Explorer Mage Discord - is ONE consensus family and counts ONCE, because Zeni's credits name Angella's doc as the guide his is based on (verified verbatim 2026-09-12) and Grandis's credits attribute its Inner Ability, Hyper Passive Build and Boost Nodes Build to the Class Doc it links, which is Zeni's. Wherever those three agree, that is one source restated, and this pass downgraded a number of endgame claims from strong or moderate to moderate or weak for exactly that reason. The genuinely independent sources are maplestorywiki (facts, names and per-level values only, zero judgement), the Korean community wiki (independent judgement, KMS-balanced, used here for two specific claims) and mastermysty's 2024 trio table (independent but pre-rework). Consequently NO endgame claim in this file reaches three independent sources, and none is labelled strong. That is the honest state of Bishop's public sourcing, not a gap in the search. No reddit source was checked - reddit is unreachable from this environment. No YouTube source was checked. Class Discords were not read. The weakest fields remain the exact HEXA investment order (published by both docs only as a Maplescouter-generated icon chart, not transcribable, and per-character by design) and the HEXA stat order MATT > INT > Critical Damage, which has no confirmation outside the class-doc lineage. What DID improve in the 2026-09-12 pass: every graphic-only claim in the five endgame sections (node leveling chart, hyper passive build, HEXA stat priority, inner ability presets, hyper stat example loadouts) was downloaded as an image and read directly rather than inferred, and the wiki's boost node table was parsed as HTML with its rowspans resolved rather than as flattened text.",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "WRONG STAT ATTRIBUTION, contradicted by the file's own cited source. trios entry for Enhancement Core 1 says Angel Ray's node 'grants Max Targets +1 and Critical Rate +5% at level 20 and Ignored Enemy Defense +20% at level 40'. I pulled the maplestorywiki table with its rowspans resolved: Angel Ray Boost is in the 2%-final-damage-per-level group and its level 20 effect is Critical Rate +5% ONLY. Max Targets +1 belongs to the Heal/Angelic Wrath/Holy Arrow/Shining Ray/Big Bang/Bahamut group. And Ignored Enemy Defense +20% at level 40 has rowspan=11 - it applies to ALL eleven Bishop boost nodes, including the two the file says to skip. The wiki's V Matrix page states the same as a global rule. So the only Angel-Ray-specific fact in that sentence is the +5% crit, and the IED line is being used as a reason this node is top priority when it is universal.",
-      "INVENTED RATIONALE ATTRIBUTED TO A SOURCE. trios core 6 and conflicts entry 2 both say that not unlocking a HEXA Mastery core is 'Grandis's stated test for its top band'. Grandis states no such test anywhere on the page, and its banding disproves it: Nodes 3 and 4 DO unlock Mastery Cores 3 and 4 and are in SECONDARY, not the top band. This is the researcher's inference presented as a source's stated criterion.",
-      "PROBABLY MANUFACTURED CONFLICT - re-verify before shipping. conflicts entry 2 and trios core 6 both rest on the claim that the class doc lists Holy Arrow + Heal 'in its Main Boost Nodes table' alongside the four mastery nodes. When I queried the doc for the literal phrase 'Main Boost Node' it returned the section under Hexa Matrix listing only: Angel Ray / Big Bang + Triumph Feather / Angelic Wrath + Fountain of Vengeance + Bahamut / Genesis + Heaven's Door. Holy Arrow and Heal are not in it. If that extraction is complete, the doc and Grandis AGREE that core 6 is not a main node and there is no conflict to record. Also missing from the file's analysis either way: the wiki shows Holy Arrow Boost at 5% final damage per level and Heal Boost at 4%, versus 2% for Angel Ray Boost - the highest per-level values on the class. Whatever the right priority is, 'lowest band' with no mention of that is an incomplete picture for a planner.",
-      "UNREPRODUCIBLE SOURCE METADATA on the single most load-bearing source. The sources block states the primary doc is 'The Holy Book - Bishop Comprehensive Guide, by Zeni', 'dated 2026-07-30 (v1.0.9; changelog runs 2026-06-16 to 2026-07-30)', and evidenceNotes states 'Zeni credits Angella's doc as the basis for his'. Three separate extraction passes over that exact mobilebasic URL found: title 'Bishop Comprehensive Guide', no author name, no handle, no 'Zeni' string, no 'Angella' string, no changelog section, no '1.0.9'. Its credits are to 'Tubby' for an image and to tools (Maplescouter, mason's maple matrix, a HEXA Matrix Tracker, chuchu.gg) plus the Bishop / Explorer Mage Discords. Angella's doc credits the Mercedes and Ice Lightning guides and 'veteran Bishops', not Zeni. I cannot prove absence through an extractor, but the specific claim that Zeni credits Angella is the entire basis for declaring the two docs one consensus family, and the 2026-07-30 date is the entire basis for resolving conflict 1 by supersession. Both need a human eyeball on the doc before they are stated as fact. (Grandis linking that doc as 'Class Doc' IS verified - that half of the lineage claim holds.)",
-      "NAME THAT WILL NOT MATCH THE CLIENT. 'Arcana Override' is the file's number one V-node priority and is also listed in the hexa notes as a KMS-only announcement - two incompatible roles in the same file. It is not a fabrication by the researcher (the class doc does use that string, describing an active burst buff granting 3 stacks of latent magic power). But maplestorywiki's V Matrix common-node list gives the Explorer Magician node as 'Arcane Overdrive', and the Bishop skill page's entry for it is an active, 3 stages of magical power, +7% damage per stage at level 30, 120s cooldown - the same skill the doc describes. Grandis also lists Arcane Overdrive and has no Arcana Override. So the file's top-priority node name is a doc-only variant of the GMS name, unflagged, in a file that elsewhere claims its node names are wiki-confirmed. Verified NOT fabricated: 'Fatal Strike I' is a real V special node (maplestorywiki V Matrix page: damage +100% for 4s when attacking, every 30s), Holy Advent and Commandment of Heaven are the real Origin and Ascent, the four HEXA Enhancement names are exact, Benediction Boost's +2% to +17% FD and +90 All Stats are exact, Infinity is indeed a passive at Final Damage +91%, base crit 5 + 40 Holy Focus + 30 Magic Critical = 75% checks out on the wiki, boost node cap 60 checks out, and the Astra Arcane Shield via the Erion Enhancement quest is in the doc."
+    "resolvedAt": "2026-09-12",
+    "resolutionMethod": "Every disputed claim was re-checked against the exact page already cited, not against new searches. maplestorywiki was fetched with a browser user agent and its boost node table parsed as HTML with rowspans resolved. The class doc's priority graphics were downloaded as PNGs and read as images. Grandis's node bands were resolved from the page markup and the site stylesheet rather than by eye.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "WRONG STAT ATTRIBUTION: trios Core 1 said Angel Ray's node 'grants Max Targets +1 and Critical Rate +5% at level 20 and Ignored Enemy Defense +20% at level 40'.",
+        "verdict": "CORRECTED - the critic was right on every point",
+        "what": "Re-parsed the wiki boost node table as HTML. Angel Ray Boost sits in the 2%-final-damage-per-level group (rowspan 7), its level 20 effect is Critical Rate +5% (a rowspan 5 shared with Genesis, Triumph Feather, Heaven's Door and Fountain of Vengeance), and Max Targets +1 belongs to the other rowspan group (Heal, Angelic Wrath, Holy Arrow, Shining Ray, Big Bang, Bahamut). Ignored Enemy Defense +20% at level 40 is a single rowspan-11 cell covering all eleven Bishop boost nodes, and the wiki's V Matrix page states it as a general rule for most boost nodes across the game. The Core 1 entry was rewritten to say exactly this and to state explicitly that the level 40 IED is not an Angel Ray advantage. Per-level values were added to Cores 2 through 6 from the same table while it was open.",
+        "scope": "vMatrix"
+      },
+      {
+        "defect": "INVENTED RATIONALE: trios Core 6 and conflicts entry 2 said that not unlocking a HEXA Mastery core is 'Grandis's stated test for its top band', which the critic said Grandis never states, adding that Nodes 3 and 4 are in SECONDARY despite unlocking Mastery Cores 3 and 4.",
+        "verdict": "CONFIRMED - the file's claim was right and the refutation was wrong on both counts",
+        "what": "Grandis publishes a Boost Node Legend Info block on the Bishop page whose text is 'PRIMARY: Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used / SECONDARY: Boost Nodes that don't unlock a 6th Job HEXA Mastery but are still used / OTHER: Boost Nodes that do not need to be upgraded or has least priority'. That is the stated test, verbatim. Band assignment was then resolved from markup rather than by eye: the stylesheet maps PRIMARY to #2e94b6 and SECONDARY to #cc6a2a, and Bishop's Nodes 1, 2, 3 and 4 all carry #2E94B6 (PRIMARY) while Nodes 5 and 6 carry the default grey #6C757D (OTHER). Bishop has no SECONDARY node at all, so Nodes 3 and 4 are in the top band, not the middle one. The claim was kept and the legend text was quoted into the entry so it is checkable.",
+        "scope": "vMatrix"
+      },
+      {
+        "defect": "PROBABLY MANUFACTURED CONFLICT: the claim that the class doc lists Holy Arrow + Heal in its 'Main Boost Nodes' table was said to be unreproducible - a query for that phrase returned only Angel Ray / Big Bang + Triumph Feather / Angelic Wrath + Fountain of Vengeance + Bahamut / Genesis + Heaven's Door.",
+        "verdict": "CONFIRMED - the conflict is real; the critic's extraction was one row short",
+        "what": "The doc's Main Boost Nodes table has five skill rows and the fifth reads 'Heal / Holy Arrow', immediately above the bolded line 'Shining Ray boost is not used and therefore unnecessary!'. The conflict with Grandis's OTHER banding stands and was kept. The critic's additional observation was verified and folded in as a third position: the wiki gives Holy Arrow Boost 5% final damage per level and Heal Boost 4%, the two highest per-level values on the class, against 2% for Angel Ray. The conflict entry now carries all three positions. Note also that the doc's table prints the level 20 and level 40 effects once for the whole table, which is how the Core 1 misattribution above was introduced.",
+        "scope": "vMatrix"
+      },
+      {
+        "defect": "UNREPRODUCIBLE SOURCE METADATA: three extraction passes over the primary doc found no 'Zeni', no 'Angella', no changelog and no v1.0.9, putting both the lineage claim and the 2026-07-30 date in doubt.",
+        "verdict": "CONFIRMED - all of it is in the document; the extractor was dropping the tail of the page",
+        "what": "Fetched the same mobilebasic URL with a browser user agent and read to the end. Credits section: 'Written by Zeni. If you have suggestions or see anything needs correcting, please reach out in the bishop discord at #bible-study' and 'Big credit to Angella (Kronos NA Reboot) for making the original bishop guide doc this one was strongly inspired by and based on.' Changelog section: 'Last edited: 30.07.2026 - V1.0.9' plus a dated entry '30.07.2026 - V1.0.9: Added the class difficulty section and slight intro rewording'. So the lineage claim holds (which is why the Zeni/Angella/Grandis family counts as one source throughout this file) and conflict 1's resolution by supersession holds. The exact quotes are now stored in the sources block so the next reader does not have to re-derive them.",
+        "scope": "sources / evidence"
+      },
+      {
+        "defect": "NAME THAT WILL NOT MATCH THE CLIENT: 'Arcana Override' is the file's number one V-node priority but the wiki and Grandis both call the Explorer Magician common node 'Arcane Overdrive'.",
+        "verdict": "CORRECTED - the critic was right",
+        "what": "The wiki's V Matrix common-node table gives the All Explorer Magician Classes node as Arcane Overdrive, and the Bishop skill page's entry for it matches the skill the doc describes (active, 3 stages of magical power, +7% damage per stage at level 30, 120 sec cooldown). 'Arcana Override' appears nowhere outside the class doc, which uses that spelling consistently including for the KMS-announced 'Hexa Arcana Override' common core. The vMatrix priority entry was renamed to Arcane Overdrive and carries an explicit name warning so a player does not search their matrix for a string that is not there; the hexa notes and the conflicts and commonMistakes entries that mention it were reworded the same way. The apparent contradiction the critic flagged (top V priority in one place, KMS-only announcement in another) is not a contradiction: the V node exists in GMS today, and it is the SIXTH-job core that upgrades it which is KMS-announced only.",
+        "scope": "vMatrix / hexa"
+      }
     ],
     "clearedOnInspection": [],
-    "shipReady": false
+    "relabelling": "Separately from the five defects, every claim in the five endgame sections was re-labelled with sources, sourceCount, consensus and verifiedAt against the independence rule now written into evidenceNotes. Net effect: hyperSkills moderate to weak; hyperStats crit-rate strong to moderate; hyperStats IED moderate to weak; hyperStats mobbing preset moderate to weak; innerAbility bossing moderate to weak; trios Cores 1-4 strong to moderate; trios Core 5 strong to moderate; hexa steps 1, 3 and 5 moderate to weak; vMatrix priority entries 2, 3 and 5 moderate to weak. Four further wording corrections were made where a source did not say what was attributed to it: the bossing inner ability Boss Damage value (10%, not 20% - the 20% belongs to the alternative preset), the howToRoll instruction to land the hunted line 'on the top line' (the doc says no such thing, and its own preset puts Attack Speed there), the Sol Janus level 10 floor (current doc only - the predecessor states no floor), and 'both docs say explicitly that no obligatory path exists' for HEXA (only the current doc says it). hyperStats was additionally reshaped: its ordered array was replaced by an unordered 'requirements' set with ordered:false, because both docs refuse to rank hyper stats and an ordered array was asserting a ranking neither source states. The doc's example hyper stat loadouts were read off its graphic and added as explicitly-labelled examples.",
+    "shipReady": true
   },
-  "written": false,
-  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null
 }

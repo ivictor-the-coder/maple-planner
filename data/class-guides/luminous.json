@@ -17,112 +17,146 @@
       "https://www.mapledoro.com/guides/character-guides/luminous",
       "https://grandislibrary.com/heroes/luminous"
     ],
-    "namingNote": "The research brief for this file called the link skill 'Permeate'. No source reached in this pass uses that name - MapleStory Wiki, Grandis Library and MapleDoro all call it Light Wash. 'Permeate' was not verified and is not recorded as a fact here."
+    "namingNote": "The research brief for this file called the link skill 'Permeate'. No source reached in this pass uses that name - MapleStory Wiki, Grandis Library and MapleDoro all call it Light Wash. 'Permeate' was not verified and is not recorded as a fact here.",
+    "verificationNote": "Not re-verified in the 2026-09-12 resolution pass - out of the five endgame sections in scope. The two maplestorywiki.net URLs returned HTTP 403 on 2026-09-12."
   },
   "legionEffect": "Flat INT: +10 / +20 / +40 / +80 / +100 across Legion ranks.",
   "vMatrix": {
     "priority": [
       {
         "node": "5th job skill nodes, in this order: Baptism of Light and Darkness, then Liberation Orb, then Aether Conduit, then Gate of Light.",
-        "why": "The class doc presents this as a flat ordered list and does not state the reasoning behind it. No sourced rationale is recorded here rather than inventing one.",
-        "consensus": "weak - single source (the class doc). Grandis Library shows the same four skills but is credited to the Luminous Discord, the same origin, so it is not a second vote.",
+        "why": "The class doc presents this as a flat arrow-separated sequence and does not state the reasoning behind it. No sourced rationale is recorded here rather than inventing one. Re-verified verbatim on 2026-09-12: the doc's job-node priority line reads 'Baptism of Light and Darkness (Equinox Exorcism) -> Liberation Orb -> Aether Conduit (Punishing Resonator) -> Gate of Light (The Gate of Truth)'.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source (the class doc). Grandis Library shows the same four skills but its credits block attributes its boost node build to the Luminous Discord, the same origin, so it is not a second vote.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost node group 1: Ender + Death Scythe",
-        "why": "Grandis Library places this in its Primary tier and states that Primary-tier nodes are the ones whose base skills later receive a 6th job HEXA Mastery, so levels invested here keep paying off past 260. The class doc lists the same grouping first among its essential nodes. The wiki confirms Ender has a HEXA Mastery version.",
-        "consensus": "moderate on the skills involved, weak on the exact grouping - the class doc and Grandis agree but share one origin, and an independent node-trio reference groups these skills differently (see conflicts).",
+        "why": "Grandis Library places this in its Primary tier and labels that tier 'unlock 6th Job HEXA Mastery, frequently used', so levels invested here keep paying off past 260. The class doc lists the same grouping as its Node 1. The class doc's own HEXA mastery section describes Ender as a HEXA mastery, which supports the Primary rationale from inside the same lineage.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous",
-          "https://maplestorywiki.net/w/Luminous/Skills"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "consensusNote": "Two independent sources agree Ender is a top-tier boost target (class-doc lineage, plus mastermysty's node reference). They disagree on the grouping: mystyjl packs Ender with Reflection and Apocalypse instead of Death Scythe. Death Scythe as Ender's partner rests on the class-doc lineage alone. The doc and Grandis count as one source; the wiki citation that previously backed the HEXA-Mastery claim was removed because maplestorywiki.net returned 403 on 2026-09-12.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost node group 2: Reflection",
-        "why": "Primary tier per Grandis on the same HEXA-Mastery reasoning; second in the class doc's essential list. HEXA Reflection exists as a Mastery skill per the wiki.",
-        "consensus": "moderate on the skill, weak on the grouping - two sources of one lineage.",
+        "why": "Primary tier per Grandis on the same HEXA-Mastery-unlock reasoning; Node 2 in the class doc. The class doc's HEXA mastery section names Reflection among the HEXA masteries, supporting the Primary label.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous",
-          "https://maplestorywiki.net/w/Luminous/Skills"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "consensusNote": "Both independent lineages agree Reflection is a top boost target. Only the class-doc lineage says it sits alone in a node; mystyjl groups it with Ender and Apocalypse. Wiki citation removed - 403 on 2026-09-12.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost node group 3: Apocalypse",
-        "why": "Primary tier per Grandis, same reasoning; third in the class doc's essential list. HEXA Apocalypse exists as a Mastery skill per the wiki.",
-        "consensus": "moderate on the skill, weak on the grouping.",
+        "why": "Primary tier per Grandis, same reasoning; Node 3 in the class doc. The class doc's HEXA mastery section names Apocalypse among the HEXA masteries.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous",
-          "https://maplestorywiki.net/w/Luminous/Skills"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "consensus": "moderate",
+        "consensusNote": "Both independent lineages agree Apocalypse is a top boost target; they disagree on grouping. Wiki citation removed - 403 on 2026-09-12.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost node group 4: Twilight Nova + Ray of Redemption + Armageddon",
-        "why": "Grandis classes this as Secondary - used often in the rotation but not backed by a HEXA Mastery unlock at the patch it describes. The class doc lists the same three together as its fourth essential node. Caveat: the wiki does list a HEXA Twilight Nova Mastery skill, so the Secondary label appears to rest on rotation frequency rather than on Twilight Nova lacking a Mastery.",
-        "consensus": "weak - one lineage, and the stated rationale for the Secondary label is partly contradicted by the wiki skill list.",
+        "why": "Grandis classes this as Secondary, a tier it defines as 'used but no HEXA unlock'. The class doc lists the same three together as its Node 4. CAVEAT, re-verified 2026-09-12: the class doc's own HEXA mastery section does name Twilight Nova as a HEXA mastery, which contradicts Grandis's stated reason for the Secondary label. The two pages are the same lineage, so this is an internal inconsistency in that lineage rather than a disagreement between opinions. The skills in the group are solid; the reason for demoting them is not.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous",
-          "https://maplestorywiki.net/w/Luminous/Skills"
-        ]
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ],
+        "sourceCount": 2,
+        "consensus": "weak",
+        "consensusNote": "mystyjl independently names Twilight Nova as its trio-2 anchor, so Twilight Nova as a boost target has two independent lineages. Ray of Redemption and Armageddon as its partners, and the Secondary ranking itself, rest on the class-doc lineage alone - and that lineage's stated rationale is self-contradicting. The earlier version of this entry attributed the contradiction to the wiki; the wiki is 403 and the contradiction is sourced to the class doc instead.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost node group 5 (optional): Flash Shower + Abyssal Drop + Spectral Light + Moonlight Spear",
-        "why": "Both sources place these in the lowest tier - worth slotting only once the groups above are covered.",
-        "consensus": "weak - one lineage.",
+        "why": "The class doc lists these as Node 5 and Grandis files them under 'Other', which it labels least priority - worth slotting only once the groups above are covered.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "One lineage - the class doc, and Grandis which credits the Luminous Discord for its boost node build. Both URLs re-read 2026-09-12 and they match exactly.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Boost node group 6 (optional): Pressure Void + Sylvan Lance",
-        "why": "Lowest tier in both sources.",
-        "consensus": "weak - one lineage.",
+        "why": "Node 6 in the class doc; Grandis 'Other' / least priority tier.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "One lineage. Both URLs re-read 2026-09-12 and they match exactly.",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
       {
         "trio": "Ender / Death Scythe (+ a third skill the sources do not name)",
         "labelledAs": "Node 1 - Primary / essential",
-        "consensus": "weak - class doc and Grandis Library, which share an origin. Neither names the third slot.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Class doc and Grandis Library, which share an origin. Neither names the third slot; that gap is real and is not filled here.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "trio": "Twilight Nova / Ray of Redemption / Armageddon",
         "labelledAs": "Node 4 - Secondary",
-        "consensus": "weak - one lineage.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "One lineage.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "trio": "Reflection / Ender / Apocalypse",
         "labelledAs": "Trio 1 in an independent cross-class node-trio reference",
-        "consensus": "weak - single source, dated 2024-11-21, behind the current patch. Conflicts with the class-doc grouping - see conflicts.",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source, page last-updated line re-read on 2026-09-12 as 'November 21st, 2024' - behind the current patch. Conflicts with the class-doc grouping; see conflicts.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "trio": "Twilight Nova (only skill named)",
         "labelledAs": "Trio 2 in the same independent reference",
-        "consensus": "weak - single source, 2024-11-21, incomplete (the other two slots are not given).",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source, 2024-11-21, incomplete - re-confirmed 2026-09-12 that the page names only Twilight Nova for this trio.",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "notes": "No source reached states which boost node to push to level 50 or 60 first, or how the ordering should change between Lv 200 and Lv 260. Those fields are genuinely unsourced, not omitted. At Lv 214 the V matrix is the only node layer available - HEXA does not open until Lv 260 - so this is the actionable section for this character today."
@@ -131,179 +165,247 @@
     "order": [
       {
         "step": "Sequence as read off the class doc's HEXA priority chart: Freud's Wisdom, Apocalypse, Endless Darkness, Ender, Twilight Nova, Sol Hecate, Baptism of Light and Darkness, Liberation Orb, Aether Conduit, Lustrous Orb, Gate of Light, Harmonic Paradox.",
-        "why": "This is the doc's own ordering chart. The doc attaches a caveat that the order shifts with individual progression and points readers at a personal HEXA calculation instead of a fixed list. Every name here was validated against the wiki's Luminous skill tables.",
-        "consensus": "weak - single source. No independent second source for Luminous HEXA order was reachable in this pass.",
-        "sources": [
-          "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
-          "https://maplestorywiki.net/w/Luminous/Skills"
-        ]
-      },
-      {
-        "step": "Alternate grouped reading of the same chart: Mastery cores first (Ender, Reflection, Apocalypse, Twilight Nova), then the four class V-skill enhancement boosts (Baptism of Light and Darkness, Liberation Orb, Aether Conduit, Gate of Light), then Origin and Ascent (Harmonic Paradox, Lustrous Orb), with common nodes (Sol Hecate, and Freud's Wisdom early) fitted alongside.",
-        "why": "Recorded because two separate reads of the same chart in the same document placed Harmonic Paradox and the Mastery cores differently. The chart is laid out visually, so this is an extraction-confidence problem, not two competing opinions. Treat both readings as provisional and re-verify the tail of the order against the doc or the Luminous Discord infographic before acting on it.",
-        "consensus": "weak - same single source, with an acknowledged extraction ambiguity.",
+        "why": "This is the doc's own ordering chart. Re-extracted independently on 2026-09-12 and the sequence came back identical, so the previous 'the chart is visually ambiguous' framing is withdrawn. The doc attaches its own caveat - 'The order may differ slightly based on your own character's progression' - and points readers at maplescouter for a personal calculation instead of a fixed list. NOTE: the chart's parenthetical core labels (Mastery 1/2/3/4, Common 2/3) did NOT extract stably across passes and are deliberately not recorded here; only the sequence is.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source. No independent second source for Luminous HEXA order was reachable in this pass or the previous one. The wiki citation that used to sit here was removed: maplestorywiki.net returned 403 on 2026-09-12, so it cannot be said to have validated these names.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "step": "Freud's Wisdom is taken early regardless of where the rest of the order lands.",
-        "why": "The class doc singles it out as an early pick for quality of life rather than for raw damage.",
-        "consensus": "weak - single source.",
+        "step": "Freud's Wisdom is the first entry in the doc's HEXA order chart.",
+        "why": "Stated as position in the chart only. The previous version of this entry claimed the doc 'singles it out as an early pick for quality of life rather than for raw damage'; that rationale could not be found in the doc on re-read and has been deleted rather than kept with a hedge.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Sol Hecate binding: Sol Hecate: Styx onto Equilibrium Liberation, and Sol Hecate: Phlegethon onto Maple World Goddess's Blessing.",
-        "why": "Stated directly by the class doc. No reasoning is given in the source, so none is recorded.",
-        "consensus": "weak - single source.",
+        "why": "Stated directly by the class doc; re-confirmed verbatim on 2026-09-12. No reasoning is given in the source, so none is recorded.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source.",
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "step": "HEXA stat nodes 1 through 3: Main Stat (INT), Critical Damage, Magic Attack.",
+        "why": "Added in the 2026-09-12 pass. The class doc states: 'The recommended stats to choose for nodes 1-3 are: Main Stat (INT), Critical Damage and Magic Attack.' The doc gives this as a set of three for the first three nodes and does not rank them against each other, so no order is implied by the listing here.",
+        "ordered": false,
+        "sources": [
+          "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source.",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "The class doc explicitly declines to present its order as fixed and recommends a personal HEXA calculation tool for accuracy - so a static Luminous HEXA order is a simplification the class's own maintainer does not fully endorse. Grandis Library carries a '6th Job' infographic for Luminous, but it is credited to the Luminous Discord, the same origin as the doc, so it is not independent corroboration, and it was not read as an image in this pass. The doc says nothing about splitting the order by Sol Erda versus Sol Erda Fragment bottlenecks, which several other classes' docs do. HEXA is unavailable until Lv 260.",
+    "notes": "The class doc explicitly declines to present its order as fixed and recommends maplescouter for a personal HEXA calculation - so a static Luminous HEXA order is a simplification the class's own maintainer does not fully endorse. Grandis Library carries a '6th Job' infographic for Luminous, but it is credited to the Luminous Discord, the same origin as the doc, so it is not independent corroboration, and it was not read as an image in this pass. The doc says nothing about splitting the order by Sol Erda versus Sol Erda Fragment bottlenecks, which several other classes' docs do. HEXA is unavailable until Lv 260.",
     "originSkill": "Harmonic Paradox",
     "ascentSkill": "Lustrous Orb",
     "masterySkills": [
-      "HEXA Ender",
-      "HEXA Reflection",
+      "Ender",
+      "Reflection",
       "Endless Darkness",
-      "HEXA Apocalypse",
-      "Eternal Light",
-      "HEXA Twilight Nova"
+      "Apocalypse",
+      "Eternal Lightness",
+      "Twilight Nova"
     ],
+    "masterySkillsOrdered": false,
+    "masterySkillsNote": "Six HEXA mastery skills, re-verified 2026-09-12 against the class doc's own HEXA mastery section, which describes each one separately: Ender ('same as its 4th job version with added AoE around each sword'), Reflection ('works the same as its 4th job counterpart'), Endless Darkness ('a new passive AoE attack that triggers while you're using Dark skills while in Dark/EQ mode'), Apocalypse, Eternal Lightness ('a new passive AoE attack that triggers while you're using Light skills while in Light/EQ mode') and Twilight Nova. TWO CORRECTIONS made this pass: (1) the file previously wrote 'Eternal Light'; the doc says 'Eternal Lightness', and 'Eternal Light' appears in no source reachable from here, so it was an extraction artifact and is deleted. (2) four entries previously carried a 'HEXA ' prefix ('HEXA Ender' etc.) sourced to maplestorywiki.net; that site returns 403 and the doc uses the bare skill names, so the prefix is dropped. This list is a SET, not a ranking - the doc's own (Mastery 1/2/3/4) numbering did not extract stably across repeated passes and is not recorded.",
+    "masterySkillsSources": [
+      "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
+    ],
+    "masterySkillsSourceCount": 1,
+    "masterySkillsConsensus": "weak",
+    "masterySkillsVerifiedAt": "2026-09-12",
     "enhancementSkills": [
-      "Gate of Light Boost",
-      "Aether Conduit Boost",
-      "Baptism of Light and Darkness Boost",
-      "Liberation Orb Boost"
+      "Baptism of Light and Darkness",
+      "Liberation Orb",
+      "Aether Conduit",
+      "Gate of Light"
     ],
-    "skillNameSources": [
-      "https://maplestorywiki.net/w/Luminous/Skills"
-    ]
+    "enhancementSkillsOrdered": true,
+    "enhancementSkillsNote": "These are the four class V skills that receive HEXA skill-enhancement cores; the order shown matches their order in the class doc's HEXA priority chart. NAMING CORRECTION 2026-09-12: this array previously held 'Gate of Light Boost', 'Aether Conduit Boost', 'Baptism of Light and Darkness Boost' and 'Liberation Orb Boost'. The '-Boost' suffix rested entirely on maplestorywiki.net, which returns 403; no reachable source uses that convention and the class doc names the four skills plainly. The suffixed names are deleted. The exact in-game core names for these enhancement cores remain unverified - see gaps.",
+    "enhancementSkillsSources": [
+      "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
+    ],
+    "enhancementSkillsSourceCount": 1,
+    "enhancementSkillsConsensus": "weak",
+    "enhancementSkillsVerifiedAt": "2026-09-12"
   },
   "hyperStats": {
     "priority": [],
-    "notes": "No sourced hyper stat allocation order exists for Luminous in anything reached this pass. The class doc has a hyper stat section, but what it provides is a crit-rate bookkeeping rule rather than an ordered list: points parked in Critical Rate are the ones pulled back and redistributed once the other essentials are covered and Legion has grown (the doc names a rough 10,000 Legion mark), because Legion blocks start supplying the crit rate those points were covering. The doc records hyper stat Critical Rate levels 6 through 10 as contributing 7% up to 15%. Grandis Library carries no hyper stat section for any class. Left deliberately empty rather than filled with a plausible generic ordering.",
+    "rankingAvailable": false,
+    "unordered": true,
+    "sourcesDeclineToRank": true,
+    "notes": "No sourced hyper stat allocation order exists for Luminous in anything reached this pass. Re-checked 2026-09-12 with a direct question to the class doc: it gives NO ranked or ordered hyper stat list. What it provides instead is a crit-rate bookkeeping rule - points parked in Critical Rate are the ones pulled back and redistributed once the other essential stats are covered and Legion has grown: 'You'll only reduce the points into hyper stats after getting legion blocks to start going into critical rate after filling out the other essential stats (after reaching 10k+ Legion).' Under its '100% Critical Rate' heading the doc gives hyper stat Critical Rate values as '7% for lv6 / 9% for lv7 / 11% for lv8 / 13% for lv9 / 15% for lv10' - re-verified verbatim 2026-09-12. Grandis Library carries no hyper stat section for any class. priority is left deliberately empty, and the flags above exist so downstream code cannot read array position as a ranking no source states.",
     "sources": [
       "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-    ]
+    ],
+    "sourceCount": 1,
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "hyperSkills": {
     "essentialPassives": [
       {
         "skill": "Reflection - Range Up",
-        "consensus": "moderate - listed as essential by the class doc and present in Grandis Library's recommended build, though the two share an origin.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Listed under the class doc's 'Essential' selections and present in Grandis Library's recommended build ('Reflection - Spread and Range Up'), but Grandis credits its hyper passive build to the Luminous Discord, so the two are one source. Downgraded from 'moderate' on 2026-09-12: two same-lineage URLs are one vote, not two.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Apocalypse - Reinforce",
-        "consensus": "moderate - same two sources, one lineage.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Same two same-lineage URLs; both re-read 2026-09-12 and both list it.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Ender - Reinforce",
-        "consensus": "moderate - same two sources, one lineage.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Same two same-lineage URLs; both re-read 2026-09-12 and both list it.",
+        "verifiedAt": "2026-09-12"
       }
     ],
+    "essentialPassivesOrdered": false,
+    "essentialPassivesNote": "The class doc presents these three as a set under 'Essential' and gives no pick order among them.",
     "flexPassives": [
       {
         "skill": "Reflection - Spread",
-        "note": "Preference-tier in the class doc; included in Grandis Library's five-slot build.",
-        "consensus": "weak - one lineage.",
+        "note": "'Preference' tier in the class doc; included in Grandis Library's five-slot build.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "One lineage; both URLs re-read 2026-09-12.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Ender - Range Up",
-        "note": "Preference-tier in the class doc; included in Grandis Library's five-slot build.",
-        "consensus": "weak - one lineage.",
+        "note": "'Preference' tier in the class doc; included in Grandis Library's five-slot build ('Ender - Reinforce and Range Up').",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "One lineage; both URLs re-read 2026-09-12.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "skill": "Reflection - Reinforce",
-        "note": "Preference-tier in the class doc; NOT among Grandis Library's five listed picks.",
-        "consensus": "weak - single source.",
+        "note": "'Preference' tier in the class doc; NOT among Grandis Library's five listed picks - re-confirmed 2026-09-12, Grandis lists exactly Reflection Spread, Reflection Range Up, Apocalypse Reinforce, Ender Reinforce, Ender Range Up.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source.",
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "The two sources are compatible rather than contradictory: the class doc's three essentials plus two of its preference picks (Reflection - Spread, Ender - Range Up) reproduce exactly the five passives Grandis Library lists. Every name matches the wiki's hyper passive table for Luminous. No source reached gives a pick order for the active hypers.",
+    "flexPassivesOrdered": false,
+    "notes": "The two URLs are compatible rather than contradictory: the class doc's three essentials plus two of its preference picks (Reflection - Spread, Ender - Range Up) reproduce exactly the five passives Grandis Library lists. They are also one lineage, so agreement between them is not corroboration. The class doc adds 'in different situations, try to think about which hypers would benefit you best'. No source reached gives a pick order for the active hypers. The maplestorywiki.net citation that previously appeared here as a name-validation source was removed on 2026-09-12 because the site returns 403 and the names therefore could not be checked against it in this pass; every name above is instead confirmed present in the two reachable guide URLs.",
     "sources": [
       "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
-      "https://grandislibrary.com/heroes/luminous",
-      "https://maplestorywiki.net/w/Luminous/Skills"
-    ]
+      "https://grandislibrary.com/heroes/luminous"
+    ],
+    "sourceCount": 1,
+    "consensus": "weak",
+    "verifiedAt": "2026-09-12"
   },
   "innerAbility": {
     "bossing": [
       {
         "line": "Line 1: Attack Speed +1",
-        "why": "Both sources put attack speed on the top line. The class doc lays out the arithmetic for reaching the attack speed cap, and the inner ability line is one of the components in that sum - without it the character does not cap attack speed unless something external supplies the missing stage.",
-        "consensus": "moderate - agreed by the class doc and Grandis Library, but those two share one origin, so not independently confirmed.",
+        "why": "Both URLs put attack speed on the top line. The class doc lays out the arithmetic for reaching the attack speed cap and the inner ability line is one of the components in that sum; the doc's own alternative preset exists specifically for 'when you're partying with an Attack Speed +1 buffer', which confirms the line is load-bearing without an external supplier.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Agreed by the class doc and Grandis Library, but Grandis credits its inner ability field to the Luminous Discord, so they are one source. Downgraded from 'moderate' on 2026-09-12.",
+        "verifiedAt": "2026-09-12"
       },
       {
-        "line": "Line 2: Chance to Skip Cooldown +10% (class doc) OR Buff Duration +38% (Grandis Library)",
-        "why": "CONTESTED - see the conflicts array. The class doc argues for cooldown skip on the grounds that it reaches Twilight Nova, and Twilight Nova in turn shortens Baptism of Light and Darkness's cooldown. The same doc separately records that buff duration does not extend Equilibrium, the class's main timed window.",
-        "consensus": "contested",
+        "line": "Line 2: CONTESTED - Chance to Skip Cooldown +10% (class doc) OR Buff Duration +38% (Grandis Library)",
+        "why": "See the conflicts array. The class doc's reasoning, re-verified verbatim 2026-09-12: 'CD Skip notably only affects Twilight Nova, but even just that is extremely important. Not only is it one of our most powerful skills (large percentage in a full damage rotation), it also reduces Baptism of Light and Darkness CD by 8s.' The same doc separately states 'Buff Duration does not affect EQ duration. It is however optimal to get enough buff duration for AB link (Terms and Conditions) to last as long as your RoR.' - so the doc does assign buff duration a purpose, just not an Equilibrium one.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "contested",
+        "consensusNote": "Both positions were re-read on 2026-09-12 and each is correctly attributed. The two URLs are one lineage, so this reads as a version gap rather than two considered opinions. Unresolved.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Line 3: Boss Damage +10%, or Damage to Abnormal Status +8%",
-        "why": "Both sources treat the third line as a damage line with boss damage as the default; the class doc names damage-against-abnormal-status as the alternative.",
-        "consensus": "moderate - one lineage.",
+        "why": "The class doc's optimal setup is 'Attack Speed +1', 'Cooldown Skip +10%', and either 'Boss Damage +10%' or 'Damage to Abnormal Status +8%' - re-verified 2026-09-12. Grandis's third slot reads 'Chance to Skip Cooldown +10% / Boss Damage +10%', so it also treats the third line as the damage-or-cooldown flex slot.",
         "sources": [
           "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "One lineage. Downgraded from 'moderate' on 2026-09-12.",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "bossingAlternative": {
       "lines": "Chance to Skip Cooldown +20%, Boss Damage +10%, Damage to Abnormal Status +8%",
-      "why": "The class doc's variant for a character receiving attack speed from a party buffer, who therefore does not need the attack speed line to cap.",
-      "consensus": "weak - single source.",
+      "why": "The class doc's variant for a character receiving attack speed from a party buffer - the doc's own condition, re-verified verbatim 2026-09-12, is 'when you're partying with an Attack Speed +1 buffer'.",
       "sources": [
         "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-      ]
+      ],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
     },
     "training": [
       {
         "line": "Number of enemies hit by multi-target skills +1, Meso Obtained +15%, Item Drop Rate +15%",
-        "why": "Grandis Library's training preset for Luminous. The class doc reached in this pass carries no separate training or farming inner ability preset.",
-        "consensus": "weak - single source, and that source is not independent of the Luminous Discord.",
+        "why": "Grandis Library's training preset for Luminous, re-read 2026-09-12 and matching exactly. The class doc reached in this pass carries no separate training or farming inner ability preset.",
         "sources": [
           "https://grandislibrary.com/heroes/luminous"
-        ]
+        ],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Single source, and that source is not independent of the Luminous Discord.",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "notes": "Region caveat that applies to every Grandis Library inner ability recommendation: its attack-speed lines are presented per attack-speed-cap region, and GMS and KMS differ. The lines above were read from the GMS-facing page."
   },
-  "gearingNotes": "WSE potential target: the class doc states an optimal of nine magic attack lines with zero boss damage and zero ignore-DEF lines, and gives its reason explicitly - Luminous already carries a large amount of ignore-DEF from its own kit, so paying potential lines for more of it is wasted. This is a genuine class-specific decision and it points the opposite way from the boss-damage-and-IED default most classes use. Single source, weak consensus. Supporting mechanical evidence from the wiki, which is independent of the doc: Light Wash grants the character ignore DEF, Arcane Pitch's passive component carries ignore DEF up to 40%, Ender and HEXA Ender each carry their own additional ignore DEF, and Harmonic Paradox and Lustrous Orb add more at HEXA levels - so the innate-IED premise is consistent with the skill tables even though only one guide draws the gearing conclusion. IED benchmarks from the class doc: roughly 75-80% as a starting target, about 92% against 300 PDR bosses, about 96% against 380 PDR bosses. CRITICAL RATE: Luminous supplies a large block of its own crit - Grandis Library's base-stats-from-skills table totals +40% crit rate from passives, which the wiki breaks down as Spell Mastery +20% at level 10 and Magic Mastery +15% at level 30, plus Apocalypse - Critical Chance adding +20% to Apocalypse specifically - so links, Legion, familiars and hyper stats have a smaller gap to close than for a class with no innate crit, and this is why hyper stat crit points become reclaimable as Legion grows. ATTACK SPEED: the class doc lays out a route to the attack speed cap that sums base attack speed with Agile Magic, Spell Mastery, a Decent Speed Infusion, an Extreme Green Potion and the inner ability line; the wiki confirms Agile Magic gives +2 and Spell Mastery +1. The practical consequence is that the inner ability attack speed line is load-bearing rather than optional unless a party member supplies the missing stage. BUFF DURATION: the class doc records that buff duration does not extend Equilibrium, the class's central timed window - which is why the two sources disagree about whether buff duration deserves an inner ability line. The doc does tie buff duration to timing Ray of Redemption against its cooldown. MODE DISCIPLINE is itself a damage stat: casting a light skill while in the dark state, or the reverse, costs 50% final damage per the class doc.",
+  "gearingNotes": "WSE potential target: the class doc states an optimal of nine magic attack lines with zero boss damage and zero ignore-DEF lines, and gives its reason explicitly - Luminous already carries a large amount of ignore-DEF from its own kit, so paying potential lines for more of it is wasted. This is a genuine class-specific decision and it points the opposite way from the boss-damage-and-IED default most classes use. Single source, weak consensus. Supporting mechanical evidence from the wiki, which is independent of the doc: Light Wash grants the character ignore DEF, Arcane Pitch's passive component carries ignore DEF up to 40%, Ender and HEXA Ender each carry their own additional ignore DEF, and Harmonic Paradox and Lustrous Orb add more at HEXA levels - so the innate-IED premise is consistent with the skill tables even though only one guide draws the gearing conclusion. IED benchmarks from the class doc: roughly 75-80% as a starting target, about 92% against 300 PDR bosses, about 96% against 380 PDR bosses. CRITICAL RATE: Luminous supplies a large block of its own crit - Grandis Library's base-stats-from-skills table totals +40% crit rate from passives, which the wiki breaks down as Spell Mastery +20% at level 10 and Magic Mastery +15% at level 30, plus Apocalypse - Critical Chance adding +20% to Apocalypse specifically - so links, Legion, familiars and hyper stats have a smaller gap to close than for a class with no innate crit, and this is why hyper stat crit points become reclaimable as Legion grows. ATTACK SPEED: the class doc lays out a route to the attack speed cap that sums base attack speed with Agile Magic, Spell Mastery, a Decent Speed Infusion, an Extreme Green Potion and the inner ability line; the wiki confirms Agile Magic gives +2 and Spell Mastery +1. The practical consequence is that the inner ability attack speed line is load-bearing rather than optional unless a party member supplies the missing stage. BUFF DURATION: the class doc records that buff duration does not extend Equilibrium, the class's central timed window - which is why the two sources disagree about whether buff duration deserves an inner ability line. The doc does tie buff duration to timing Ray of Redemption against its cooldown. MODE DISCIPLINE is itself a damage stat: casting a light skill while in the dark state, or the reverse, costs 50% final damage per the class doc. NOTE 2026-09-12: this field is outside the five endgame sections in scope for the resolution pass and was left untouched. Its wiki-attributed claims were NOT re-verified and maplestorywiki.net returned 403 during that pass.",
   "commonMistakes": [
     {
       "mistake": "Holding down Aether Conduit as if it were a key-down skill. The class doc states it is a single tap, and that pressing it again cancels it.",
@@ -315,7 +417,9 @@
       "mistake": "Weaving Ender into the non-Equilibrium half of the cycle. The class doc says this loses damage unless executed perfectly.",
       "sources": [
         "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY"
-      ]
+      ],
+      "disputed": true,
+      "disputeNote": "Contest defect 3: an independent re-read of the class doc found no Ender restriction and concluded the attribution may be invented. This is rotation content and therefore OUT OF SCOPE for the 2026-09-12 endgame resolution pass - left in place, unverified, and flagged. Do not treat it as sourced guidance."
     },
     {
       "mistake": "Casting Baptism of Light and Darkness during the non-Equilibrium window. The class doc says it is normally skipped there, the exception being a boss already at low HP.",
@@ -339,37 +443,49 @@
   "sources": [
     {
       "url": "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
-      "what": "The Luminous class guide maintained by EbonSol through the Luminous Discord. The only source reached that carries judgement on every field this file needs: V matrix skill-node and boost-node ordering, a HEXA priority chart, hyper skill passives, inner ability presets, crit/IED/attack-speed targets, WSE potential guidance, rotation mechanics and Sol Hecate binding. Read via the plain-text export - the bare document URL returns only the Docs shell.",
+      "what": "The Luminous class guide maintained by EbonSol through the Luminous Discord. The only source reached that carries judgement on every field this file needs: V matrix skill-node and boost-node ordering, a HEXA priority chart, HEXA mastery descriptions, HEXA stat node picks, hyper skill passives, inner ability presets, crit/IED/attack-speed targets, WSE potential guidance, rotation mechanics and Sol Hecate binding. Read via the plain-text export (/export?format=txt, which 307-redirects to a googleusercontent host) - the bare document URL returns only the Docs shell.",
       "dated": "2026-08-28 (doc's own last-updated line; states MSEA Night Troupe / GMS Ride the Lightning)",
-      "independent": true
+      "independent": true,
+      "reachableOn": "2026-09-12"
     },
     {
       "url": "https://grandislibrary.com/heroes/luminous",
-      "what": "Grandis Library's Luminous page: boost node tiering as Primary/Secondary/Other with node groupings, hyper skill passive build, recommended inner ability split bossing/training, base stats from skills, legion effect, link skill, and Overview and 6th Job infographics. NOT INDEPENDENT - the page's own credits block attributes the inner ability, hyper passive build and boost node build to the Luminous Discord, the same origin as the class doc. Counted as one source together with the doc, not a second vote. It does disagree with the doc on one inner ability line, recorded as a conflict.",
+      "what": "Grandis Library's Luminous page: boost node tiering as Primary/Secondary/Other with node groupings, hyper skill passive build, recommended inner ability split bossing/training, base stats from skills, legion effect, link skill, and Overview and 6th Job infographics. NOT INDEPENDENT - re-confirmed 2026-09-12, the page's credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Luminous Discord', the same origin as the class doc. Counted as one source together with the doc, not a second vote. It does disagree with the doc on one inner ability line, recorded as a conflict. It lists no HEXA core names.",
       "dated": "GMS Ver. 269 [Ride the Lightning] sitewide stamp - two patches behind the v.271 target; no per-page date",
-      "independent": false
+      "independent": false,
+      "reachableOn": "2026-09-12"
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference, genuinely outside the class-doc lineage. Gives Luminous two trios: Reflection / Ender / Apocalypse, and a second for which only Twilight Nova is named. Corroborates which skills matter but disagrees with the class doc on how they are grouped.",
-      "dated": "2024-11-21 page date; author states the underlying data was last updated 2024-05-14",
-      "independent": true
+      "what": "mastermysty's cross-class boost node trio reference, genuinely outside the class-doc lineage. Gives Luminous two trios: Reflection / Ender / Apocalypse, and a second for which only Twilight Nova is named. Corroborates which skills matter but disagrees with the class doc on how they are grouped. Re-read 2026-09-12, unchanged.",
+      "dated": "2024-11-21 per the page's own last-updated line, re-read 2026-09-12",
+      "independent": true,
+      "reachableOn": "2026-09-12"
     },
     {
       "url": "https://maplestorywiki.net/w/Luminous/Skills",
-      "what": "Skill-name and mechanics table. Used as the anti-fabrication allowlist - every skill, hyper passive, V skill, and HEXA Origin/Ascent/Mastery/Enhancement name in this file was checked against it. Also the source for Light Wash's values and for the passive crit rate and attack speed contributions. Carries no judgement.",
-      "dated": "living wiki; page history not reachable (Cloudflare), so the revision date is unverified",
-      "independent": true
+      "what": "Previously used as this file's anti-fabrication allowlist for skill names. UNREACHABLE: returned HTTP 403 on 2026-09-12. Every endgame claim that rested on it has been re-sourced to a reachable source or deleted. Do not cite it again without re-testing reachability.",
+      "dated": "unverified",
+      "independent": true,
+      "reachableOn": "FAILED 2026-09-12 (HTTP 403)"
     },
     {
       "url": "https://maplestorywiki.net/w/Luminous",
-      "what": "Class properties: Heroes faction, Magician, INT main stat, LUK secondary, Shining Rod primary weapon, Orb secondary weapon, Light Wash link skill, Legion INT +10/20/40/80/100.",
-      "dated": "living wiki; revision date unverified",
-      "independent": true
+      "what": "Class properties: Heroes faction, Magician, INT main stat, LUK secondary, Shining Rod primary weapon, Orb secondary weapon, Light Wash link skill, Legion INT +10/20/40/80/100. Also 403 on 2026-09-12; the properties it supports are outside the five endgame sections and were left as recorded.",
+      "dated": "unverified",
+      "independent": true,
+      "reachableOn": "FAILED 2026-09-12 (HTTP 403)"
+    },
+    {
+      "url": "https://maplestory.fandom.com/wiki/Luminous/Skills",
+      "what": "Tried on 2026-09-12 as a substitute for the 403 maplestorywiki.net skill table, specifically to check the HEXA enhancement-core naming. Returned HTTP 402. No skill-name allowlist was reachable in this pass.",
+      "dated": "n/a",
+      "independent": true,
+      "reachableOn": "FAILED 2026-09-12 (HTTP 402)"
     },
     {
       "url": "https://www.mapledoro.com/guides/character-guides/luminous",
-      "what": "Checked and found empty of judgement - its class infographic and HEXA guide modules both read as work-in-progress and refer readers to the class document and class Discord. Independently confirms the Light Wash link skill name and its ignore-DEF effect and the INT legion bonus, and nothing else. Listed so a later pass does not rediscover it hopefully.",
+      "what": "Checked in the earlier pass and found empty of judgement - its class infographic and HEXA guide modules both read as work-in-progress and refer readers to the class document and class Discord. Independently confirms the Light Wash link skill name and its ignore-DEF effect and the INT legion bonus, and nothing else. Listed so a later pass does not rediscover it hopefully. Not re-fetched on 2026-09-12 - it carries nothing about the five endgame sections.",
       "dated": "no date published",
       "independent": true
     },
@@ -381,7 +497,7 @@
     }
   ],
   "consensusLevel": "weak",
-  "consensusNote": "Six sources were reached and four are independent of one another, but only TWO carry judgement about what to build: the class doc, and a cross-class node-trio reference whose data is from 2024. The wiki pages and MapleDoro are independent but judgement-free - useful for validating names and mechanics, worthless for priority. Grandis Library, which would look like a third opinion, is credited to the Luminous Discord and is therefore the same voice as the class doc. So the three-independent-sources bar is met for FACTS and NOT met for JUDGEMENT. Every V matrix, HEXA, hyper skill and inner ability claim here rests on one maintained document, with partial corroboration on node contents from one older independent reference. The HEXA order has exactly one source, and that source declines to present it as fixed.",
+  "consensusNote": "Re-assessed 2026-09-12. Only TWO sources carry judgement about what to build: the class doc (with Grandis Library as a same-lineage restatement of it, confirmed by Grandis's own credits block) and a cross-class node-trio reference whose data is from 2024. Both maplestorywiki.net pages and the Fandom mirror were unreachable in this pass, so the name-validation layer this file previously leaned on is gone; every endgame name now stands on a reachable guide or has been deleted. NOTHING in the five endgame sections reaches 'strong' - the 3-independent-source bar is met by zero claims. The highest label anywhere in the endgame sections is 'moderate', on the four boost-node skills (Ender, Reflection, Apocalypse, Twilight Nova) where mastermysty's reference independently agrees they are top boost targets while disagreeing on grouping. Everything else is weak or contested, and is labelled so.",
   "conflicts": [
     {
       "field": "innerAbility - second line for bossing",
@@ -389,7 +505,8 @@
       "sourceA": "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY (2026-08-28)",
       "positionB": "Buff Duration +38%, with cooldown skip or boss damage relegated to the third line",
       "sourceB": "https://grandislibrary.com/heroes/luminous (GMS v269)",
-      "note": "Unresolved here. The two sources are not independent - Grandis credits the Luminous Discord for its inner ability field - so the likeliest explanation is a version gap rather than two considered opinions. Two facts from the doc bear on it and are recorded rather than used to pick a winner: buff duration does not extend Equilibrium, and cooldown skip reaches Twilight Nova, which itself shortens Baptism of Light and Darkness's cooldown. Needs a Luminous Discord check."
+      "note": "Unresolved. Both positions re-verified on 2026-09-12 by reading each page. The two sources are not independent - Grandis credits the Luminous Discord for its inner ability field - so the likeliest explanation is a version gap rather than two considered opinions. Two facts from the doc bear on it and are recorded rather than used to pick a winner: 'Buff Duration does not affect EQ duration', and 'CD Skip notably only affects Twilight Nova... it also reduces Baptism of Light and Darkness CD by 8s'. Needs a Luminous Discord check.",
+      "verifiedAt": "2026-09-12"
     },
     {
       "field": "vMatrix - boost node trio composition",
@@ -397,15 +514,17 @@
       "sourceA": "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY and https://grandislibrary.com/heroes/luminous (one lineage)",
       "positionB": "Reflection, Ender and Apocalypse grouped into a single trio",
       "sourceB": "https://mystyjl.github.io/reference/NodeGuide.html (2024-11-21)",
-      "note": "The independent reference predates the current patch by roughly two years, and Grandis exposes a pre-v269 boost node toggle, which is direct evidence that boost node groupings changed at v269. That makes the 2024 grouping the likelier stale one, but neither position is asserted here as correct. Both sources agree on WHICH skills are worth boosting; they disagree only on how the slots are packed."
+      "note": "Both positions re-verified on 2026-09-12. The independent reference predates the current patch by roughly two years, and Grandis exposes a pre-v269 boost node toggle, which is direct evidence that boost node groupings changed at v269. That makes the 2024 grouping the likelier stale one, but neither position is asserted here as correct. Both sources agree on WHICH skills are worth boosting; they disagree only on how the slots are packed.",
+      "verifiedAt": "2026-09-12"
     },
     {
-      "field": "hexa - placement of Harmonic Paradox and the Mastery cores within the order",
-      "positionA": "Flat chart sequence ending with Gate of Light and then Harmonic Paradox",
-      "sourceA": "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
-      "positionB": "Grouped reading of the same chart placing Mastery cores first and Harmonic Paradox with Lustrous Orb as a capstone pair",
+      "field": "vMatrix - why Node 4 is demoted",
+      "positionA": "Grandis labels its Secondary tier 'used but no HEXA unlock' and puts Twilight Nova there",
+      "sourceA": "https://grandislibrary.com/heroes/luminous",
+      "positionB": "The class doc's HEXA mastery section names Twilight Nova as one of the HEXA masteries",
       "sourceB": "https://docs.google.com/document/d/1g4C1Sw5Xfdc0QD_w9gkyZN_EvW3n4_j_1Whq8z-iNEY",
-      "note": "Not a disagreement between people - two reads of one visually-laid-out chart in one document produced different placements. Flagged as an extraction-confidence problem so it gets re-checked rather than silently trusted."
+      "note": "Added 2026-09-12, replacing an earlier version of this caveat that attributed the contradiction to maplestorywiki.net (403, unverifiable). Both pages are the same lineage, so this is an internal inconsistency in that lineage: the demotion rationale does not survive the lineage's own HEXA mastery list. The grouping itself is unaffected; only the stated reason for ranking it Secondary is in doubt.",
+      "verifiedAt": "2026-09-12"
     },
     {
       "field": "linkSkill - name",
@@ -413,33 +532,70 @@
       "sourceA": "https://maplestorywiki.net/w/Luminous, https://grandislibrary.com/heroes/luminous, https://www.mapledoro.com/guides/character-guides/luminous",
       "positionB": "'Permeate', as stated in the research brief for this file",
       "sourceB": "assignment brief - no published source found",
-      "note": "Three independent sources say Light Wash. No source reached uses Permeate. Recorded rather than silently corrected, in case Permeate is a newer or regional rename this pass could not see."
+      "note": "Three independent sources say Light Wash. No source reached uses Permeate. Recorded rather than silently corrected, in case Permeate is a newer or regional rename this pass could not see. Not re-verified 2026-09-12 (out of the endgame scope; two of the three cited URLs are now 403)."
     }
   ],
   "gaps": [
-    "No sourced hyper stat allocation order exists for Luminous.",
+    "No sourced hyper stat allocation order exists for Luminous. Re-confirmed 2026-09-12 by direct question to the class doc: it gives no ranked list.",
     "No sourced boost node leveling order (which node reaches 50 or 60 first) and no sourced Lv 200 versus Lv 260 difference.",
     "HEXA order rests on a single document that declines to call it fixed, and gives no Heroic-versus-Interactive split, which several other classes' docs do provide.",
+    "The exact in-game names of the four HEXA skill-enhancement cores are unverified. The class doc names the four underlying V skills but not the core names; the '-Boost' suffix this file used to carry came from a now-unreachable wiki and was deleted.",
+    "The class doc's HEXA chart carries parenthetical core labels (Mastery 1/2/3/4, Common 2/3) that did not extract stably across repeated passes. The sequence is stable; the numbering is not, and is deliberately not recorded.",
+    "No reachable skill-name allowlist. maplestorywiki.net (both pages) returned 403 and maplestory.fandom.com returned 402 on 2026-09-12. A later pass should re-test these before relying on any wiki-attributed name.",
     "Reddit was unreachable in this environment, so r/Maplestory Luminous threads are entirely unexamined.",
-    "The web search budget was exhausted before this pass began and every search engine tried presented a CAPTCHA, so no YouTube guide descriptions or 2025-2026 Luminous discussion threads could be located. If a genuinely independent third judgement source for Luminous exists publicly, it was not found here.",
+    "No genuinely independent third judgement source for Luminous was found in either pass.",
     "Grandis Library's Luminous 6th Job infographic is an image and was not read; it is also not independent of the class doc.",
     "The Luminous Discord is the only route to anything newer than 2026-08-28 and is not machine-readable from here."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "characterContext": "Target character is Lv 214. HEXA opens at Lv 260, so the hexa section is forward-planning only; the V matrix, hyper skill and inner ability sections are the actionable ones now.",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "hexa.masterySkills lists SIX cores: HEXA Ender, HEXA Reflection, Endless Darkness, HEXA Apocalypse, Eternal Light, HEXA Twilight Nova. The doc's own numbered legend - which I pulled directly - names exactly FOUR: 'Ender (Mastery 1), Endless Darkness (Mastery 2), Apocalypse (Mastery 3), Twilight Nova (Mastery 4)'. On a direct question the doc extraction returned: Reflection and Eternal Light do NOT appear as HEXA masteries. Both extra entries are attributed solely to the wiki, which is 403. 'HEXA Reflection' and 'Eternal Light' are unsupported by any source I could reach and are contradicted by the only source that enumerates the cores.",
-      "hexa.order step 2, the 'alternate grouped reading', names the Mastery cores as '(Ender, Reflection, Apocalypse, Twilight Nova)' - substituting Reflection for Endless Darkness. No source states that set, and no source states that order. This is a reconstruction dressed as a second reading of the chart. It is the most dangerous item in the file: it makes a CORRECT order look contested. I re-derived the doc's chart independently and got step 1 back EXACTLY, in order - Freud's Wisdom (Common 3), Apocalypse (Mastery 3), Endless Darkness (Mastery 2), Ender (Mastery 1), Twilight Nova (Mastery 4), Sol Hecate (Common 2), Baptism of Light and Darkness, Liberation Orb, Aether Conduit, Lustrous Orb (Ascent), Gate of Light, Harmonic Paradox (Origin). The chart has an explicit legend; it is not visually ambiguous. The third conflicts[] entry should be withdrawn, not preserved.",
-      "commonMistakes entry 2 - 'Weaving Ender into the non-Equilibrium half of the cycle. The class doc says this loses damage unless executed perfectly' - is not supported. A targeted re-read of the doc returned: it 'does NOT mention Ender restrictions', while confirming the adjacent Baptism claim verbatim-adjacent ('skip the use of Baptism of Light and Darkness during this state'). Attribution to the doc appears invented or imported from elsewhere. Flag rather than delete outright: the doc is long and one extraction pass can miss a line - but it must be re-sourced before it ships.",
-      "hexa.enhancementSkills names ('Gate of Light Boost', 'Aether Conduit Boost', 'Baptism of Light and Darkness Boost', 'Liberation Orb Boost') rest entirely on the unreachable wiki. The doc lists those four V skills in its HEXA order with NO 'Boost' suffix, and no reachable source uses that naming convention. The four skills are real; the '-Boost' core names are unverified in-game text."
+    "resolvedAt": "2026-09-12",
+    "resolutionMethod": "Scope-narrowed resolution pass. Only vMatrix, hexa, hyperSkills, hyperStats and innerAbility were in scope. Each in-scope defect was settled by re-opening the exact cited page and checking the exact disputed claim. The class doc was re-read through its plain-text export in five separate targeted extractions; Grandis Library and mystyjl's node reference were re-read in full. maplestorywiki.net returned 403 and maplestory.fandom.com returned 402, so every endgame claim resting on a wiki was either re-sourced to a reachable page or deleted.",
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "hexa.masterySkills lists SIX cores but the doc's numbered legend names exactly FOUR; 'HEXA Reflection' and 'Eternal Light' are unsupported and contradicted by the only source that enumerates the cores.",
+        "action": "CORRECTED (the count was right, two names were wrong)",
+        "what": "Re-read the class doc's HEXA mastery section directly. It describes SIX mastery skills individually, not four: Ender, Reflection, Endless Darkness, Apocalypse, Eternal Lightness, Twilight Nova - each with its own one-line description ('Reflection works the same as its 4th job counterpart'; 'Eternal Lightness is a new passive AoE attack that triggers while you're using Light skills while in Light/EQ mode'). So the critic's 'only four exist' finding did not hold; it came from reading the chart legend rather than the mastery section. Two real errors were fixed anyway: 'Eternal Light' was an extraction artifact and is corrected to 'Eternal Lightness' (the doc's own spelling), and the 'HEXA ' prefix on four entries was deleted because it came solely from the 403 wiki. The array is now flagged masterySkillsOrdered:false, because the doc's (Mastery N) numbering did NOT extract stably across passes and must not be implied by array position.",
+        "why": "The cited source does support six mastery skills; it does not support the two names as previously written, nor any ordering."
+      },
+      {
+        "defect": "hexa.order step 2, the 'alternate grouped reading', names the Mastery cores as '(Ender, Reflection, Apocalypse, Twilight Nova)' - substituting Reflection for Endless Darkness. No source states that set or that order. It makes a correct order look contested.",
+        "action": "DELETED",
+        "what": "Step 2 removed from hexa.order entirely, and the matching third entry in conflicts[] ('hexa - placement of Harmonic Paradox and the Mastery cores') withdrawn. Independently re-extracted the doc's HEXA chart on 2026-09-12 and got step 1's sequence back unchanged: Freud's Wisdom, Apocalypse, Endless Darkness, Ender, Twilight Nova, Sol Hecate, Baptism of Light and Darkness, Liberation Orb, Aether Conduit, Lustrous Orb, Gate of Light, Harmonic Paradox. The 'visually ambiguous chart' framing in step 1 was also removed.",
+        "why": "Agreed with the critic. A reconstruction presented as a second reading of the source was inventing a conflict that the source does not contain - exactly the failure mode where a data shape asserts something its sources decline to."
+      },
+      {
+        "defect": "hexa.enhancementSkills names ('Gate of Light Boost', 'Aether Conduit Boost', 'Baptism of Light and Darkness Boost', 'Liberation Orb Boost') rest entirely on the unreachable wiki; no reachable source uses that naming convention.",
+        "action": "CORRECTED",
+        "what": "Confirmed the defect. maplestorywiki.net returned 403 and the Fandom mirror 402 on 2026-09-12, and a targeted search of the class doc for the word 'Boost' as part of a HEXA core name returned nothing. The four '-Boost' names are deleted and replaced with the four bare V-skill names the doc actually uses, in the doc's chart order, with enhancementSkillsNote recording that the in-game core names remain unverified and a matching entry added to gaps[].",
+        "why": "A core name that may not exist in-game sends a player looking for something that is not there. The four underlying skills are real and sourced; the suffix was not."
+      },
+      {
+        "defect": "commonMistakes entry 2 - 'Weaving Ender into the non-Equilibrium half of the cycle' - is not supported by the class doc; attribution appears invented.",
+        "action": "OUT OF SCOPE - flagged, not resolved",
+        "what": "This is rotation content and commonMistakes is not one of the five endgame sections in scope. Content left untouched per instruction. Added disputed:true and a disputeNote on that entry so the unverified attribution is visible to anything downstream rather than silently trusted.",
+        "why": "Product owner scoped this wave to vMatrix / hexa / hyperSkills / hyperStats / innerAbility. Flagging costs nothing and preserves the critic's finding for a later rotation-focused pass."
+      }
+    ],
+    "additionalCorrections": [
+      "CITATION INVERSION, four instances: vMatrix boost node groups 1-4 each cited maplestorywiki.net as confirming that Ender / Reflection / Apocalypse / Twilight Nova have HEXA Mastery versions. That site returns 403 and could not have been checked. Removed the wiki from those source arrays and re-sourced the HEXA-mastery fact to the class doc's own mastery section, which does name all four. Group 4's caveat, previously attributed to the wiki, is re-attributed to the doc and promoted into conflicts[] as an internal contradiction in the Grandis/doc lineage.",
+      "CITATION INVERSION: hyperSkills.notes and hexa.order step 1 both claimed every name had been 'validated against the wiki'. Removed - the wiki was not reachable in this pass. Names are instead confirmed present in the two reachable guide pages.",
+      "CONSENSUS RELABELLING, eight claims: every hyperSkills and innerAbility claim that was labelled 'moderate' on the strength of the class doc AND Grandis Library agreeing has been downgraded to 'weak' with sourceCount 1. Grandis's credits block was re-read on 2026-09-12 and attributes its inner ability, hyper passive build and boost node build to the Luminous Discord - the same origin as the doc. Two URLs of one lineage are one vote. This is the single largest labelling change in the pass.",
+      "CONSENSUS UPGRADE, three claims: vMatrix boost node groups 1, 2 and 3 are upgraded to 'moderate' with sourceCount 2, because mystyjl's independent node reference names Ender, Reflection and Apocalypse as Luminous's top boost skills. The upgrade covers WHICH skills, not the grouping - mystyjl packs them differently, and the consensusNote says so on each entry.",
+      "DELETED an unverifiable rationale: hexa.order previously said the doc 'singles out [Freud's Wisdom] as an early pick for quality of life rather than for raw damage'. That rationale was not found on re-read. The step is reduced to the verifiable fact - Freud's Wisdom is first in the doc's chart.",
+      "ADDED, newly verified: HEXA stat nodes 1-3 as Main Stat (INT), Critical Damage and Magic Attack, quoted from the class doc, flagged ordered:false because the doc gives them as a set for the first three nodes without ranking them.",
+      "SHAPE FIX: hyperStats now carries rankingAvailable:false, unordered:true and sourcesDeclineToRank:true alongside its empty priority array, so downstream code cannot read anything into it. A direct question to the doc on 2026-09-12 confirmed it provides no ranked hyper stat list. The doc's crit-rate figures ('7% for lv6 / 9% for lv7 / 11% for lv8 / 13% for lv9 / 15% for lv10') and its 10k+ Legion reclamation rule were re-verified verbatim and kept as prose, not as a ranking.",
+      "SHAPE FIX: hyperSkills.essentialPassives and flexPassives now carry essentialPassivesOrdered:false / flexPassivesOrdered:false. The doc presents each as a set under 'Essential' and 'Preference' and gives no pick order within either."
     ],
     "clearedOnInspection": [],
-    "shipReady": false
+    "shipReady": true,
+    "shipReadyNote": "All five endgame sections now carry only claims re-verified against a source reachable on 2026-09-12, or explicitly labelled gaps and conflicts. No claim in those sections is labelled stronger than its sourcing supports, and none reaches 'strong' - zero Luminous endgame claims have three independent sources, and the file says so plainly."
   },
-  "written": false,
-  "blockedReason": "4 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null
 }

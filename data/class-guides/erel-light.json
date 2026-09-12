@@ -14,190 +14,1743 @@
   },
   "legionEffect": "Boss Damage +1/2/3/5/6%",
   "vMatrix": {
+    "priorityIsOrdered": "tiered",
+    "orderedWithinTier": false,
+    "orderingCaveat": "SHAPE WARNING FOR DOWNSTREAM CODE. Grandis Library publishes an unordered THREE-TIER classification, not a ranked list. The priority array below is sorted by tier (all primary, then all secondary, then other) and, inside each tier, reproduces Grandis's own node display order - which is just the skill's job-advancement order, not a recommendation. Do NOT read array position within a tier as priority. No source read in this pass ranks Spear of Lugh Boost above Fury of Roan Boost, or Spear of Light Boost above Impulse of Chulainn Boost.",
+    "tiers": {
+      "primary": ["Spear of Lugh Boost", "Fury of Roan Boost", "Sting of Roan Boost"],
+      "secondary": ["Spear of Light Boost", "Impulse of Chulainn Boost"],
+      "other": ["Charge of Fionn Boost / Path of Fionn Boost"],
+      "legendText": "Grandis Library's boost-node legend on this page reads, verbatim: \"Primary and Secondary are recommended to be upgraded\".",
+      "howRead": "Re-verified 2026-09-12 by reading the page's own embedded data object, which contains \"primary\":[0,1,2],\"secondary\":[3,5],\"other\":[4] indexed against its nodes array [Spear of Lugh, Fury of Roan, Sting of Roan, Spear of Light, Charge of Fionn + Path of Fionn, Impulse of Chulainn]. The tiers are colour-coded only in the rendered page and are NOT present as text; do not derive them from page text.",
+      "sources": ["https://grandislibrary.com/shine/erel-light"],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12"
+    },
     "priority": [
       {
         "node": "Spear of Lugh Boost",
-        "why": "Grandis Library's page data classes this node Primary. Grandis's own boost-node legend states that nodes classed Primary and Secondary are the ones recommended to be upgraded. Spear of Lugh is the class's main-attack chain (Enhanced Spear of Lugh I/II/III) and is also the skill the first Erda Link mastery upgrades.",
-        "consensus": "weak - single source (Grandis Library), and Grandis is a presentation layer over Erel Light Discord material rather than an independent second opinion",
-        "sources": [
-          "https://grandislibrary.com/shine/erel-light"
-        ]
+        "tier": "primary",
+        "why": "Index 0 of Grandis Library's primary array, and Grandis's legend says Primary and Secondary are the tiers recommended for upgrading. Corroborating facts (maplestorywiki, re-read 2026-09-12): this is V Enhancement Core 1; the skill is the class's main attack, reached through the Enhanced Spear of Lugh I/II/III chain; and it is the skill the first Erda Link mastery (SHINE Spear of Lugh, described as \"Enhances Spear of Lugh\") upgrades - which is also the single highest-return Erda Link purchase in Eikonal's workbook.",
+        "sources": ["https://grandislibrary.com/shine/erel-light", "https://maplestorywiki.net/w/Erel_Light/Skills"],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "The TIERING judgement rests on Grandis Library alone. maplestorywiki is cited here only for the factual node name, core number and skill chain, and states no priority of any kind. sourceCount counts independent sources for the recommendation, which is one.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Fury of Roan Boost",
-        "why": "Classed Primary in Grandis Library's page data.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://grandislibrary.com/shine/erel-light"
-        ]
+        "tier": "primary",
+        "why": "Index 1 of Grandis Library's primary array. V Enhancement Core 2 on maplestorywiki: 2% final damage per level, Max Targets +1 at level 20, Ignored Enemy Defense +20% at level 40.",
+        "sources": ["https://grandislibrary.com/shine/erel-light", "https://maplestorywiki.net/w/Erel_Light/Skills"],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Tiering from Grandis Library only; maplestorywiki supplies the name and the per-level numbers and states no priority.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Sting of Roan Boost",
-        "why": "Classed Primary in Grandis Library's page data.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://grandislibrary.com/shine/erel-light"
-        ]
+        "tier": "primary",
+        "why": "Index 2 of Grandis Library's primary array. V Enhancement Core 3 on maplestorywiki: 2% final damage per level, Max Targets +1 at level 20, Ignored Enemy Defense +20% at level 40.",
+        "sources": ["https://grandislibrary.com/shine/erel-light", "https://maplestorywiki.net/w/Erel_Light/Skills"],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Tiering from Grandis Library only; maplestorywiki supplies the name and the per-level numbers and states no priority.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Spear of Light Boost",
-        "why": "Classed Secondary in Grandis Library's page data. Note the tension recorded in the conflicts array: maplestorywiki's enhancement table gives this node 3% final damage per level, the highest per-level value of any Erel Light boost node, while every node Grandis classes Primary is listed at 2% per level.",
-        "consensus": "weak - single source, and contested against a factual table from a second source",
-        "sources": [
-          "https://grandislibrary.com/shine/erel-light",
-          "https://maplestorywiki.net/w/Erel_Light/Skills"
-        ]
+        "tier": "secondary",
+        "why": "Index 3 of Grandis Library's secondary array. Still inside the set Grandis's legend recommends upgrading, but below the three Primary nodes. See the conflicts array: maplestorywiki's V Enhancement table gives this node 3% final damage per level, the highest per-level value of any Erel Light boost node, while every node Grandis classes Primary is listed at 2% per level. Both facts were re-read on 2026-09-12 and both stand; the tension is recorded, not resolved.",
+        "sources": ["https://grandislibrary.com/shine/erel-light", "https://maplestorywiki.net/w/Erel_Light/Skills"],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Tiering from Grandis Library only, and contested by a factual table on maplestorywiki rather than corroborated by it.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Impulse of Chulainn Boost",
-        "why": "Classed Secondary in Grandis Library's page data.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://grandislibrary.com/shine/erel-light"
-        ]
+        "tier": "secondary",
+        "why": "Index 5 of Grandis Library's secondary array. V Enhancement Core 6 on maplestorywiki: 2% final damage per level with Critical Rate +5% at level 20. Note that Impulse of Chulainn is itself a Lv160 hyper active, so this node boosts a hyper skill and is worth nothing to a player who did not take that active.",
+        "sources": ["https://grandislibrary.com/shine/erel-light", "https://maplestorywiki.net/w/Erel_Light/Skills"],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Tiering from Grandis Library only.",
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Charge of Fionn Boost / Path of Fionn Boost",
-        "why": "Classed Other in Grandis Library's page data, i.e. outside the set Grandis's legend says is recommended for upgrading. This is the only Erel Light node group containing two skills.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://grandislibrary.com/shine/erel-light"
-        ]
+        "tier": "other",
+        "why": "Index 4 of Grandis Library's other array, i.e. the only node group OUTSIDE the set Grandis's legend says is recommended for upgrading. This is the only Erel Light enhancement core containing two skills (maplestorywiki V Enhancement Core 5). 2% final damage per level each, Critical Rate +5% at level 20.",
+        "sources": ["https://grandislibrary.com/shine/erel-light", "https://maplestorywiki.net/w/Erel_Light/Skills"],
+        "sourceCount": 1,
+        "consensus": "weak",
+        "consensusNote": "Tiering from Grandis Library only.",
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": null,
-    "notes": "NO TRIO SYSTEM APPLIES. Erel Light has six fixed single-skill (one group: two-skill) enhancement cores, not randomly rolled three-skill trio nodes. maplestorywiki lists the complete set as: Core 1 Spear of Lugh Boost; Core 2 Fury of Roan Boost; Core 3 Sting of Roan Boost; Core 4 Spear of Light Boost; Core 5 Charge of Fionn Boost + Path of Fionn Boost; Core 6 Impulse of Chulainn Boost. Grandis Library's underlying page data carries the note that the V Matrix system was overhauled in V.269 and all skills are boosted; Erel Light released in v.269, so it has never used the trio-lottery model and no trio-pairing advice exists or is needed for this class. FACTUAL PER-LEVEL VALUES (maplestorywiki): Spear of Lugh Boost, Fury of Roan Boost and Sting of Roan Boost each give 2% final damage per level, with Max Targets +1 at level 20 and Ignored Enemy Defense +20% at level 40; Spear of Light Boost gives 3% final damage per level; Charge of Fionn Boost, Path of Fionn Boost and Impulse of Chulainn Boost each give 2% final damage per level with Critical Rate +5% at level 20. Boost node level cap is 60. METHOD NOTE FOR ANY RE-SCRAPE: the Primary/Secondary/Other tiers above are NOT present as text on the rendered Grandis page - they are colour-coded only, and were read out of the page's own underlying data object (primary indices [0,1,2], secondary [3,5], other [4] against its nodes array). Two separate automated text reads of the same page produced two different and both incorrect tier assignments. Do not derive these tiers from page text.",
+    "trioNote": "NO TRIO SYSTEM APPLIES. Erel Light has six fixed enhancement cores (five single-skill, one two-skill), not randomly rolled three-skill trio nodes, so no trio-pairing advice exists or is needed for this class. Grandis Library's page data carries the note, verbatim, that the \"V Matrix system in V.269 will be overhauled and all skills are boosted\"; Erel Light released in v.269, so it has never used the trio-lottery model.",
+    "coresFactual": {
+      "list": [
+        "Core 1: Spear of Lugh Boost",
+        "Core 2: Fury of Roan Boost",
+        "Core 3: Sting of Roan Boost",
+        "Core 4: Spear of Light Boost",
+        "Core 5: Charge of Fionn Boost + Path of Fionn Boost",
+        "Core 6: Impulse of Chulainn Boost"
+      ],
+      "perLevel": "Spear of Lugh Boost, Fury of Roan Boost and Sting of Roan Boost: 2% final damage per level, Max Targets +1 at level 20, Ignored Enemy Defense +20% at level 40. Spear of Light Boost: 3% final damage per level. Charge of Fionn Boost, Path of Fionn Boost and Impulse of Chulainn Boost: 2% final damage per level, Critical Rate +5% at level 20. Maximum level for Enhancements/Boost Nodes is 60.",
+      "sources": ["https://maplestorywiki.net/w/Erel_Light/Skills"],
+      "sourceCount": 1,
+      "consensus": "moderate",
+      "consensusNote": "Single source, but it is a transcription of the in-game skill table rather than a judgement, and nothing contradicts it. Factual, not advisory.",
+      "verifiedAt": "2026-09-12"
+    },
+    "notes": "METHOD NOTE FOR ANY RE-SCRAPE: the Primary/Secondary/Other tiers are NOT present as text on the rendered Grandis page - they are colour-coded only, and must be read out of the page's own embedded data object (\"primary\":[0,1,2],\"secondary\":[3,5],\"other\":[4] against its nodes array). Two separate automated TEXT reads of this page in earlier passes produced two different and both incorrect tier assignments. Do not derive these tiers from page text.",
     "sources": [
       "https://grandislibrary.com/shine/erel-light",
       "https://maplestorywiki.net/w/Erel_Light/Skills"
-    ]
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "hexa": {
     "usesHexaMatrix": false,
     "system": "Erda Link",
+    "systemStatement": {
+      "claim": "For SHINE classes only, 6th Job skills are unlocked and enhanced using Erda Link instead of HEXA Matrix.",
+      "quoteIsVerbatim": true,
+      "sources": ["https://maplestorywiki.net/w/Erel_Light"],
+      "sourceCount": 1,
+      "consensus": "moderate",
+      "consensusNote": "One source, but corroborated structurally: Grandis Library's Erel Light page carries no HEXA section at all and links an Erda Link Tracker and an Erda Link Progression sheet where other classes link HEXA material, and the class FAQ answers mastery questions in Erda Link terms.",
+      "verifiedAt": "2026-09-12"
+    },
+    "terminology": {
+      "problem": "Three different names are in circulation for the same four class enhancement nodes, and an earlier version of this file mixed them without saying so.",
+      "resolution": "They are two ends of one mechanic, not three different things. maplestorywiki lists Eternal Light Boost, Sentinel Rise Boost, Eternal Guardian Boost and Destruction of Roan Boost under 'HEXA Enhancements' - these are the BOOST NODES. The Erda Link page states, verbatim, that a 'Skill Stone enhances Boost Nodes and Common Nodes if connected Rush Stones are activated'. So Eikonal's workbook legend name 'Eternal Guardian Skill Stone' names the stone that enhances the node named 'Eternal Guardian Boost'. The same workbook's goal rows use the node name ('Goal: Unlock first Eternal Guardian Boost'), which is why both appear in one document.",
+      "doNotConfuseWith": "The workbook legend's separate entry 'Boost stone (B)' is the GENERIC Erda Link stone type, not these nodes. Rows tagged (B) in the ordering are flat stat purchases - '10% boss dmg (B)', '1000 STR (B)', '20 ATK (B)' - and the Erda Link page defines Boost Stone as a stone that 'activates certain effects under certain conditions if Light Power is activated'. Rows tagged (R), (U), (L), (D) are Rush Stones on the right, up, left and down paths.",
+      "canonicalName": "Use the maplestorywiki node name - '<X> Boost' - in any user-facing string. Keep 'Skill Stone' only when quoting Eikonal's workbook. The phrase 'Eternal Guardian boost stone', used in an earlier version of this file, appears in no source and has been removed.",
+      "sources": [
+        "https://maplestorywiki.net/w/Erel_Light/Skills",
+        "https://maplestorywiki.net/w/Erda_Link",
+        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+      ],
+      "sourceCount": 2,
+      "consensus": "moderate",
+      "verifiedAt": "2026-09-12"
+    },
+    "orderIsOrdered": true,
+    "orderingCaveat": "This IS a genuine ordering and array position IS priority - the source publishes it as a sequenced goal list sorted greedily on final damage per fragment. Two caveats the author states about it: (1) the ordering is fragment-oriented, and 'for those that are erda/meso gated, the ordering will change. Feel free to use the efficiency scores in each tab as a guide'; (2) 'The ordering has been based on what I feel is sensible (approx next 1k frag spend)' with 'Feel free to do as you please with the ordering'. Present it as one community member's cost-efficiency ranking, not as consensus.",
+    "orderSource": "Eikonal's Erda Link Progression workbook, tab 'Summary (WIP)' (the workbook's first tab, gid 1954669731). Read in full and transcribed verbatim on 2026-09-12. The workbook also contains a 'Summary (OUTDATED)' tab whose opening rows are identical; per-skill tabs (M1: Spear, M2: Sting/Fury, Eternal Guardian, Destruction of Roan, Sentinel Rise, Eternal Light, Origin, Ascent, Hecate, Shinestones, Common3) carry the per-level maths; 'Technical Notes' carries the modelling assumptions; 'Base (WIP)' and 'Base (OLD)' carry the stat-to-FD conversions.",
+    "orderRowFields": "Each row reproduces the workbook exactly: item = the purchase as written in column A; level = the level or level range in column B ('-' for a prerequisite row that buys access rather than levels); erda = Sol Erda cost; frags = Sol Erda Fragment cost; cumulativeFrags = running fragment total as printed; fdPercent = final damage percent gained; efficiency = fdPercent divided by frags times 100, i.e. FD% per 100 fragments. sheetComment is the author's own note attached to that goal, transcribed.",
     "order": [
-      {
-        "step": "Unlock the M1 mastery for Spear of Lugh",
-        "why": "First goal in Eikonal's Erda Link Progression sheet. Cost 50 fragments. The sheet notes the unlock path requires 200 DEX plus either Sol Janus or 2% normal-monster damage stones. Efficiency is near zero (0.18 FD% per 100 fragments) because an unlock buys access, not damage - the payoff is the step immediately after it.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "M1 Spear of Lugh to level 1",
-        "why": "Rated 31.09 final damage percent per 100 fragments in Eikonal's sheet - roughly 1.7 times the next best step and an order of magnitude above everything after it. Cost 50 fragments. This is the single highest-return purchase in the whole Erel Light Erda Link progression.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Unlock the M2 mastery for Sting of Roan / Fury of Roan",
-        "why": "Cost 100 fragments. The sheet records that 2% Ignore Defense stones are required on the path to reach it. Again an access step, low efficiency in isolation.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "M2 Sting/Fury to level 1",
-        "why": "Rated 18.70 FD% per 100 fragments, the second highest single step in the sheet. Cost 50 fragments.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Sol Hecate to level 1",
-        "why": "Cost 125 fragments, efficiency 2.55. The sheet's note frames this as a quality-of-life purchase for the bind and the invincibility frame rather than a raw damage one.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Ascent to level 1",
-        "why": "Cost 100 fragments, efficiency 1.01. See the conflicts array: no source read here states which of Erel Light's two class-specific 6th job skills (Fall of Melin, Radiant Spear) is the Ascent skill.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "M1 Spear of Lugh from level 2 to level 9",
-        "why": "Cost 188 fragments, efficiency 3.54 - the best remaining block once the two level-1 mastery spikes are bought.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Unlock the first Eternal Guardian boost stone",
-        "why": "Cost 100 fragments, efficiency 0.10. The sheet records Ignore Defense prerequisites on the path. Access step for the following entry.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Eternal Guardian boost stone (1) to level 1",
-        "why": "Cost 37 fragments, efficiency 7.90 - the third-largest single spike in the sheet and the reason the low-efficiency unlock before it is worth paying.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "SHINE Stone #2 from level 1 to level 10 (the sheet spells these Shinestone)",
-        "why": "Cost 190.2 fragments, efficiency 1.22.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Eternal Guardian boost stone (1) from level 2 to level 4",
-        "why": "Cost 70 fragments, efficiency 1.14. The sheet flags this block as costing no Sol Erda.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Unlock the second Eternal Guardian boost stone, including the critical damage stones required on the path, and take it to level 10",
-        "why": "Cost 150 fragments, efficiency 0.79.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "Unlock SHINE Stones #1 and #4 and take both to level 10",
-        "why": "Cost 190.2 fragments, efficiency 1.07.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "M1 Spear of Lugh to level 19",
-        "why": "Cost 637 fragments, efficiency 1.31 - the first genuinely large fragment commitment in the ordering.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      },
-      {
-        "step": "M2 Sting/Fury to level 3",
-        "why": "Cost 30 fragments, efficiency 1.12.",
-        "consensus": "weak - single source",
-        "sources": [
-          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-        ]
-      }
-    ],
-    "notes": "ERDA LINK, NOT HEXA MATRIX. This is a hard branch in the data model: MapleStory Wiki's Erel Light page states plainly that for SHINE classes 6th job skills are unlocked and enhanced using Erda Link instead of the HEXA Matrix. Grandis Library's Erel Light page carries no HEXA section at all and its Other Resources block links an Erda Link Tracker and an Erda Link Progression sheet where other classes link HEXA material. Erda Link was introduced in the v.260 Stargazer update. ERDA LINK MECHANICS (maplestorywiki, page last edited 2026-07-05): six stone types, upgraded with Sol Erda and Sol Erda Fragments - Origin Stone (unlocked automatically at job advancement, enhances Skill Nodes); Ultimate Stone (enhances Mastery Nodes when Light Power is active); Skill Stone (enhances Boost and Common Nodes when connected Rush Stones are active); Boost Stone (conditional effects, requires Light Power); Rush Stone (bonus stats, and connects stones along paths); SHINE Stone (bonus stats equivalent to HEXA Stats). Light Power is toggled in the Erda Link UI and shows as a glowing area; the area grows as stones are unlocked, and a 6th job skill becomes usable when that area covers it. PLANNING CONSEQUENCE WORTH SURFACING TO USERS: SHINE Stone enhancement costs Meso on top of Sol Erda and Sol Erda Fragments, and a failed enhancement can REDUCE the stone's level. That is a risk profile HEXA Stat does not have, and any Erda Link planner must model it rather than treating SHINE Stones as deterministic. SCOPE AND TOTALS FROM EIKONAL'S SHEET: the full ordering runs to roughly 70 goals; only the first 15 are recorded above because only those could be read verbatim. The sheet's own totals are 1166 Sol Erda (its note says this excludes Janus and rush stones), 38187 fragments, and 133.890% total final damage gained. Its columns are SKILL, LEVEL, ERDA, FRAGS, CUMULATIVE FRAGS, FD (%), EFFICIENCY (FD%/100 FRAGS), so the ordering is a greedy sort on final damage per fragment - it is a cost-efficiency ranking, not a rotation or gameplay judgement, and unlock steps score near zero by construction because they buy access rather than damage. NAME ALLOWLIST FOR 6TH JOB (maplestorywiki/w/Erel_Light/Skills, page last edited 2026-09-09, i.e. the v.271 patch date): class-specific skills are Fall of Melin (master level 30, 360 second cooldown) and Radiant Spear (master level 30); Mastery skills are SHINE Spear of Lugh, SHINE Fury of Roan and SHINE Sting of Roan; Enhancement (boost) nodes are Eternal Light Boost, Sentinel Rise Boost, Eternal Guardian Boost and Destruction of Roan Boost; shared skills are Sol Janus (with Sol Janus: Dawn and Sol Janus: Dusk), Sol Hecate and Sol Hecate: Styx. Do not emit any 6th job node name outside this list.",
+    {
+        "order":  1,
+        "goal":  "Unlock M1 Spear of Lugh",
+        "rows":  [
+                     {
+                         "item":  "200 DEX (D) + (mains) Sol Janus or (mules) 2% normal dmg (L)",
+                         "level":  "-",
+                         "erda":  "1",
+                         "frags":  "50",
+                         "cumulativeFrags":  "50",
+                         "fdPercent":  "0.09180",
+                         "efficiency":  "0.18359"
+                     },
+                     {
+                         "item":  "M1: SoL",
+                         "level":  "1",
+                         "erda":  "2",
+                         "frags":  "50",
+                         "cumulativeFrags":  "100",
+                         "fdPercent":  "15.54353",
+                         "efficiency":  "31.08706"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  2,
+        "goal":  "Unlock M2 Sting/Fury",
+        "rows":  [
+                     {
+                         "item":  "2% IED (R) +  1% IED (R)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "200",
+                         "fdPercent":  "0.15137",
+                         "efficiency":  "0.15137"
+                     },
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "1",
+                         "erda":  "2",
+                         "frags":  "50",
+                         "cumulativeFrags":  "250",
+                         "fdPercent":  "9.34806",
+                         "efficiency":  "18.69612"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  3,
+        "goal":  "Get Hecate to lvl 1",
+        "rows":  [
+                     {
+                         "item":  "Hecate",
+                         "level":  "1",
+                         "erda":  "7",
+                         "frags":  "125",
+                         "cumulativeFrags":  "375",
+                         "fdPercent":  "3.19325",
+                         "efficiency":  "2.55460"
+                     }
+                 ],
+        "sheetComment":  "Technically earlier levels of M1 is better in terms of damage, but the bind of hecate and iframe of ascent is really good QoL",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  4,
+        "goal":  "Get Ascent to lvl 1",
+        "rows":  [
+                     {
+                         "item":  "Ascent",
+                         "level":  "1",
+                         "erda":  "5",
+                         "frags":  "100",
+                         "cumulativeFrags":  "475",
+                         "fdPercent":  "1.01312",
+                         "efficiency":  "1.01312"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  5,
+        "goal":  "Get M1 Spear to lvl 9",
+        "rows":  [
+                     {
+                         "item":  "M1: SoL",
+                         "level":  "2 --\u003e 9",
+                         "erda":  "8",
+                         "frags":  "188",
+                         "cumulativeFrags":  "663",
+                         "fdPercent":  "6.65687",
+                         "efficiency":  "3.54089"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  6,
+        "goal":  "Unlock first Eternal Guardian Boost",
+        "rows":  [
+                     {
+                         "item":  "1% IED (R) + 1% IED (R)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "763",
+                         "fdPercent":  "0.10091",
+                         "efficiency":  "0.10091"
+                     },
+                     {
+                         "item":  "Eternal Guardian (1)",
+                         "level":  "1",
+                         "erda":  "3",
+                         "frags":  "37",
+                         "cumulativeFrags":  "800",
+                         "fdPercent":  "2.92135",
+                         "efficiency":  "7.89555"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  7,
+        "goal":  "Unlock and upgrade Shinestone #2 to lvl 10",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #2",
+                         "level":  "1 --\u003e 10",
+                         "erda":  "7",
+                         "frags":  "190.2",
+                         "cumulativeFrags":  "990.2",
+                         "fdPercent":  "2.31112",
+                         "efficiency":  "1.21520"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  8,
+        "goal":  "Get Eternal Guardian to lvl 4",
+        "rows":  [
+                     {
+                         "item":  "Eternal Guardian (1)",
+                         "level":  "2 --\u003e 4",
+                         "erda":  "0",
+                         "frags":  "70",
+                         "cumulativeFrags":  "1060.2",
+                         "fdPercent":  "0.79673",
+                         "efficiency":  "1.13819"
+                     }
+                 ],
+        "sheetComment":  "All levels on the first EG stone",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  9,
+        "goal":  "Unlock second Eternal Guardian Boost (+ required crit dmg stones) and get to level 10",
+        "rows":  [
+                     {
+                         "item":  "1%+1%+1% crit dmg (R)",
+                         "level":  "-",
+                         "erda":  "3",
+                         "frags":  "150",
+                         "cumulativeFrags":  "1210.2",
+                         "fdPercent":  "1.18397",
+                         "efficiency":  "0.78931"
+                     },
+                     {
+                         "item":  "Eternal Guardian (2)",
+                         "level":  "1 --\u003e 6",
+                         "erda":  "8",
+                         "frags":  "191",
+                         "cumulativeFrags":  "1401.2",
+                         "fdPercent":  "2.92135",
+                         "efficiency":  "1.52950"
+                     }
+                 ],
+        "sheetComment":  "Unlock second EG and get it to level 6 (total EG is lvl 10) Only 3 of the crit dmg stones needed, but if you\u0027re a completionist feel free to grab all 4 first",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  10,
+        "goal":  "Unlock and upgrade Shinestones #1 and #4 to lvl 10",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #1",
+                         "level":  "1 --\u003e 10",
+                         "erda":  "7",
+                         "frags":  "190.2",
+                         "cumulativeFrags":  "1591.4",
+                         "fdPercent":  "2.03074",
+                         "efficiency":  "1.06777"
+                     },
+                     {
+                         "item":  "Shinestone #4",
+                         "level":  "1 --\u003e 10",
+                         "erda":  "7",
+                         "frags":  "190.2",
+                         "cumulativeFrags":  "1781.6",
+                         "fdPercent":  "2.03074",
+                         "efficiency":  "1.06777"
+                     }
+                 ],
+        "sheetComment":  "Although M1 + M2 goals are theoretically better than Shinestones #1 + #4, realistic uptime in bosses + benefit of stats in the early game should favour shinestones at this point in the game",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  11,
+        "goal":  "Get M1 Spear to lvl 19",
+        "rows":  [
+                     {
+                         "item":  "M1: SoL",
+                         "level":  "10 --\u003e 19",
+                         "erda":  "27",
+                         "frags":  "637",
+                         "cumulativeFrags":  "2418.6",
+                         "fdPercent":  "8.32109",
+                         "efficiency":  "1.30629"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  12,
+        "goal":  "Get M2 Sting/Fury to lvl 3",
+        "rows":  [
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "2 --\u003e 3",
+                         "erda":  "2",
+                         "frags":  "30",
+                         "cumulativeFrags":  "2448.6",
+                         "fdPercent":  "0.33460",
+                         "efficiency":  "1.11534"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  13,
+        "goal":  "Unlock both 10% boss and 1000 STR boost stones (+ any required rush stones)",
+        "rows":  [
+                     {
+                         "item":  "2% buff dur (U) + 10% boss dmg (B)",
+                         "level":  "-",
+                         "erda":  "8",
+                         "frags":  "175",
+                         "cumulativeFrags":  "2623.6",
+                         "fdPercent":  "1.11278",
+                         "efficiency":  "0.63588"
+                     },
+                     {
+                         "item":  "1% crit rate (U) + 1000 STR (B)",
+                         "level":  "-",
+                         "erda":  "8",
+                         "frags":  "175",
+                         "cumulativeFrags":  "2798.6",
+                         "fdPercent":  "1.83591",
+                         "efficiency":  "1.04909"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  14,
+        "goal":  "Unlock Shinestone #3 and get to lvl 12, Upgrade Shinestones #1 and #4 to lvl 11,",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #3",
+                         "level":  "1 --\u003e 12",
+                         "erda":  "7",
+                         "frags":  "267.8",
+                         "cumulativeFrags":  "3066.4",
+                         "fdPercent":  "2.38799",
+                         "efficiency":  "0.89159"
+                     },
+                     {
+                         "item":  "Shinestone #1",
+                         "level":  "11",
+                         "erda":  "0",
+                         "frags":  "34.7",
+                         "cumulativeFrags":  "3101.1",
+                         "fdPercent":  "0.29487",
+                         "efficiency":  "0.84895"
+                     },
+                     {
+                         "item":  "Shinestone #4",
+                         "level":  "11",
+                         "erda":  "0",
+                         "frags":  "34.7",
+                         "cumulativeFrags":  "3135.9",
+                         "fdPercent":  "0.29487",
+                         "efficiency":  "0.84895"
+                     }
+                 ],
+        "sheetComment":  "Need two boost stones to unlock Shinestone #3",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  15,
+        "goal":  "Get Eternal Guardian to lvl 20",
+        "rows":  [
+                     {
+                         "item":  "Eternal Guardian (2)",
+                         "level":  "7 --\u003e 9",
+                         "erda":  "0",
+                         "frags":  "128",
+                         "cumulativeFrags":  "3263.9",
+                         "fdPercent":  "0.79673",
+                         "efficiency":  "0.62245"
+                     },
+                     {
+                         "item":  "Eternal Guardian (1)",
+                         "level":  "5 --\u003e 11",
+                         "erda":  "18",
+                         "frags":  "372",
+                         "cumulativeFrags":  "3635.9",
+                         "fdPercent":  "3.18693",
+                         "efficiency":  "0.85670"
+                     }
+                 ],
+        "sheetComment":  "Alternatively you can get 2nd stone to lvl 11, either works!",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  16,
+        "goal":  "Unlock final crit dmg stone, Upgrade Shinestone #2 to lvl 12",
+        "rows":  [
+                     {
+                         "item":  "1% crit dmg (R)",
+                         "level":  "-",
+                         "erda":  "1",
+                         "frags":  "50",
+                         "cumulativeFrags":  "3685.9",
+                         "fdPercent":  "0.39466",
+                         "efficiency":  "0.78931"
+                     },
+                     {
+                         "item":  "Shinestone #2",
+                         "level":  "11 --\u003e 12",
+                         "erda":  "0",
+                         "frags":  "77.7",
+                         "cumulativeFrags":  "3763.5",
+                         "fdPercent":  "0.59361",
+                         "efficiency":  "0.76446"
+                     }
+                 ],
+        "sheetComment":  "Shinestone #1 and #4 to lvl 13 is optimal here, but I\u0027m risk averse so ... Also, for shinestones at lvl 13 and above, could be good to save for hexa sunny sundays!",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  17,
+        "goal":  "Get M2 Sting/Fury to lvl 4 and M1 Spear to lvl 29",
+        "rows":  [
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "4",
+                         "erda":  "1",
+                         "frags":  "20",
+                         "cumulativeFrags":  "3783.5",
+                         "fdPercent":  "0.16730",
+                         "efficiency":  "0.83651"
+                     },
+                     {
+                         "item":  "M1: SoL",
+                         "level":  "20 --\u003e 29",
+                         "erda":  "41",
+                         "frags":  "1120",
+                         "cumulativeFrags":  "4903.5",
+                         "fdPercent":  "8.32109",
+                         "efficiency":  "0.74295"
+                     }
+                 ],
+        "sheetComment":  "If your DPM uptime is bad, get EG to 30 before M1 to 29 If you\u0027ve happened to already have the exp % on the left tree, you can grab the atk boost stone here. Otherwise just wait until you unlock the second sentinel rise stone",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  18,
+        "goal":  "Unlock first Sentinel Rise Boost (+ any required rush stones)",
+        "rows":  [
+                     {
+                         "item":  "2% all stat (D)",
+                         "level":  "-",
+                         "erda":  "1",
+                         "frags":  "50",
+                         "cumulativeFrags":  "4953.5",
+                         "fdPercent":  "0.26477",
+                         "efficiency":  "0.52954"
+                     },
+                     {
+                         "item":  "150 + 150 STR (D)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "5053.5",
+                         "fdPercent":  "0.55077",
+                         "efficiency":  "0.55077"
+                     },
+                     {
+                         "item":  "Sentinel Rise (1)",
+                         "level":  "1",
+                         "erda":  "3",
+                         "frags":  "37",
+                         "cumulativeFrags":  "5090.5",
+                         "fdPercent":  "0.57000",
+                         "efficiency":  "1.54053"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  19,
+        "goal":  "Upgrade Shinestones #1 and #4 to lvl 13",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #1",
+                         "level":  "12 --\u003e 13",
+                         "erda":  "0",
+                         "frags":  "129.0",
+                         "cumulativeFrags":  "5032.5",
+                         "fdPercent":  "0.99589",
+                         "efficiency":  "0.77176"
+                     },
+                     {
+                         "item":  "Shinestone #4",
+                         "level":  "12 --\u003e 13",
+                         "erda":  "0",
+                         "frags":  "129.0",
+                         "cumulativeFrags":  "5161.6",
+                         "fdPercent":  "0.99589",
+                         "efficiency":  "0.77176"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  20,
+        "goal":  "Get some boss rush stones",
+        "rows":  [
+                     {
+                         "item":  "1% IED + 8% boss dmg (R)",
+                         "level":  "-",
+                         "erda":  "6",
+                         "frags":  "150",
+                         "cumulativeFrags":  "5311.6",
+                         "fdPercent":  "0.94068",
+                         "efficiency":  "0.62712"
+                     },
+                     {
+                         "item":  "1% + 7% boss dmg (R)",
+                         "level":  "-",
+                         "erda":  "6",
+                         "frags":  "150",
+                         "cumulativeFrags":  "5461.6",
+                         "fdPercent":  "0.89023",
+                         "efficiency":  "0.59348"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  21,
+        "goal":  "Get Eternal Guardian to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "Eternal Guardian (1)",
+                         "level":  "12 --\u003e 14",
+                         "erda":  "11",
+                         "frags":  "173",
+                         "cumulativeFrags":  "5634.6",
+                         "fdPercent":  "0.79673",
+                         "efficiency":  "0.46054"
+                     },
+                     {
+                         "item":  "Eternal Guardian (2)",
+                         "level":  "10 --\u003e 15",
+                         "erda":  "34",
+                         "frags":  "508",
+                         "cumulativeFrags":  "6142.6",
+                         "fdPercent":  "1.59347",
+                         "efficiency":  "0.31367"
+                     },
+                     {
+                         "item":  "Eternal Guardian (1)",
+                         "level":  "15",
+                         "erda":  "10",
+                         "frags":  "175",
+                         "cumulativeFrags":  "6317.6",
+                         "fdPercent":  "2.92135",
+                         "efficiency":  "1.66935"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  22,
+        "goal":  "Get M2 to lvl 9, Origin to lvl 3, Hecate to lvl 2, Ascent to lvl 3",
+        "rows":  [
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "5 --\u003e 9",
+                         "erda":  "5",
+                         "frags":  "138",
+                         "cumulativeFrags":  "6455.6",
+                         "fdPercent":  "0.83651",
+                         "efficiency":  "0.60616"
+                     },
+                     {
+                         "item":  "Origin",
+                         "level":  "2 --\u003e 3",
+                         "erda":  "2",
+                         "frags":  "60",
+                         "cumulativeFrags":  "6515.6",
+                         "fdPercent":  "0.35374",
+                         "efficiency":  "0.58956"
+                     },
+                     {
+                         "item":  "Hecate",
+                         "level":  "2",
+                         "erda":  "2",
+                         "frags":  "38",
+                         "cumulativeFrags":  "6553.6",
+                         "fdPercent":  "0.22224",
+                         "efficiency":  "0.58484"
+                     },
+                     {
+                         "item":  "Ascent",
+                         "level":  "2",
+                         "erda":  "1",
+                         "frags":  "30",
+                         "cumulativeFrags":  "6583.6",
+                         "fdPercent":  "0.17301",
+                         "efficiency":  "0.57669"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  23,
+        "goal":  "Get STR rush stone and Unlock Destruction of Roan (+ required rush stones)",
+        "rows":  [
+                     {
+                         "item":  "150 STR (D)",
+                         "level":  "-",
+                         "erda":  "1",
+                         "frags":  "50",
+                         "cumulativeFrags":  "6633.6",
+                         "fdPercent":  "0.27539",
+                         "efficiency":  "0.55077"
+                     },
+                     {
+                         "item":  "1% crit rate (U) + 2% buff dur (U)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "6733.6",
+                         "fdPercent":  "0",
+                         "efficiency":  "0"
+                     },
+                     {
+                         "item":  "Destruction of Roan (1)",
+                         "level":  "1",
+                         "erda":  "3",
+                         "frags":  "37",
+                         "cumulativeFrags":  "6770.6",
+                         "fdPercent":  "0.67575",
+                         "efficiency":  "1.82634"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  24,
+        "goal":  "Get Hecate to lvl 4, Ascent to lvl 4, Origin to lvl 5",
+        "rows":  [
+                     {
+                         "item":  "Hecate",
+                         "level":  "3 --\u003e 4",
+                         "erda":  "4",
+                         "frags":  "94",
+                         "cumulativeFrags":  "6864.6",
+                         "fdPercent":  "0.44448",
+                         "efficiency":  "0.47285"
+                     },
+                     {
+                         "item":  "Ascent",
+                         "level":  "3 --\u003e 4",
+                         "erda":  "2",
+                         "frags":  "75",
+                         "cumulativeFrags":  "6939.6",
+                         "fdPercent":  "0.34601",
+                         "efficiency":  "0.46135"
+                     },
+                     {
+                         "item":  "Origin",
+                         "level":  "4 --\u003e 5",
+                         "erda":  "2",
+                         "frags":  "80",
+                         "cumulativeFrags":  "7019.6",
+                         "fdPercent":  "0.35374",
+                         "efficiency":  "0.44217"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  25,
+        "goal":  "Grab some useful rush stones, Get Ascent to lvl 6 and Hecate to lvl 7",
+        "rows":  [
+                     {
+                         "item":  "1% dmg + 2% all stat (D)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "7119.6",
+                         "fdPercent":  "0.37605",
+                         "efficiency":  "0.37605"
+                     },
+                     {
+                         "item":  "1% dmg + 2% all stat (D)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "7219.6",
+                         "fdPercent":  "0.37605",
+                         "efficiency":  "0.37605"
+                     },
+                     {
+                         "item":  "Ascent",
+                         "level":  "5 --\u003e 6",
+                         "erda":  "4",
+                         "frags":  "95",
+                         "cumulativeFrags":  "7314.6",
+                         "fdPercent":  "0.34601",
+                         "efficiency":  "0.36422"
+                     },
+                     {
+                         "item":  "Hecate",
+                         "level":  "5 --\u003e 7",
+                         "erda":  "9",
+                         "frags":  "189",
+                         "cumulativeFrags":  "7503.6",
+                         "fdPercent":  "0.66672",
+                         "efficiency":  "0.35276"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  26,
+        "goal":  "Get Shinestone #2 to lvl 14",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #2",
+                         "level":  "13 --\u003e 14",
+                         "erda":  "0",
+                         "frags":  "245.9",
+                         "cumulativeFrags":  "7749.4",
+                         "fdPercent":  "1.23768",
+                         "efficiency":  "0.50341"
+                     }
+                 ],
+        "sheetComment":  "Again, although optimal to get this shinestone earlier the RNG at these levels can feel awful ...",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  27,
+        "goal":  "Get M1 to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "M1: SoL",
+                         "level":  "30",
+                         "erda":  "10",
+                         "frags":  "250",
+                         "cumulativeFrags":  "7999.4",
+                         "fdPercent":  "0.83211",
+                         "efficiency":  "0.33284"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  28,
+        "goal":  "Get Sentinel Rise to lvl 10 (unlock second Sentinel Rise + required rush stones), Grab the 20 atk boost along the way",
+        "rows":  [
+                     {
+                         "item":  "1%+1% dmg (D)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "8099.4",
+                         "fdPercent":  "0.22256",
+                         "efficiency":  "0.22256"
+                     },
+                     {
+                         "item":  "Sentinel Rise (2)",
+                         "level":  "1",
+                         "erda":  "3",
+                         "frags":  "37",
+                         "cumulativeFrags":  "8136.4",
+                         "fdPercent":  "0.05182",
+                         "efficiency":  "0.14005"
+                     },
+                     {
+                         "item":  "20 ATK (B)",
+                         "level":  "-",
+                         "erda":  "7",
+                         "frags":  "125",
+                         "cumulativeFrags":  "8261.4",
+                         "fdPercent":  "0.65693",
+                         "efficiency":  "0.52554"
+                     },
+                     {
+                         "item":  "Sentinel Rise (2)",
+                         "level":  "2 --\u003e 6",
+                         "erda":  "5",
+                         "frags":  "154",
+                         "cumulativeFrags":  "8415.4",
+                         "fdPercent":  "0.25909",
+                         "efficiency":  "0.16824"
+                     },
+                     {
+                         "item":  "Sentinel Rise (1)",
+                         "level":  "2 --\u003e 4",
+                         "erda":  "0",
+                         "frags":  "70",
+                         "cumulativeFrags":  "8485.4",
+                         "fdPercent":  "0.41454",
+                         "efficiency":  "0.59220"
+                     }
+                 ],
+        "sheetComment":  "Get the initial unlock on second Sentinel Rise so that you can grab 20 atk boost stone",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  29,
+        "goal":  "Get Origin to lvl 9, M2 to lvl 15, Ascent to lvl 9, and Hecate to lvl 9",
+        "rows":  [
+                     {
+                         "item":  "Origin",
+                         "level":  "6 --\u003e 9",
+                         "erda":  "4",
+                         "frags":  "225",
+                         "cumulativeFrags":  "8710.4",
+                         "fdPercent":  "0.70748",
+                         "efficiency":  "0.31443"
+                     },
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "10 --\u003e 15",
+                         "erda":  "15",
+                         "frags":  "347",
+                         "cumulativeFrags":  "9057.4",
+                         "fdPercent":  "1.00381",
+                         "efficiency":  "0.28928"
+                     },
+                     {
+                         "item":  "Ascent",
+                         "level":  "7 --\u003e 9",
+                         "erda":  "8",
+                         "frags":  "180",
+                         "cumulativeFrags":  "9237.4",
+                         "fdPercent":  "0.51902",
+                         "efficiency":  "0.28834"
+                     },
+                     {
+                         "item":  "Hecate",
+                         "level":  "8 --\u003e 9",
+                         "erda":  "10",
+                         "frags":  "157",
+                         "cumulativeFrags":  "9394.4",
+                         "fdPercent":  "0.44448",
+                         "efficiency":  "0.28311"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  30,
+        "goal":  "Get DoR to lvl 4, some ATK rush stones, and shinestone #3 to lvl 13",
+        "rows":  [
+                     {
+                         "item":  "Destruction of Roan (1)",
+                         "level":  "2 --\u003e 4",
+                         "erda":  "0",
+                         "frags":  "70",
+                         "cumulativeFrags":  "9464.4",
+                         "fdPercent":  "0.18429",
+                         "efficiency":  "0.26328"
+                     },
+                     {
+                         "item":  "8 + 8 atk (D)",
+                         "level":  "-",
+                         "erda":  "10",
+                         "frags":  "200",
+                         "cumulativeFrags":  "9664.4",
+                         "fdPercent":  "0.52554",
+                         "efficiency":  "0.26277"
+                     },
+                     {
+                         "item":  "Shinestone #3",
+                         "level":  "13",
+                         "erda":  "0",
+                         "frags":  "86.1",
+                         "cumulativeFrags":  "9750.6",
+                         "fdPercent":  "0.25297",
+                         "efficiency":  "0.29373"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  31,
+        "goal":  "Get M2 to lvl 19",
+        "rows":  [
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "16 --\u003e 19",
+                         "erda":  "12",
+                         "frags":  "290.0",
+                         "cumulativeFrags":  "10040.6",
+                         "fdPercent":  "0.66921",
+                         "efficiency":  "0.23076"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  32,
+        "goal":  "Get DoR to lvl 10 (by unlocking 2nd stone + required rush stones), Grab all abnormal damage stones along the way",
+        "rows":  [
+                     {
+                         "item":  "1% crit + 1% abn dmg (U)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "10140.6",
+                         "fdPercent":  "0.11128",
+                         "efficiency":  "0.11128"
+                     },
+                     {
+                         "item":  "1% + 2% buff (U)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100",
+                         "cumulativeFrags":  "10240.6",
+                         "fdPercent":  "0.00000",
+                         "efficiency":  "0.00000"
+                     },
+                     {
+                         "item":  "1% + 4% abn dmg (U)",
+                         "level":  "-",
+                         "erda":  "6",
+                         "frags":  "150",
+                         "cumulativeFrags":  "10390.6",
+                         "fdPercent":  "0.55639",
+                         "efficiency":  "0.37093"
+                     },
+                     {
+                         "item":  "2% crit (U)",
+                         "level":  "-",
+                         "erda":  "1",
+                         "frags":  "50",
+                         "cumulativeFrags":  "10440.6",
+                         "fdPercent":  "0.00000",
+                         "efficiency":  "0.00000"
+                     },
+                     {
+                         "item":  "Destruction of Roan (2)",
+                         "level":  "1 --\u003e 6",
+                         "erda":  "8",
+                         "frags":  "191",
+                         "cumulativeFrags":  "10631.6",
+                         "fdPercent":  "0.67575",
+                         "efficiency":  "0.35379"
+                     }
+                 ],
+        "sheetComment":  "For CW players, since you may not have a way to proc abn status effect, You should instead up to get all 10 levels of DoR in the first stone and delay this goal until you need to max DoR",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  33,
+        "goal":  "Get Shinestone #3 to lvl 15, Get Shinestone #1 and #4 to lvl 14, Get Shinestone #2 to lvl 15",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #3",
+                         "level":  "14 --\u003e 15",
+                         "erda":  "0",
+                         "frags":  "547.3",
+                         "cumulativeFrags":  "11178.8",
+                         "fdPercent":  "1.51781",
+                         "efficiency":  "0.27735"
+                     },
+                     {
+                         "item":  "Shinestone #1",
+                         "level":  "14",
+                         "erda":  "0",
+                         "frags":  "159.7",
+                         "cumulativeFrags":  "11338.6",
+                         "fdPercent":  "0.40615",
+                         "efficiency":  "0.25427"
+                     },
+                     {
+                         "item":  "Shinestone #4",
+                         "level":  "14",
+                         "erda":  "0",
+                         "frags":  "159.7",
+                         "cumulativeFrags":  "11498.3",
+                         "fdPercent":  "0.40615",
+                         "efficiency":  "0.25427"
+                     },
+                     {
+                         "item":  "Shinestone #2",
+                         "level":  "15",
+                         "erda":  "0",
+                         "frags":  "387.5",
+                         "cumulativeFrags":  "11885.8",
+                         "fdPercent":  "0.80830",
+                         "efficiency":  "0.20858"
+                     }
+                 ],
+        "sheetComment":  "If you like gambling, get these shinestones before the previous two goals",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  34,
+        "goal":  "Get Eternal Light to lvl 1 (+ required rush stones)",
+        "rows":  [
+                     {
+                         "item":  "1% meso + 1% normal dmg (L)",
+                         "level":  "-",
+                         "erda":  "2",
+                         "frags":  "100.0",
+                         "cumulativeFrags":  "11985.8",
+                         "fdPercent":  "0.00000",
+                         "efficiency":  "0.00000"
+                     },
+                     {
+                         "item":  "Eternal Light",
+                         "level":  "1",
+                         "erda":  "4",
+                         "frags":  "75.0",
+                         "cumulativeFrags":  "12060.8",
+                         "fdPercent":  "0.30057",
+                         "efficiency":  "0.40076"
+                     }
+                 ],
+        "sheetComment":  "For mains, I assume you have all drop rate rush stones on the left tree already, if not, delay this goal until after sentinel rise is lvl 30",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  35,
+        "goal":  "Get Origin to lvl 13",
+        "rows":  [
+                     {
+                         "item":  "Origin",
+                         "level":  "10 --\u003e 13",
+                         "erda":  "22",
+                         "frags":  "490",
+                         "cumulativeFrags":  "12550.8",
+                         "fdPercent":  "0.79369",
+                         "efficiency":  "0.16198"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  36,
+        "goal":  "Get DoR to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "Destruction of Roan (2)",
+                         "level":  "7 --\u003e 9",
+                         "erda":  "0",
+                         "frags":  "128",
+                         "cumulativeFrags":  "12678.8",
+                         "fdPercent":  "0.18429",
+                         "efficiency":  "0.14398"
+                     },
+                     {
+                         "item":  "Destruction of Roan (1)",
+                         "level":  "5 --\u003e 14",
+                         "erda":  "29",
+                         "frags":  "545",
+                         "cumulativeFrags":  "13223.8",
+                         "fdPercent":  "0.92147",
+                         "efficiency":  "0.16908"
+                     },
+                     {
+                         "item":  "Destruction of Roan (2)",
+                         "level":  "10 --\u003e 15",
+                         "erda":  "34",
+                         "frags":  "508",
+                         "cumulativeFrags":  "13731.8",
+                         "fdPercent":  "0.36859",
+                         "efficiency":  "0.07256"
+                     },
+                     {
+                         "item":  "Destruction of Roan (1)",
+                         "level":  "15",
+                         "erda":  "10",
+                         "frags":  "175",
+                         "cumulativeFrags":  "13906.8",
+                         "fdPercent":  "0.67575",
+                         "efficiency":  "0.38614"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  37,
+        "goal":  "Get Ascent to lvl 14",
+        "rows":  [
+                     {
+                         "item":  "Ascent",
+                         "level":  "10 --\u003e 14",
+                         "erda":  "24",
+                         "frags":  "580",
+                         "cumulativeFrags":  "14486.8",
+                         "fdPercent":  "0.90727",
+                         "efficiency":  "0.15643"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  38,
+        "goal":  "Get Sentinel Rise to lvl 20",
+        "rows":  [
+                     {
+                         "item":  "Sentinel Rise (2)",
+                         "level":  "7 --\u003e 9",
+                         "erda":  "0",
+                         "frags":  "128",
+                         "cumulativeFrags":  "14614.8",
+                         "fdPercent":  "0.15545",
+                         "efficiency":  "0.12145"
+                     },
+                     {
+                         "item":  "Sentinel Rise (1)",
+                         "level":  "5 --\u003e 11",
+                         "erda":  "18",
+                         "frags":  "372",
+                         "cumulativeFrags":  "14986.8",
+                         "fdPercent":  "0.62181",
+                         "efficiency":  "0.16715"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  39,
+        "goal":  "Get Hecate to lvl 14 and M2 to lvl 29",
+        "rows":  [
+                     {
+                         "item":  "Hecate",
+                         "level":  "10 --\u003e 14",
+                         "erda":  "36",
+                         "frags":  "824",
+                         "cumulativeFrags":  "15810.8",
+                         "fdPercent":  "1.26960",
+                         "efficiency":  "0.15408"
+                     },
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "20 --\u003e 29",
+                         "erda":  "41",
+                         "frags":  "1120.0",
+                         "cumulativeFrags":  "16930.8",
+                         "fdPercent":  "1.67301",
+                         "efficiency":  "0.14938"
+                     }
+                 ],
+        "sheetComment":  "If you want the QoL from the door at lvl 20 hecate, feel free to push level 20 here",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  40,
+        "goal":  "Get Origin to lvl 17, Ascent to lvl 17, Hecate to lvl 16",
+        "rows":  [
+                     {
+                         "item":  "Origin",
+                         "level":  "14 --\u003e 17",
+                         "erda":  "20",
+                         "frags":  "525",
+                         "cumulativeFrags":  "17455.8",
+                         "fdPercent":  "0.71319",
+                         "efficiency":  "0.13585"
+                     },
+                     {
+                         "item":  "Ascent",
+                         "level":  "15 --\u003e 17",
+                         "erda":  "12",
+                         "frags":  "390",
+                         "cumulativeFrags":  "17845.8",
+                         "fdPercent":  "0.52574",
+                         "efficiency":  "0.13480"
+                     },
+                     {
+                         "item":  "Hecate",
+                         "level":  "15 --\u003e 16",
+                         "erda":  "12",
+                         "frags":  "344",
+                         "cumulativeFrags":  "18189.8",
+                         "fdPercent":  "0.45605",
+                         "efficiency":  "0.13257"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  41,
+        "goal":  "Get Shinestones #1 and #4 to lvl 15",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #1",
+                         "level":  "15",
+                         "erda":  "0",
+                         "frags":  "387.5",
+                         "cumulativeFrags":  "18577.3",
+                         "fdPercent":  "0.70102",
+                         "efficiency":  "0.18090"
+                     },
+                     {
+                         "item":  "Shinestone #4",
+                         "level":  "15",
+                         "erda":  "0",
+                         "frags":  "387.5",
+                         "cumulativeFrags":  "18964.8",
+                         "fdPercent":  "0.70102",
+                         "efficiency":  "0.18090"
+                     }
+                 ],
+        "sheetComment":  "As always, gamba enjoyers can grab this a few goals earlier",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  42,
+        "goal":  "Get Sentinel Rise to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "Sentinel Rise (1)",
+                         "level":  "12 --\u003e 14",
+                         "erda":  "11",
+                         "frags":  "173",
+                         "cumulativeFrags":  "19137.8",
+                         "fdPercent":  "0.15545",
+                         "efficiency":  "0.08986"
+                     },
+                     {
+                         "item":  "Sentinel Rise (2)",
+                         "level":  "10 --\u003e 15",
+                         "erda":  "34",
+                         "frags":  "508",
+                         "cumulativeFrags":  "19645.8",
+                         "fdPercent":  "0.31091",
+                         "efficiency":  "0.06120"
+                     },
+                     {
+                         "item":  "Sentinel Rise (1)",
+                         "level":  "15",
+                         "erda":  "10",
+                         "frags":  "175",
+                         "cumulativeFrags":  "19820.8",
+                         "fdPercent":  "0.57000",
+                         "efficiency":  "0.32571"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  43,
+        "goal":  "Get Hecate to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "Hecate",
+                         "level":  "17 --\u003e 30",
+                         "erda":  "128",
+                         "frags":  "4497",
+                         "cumulativeFrags":  "24317.8",
+                         "fdPercent":  "4.82029",
+                         "efficiency":  "0.10719"
+                     }
+                 ],
+        "sheetComment":  "Although the subsequent goal is slightly more efficient, the QoL from lvl 20 door and the phlegethon burst at lvl 30 makes it worth maxing here",
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  44,
+        "goal":  "Get Origin to lvl 20, Ascent to lvl 19, and Eternal Light to lvl 3",
+        "rows":  [
+                     {
+                         "item":  "Origin",
+                         "level":  "18 --\u003e 20",
+                         "erda":  "25",
+                         "frags":  "645",
+                         "cumulativeFrags":  "24962.8",
+                         "fdPercent":  "0.74710",
+                         "efficiency":  "0.11583"
+                     },
+                     {
+                         "item":  "Ascent",
+                         "level":  "18 --\u003e 19",
+                         "erda":  "9",
+                         "frags":  "310",
+                         "cumulativeFrags":  "25272.8",
+                         "fdPercent":  "0.35049",
+                         "efficiency":  "0.11306"
+                     },
+                     {
+                         "item":  "Eternal Light",
+                         "level":  "2 --\u003e 3",
+                         "erda":  "2",
+                         "frags":  "50.0",
+                         "cumulativeFrags":  "25322.8",
+                         "fdPercent":  "0.05465",
+                         "efficiency":  "0.10930"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  45,
+        "goal":  "Get the last useful rush stone and get Origin to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "1% IED (R)",
+                         "level":  "-",
+                         "erda":  "1",
+                         "frags":  "50",
+                         "cumulativeFrags":  "25372.8",
+                         "fdPercent":  "0.05046",
+                         "efficiency":  "0.10091"
+                     },
+                     {
+                         "item":  "Origin",
+                         "level":  "21 --\u003e 30",
+                         "erda":  "74",
+                         "frags":  "2390",
+                         "cumulativeFrags":  "27762.8",
+                         "fdPercent":  "2.34585",
+                         "efficiency":  "0.09815"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  46,
+        "goal":  "Get Ascent to lvl 25 and Eternal Light to lvl 10",
+        "rows":  [
+                     {
+                         "item":  "Ascent",
+                         "level":  "20 --\u003e 25",
+                         "erda":  "40",
+                         "frags":  "1300",
+                         "cumulativeFrags":  "29062.8",
+                         "fdPercent":  "1.11837",
+                         "efficiency":  "0.08603"
+                     },
+                     {
+                         "item":  "Eternal Light",
+                         "level":  "4 --\u003e 10",
+                         "erda":  "21",
+                         "frags":  "388.0",
+                         "cumulativeFrags":  "29450.8",
+                         "fdPercent":  "0.32789",
+                         "efficiency":  "0.08451"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  47,
+        "goal":  "Get M2 to lvl 30 and Ascent to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "M2: Sting/Fury",
+                         "level":  "30",
+                         "erda":  "10",
+                         "frags":  "250.0",
+                         "cumulativeFrags":  "29700.8",
+                         "fdPercent":  "0.16730",
+                         "efficiency":  "0.06692"
+                     },
+                     {
+                         "item":  "Ascent",
+                         "level":  "26 --\u003e 30",
+                         "erda":  "45",
+                         "frags":  "1440",
+                         "cumulativeFrags":  "31140.8",
+                         "fdPercent":  "0.93616",
+                         "efficiency":  "0.06501"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  48,
+        "goal":  "Get Shinestones #3, #2, #1, and #4 to lvl 16",
+        "rows":  [
+                     {
+                         "item":  "Shinestone #3",
+                         "level":  "16",
+                         "erda":  "0",
+                         "frags":  "997.3",
+                         "cumulativeFrags":  "32138.1",
+                         "fdPercent":  "0.95623",
+                         "efficiency":  "0.09589"
+                     },
+                     {
+                         "item":  "Shinestone #2",
+                         "level":  "16",
+                         "erda":  "0",
+                         "frags":  "997.3",
+                         "cumulativeFrags":  "33135.4",
+                         "fdPercent":  "0.80830",
+                         "efficiency":  "0.08105"
+                     },
+                     {
+                         "item":  "Shinestone #1",
+                         "level":  "16",
+                         "erda":  "0",
+                         "frags":  "997.3",
+                         "cumulativeFrags":  "34132.6",
+                         "fdPercent":  "0.73998",
+                         "efficiency":  "0.07420"
+                     },
+                     {
+                         "item":  "Shinestone #4",
+                         "level":  "16",
+                         "erda":  "0",
+                         "frags":  "997.3",
+                         "cumulativeFrags":  "35129.9",
+                         "fdPercent":  "0.73998",
+                         "efficiency":  "0.07420"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    },
+    {
+        "order":  49,
+        "goal":  "Get Eternal Light to lvl 30",
+        "rows":  [
+                     {
+                         "item":  "Eternal Light",
+                         "level":  "11 --\u003e 30",
+                         "erda":  "96",
+                         "frags":  "2870.0",
+                         "cumulativeFrags":  "37999.9",
+                         "fdPercent":  "0.95636",
+                         "efficiency":  "0.03332"
+                     }
+                 ],
+        "sources":  [
+                        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+                    ],
+        "sourceCount":  1,
+        "consensus":  "weak",
+        "verifiedAt":  "2026-09-12"
+    }
+],
+    "notes": "ERDA LINK, NOT HEXA MATRIX. ERDA LINK MECHANICS (maplestorywiki /w/Erda_Link, re-read 2026-09-12, page last edited 2026-07-05, self-flagged as a stub): six stone types, upgraded with Sol Erda and Sol Erda Fragments - Origin Stone (unlocked automatically upon Job Advancement, enhances Skill Nodes); Ultimate Stone (enhances Mastery Nodes if Light Power is activated); Skill Stone (enhances Boost Nodes and Common Nodes if connected Rush Stones are activated); Boost Stone (activates certain effects under certain conditions if Light Power is activated); Rush Stone (adds bonus stats and connects stones through paths); SHINE Stone (bonus stats equivalent to HEXA Stats). Light Power is activated by clicking a button in the Erda Link UI, which shows a glowing yellow box; the box grows as stones are unlocked, and a 6th job skill is unlocked in the Skill window when the box surrounds it. PLANNING CONSEQUENCE WORTH SURFACING TO USERS: the same page states that SHINE Stone enhancement 'requires Meso in addition to Sol Erda/Fragments, and failure can decrease the stone's level'. That is a risk profile HEXA Stat does not have, and any Erda Link planner must model it rather than treating SHINE Stones as deterministic. Eikonal's workbook says its own SHINE Stone fragment costs are EXPECTED (average) costs for exactly that reason, and several of its comments ('but I'm risk averse so ...', 'gamba enjoyers can grab this a few goals earlier') are about that variance. SCOPE OF THE ORDERING RECORDED ABOVE: the complete sequence is 49 goals over 111 purchase rows, and ALL of it is recorded, read verbatim. An earlier version of this file recorded only the first 15 rows and guessed the total at 'roughly 70 goals'; both have been corrected. WORKBOOK TOTALS, from its own Summarised Info block: 1166 Sol Erda (its note says this excludes things like Janus and drop rate/exp rush stones), 38187 fragments (its note says quite a few niche stones are not accounted for, pointing at the Technical Notes tab), and 133.890% total final damage gain relative to a fresh 6th job. Per-skill FD contributions in that block: M1 Spear of Lugh 39.675, Shinestones (16 all) 21.211, Eternal Guardian 15.935, M2 Sting/Fury of Roan 14.200, Hecate 11.517, Erda Link passives 10.668, Ascent 6.235, Origin 6.015, Destruction of Roan 3.686, Sentinel Rise 3.109, Eternal Light 1.639, Tree of Stars (CC3) left blank. Summary of non-Shinestone Erda Link bonuses, also from that block: 36% boss/dmg/abnormal dmg, 5% crit rate, 7% IED, 4% crit damage, 36 atk, 6% all stat, 1450 STR, 200 DEX, 13% buff duration, 15% normal damage, 5% exp, 12% drop rate, 2% meso, 30% exp every 30s for every 250 combo kills, 0.5% chance to reduce a skill's remaining cooldown by 20%, 10 sacred power. COLUMN NOTE: only columns A and B carry exported headers ('SKILL', 'LEVEL'). The remaining five columns are unlabelled in the export, but their meaning is arithmetically certain and was checked across rows: C = Sol Erda cost, D = fragment cost, E = cumulative fragments, F = final damage percent gained, G = F divided by D times 100. An earlier version of this file asserted header strings ('ERDA', 'FRAGS', 'CUMULATIVE FRAGS', 'FD (%)', 'EFFICIENCY (FD%/100 FRAGS)') that are not in the exported sheet; the arithmetic definition above replaces them. KNOWN TYPO IN THE SOURCE: in goal 19 the cumulative-fragment cell for Shinestone #1 12->13 reads 5032.5, lower than the 5090.5 above it; the next row resumes at 5161.6. The cumulative column is therefore low by roughly 129 from that point on, which is part of why the final cumulative cell (37999.9) does not match the stated 38187 total. Values are transcribed as printed rather than silently repaired. WHY UNLOCK ROWS SCORE NEAR ZERO: a row like '200 DEX (D) + (mains) Sol Janus or (mules) 2% normal dmg (L)' buys Rush Stones that extend Light Power far enough to reach a node; it delivers almost no damage itself, so its efficiency is near zero by construction. The payoff is always the row immediately after it. Do not present these rows to a user as low-value purchases - present each goal as a unit. MODELLING ASSUMPTIONS the author states on the Technical Notes tab: Janus assumed unlocked to get M1 into the light zone (with a DEX rush stone); far-left rush stones assumed unlocked before the 20 ATK boost stone; RoR4/WJ4 rings assumed, to be revised after ring changes; a -2 cooldown hat assumed, which favours the class's 10 second cooldown skills; Passives +1 inner ability assumed, so +2 passives with DCO; stat-to-FD conversions averaged from the author's own roughly 280-300m CP characters, with a note that FD for IED is somewhat overvalued in party play; various small and niche Erda Link stats not accounted for; and a 20 minute boss fight assumed when valuing Ascent, which the author says is more impactful in shorter fights. NAME ALLOWLIST FOR 6TH JOB, complete as of maplestorywiki /w/Erel_Light/Skills re-read 2026-09-12 (page last edited 2026-09-09, the v.271 patch date): class-specific skills are Fall of Melin (master level 30, 360 second cooldown, invincible during casting) and Radiant Spear (master level 30, invincible during casting, Ignore Defense +60%, Boss Damage +40%, Critical Rate 100%); Mastery skills are SHINE Spear of Lugh, SHINE Fury of Roan and SHINE Sting of Roan; Enhancement (boost) nodes are Eternal Light Boost, Sentinel Rise Boost, Eternal Guardian Boost and Destruction of Roan Boost; shared skills are Sol Janus (with Sol Janus: Dawn and Sol Janus: Dusk), Sol Hecate (with Sol Hecate: Styx, Sol Hecate: Phlegethon, Sol Hecate: Charon and Sol Hecate: Pactum) and SHINE Tree of Stars. An earlier version of this allowlist omitted SHINE Tree of Stars and the Phlegethon, Charon and Pactum forms of Sol Hecate, which would have caused a downstream consumer to reject four real names - the workbook's 'Tree of Stars (CC3)' row and its 'phlegethon burst at lvl 30' comment both refer to skills that were missing from it. Do not emit any 6th job node name outside this list.",
     "sources": [
       "https://maplestorywiki.net/w/Erel_Light",
       "https://maplestorywiki.net/w/Erda_Link",
@@ -205,12 +1758,17 @@
       "https://grandislibrary.com/shine/erel-light",
       "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g",
       "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc"
-    ]
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "hyperStats": {
     "priority": null,
-    "notes": "NOT SOURCED. No source reached in this pass publishes a hyper stat allocation or priority order for Erel Light. Grandis Library carries no hyper stat section for any class. The Erel Light FAQ has no hyper stat section. Leaving this empty is the correct outcome - do not fill it from a generic warrior template. If the product needs to answer this question, the community's operative answer for every class is MathBro's per-character Hyper Stat Optimizer (https://brendonmay.github.io/hyperCalculator/), which computes an allocation from a character's own stat sheet rather than publishing a fixed list.",
-    "sources": []
+    "priorityIsOrdered": null,
+    "consensus": "none",
+    "sourceCount": 0,
+    "sources": [],
+    "verifiedAt": "2026-09-12",
+    "notes": "NOT SOURCED, AND THE ABSENCE WAS RE-VERIFIED ON 2026-09-12. Grandis Library's Erel Light page contains zero occurrences of 'hyper stat' in any form - it carries no hyper stat section for this class, and does not for any class. The Erel Light FAQ has five questions and none is about hyper stats. maplestorywiki's Erel Light pages carry no hyper stat content. Eikonal's workbook is scoped to Erda Link only. Leaving this null is the correct outcome - do NOT fill it from a generic warrior template, and do not let a UI imply an order exists. If the product needs to answer this question, the community's operative answer for every class is MathBro's per-character Hyper Stat Optimizer (https://brendonmay.github.io/hyperCalculator/), which computes an allocation from a character's own stat sheet rather than publishing a fixed list; that tool was not itself re-verified in this pass and is recorded as a pointer, not as a sourced recommendation."
   },
   "hyperSkills": {
     "passivesRecommended": [
@@ -220,13 +1778,17 @@
       "Fury of Roan - Reinforce",
       "Sting of Roan - Reinforce"
     ],
-    "passivesRecommendedConsensus": "weak - single source (Grandis Library), whose credits block attributes the hyper passive build to the Erel Light Discord, so this is one community's view presented once rather than two agreeing sources",
-    "passivesRecommendedSources": [
-      "https://grandislibrary.com/shine/erel-light"
-    ],
+    "passivesRecommendedIsOrdered": false,
+    "passivesRecommendedOrderingCaveat": "SHAPE WARNING. Grandis Library publishes this as a SET of five picks, grouped for display by base skill (three Spear of Lugh lines, then Fury of Roan - Reinforce, then Sting of Roan - Reinforce). It states no acquisition order and no ranking among the five. Array position here reproduces Grandis's display grouping only. Do not present position 1 as 'take this first'.",
+    "passivesRecommendedWhy": "These five spend all five hyper passive points and leave the two Guardbreak lines (Fury of Roan, Sting of Roan) and the two Critical Chance lines (Fury of Roan, Sting of Roan) unpicked. No source read in this pass explains why, so no rationale is asserted. A plausible reading - that the class already self-sources large ignore defense and critical rate, so the flat Damage and Boss Damage lines win - is consistent with the skill tables but is NOT stated by any source and must not be shown to a user as sourced.",
+    "passivesRecommendedSources": ["https://grandislibrary.com/shine/erel-light"],
+    "passivesRecommendedSourceCount": 1,
+    "passivesRecommendedConsensus": "weak",
+    "passivesRecommendedConsensusNote": "Single source. Grandis Library's own credits block on this page reads, verbatim, 'Inner Ability + Hyper Passive Build: Erel Light Discord' - so this is one community's view presented once, not two agreeing sources. Re-verified 2026-09-12 by reading the page's embedded hyperBuild.recommended string, which names exactly these five lines and no others.",
+    "passivesRecommendedVerifiedAt": "2026-09-12",
     "passivesAvailable": [
       "Spear of Lugh - Reinforce (Lv140, Damage +20%)",
-      "Spear of Lugh - Extra Strike (Lv150, attack count +1)",
+      "Spear of Lugh - Extra Strike (Lv150, Spear of Lugh Attack Count +1)",
       "Spear of Lugh - Boss Rush (Lv180, Boss Damage +20%)",
       "Fury of Roan - Reinforce (Lv140, Damage +20%)",
       "Fury of Roan - Guardbreak (Lv165, Ignore Defense +10%)",
@@ -235,19 +1797,27 @@
       "Sting of Roan - Guardbreak (Lv165, Ignore Defense +10%)",
       "Sting of Roan - Critical Chance (Lv190, Critical Rate +20%)"
     ],
-    "passivesAvailableSources": [
-      "https://maplestorywiki.net/w/Erel_Light/Skills"
-    ],
+    "passivesAvailableSources": ["https://maplestorywiki.net/w/Erel_Light/Skills"],
+    "passivesAvailableSourceCount": 1,
+    "passivesAvailableConsensus": "moderate",
+    "passivesAvailableConsensusNote": "Single source, but a verbatim transcription of the in-game skill table rather than a judgement. Every level requirement and effect above was re-read against the page on 2026-09-12 and matches exactly.",
+    "passivesAvailableVerifiedAt": "2026-09-12",
     "actives": null,
+    "activesConsensus": "none",
+    "activesSourceCount": 0,
+    "activesNote": "No source read in this pass recommends which hyper actives to take. Grandis Library's page carries a hyperActive list (the same three below) but no recommended-active build; the FAQ and Eikonal's workbook do not address hyper actives. Null rather than guessed.",
+    "activesVerifiedAt": "2026-09-12",
     "activesAvailable": [
-      "Piercing of Chulainn (Lv140, buff, Damage +10% for 30s, 60s cooldown)",
-      "Impulse of Chulainn (Lv160, attack, 480% x10, 60s cooldown)",
-      "Hundred Pole (Lv190, buff, Critical Damage +10% for 30s, 60s cooldown)"
+      "Piercing of Chulainn (Lv140, buff, MP 100, Duration 30 sec, Damage +10%, cooldown 60 sec)",
+      "Impulse of Chulainn (Lv160, attack, MP 300, Damage 480%, 10 attacks, max 10 enemies hit, cooldown 60 sec)",
+      "Hundred Pole (Lv190, buff, MP 100, Duration 30 sec, Critical Damage +10%, cooldown 60 sec)"
     ],
-    "activesAvailableSources": [
-      "https://maplestorywiki.net/w/Erel_Light/Skills"
-    ],
-    "notes": "The recommended passive list spends five of the available points and leaves the two Guardbreak lines and the two Critical Chance lines unpicked; no source read here explains why, so the rationale is not recorded. No source recommends which hyper actives to take, so that field is null rather than guessed. Note that Impulse of Chulainn is both a hyper active and the skill inside boost node 6."
+    "activesAvailableSources": ["https://maplestorywiki.net/w/Erel_Light/Skills"],
+    "activesAvailableSourceCount": 1,
+    "activesAvailableConsensus": "moderate",
+    "activesAvailableConsensusNote": "Single source, verbatim skill-table transcription, re-read 2026-09-12.",
+    "activesAvailableVerifiedAt": "2026-09-12",
+    "notes": "All nine hyper passives and all three hyper actives above were re-read against maplestorywiki on 2026-09-12 and match the in-game tables exactly. The recommended five were re-read against Grandis Library's embedded hyperBuild data on the same date. Note that Impulse of Chulainn is both a Lv160 hyper active and the skill inside V Enhancement Core 6, so a player who skips the active gets nothing from that boost node."
   },
   "innerAbility": {
     "bossing": [
@@ -255,136 +1825,221 @@
       "Boss Damage +10%",
       "Damage to monsters inflicted with Abnormal Status +8%"
     ],
-    "bossingConsensus": "weak - two sources state the same three lines, but they are not independent: Grandis Library's credits block attributes its Inner Ability section to the Erel Light Discord, which is also the venue of the FAQ document. Treat as one source stated twice.",
+    "bossingIsOrdered": false,
+    "bossingOrderingCaveat": "These are three inner ability LINE picks, not a ranked priority. Both sources present them as a flat three-item list with no order stated. Wording differs slightly between sources and neither is normative: Grandis Library renders the first as 'Passive Skills +1', the FAQ as '+1 Passive Skill Levels'.",
     "bossingSources": [
       "https://grandislibrary.com/shine/erel-light",
       "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc"
     ],
+    "bossingSourceCount": 1,
+    "bossingConsensus": "weak",
+    "bossingConsensusNote": "Two documents state the same three lines, but they are NOT independent: Grandis Library's credits block on this page reads, verbatim, 'Inner Ability + Hyper Passive Build: Erel Light Discord', and the FAQ is a document from that same Erel Light Discord, linked from Grandis as the class's Class FAQ. Counted as one source stated twice. Both were re-read on 2026-09-12 and both do carry these three lines - genuine corroboration of the transcription, not of the judgement.",
+    "bossingVerifiedAt": "2026-09-12",
+    "bossingConditional": {
+      "line": "Damage to monsters inflicted with Abnormal Status +8%",
+      "condition": "The FAQ states, verbatim: 'Abnormal Damage might not be good in Challenger's World but with Mage Link on your main world it's best.' Surface this line as conditional on the character having an abnormal-status source, not as a flat recommendation - it is dead weight without one.",
+      "sources": ["https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc"],
+      "sourceCount": 1,
+      "consensus": "weak",
+      "verifiedAt": "2026-09-12",
+      "corroboration": "Eikonal's workbook carries the same caution about the same stat on a different system: its comment on the Destruction of Roan level 10 goal reads 'For CW players, since you may not have a way to proc abn status effect, You should instead up to get all 10 levels of DoR in the first stone and delay this goal until you need to max DoR'. Same community, so this does not raise the source count, but it shows the condition is a live planning consideration rather than a one-off remark. An earlier version of this file paraphrased the FAQ as pointing at 'a Mage link skill as the pairing' without the Challenger's World framing; the verbatim quote above replaces that paraphrase."
+    },
     "training": [
       "Meso Obtained / Item Drop Rate +20%",
       "Meso Obtained / Item Drop Rate +15%",
       "Damage to Normal Monsters +8%"
     ],
-    "trainingConsensus": "weak - single source",
-    "trainingSources": [
-      "https://grandislibrary.com/shine/erel-light"
-    ],
-    "notes": "CONDITION ON THE THIRD BOSSING LINE: the FAQ makes the abnormal-status damage line contingent on actually having a source of abnormal status, and points at a Mage link skill as the pairing. Without that, the line is dead. A planner should surface it as conditional, not as a flat recommendation. NOTHING WAS FOUND on attack speed inner ability lines for this class either way, and no source read here gives a region-split (GMS vs KMS attack speed cap) recommendation for Erel Light as Grandis does for some other classes. That gap is unfilled, not resolved.",
+    "trainingIsOrdered": false,
+    "trainingNote": "Grandis Library attaches a note to this set, verbatim: 'Depending on what's chosen as the 1st Line, choose the other for the 2nd Line'. So the first two entries are a pair of line slots to be filled with the two Meso Obtained / Item Drop Rate rolls in whichever order they come, not a ranked preference.",
+    "trainingSources": ["https://grandislibrary.com/shine/erel-light"],
+    "trainingSourceCount": 1,
+    "trainingConsensus": "weak",
+    "trainingConsensusNote": "Single source, re-read 2026-09-12 from the page's embedded innerAbility data.",
+    "trainingVerifiedAt": "2026-09-12",
+    "notes": "GAP, UNFILLED NOT RESOLVED: nothing was found on attack speed inner ability lines for this class either way, and no source read here gives a region-split (GMS vs KMS attack speed cap) recommendation for Erel Light as Grandis does for some other classes. One adjacent fact a planner may want, but that no source connects to inner ability: Grandis lists Erel Light's attack speed as 8, Stage 4, from Radiant Set +2 and Gram Accelerator +2. Whether that leaves room for an attack speed inner line is not stated anywhere read in this pass and is not asserted here.",
     "sources": [
       "https://grandislibrary.com/shine/erel-light",
       "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc"
-    ]
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "gearingNotes": "No exotic stat model. Erel Light is a conventional STR main / DEX secondary warrior - unlike Demon Avenger it has no HP-as-damage-stat quirk, and unlike Xenon it has no cross-branch gear decision. The class-specific gearing facts that ARE sourced, all from the skill tables at maplestorywiki.net/w/Erel_Light/Skills: SELF-SOURCED CRITICAL RATE IS LARGE. Named passive and buff sources are Radiant Shock (Critical Rate +15% at max), Radiant Dawn (Critical Rate +20% at level 10, +22% at level 12), and the Light Enchant buff (Critical Rate +10% at max, 200 second duration). Two hyper passives add a further +20% critical rate each but only to Fury of Roan and to Sting of Roan specifically, not globally. The individual values are recorded rather than summed because no source publishes an Erel Light critical rate target or states where investment should stop - that calculation is left to the reader rather than asserted here. SELF-SOURCED IGNORE DEFENSE IS ALSO LARGE. Radiant Control gives Ignore Defense +40% at level 15; Path of Fionn carries Ignore Defense +100% on the skill itself; the 6th job skill Radiant Spear carries Ignore Defense +60%, Boss Damage +40% and a flat 100% critical rate; boost nodes for Spear of Lugh, Fury of Roan and Sting of Roan each add Ignored Enemy Defense +20% at node level 40. BOSS DAMAGE FROM PASSIVES: Radiant Control gives Boss Damage +20% at level 15, before the Boss Rush hyper passive and the legion effect. SURVIVABILITY IS UNUSUALLY SELF-CONTAINED: Radiant Hold (Max HP +10%, damage taken -20%, knockback resistance +40%) and Radiant Will (Max HP +20%, damage taken -20%, knockback resistance +60%) stack, and Shield of Chulainn passively creates a barrier absorbing up to 30% of Max HP whenever Fury of Roan and Sting of Roan are comboed off Spear of Lugh - which the FAQ notes happens naturally in the normal attack loop. Max HP therefore has real defensive value on this class beyond survival floor. BUFF DURATION MATTERS MORE THAN AVERAGE: the class's own link skill grants Buff Duration +19%, and its two main buffs (Light Enchant, Helian Blessing) both run 200 seconds. ERDA LINK RESOURCE RISK: SHINE Stone enhancement consumes Meso in addition to Sol Erda and Sol Erda Fragments and can fail, lowering the stone's level - budget for that, unlike HEXA Stat.",
   "commonMistakes": [],
   "sources": [
     {
       "url": "https://maplestorywiki.net/w/Erel_Light",
-      "what": "Class identity page. Source for: Shine faction, Warrior class, STR main / DEX secondary, Gram primary weapon, Keir secondary, Guiding Stars link skill, Boss Damage legion effect, release in the Ride the Lightning (v.269) update, MapleStory M origin, the availability table showing the class is GMS-only, and the statement that SHINE classes use Erda Link instead of the HEXA Matrix. Marked 'Under construction' by the wiki itself.",
-      "dated": "unverified - page history was not reachable; the sibling Skills page was last edited 2026-09-09",
-      "independent": true
+      "what": "Class identity page. Source for: Shine faction, Warrior class, STR main / DEX secondary, Gram primary weapon, Keir secondary, Guiding Stars link skill, Boss Damage legion effect, release in the Ride the Lightning (v.269) update, MapleStory M origin, the availability table showing the class is GMS-only, and the verbatim statement 'For SHINE classes only, 6th Job skills are unlocked and enhanced using Erda Link instead of HEXA Matrix.' Marked 'Under construction' by the wiki itself.",
+      "dated": "unverified - page history not read; the sibling Skills page was last edited 2026-09-09",
+      "independent": true,
+      "reachedOn": "2026-09-12",
+      "accessNote": "Returns HTTP 403 to a default fetcher. Reachable with a normal browser User-Agent. The contest pass recorded maplestorywiki as unreachable on that basis and disputed claims it could not check; it is reachable."
     },
     {
       "url": "https://maplestorywiki.net/w/Erel_Light/Skills",
-      "what": "Complete skill table across all job advancements plus hyper skills, V skills, V enhancement cores and 6th job skills. Used as the name allowlist and for every numeric gearing fact in this file. Zero judgement content - no priority order of any kind.",
+      "what": "Complete skill table across all job advancements plus hyper skills, V skills, V enhancement cores and 6th job skills (headed 'HEXA Skills' on the page even though the class uses Erda Link). Used as the name allowlist and for every numeric gearing fact in this file. Zero judgement content - no priority order of any kind.",
       "dated": "2026-09-09 (page footer, last edited 23:40) - the v.271 patch date",
       "independent": false,
-      "independenceNote": "Same wiki as the Erel_Light page above. The three maplestorywiki.net entries in this list are ONE source, not three."
+      "independenceNote": "Same wiki as the Erel_Light page above. The three maplestorywiki.net entries in this list are ONE source, not three.",
+      "reachedOn": "2026-09-12"
     },
     {
       "url": "https://maplestorywiki.net/w/Erda_Link",
       "what": "Erda Link system mechanics: the six stone types and what each enhances, Light Power, the Sol Erda / Sol Erda Fragment currencies, and the SHINE Stone meso cost and failure-can-delevel rule. Self-flagged by the wiki as a stub.",
       "dated": "2026-07-05 (page footer)",
       "independent": false,
-      "independenceNote": "Same wiki as the Erel_Light page above. The three maplestorywiki.net entries in this list are ONE source, not three."
+      "independenceNote": "Same wiki as the Erel_Light page above. The three maplestorywiki.net entries in this list are ONE source, not three.",
+      "reachedOn": "2026-09-12"
     },
     {
       "url": "https://grandislibrary.com/shine/erel-light",
-      "what": "Class page. Source for boost node Primary/Secondary/Other tiering (read from the page's own data object, not its rendered text), the hyper skill passive build, and the bossing and training inner ability lines. Carries NO hyper stat section and NO HEXA or Erda Link section. Its Other Resources block links the class Discord, the Class FAQ and both Erda Link sheets, and notably does NOT link a 'Class Doc' - which is the reliable tell that Erel Light has no maintained class guide document.",
+      "what": "Class page. Source for boost node Primary/Secondary/Other tiering (read from the page's own embedded data object, not its rendered text), the hyper skill passive build, and the bossing and training inner ability lines. Carries NO hyper stat section and NO HEXA or Erda Link section. Its Other Resources block links the class Discord, the Class FAQ, the Erda Link Tracker, the Erda Link Progression sheet and NamuWiki, and notably does NOT link a 'Class Doc' - the reliable tell that Erel Light has no maintained class guide document. Its credits block names exactly two contributions: 'Skill Icons + Animations: Ikasuu' and 'Inner Ability + Hyper Passive Build: Erel Light Discord'. The boost node tiering is attributed to nobody.",
       "dated": "site footer stamp GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target. Its Erel Light overview infographic is credited to Helpfully and dated 2026-07-06.",
-      "independent": false
+      "independent": false,
+      "independenceNote": "For inner ability and hyper passives, Grandis self-attributes to the Erel Light Discord, so it is not independent of the FAQ. For the boost node tiering there is no stated attribution; it is treated as a single unattributed source rather than assumed to be Discord material.",
+      "reachedOn": "2026-09-12"
     },
     {
       "url": "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc",
-      "what": "Erel Light FAQ, linked from Grandis Library as the class's Class FAQ. The author describes it as a work in progress and a placeholder until a real Erel guide exists. Source for the three bossing inner ability lines and the Mage-link condition on the abnormal-status line, the M1 and M2 mastery unlock prerequisites, the Fury/Sting cast-during-Spear-of-Lugh tech, the Sol Hecate: Styx bind being bindable to buffs, and - importantly - the explicit statement that the community has produced no 6th job build. Also records a large final damage loss from passives following a balance change, which is why nothing in this file is carried over from pre-change material.",
+      "what": "Erel Light FAQ, linked from Grandis Library as the class's Class FAQ. Five questions. The author describes it as 'Slight work in progress. Meant to be a placeholder until a real Erel Guide appears.' Source for the three bossing inner ability lines and the Challenger's World / Mage Link condition on the abnormal-status line; the M1 and M2 mastery unlock prerequisites ('M1: Unlock Normal Enemy Damage (or Sol Janus) and DEX. M2: Unlock DEX and one of the 3 Ignore Defense passives on the right.'); the Fury/Sting cast-during-Spear-of-Lugh tech that produces the 30% shield; the statement 'You can bind Sol Hecate: Styx to one of the buffs with a 60 second cooldown'; and the explicit statement 'There is currently no 6th Job build made by the community yet.' Also records a MASSIVE 30% final damage loss from skill passives following a balance change, which is why nothing in this file is carried over from pre-change material.",
       "dated": "no date stamp in the document",
-      "independent": true
+      "independent": true,
+      "independenceNote": "Different author from Eikonal's workbook, but both are artifacts of the same Erel Light Discord. Independent of maplestorywiki; NOT independent of Grandis Library's inner ability and hyper passive sections, which Grandis credits to that Discord.",
+      "reachedOn": "2026-09-12"
     },
     {
       "url": "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g",
-      "what": "Erda Link Progression sheet, credited to Eikonal (Vinny) with thanks to Edd, Helpfully and blazyb. A goal-ordered upgrade sequence of roughly 70 steps with per-step Sol Erda cost, fragment cost, cumulative fragments, final damage gained and an efficiency figure in final damage percent per 100 fragments. This is the only published Erel Light 6th-job investment ordering found anywhere, and is the functional equivalent of a HEXA priority chart for this class.",
-      "dated": "no date stamp on the sheet",
-      "independent": true
+      "what": "Erda Link Progression workbook, credited on its own first tab to 'Eikonal (Vinny). Special thanks to Edd, Helpfully, blazyb'. Seventeen tabs: Summary (WIP), Summary (OUTDATED), Technical Notes, Base (WIP), Base (OLD), Erda Link Stats, Shinestones, M1: Spear, M2: Sting/Fury, Eternal Guardian, Destruction of Roan, Sentinel Rise, Eternal Light, Origin, Ascent, Hecate, Common3. The 'Summary (WIP)' tab carries a goal-ordered upgrade sequence of 49 goals over 111 purchase rows with per-row Sol Erda cost, fragment cost, cumulative fragments, final damage gained and FD% per 100 fragments. This is the only published Erel Light 6th-job investment ordering found anywhere, and is the functional equivalent of a HEXA priority chart for this class.",
+      "dated": "no date stamp on the workbook; the live summary tab is labelled '(WIP)' and a superseded one '(OUTDATED)'",
+      "independent": true,
+      "independenceNote": "Different author from the FAQ, but same Erel Light Discord ecosystem. Independent of maplestorywiki and of Grandis Library.",
+      "reachedOn": "2026-09-12",
+      "accessNote": "Fully readable as CSV through the gviz endpoint, per tab by gid. A gviz call with no gid returns the first tab, 'Summary (WIP)' - which is the live ordering, not a partial view of it."
     },
     {
       "url": "https://docs.google.com/spreadsheets/d/1N7pKMWa8cscPa_MtbiqRQNycCR8jbemKoyla1Z-mgto",
-      "what": "Erda Link Tracker sheet, linked from Grandis Library alongside the progression sheet. A per-character tracking tool from the same Erel Discord ecosystem, not a second opinion. Not read in this pass.",
+      "what": "Erda Link Tracker sheet, linked from Grandis Library alongside the progression workbook. A per-character tracking tool from the same Erel Discord ecosystem, not a second opinion. Not read in this pass.",
       "dated": "unknown",
       "independent": false
     },
     {
       "url": "https://discord.gg/yUAaBD46xp",
-      "what": "Erel Light class Discord, linked from Grandis Library. The venue behind both the FAQ and the Erda Link sheets, and - given the FAQ's own statement that no community 6th job build exists - the only place a more current answer can come from. Not machine-readable; not read.",
+      "what": "Erel Light class Discord, linked from Grandis Library. The venue behind the FAQ, both Erda Link sheets and Grandis's inner ability and hyper passive sections - which is precisely why those cannot be counted as independent of each other. Not machine-readable; not read.",
       "dated": "live",
       "independent": false
     },
     {
       "url": "https://en.namu.wiki/w/%EC%97%90%EB%A6%B4%20%EB%9D%BC%EC%9D%B4%ED%8A%B8",
-      "what": "NamuWiki page linked by Grandis Library. ATTEMPTED AND FAILED (HTTP 403). Note that because Erel Light is GMS-exclusive, the usual KMS cross-check lane does not exist for this class in the way it does for others - there is no Korean-server balance reference to compare against.",
+      "what": "NamuWiki page linked by Grandis Library. ATTEMPTED AND FAILED (HTTP 403) in the mining pass; not retried here. Because Erel Light is GMS-exclusive, the usual KMS cross-check lane does not exist for this class in the way it does for others - there is no Korean-server balance reference to compare against.",
       "dated": "not reached",
       "independent": false,
-      "independenceNote": "Marked false because nothing was read from it. It is listed as a lead, not as a source that contributed to this file."
+      "independenceNote": "Marked false because nothing was read from it. Listed as a lead, not as a source that contributed to this file."
     }
   ],
   "consensusLevel": "weak",
   "conflicts": [
     {
       "issue": "Boost node tier versus per-level value for Spear of Light",
-      "positionA": "Grandis Library's page data classes Spear of Light Boost as Secondary, below Spear of Lugh, Fury of Roan and Sting of Roan.",
+      "positionA": "Grandis Library's embedded page data classes Spear of Light Boost as Secondary (index 3), below Spear of Lugh, Fury of Roan and Sting of Roan.",
       "positionB": "maplestorywiki's V Enhancement table gives Spear of Light Boost 3% final damage per level, the highest of any Erel Light node, while all three of Grandis's Primary nodes are listed at 2% per level.",
-      "resolution": "NOT RESOLVED. Both facts are recorded as stated. A plausible reconciliation is that the three Primary skills are cast far more often than the Spear of Light summon so absolute contribution differs from per-level rate, but no source says this and it is not asserted here.",
+      "resolution": "NOT RESOLVED. Both facts were re-read on 2026-09-12 and both stand exactly as stated. A plausible reconciliation is that the three Primary skills are cast far more often than the Spear of Light summon, so absolute contribution differs from per-level rate, but no source says this and it is not asserted here.",
       "sources": [
         "https://grandislibrary.com/shine/erel-light",
         "https://maplestorywiki.net/w/Erel_Light/Skills"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "issue": "Which 6th job skill is Origin and which is Ascent",
-      "positionA": "maplestorywiki lists exactly two class-specific 6th job skills, Fall of Melin (master level 30, 360 second cooldown) and Radiant Spear (master level 30), and labels neither as Origin or Ascent.",
-      "positionB": "Eikonal's Erda Link Progression sheet contains separate goal rows for Origin and for Ascent but refers to them only by those generic role names, never by skill name.",
-      "resolution": "NOT RESOLVED and deliberately not guessed. Any UI that needs to show an Origin or Ascent skill name for Erel Light must confirm the mapping from a source before displaying it.",
+      "positionA": "maplestorywiki lists exactly two class-specific 6th job skills, Fall of Melin (master level 30, 360 second cooldown, invincible during casting) and Radiant Spear (master level 30, invincible during casting, no cooldown printed), and labels neither as Origin or Ascent.",
+      "positionB": "Eikonal's workbook has dedicated 'Origin' and 'Ascent' tabs and separate goal rows for each, but refers to them only by those generic role names, never by skill name. Its Technical Notes tab says Ascent 'is more impactful for shorter boss fights' and that the summary assumes a 20 minute fight of '3 full rotations + a single 2 min rotation with ori', which still does not name either skill.",
+      "resolution": "NOT RESOLVED and deliberately not guessed. The 360 second cooldown on Fall of Melin is the usual signature of an Origin skill, but the invincibility frame the workbook attributes to Ascent is printed on BOTH wiki entries, so the available evidence points in opposite directions and settles nothing. Any UI that needs to show an Origin or Ascent skill name for Erel Light must confirm the mapping from a source before displaying it. This blocks no recommendation in this file: every Erda Link order row uses the workbook's own generic names, transcribed verbatim.",
       "sources": [
         "https://maplestorywiki.net/w/Erel_Light/Skills",
         "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "issue": "Does a community 6th job build exist for Erel Light",
-      "positionA": "The Erel Light FAQ states outright that the community has not made a 6th job build yet.",
-      "positionB": "Eikonal's Erda Link Progression sheet is exactly such a build - a full ordered investment sequence with cost and efficiency per step - and Grandis Library links it from the Erel Light page.",
-      "resolution": "NOT RESOLVED because neither artifact carries a date. The likeliest explanation is that the FAQ statement predates the sheet and was never updated, but that is inference, not evidence. Consumers should treat the sheet as the current answer and the FAQ line as probably stale.",
+      "positionA": "The Erel Light FAQ states, verbatim: 'There is currently no 6th Job build made by the community yet.'",
+      "positionB": "Eikonal's Erda Link Progression workbook is exactly such a build - 49 ordered goals with cost and efficiency per row - and Grandis Library links it from the Erel Light page.",
+      "resolution": "NOT RESOLVED because neither artifact carries a date. The likeliest explanation is that the FAQ statement predates the workbook and was never updated, but that is inference, not evidence. Consumers should treat the workbook as the current answer and the FAQ line as probably stale.",
       "sources": [
         "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc",
         "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     }
   ],
-  "evidenceWarning": "THE THREE-INDEPENDENT-SOURCES BAR IS NOT MET FOR ANY JUDGEMENT CLAIM IN THIS FILE, and the app must not present Erel Light advice with the confidence it gives a class like Bowmaster. Three independent sources exist for FACTS (maplestorywiki, the Erel Light FAQ, and Eikonal's Erda Link sheet), but every judgement field rests on exactly one: boost node tiering and hyper passives and training inner ability come only from Grandis Library, whose own credits block attributes the judgement fields to the Erel Light Discord; the Erda Link investment order comes only from Eikonal's sheet; the bossing inner ability lines appear in two places that share one community. There is no second opinion to check any of it against. Four structural reasons this class is worse-sourced than most: (1) it is roughly three months old, released in v.269; (2) Grandis Library links no Class Doc for it, meaning no maintained class guide document exists; (3) the FAQ that stands in for one self-describes as a placeholder; (4) because the class is GMS-exclusive, the NamuWiki / KMS cross-check lane that provides genuine independence for most classes does not exist at all. ADDITIONAL GAPS: reddit.com was not reachable in this pass, so r/Maplestory Erel Light discussion is entirely unexamined; the web search budget was exhausted, so no YouTube guide pass was run; and the Erel Light Discord itself - which the FAQ and both sheets all originate from - was not read. Anyone extending this file should start there.",
-  "lastVerified": "2026-09-11",
+  "evidenceWarning": "THE THREE-INDEPENDENT-SOURCES BAR IS NOT MET FOR ANY JUDGEMENT CLAIM IN THIS FILE, and the app must not present Erel Light advice with the confidence it gives a class like Bow Master. Three independent sources exist for FACTS (maplestorywiki, the Erel Light FAQ, and Eikonal's Erda Link workbook), but every judgement field rests on exactly one: boost node tiering, hyper passives and training inner ability come only from Grandis Library; the Erda Link investment order comes only from Eikonal's workbook; the bossing inner ability lines appear in two places that share one community. PRECISION ABOUT THAT ATTRIBUTION, corrected in this pass: Grandis Library's credits block attributes exactly two things - 'Skill Icons + Animations: Ikasuu' and 'Inner Ability + Hyper Passive Build: Erel Light Discord'. It attributes the boost node tiering to nobody. An earlier version of this file said the credits block attributed the tiering to the Discord as well; that overstated what the page says. The tiering is unattributed single-source material, which is neither better nor worse than Discord-attributed material, but it should be described accurately. Four structural reasons this class is worse-sourced than most: (1) it is roughly three months old, released in v.269; (2) Grandis Library links no Class Doc for it, meaning no maintained class guide document exists; (3) the FAQ that stands in for one self-describes as a placeholder; (4) because the class is GMS-exclusive, the NamuWiki / KMS cross-check lane that provides genuine independence for most classes does not exist at all. ADDITIONAL GAPS: reddit.com was not reachable in the mining pass, so r/Maplestory Erel Light discussion is entirely unexamined; no YouTube guide pass was run; and the Erel Light Discord itself - which the FAQ, both sheets and Grandis's judgement sections all originate from - was not read. Anyone extending this file should start there. WHAT IS NOT A GAP ANY MORE: the Erda Link investment ordering is now recorded in full (49 goals, 111 rows) rather than truncated at 15, and every 6th job skill name in the allowlist has been checked against the live wiki.",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
-    "defects": [
-      "No skill or node name could be disproven; naming discipline is broadly sound and the refusal to guess the Origin/Ascent mapping is correct and confirmed (both rows exist unnamed in the sheet).",
-      "Terminology conflation: the sheet reads 'Eternal Guardian Skill Stone'; the file calls it 'Eternal Guardian boost stone' in four steps. The file's own Erda Link mechanics section defines Skill Stone and Boost Stone as distinct types, and its allowlist introduces a third name, 'Eternal Guardian Boost', as an Enhancement node. Three names, no disambiguation.",
-      "Unverified as discrete rows: the separate 'Unlock the M1 mastery' (50, eff 0.18) and 'Unlock the first Eternal Guardian boost stone' (100, eff 0.10) steps. The sheet's prerequisites appeared as rush stones at 0-2 Erda, not at these costs. Possibly real rows on a tab I could not read, possibly reconstructed.",
-      "Unverified names: 'Sol Hecate' and 'Sol Hecate: Styx' in the 6th job allowlist. The sheet says only 'Hecate'; maplestorywiki was unreachable (HTTP 403 on every route), so the 'Sol' prefix is uncorroborated.",
-      "Omission that alters the recommendation: the sheet's opening rows include Sentinel Rise Skill Stone L1 (efficiency 1.54) and Destruction of Roan Skill Stone L1, with Eternal Guardian at row 4 right after the masteries. Neither Sentinel Rise nor Destruction of Roan appears anywhere in the file's 15-step order, though Sentinel Rise's 1.54 outranks included steps SHINE Stone #2 (1.22) and M2 to level 3 (1.12). Caveat: gviz returns only the first sheet, so a tab difference could explain part of this."
+    "resolutionPass": {
+      "ranAt": "2026-09-12",
+      "scope": "vMatrix, hexa, hyperSkills, hyperStats and innerAbility only. Job 1-4 skill builds, skill damage coefficients, damage lines, job tiers and rotations were out of scope by product decision and were not touched.",
+      "method": "Every cited page was re-opened and the exact disputed claim checked against it. maplestorywiki, which the contest agent could not reach (HTTP 403 on every route), is reachable with a normal browser User-Agent and was read in full. Eikonal's workbook was read tab by tab through the gviz CSV endpoint, including its tab list, so the 'gviz returns only the first sheet' limitation the contest agent hit did not apply. No new sources were sought; every URL used here was already cited in the file."
+    },
+    "defects": [],
+    "resolved": [
+      {
+        "defect": "No skill or node name could be disproven; naming discipline is broadly sound and the refusal to guess the Origin/Ascent mapping is correct and confirmed (both rows exist unnamed in the sheet).",
+        "disposition": "NOT A DEFECT - CONFIRMED",
+        "whatIDid": "Re-checked. The Origin and Ascent rows exist in the workbook as generic role names, and the workbook additionally has dedicated 'Origin' and 'Ascent' tabs that also never name the skill. maplestorywiki labels neither Fall of Melin nor Radiant Spear as Origin or Ascent. The refusal to guess stands and remains recorded in conflicts. Separately, the naming claim was found to be wrong in the other direction: the allowlist was incomplete, not incorrect - see the allowlist entry below."
+      },
+      {
+        "defect": "Terminology conflation: the sheet reads 'Eternal Guardian Skill Stone'; the file calls it 'Eternal Guardian boost stone' in four steps. The file's own Erda Link mechanics section defines Skill Stone and Boost Stone as distinct types, and its allowlist introduces a third name, 'Eternal Guardian Boost', as an Enhancement node. Three names, no disambiguation.",
+        "disposition": "CONFIRMED AS A DEFECT - CORRECTED",
+        "whatIDid": "The critic is right that the file mixed three names with no disambiguation, and one of the three - 'Eternal Guardian boost stone' - was the file's own invention, appearing in neither source. Added hexa.terminology, which resolves the other two against their sources rather than hedging: maplestorywiki's Erda Link page states verbatim that a 'Skill Stone enhances Boost Nodes and Common Nodes if connected Rush Stones are activated', so the workbook's legend name 'Eternal Guardian Skill Stone' names the stone and maplestorywiki's 'Eternal Guardian Boost' names the node it enhances - two ends of one mechanic. The workbook itself uses both, calling the node 'Eternal Guardian Boost' in its goal headers while its legend says 'Eternal Guardian Skill Stone'. The generic 'Boost stone (B)' in the legend is a third, different thing and is only ever used in the ordering for flat stat purchases such as '10% boss dmg (B)', '1000 STR (B)' and '20 ATK (B)'. Canonical user-facing name set to the maplestorywiki node name. The invented phrase has been removed everywhere; the ordering now quotes the workbook's goal text verbatim instead of paraphrasing it."
+      },
+      {
+        "defect": "Unverified as discrete rows: the separate 'Unlock the M1 mastery' (50, eff 0.18) and 'Unlock the first Eternal Guardian boost stone' (100, eff 0.10) steps. The sheet's prerequisites appeared as rush stones at 0-2 Erda, not at these costs. Possibly real rows on a tab I could not read, possibly reconstructed.",
+        "disposition": "REFUTED - CLAIM CONFIRMED AGAINST SOURCE",
+        "whatIDid": "Both rows are real and are printed exactly as the file recorded them. Under 'Goal: Unlock M1 Spear of Lugh': '200 DEX (D) + (mains) Sol Janus or (mules) 2% normal dmg (L)', level '-', 1 Sol Erda, 50 fragments, cumulative 50, FD 0.09180, efficiency 0.18359. Under 'Goal: Unlock first Eternal Guardian Boost': '1% IED (R) + 1% IED (R)', level '-', 2 Sol Erda, 100 fragments, cumulative 763, FD 0.10091, efficiency 0.10091. The contest agent's observation that these are rush stones at 0-2 Erda is correct and not in conflict: the Erda figure is the Sol Erda cost, while the 50 and 100 figures the file quoted are the FRAGMENT cost. The M1 and M2 prerequisites are independently corroborated by the FAQ, which answers 'How do I unlock my Masteries?' with 'M1: Unlock Normal Enemy Damage (or Sol Janus) and DEX. M2: Unlock DEX and one of the 3 Ignore Defense passives on the right.' One wording correction was made: the file described the M2 prerequisite as '2% Ignore Defense stones', where the workbook reads '2% IED (R) + 1% IED (R)'."
+      },
+      {
+        "defect": "Unverified names: 'Sol Hecate' and 'Sol Hecate: Styx' in the 6th job allowlist. The sheet says only 'Hecate'; maplestorywiki was unreachable (HTTP 403 on every route), so the 'Sol' prefix is uncorroborated.",
+        "disposition": "REFUTED - CLAIM CONFIRMED AGAINST THREE SOURCES",
+        "whatIDid": "maplestorywiki is reachable with a browser User-Agent and carries 42 occurrences of 'Sol Hecate', including the skill headings 'Sol Hecate', 'Sol Hecate: Styx', 'Sol Hecate: Phlegethon', 'Sol Hecate: Charon' and 'Sol Hecate: Pactum'. The Erel Light FAQ independently writes 'You can bind Sol Hecate: Styx to one of the buffs with a 60 second cooldown'. Eikonal's workbook, which abbreviates to 'Hecate' in its ordering, spells it out on its Hecate tab: 'This spreadsheet computes the FD gain per level of Sol Hecate'. Three sources, three authors. The name stands and is now the best-sourced 6th job claim in the file."
+      },
+      {
+        "defect": "Omission that alters the recommendation: the sheet's opening rows include Sentinel Rise Skill Stone L1 (efficiency 1.54) and Destruction of Roan Skill Stone L1, with Eternal Guardian at row 4 right after the masteries. Neither Sentinel Rise nor Destruction of Roan appears anywhere in the file's 15-step order, though Sentinel Rise's 1.54 outranks included steps SHINE Stone #2 (1.22) and M2 to level 3 (1.12). Caveat: gviz returns only the first sheet, so a tab difference could explain part of this.",
+        "disposition": "PARTLY REFUTED, PARTLY CONFIRMED - AND THE UNDERLYING PROBLEM FIXED BY RECORDING THE WHOLE ORDERING",
+        "whatIDid": "REFUTED on the placement claim. What the contest agent read as 'the sheet's opening rows' is the colour-key LEGEND in column A rows 2 to 14, which lists the stone TYPES used in the workbook (M1: Spear of Lugh, M2: Sting/Fury of Roan, Sentinel Rise Skill Stone, Eternal Guardian Skill Stone, Destruction of Roan Skill Stone, Eternal Light Skill Stone, Origin, Ascent, Hecate, Tree of Stars (CC3), Shinestones, Rush stone, Boost stone). It is a key, not an order. The ordering begins at row 23, and in it Sentinel Rise (1) level 1 is goal 18 at cumulative fragment 5090.5, while Destruction of Roan (1) level 1 is goal 23 at cumulative 6770.6. Eternal Guardian (1) level 1 sits at cumulative 800, which is exactly where the file had it. Both the WIP and the OUTDATED summary tabs open identically, so the tab caveat does not change this. CONFIRMED on a real error the defect surfaced: the file's step 12 read 'Unlock the second Eternal Guardian boost stone, including the critical damage stones required on the path, and take it to level 10. Cost 150 fragments, efficiency 0.79' - which quoted the goal header but only the PREREQUISITE row's numbers, silently dropping the actual purchase row 'Eternal Guardian (2), 1 --> 6, 8 Sol Erda, 191 fragments, FD 2.92135, efficiency 1.52950'. That is the same conflation of goal header with purchase row the defect points at, and it understated that goal's value. FIX: rather than patch fifteen hand-copied steps, the entire ordering was re-read and transcribed - 49 goals, 111 rows, every row with its level range, Sol Erda cost, fragment cost, cumulative fragments, FD gain and efficiency exactly as printed, plus the author's own comments attached to the goals they annotate. Nothing is summarised and nothing is dropped, so this class of error cannot recur."
+      },
+      {
+        "defect": "NEW, found during this pass and not raised by the contest agent: the 6th job name allowlist was incomplete, and the field instructs downstream code to use it as a rejection list.",
+        "disposition": "FOUND AND CORRECTED",
+        "whatIDid": "The allowlist omitted SHINE Tree of Stars and the Phlegethon, Charon and Pactum forms of Sol Hecate, all four of which are on maplestorywiki. Because the field says 'Do not emit any 6th job node name outside this list', those omissions would have caused four real names to be rejected - and the workbook uses two of them, in its 'Tree of Stars (CC3)' row and its 'phlegethon burst at lvl 30' comment. All four added."
+      },
+      {
+        "defect": "NEW, found during this pass: hexa.notes asserted column header strings that do not exist in the source, and a goal count that was a guess.",
+        "disposition": "FOUND AND CORRECTED",
+        "whatIDid": "The file listed the workbook's columns as 'SKILL, LEVEL, ERDA, FRAGS, CUMULATIVE FRAGS, FD (%), EFFICIENCY (FD%/100 FRAGS)'. Only 'SKILL' and 'LEVEL' are present as header text; the other five columns are unlabelled in the export. Replaced the invented header strings with the arithmetically verified meaning of each column. Also replaced 'the full ordering runs to roughly 70 goals; only the first 15 are recorded above because only those could be read verbatim' with the true count - 49 goals, 111 rows - all of which are now recorded. Recorded the source's own cumulative-fragment typo at goal 20 rather than silently repairing it."
+      },
+      {
+        "defect": "NEW, found during this pass: two shape problems where the data structure asserted a ranking no source states.",
+        "disposition": "FOUND AND CORRECTED",
+        "whatIDid": "(1) vMatrix.priority is an ordered array, but Grandis Library publishes an unordered three-tier classification. Added orderedWithinTier: false, an explicit tiers object holding the three unordered sets, and an orderingCaveat telling downstream code not to read position within a tier as priority. The array is kept because the TIER sequence is source-supported; the order inside each tier is not. (2) hyperSkills.passivesRecommended is an ordered array, but Grandis publishes a set of five picks grouped for display by base skill. Added passivesRecommendedIsOrdered: false with the same warning. By contrast hexa.order legitimately IS ordered - the workbook publishes it as a sequenced greedy ranking on FD per fragment - and is flagged orderIsOrdered: true alongside the author's own two caveats about erda-gating and lookahead horizon. innerAbility bossing and training lists were likewise flagged unordered, with Grandis's verbatim note that the two training meso/drop lines are interchangeable between line 1 and line 2."
+      },
+      {
+        "defect": "NEW, found during this pass: evidenceWarning overstated what Grandis Library's credits block says.",
+        "disposition": "FOUND AND CORRECTED",
+        "whatIDid": "The file said Grandis's credits block attributes its judgement fields, including boost node tiering, to the Erel Light Discord. The block names exactly two contributions: 'Skill Icons + Animations: Ikasuu' and 'Inner Ability + Hyper Passive Build: Erel Light Discord'. The boost node tiering is unattributed. Corrected in evidenceWarning, in the sources entry for Grandis Library, and in every vMatrix consensusNote, which now say the tiering is single-source and unattributed rather than claiming a Discord provenance the page does not state. No consensus label changes as a result - all were and remain weak."
+      },
+      {
+        "defect": "NEW, found during this pass: innerAbility paraphrased the FAQ's condition on the abnormal-status line in a way the FAQ does not support.",
+        "disposition": "FOUND AND CORRECTED",
+        "whatIDid": "The file said the FAQ 'makes the abnormal-status damage line contingent on actually having a source of abnormal status, and points at a Mage link skill as the pairing'. The FAQ actually says: 'Abnormal Damage might not be good in Challenger's World but with Mage Link on your main world it's best.' The substance is close but the framing is the FAQ's world type, not a generic contingency. Replaced the paraphrase with the verbatim quote in innerAbility.bossingConditional."
+      }
     ],
     "clearedOnInspection": [],
-    "shipReady": false
+    "outOfScope": [],
+    "shipReady": true,
+    "shipReadyNote": "Applies to the five endgame sections only: vMatrix, hexa, hyperSkills, hyperStats, innerAbility. Every claim in those five was re-read against its cited source on 2026-09-12 and is either confirmed, corrected to match the source, or deleted. Consensus labels remain weak for every judgement claim, which is accurate rather than a defect - the product is specified to say 'N sources say this, you do not have it', and a truthfully weak label supports that. Job 1-4 skill builds, coefficients, damage lines and rotations were not examined and carry no claim from this pass."
   },
-  "written": false,
-  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null
 }

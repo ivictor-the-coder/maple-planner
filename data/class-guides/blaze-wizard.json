@@ -21,40 +21,59 @@
     ]
   },
   "legionEffect": null,
+  "independenceModel": {
+    "note": "Labelling rule applied to every endgame claim in this file on 2026-09-12. sourceCount counts INDEPENDENT LINEAGES, not pages. consensus follows mechanically: 1 lineage = weak, 2 = moderate, 3+ = strong. No Blaze Wizard endgame claim reaches 3, so nothing in the five endgame sections is labelled strong.",
+    "lineages": [
+      "Arsonist's Cookbook family - the class doc itself, grandislibrary.com's Blaze Wizard page, and TajMaJon's video. Verified 2026-09-12: Grandis credits 'Class Doc' directly under the heading 'Inner Ability + Hyper Passive Build + Boost Nodes Build', so for those three fields Grandis is a restatement and counts once with the doc.",
+      "mystyjl's cross-class NodeGuide - genuinely outside the class-doc lineage, but self-reports last updated November 21st, 2024.",
+      "maplestorywiki.net - factual only (names, level requirements, numbers). Carries no recommendation, so it corroborates that a claim's nouns and numbers are real but never raises a judgement claim's sourceCount.",
+      "MathBro's Hyper Stat Optimizer - a tool, cited only to support the position that hyper stats are computed per character."
+    ]
+  },
   "vMatrix": {
     "priority": [
       {
         "node": "Unlock every node at level 1 before levelling anything",
-        "why": "The class doc's node levelling list opens with a blanket unlock-first step, with an allowance to push Decent Holy Symbol and Erda Shower earlier if the character is farming.",
+        "why": "Step 1 of the class doc's Node Leveling Priority, verbatim: 'Unlock everything at level 1', with the sub-point 'Can choose to prioritize Decent Holy Symbol and Erda Shower earlier for farming'.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
-        "node": "Boost nodes - the first four only",
-        "why": "The class doc ranks boost nodes second in the levelling order and says the last two of the six groupings sit outside any real boost, so they can be left alone.",
-        "consensus": "moderate",
+        "node": "Boost nodes - the first four groupings only",
+        "why": "Step 2 of the same list, verbatim: 'Boost Nodes / (first four) / Last two can be ignored, not part of any boost'. The doc does not name which skills sit in which grouping - the skill icons are images.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "consensusNote": "Downgraded from moderate on 2026-09-12. The second page previously counted here (Grandis Library) credits the class doc for its Boost Nodes Build, so it is the same lineage, not a second vote.",
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Job (skill) nodes",
-        "why": "Third in the class doc's levelling order, after boost nodes and before common nodes. The specific skill ordering inside this step could NOT be extracted - see vMatrix.notes.",
+        "why": "Step 3 of the class doc's levelling order, after boost nodes and before common nodes. The ordering line inside this step reads 'Prioritize [icon] followed by [icon] and [icon], then [icon]' - the skill names are inline images and are absent from the text layer, so no order is recorded. The four Blaze Wizard class skill nodes the doc documents by name elsewhere are Orbital Inferno, Savage Flame, Inferno Sphere and Salamander Mischief; all four were re-checked against maplestorywiki on 2026-09-12 and exist. Their relative order is the gap, not their identity.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
+          "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Common nodes: Erda Nova first, then Will of Erda / Blink / True Arachnid Reflection / Solar Crest, then Rope Lift",
-        "why": "Last in the class doc's node levelling order, given as a literal three-tier list.",
+        "why": "Step 4 of the class doc's levelling order, given as a literal three-tier numbered list. Re-read verbatim on 2026-09-12 and it matches exactly: tier 1 Erda Nova, tier 2 Will of Erda + Blink + True Arachnid Reflection + Solar Crest, tier 3 Rope Lift. The doc's own reason for Erda Nova first is that it becomes the primary bind at Level 25, where its cooldown drops to 120 seconds, and that it is preferred over Cinder Maelstrom because the cast cannot whiff.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
@@ -65,12 +84,15 @@
           "Blazing Extinction",
           "Phoenix Drive"
         ],
-        "why": "Two independent sources put Orbital Flame and Blazing Extinction at the top of the boost-node tiering; the cross-class trio table pairs them with Phoenix Drive to complete the trio. Grandis additionally notes the Orbital Flame and Blazing Extinction boost nodes are the ones that gate the matching HEXA Mastery cores.",
-        "consensus": "strong",
+        "why": "mystyjl's cross-class node table gives Blaze Wizard this exact primary trio, verbatim: 'Orbital Flame, Blazing Extinction, Phoenix Drive'. Grandis independently puts Orbital Flame (Node 1) and Blazing Extinction (Node 2) alone in its Primary tier, on the stated grounds that those are the nodes that unlock 6th Job HEXA Mastery. CAVEAT, stated so the pairing is not read as unanimous: Grandis places Phoenix Drive in its SECONDARY tier (Node 3, with Orbital Explosion), not in Primary. The trio pairing of Phoenix Drive with the other two comes from mystyjl alone.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "consensusNote": "Downgraded from strong on 2026-09-12. Two independent lineages agree that Orbital Flame and Blazing Extinction lead; the three-skill grouping itself has one. Nothing here reaches the 3-lineage bar for strong.",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "tier": "secondary",
@@ -79,12 +101,15 @@
           "Cataclysm",
           "Orbital Explosion"
         ],
-        "why": "The cross-class trio table gives this exact second trio, and Grandis independently lists Orbital Explosion, Phoenix Drive, Towering Inferno and Cataclysm as its Secondary tier.",
-        "consensus": "strong",
+        "why": "mystyjl gives this exact second trio, verbatim: 'Towering Inferno, Cataclysm, Orbital Explosion'. Grandis's Secondary tier is Node 3 (Orbital Explosion, Phoenix Drive) and Node 4 (Towering Inferno, Cataclysm), which contains all three of these plus Phoenix Drive, and which Grandis describes as frequently used but not HEXA-unlocking.",
+        "consensus": "moderate",
+        "sourceCount": 2,
+        "consensusNote": "Downgraded from strong on 2026-09-12 under the 3-lineage rule.",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html",
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "tier": "other",
@@ -95,74 +120,97 @@
           "Flame Bite",
           "Flame Vortex"
         ],
-        "why": "Grandis places these in its lowest boost-node tier. They are plausibly what the class doc's 'last two groupings can be ignored' remark refers to, but the doc does not name them, so that link is inference and is not asserted here.",
+        "why": "Grandis's lowest tier, re-read verbatim on 2026-09-12: 'Other nodes have lower priority - Node 5: Flame Tempest, Blazing Blitz, Cinder Maelstrom; Node 6: Flame Bite, Flame Vortex'. Grandis numbers exactly six boost-node groupings and these five skills occupy groups 5 and 6, which lines up with the class doc's 'Last two can be ignored, not part of any boost'. The doc does not name them, so that correspondence remains inference - well supported, but not asserted as sourced.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "GAP, flagged deliberately: the class doc's job-node ordering line renders the skill names as inline images, so the text export returns the sentence with the names stripped (prioritize [ ] followed by [ ] and [ ], then [ ]). No job-node order is recorded here rather than guess at it. A human or OCR pass on the Arsonist's Cookbook, or the Blaze Wizard Discord, is needed to fill this in. Separately, the only independent boost-node table found (mystyjl) self-reports 2024-11-21, which predates the v269 boost-node regrouping that Grandis exposes via its View Pre-V.269 Boost Nodes toggle - so its agreement with Grandis is reassuring but not proof of currency."
+    "notes": "GAP, flagged deliberately and re-confirmed on 2026-09-12 by reading the class doc's raw text export: the job-node ordering line renders the skill names as inline images, so the export returns the sentence with the names stripped ('Prioritize    followed by    and   , then   '). No job-node order is recorded here rather than guess at it. WARNING for anyone re-running this: an LLM summariser asked to read that line will confidently fill the blanks in with skill names taken from the table above it. That output is an extraction artifact, not the doc's answer. The real routes to the order are OCR of the Cookbook's images, or the Blaze Wizard Discord. Separately, the only boost-node opinion outside the class-doc lineage (mystyjl) self-reports 'Last Updated: November 21st, 2024', and Grandis's page carries a 'View Pre-V.269 Boost Nodes' toggle - direct evidence that groupings changed at v269 - so mystyjl's agreement with Grandis is reassuring but not proof of currency. Both facts re-verified on the live pages 2026-09-12."
   },
   "hexa": {
     "order": [
       {
         "step": "Eternity (Origin) is the class's main burst payload",
-        "why": "The class doc describes Eternity Origin as the primary burst, running about 30 seconds. It does not, in extractable text, state where in the levelling order it sits.",
+        "why": "Class doc, verbatim: 'Big damage-over-time burst skill that lasts 30 seconds. MOST OF THE DAMAGE IS FRONTLOADED. Can bind twice; initial cast and when phoenix swoops down.' The doc does not state, in extractable text, where in the levelling order it sits.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
+          "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Flame Concerto (Ascent) serves as supplementary finishing damage",
-        "why": "Stated in the class doc's sixth-job overview.",
+        "why": "Class doc, verbatim: '3x use per boss, unscaled damage, mostly useful for finishing boss phases without spending a burst. Does actually reduce the cooldown on Towering Inferno, which is assumed to be a bug.'",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
+          "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
-        "step": "Sol Janus is left out of the bossing HEXA priority entirely; unlock it early only for farming",
-        "why": "The class doc states in plain text that Sol Janus contributes no bossing damage and is therefore excluded from its bossing priority chart, while recommending an early unlock for mobbing. It has two modes (Dawn and Dusk) with different uses and is disabled in most boss content.",
+        "step": "Sol Janus is left out of the bossing HEXA priority entirely; unlock it at level 1 early anyway",
+        "why": "Class doc, verbatim, immediately under the heading 'HEXA Leveling Priority For Bossing.': 'Sol Janus is not included as it does not deal damage in bossing. Unlock Level 1 Janus as soon as possible. Leveling further entirely depends on your playstyle and choice of map in farming.' The doc separately describes it as having two modes, Dawn and Dusk, with different use cases, and as 'Disabled in most bossing content'.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
-        "step": "Sol Hecate is the bossing-side common node",
-        "why": "The class doc describes it as a multipurpose skill that adds several bossing benefits. No levelling position is given in extractable text.",
+        "step": "Sol Hecate is the bossing-side common node, and its value arrives at named levels",
+        "why": "Class doc, verbatim: 'A multipurpose skill that adds a variety of benefits to bossing.' Its three effects unlock at stated levels - Styx at Level 1 (a 4 second bind on a 1 minute cooldown that can extend bind timers and enable binding in the mini-burst), Charon at Level 20 (a door that activates on death granting a 10 second i-frame), Phlegethon at Level 30 (a larger burst of damage on a 2 minute cooldown). Those level gates are the only levelling-position information the doc gives for Sol Hecate in extractable text; it never states where the skill sits in the overall order.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "heroicVsInteractive": {
-      "claim": "The class doc publishes two separate HEXA levelling charts: one for Heroic worlds, which it frames as fragment-gated, and one for Interactive worlds, which it frames as Sol Erda-gated. The sequences differ.",
-      "why": "Heroic and Interactive bottleneck on different currencies, so the efficient order is not the same. For a Heroic (Reboot) planner the fragment-gated chart is the relevant one.",
+      "claim": "The class doc publishes two separate HEXA levelling charts under the headings 'Heroic Worlds (Fragment Gated)' and 'Interactive Worlds (Sol Erda Gated)'. Both are captioned 'START AT TOP LEFT. READ LEFT TO RIGHT.' The level numbers in the two grids differ, so the sequences are not the same.",
+      "why": "Heroic and Interactive bottleneck on different currencies, so the efficient order is not the same. For a Heroic (Reboot) planner the fragment-gated chart is the relevant one. Both headings and both grids were read directly in the doc's text export on 2026-09-12; the numbers survive the export, the skill icons do not.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "hexaStat": {
-      "claim": "The three HEXA Stat cores currently available should carry Magic ATT, INT and Critical Damage, in any order between them. Beyond that the doc sends the reader to an external optimiser (MapleScouter or a HEXA Stat calculator) because the answer is character-specific.",
+      "claim": "The first three HEXA Stat cores should carry Magic ATT, INT and Critical Damage, in any order between them. Beyond that the doc sends the reader to an external optimiser because the answer is character-specific.",
+      "why": "Class doc, verbatim, under the heading HEXA STAT: 'HEXA Stat's stat priority is character dependent. Ideally you use something like MapleScouter or MapleStory HEXA Stat Calculator in order to calculate your ideal HEXA Stat configuration. For picking the specific stats when unlocking, your first three cores (currently unlocked) should have Magic Attack, Int, and Critical Damage in any order.'",
+      "ordered": false,
+      "orderedNote": "The three stats are an UNORDERED set. The doc says 'in any order' in as many words. Do not let array position be read as priority.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
-    "notes": "MAJOR GAP, and it is the same gap the project brief predicted. The Arsonist's Cookbook does carry a full HEXA levelling order, but it is drawn as numbered image grids captioned START AT TOP LEFT, READ LEFT TO RIGHT. Nothing in the text layer carries the sequence, so no step-by-step order is recorded here. Do not fill this in from an aggregator. The routes to the real order are: OCR the Cookbook's HEXA infographics, or pull the infographic from the Blaze Wizard Discord. Note also that this class doc is the ONLY source found with any Blaze Wizard HEXA judgement at all - Grandis Library's Blaze Wizard page has no HEXA section, and no independent second opinion on HEXA order was located."
+    "notes": "MAJOR GAP, re-confirmed 2026-09-12 against the doc's raw text export rather than a summariser. The Arsonist's Cookbook does carry full HEXA levelling orders - one grid for Heroic, one for Interactive - but they are image grids in which only the target level numbers survive extraction (the export returns bare runs like '1 / (1) 20 / 4 / 6 / 1-3 / ... / 30'). The skill each number belongs to is an icon. So no step-by-step order is recorded here. The doc also links a 'BW Hexa Tracker v.271' and mentions alternative, more 'symmetric' orders below the images; neither is extractable either. Do NOT fill this in from an aggregator, and do not infer the order from the Sixth Job description table's row order - that table is captioned as being 'for easier viewing' and is not stated to be the priority list. The routes to the real order are OCR of the Cookbook's HEXA infographics, the linked HEXA tracker, or the Blaze Wizard Discord. Note also that this class doc is the only source found with any Blaze Wizard HEXA judgement: Grandis Library's Blaze Wizard page has a 6th job skill preview but publishes no HEXA levelling or priority recommendation, re-checked 2026-09-12."
   },
   "hyperStats": {
     "priority": null,
-    "notes": "Recorded as an explicit non-answer, not as missing data. The class doc declines to publish a fixed hyper stat allocation and directs the reader to a hyper stat calculator on the grounds that the optimum is individual and depends on the character's current progression. This matches the wider community position that hyper stats are a per-character computation rather than a list. The operative community tool is MathBro's Hyper Stat Optimizer. Any fixed Blaze Wizard hyper stat order presented elsewhere should be treated as a simplification, not as sourced class judgement.",
+    "ordered": false,
+    "notes": "Recorded as an explicit non-answer, not as missing data. The class doc's entire content under the heading 'Hyper Skill/Stat Allocation' on the stat side is one line, verbatim: 'Hyper Stat calculator because Hyper stats are individual and based on player progression.' It publishes no allocation and no ranking. This matches the wider community position that hyper stats are a per-character computation rather than a list; the operative tool is MathBro's Hyper Stat Optimizer. Any fixed Blaze Wizard hyper stat order presented elsewhere should be treated as a simplification, not as sourced class judgement. Downstream code must not synthesise an order here - priority is null on purpose and ordered is false.",
+    "consensus": "weak",
+    "sourceCount": 1,
     "sources": [
       "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
       "https://brendonmay.github.io/hyperCalculator/"
-    ]
+    ],
+    "verifiedAt": "2026-09-12"
   },
   "hyperSkills": {
     "passives": {
@@ -173,14 +221,18 @@
         "Blazing Extinction - Reinforce",
         "Blazing Extinction - Add Attack"
       ],
-      "why": "Both the class doc and Grandis name the same five: all three Orbital Flame passives plus Reinforce and Add Attack on Blazing Extinction. Effects, per the wiki: Range adds 100 travel distance, Guardbreak adds 20% ignore defense, Split Attack trades 90%p damage for an extra attack line, Reinforce adds 20% damage, Add Attack adds an attack line.",
-      "consensus": "moderate",
-      "consensusNote": "Two sources state it but they are one family - Grandis Library restates the class doc for hyper passive builds. The wiki independently confirms the five skills exist with those exact names and effects, but carries no recommendation.",
+      "ordered": false,
+      "orderedNote": "An unordered set of five. Neither source ranks them against each other; all five are taken. Array position carries no meaning.",
+      "why": "Class doc, verbatim: 'You want all three Orbital Flame passives, Blazing Extinction - Add Attack, and Blazing Extinction - Reinforce.' Grandis states the same build: 'Orbital Flame - Range, Guard Break and Split Attack' and 'Blazing Extinction - Reinforce and Add Attack'. Effects, per the wiki, re-checked 2026-09-12: Range increases Orbital Flame's travel distance by 100 while toggled, Guardbreak gives Ignore Defense +20%, Split Attack is Damage -90%p / Number of Attacks +1, Reinforce adds damage, Add Attack adds an attack line. All five names appear on the wiki exactly as written here.",
+      "consensus": "weak",
+      "sourceCount": 1,
+      "consensusNote": "Downgraded from moderate on 2026-09-12. The two pages stating this build are one lineage - Grandis credits 'Class Doc' under the heading that covers its Hyper Passive Build. The wiki independently confirms all five skills exist with these exact names and effects, but it carries no recommendation, so it does not raise the count. One lineage, therefore weak, therefore label it weak: the recommendation is probably right and is certainly not corroborated.",
       "sources": [
         "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
         "https://grandislibrary.com/cygnus-knights/blaze-wizard",
         "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "skip": {
       "skills": [
@@ -189,133 +241,182 @@
         "Orbital Explosion - Guardbreak",
         "Orbital Explosion - Reinforce"
       ],
-      "why": "These are the remaining hyper passives on the class; neither source that gives a build includes them. Listed as not-taken rather than as a judgement against them.",
+      "why": "These are the remaining four hyper passives on the class - the wiki's skill table lists exactly nine, and the five above plus these four account for all of them (re-enumerated from the wiki page on 2026-09-12). Neither source that publishes a build includes any of these four. Recorded as not-taken rather than as a judgement against them; no source argues against them explicitly.",
       "consensus": "weak",
+      "sourceCount": 1,
       "sources": [
         "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     "actives": [
       {
         "name": "Phoenix Drive",
         "unlocksAt": 140,
         "what": "20 second area attack around the character, 120 second cooldown. The class doc notes its duration can be stretched by server lag, and treats that interaction as the reason to target specific buff duration values.",
-        "consensus": "moderate",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "name": "Cataclysm",
         "unlocksAt": 160,
-        "what": "Large hit that leaves the character invincible and rooted through a roughly 5 second cast, 100 second cooldown. Doubles as an i-frame.",
-        "consensus": "moderate",
+        "what": "Large hit that leaves the character invincible and rooted through a roughly 5 second cast, 100 second cooldown. Doubles as an i-frame; the class doc adds that you can flash jump out afterward and retain a small amount of invincibility due to server lag.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "name": "Glory of the Guardians",
         "unlocksAt": 190,
-        "what": "60 second +10% damage party buff, 120 second cooldown, applying only to Cygnus Knights and Mihile in the party. The class doc treats it as part of the burst.",
-        "consensus": "moderate",
+        "what": "60 second +10% damage party buff, 120 second cooldown, applying only to Cygnus Knights and Mihile in the party. The class doc's entry reads 'Burst buff. Also synergizes with other Cygnus Knights in the party.'",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Relevant to a Lv 140 character specifically: of the five recommended passives, only Orbital Flame - Range and Blazing Extinction - Reinforce are available at 140. Guardbreak needs 150; Add Attack and Split Attack need 180. Phoenix Drive is the only hyper active available at 140. Derived directly from the level requirements on the wiki's skill table.",
+    "activesNote": "Not a choice. The wiki lists exactly these three hyper actives for Blaze Wizard and they unlock at separate levels (140 / 160 / 190) without competing for a budget, so all three are taken. No source presents a selection decision here; the app should not render one. Level requirements re-checked on the wiki 2026-09-12.",
+    "notes": "Relevant to a Lv 140 character specifically: of the five recommended passives, only Orbital Flame - Range and Blazing Extinction - Reinforce are available at 140. Guardbreak needs 150; Add Attack and Split Attack need 180. Phoenix Drive is the only hyper active available at 140. Derived directly from the level requirements on the wiki's skill table (Range 140, Guardbreak 150, Split Attack 180, Reinforce 140, Spread 165, Add Attack 180, Orbital Explosion - Critical Chance 150, Orbital Explosion - Guardbreak 165, Orbital Explosion - Reinforce 190).",
     "notesSources": [
       "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
-    ]
+    ],
+    "notesVerifiedAt": "2026-09-12"
   },
   "innerAbility": {
+    "rankBasis": "The class doc prints the bossing and farming builds as a two-column table, three rows deep, one row per inner ability line. The rank numbers below are that printed row order, and they line up with what the inner ability system actually allows: Passive Skills +1 is a first-line-only roll, and Boss Damage 10% is a second/third-line value (the first-line value is 20%, recorded under alternatives). So rank here means line slot as the doc printed it, not a strength ranking the doc states in words.",
     "bossing": [
       {
         "line": "Passive Skills +1",
         "rank": 1,
-        "consensus": "moderate",
+        "why": "Class doc, verbatim: 'Passive Skills +1 gives a few extra stats but the only really notable parts are +3% final damage and +1% mastery from Pure Magic and 1% damage from Burning Conduit.' Grandis lists the same line.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "consensusNote": "Downgraded from moderate on 2026-09-12. Grandis credits 'Class Doc' under the heading covering its Inner Ability build, so the two pages are one lineage.",
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Boss Damage +10%",
         "rank": 2,
-        "consensus": "moderate",
+        "why": "Class doc bossing column row 2, verbatim 'Boss Damage 10%'. Grandis lists 'Boss Damage +10%'. The two agree exactly on this line.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "consensusNote": "Same single lineage as above.",
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Damage to Abnormal Status +8%",
         "rank": 3,
-        "consensus": "moderate",
+        "why": "Class doc bossing column row 3, verbatim 'Abnormal Status Damage 8%'. Grandis words it 'Damage to monsters inflicted with Abnormal Status +8%' - same value, same line.",
+        "consensus": "weak",
+        "sourceCount": 1,
+        "consensusNote": "Same single lineage as above.",
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "farming": [
       {
         "line": "Meso Obtained or Item Drop Rate +20%",
         "rank": 1,
-        "consensus": "moderate",
+        "why": "Class doc farming column row 1, verbatim '20% Meso/Item Drop'. Grandis: 'Meso Obtained / Item Drop Rate +20%'. Agree.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
           "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "The other of Item Drop Rate / Meso Obtained, +15%",
         "rank": 2,
+        "why": "Class doc farming column row 2, verbatim '15% Item/Meso Drop'. Grandis: 'Meso Obtained / Item Drop Rate +15%'. Agree.",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
+          "https://grandislibrary.com/cygnus-knights/blaze-wizard"
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
-        "line": "Damage to Normal Monsters +10%",
+        "line": "Damage to Normal Monsters - value disputed between sources: +10% (class doc, v2.31 / GMS v.271) or +8% (Grandis, GMS Ver. 269)",
         "rank": 3,
+        "why": "The line itself is agreed; the number is not. Class doc farming column row 3 reads verbatim '10% Normal Monster Damage'. Grandis's training build reads 'Damage to Normal Monsters +8%'. Both re-read on the live pages 2026-09-12. The doc is the newer of the two (v.271 against Grandis's Ver. 269) and is the lineage Grandis credits, so 10% is the value to prefer, but the disagreement is recorded rather than smoothed over - it is also evidence that Grandis is not a purely verbatim restatement of the doc.",
+        "conflict": true,
+        "preferredValue": "+10%",
         "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
-          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+          "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
+          "https://grandislibrary.com/cygnus-knights/blaze-wizard"
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
     "alternatives": [
       {
         "line": "Boss Damage +20%",
+        "why": "Class doc, under 'Alternative Options', verbatim: 'Boss 20% - An alternative to Passive Skills +1, if you roll this first, you can start rolling for Passive Skills +1 on a different Inner Ability preset.' This is the first-line Boss Damage value, which is why it substitutes for Passive Skills +1 rather than for the rank 2 line.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Magic ATT +21",
+        "why": "Class doc, verbatim: 'Magic Attack +21 - Line that gives more damage. Worse than the alternatives.' Recorded with the doc's own deprioritisation attached so it is not presented as an equal option.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       },
       {
         "line": "Buff Duration +38%",
+        "why": "Class doc, verbatim: 'Buff Duration +38% - Increases the duration of Terms and Conditions, enabling it to boost more of the burst and to alleviate hitting the requirement of 100% Buff Duration. Mostly useful if you do not have the Legion level to support getting 100% Buff Duration.' Conditional, not general: it is the fallback for a character whose Legion cannot reach the buff duration target.",
+        "consensus": "weak",
+        "sourceCount": 1,
         "sources": [
           "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
-        ]
+        ],
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "CLASS-SPECIFIC POINT, and it is the one that differs from generic mage advice: Attack Speed +1 does not appear anywhere in the Blaze Wizard inner ability recommendation. The class doc states Blaze Wizard already reaches the attack speed cap using Decent Speed Infusion, which frees the top line for damage. The cross-class inner ability rule of taking attack speed when a class lacks a Hurricane-type skill therefore does not apply here. Consensus is moderate at best: the two sources that state the bossing lines are one family, since Grandis restates the class doc. No genuinely independent second opinion on Blaze Wizard inner ability was reachable this session.",
+    "notes": "CLASS-SPECIFIC POINT, and it is the one that differs from generic mage advice: Attack Speed +1 appears nowhere in the Blaze Wizard inner ability recommendation - not in the bossing column, not in the farming column, not in the alternatives. Re-verified against the doc's raw text 2026-09-12. The reason is in the doc's fifth job Decent Skills entry: 'Decent Speed Infusion is required to hit Attack Speed 10', i.e. the class reaches the attack speed cap from a node rather than from an inner ability line, which frees the top line for damage. The cross-class inner ability rule of taking attack speed when a class lacks a Hurricane-type skill therefore does not apply here. Consensus on the lines themselves is weak, not moderate: Grandis restates the class doc for inner ability by its own crediting, so all six lines rest on one opinion, and no genuinely independent second opinion on Blaze Wizard inner ability was reachable in either session.",
     "notesSources": [
       "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
       "https://maplestorywiki.net/w/Guide:Inner_Ability"
-    ]
+    ],
+    "notesVerifiedAt": "2026-09-12"
   },
-  "gearingNotes": "Four things change gear and stat targets for Blaze Wizard specifically: the class brings 40% critical rate from its own passives, so it needs less crit from gear than most; part of that crit is conditional on holding a Wand; buff duration has hard breakpoints driven by Phoenix Drive and Burning Conduit rather than being a generic nice-to-have; and the attack speed cap is reached without spending an inner ability line on it. Each claim is itemised with its own sources in gearingClaims.",
+  "gearingNotes": "Four things change gear and stat targets for Blaze Wizard specifically: the class brings 40% critical rate from its own passives, so it needs less crit from gear than most; part of that crit is conditional on holding a Wand; buff duration has hard breakpoints driven by Phoenix Drive and Burning Conduit rather than being a generic nice-to-have; and the attack speed cap is reached without spending an inner ability line on it. Each claim is itemised with its own sources in gearingClaims. NOTE: this section is outside the endgame scope of the 2026-09-12 resolution pass and was NOT re-verified; two open defects against gearingClaims[1] remain in contest.defects.",
   "gearingClaims": [
     {
       "claim": "Blaze Wizard starts from 40% critical rate out of its own passives, so the remaining 60% has to come from links, Legion, hyper stats and gear. The class doc names Legion Artifact (+20%) and the Focus Spirit link (+10%) among the sources used to close the gap.",
@@ -330,6 +431,8 @@
       "claim": "5% of that base critical rate is conditional on the weapon: Natural Talent grants Critical Rate +5% only while a Wand is equipped.",
       "why": "Stated on the skill itself. It means a staff-holding Blaze Wizard sits 5% crit below the doc's baseline and has to source that elsewhere. Neither the class doc nor Grandis addresses wand-versus-staff choice, so no recommendation is made here - only the mechanical fact.",
       "consensus": "weak",
+      "disputed": true,
+      "disputeNote": "Two open defects against this entry (contest.defects) - the 'neither source addresses wand vs staff' statement and the 5%-below-baseline inference. Out of scope for the 2026-09-12 endgame resolution pass; left untouched deliberately, not endorsed.",
       "sources": [
         "https://maplestorywiki.net/w/Blaze_Wizard/Skills"
       ]
@@ -367,6 +470,8 @@
       "mistake": "Assuming Flashfire's return teleport always fires",
       "detail": "The class doc warns that poor latency can cause the teleport back to the fire trail not to happen.",
       "consensus": "weak",
+      "disputed": true,
+      "disputeNote": "Open defect (contest.defects): the underlying ping warning is real but the 'return teleport' and 'fire trail' framing is not in any source. Out of scope for the 2026-09-12 endgame pass; left untouched deliberately, not endorsed. Do not surface this entry to players until it is rewritten.",
       "sources": [
         "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
       ]
@@ -392,13 +497,15 @@
       "mistake": "Treating Flashfire like an ordinary flash jump",
       "detail": "The class doc flags its movement as floatier than most classes' flash jumps and says that difference kills players who are used to other classes.",
       "consensus": "weak",
+      "disputed": true,
+      "disputeNote": "Open defect (contest.defects): the doc attributes the floatier movement to Firewalk, a different skill, not to Flashfire. Out of scope for the 2026-09-12 endgame pass; left untouched deliberately, not endorsed. Do not surface this entry to players until the skill name is corrected.",
       "sources": [
         "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
       ]
     },
     {
       "mistake": "Filling the HEXA order in from a generic aggregator",
-      "detail": "A research mistake rather than a gameplay one, recorded because it is the likely failure mode for this class. The pages that rank for Blaze Wizard HEXA queries are undated content-farm material recycling one cross-class ordering. The real Blaze Wizard order exists only as infographics inside the class doc and the class Discord.",
+      "detail": "A research mistake rather than a gameplay one, recorded because it is the likely failure mode for this class. The pages that rank for Blaze Wizard HEXA queries are undated content-farm material recycling one cross-class ordering. The real Blaze Wizard order exists only as infographics inside the class doc and the class Discord. Re-confirmed 2026-09-12: an LLM summariser pointed at the class doc's HEXA section will also invent an order from the surrounding description table, which is the same failure in a different costume.",
       "consensus": "weak",
       "sources": [
         "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s"
@@ -408,30 +515,30 @@
   "sources": [
     {
       "url": "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
-      "what": "Arsonist's Cookbook: A Comprehensive Guide to Blaze Wizard - the Blaze Wizard Discord's maintained class doc. Primary author Reeche, co-author TajMaJon. The only source carrying Blaze Wizard HEXA, node levelling, buff duration, crit and IED judgement. Fetch it as /export?format=txt and follow the single-use redirect immediately.",
-      "dated": "2026-09-10 (v2.31; states GMS v.271 Frieren Collab; an earlier changelog line reads 2025-09-24 for v2.25)",
+      "what": "Arsonist's Cookbook: A Comprehensive Guide to Blaze Wizard - the Blaze Wizard Discord's maintained class doc. Written (mostly) by Reeche (discord: reecheing, NA Kronos - Alpenrose). The only source carrying Blaze Wizard HEXA, node levelling, buff duration, crit and IED judgement. Fetch it as /export?format=txt and follow the single-use redirect immediately, OR curl it with -L, which follows the redirect and returns the raw text (the reliable route - use this rather than an LLM summariser, which will hallucinate skill names into the image-stripped gaps).",
+      "dated": "Version 2.31 (9/10/2026) - GMS v.271 (Frieren Collab), read from the doc's own header line on 2026-09-12",
       "independent": true,
       "reliability": "high"
     },
     {
       "url": "https://grandislibrary.com/cygnus-knights/blaze-wizard",
-      "what": "Grandis Library Blaze Wizard page. Boost node tiering (Primary / Secondary / Other), hyper skill passive build, recommended inner ability split bossing and training, link skill, base stats from skills. Has NO HEXA section.",
-      "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
+      "what": "Grandis Library Blaze Wizard page. Boost node tiering (Primary Node 1-2 / Secondary Node 3-4 / Other Node 5-6), hyper skill passive build, recommended inner ability split for bossing and training, link skill, base stats from skills. Has a 6th job skill preview but NO HEXA levelling or priority recommendation.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target. Re-read on the live page 2026-09-12.",
       "independent": false,
-      "independenceNote": "Grandis Library credits the per-class Google Doc for exactly the inner ability, hyper passive and boost node fields. For Blaze Wizard that doc is the Arsonist's Cookbook, so Grandis agreeing with the Cookbook is one source agreeing with itself. Counted as a restatement, not a vote.",
+      "independenceNote": "Re-verified 2026-09-12 on the page itself: Grandis credits 'Class Doc' under the heading 'Inner Ability + Hyper Passive Build + Boost Nodes Build'. For Blaze Wizard that doc is the Arsonist's Cookbook, so Grandis agreeing with the Cookbook on those three fields is one source agreeing with itself. Counted as a restatement, not a vote. It is not a verbatim restatement, though - its training build says Damage to Normal Monsters +8% where the doc says 10%.",
       "reliability": "high"
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "what": "mastermysty's cross-class boost node trio reference. Gives Blaze Wizard a primary trio of Orbital Flame / Blazing Extinction / Phoenix Drive and a secondary of Towering Inferno / Cataclysm / Orbital Explosion, with no bossing-versus-mobbing split for this class. The only boost-node opinion found that is genuinely outside the class-doc lineage.",
-      "dated": "2024-11-21 (page); the author notes the underlying data was last updated 2024-05-14",
+      "what": "mastermysty's cross-class boost node trio reference. Gives Blaze Wizard a primary trio of Orbital Flame / Blazing Extinction / Phoenix Drive and a secondary of Towering Inferno / Cataclysm / Orbital Explosion, with no bossing-versus-mobbing split for this class. Re-read 2026-09-12, both trios confirmed verbatim. The only boost-node opinion found that is genuinely outside the class-doc lineage.",
+      "dated": "Page states 'Last Updated: November 21st, 2024' (verified 2026-09-12)",
       "independent": true,
       "reliability": "medium",
       "caveat": "Predates the v269 boost-node regrouping. Treated as corroboration of the grouping, never as the sole source."
     },
     {
       "url": "https://maplestorywiki.net/w/Blaze_Wizard/Skills",
-      "what": "Name and number validation table. Used to confirm every skill and hyper passive name written into this file, their level requirements, and the numeric values behind the crit rate, attack speed and buff duration claims. Carries zero judgement. Returns 403 to plain fetching; read through a browser session.",
+      "what": "Name and number validation table. Used to confirm every skill, node and hyper passive name written into this file, their level requirements, and the numeric values behind the crit rate, attack speed and buff duration claims. Carries zero judgement, so it never raises a recommendation's sourceCount. Returns 403 to WebFetch; curl with a normal browser User-Agent returns 200.",
       "dated": "living wiki; revision date not verifiable (page history was not reachable)",
       "independent": true,
       "reliability": "high"
@@ -452,7 +559,7 @@
     },
     {
       "url": "https://www.youtube.com/watch?v=0bRCnN6utFE",
-      "what": "TajMaJon's Blaze Wizard video guide, linked from Grandis Library. NOT USED as a source in this file: TajMaJon co-authored the Arsonist's Cookbook, so it is the same source restated. Listed so it is not mistaken for a fourth opinion later.",
+      "what": "TajMaJon's Blaze Wizard video guide, linked from Grandis Library. NOT USED as a source in this file: TajMaJon is credited on the Arsonist's Cookbook, so it is the same lineage restated. Listed so it is not mistaken for a fourth opinion later.",
       "dated": "unverified",
       "independent": false,
       "reliability": "medium"
@@ -465,31 +572,47 @@
       "reliability": "high"
     }
   ],
-  "consensusLevel": "moderate",
+  "consensusLevel": "weak",
+  "consensusLevelNote": "Lowered from moderate on 2026-09-12. Under the independence model recorded above, every endgame recommendation for this class rests on one lineage except the boost node trios, which rest on two. Nothing reaches three.",
   "conflicts": [
     {
       "topic": "Independence of the evidence base",
       "positions": [
         "Counting pages, Blaze Wizard looks well covered: a current class doc, a Grandis page, a cross-class node table and a wiki.",
-        "Counting sources, it is thinner. Grandis restates the class doc for inner ability, hyper passives and boost nodes, so those three fields rest on ONE opinion. Only the boost-node grouping has a second, independent vote (mystyjl), and that source is from 2024."
+        "Counting lineages, it is thinner. Grandis credits the class doc in as many words for inner ability, hyper passives and boost nodes, so those three fields rest on ONE opinion. Only the boost-node grouping has a second, independent vote (mystyjl), and that source is from 2024."
       ],
-      "resolution": "Not resolved. Recorded so the app does not present single-source fields with the confidence of corroborated ones.",
+      "resolution": "Not resolved, and now reflected in the labels rather than only in prose: every affected claim carries sourceCount 1 and consensus weak as of 2026-09-12.",
       "sources": [
         "https://grandislibrary.com/cygnus-knights/blaze-wizard",
         "https://mystyjl.github.io/reference/NodeGuide.html"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Currency of the boost-node grouping",
       "positions": [
-        "mystyjl's trio table (2024-11-21) and Grandis (v269) describe the same grouping, which suggests it is stable.",
-        "Grandis exposes a View Pre-V.269 Boost Nodes toggle, which is direct evidence that boost-node groupings changed at v269. A 2024 table agreeing with a v269 page is therefore either genuine stability or a coincidence nobody has re-checked."
+        "mystyjl's trio table (last updated November 21st, 2024) and Grandis (GMS Ver. 269) describe the same grouping, which suggests it is stable.",
+        "Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence that boost-node groupings changed at v269. A 2024 table agreeing with a v269 page is therefore either genuine stability or a coincidence nobody has re-checked."
       ],
-      "resolution": "Not resolved. Flagged rather than picked.",
+      "resolution": "Not resolved. Flagged rather than picked. Both the mystyjl date and the Grandis toggle were re-verified on the live pages 2026-09-12.",
       "sources": [
         "https://mystyjl.github.io/reference/NodeGuide.html",
         "https://grandislibrary.com/cygnus-knights/blaze-wizard"
-      ]
+      ],
+      "verifiedAt": "2026-09-12"
+    },
+    {
+      "topic": "Farming inner ability line 3 value",
+      "positions": [
+        "Class doc (v2.31, GMS v.271): '10% Normal Monster Damage'.",
+        "Grandis Library (GMS Ver. 269): 'Damage to Normal Monsters +8%'."
+      ],
+      "resolution": "Prefer 10%: the class doc is the newer document and is the lineage Grandis credits. Recorded rather than smoothed over, and noted as evidence that Grandis is not a purely verbatim restatement. Found by the contest pass and confirmed against both live pages 2026-09-12.",
+      "sources": [
+        "https://docs.google.com/document/d/1YB3rBntxbUngJ5BnCTG19SqW1LfoPos6pfS-r5gaU1s",
+        "https://grandislibrary.com/cygnus-knights/blaze-wizard"
+      ],
+      "verifiedAt": "2026-09-12"
     },
     {
       "topic": "Buff duration target",
@@ -504,30 +627,71 @@
     }
   ],
   "gaps": [
-    "HEXA levelling order, both the Heroic fragment-gated and Interactive Sol Erda-gated charts - present in the class doc only as numbered image grids; not extractable from the text layer. Needs OCR or a Discord pull.",
-    "Job-node levelling order within the V matrix - same problem, the skill names are inline images.",
+    "HEXA levelling order, both the Heroic fragment-gated and Interactive Sol Erda-gated charts - present in the class doc only as numbered image grids. Confirmed again 2026-09-12 by reading the raw text export: only the target level numbers survive, the skill each belongs to is an icon. Needs OCR, the doc's linked BW Hexa Tracker v.271, or a Discord pull.",
+    "Job-node levelling order within the V matrix - same problem. The four class skill nodes are known and verified (Orbital Inferno, Savage Flame, Inferno Sphere, Salamander Mischief); only their order is missing.",
     "Hyper stat allocation - deliberately not published by the source; treat as a calculator problem, not a missing list.",
-    "Legion effect for Blaze Wizard - not sourced this session.",
-    "Secondary weapon type - not sourced this session.",
-    "No independent second opinion on inner ability or HEXA. r/Maplestory is blocked in this environment and the session's web search budget was exhausted, so the reddit lane named in the brief is entirely unchecked for this class."
+    "Legion effect for Blaze Wizard - not sourced in any session so far.",
+    "Secondary weapon type - not sourced in any session so far.",
+    "No independent second opinion on inner ability, hyper passives or HEXA. Grandis is the same lineage as the class doc by its own crediting, so those fields have exactly one opinion behind them. r/Maplestory remains unchecked for this class."
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "resolutionPass": {
+      "ranAt": "2026-09-12",
+      "scope": "Endgame only, per product owner narrowing: vMatrix, hexa, hyperSkills, hyperStats, innerAbility. Defects concerning jobs 1-4 skills, gearing, coefficients or rotations were classified out of scope and their content left untouched.",
+      "method": "Every cited page was re-opened. The class doc was pulled as raw text with curl -L rather than through a summarising fetch, after a summarising fetch was caught inventing job-node names ('Orbital Inferno, Savage Flame, and Inferno Sphere first') to fill the doc's image-stripped ordering line. Grandis, mystyjl and maplestorywiki were re-read directly. Every endgame claim was then relabelled under an explicit independence model recorded at independenceModel.",
+      "outcome": "1 in-scope defect resolved. 4 defects classified out of scope and left open. 0 endgame claims deleted - every endgame claim in the file turned out to be supported by the source it cited. 13 endgame claims were relabelled DOWNWARD because their consensus labels overstated the independence of the evidence: two 'strong' trio labels became 'moderate', and every doc-plus-Grandis claim became 'weak' with sourceCount 1."
+    },
+    "resolved": [
+      {
+        "defect": "UNRECORDED SOURCE CONFLICT - innerAbility.farming rank 3 is given as 'Damage to Normal Monsters +10%' from the class doc (doc text: '10% Normal Monster Damage'). Grandis's training build says '+8%'. The file records no conflict.",
+        "section": "innerAbility",
+        "verdict": "CONFIRMED AND CORRECTED",
+        "action": "Re-read both live pages 2026-09-12. The class doc's farming column row 3 does read '10% Normal Monster Damage'; Grandis's training build does read 'Damage to Normal Monsters +8%'. The claim now states both values and which to prefer (10%, the newer document and the lineage Grandis credits), and a new entry was added to conflicts. The critic's secondary observation - that this proves Grandis is not a verbatim restatement - was folded into the Grandis source note in both directions: it is still the same lineage for crediting purposes, but it is not a copy."
+      },
+      {
+        "defect": "Not a listed defect, but the shape problem the brief names: several endgame claims carried consensus labels stronger than their evidence.",
+        "section": "all five endgame sections",
+        "verdict": "CORRECTED",
+        "action": "Introduced independenceModel and applied it mechanically. vMatrix.trios primary and secondary went strong -> moderate (2 lineages, not 3). vMatrix.priority boost-nodes entry, all hyperSkills.passives, and all six innerAbility lines went moderate -> weak (1 lineage: Grandis credits 'Class Doc' for exactly the inner ability, hyper passive and boost node fields, re-verified on the page). consensusLevel for the file went moderate -> weak. No claim was raised."
+      },
+      {
+        "defect": "Not a listed defect, but checked for the brief's pattern 3: does any endgame array assert an order its source declines to give?",
+        "section": "hyperStats, hexa.hexaStat, hyperSkills.passives, innerAbility",
+        "verdict": "CONFIRMED SOUND, with explicit flags added",
+        "action": "hyperStats.priority was already null with the doc's refusal recorded - correct, and an ordered:false flag was added so downstream code cannot read an order into it. hexa.hexaStat says 'in any order' in the source's own words, so ordered:false was added there too. hyperSkills.passives.take is a set of five all of which are taken, so ordered:false was added. innerAbility keeps rank 1/2/3 but a new rankBasis field states plainly that this is the doc's printed row order mapped to inner ability line slots - Passive Skills +1 is a first-line-only roll, Boss Damage 10% is a second/third-line value - and not a strength ranking the doc states in words."
+      },
+      {
+        "defect": "Not a listed defect, but checked for the brief's pattern 2: does any endgame node or skill name exist in no reachable source?",
+        "section": "vMatrix, hexa, hyperSkills",
+        "verdict": "CONFIRMED SOUND - nothing deleted",
+        "action": "Every endgame name was re-checked against maplestorywiki on 2026-09-12, including the four job-node names newly added to vMatrix from the class doc's Class Skill Nodes table: Orbital Inferno, Savage Flame, Inferno Sphere and Salamander Mischief all exist on the wiki. All nine hyper passive names were re-enumerated from the wiki and match the file character for character. Eternity and Flame Concerto are on the wiki independently of the class doc. No extraction artifact was found in the endgame sections. One WAS found in the summarising fetch of the class doc during this pass - it produced job-node names to fill an image-stripped line - and it was discarded rather than recorded; the warning is now written into vMatrix.notes."
+      },
+      {
+        "defect": "Not a listed defect, but checked for the brief's pattern 1 across every endgame claim: does any claim point at a source that contradicts it?",
+        "section": "vMatrix, hexa, hyperSkills, hyperStats, innerAbility",
+        "verdict": "CONFIRMED SOUND - one near-miss made explicit",
+        "action": "Every endgame claim was checked against the page it cites and all of them are supported. The one place worth naming: vMatrix.trios primary lists Phoenix Drive alongside Orbital Flame and Blazing Extinction and cites Grandis, but Grandis puts Phoenix Drive in its SECONDARY tier. The old 'why' text was technically careful about this; it is now stated outright so the citation cannot be read as Grandis endorsing the trio. Likewise vMatrix.trios other now says in plain terms that the link between Grandis's node groups 5-6 and the class doc's 'last two can be ignored' is inference, not a sourced statement."
+      }
+    ],
     "defects": [
-      "FABRICATED MECHANIC - commonMistakes[0] \"Assuming Flashfire's return teleport always fires ... the teleport back to the fire trail\". No source says this. The Cookbook describes Flashfire as an installed teleport, repositionable by downcasting, usable in air, no range limit, lasting 100 seconds, and says only that on bad ping it \"will occasionally fail to teleport you\". There is no return teleport and no fire trail in the mechanic; the trail belongs to Blazing Blitz per the wiki. The underlying ping warning is real; the mechanical description around it is invented.",
-      "MISATTRIBUTED SKILL - commonMistakes[3] \"Treating Flashfire like an ordinary flash jump ... floatier than most classes' flash jumps\". The Cookbook attributes that to Firewalk, a different skill: \"Blaze Wizard's version of the Cygnus flash jump. Floatier (goes further but slower velocity)\", which also passively caps Speed/Jump. Firewalk is confirmed as its own skill on the wiki (Active, Master Level 5). The file never mentions Firewalk and pins its behaviour on Flashfire.",
-      "FALSE STATEMENT ABOUT A SOURCE - gearingClaims[1] says \"Neither the class doc nor Grandis addresses wand-versus-staff choice, so no recommendation is made here\". The Cookbook's Equip Window section addresses it directly and recommends a staff for the higher Magic ATT, saying that with newer crit sources such as Legion Artifact the wand's small crit niche is largely unnecessary. A real, sourceable class judgement was recorded as absent.",
-      "WRONG DERIVED INFERENCE - gearingClaims[1] concludes \"a staff-holding Blaze Wizard sits 5% crit below the doc's baseline and has to source that elsewhere\". Backwards. The doc's 40% baseline is built without the wand (Base 5% + Word of Fire 5% + Burning Focus 30%) and lists Wand +5% as an additional optional source. A staff user sits AT the baseline; a wand user sits 5% above it. The wand-conditional +5% on Natural Talent itself is real and correctly quoted from the wiki - only the inference drawn from it is wrong, and it is the kind of error that would make a planner tell staff users to buy crit they do not need.",
-      "UNRECORDED SOURCE CONFLICT - innerAbility.farming rank 3 is given as \"Damage to Normal Monsters +10%\" from the class doc (doc text: \"10% Normal Monster Damage\"). Grandis's training build says \"+8%\". The file records no conflict. Minor in size, but it is also evidence that Grandis is not a pure verbatim restatement, which cuts against the file's own independence framing in both directions."
+      "OUT OF SCOPE (commonMistakes, not an endgame section) - FABRICATED MECHANIC - commonMistakes[0] \"Assuming Flashfire's return teleport always fires ... the teleport back to the fire trail\". No source says this. The Cookbook describes Flashfire as an installed teleport, repositionable by downcasting, usable in air, no range limit, lasting 100 seconds, and says only that on bad ping it \"will occasionally fail to teleport you\". There is no return teleport and no fire trail in the mechanic; the trail belongs to Blazing Blitz per the wiki. The underlying ping warning is real; the mechanical description around it is invented. STATUS: left untouched per the endgame-only scope, but flagged inline with disputed:true so it cannot be surfaced as verified.",
+      "OUT OF SCOPE (commonMistakes, not an endgame section) - MISATTRIBUTED SKILL - commonMistakes[3] \"Treating Flashfire like an ordinary flash jump ... floatier than most classes' flash jumps\". The Cookbook attributes that to Firewalk, a different skill: \"Blaze Wizard's version of the Cygnus flash jump. Floatier (goes further but slower velocity)\", which also passively caps Speed/Jump. Firewalk is confirmed as its own skill on the wiki (Active, Master Level 5). The file never mentions Firewalk and pins its behaviour on Flashfire. STATUS: left untouched per the endgame-only scope, but flagged inline with disputed:true.",
+      "OUT OF SCOPE (gearingClaims, not an endgame section) - FALSE STATEMENT ABOUT A SOURCE - gearingClaims[1] says \"Neither the class doc nor Grandis addresses wand-versus-staff choice, so no recommendation is made here\". The Cookbook's Equip Window section addresses it directly and recommends a staff for the higher Magic ATT, saying that with newer crit sources such as Legion Artifact the wand's small crit niche is largely unnecessary. A real, sourceable class judgement was recorded as absent. STATUS: left untouched per the endgame-only scope, but flagged inline with disputed:true.",
+      "OUT OF SCOPE (gearingClaims, not an endgame section) - WRONG DERIVED INFERENCE - gearingClaims[1] concludes \"a staff-holding Blaze Wizard sits 5% crit below the doc's baseline and has to source that elsewhere\". Backwards. The doc's 40% baseline is built without the wand (Base 5% + Word of Fire 5% + Burning Focus 30%) and lists Wand +5% as an additional optional source. A staff user sits AT the baseline; a wand user sits 5% above it. The wand-conditional +5% on Natural Talent itself is real and correctly quoted from the wiki - only the inference drawn from it is wrong, and it is the kind of error that would make a planner tell staff users to buy crit they do not need. STATUS: left untouched per the endgame-only scope, but flagged inline with disputed:true. Worth fixing in a gearing pass - it is the most player-damaging of the four."
     ],
     "clearedOnInspection": [
       "NO fabricated node or skill names. I checked every name in the file against maplestorywiki.net: Orbital Flame, Blazing Extinction, Phoenix Drive, Towering Inferno, Cataclysm, Orbital Explosion, Flame Tempest, Blazing Blitz, Cinder Maelstrom, Flame Bite, Flame Vortex, Natural Talent, Burning Focus, Word of Fire, Spell Control, Burning Conduit, Fires of Creation, Phoenix Run, Flashfire, Glory of the Guardians all exist. Eternity (Origin) and Flame Concerto (Ascent) are confirmed on the wiki's Class-Specific HEXA Skills table - independent of the class doc. Sol Hecate is confirmed on its own wiki page with Styx / Charon (Lv20) / Phlegethon (Lv30), matching the doc. Every hyper-skill level requirement in the file is exactly right (Range 140, Guardbreak 150, Split Attack 180, Reinforce 140, Spread 165, Add Attack 180, OE-Crit 150, OE-Guardbreak 165, OE-Reinforce 190), as are Phoenix Drive 20s/120s, Cataclysm 160/100s/invincible-while-casting, Glory of the Guardians 190/60s/+10%/120s/Cygnus+Mihile, Phoenix Run 50% HP / 3s i-frame / 1800s CD / not affected by cooldown reset, Burning Conduit 40s duration on 60s cooldown, Fires of Creation up to +30% IED, and the Cygnus Blessing link skill (max Lv15, +35 ATT/MATT, +22 ASR, +22% elemental resist, 5 stacks)."
     ],
-    "shipReady": false
+    "endgameShipReady": true,
+    "endgameShipReadyNote": "The five endgame sections - vMatrix, hexa, hyperSkills, hyperStats, innerAbility - contain no unverified claim as of 2026-09-12. Every claim in them was checked against the page it cites this session, and every label now reflects lineage count rather than page count. Two documented GAPS remain (HEXA levelling order, job-node order); a gap is an absence of a claim, not an unverified one, and both are recorded in gaps.",
+    "shipReady": false,
+    "shipReadyNote": "False for the FILE as a whole, not for the endgame sections. Four defects remain open against commonMistakes and gearingClaims, which were out of scope for this pass and deliberately left untouched. They are flagged inline with disputed:true so nothing false can be surfaced as verified while they wait for a gearing pass."
   },
-  "written": false,
-  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "writtenScope": "Endgame sections only. vMatrix, hexa, hyperSkills, hyperStats and innerAbility are verified and labelled as of 2026-09-12 and are safe to compare a player's build against. commonMistakes and gearingClaims are NOT - four open defects, all flagged inline with disputed:true. Do not present a disputed:true entry as sourced guidance.",
+  "blockedReason": null
 }

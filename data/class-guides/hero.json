@@ -28,187 +28,231 @@
     "priority": [
       {
         "node": "Training: level Boost Nodes 1 + 2 + 3 until you one-shot your farming map",
-        "why": "Stated as the first training investment before any utility or Sol nodes.",
-        "consensus": "weak - single independent source (class doc); Grandis Library restates the same doc and is not a second opinion",
+        "why": "First item in the class doc's training list. Source text: 'Boost Nodes 1+2+3 (until able to one-shot with them)'.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Training: then level 1 Decent Speed Infusion, Decent Sharp Eyes, Decent Holy Symbol",
-        "why": "Listed for crit rate, damage, attack speed and EXP; one point each is enough to get the effect online.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: 'At least level 1 DSI and DSE and DHS (for critrate/dmg and faster attack speed and EXP)'.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Training: then level 1 Erda Shower / Erda Fountain",
-        "why": "Listed immediately after the Decent skills in the training order.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: 'At least level 1 Erda Shower - Erda Fountain', listed immediately after the Decent skills.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Training: then max Burning Soul Blade, then max Decent Holy Symbol, then max Weapon Aura",
-        "why": "Burning Soul Blade for longer duration; Decent Holy Symbol for more EXP and drop rate.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: 'Max BSB (for longer duration) / Max DHS (for more EXP and Drop rate) / Max Weapon Aura'.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Bossing: max Boost Nodes 1 + 2 + 4 first",
-        "why": "Stated as the opening bossing investment. NOTE: the readable text of the source does not define which three skills sit in each numbered node, so this order is recorded by node number only.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: 'Max Boost Nodes 1 + 2 + 4', the opening bossing item. NOTE: the class doc nowhere defines which skills sit inside each numbered node - re-checked and confirmed absent on 2026-09-12 - so this order is recorded by node number only.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Bossing: then level 1 Decent Speed Infusion, Decent Sharp Eyes, Decent Combat Orders, Erda Nova, Worldreaver",
-        "why": "Utility and a single point in Worldreaver before further damage investment.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: 'Level 1 DSI, DSE, DCO, Erda Nova and WR'.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Bossing: then max Burning Soul Blade and Instinctual Combo, splitting levels evenly between them",
-        "why": "Explicitly described as an even split rather than finishing one first.",
-        "consensus": "weak - single independent source; see conflicts for the unresolved spelling of this skill's name",
+        "why": "Source text: 'Max BSB and IC (split evenly)' - an explicit even split rather than finishing one first. See conflicts for the unresolved spelling of the IC skill's name.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Bossing: then max Sword Illusion, then Weapon Aura, then Maple World Goddess's Blessing, then Erda Nova",
-        "why": "Stated ordering after the two split-levelled damage skills.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: 'Max SI / Max Weapon Aura / Max Maple World's Goddess Blessing / Max Erda Nova', in that order.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "node": "Bossing: then max Boost Nodes 3 + 5 + 6, then max True Arachnid Reflection and Solar Crest",
-        "why": "The remaining boost nodes and the shared attack V-skills come last.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: 'Max Boost Nodes 3 + 5 + 6 / Max True Arachnid Reflection and Solar Crest after unlocking them'.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
+      },
+      {
+        "node": "Special V-skill to craft: Fatal Strike",
+        "why": "The class doc answers its own question 'Which Special V-Skill to use/craft?' with 'Fatal Strike'. Re-verified verbatim on 2026-09-12. A previous revision of this file wrongly described this as an unverifiable extraction artifact; it is a direct answer in the source.",
+        "consensus": "weak",
+        "sources": [
+          "https://buffhero.win/"
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       }
     ],
     "trios": [
       {
         "trio": "Trio 1: Raging Blow, Cry Valhalla, Final Attack",
-        "usage": "Not split by bossing vs mobbing in the source.",
+        "usage": "Not split by bossing vs mobbing in the source, and no priority given between the two trios.",
         "consensus": "weak - single source, and it predates the v269 boost-node regrouping",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "trio": "Trio 2: Puncture, Rising Rage, Beam Blade",
-        "usage": "Not split by bossing vs mobbing in the source. This source spells the third skill 'Blade Beam'; other sources spell it 'Beam Blade' - see conflicts.",
+        "usage": "Not split by bossing vs mobbing in the source. This source spells the third skill 'Blade Beam' (re-confirmed verbatim 2026-09-12); other sources spell it 'Beam Blade' - see conflicts.",
         "consensus": "weak - single source, 2024-dated",
         "sources": [
           "https://mystyjl.github.io/reference/NodeGuide.html"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
-        "trio": "Tiering rather than fixed trios: PRIMARY = Raging Blow, Cry Valhalla (both also unlock a 6th job HEXA Mastery). SECONDARY = Beam Blade (used often but unlocks no HEXA Mastery). OTHER = Final Attack, Puncture, Rising Rage, Leap Attack, Flash Blade, Rush, Brandish, Intrepid Slash.",
-        "usage": "Cross-class tiering format; not a literal three-skill trio list.",
-        "consensus": "weak - restates the Hero class doc (buffhero.win), which Grandis links as its Class Doc, so this is not an independent confirmation",
+        "trio": "Grandis Library tiering (post-v269), not a literal trio list: PRIMARY = Raging Blow, Cry Valhalla. SECONDARY = Beam Blade. OTHER = {Final Attack, Puncture, Rising Rage}, {Leap Attack, Flash Blade, Rush}, {Brandish, Intrepid Slash}.",
+        "usage": "The skill groupings shown in braces were stable across two independent extractions of the page; the PRIMARY/SECONDARY/OTHER labels were stable in two of three extractions (one read placed everything below PRIMARY under SECONDARY). One extraction additionally attached node numbers 1-6 to these groups; that numbering did NOT reproduce and is deliberately not recorded, so these groups must not be mapped onto the class doc's 'Boost Node 1..6' ordering. A previous revision of this file claimed Raging Blow and Cry Valhalla 'also unlock a 6th job HEXA Mastery' while Beam Blade 'unlocks no HEXA Mastery'; that rationale appears in no source and is contradicted by the class doc, which lists HEXA Beam Blade as a Mastery 3 skill. It has been deleted.",
+        "consensus": "weak - restates the Hero class doc (buffhero.win), which Grandis links as its Class Doc and credits by name for its Boost Nodes Build, so this is not an independent confirmation",
         "sources": [
           "https://grandislibrary.com/explorers/hero"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "The two sources that name skills disagree about which skills belong in the first trio (see conflicts). The class doc gives its order by node number (1 through 6) and its readable text does not define the contents of each numbered node, so node numbers cannot be mapped to skill names from public sources. A 'special V-skill' entry reading 'Fatal Strike' was returned when extracting the class doc; it could not be verified against any skill list and is therefore not recorded as fact."
+    "notes": "The two sources that name skills disagree about which skills belong in the first trio (see conflicts). The class doc gives its own investment order by node number (1 through 6) and never defines the contents of each numbered node - re-checked 2026-09-12 - so node numbers cannot be mapped to skill names from public sources. Grandis Library's post-v269 groupings are recorded above without numbers for exactly that reason. Fatal Strike IS sourced as the recommended special V-skill and is now recorded in priority above."
   },
   "hexa": {
     "order": [
       {
-        "step": "Energy-limited route (Sol Erda is the bottleneck), as read from the class doc's chart: M3 to 1, M2 to 1, M1 to 9, M4 to 1, Origin to 1, Ascent to 7, Instinctual Combo to 1, Burning Soul Blade to 19, Sword Illusion to 7, Burning Soul Blade to 1 more, M3 to 29.",
-        "why": "The class doc publishes two separate routes depending on which currency you run out of first. No written rationale accompanies the sequence.",
-        "consensus": "weak - single independent source, and the sequence was read out of a visual chart rather than prose. The parenthetical numbers appear to be target node levels but this was not confirmed. Verify against the source before spending Sol Erda.",
+        "step": "The class doc publishes two alternative HEXA investment routes: an energy-limited route (Sol Erda is the bottleneck) and a fragment-limited route (Sol Erda Fragments are the bottleneck). NO step sequence and NO level targets are recorded here. Both routes exist on the source page only as image charts, and three separate extraction attempts produced three mutually inconsistent orderings and three different sets of numbers. Any sequence published here would therefore be invented. Open the source page and read the charts directly before spending Sol Erda.",
+        "why": "Deleting an unreproducible sequence is preferred to shipping one a player would follow. The existence of the two routes, and their two currency constraints, is what survives re-reading.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
-      },
-      {
-        "step": "Fragment-limited route (Sol Erda Fragments are the bottleneck), as read from the class doc's chart: Origin to 1, Ascent to 2, M1 to 2, M2 to 9, M3 to 1, M4 to 5, Instinctual Combo to 1, Sword Illusion to 5, Burning Soul Blade to 9, Burning Soul Blade to 1 more, M3 to 3.",
-        "why": "Same source, alternate currency constraint.",
-        "consensus": "weak - single independent source, read from a visual chart; same verification caveat as above",
-        "sources": [
-          "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "Mastery node legend used by both routes: M1 = HEXA Raging Blow. M2 = HEXA Rising Rage. M3 = Rending Edge and HEXA Beam Blade. M4 = HEXA Cry Valhalla, HEXA Puncture and HEXA Final Attack.",
-        "why": "Required to read the routes above at all.",
-        "consensus": "weak - single independent source",
+        "why": "M3 and M4 are stated in prose in the source: 'Unlocking the Mastery 3 HEXA Skill will unlock both Rending Edge and HEXA Beam Blade' and 'Unlocking the Mastery 4 HEXA Skill will unlock HEXA Cry Valhalla, HEXA Puncture, and HEXA Final Attack'. M1 and M2 are NOT stated with their mastery numbers in readable text; they are inferred from the order in which the source's mastery sections appear (HEXA Raging Blow, then HEXA Rising Rage, then Mastery 3, then Mastery 4). The M1/M2 assignment is an inference, not a quote.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "HEXA Stat node 1 (unlocks Lv 260): main line ATT, additional lines Critical Damage and STR.",
-        "why": "No stated rationale in the source.",
-        "consensus": "weak - single independent source",
+        "why": "Quoted from the source's HEXA Stat table; re-read independently on 2026-09-12 and matched exactly. No stated rationale in the source.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "HEXA Stat node 2 (unlocks Lv 265): main line Critical Damage, additional lines STR and ATT.",
-        "why": "No stated rationale in the source.",
-        "consensus": "weak - single independent source",
+        "why": "Quoted from the source's HEXA Stat table; re-read independently on 2026-09-12 and matched exactly. No stated rationale in the source.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "step": "HEXA Stat node 3 (unlocks Lv 270): main line STR, additional lines Critical Damage and ATT.",
-        "why": "No stated rationale in the source.",
-        "consensus": "weak - single independent source",
+        "why": "Quoted from the source's HEXA Stat table; re-read independently on 2026-09-12 and matched exactly. No stated rationale in the source.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       }
     ],
-    "notes": "Hero 6th job skill names per the class doc: Origin skill Spirit Calibur; Ascent skill Ultrasonic Slash; HEXA Mastery nodes HEXA Raging Blow, HEXA Rising Rage, Rending Edge, HEXA Beam Blade, HEXA Cry Valhalla, HEXA Puncture, HEXA Final Attack; HEXA Enhancement (boost) nodes for Instinctual Combo, Burning Soul Blade, Sword Illusion and Worldreaver; Common nodes Sol Janus and Sol Hecate. Grandis Library's Hero page carries no HEXA section at all, so there is no second public presentation of this order. FRESHNESS WARNING: KMS added a third HEXA skill core in ver. 1.2.417 on 2026-07-31 and a third Common core in ver. 1.2.414 on 2026-04-16; the class doc's own 'Future Hero Changes' section tracks KMS 1.2.413 through 1.2.417 (including a new skill it calls Raging Explosion) and states GMS typically trails KMS by roughly six months. Expect this investment order to move once those land in GMS."
+    "notes": "Hero 6th job skill names per the class doc: Origin skill Spirit Calibur; Ascent skill Ultrasonic Slash; HEXA Mastery nodes HEXA Raging Blow, HEXA Rising Rage, Rending Edge, HEXA Beam Blade, HEXA Cry Valhalla, HEXA Puncture, HEXA Final Attack; HEXA Enhancement (boost) nodes for Instinctual Combo, Burning Soul Blade, Sword Illusion and Worldreaver; Common nodes Sol Janus and Sol Hecate. Grandis Library's Hero page carries no HEXA section at all (re-confirmed 2026-09-12), so there is no second public presentation of this order. INVESTMENT ORDER IS DELIBERATELY ABSENT from this file: the only public source presents it as an unreadable image chart. FRESHNESS WARNING: KMS added a third HEXA skill core in ver. 1.2.417 on 2026-07-31 and a third Common core in ver. 1.2.414 on 2026-04-16; the class doc's own 'Future Hero Changes' section tracks KMS 1.2.413 through 1.2.417 (including a new skill it calls Raging Explosion) and states GMS typically trails KMS by roughly six months. Expect any investment order to move once those land in GMS."
   },
   "hyperStats": {
+    "ordered": false,
+    "orderingNote": "This array is NOT a ranking. The class doc publishes two flat baseline allocations and then explicitly declines to give a fixed priority order past them, handing the reader off to a calculator. Downstream consumers must not read array position as priority for Hero. No source ranks Hero's hyper stats.",
     "priority": [
       {
         "allocation": "Bossing baseline: 10 points each into Critical Rate, Critical Damage, Ignore Enemy Defense, Boss Damage and Damage.",
-        "why": "Published as a starting allocation, not an optimum.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: '10 Points in Crit Rate / 10 Points in Crit Damage / 10 Points in IED / 10 Points in Boss Damage / 10 Points in Damage'. Published as a starting allocation, not an optimum, and the five entries carry no order between them.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "allocation": "Mobbing baseline: 10 points each into Critical Rate, Critical Damage, EXP, Monster Damage and Damage.",
-        "why": "Same source, farming preset.",
-        "consensus": "weak - single independent source",
+        "why": "Source text: '10 Points in Crit Rate / 10 Points in Crit Damage / 10 Points in EXP / 10 Points in Monster Damage / 10 Points in Damage'. Same source, farming preset, also unordered.",
+        "consensus": "weak",
         "sources": [
           "https://buffhero.win/"
-        ]
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12"
       },
       {
         "allocation": "Past the baseline, the class doc declines to give a fixed order and points the reader at an external hyper stat calculator instead.",
-        "why": "The optimal distribution depends on the character's own stat sheet, so a static list is treated as a starting point only. This matches the wider community position that hyper stat priority is computed per character.",
-        "consensus": "moderate - the class doc's refusal to publish a fixed order is corroborated in shape by the Night Lord class doc doing the same thing and by MathBro's optimizer being the community's operative answer",
+        "why": "Re-verified 2026-09-12: the doc states the allocation depends on individual circumstances and directs the reader to a calculator. A previous revision claimed this refusal was 'corroborated in shape by the Night Lord class doc doing the same thing'; that comparison was never sourced in this file and has been deleted. MathBro's calculator is listed below as the tool the doc hands off to, not as a second source asserting this claim.",
+        "consensus": "weak",
         "sources": [
-          "https://buffhero.win/",
-          "https://brendonmay.github.io/hyperCalculator/"
-        ]
+          "https://buffhero.win/"
+        ],
+        "sourceCount": 1,
+        "verifiedAt": "2026-09-12",
+        "handoffTool": "https://brendonmay.github.io/hyperCalculator/"
       }
     ],
-    "notes": "Do not present a fixed hyper stat order for Hero as authoritative. The only sourced content is the 10/10/10/10/10 baseline plus an explicit hand-off to a calculator."
+    "notes": "Do not present a fixed hyper stat order for Hero as authoritative, and do not let the array above imply one. The only sourced content is the 10/10/10/10/10 baseline (two presets) plus an explicit hand-off to a calculator."
   },
   "hyperSkills": {
     "bossing": [
@@ -225,12 +269,17 @@
       "Raging Blow - Reinforce",
       "Raging Blow - Extra Strike"
     ],
-    "notes": "The only difference between the two lists is Advanced Final Attack - Opportunity (bossing) versus Raging Blow - Spread (mobbing).",
-    "consensus": "weak - single independent source. Grandis Library's hyper passive build is credited to the same class doc and describes the same shape (two Advanced Combo Attack nodes, one Advanced Final Attack node, three Raging Blow nodes) without naming each pick.",
+    "ordered": false,
+    "orderingNote": "These are unordered sets of five picks each, not a selection order. No source ranks them.",
+    "notes": "The only difference between the two lists is Advanced Final Attack - Opportunity (bossing) versus Raging Blow - Spread (mobbing). Both lists re-verified against the class doc on 2026-09-12 and matched exactly. Grandis Library names the same five bossing picks explicitly ('Advanced Combo Attack - Reinforce and Boss Rush', 'Advanced Final Attack - Opportunity', 'Raging Blow - Reinforce and Extra Strike') - a previous revision said Grandis described the shape 'without naming each pick', which was wrong. Grandis gives no separate mobbing variant, so the mobbing list rests on the class doc alone.",
+    "consensus": "weak",
+    "sourceCount": 1,
     "sources": [
       "https://buffhero.win/",
       "https://grandislibrary.com/explorers/hero"
-    ]
+    ],
+    "sourceCountNote": "Two URLs, one independent source: Grandis credits its Hyper Passive Build to the class doc by name, so it does not raise the count.",
+    "verifiedAt": "2026-09-12"
   },
   "innerAbility": {
     "bossing": [
@@ -243,6 +292,11 @@
       "Item Drop Rate +15%",
       "Damage to Normal Monsters +8%"
     ],
+    "trainingAlternate": [
+      "Item Drop Rate +20%",
+      "Meso Obtained +15%",
+      "Damage to Normal Monsters +8%"
+    ],
     "bossRewardRoom": [
       "Item Drop Rate +20%"
     ],
@@ -251,15 +305,19 @@
       "Meso Obtained +15%",
       "Item Drop Rate +15%"
     ],
-    "notes": "Meso Obtained and Item Drop Rate are interchangeable between the first two training lines depending on what you are farming for. The multi-target +1 variant is listed by Grandis Library specifically for Interactive servers running Frenzy Totem and is not a Heroic recommendation.",
-    "consensus": "weak as an independent count - the class doc and Grandis Library agree, but Grandis credits its inner ability section to that same class doc. The shape of the bossing preset (attack speed line plus two damage lines) is consistent with the cross-class inner ability framework on maplestorywiki.",
+    "ordered": true,
+    "orderingNote": "Line order here is meaningful: the first entry of each preset is the legendary/top line as the sources present it.",
+    "notes": "All five presets re-verified on 2026-09-12. The class doc presents training as three explicit options: Option 1 (Meso 20% / Drop 15% / Normal Monster Damage 8%), Option 2 (Drop 20% / Meso 15% / Normal Monster Damage 8%) - recorded above as trainingAlternate, which is why Meso and Drop are described as interchangeable - and Option 3, the Interactive-world-with-Frenzy variant. CORRECTION: a previous revision attributed the multi-target +1 variant to Grandis Library alone; the class doc itself lists it as Option 3, and Grandis repeats it. It remains an Interactive-server recommendation, not a Heroic one.",
+    "consensus": "weak",
+    "sourceCount": 1,
     "sources": [
       "https://buffhero.win/",
-      "https://grandislibrary.com/explorers/hero",
-      "https://maplestorywiki.net/w/Guide:Inner_Ability"
-    ]
+      "https://grandislibrary.com/explorers/hero"
+    ],
+    "sourceCountNote": "Two URLs, one independent source: Grandis credits its Inner Ability section to the class doc by name. maplestorywiki's cross-class inner ability guide was previously listed here as a supporting source; it carries no Hero-specific advice and could not raise or lower confidence in these presets, so it has been removed from this claim.",
+    "verifiedAt": "2026-09-12"
   },
-  "gearingNotes": "Critical rate is the defining gearing constraint for Hero. The class doc enumerates its always-on crit sources as base 5%, Chance Attack 20%, Decent Sharp Eyes 10%, Weapon Mastery 15%, plus 4% each from the Marksman and Night Lord level-200 Legion blocks, totalling 58%; the remaining ~42% needed to reach 100% has to come from the Legion grid (0-40%), Legion artifact, hyper stats (0-15%), familiar badges (1% each, capped at 3%) and, if you are not using the attack speed line, inner ability (20%). Because the bossing inner ability preset spends the top line on Attack Speed +1 rather than crit rate, the crit gap has to be closed elsewhere. Weapon choice: the class doc states axe carries an additional 5% damage over sword and recommends a two-handed weapon; note that Grandis Library records Hero's attack speed as stage 5 with a one-handed weapon versus stage 4 with a two-handed one, which is part of why the Attack Speed +1 inner ability line is wanted for bossing. Buff duration is worth investing in only up to 97% total as shown in the character stat window, per the class doc's Legion priority. The class doc's hat potential section treats cooldown reduction lines (-2s, -4s) as a real alternative to pure stat lines rather than a mistake. Legion board priority for bossing runs Critical Damage, then Boss Damage, then IED, then Buff Duration (to that 97% cap), then Critical Rate, then STR, then ATT; for training it runs Critical Damage, then EXP Obtained, then Normal Monster Damage, then Critical Rate, then STR, then ATT. All of the above is single-sourced to the class doc. Nothing sourced here is specific to a level 104 character - every claim above concerns level 200+ progression.",
+  "gearingNotes": "Critical rate is the defining gearing constraint for Hero. The class doc enumerates its always-on crit sources as base 5%, Chance Attack 20%, Decent Sharp Eyes 10%, Weapon Mastery 15%, plus 4% each from the Marksman and Night Lord level-200 Legion blocks, totalling 58%; the remaining ~42% needed to reach 100% has to come from the Legion grid (0-40%), Legion artifact, hyper stats (0-15%), familiar badges (1% each, capped at 3%) and, if you are not using the attack speed line, inner ability (20%). Because the bossing inner ability preset spends the top line on Attack Speed +1 rather than crit rate, the crit gap has to be closed elsewhere. Weapon choice: the class doc states axe carries an additional 5% damage over sword and recommends a two-handed weapon. Grandis Library separately records Hero's attack speed as stage 5 with a one-handed weapon versus stage 4 with a two-handed one (lower stage is faster); no source connects that fact to the Attack Speed +1 inner ability recommendation, and an earlier revision of this file asserted such a link in the wrong direction - that inference has been deleted, the two transcribed facts kept. Buff duration is worth investing in only up to 98% total as shown in the character stat window, per the class doc ('the maximum amount of buff duration we should be aiming for which is 98%, having less is also fine'); an earlier revision of this file said 97%, which appears in no source. The class doc's hat potential section treats cooldown reduction lines (-2s, -4s) as a real alternative to pure stat lines rather than a mistake. Legion board priority for bossing runs Critical Damage, then Boss Damage, then IED, then Buff Duration (to that 98% cap), then Critical Rate, then STR, then ATT; for training it runs Critical Damage, then EXP Obtained, then Normal Monster Damage, then Critical Rate, then STR, then ATT. All of the above is single-sourced to the class doc except the two Grandis attack-speed-stage figures. Nothing sourced here is specific to a level 104 character - every claim above concerns level 200+ progression.",
   "commonMistakes": [
     {
       "mistake": "Jumping repeatedly while using Raging Blow, which cuts the number of attacks the skill lands.",
@@ -289,22 +347,24 @@
       "mistake": "Not accounting for skill recovery frames, leading to positioning errors.",
       "sources": [
         "https://buffhero.win/"
-      ]
+      ],
+      "disputed": "An independent critic reads the class doc's Common Mistakes section as containing four items, with this entry and the movement-skill entry both derived from one source item about Flash Blade and Leap Attack. A third extraction on 2026-09-12 reported five items but could not pin the fifth. Unresolved, and outside this pass's endgame scope - left in place, flagged, not relied upon."
     }
   ],
   "sources": [
     {
       "url": "https://buffhero.win/",
-      "what": "The Hero class document, linked by Grandis Library as Hero's Class Doc and produced around the Hero Discord. Covers 5th job boost node priority split training vs bossing, 6th job HEXA investment as two routes (energy-limited and fragment-limited) plus HEXA stat setup, hyper stats for bossing and mobbing, hyper skill passives for both modes, inner ability for bossing / training / boss reward room, a crit rate source breakdown, Legion priority, skill sequences, common mistakes, and a Future Hero Changes section tracking KMS. This is the only source carrying Hero HEXA investment order.",
+      "what": "The Hero class document, linked by Grandis Library as Hero's Class Doc and produced around the Hero Discord. Covers 5th job boost node priority split training vs bossing, the special V-skill pick, 6th job HEXA investment as two image charts (energy-limited and fragment-limited) plus HEXA stat setup, hyper stats for bossing and mobbing, hyper skill passives for both modes, inner ability for bossing / training / boss reward room / Interactive, a crit rate source breakdown, Legion priority, skill sequences, common mistakes, and a Future Hero Changes section tracking KMS. This is the only source carrying any Hero HEXA content.",
       "dated": "No explicit date, version stamp or changelog. Content references GMS v267 and v269 and forward-looks to KMS 1.2.413-1.2.417, so it is broadly v269-era and later. No named author; credits a Korean creator for video clips and points to the Hero Discord.",
-      "independent": true
+      "independent": true,
+      "extractionCaveat": "Large parts of the 6th job section are images. The HEXA investment routes are not machine-readable and have not reproduced across three extraction attempts; the HEXA stat table and all prose sections do reproduce."
     },
     {
       "url": "https://grandislibrary.com/explorers/hero",
-      "what": "Class page: inner ability bossing/training/Interactive presets, hyper skill passive build, boost nodes tiered PRIMARY/SECONDARY/OTHER, link skill, class properties, base stats from skills. Has NO HEXA section and NO hyper stat section.",
+      "what": "Class page: inner ability bossing/training/Interactive presets, hyper skill passive build (names all five bossing picks), boost nodes tiered PRIMARY/SECONDARY/OTHER with a 'View Pre-V.269 Boost Nodes' toggle, link skill, class properties, base stats from skills. Has NO HEXA section and NO hyper stat section (re-confirmed 2026-09-12).",
       "dated": "Site footer reads GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target. No per-page last-updated stamp.",
       "independent": false,
-      "dependsOn": "https://buffhero.win/ - the page's Credits block attributes Inner Ability, Hyper Passive Build and Boost Nodes Build to 'Class Doc', and its Other Resources block links buffhero.win as that doc. Verified for Hero specifically, not merely assumed from other classes."
+      "dependsOn": "https://buffhero.win/ - the page's Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', and its Other Resources block links buffhero.win as that doc. Verified for Hero specifically, not merely assumed from other classes."
     },
     {
       "url": "https://mystyjl.github.io/reference/NodeGuide.html",
@@ -320,20 +380,14 @@
     },
     {
       "url": "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M",
-      "what": "The Xenon class document (Roo-D Files). Used only for two cross-class facts it happens to tabulate: that Hero's level-200 Legion block gives +80 flat STR, and that Explorer branch link skills stack to level 9. Not a Hero source in any other respect.",
+      "what": "The Xenon class document (Roo-D Files). Used only for two cross-class facts it happens to tabulate: that Hero's level-200 Legion block gives +80 flat STR, and that Explorer branch link skills stack to level 9. Not a Hero source in any other respect, and not re-examined in this endgame resolution pass.",
       "dated": "Last updated 2026-09-09 (the v.271 patch date).",
       "independent": true
     },
     {
       "url": "https://brendonmay.github.io/hyperCalculator/",
-      "what": "MathBro's hyper stat optimizer. Cited because the Hero class doc hands hyper stat allocation off to a calculator rather than publishing a full order.",
+      "what": "MathBro's hyper stat optimizer. Recorded as the tool the Hero class doc hands hyper stat allocation off to. It is a calculator, not a source that asserts any Hero-specific claim, and it does not contribute to any sourceCount in this file.",
       "dated": "Actively maintained; exact last update not confirmed.",
-      "independent": true
-    },
-    {
-      "url": "https://maplestorywiki.net/w/Guide:Inner_Ability",
-      "what": "Cross-class inner ability framework, used only to sanity-check the shape of Hero's recommended presets. Carries no Hero-specific advice.",
-      "dated": "Unverified - page history was not reachable.",
       "independent": true
     },
     {
@@ -349,17 +403,17 @@
       "topic": "Boost node trio composition",
       "positionA": "Final Attack sits in the first trio alongside Raging Blow and Cry Valhalla, with Beam Blade in the second trio.",
       "sourceA": "https://mystyjl.github.io/reference/NodeGuide.html (2024-11-21)",
-      "positionB": "Raging Blow and Cry Valhalla are PRIMARY; Beam Blade is SECONDARY; Final Attack is demoted to OTHER alongside Puncture, Rising Rage and several 1st-3rd job skills.",
+      "positionB": "Raging Blow and Cry Valhalla are PRIMARY; Beam Blade is next; Final Attack sits in a lower group alongside Puncture and Rising Rage.",
       "sourceB": "https://grandislibrary.com/explorers/hero (GMS v269, restating buffhero.win)",
       "status": "contested, not resolved. Weight the disagreement carefully: the mystyjl data predates the v269 boost node regrouping, and Grandis explicitly notes that groupings changed at v269 - but Grandis is a restatement of the class doc rather than a second opinion, so this is one recent dependent view against one older independent view."
     },
     {
       "topic": "Skill name spelling: Beam Blade vs Blade Beam",
-      "positionA": "'Beam Blade' - used by Grandis Library and by the Hero class doc's HEXA mastery legend (HEXA Beam Blade).",
+      "positionA": "'Beam Blade' - used by Grandis Library and by the Hero class doc's HEXA mastery prose (HEXA Beam Blade).",
       "sourceA": "https://grandislibrary.com/explorers/hero and https://buffhero.win/",
       "positionB": "'Blade Beam'",
       "sourceB": "https://mystyjl.github.io/reference/NodeGuide.html",
-      "status": "unresolved. maplestorywiki.net, which is the name-validation table for this project, returned HTTP 403 to every access attempt in this session, and maplestory.fandom.com returned HTTP 402, so no neutral skill-name table could be reached. 'Beam Blade' is recorded here on a two-to-one split but has NOT been validated."
+      "status": "unresolved. maplestorywiki.net, the name-validation table for this project, returned HTTP 403 to every access attempt in the research session, and maplestory.fandom.com returned HTTP 402, so no neutral skill-name table could be reached. 'Beam Blade' is recorded on a two-to-one split but has NOT been validated against a skill table."
     },
     {
       "topic": "5th job skill name: Instinctual Combo vs Instinctual Blade",
@@ -371,31 +425,92 @@
     },
     {
       "topic": "Whether Hero HEXA investment order can be sourced at all",
-      "positionA": "The class doc publishes two explicit sequences (energy-limited and fragment-limited).",
+      "positionA": "The class doc publishes two explicit sequences (energy-limited and fragment-limited) - but only as image charts.",
       "sourceA": "https://buffhero.win/",
       "positionB": "Grandis Library, the best-structured public class resource, carries no HEXA section for Hero or for any class.",
       "sourceB": "https://grandislibrary.com/explorers/hero",
-      "status": "not a contradiction but a coverage gap worth recording: Hero's HEXA order has exactly one public source and no public cross-check."
+      "status": "resolved in favour of recording nothing. Hero's HEXA order has exactly one public source, that source publishes it as an unreadable image, and three extraction attempts disagreed with each other. The order has been removed from this file rather than shipped as a guess."
     }
   ],
-  "lastVerified": "2026-09-11",
+  "lastVerified": "2026-09-12",
   "patchVersion": "v.271",
-  "evidenceWarning": "This file does NOT meet the three-independent-sources bar on its judgement fields. Three independent sources were reached overall (buffhero.win, mystyjl's node guide, Orange Mushroom), but HEXA investment order, HEXA stat setup, hyper stats, hyper skill passives, inner ability, crit rate sourcing and Legion priority all rest on a single independent source: buffhero.win. Grandis Library agrees with it on inner ability, hyper passives and boost nodes, but Grandis credits those exact fields to that same class doc and links buffhero.win as its Class Doc, so its agreement carries no independent weight. Only the boost node trio question has two independent sources, and they disagree. buffhero.win also carries no date or changelog, and the Hero Discord and reddit could not be reached from this session. Present Hero HEXA and hyper stat advice with an explicit single-source marker.",
+  "evidenceWarning": "This file does NOT meet the three-independent-sources bar on any endgame field. Every claim in vMatrix, hexa, hyperStats, hyperSkills and innerAbility rests on ONE independent source, buffhero.win, and is labelled consensus 'weak' with sourceCount 1. Grandis Library agrees on inner ability, hyper passives and boost nodes but credits those exact fields to that same class doc, so its agreement carries no independent weight and does not raise any count. mystyjl's node guide is the only genuinely independent boost-node opinion and it disagrees with Grandis. buffhero.win carries no date or changelog, and the Hero Discord and reddit could not be reached. Present all Hero endgame advice with an explicit single-source marker. Hero HEXA investment ORDER is absent entirely by design - see hexa.order.",
   "contest": {
     "ranAt": "2026-09-12",
     "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "resolutionPass": {
+      "ranAt": "2026-09-12",
+      "scope": "Endgame only, per product owner: vMatrix, hexa, hyperSkills, hyperStats, innerAbility. Every cited page was re-opened and every disputed claim re-read against it. Jobs 1-4 skill builds, coefficients, damage lines, tiers and rotations were not examined and were not touched.",
+      "method": "Re-fetched buffhero.win four times with different targeted prompts, grandislibrary.com/explorers/hero twice, and mystyjl's node guide once. Claims that matched the source were confirmed and relabelled; claims that did not were corrected or deleted."
+    },
+    "resolved": [
+      {
+        "defect": "NOT REPRODUCIBLE: the HEXA route numbers (two 11-step sequences with exact level targets, read from a visual chart; the critic's own re-read produced different order and values).",
+        "section": "hexa",
+        "action": "DELETED both sequences.",
+        "why": "A third independent extraction on 2026-09-12 could not read the charts at all, reporting only that 'both detailed progression routes appear as numbered image charts... the specific step sequences are presented visually and cannot be accurately transcribed.' Three reads, three answers. hexa.order now records only that two routes exist, what constrains each, and an instruction to read the chart at the source. The M1-M4 legend was re-verified separately and kept."
+      },
+      {
+        "defect": "MISSTATED OMISSION: vMatrix.notes described a 'Fatal Strike' special V-skill entry as unverifiable against any skill list.",
+        "section": "vMatrix",
+        "action": "CORRECTED and restored as a claim.",
+        "why": "Re-verified verbatim: the class doc asks 'Which Special V-Skill to use/craft?' and answers 'Fatal Strike'. It is a sourced recommendation, not an extraction artifact. Added to vMatrix.priority with sourceCount 1, consensus weak; the inaccurate sentence in vMatrix.notes was removed."
+      },
+      {
+        "defect": "WRONG NUMBER: gearingNotes said buff duration caps at 97%; the source says 98%.",
+        "section": "gearingNotes (outside the five endgame sections, but a verified factual error)",
+        "action": "CORRECTED to 98% in both places.",
+        "why": "Re-verified verbatim on the source: 'the maximum amount of buff duration we should be aiming for which is 98%'. The 97 figure appears in no source. Fixed rather than left, since the correct value was already in hand."
+      },
+      {
+        "defect": "UNSOURCED CAUSAL CLAIM ARGUING BACKWARDS: gearingNotes inferred that Hero wants Attack Speed +1 because Grandis records 1H as stage 5 and 2H as stage 4.",
+        "section": "gearingNotes (outside the five endgame sections)",
+        "action": "DELETED the inference, kept both transcribed facts.",
+        "why": "The critic is right on the mechanics - lower stage is faster, so the recommended two-handed weapon is already the faster option and cannot motivate the attack speed line. No source draws the connection at all."
+      },
+      {
+        "defect": "Not raised by the critic, found during this pass: vMatrix trios claimed Raging Blow and Cry Valhalla 'both also unlock a 6th job HEXA Mastery' while Beam Blade 'unlocks no HEXA Mastery', presenting this as Grandis Library's rationale for its tiering.",
+        "section": "vMatrix",
+        "action": "DELETED the rationale.",
+        "why": "Citation inversion. Grandis states no such rationale, and the class doc contradicts it outright: HEXA Beam Blade is explicitly one of the two skills unlocked by the Mastery 3 HEXA skill."
+      },
+      {
+        "defect": "Not raised by the critic, found during this pass: hyperStats consensus claimed the class doc's refusal to rank hyper stats was 'corroborated in shape by the Night Lord class doc doing the same thing and by MathBro's optimizer being the community's operative answer', and was labelled 'moderate'.",
+        "section": "hyperStats",
+        "action": "DELETED the corroboration claim, downgraded to weak / sourceCount 1.",
+        "why": "The Night Lord class doc is not cited anywhere in this file and was not checked. A calculator is a tool, not a source asserting a claim; it is now recorded as handoffTool and excluded from the source count."
+      },
+      {
+        "defect": "Not raised by the critic, found during this pass: hyperStats.priority is an ordered array while the sources decline to rank hyper stats past the baseline.",
+        "section": "hyperStats",
+        "action": "Added 'ordered': false plus an explicit orderingNote telling downstream consumers not to read array position as priority. Same flag added to hyperSkills, which is also an unordered set of picks.",
+        "why": "The data structure was asserting a ranking no source states. innerAbility keeps 'ordered': true because line position there genuinely is the legendary/top line."
+      },
+      {
+        "defect": "Not raised by the critic, found during this pass: hyperSkills notes said Grandis described the build's shape 'without naming each pick'.",
+        "section": "hyperSkills",
+        "action": "CORRECTED.",
+        "why": "Grandis names all five bossing picks by name. The understatement was harmless but wrong; note rewritten. Grandis still does not raise sourceCount, since it credits the build to the class doc."
+      },
+      {
+        "defect": "Not raised by the critic, found during this pass: innerAbility notes attributed the Interactive / multi-target +1 variant to Grandis Library alone, and listed maplestorywiki as a supporting source.",
+        "section": "innerAbility",
+        "action": "CORRECTED attribution; REMOVED maplestorywiki from the claim's sources.",
+        "why": "The class doc itself lists the Interactive variant as its training Option 3. maplestorywiki's cross-class guide carries no Hero-specific advice and cannot support or weaken these presets. The class doc's training Option 2 (Drop 20% / Meso 15% / NMD 8%) was also missing and has been added as trainingAlternate."
+      }
+    ],
     "defects": [
-      "WRONG NUMBER: buff duration. gearingNotes states 97% twice ('worth investing in only up to 97% total', 'Buff Duration (to that 97% cap)'). The source says 98%: 'maximum amount of buff duration we should be aiming for which is 98%, having less is also fine'. I asked for this figure in isolation on a second fetch to be sure. A player pinning a gearing target to a fabricated 97 is being told to stop one point short of the sourced number.",
-      "LIKELY INVENTED FIFTH ITEM: commonMistakes has five entries; buffhero's section has four (stated as four on two separate extractions). Entries 3 and 5 both trace to the source's single item about movement skills - 'Using Flash blade and Leap attack effectively is ideal, but if you don't use them in the right situations you can easily die because of them.' The file split that into 'Using movement skills at the wrong moment and dying avoidably' AND 'Not accounting for skill recovery frames, leading to positioning errors'. Recovery frames are not in the source text I could reach. One of these two should go.",
-      "UNSOURCED CAUSAL CLAIM, AND IT ARGUES BACKWARDS. gearingNotes: 'Grandis Library records Hero's attack speed as stage 5 with a one-handed weapon versus stage 4 with a two-handed one, which is part of why the Attack Speed +1 inner ability line is wanted for bossing.' The transcription is correct (Grandis: 1H Stage 5, 2H Stage 4). The inference is the researcher's own, appears in no source, and runs the wrong way - lower stage is faster, so the recommended two-handed weapon is already the faster of the two and cannot be the reason the class wants Attack Speed +1. Delete the clause; keep the two transcribed facts.",
-      "NOT REPRODUCIBLE: the HEXA route numbers. The file publishes two 11-step sequences with exact level targets, flagged as 'read out of a visual chart'. My independent extraction of the fragment-limited route disagrees with theirs on both order and values - I read M3 to 1, M2 to 2, M1 to 2, M4 to 9; they recorded Origin 1, Ascent 2, M1 2, M2 9, M3 1, M4 5. Two readings of the same chart, two different answers. Single-sourced, no public cross-check (confirmed: Grandis has no HEXA section), and the numbers do not survive re-reading. Under the project's own rule this field should be emptied down to 'the doc publishes an energy-limited and a fragment-limited route; read the chart' plus the M1-M4 legend, which does hold up.",
-      "NOT A FABRICATION BUT A MISSTATED OMISSION: vMatrix.notes says a 'Fatal Strike' entry 'could not be verified against any skill list and is therefore not recorded as fact.' It is in the source as a direct answer - 'Which Special V-Skill to use/craft?: Fatal Strike' - and it is a real GMS special core rather than an extraction artifact. Dropping it was over-cautious; describing it as unverifiable is inaccurate."
+      "STILL OPEN, OUT OF ENDGAME SCOPE. LIKELY INVENTED FIFTH ITEM: commonMistakes has five entries; buffhero's section may have four. Entries 3 and 5 may both trace to the source's single item about movement skills - 'Using Flash blade and Leap attack effectively is ideal, but if you don't use them in the right situations you can easily die because of them.' A third extraction on 2026-09-12 reported five distinct mistakes but could not name the fifth, so the count is now 2-1 in favour of five with no reading that pins the recovery-frames item to source text. Left in place with a 'disputed' flag on the entry rather than deleted, because commonMistakes is outside the five endgame sections this pass was scoped to and the evidence is genuinely split. Do not surface the recovery-frames mistake as sourced."
     ],
     "clearedOnInspection": [
-      "NO INVENTED SKILL OR NODE NAMES FOUND. I checked every name the file lists against at least one reachable source. All appear: Raging Blow, Cry Valhalla, Beam Blade, Puncture, Rising Rage, Final Attack, Leap Attack, Flash Blade, Rush, Brandish, Intrepid Slash, Burning Soul Blade, Sword Illusion, Instinctual Combo, Worldreaver, Weapon Aura, Erda Nova, Erda Shower/Erda Fountain, True Arachnid Reflection, Solar Crest, Maple World Goddess's Blessing, the Decent skills, and 6th job Spirit Calibur, Ultrasonic Slash, Rending Edge, HEXA Raging Blow / Rising Rage / Beam Blade / Cry Valhalla / Puncture / Final Attack, Sol Janus, Sol Hecate. The hyper skill picks match buffhero and Grandis exactly. The invention check comes back clean."
+      "NO INVENTED SKILL OR NODE NAMES FOUND. I checked every name the file lists against at least one reachable source. All appear: Raging Blow, Cry Valhalla, Beam Blade, Puncture, Rising Rage, Final Attack, Leap Attack, Flash Blade, Rush, Brandish, Intrepid Slash, Burning Soul Blade, Sword Illusion, Instinctual Combo, Worldreaver, Weapon Aura, Erda Nova, Erda Shower/Erda Fountain, True Arachnid Reflection, Solar Crest, Maple World Goddess's Blessing, the Decent skills, and 6th job Spirit Calibur, Ultrasonic Slash, Rending Edge, HEXA Raging Blow / Rising Rage / Beam Blade / Cry Valhalla / Puncture / Final Attack, Sol Janus, Sol Hecate. The hyper skill picks match buffhero and Grandis exactly. The invention check comes back clean.",
+      "Re-confirmed on 2026-09-12: Fatal Strike also exists in the source, so the name list above is complete rather than merely clean."
     ],
-    "shipReady": false
+    "endgameShipReady": true,
+    "shipReady": false,
+    "shipReadyNote": "The five endgame sections (vMatrix, hexa, hyperStats, hyperSkills, innerAbility) now contain only claims re-read against their cited pages on 2026-09-12, each labelled with sources, sourceCount, consensus and verifiedAt. One defect remains open in commonMistakes, which is outside endgame scope; jobs 1-4 content was never examined in this pass."
   },
-  "written": false,
-  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+  "written": true,
+  "blockedReason": null,
+  "writtenScope": "Endgame only. vMatrix, hexa, hyperStats, hyperSkills and innerAbility are verified and accurately labelled as of 2026-09-12 - all at consensus 'weak', sourceCount 1, because Hero has exactly one independent endgame source. commonMistakes carries one open dispute and jobs 1-4 content is unexamined; neither is endgame content."
 }
