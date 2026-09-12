@@ -198,3 +198,46 @@ terms of use, so its own licensing and rate limits are unverified.
 - [ ] The world cap, and whether it is per world or per account.
 - [ ] Whether a crystal bought just after Thursday reset survives the next reset. Until
       this is known the planner must never advise banking crystals.
+
+---
+
+# Decisions, 2026-09-11
+
+## Damage model: Bow Master first, not class-general
+
+Decided by the account holder. The engine models one class properly rather than
+every class approximately.
+
+What this buys: real weapon multiplier, real mastery, real skill coefficients,
+and an answer that can actually be checked against the live character's combat
+power instead of being plausible. A class-general model would have had to carry
+every class's constants at the same confidence as the one class anyone can
+verify, which is how a tool ends up confidently wrong everywhere at once.
+
+What it costs: every other class is unsupported until someone does the same
+verification work for it. The shape of the engine should keep that cheap -
+class constants behind one named table, never inlined into the formula - but
+the work is real and is not being done now.
+
+Bow Master is also the right reference case: Archerroni is Lv 244 at ~5.26M
+combat power with a full gear set, so the model has something to be wrong
+against.
+
+## Crystal cap: ship 14, expose the toggle
+
+12 is the only value with a primary source (KMS v1.2.393, July 2024) and is what
+Grandis Library says for GMS. 14 is what two current wikis say and traces to GMS
+having two bosses KMS does not. No GMS patch note raising 12 to 14 exists.
+
+Effect on this account: ~1.41B/week ceiling at 14 against ~1.29B at 12, and the
+roster size needed to fill the 180 world cap moves from 13 characters to 15.
+At 31 characters this account is past that line either way, but for a 13 or 14
+character account the two values give opposite advice about running dailies.
+
+So: default 14, a toggle in an always-visible assumptions drawer, and every
+derived figure recomputes from it. Never hardcoded anywhere.
+
+Also: the widely repeated "~1.88B/week from the top 14 weeklies" does not
+reproduce - summing the source's own table gives ~1.41B, a 33% overstatement.
+The ceiling is computed from the boss table with a test asserting the displayed
+number equals the allocator's own sum.
