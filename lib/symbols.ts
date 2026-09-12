@@ -474,18 +474,24 @@ export const ARCANE_WEEKLY_PER_AREA = 80;
 export const ARCANE_WEEKLY_TOTAL_PER_AREA = ARCANE_DAILY_PER_AREA * 7 + ARCANE_WEEKLY_PER_AREA;
 
 /**
- * UNVERIFIED. guide-graph.json symbols.income carries Cernium 20->30/day and
- * the other five Grandis areas 10->15/day for v.271. A web search corroborates
- * both, but neither was read directly out of the patch notes the way the Arcane
- * doubling was. Only the Arcane change is confirmed.
+ * CONFIRMED against the GMS v.271 patch notes, read directly on 2026-09-12.
+ *
+ * Worth stating precisely, because "v.271 doubled symbol income" is the loose
+ * version and it is wrong: only ARCANE doubled (dailies 20 -> 40, weeklies
+ * 40 -> 80, all areas). SACRED went up 1.5x and on DAILIES ONLY - Cernium
+ * 20 -> 30, the five other Grandis areas 10 -> 15, Grand Sacred 10 -> 15.
+ * There is no Grandis weekly increase in the notes at all, and AUTHENTIC was
+ * untouched ("authentic" returns zero matches across the rendered page).
+ *
+ * Modelling Sacred at 2x would overstate Grandis symbol income by a third.
  */
-export const SACRED_DAILY_CERNIUM_UNVERIFIED = 30;
-export const SACRED_DAILY_OTHER_UNVERIFIED = 15;
-/** UNVERIFIED. Same caveat; guide-graph lists Tallahart/Geardock at 10->15/day. */
-export const GRAND_SACRED_DAILY_UNVERIFIED = 15;
+export const SACRED_DAILY_CERNIUM = 30;
+export const SACRED_DAILY_OTHER = 15;
+/** CONFIRMED with the above: Tallahart and Geardock daily 10 -> 15. */
+export const GRAND_SACRED_DAILY = 15;
 
 export function sacredDailyFor(area: SacredArea): number {
-  return area === "cernium" ? SACRED_DAILY_CERNIUM_UNVERIFIED : SACRED_DAILY_OTHER_UNVERIFIED;
+  return area === "cernium" ? SACRED_DAILY_CERNIUM : SACRED_DAILY_OTHER;
 }
 
 /**
@@ -868,22 +874,7 @@ export interface UnverifiedConstant {
  * sends a real person to grind for nothing.
  */
 export const UNVERIFIED_SYMBOL_CONSTANTS: UnverifiedConstant[] = [
-  {
-    name: "SACRED_DAILY_CERNIUM_UNVERIFIED",
-    value: SACRED_DAILY_CERNIUM_UNVERIFIED,
-    why: "From guide-graph.json, corroborated by search but not read out of the v.271 patch notes.",
-  },
-  {
-    name: "SACRED_DAILY_OTHER_UNVERIFIED",
-    value: SACRED_DAILY_OTHER_UNVERIFIED,
-    why: "Same as Cernium — only the Arcane 20->40 daily / 40->80 weekly doubling is confirmed.",
-  },
-  {
-    name: "GRAND_SACRED_DAILY_UNVERIFIED",
-    value: GRAND_SACRED_DAILY_UNVERIFIED,
-    why: "Tallahart/Geardock daily reward. guide-graph only.",
-  },
-  {
+        {
     name: "WEEKLY_RESET_DAY_UTC_UNVERIFIED",
     value: WEEKLY_RESET_DAY_UTC_UNVERIFIED,
     why: "Whether the Arcane River weekly follows Thursday boss reset or Monday daily reset was not sourced. Moves a finish date by at most six days.",

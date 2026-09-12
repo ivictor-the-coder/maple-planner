@@ -1,0 +1,2235 @@
+{
+  "meta": {
+    "title": "MapleStory patch ledger - GMS live vs KMS ahead",
+    "purpose": "Ground truth for what is LIVE in GMS, kept physically separate from what Korea has and GMS does not. Written because data/classes.json was stamped v.269 by construction and the app could not tell a stale record from a wrong one, and because a Korean announcement was once one careless edit away from corrupting the meso model.",
+    "builtOn": "2026-09-12",
+    "builtBy": "research wave reading official sources directly; see each entry's route",
+    "gmsCurrentVersion": "v.271",
+    "worldAssumption": "Heroic (Reboot) unless an entry says otherwise",
+    "hardRule": "GMS OFFICIAL PATCH NOTES are the only ground truth for what is live. KMS sources are a roadmap, never truth. Never write 'this is how it works' from a Korean source; write 'Korea has this as of <date>; GMS does not yet.' If it cannot be confirmed for GMS, status is 'unknown' and it goes in unresolved.",
+    "fieldContract": {
+      "region": "'gms' | 'kms' | 'unknown' - which service the fact describes",
+      "status": "'live' | 'upcoming' | 'unknown' - live means confirmed live in the stated region",
+      "source": "a URL",
+      "dated": "when the source is from",
+      "route": "how the source was actually obtained, because the official GMS page does not fetch",
+      "corroborated": "true = an INDEPENDENT source carries the same claim. false = carried only by the official Nexon page, which is primary ground truth and outranks any repost. false means single-sourced, not doubtful."
+    },
+    "layers": {
+      "live": "GMS-confirmed changes, by patch version, each with source and route.",
+      "upcoming": "KMS-ahead items: what Korea has, when, whether it has SHIPPED in KMS or is only announced, and an explicit statement that GMS does not have it and may receive it altered or not at all.",
+      "negativeConstraints": "Things a future contributor might 'helpfully' add from a headline that are NOT true of GMS. Read this before changing any constant.",
+      "unresolved": "Anything that could not be confirmed either way. An honest unknown is useful; a confident mislabel is not."
+    }
+  },
+  "live": {
+    "region": "gms",
+    "currentVersion": "v.271",
+    "patches": [
+      {
+        "version": "v.271",
+        "name": "MapleStory x Frieren: Beyond Journey's End",
+        "region": "gms",
+        "status": "live",
+        "dated": {
+          "posted": "2026-09-08",
+          "lastUpdatedInPlace": "2026-09-10",
+          "wentLive": "2026-09-09",
+          "readOn": "2026-09-12"
+        },
+        "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+        "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this.",
+        "corroboration": {
+          "definition": "corroborated:true means a source INDEPENDENT of the official Nexon page carries the same claim. corroborated:false means the claim is carried only by the official Nexon page - which is primary ground truth and outranks any repost. 'false' therefore means single-sourced, NOT doubtful.",
+          "repostHunt": "No independent repost of the per-class numbers exists that could be found. 7mmo.com thread 3873 (2,870 chars total) carries only the marketing blurb and contains neither 'Nova Triumphant' nor 'Life and Death'; gamemarket.gg and massivelyop.com likewise blurb-only (massivelyop returned HTTP 403); forums.maplestory.nexon.net carries only a banner link whose href actually points at the v.270 URL. The correct second pair of eyes is a second independent render of the same official page (re-open, force-open the <details>, re-diff), not a repost hunt.",
+          "mechanismOnly": "en.namu.wiki (Origin Skill acceleration, extra Special Skill Ring slot) and vortexgaming.io (per-class common-core retune) independently describe the same MECHANISMS from the Korean side. They were used only to confirm these are the systems Korea received earlier. No number in this file comes from them."
+        },
+        "liveConfirmation": "Inferred, not stated. The page was written pre-release ('coming soon on September 9, 2026') and last updated 2026-09-10; today is 2026-09-12; the ring-conversion text refers to 'the maintenance on September 9, 2026' as a past event. A 'v.271 Known Issues' thread exists (7mmo.com/threads/v-271-known-issues.4002) that was NOT read - post-9/10 hotfixes would not be reflected here.",
+        "classBalance": {
+          "shape": "The overwhelming bulk of v.271 class balance is a per-class retune of four shared common-core skills that previously used one flat value for every class. Officially stated as 'Changed so that damage dealt varies by job.' Directionally a broad buff (nearly every class up, several 2-4x), offset by the Sol Hecate nerf and the Special Skill Ring rebalance recorded below.",
+          "oldSharedBaselinesPercent": {
+            "erdaShower": 900,
+            "erdaFountain": 900,
+            "trueArachnidReflectionSpatialCollapse": 990,
+            "trueArachnidReflection": 385,
+            "solarCrestMitrasFire": 1650,
+            "solarCrestFlameEmblem": 440,
+            "solarCrestFlameEmblemSingleAttack": 605,
+            "solJanusCyclicRing": 690,
+            "solJanusPrimalCrystal": 1035
+          },
+          "classesListed": 53,
+          "rosterMatch": "The 53 classes under 'Job Skill Changes' map 1:1 onto the 53 records in data/classes.json (name-form differences only, e.g. the page writes 'Arch Mage (Fire/Poison)' where the repo writes 'Arch Mage (Fire, Poison)'). Beast Tamer appears nowhere on the page; data/classes.json already treats Beast Tamer as a legacy class converted to Lynn in 2024, which is consistent.",
+          "unitNote": "All values are skill damage percentages as printed. Each new value replaces the old shared baseline above. null means the official page listed no line for that skill for that class.",
+          "perClass": [
+            {
+              "classId": "hero",
+              "patchNotesName": "Hero",
+              "commonCoreRetune": {
+                "erdaShower": 1032,
+                "erdaFountain": 1032,
+                "trueArachnidReflection": null,
+                "solarCrest": null,
+                "solJanus": {
+                  "cyclicRing": 791,
+                  "primalCrystal": 1187
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "paladin",
+              "patchNotesName": "Paladin",
+              "commonCoreRetune": {
+                "erdaShower": 2016,
+                "erdaFountain": 2016,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1682,
+                  "trueArachnidReflection": 655
+                },
+                "solarCrest": {
+                  "mitrasFire": 2804,
+                  "flameEmblem": 748,
+                  "flameEmblemSingleAttack": 1028
+                },
+                "solJanus": {
+                  "cyclicRing": 1546,
+                  "primalCrystal": 2318
+                }
+              },
+              "notable": "One of the largest common-core gainers in the patch."
+            },
+            {
+              "classId": "darkknight",
+              "patchNotesName": "Dark Knight",
+              "commonCoreRetune": {
+                "erdaShower": 1155,
+                "erdaFountain": 1155,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1378,
+                  "trueArachnidReflection": 536
+                },
+                "solarCrest": {
+                  "mitrasFire": 2297,
+                  "flameEmblem": 613,
+                  "flameEmblemSingleAttack": 842
+                },
+                "solJanus": {
+                  "cyclicRing": 886,
+                  "primalCrystal": 1328
+                }
+              },
+              "notable": "Radiant Evil now displayed separately from Evil Eye in Battle Analysis."
+            },
+            {
+              "classId": "archmagefirepoison",
+              "patchNotesName": "Arch Mage (Fire/Poison)",
+              "commonCoreRetune": {
+                "erdaShower": 987,
+                "erdaFountain": 987,
+                "trueArachnidReflection": null,
+                "solarCrest": null,
+                "solJanus": {
+                  "cyclicRing": 757,
+                  "primalCrystal": 1135
+                }
+              },
+              "notable": "HEXA Flame Sweep Ember effect changed."
+            },
+            {
+              "classId": "archmageicelightning",
+              "patchNotesName": "Arch Mage (Ice/Lightning)",
+              "commonCoreRetune": {
+                "erdaShower": 999,
+                "erdaFountain": 999,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1170,
+                  "trueArachnidReflection": 455
+                },
+                "solarCrest": {
+                  "mitrasFire": 1949,
+                  "flameEmblem": 520,
+                  "flameEmblemSingleAttack": 715
+                },
+                "solJanus": {
+                  "cyclicRing": 766,
+                  "primalCrystal": 1149
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "bishop",
+              "patchNotesName": "Bishop",
+              "commonCoreRetune": {
+                "erdaShower": 1053,
+                "erdaFountain": 1053,
+                "trueArachnidReflection": null,
+                "solarCrest": null,
+                "solJanus": {
+                  "cyclicRing": 807,
+                  "primalCrystal": 1211
+                }
+              },
+              "notable": "Holy Fountain description changed. General bug fix: Divine Punishment sometimes not ready after an Origin skill."
+            },
+            {
+              "classId": "bowmaster",
+              "patchNotesName": "Bow Master",
+              "commonCoreRetune": {
+                "erdaShower": 2664,
+                "erdaFountain": 2664,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1971,
+                  "trueArachnidReflection": 767
+                },
+                "solarCrest": {
+                  "mitrasFire": 3255,
+                  "flameEmblem": 876,
+                  "flameEmblemSingleAttack": 1205
+                },
+                "solJanus": {
+                  "cyclicRing": 2042,
+                  "primalCrystal": 3064
+                }
+              },
+              "notable": "Phoenix duration (Lv.10) 220s->600s; HEXA Phoenix 270s->600s. Inhuman Speed afterimage duration now extends on Ascendant Shadow arrow-shower hits. HEXA Hurricane Shootout Mode special arrowhead reset fixed."
+            },
+            {
+              "classId": "marksman",
+              "patchNotesName": "Marksman",
+              "commonCoreRetune": {
+                "erdaShower": 2113,
+                "erdaFountain": 2113,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1805,
+                  "trueArachnidReflection": 707
+                },
+                "solarCrest": {
+                  "mitrasFire": 2978,
+                  "flameEmblem": 782,
+                  "flameEmblemSingleAttack": 1098
+                },
+                "solJanus": {
+                  "cyclicRing": 1620,
+                  "primalCrystal": 2430
+                }
+              },
+              "notable": "Frostprey duration (Lv.10) 220s->600s; HEXA Frostprey 270s->600s. HEXA High Speed Shot aiming effect fixed."
+            },
+            {
+              "classId": "pathfinder",
+              "patchNotesName": "Pathfinder",
+              "commonCoreRetune": {
+                "erdaShower": 2612,
+                "erdaFountain": 2612,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2528,
+                  "trueArachnidReflection": 986
+                },
+                "solarCrest": {
+                  "mitrasFire": 4223,
+                  "flameEmblem": 1110,
+                  "flameEmblemSingleAttack": 1541
+                },
+                "solJanus": {
+                  "cyclicRing": 2003,
+                  "primalCrystal": 3004
+                }
+              },
+              "notable": "BIGGEST STRUCTURAL CHANGE IN THE PATCH. Three new skills added: Storm Rider, Ancient Tempest, Primal Tempest. Two skills REMOVED: Raven Tempest, Fury of the Wild Tempest. Shadow Raven duration (Lv.10) 220s->600s; HEXA Shadow Raven 270s->600s."
+            },
+            {
+              "classId": "nightlord",
+              "patchNotesName": "Night Lord",
+              "commonCoreRetune": {
+                "erdaShower": 1267,
+                "erdaFountain": 1267,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2019,
+                  "trueArachnidReflection": 785
+                },
+                "solarCrest": {
+                  "mitrasFire": 3365,
+                  "flameEmblem": 897,
+                  "flameEmblemSingleAttack": 1234
+                },
+                "solJanus": {
+                  "cyclicRing": 971,
+                  "primalCrystal": 1457
+                }
+              },
+              "notable": "NERF-AND-RESHAPE: Life and Death Slash Damage (Lv.30) 1,180% -> 1,024%, plus a new effect raising Final Damage of slashes during Throwing Star Barrage; Throwing Star Attack Power not applying was fixed."
+            },
+            {
+              "classId": "shadower",
+              "patchNotesName": "Shadower",
+              "commonCoreRetune": {
+                "erdaShower": 1215,
+                "erdaFountain": 1215,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2059,
+                  "trueArachnidReflection": 801
+                },
+                "solarCrest": {
+                  "mitrasFire": 3432,
+                  "flameEmblem": 915,
+                  "flameEmblemSingleAttack": 1258
+                },
+                "solJanus": {
+                  "cyclicRing": 932,
+                  "primalCrystal": 1397
+                }
+              },
+              "notable": "Slash Shadow Formation client-disconnect fixed."
+            },
+            {
+              "classId": "dualblade",
+              "patchNotesName": "Dual Blade",
+              "commonCoreRetune": {
+                "erdaShower": 1118,
+                "erdaFountain": 1118,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1624,
+                  "trueArachnidReflection": 632
+                },
+                "solarCrest": {
+                  "mitrasFire": 2707,
+                  "flameEmblem": 722,
+                  "flameEmblemSingleAttack": 992
+                },
+                "solJanus": {
+                  "cyclicRing": 857,
+                  "primalCrystal": 1286
+                }
+              },
+              "notable": "Sudden Raid inactive Boost Node icon misalignment fixed; Mortality damage-not-applying fixed."
+            },
+            {
+              "classId": "buccaneer",
+              "patchNotesName": "Buccaneer",
+              "commonCoreRetune": {
+                "erdaShower": 1923,
+                "erdaFountain": 1923,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1566,
+                  "trueArachnidReflection": 609
+                },
+                "solarCrest": {
+                  "mitrasFire": 2610,
+                  "flameEmblem": 696,
+                  "flameEmblemSingleAttack": 957
+                },
+                "solJanus": {
+                  "cyclicRing": 1474,
+                  "primalCrystal": 2212
+                }
+              },
+              "notable": "Serpent Scale effect display fixed. General bug fix: Serpent Vortex sometimes not ready after an Origin skill."
+            },
+            {
+              "classId": "corsair",
+              "patchNotesName": "Corsair",
+              "commonCoreRetune": {
+                "erdaShower": 1746,
+                "erdaFountain": 1746,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1994,
+                  "trueArachnidReflection": 775
+                },
+                "solarCrest": {
+                  "mitrasFire": 3323,
+                  "flameEmblem": 886,
+                  "flameEmblemSingleAttack": 1218
+                },
+                "solJanus": {
+                  "cyclicRing": 1339,
+                  "primalCrystal": 2008
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "cannoneer",
+              "patchNotesName": "Cannoneer",
+              "commonCoreRetune": {
+                "erdaShower": 1396,
+                "erdaFountain": 1396,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2088,
+                  "trueArachnidReflection": 812
+                },
+                "solarCrest": {
+                  "mitrasFire": 3480,
+                  "flameEmblem": 928,
+                  "flameEmblemSingleAttack": 1276
+                },
+                "solJanus": {
+                  "cyclicRing": 1100,
+                  "primalCrystal": 1605
+                }
+              },
+              "notable": "Monkey Mortar and HEXA Monkey Mortar bomb count no longer resets on entering certain content."
+            },
+            {
+              "classId": "mihile",
+              "patchNotesName": "Mihile",
+              "commonCoreRetune": {
+                "erdaShower": 1890,
+                "erdaFountain": 1890,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1157,
+                  "trueArachnidReflection": 450
+                },
+                "solarCrest": {
+                  "mitrasFire": 1929,
+                  "flameEmblem": 514,
+                  "flameEmblemSingleAttack": 707
+                },
+                "solJanus": {
+                  "cyclicRing": 1449,
+                  "primalCrystal": 2174
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "dawnwarrior",
+              "patchNotesName": "Dawn Warrior",
+              "commonCoreRetune": {
+                "erdaShower": 1296,
+                "erdaFountain": 1296,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2361,
+                  "trueArachnidReflection": 918
+                },
+                "solarCrest": {
+                  "mitrasFire": 3934,
+                  "flameEmblem": 1049,
+                  "flameEmblemSingleAttack": 1442
+                },
+                "solJanus": {
+                  "cyclicRing": 994,
+                  "primalCrystal": 1490
+                }
+              },
+              "notable": "Rising Sun / Falling Moon no longer fail to deactivate on reuse; Equinox Cycle can no longer be added to Favorite Buffs."
+            },
+            {
+              "classId": "blazewizard",
+              "patchNotesName": "Blaze Wizard",
+              "commonCoreRetune": {
+                "erdaShower": 1458,
+                "erdaFountain": 1458,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2154,
+                  "trueArachnidReflection": 838
+                },
+                "solarCrest": {
+                  "mitrasFire": 3590,
+                  "flameEmblem": 957,
+                  "flameEmblemSingleAttack": 1316
+                },
+                "solJanus": {
+                  "cyclicRing": 1118,
+                  "primalCrystal": 1677
+                }
+              },
+              "notable": "Orbital Explosion / HEXA Orbital Explosion bonus-attack trigger description corrected."
+            },
+            {
+              "classId": "windarcher",
+              "patchNotesName": "Wind Archer",
+              "commonCoreRetune": {
+                "erdaShower": 1791,
+                "erdaFountain": 1791,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2217,
+                  "trueArachnidReflection": 861
+                },
+                "solarCrest": {
+                  "mitrasFire": 3698,
+                  "flameEmblem": 986,
+                  "flameEmblemSingleAttack": 1356
+                },
+                "solJanus": {
+                  "cyclicRing": 1373,
+                  "primalCrystal": 2060
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "nightwalker",
+              "patchNotesName": "Night Walker",
+              "commonCoreRetune": {
+                "erdaShower": 986,
+                "erdaFountain": 986,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1841,
+                  "trueArachnidReflection": 717
+                },
+                "solarCrest": {
+                  "mitrasFire": 3069,
+                  "flameEmblem": 819,
+                  "flameEmblemSingleAttack": 1124
+                },
+                "solJanus": {
+                  "cyclicRing": 756,
+                  "primalCrystal": 1134
+                }
+              },
+              "notable": "NERF-AND-RESHAPE mirroring Night Lord: Silence Slash Damage (Lv.30) 940% -> 808%, plus added Final Damage increases to slashes during Shadow Illusion and Greater Dark Servant; Throwing Star Attack Power fix."
+            },
+            {
+              "classId": "thunderbreaker",
+              "patchNotesName": "Thunder Breaker",
+              "commonCoreRetune": {
+                "erdaShower": null,
+                "erdaFountain": null,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1551,
+                  "trueArachnidReflection": 603
+                },
+                "solarCrest": {
+                  "mitrasFire": 2585,
+                  "flameEmblem": 690,
+                  "flameEmblemSingleAttack": 948
+                },
+                "solJanus": null
+              },
+              "notable": "ONLY class with NO Erda Shower/Erda Fountain and NO Sol Janus retune listed. Sea Wave / HEXA Sea Wave cooldown-reduction fix when linking during Primal Bolt; Thunder Wall Sea Wave sound and client-freeze fixes."
+            },
+            {
+              "classId": "aran",
+              "patchNotesName": "Aran",
+              "commonCoreRetune": {
+                "erdaShower": 1875,
+                "erdaFountain": 1875,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2615,
+                  "trueArachnidReflection": 1017
+                },
+                "solarCrest": {
+                  "mitrasFire": 4359,
+                  "flameEmblem": 1162,
+                  "flameEmblemSingleAttack": 1598
+                },
+                "solJanus": {
+                  "cyclicRing": 1437,
+                  "primalCrystal": 2156
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "evan",
+              "patchNotesName": "Evan",
+              "commonCoreRetune": {
+                "erdaShower": 1835,
+                "erdaFountain": 1835,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2027,
+                  "trueArachnidReflection": 788
+                },
+                "solarCrest": {
+                  "mitrasFire": 3379,
+                  "flameEmblem": 901,
+                  "flameEmblemSingleAttack": 1239
+                },
+                "solJanus": {
+                  "cyclicRing": 1407,
+                  "primalCrystal": 2110
+                }
+              },
+              "notable": "Effect-display fixes for Wind Flash, Thunder Flash, Thunder Dive, Earth Breath, Wind Breath, Earth Dive."
+            },
+            {
+              "classId": "luminous",
+              "patchNotesName": "Luminous",
+              "commonCoreRetune": {
+                "erdaShower": 1584,
+                "erdaFountain": 1584,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2183,
+                  "trueArachnidReflection": 849
+                },
+                "solarCrest": {
+                  "mitrasFire": 3639,
+                  "flameEmblem": 970,
+                  "flameEmblemSingleAttack": 1334
+                },
+                "solJanus": {
+                  "cyclicRing": 1214,
+                  "primalCrystal": 1822
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "mercedes",
+              "patchNotesName": "Mercedes",
+              "commonCoreRetune": {
+                "erdaShower": 1720,
+                "erdaFountain": 1720,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1909,
+                  "trueArachnidReflection": 742
+                },
+                "solarCrest": {
+                  "mitrasFire": 3181,
+                  "flameEmblem": 848,
+                  "flameEmblemSingleAttack": 1166
+                },
+                "solJanus": {
+                  "cyclicRing": 1318,
+                  "primalCrystal": 1978
+                }
+              },
+              "notable": "NERF-AND-RESHAPE: Unfading Glory Shockwave Damage (Lv.30) 900% -> 707% and Crash Damage (Lv.30) 960% -> 760%, with an added Final Damage increase to Shockwave and Crash during Spirit of Elluel; Spirit of Elluel afterimage display fixed."
+            },
+            {
+              "classId": "phantom",
+              "patchNotesName": "Phantom",
+              "commonCoreRetune": {
+                "erdaShower": 1125,
+                "erdaFountain": 1125,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1277,
+                  "trueArachnidReflection": 497
+                },
+                "solarCrest": {
+                  "mitrasFire": 2128,
+                  "flameEmblem": 567,
+                  "flameEmblemSingleAttack": 780
+                },
+                "solJanus": {
+                  "cyclicRing": 863,
+                  "primalCrystal": 1294
+                }
+              },
+              "notable": "Smallest common-core gains in the patch."
+            },
+            {
+              "classId": "shade",
+              "patchNotesName": "Shade",
+              "commonCoreRetune": {
+                "erdaShower": 1359,
+                "erdaFountain": 1359,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1547,
+                  "trueArachnidReflection": 602
+                },
+                "solarCrest": {
+                  "mitrasFire": 2579,
+                  "flameEmblem": 688,
+                  "flameEmblemSingleAttack": 945
+                },
+                "solJanus": {
+                  "cyclicRing": 1042,
+                  "primalCrystal": 1563
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "blaster",
+              "patchNotesName": "Blaster",
+              "commonCoreRetune": {
+                "erdaShower": 1384,
+                "erdaFountain": 1384,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1790,
+                  "trueArachnidReflection": 696
+                },
+                "solarCrest": {
+                  "mitrasFire": 2983,
+                  "flameEmblem": 796,
+                  "flameEmblemSingleAttack": 1094
+                },
+                "solJanus": {
+                  "cyclicRing": 1061,
+                  "primalCrystal": 1592
+                }
+              },
+              "notable": "Cannon Overdrive Dynamo Gauge overheat-duration fix with 1 stack of overheat reduction remaining; Vanguard Strike casting-animation cancel fix."
+            },
+            {
+              "classId": "battlemage",
+              "patchNotesName": "Battle Mage",
+              "commonCoreRetune": {
+                "erdaShower": 1858,
+                "erdaFountain": 1858,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2464,
+                  "trueArachnidReflection": 958
+                },
+                "solarCrest": {
+                  "mitrasFire": 4106,
+                  "flameEmblem": 1095,
+                  "flameEmblemSingleAttack": 1506
+                },
+                "solJanus": {
+                  "cyclicRing": 1424,
+                  "primalCrystal": 2137
+                }
+              },
+              "notable": "Grim Harvest re-summon cooldown display fix."
+            },
+            {
+              "classId": "wildhunter",
+              "patchNotesName": "Wild Hunter",
+              "commonCoreRetune": {
+                "erdaShower": 2196,
+                "erdaFountain": 2196,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1806,
+                  "trueArachnidReflection": 702
+                },
+                "solarCrest": {
+                  "mitrasFire": 3010,
+                  "flameEmblem": 803,
+                  "flameEmblemSingleAttack": 1104
+                },
+                "solJanus": {
+                  "cyclicRing": 1684,
+                  "primalCrystal": 2525
+                }
+              },
+              "notable": "For Liberty / Beauty Salon save-and-change fix when registered while not mounted on Jaguar Rider."
+            },
+            {
+              "classId": "xenon",
+              "patchNotesName": "Xenon",
+              "commonCoreRetune": {
+                "erdaShower": 970,
+                "erdaFountain": 970,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1658,
+                  "trueArachnidReflection": 645
+                },
+                "solarCrest": {
+                  "mitrasFire": 2763,
+                  "flameEmblem": 737,
+                  "flameEmblemSingleAttack": 1013
+                },
+                "solJanus": {
+                  "cyclicRing": 743,
+                  "primalCrystal": 1115
+                }
+              },
+              "notable": "Smallest Erda Shower and Sol Janus values in the patch. Omega Blaster disconnect-on-kill fixed."
+            },
+            {
+              "classId": "mechanic",
+              "patchNotesName": "Mechanic",
+              "commonCoreRetune": {
+                "erdaShower": 1911,
+                "erdaFountain": 1911,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2704,
+                  "trueArachnidReflection": 1051
+                },
+                "solarCrest": {
+                  "mitrasFire": 4506,
+                  "flameEmblem": 1202,
+                  "flameEmblemSingleAttack": 1652
+                },
+                "solJanus": {
+                  "cyclicRing": 1465,
+                  "primalCrystal": 2198
+                }
+              },
+              "notable": "ONLY class receiving action-delay reductions: Resistance Infantry -67% Humanoid / -40% Tank; Decent Holy Fountain -33% Humanoid; Erda Shower/Fountain -17% Humanoid / -19% Tank; Solar Crest -28% Humanoid; Sol Janus -50% Humanoid / -25% Tank. Open Portal GX-9 buff-icon fix."
+            },
+            {
+              "classId": "demonslayer",
+              "patchNotesName": "Demon Slayer",
+              "commonCoreRetune": {
+                "erdaShower": 1161,
+                "erdaFountain": 1161,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2686,
+                  "trueArachnidReflection": 1045
+                },
+                "solarCrest": {
+                  "mitrasFire": 4477,
+                  "flameEmblem": 1194,
+                  "flameEmblemSingleAttack": 1642
+                },
+                "solJanus": {
+                  "cyclicRing": 890,
+                  "primalCrystal": 1335
+                }
+              },
+              "notable": "Astra Infusion can now be added to Buff Favorites."
+            },
+            {
+              "classId": "demonavenger",
+              "patchNotesName": "Demon Avenger",
+              "commonCoreRetune": {
+                "erdaShower": 1431,
+                "erdaFountain": 1431,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1884,
+                  "trueArachnidReflection": 733
+                },
+                "solarCrest": {
+                  "mitrasFire": 3140,
+                  "flameEmblem": 837,
+                  "flameEmblemSingleAttack": 1151
+                },
+                "solJanus": {
+                  "cyclicRing": 1097,
+                  "primalCrystal": 1646
+                }
+              },
+              "notable": "Astra Infusion can now be added to Buff Favorites."
+            },
+            {
+              "classId": "kaiser",
+              "patchNotesName": "Kaiser",
+              "commonCoreRetune": {
+                "erdaShower": 2295,
+                "erdaFountain": 2295,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2393,
+                  "trueArachnidReflection": 931
+                },
+                "solarCrest": {
+                  "mitrasFire": 3989,
+                  "flameEmblem": 1064,
+                  "flameEmblemSingleAttack": 1463
+                },
+                "solJanus": {
+                  "cyclicRing": 1760,
+                  "primalCrystal": 2639
+                }
+              },
+              "notable": "MOST INDIVIDUALLY REWORKED CLASS. Nova Triumphant Slash Damage (Lv.30) 2,357% -> 1,981%, Finishing Strike Damage (Lv.30) 1,980% -> 1,666%, with an added Final Damage increase during Kaiser Majesty. Final Form can no longer be used while casting Nova Triumphant or Pyroclastic Instinct; Final Form sometimes-not-ending fixed; long casting animations during Final Form fixed for Erda Shower, Erda Fountain, True Arachnid Reflection, Solar Crest, Might of the Nova, Decent Holy Fountain, Sol Janus and Sol Janus: Dawn; several Champion Raid: Draco Isle character-swap fixes."
+            },
+            {
+              "classId": "kain",
+              "patchNotesName": "Kain",
+              "commonCoreRetune": {
+                "erdaShower": 1547,
+                "erdaFountain": 1547,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1615,
+                  "trueArachnidReflection": 628
+                },
+                "solarCrest": {
+                  "mitrasFire": 2692,
+                  "flameEmblem": 718,
+                  "flameEmblemSingleAttack": 987
+                },
+                "solJanus": {
+                  "cyclicRing": 1186,
+                  "primalCrystal": 1779
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "cadena",
+              "patchNotesName": "Cadena",
+              "commonCoreRetune": {
+                "erdaShower": 1875,
+                "erdaFountain": 1875,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1466,
+                  "trueArachnidReflection": 570
+                },
+                "solarCrest": {
+                  "mitrasFire": 2443,
+                  "flameEmblem": 651,
+                  "flameEmblemSingleAttack": 896
+                },
+                "solJanus": {
+                  "cyclicRing": 1437,
+                  "primalCrystal": 2156
+                }
+              },
+              "notable": "Summon Spiked Bat / HEXA 3rd-hit activation fix; Summon Brick / HEXA: Chain Arts: Grand Arsenal and Brutal Rampage could sometimes be used while casting (fixed); Brutal Rampage casting-motion cancel fix."
+            },
+            {
+              "classId": "angelicbuster",
+              "patchNotesName": "Angelic Buster",
+              "commonCoreRetune": {
+                "erdaShower": 1756,
+                "erdaFountain": 1756,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1747,
+                  "trueArachnidReflection": 679
+                },
+                "solarCrest": {
+                  "mitrasFire": 2912,
+                  "flameEmblem": 776,
+                  "flameEmblemSingleAttack": 1068
+                },
+                "solJanus": {
+                  "cyclicRing": 1376,
+                  "primalCrystal": 2019
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "hayato",
+              "patchNotesName": "Hayato",
+              "commonCoreRetune": {
+                "erdaShower": 2430,
+                "erdaFountain": 2430,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1782,
+                  "trueArachnidReflection": 693
+                },
+                "solarCrest": {
+                  "mitrasFire": 2900,
+                  "flameEmblem": 792,
+                  "flameEmblemSingleAttack": 1089
+                },
+                "solJanus": {
+                  "cyclicRing": 2224,
+                  "primalCrystal": 1502
+                }
+              },
+              "notable": "Sol Janus Primal Crystal prints LOWER than Cyclic Ring - transcribed exactly as the official page prints it, not normalised.",
+              "transcriptionFlag": "Sol Janus Primal Crystal prints lower than Cyclic Ring, inverting the relationship every other class has. Transcribed exactly as the official page prints it. May be genuine or may be a Nexon typo a later hotfix corrects - do NOT silently normalise."
+            },
+            {
+              "classId": "kanna",
+              "patchNotesName": "Kanna",
+              "commonCoreRetune": {
+                "erdaShower": 3525,
+                "erdaFountain": 3525,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 3400,
+                  "trueArachnidReflection": 1917
+                },
+                "solarCrest": {
+                  "mitrasFire": 3400,
+                  "flameEmblem": 2190,
+                  "flameEmblemSingleAttack": 3012
+                },
+                "solJanus": {
+                  "cyclicRing": 4140,
+                  "primalCrystal": 2760
+                }
+              },
+              "notable": "By far the largest common-core beneficiary in the patch. Sol Janus Primal Crystal also prints lower than Cyclic Ring.",
+              "transcriptionFlag": "Sol Janus Primal Crystal prints lower than Cyclic Ring, inverting the relationship every other class has. Transcribed exactly as the official page prints it. May be genuine or may be a Nexon typo a later hotfix corrects - do NOT silently normalise."
+            },
+            {
+              "classId": "adele",
+              "patchNotesName": "Adele",
+              "commonCoreRetune": {
+                "erdaShower": 1814,
+                "erdaFountain": 1814,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2177,
+                  "trueArachnidReflection": 846
+                },
+                "solarCrest": {
+                  "mitrasFire": 3628,
+                  "flameEmblem": 967,
+                  "flameEmblemSingleAttack": 1330
+                },
+                "solJanus": {
+                  "cyclicRing": 1391,
+                  "primalCrystal": 2086
+                }
+              },
+              "notable": "HEXA Aether Forge can no longer be added to Favorite Buffs. General bug fix: High Rise hovering effect sometimes not cancelled on reuse."
+            },
+            {
+              "classId": "illium",
+              "patchNotesName": "Illium",
+              "commonCoreRetune": {
+                "erdaShower": 2385,
+                "erdaFountain": 2385,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2346,
+                  "trueArachnidReflection": 912
+                },
+                "solarCrest": {
+                  "mitrasFire": 3910,
+                  "flameEmblem": 1043,
+                  "flameEmblemSingleAttack": 1434
+                },
+                "solJanus": {
+                  "cyclicRing": 1829,
+                  "primalCrystal": 2743
+                }
+              },
+              "notable": "Crystal Skill - Wings of Glory buff no longer removed when entering a Boss battle cutscene."
+            },
+            {
+              "classId": "khali",
+              "patchNotesName": "Khali",
+              "commonCoreRetune": {
+                "erdaShower": 2556,
+                "erdaFountain": 2556,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2197,
+                  "trueArachnidReflection": 855
+                },
+                "solarCrest": {
+                  "mitrasFire": 3662,
+                  "flameEmblem": 977,
+                  "flameEmblemSingleAttack": 1343
+                },
+                "solJanus": {
+                  "cyclicRing": 1960,
+                  "primalCrystal": 2939
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "ark",
+              "patchNotesName": "Ark",
+              "commonCoreRetune": {
+                "erdaShower": 2296,
+                "erdaFountain": 2296,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2121,
+                  "trueArachnidReflection": 825
+                },
+                "solarCrest": {
+                  "mitrasFire": 3535,
+                  "flameEmblem": 943,
+                  "flameEmblemSingleAttack": 1296
+                },
+                "solJanus": {
+                  "cyclicRing": 1790,
+                  "primalCrystal": 2640
+                }
+              },
+              "notable": null
+            },
+            {
+              "classId": "lara",
+              "patchNotesName": "Lara",
+              "commonCoreRetune": {
+                "erdaShower": 1557,
+                "erdaFountain": 1557,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2196,
+                  "trueArachnidReflection": 854
+                },
+                "solarCrest": {
+                  "mitrasFire": 3661,
+                  "flameEmblem": 976,
+                  "flameEmblemSingleAttack": 1342
+                },
+                "solJanus": {
+                  "cyclicRing": 1194,
+                  "primalCrystal": 1791
+                }
+              },
+              "notable": "HEAVIEST GENUINE REWORK OUTSIDE KAISER. Eruption: Sunrise Well Giant Damage (Lv.20) 145% -> 110%; Nature Master Sunrise Well Giant Damage (Lv.10) 530% -> 260%; HEXA Eruption: Sunrise Well Giant Damage (Lv.30) 890% -> 440% with Lava Zone Damage 679% -> 708% and Volcanic Bomb Damage 451% -> 480%. Timing retunes across Heaving River (+54% first attack, -11% interval) and Whirlwind (+88% first attack, -11% creation interval) at all three tiers."
+            },
+            {
+              "classId": "hoyoung",
+              "patchNotesName": "Hoyoung",
+              "commonCoreRetune": {
+                "erdaShower": 1512,
+                "erdaFountain": 1512,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1732,
+                  "trueArachnidReflection": 673
+                },
+                "solarCrest": {
+                  "mitrasFire": 2886,
+                  "flameEmblem": 770,
+                  "flameEmblemSingleAttack": 1058
+                },
+                "solJanus": {
+                  "cyclicRing": 1159,
+                  "primalCrystal": 1739
+                }
+              },
+              "notable": "Scroll: Star Vortex, Scroll: Tiger of Songyu and HEXA Scroll: Star Vortex now persist if their platform disappears; clone display fixes."
+            },
+            {
+              "classId": "ren",
+              "patchNotesName": "Ren",
+              "commonCoreRetune": {
+                "erdaShower": 2634,
+                "erdaFountain": 2634,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2773,
+                  "trueArachnidReflection": 1078
+                },
+                "solarCrest": {
+                  "mitrasFire": 4621,
+                  "flameEmblem": 1232,
+                  "flameEmblemSingleAttack": 1694
+                },
+                "solJanus": {
+                  "cyclicRing": 1996,
+                  "primalCrystal": 3025
+                }
+              },
+              "notable": "Highest Solar Crest Mitra Fire value in the patch (4,621%)."
+            },
+            {
+              "classId": "lynn",
+              "patchNotesName": "Lynn",
+              "commonCoreRetune": {
+                "erdaShower": 2073,
+                "erdaFountain": 2073,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1360,
+                  "trueArachnidReflection": 533
+                },
+                "solarCrest": {
+                  "mitrasFire": 2254,
+                  "flameEmblem": 599,
+                  "flameEmblemSingleAttack": 828
+                },
+                "solJanus": {
+                  "cyclicRing": 2174,
+                  "primalCrystal": 1449
+                }
+              },
+              "notable": "Sol Janus Primal Crystal prints LOWER than Cyclic Ring - transcribed as printed.",
+              "transcriptionFlag": "Sol Janus Primal Crystal prints lower than Cyclic Ring, inverting the relationship every other class has. Transcribed exactly as the official page prints it. May be genuine or may be a Nexon typo a later hotfix corrects - do NOT silently normalise."
+            },
+            {
+              "classId": "moxuan",
+              "patchNotesName": "Mo Xuan",
+              "commonCoreRetune": {
+                "erdaShower": 1620,
+                "erdaFountain": 1620,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 2228,
+                  "trueArachnidReflection": 859
+                },
+                "solarCrest": {
+                  "mitrasFire": 3728,
+                  "flameEmblem": 1005,
+                  "flameEmblemSingleAttack": 1361
+                },
+                "solJanus": {
+                  "cyclicRing": 1863,
+                  "primalCrystal": 1242
+                }
+              },
+              "notable": "Sol Janus Primal Crystal prints LOWER than Cyclic Ring - transcribed as printed.",
+              "transcriptionFlag": "Sol Janus Primal Crystal prints lower than Cyclic Ring, inverting the relationship every other class has. Transcribed exactly as the official page prints it. May be genuine or may be a Nexon typo a later hotfix corrects - do NOT silently normalise."
+            },
+            {
+              "classId": "siaastelle",
+              "patchNotesName": "Sia Astelle",
+              "commonCoreRetune": {
+                "erdaShower": 1584,
+                "erdaFountain": 1584,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1625,
+                  "trueArachnidReflection": 905
+                },
+                "solarCrest": {
+                  "mitrasFire": 3635,
+                  "flameEmblem": 981,
+                  "flameEmblemSingleAttack": 1327
+                },
+                "solJanus": {
+                  "cyclicRing": 1866,
+                  "primalCrystal": 1359
+                }
+              },
+              "notable": "Sol Janus Primal Crystal prints LOWER than Cyclic Ring - transcribed as printed.",
+              "transcriptionFlag": "Sol Janus Primal Crystal prints lower than Cyclic Ring, inverting the relationship every other class has. Transcribed exactly as the official page prints it. May be genuine or may be a Nexon typo a later hotfix corrects - do NOT silently normalise."
+            },
+            {
+              "classId": "erellight",
+              "patchNotesName": "Erel Light",
+              "commonCoreRetune": {
+                "erdaShower": 1208,
+                "erdaFountain": 1208,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1471,
+                  "trueArachnidReflection": 553
+                },
+                "solarCrest": {
+                  "mitrasFire": 2316,
+                  "flameEmblem": 612,
+                  "flameEmblemSingleAttack": 837
+                },
+                "solJanus": {
+                  "cyclicRing": 1352,
+                  "primalCrystal": 1002
+                }
+              },
+              "notable": "Sol Janus Primal Crystal prints LOWER than Cyclic Ring AND below its own 1,035% baseline - transcribed as printed.",
+              "transcriptionFlag": "Sol Janus Primal Crystal prints lower than Cyclic Ring, inverting the relationship every other class has. Transcribed exactly as the official page prints it. May be genuine or may be a Nexon typo a later hotfix corrects - do NOT silently normalise."
+            },
+            {
+              "classId": "zero",
+              "patchNotesName": "Zero",
+              "commonCoreRetune": {
+                "erdaShower": 1917,
+                "erdaFountain": 1917,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1954,
+                  "trueArachnidReflection": 760
+                },
+                "solarCrest": {
+                  "mitrasFire": 3257,
+                  "flameEmblem": 869,
+                  "flameEmblemSingleAttack": 1194
+                },
+                "solJanus": {
+                  "cyclicRing": 1470,
+                  "primalCrystal": 2205
+                }
+              },
+              "notable": "Twin Blades of Time effect-direction fix during Burst Step keydown; Divine Aura can no longer be added to Favorite Buffs; End Time and Bitemporis casting-motion cancel fixes; appearance-to-others fixes for Shadow Rain, HEXA Shadow Rain, Twin Blades of Time."
+            },
+            {
+              "classId": "kinesis",
+              "patchNotesName": "Kinesis",
+              "commonCoreRetune": {
+                "erdaShower": 1504,
+                "erdaFountain": 1504,
+                "trueArachnidReflection": {
+                  "spatialCollapse": 1176,
+                  "trueArachnidReflection": 653
+                },
+                "solarCrest": {
+                  "mitrasFire": 2132,
+                  "flameEmblem": 725,
+                  "flameEmblemSingleAttack": 998
+                },
+                "solJanus": {
+                  "cyclicRing": 1152,
+                  "primalCrystal": 1728
+                }
+              },
+              "notable": "Ultimate: Opening / HEXA Ultimate: Opening gravitational field no longer only attacks enemies affected by debuffs."
+            }
+          ],
+          "solHecate": {
+            "scope": "all classes running the Sol Hecate common core",
+            "note": "MAJOR ACROSS-THE-BOARD NERF, listed as its own section between Mo Xuan and SHINE rather than under any one class. This is the single biggest counterweight to the common-core buffs and must not be missed when re-deriving class DPS.",
+            "changes": [
+              {
+                "skill": "Sol Hecate: Sol Erda Particle Damage (Lv.30)",
+                "from": 1149,
+                "to": 800
+              },
+              {
+                "skill": "Sol Hecate: Styx: Damage (Lv.30)",
+                "from": 2503,
+                "to": 1427
+              },
+              {
+                "skill": "Sol Hecate: Styx: Death Seed Damage (Lv.30)",
+                "from": 2620,
+                "to": 1489
+              },
+              {
+                "skill": "Sol Hecate: Styx: Death Seed Bloom Damage (Lv.30)",
+                "from": 3055,
+                "to": 1729
+              },
+              {
+                "skill": "Sol Hecate: Phlegethon: Damage",
+                "from": 1627,
+                "to": 735
+              },
+              {
+                "skill": "Sol Hecate: Phlegethon: Rift Damage",
+                "from": 1298,
+                "to": 586
+              }
+            ],
+            "corroborated": false
+          }
+        },
+        "changes": [
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "GENERAL SKILL - Origin Skill cooldown acceleration (new, affects every class).",
+            "detail": "Using an Origin Skill now applies a cooldown-acceleration effect for a set duration; while active, using a qualifying skill decreases its cooldown by the cast-animation duration of the Origin Skill. Qualifying: skills with a cooldown between 60 and 120 seconds; for charge-over-time skills, maximum charge time between 47.4 and 103.8 seconds when charge time is NOT affected by cooldown reduction, or between 60 and 120 seconds when it IS.",
+            "classes": "all",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this.",
+            "corroboratedBy": "en.namu.wiki 'MapleStory/Skill' describes the same mechanism from the KMS side (mechanism only, no numbers taken)."
+          },
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "GENERAL SKILL - True Arachnid Reflection and Solar Crest cooldown 250s -> 230s.",
+            "detail": "Both are also officially noted as 'Changed so that damage dealt varies by job', which is the umbrella statement covering all 53 per-class retunes in classBalance.perClass.",
+            "classes": "all",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "GENERAL SKILL - Erda Fountain reworked (affects every class).",
+            "detail": "Can now be re-summoned by using the skill again. Can NO LONGER be used in Boss maps, Mu Lung Dojo or Sharenian Culvert. Removed the effect that activated after defeating a certain number of enemies - Erda Fountain now attacks enemies at set intervals instead. Client-freeze fix for large numbers of hit effects. The boss-map restriction is a meaningful loss for bossing rotations and partly offsets the per-class Erda Fountain buffs.",
+            "classes": "all",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "hexa",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "HEXA Skill - 3rd HEXA COMMON Node added, one per class group (16 nodes).",
+            "detail": "HEXA Blitz Shield -> Explorer Warrior; HEXA Arcane Overdrive -> Explorer Magician; HEXA Fury of the Wild -> Explorer Bowman; HEXA Shadow Walker -> Explorer Thief; HEXA Pirate's Banner -> Explorer Pirate; HEXA Phalanx Charge -> Cygnus Knight; HEXA Freud's Wisdom -> Hero; HEXA Resistance Infantry -> Resistance; HEXA Defender of the Demon -> Demon (page has a typo, 'HEXA Defender of the DemonI'); HEXA Might of the Nova -> Nova; HEXA Transcendent -> Zero; HEXA Afterimage of the Otherworld -> Kinesis; HEXA Conversion Overdrive -> Flora; HEXA Ring of Samsara -> Jianghu; HEXA Twilight Bloom -> Sengoku; HEXA Lotus Flower -> Anima. NOTE: this is the COMMON node, not the class-unique 3rd HEXA Skill Core that KMS shipped in live 1.2.417 - see upcoming.",
+            "classes": "all",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "hexa",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Erda Link - 3rd SHINE Skill Stone added: 'SHINE Tree of Stars'.",
+            "detail": "Communes with the Star Garden to draw forth the power of the Star Flowers; deals damage and increases Attack Power, Magic ATT and Damage. No numeric values published on the page.",
+            "classes": [
+              "siaastelle",
+              "erellight"
+            ],
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "GENERAL SKILL - Lotus Flower (Anima common node) reworked.",
+            "detail": "MP cost 15% of Max MP -> flat 500 MP; can now be re-summoned by using the skill again; can now be used in the air; fixed cooldown not applying when cast while its buff was active.",
+            "classes": [
+              "hoyoung",
+              "lara",
+              "ren"
+            ],
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "GENERAL SKILL - Fury of the Wild (Explorer Bowman common node) usable without a summon.",
+            "detail": "Can now be used even when Phoenix, Frostprey or Shadow Raven are NOT summoned; description changed; movement-display fix. Pairs with the Pathfinder removal of 'Fury of the Wild Tempest'.",
+            "classes": [
+              "bowmaster",
+              "marksman",
+              "pathfinder"
+            ],
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "GENERAL SKILL - Special Node cooldown and placement rules changed.",
+            "detail": "Equipping a Special Node now applies that node's cooldown, and extending an expired Special Node while equipped also applies its cooldown; logging back in while a Special Node cooldown is active no longer restarts the timer. Decent Holy Fountain can now be used even if Decent Holy Fountain and Vestige of Divinity are already set up, and can be summoned at the same location as Decent Mystic Door, Bishop's Mystic Door, Cannoneer's Poolmaker Supplies, Mechanic's Open Portal: GX-9, Illium's Crystal Gate and Lara's Manifestation: Where the River Courses. Resistance Infantry now shows remaining cooldown when reused during re-summon cooldown. Descriptions changed for Counterattack I, Grit I, Undeterred (Practice Mode), Blitz Shield, Shadow Walker. Weapon Tempering, Advanced Weapon Tempering, Accessory Enhancement and Advanced Accessory Enhancement effects are now kept after re-logging.",
+            "classes": "all",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "rings",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "SPECIAL SKILL RING REBALANCE - affects every class, large power swing.",
+            "detail": "Ring of Restraint: Attack Power and Magic ATT (Lv.6) 95% -> 85%, zone range about +95%, re-cast now recreates the zone. Continuous Ring: duration 8s -> 30s, Boss Damage (Lv.6) 195% -> 54%, cooldown REMOVED, and using skills (with exceptions) now temporarily increases Attack Power, Magic ATT and Boss Damage. Master Level 6 -> 4 with value cuts: Critical Damage Ring (Crit Damage Lv.4 24% -> 20%), Totalling Ring (Main Stat Lv.4 1.6% -> 1.2%), Risk Taker Ring (ATT/Magic ATT Lv.4 40% -> 30%), Weapon Jump S/D/I/L Rings (STR/DEX/INT/LUK Lv.4 320% -> 260%). NEW: an additional Special Skill Ring slot unlocked by equipping a Lv.4+ Ring of Restraint or Lv.4+ Continuous Ring - one Active and one Passive ring, and using the active ring also activates the passive ring's effects. REMOVED: Swap Rings skill, Ring Activation skill, Reserve Special Skill Ring slot, Ring Activation from Buff Favorites. Equipping a Special Skill Ring now applies the maximum cooldown to its usable skill.",
+            "economics": "Lv.5/Lv.6 Critical Damage / Totalling / Risk Taker / Weapon Jump rings owned before the 2026-09-09 maintenance were converted to Lv.4 with compensation (Lv.5: 10x Grindstone of Life + 5,000,000,000 mesos; Lv.6: 10x Grindstone of Life + 20x Grindstone of Faith + 25,000,000,000 mesos), claimable until 2027-09-08. Ring Polish Swap cost changed to 50,000,000 mesos and the Ring Polish Swap feature will be REMOVED in the November 2026 update. Polishing caps: up to 10 Grindstones of Life at once (+10% success each, 500,000,000 mesos each) and up to 20 Grindstones of Faith at once (+5% success each, 1,000,000,000 mesos each). These meso figures belong to the meso model, not the class model.",
+            "classes": "all",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this.",
+            "corroboratedBy": "en.namu.wiki 'special skill ring' independently describes the extra ring slot gated behind a Lv.4+ Restraint/Continuous Ring (mechanism only)."
+          },
+          {
+            "area": "symbols",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Arcane Symbol income DOUBLED; Sacred Symbol income raised 1.5x on DAILIES ONLY; Authentic untouched.",
+            "detail": "Verbatim: 'Increased the Arcane River Daily Quest rewards for all areas from 20 Arcane Symbols -> 40 Arcane Symbols' and 'Increased the Arcane River Weekly Quest rewards for all areas from 40 Arcane Symbols -> 80 Arcane Symbols' (exactly 2.0x, all areas). Grandis DAILY quest rewards: Cernium 20 -> 30 Sacred Symbols; Hotel Arcus, Odium, Shangri-La, Arteria, Carcion 10 -> 15 Sacred Symbols; Tallahart, Geardock 10 -> 15 Grand Sacred Symbols (1.5x, not 2x). NO Grandis WEEKLY quest increase is listed at all. A case-insensitive search for 'authentic' across the whole 111k-char page returns ZERO matches.",
+            "values": {
+              "arcaneDailyPerArea": {
+                "from": 20,
+                "to": 40
+              },
+              "arcaneWeeklyPerArea": {
+                "from": 40,
+                "to": 80
+              },
+              "sacredDailyCernium": {
+                "from": 20,
+                "to": 30
+              },
+              "sacredDailyOtherGrandis": {
+                "from": 10,
+                "to": 15
+              },
+              "grandSacredDaily": {
+                "from": 10,
+                "to": 15
+              },
+              "authentic": null
+            },
+            "qol": "Symbols claimed from Daily and Weekly Quests now auto-merge into the currently equipped Symbol. Grand Sacred Symbol: Tallahart added to Sacred Symbol Selector Coupon output.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this.",
+            "repoImpact": "lib/symbols.ts already carries the Arcane 40/80 values as VERIFIED. SACRED_DAILY_CERNIUM_UNVERIFIED = 30, SACRED_DAILY_OTHER_UNVERIFIED = 15 and GRAND_SACRED_DAILY_UNVERIFIED = 15 are now confirmed verbatim against the official page and can be promoted out of UNVERIFIED."
+          },
+          {
+            "area": "exp",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "EXP REQUIRED to level reduced for Lv. 210-259 only.",
+            "detail": "Under 'Level-Up Flow Revamp -> EXP Changes: Decreased the amount of EXP required to level up from Lv. 210 - 259'. This is a reduction in EXP REQUIRED, not an increase in EXP gained, and it stops at 259 - Lv. 260+ is untouched. 'If a character's current EXP exceeds the updated level-up requirement, their EXP will be adjusted to the amount required to level up at their current level.'",
+            "bands": [
+              {
+                "levels": "210-214",
+                "reductionPercent": 8
+              },
+              {
+                "levels": "215-219",
+                "reductionPercent": 15
+              },
+              {
+                "levels": "220-224",
+                "reductionPercent": 21
+              },
+              {
+                "levels": "225-229",
+                "reductionPercent": 27
+              },
+              {
+                "levels": "230-234",
+                "reductionPercent": 33
+              },
+              {
+                "levels": "235-239",
+                "reductionPercent": 38
+              },
+              {
+                "levels": "240-244",
+                "reductionPercent": 43
+              },
+              {
+                "levels": "245-249",
+                "reductionPercent": 47
+              },
+              {
+                "levels": "250-259",
+                "reductionPercent": 58
+              }
+            ],
+            "caveat": "All band figures are printed with a '~'. Whether each percentage is per-level or cumulative-to-next-level is not unambiguous in the wording - see unresolved.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "exp",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Inactivity EXP coupons changed to 3x EXP Coupons (15 min).",
+            "detail": "24+ hrs inactive: x1; 48+: x2; 72+: x3; 96+: x4; 120+: x5. QoL: Maple Planner Bulk Claim Daily Quests now saves EXP collection status, Symbol collection status and Symbol auto-use settings per character.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "starforce",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "Star Catching REMOVED as a minigame; its success bonus is now permanent.",
+            "detail": "Verbatim, under 'Star Force Changes': '[Updated 9/10/2026] Removed the Star Catching feature from Star Force Enhancement. The increased enhancement success rate from Star Catching is now permanently applied to Star Force Enhancement.' Net effect: success rates are unchanged in practice for anyone who was already star-catching - this is a UX removal, not a buff. The [Updated 9/10/2026] tag means the line was added AFTER initial publication on 9/8, so it is absent from any repost or cache taken before 9/10.",
+            "scopeNote": "The entire 'Star Force Changes' section consists of that single line. NO change to destruction rates, star costs, safeguard, or the 22-star cap. Every other 'Star Force' occurrence on the page is a Unified Enhancement UI animation improvement, an event reward coupon, a Frieren mission, or a World Leap inventory restriction.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this.",
+            "corroboratedBy": "MapleStory Wiki independently describes Star Catching's bonus being folded into base success rates (region-ambiguous, so the official page is what the claim rests on).",
+            "repoImpact": "lib/starforce.ts already models this (starCatch defaults true, x1.05, note 'per v.271')."
+          },
+          {
+            "area": "flames",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Rebirth Flames REMOVED from Boss, Elite Monster and Elite Champion drops.",
+            "detail": "'The following items will no longer drop from Boss Monsters, Elite Monsters, and Elite Champions: Powerful Rebirth Flame; Eternal Rebirth Flame; Black Rebirth Flame; Unrelenting Flame; Forever Unrelenting Flame; Forever Unrelenting Black Flame; Rebirth Fragment.' Scope is broader than 'boss' - open-field elite farming no longer yields flames either.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "flames",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Rebirth Flame supply rework accompanying the drop removal.",
+            "detail": "ADDED: Burning Rebirth Flame and Karma Burning Rebirth Flame; '[Updated 9/10/2026] The reset rates are identical to Powerful Rebirth Flames' (this attribution was CORRECTED on 9/10 - a pre-9/10 reading is wrong). New flames added to the Legion Coin Shop, Monster Collection exploration rewards (Burning + Black) and the Mu Lung Dojo Point Shop (Burning). Karma Black Rebirth Flame purchase limit in the Legion Coin Shop 40 -> 60. REMOVED from Legion Coin Shop: Powerful, Karma Powerful, Karma Eternal. REMOVED from Monster Collection exploration rewards: Powerful, Eternal (incl. Decent and Substantial Exploration Boxes). REMOVED from Monster Park Monday Creation Boxes: Unrelenting, Forever Unrelenting; Tuesday Enchantment Boxes: Powerful, Eternal; Saturday Festive Boxes: Unrelenting, Forever Unrelenting, Powerful, Eternal. REMOVED Powerful Rebirth Flame from the Mu Lung Dojo Point Shop, and Unrelenting / Forever Unrelenting Flame from the Kritias Coin Shop.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "bonus-stats",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "Bonus Stats can now be reset with mesos: 3,000,000 per reset, at Black Rebirth Flame rates.",
+            "detail": "Verbatim under 'Bonus Stat Enhancement Revamp -> Bonus Stat Reset Changes': 'Bonus Stats can now be reset using either mesos or Rebirth Flames.' / 'Resetting bonus stats with mesos costs 3,000,000 mesos.' / 'You can choose whether to keep the bonus stats from before or after the reset.' / 'The reset rates are identical to Black Rebirth Flames.' / 'Players with MVP Gold or higher can reset Bonus Stats 3 times at once.' The keep-before-or-after choice makes this a meso sink with no downside risk, which matters for the meso model.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this.",
+            "corroboratedBy": "A web search result independently described a 3,000,000-meso bonus-stat reset at Black Rebirth Flame rates (region-ambiguous; the official page is what the claim rests on)."
+          },
+          {
+            "area": "meso",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Guild Noblesse Skill SP reset cost 100,000 GP -> 10,000 GP (GP, not mesos).",
+            "detail": "Recorded so nobody later mistakes it for a meso change. World Leap meso handling also changed: characters with unclaimed mesos after a World Leap cannot be deleted, and characters who failed a World Leap automatically receive the previously deducted mesos when attempting another World Leap.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          }
+        ],
+        "negativeFindings": [
+          {
+            "area": "crystals",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "THE KMS TRAP DID NOT SHIP. GMS v.271 contains NO boss crystal price change, NO change to the weekly boss crystal sale limit, and NO re-tiering.",
+            "detail": "'sale limit' and 'boss crystal' both return FALSE across all 172,741 chars of the rendered page. All 60 'crystal' hits are unrelated skill names (Primal Crystal, Crystal Ignition, Crystal Gate) or Champion Raid bug fixes. The only crystal-adjacent line in the patch is pure QoL: 'Added text to the Intense Power Crystal item description stating that it can be sold through \"Crystals & Elixirs\" option in the Quick Move menu.' The GMS meso model must retain the existing weekly crystal sale cap.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "meso",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "No meso rate change of any kind in v.271.",
+            "detail": "A regex for 'meso rate|mesos obtained|meso drop|meso acquisition' over the full official notes returns ZERO matches. Mob meso drop rates, meso-obtained modifiers and Heroic meso multipliers are UNCHANGED. The only meso-denominated changes are sinks and costs: the 3,000,000-meso bonus stat reset, Special Skill Ring grindstone/polish costs, ring compensation payouts, and Sol Hecate skin unlock costs.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "drops",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "No item drop rate system change in v.271.",
+            "detail": "Every 'drop rate' occurrence is either a bug fix (Boost Potion effects that increase mesos, EXP and Drop Rate were not kept when entering Practice Mode through Boost Potion Support - fixed) or event-scoped (Night Troupe: Omega Sector 'Mesotron-S' Right Arm module, +10/15/20/25/30% Item Drop Rate for 120 seconds, bought with Troupe Coins). Base drop rates and DROP gear behaviour are unchanged.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "cubes",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "No cube system change in v.271.",
+            "detail": "No cube rates, costs, tiers or caps change. All 12 'Cube' occurrences are event distributions or incidental: Karma Bright Cube x10 (Winter Countdown days 9 and 19; event shop 100 coins, limit 10), Karma Bonus Mystical Cube (50 coins, limit 50, INTERACTIVE WORLDS ONLY - i.e. not Heroic), Karma Solid Cube x30 and Karma Hard Cube x2 Coupon x20 as Frieren/Night Troupe rewards, Event Ring Exclusive Solid Cube x100, an 'Evan Cube Chair' icon bug fix, and a World Leap restriction.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          },
+          {
+            "area": "class-balance",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Beast Tamer appears NOWHERE in the v.271 patch notes.",
+            "detail": "The string 'beast tamer' returns zero hits across the whole page, so v.271 gives no basis to stamp anything Beast-Tamer-shaped to v.271. data/classes.json's own legacyClasses entry already records Beast Tamer as converted to Forest Child Lynn in GMS on 2024-05-01, which is consistent with the absence. data/class-guides/beast-tamer.json is therefore a guide for a class that is not on the GMS roster.",
+            "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+            "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+          }
+        ],
+        "rosterImpact": {
+          "summary": "v.271 changes SKILL DAMAGE, cooldowns, node structure and Special Skill Rings. It changes NO field that data/classes.json actually stores.",
+          "fieldsNotTouchedByV271": [
+            "linkSkill (no link skill line appears in any of the 53 class blocks, nor in the General Skill, HEXA, Erda Link or Special Skill Ring sections)",
+            "legion (no Legion line appears anywhere in the notes)",
+            "branch / archetype / primaryStat / secondaryStat / weapon / secondaryWeapon"
+          ],
+          "derivation": "This is an ABSENCE-OF-LINE derivation, not a positive restatement of the values. Nexon patch notes enumerate deltas only. The claim is: the full class section was read end to end and contains no line that would move these fields.",
+          "exception": "Kinesis. v.270 remastered the class wholesale (resource system Psychic Points -> MP, hyper stat pool DF/TF/PP -> DF/TF, most 1st-4th job skills replaced). Kinesis's Link Skill is explicitly unchanged, and its weapon (Psy-limiter) and secondary (Chess Piece) are restated in the v.270 notes. But the Grandis-Library-sourced innateCritRate 0.45 and innateCritDamage 0.41 in data/classes.json describe the PRE-remaster passive kit and were never re-derived. Do not restamp the Kinesis record-level patchVersion on the strength of v.271."
+        }
+      },
+      {
+        "version": "v.270",
+        "name": "Ride the Lightning (Part 2)",
+        "region": "gms",
+        "status": "live",
+        "dated": {
+          "wentLive": "2026-07-22",
+          "inCycleMinorPatches": [
+            "v.270.1.1 2026-07-22",
+            "v.270.2.0 2026-07-30",
+            "v.270.4.0 2026-08-13",
+            "2026-08-27"
+          ]
+        },
+        "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+        "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420.",
+        "changes": [
+          {
+            "area": "class-balance",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "NEGATIVE FINDING, and the most important one for the roster stamp: v.270 contains NO general class balance pass.",
+            "detail": "The table of contents has no balance or skill-adjustment section at all. The per-class headings that do appear (Explorers, Cygnus Knights, Heroes, Resistance, Nova, Flora, Anima, Sengoku, Jianghu, Shine, Friends World) are purely Astra Secondary Weapon eligibility tables - which old secondary transfers into which Astra type - and contain zero skill numbers. The only class whose kit changed in v.270 is Kinesis. For 52 of 53 roster records, v.269-sourced data was still accurate as of v.270.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "class-balance",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "Kinesis Redux - full class remaster.",
+            "detail": "Resource system replaced: 'Removed Psychic Points and Kinesis now uses MP.' Hyper Stat pool DF/TF/PP -> DF/TF. Link Skill UNCHANGED (Judgment, passive, mastery 3, Critical Damage +6%). Primary weapon Psy-limiter, secondary Chess Piece, INT/LUK, Friends World, Legion INT +10/20/40/80/100. Skills removed wholesale across every job tier (1st: Kinetic Crash, Ultimate - Metal Press, Mental Shield, Mental Fortitude; 2nd: Kinetic Piledriver, Psychic Blast, Psychic Drain, Ultimate - Deep Impact, Psychic Armor, Mental Strength; 3rd: Psychic Grab, Psychic Assault, Ultimate - Trainwreck, Mind Tremor, Psychic Bulwark, Third Eye, Transcendence; 4th: Psychic Clutch, Ultimate - Psychic Shot, Ultimate - B.P.M., Psychic Charger, Mind Quake, Mind Break, Telepath Tactics, Supreme Concentration, Mind Scrambler, Mastery; plus the old hyper passives). New/retained kit: 1st Psychic Attack, Psychic Force, ESP Booster, Kinetic Step, Defend, Mental Fortitude; 2nd Psychic Rise, Ultimate: Pressure (now passive), Psychic Sprint, ESP Mastery, Pure Power, Mental Strength; 3rd Psychic Fall, Ultimate: Opening, Kinetic Jaunt, Warp, Kinetic Combo, Psychic Reinforcement, Transcendence, Mitigation; 4th Psychic Smash, Ultimate: Gambit, Ultimate: Check, Breakthrough, President's Orders, Clear Mind, ESP Expert, Awakening, Concentration, Critical Rush. Hyper actives are Mental Tempest, Mental Overdrive, Mental Shock. V Matrix rebuilt (new nodes Psychic Shockwave, Psychic Nova, Ultimate: Checkmate, Psychic Castle; removed Psychic Tornado, Ultimate - Mind Over Matter, Ultimate - Psychic Shockwave, Law of Gravity). 6th job rebuilt: Origin 'From Another Realm', Ascent 'Fractal Horizon'. NO damage percentages, hit counts, cooldowns or MP costs were published for the new kit.",
+            "classes": [
+              "kinesis"
+            ],
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "class-balance",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "Kinesis HEXA Matrix Reset Scroll claim window has CLOSED.",
+            "detail": "Kinesis characters created before the July 22 maintenance could claim one HEXA Matrix Reset Scroll and one Change Circulator from Maple Administrator. Claim window July 22 (after maintenance) to 2026-09-08 23:59 UTC; scrolls expired 2026-09-09 02:00 UTC. Any planner advice that still offers it is stale as of 2026-09-12.",
+            "classes": [
+              "kinesis"
+            ],
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "class-balance",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Erel Light - real numeric skill change shipped as a bug fix in v.270.4.0.",
+            "detail": "'Resolved an issue where Destruction of Roan could deal an additional hit in certain situations by adjusting the keydown duration from 1.8 seconds -> 1.7 seconds.' Filed as a bug fix but it is a skill-data change. Also 2026-07-23: the final hit of Eternal Guardian was not triggering properly (fixed). Main notes also carry Spear of Lugh fixes.",
+            "classes": [
+              "erellight"
+            ],
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/43420",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "class-balance",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Assorted in-cycle class bug fixes (qualitative, no numbers).",
+            "detail": "Dawn Warrior Rising Sun / Falling Moon toggling incorrectly (v.270.2.0). Sia Astelle: Stellar VIII - Sadalmelik not interacting with Decent Combat Orders and not appearing in Buff Favorites with Stellagram Fusion (7/30); some 4th job skills could not be upgraded (8/13). SHINE jobs: Sol Hecate disappearing after V Matrix changes (v.270.4.0). Mo Xuan Righteous Thunder bind duration now stacks with Sol Hecate: Stynx. Evan's Mir respects skill-effect transparency immediately. Luminous Aether Conduit no longer visible on other players' screens. Lynn Light Leap unusable right after channel change or login (8/13). Some summon skill attacks not applying as intended (8/13). Kinesis Origin/Ascent sound reduced during Haste Fever Time (8/13).",
+            "classes": [
+              "dawnwarrior",
+              "siaastelle",
+              "erellight",
+              "lynn",
+              "moxuan",
+              "evan",
+              "luminous",
+              "kinesis"
+            ],
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "symbols",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "NEW Grand Sacred Symbol: Geardock.",
+            "detail": "Awarded x1 for completing the Geardock region quests. Upgrades to Lv. 11; each level grants +10 Sacred Power. Lv. 1: 10% Bonus EXP / 5% Mesos Obtained / 5% Item Drop Rate. Lv. 11: 50% Bonus EXP / 15% Mesos Obtained / 15% Item Drop Rate plus +20% damage dealt to Jupiter. Daily quest yields EXP (once per world) and Grand Sacred Symbol: Geardock Coupon x10. Sacred Catalyst CANNOT be used on Grand Sacred Symbols and they CANNOT be obtained from Sacred Symbol Selector Coupons. Geardock added to the Symbol Express Pass (1,000 Maple Points).",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "starforce",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "NEW Astra Secondary Weapon (Lv. 200 secondary, three quest-gated tiers).",
+            "detail": "Star Force caps scale with tier: Astra I to 15 stars, Astra II to 20 stars, Astra III to 30 stars. Exception: Astra Katara and Astra Talisman enhance to 30 stars regardless of quest progress. Requires Lv. 265+, '[Hotel Arcus] Til We Meet Again' and the Genesis Weapon questline. Quest costs: Astra Enhancement 3,000 Vestiges of Erion + 600 Traces of Battle; Erion's Identity 3,000 + 600; Astra Enhancement (III) 4,000 + 800. Stat line: Main/Secondary stat +10/+10 -> +15/+15 -> +20/+20, ATT/MATT +7 flat at every tier. Destroyed during Star Force enhancement: replacement costs 1,000,000,000 mesos. Transfer moves Potential and Bonus Potential only, EXCEPT that Star Force and eligible scroll stats also carry for certain shields (Deimos Warrior/Sage/Shadow Shield, Terminus Shield), Arcane Umbra Katara (Dual Blade) and Thousand Soul Talisman (Kanna); the event-distributed 15-Star Arcane Umbra Katara is NOT eligible. Hero/Paladin/Dawn Warrior must have selected a one-handed Genesis or Destiny weapon to obtain Astra Sacred Aegis or Astra Topaz Aegis.",
+            "classes": "all",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "starforce",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "NEW Destiny 2nd Transcendence Weapon (Lv. 275+).",
+            "detail": "Requires a Destiny Weapon and '[Destiny Weapon] The Adversary's Weapon'. Enhances up to 25 Star Force. Additional scroll enhancements cannot be used. Potential, Bonus Stats and Soul Weapon status carry over from the 1st Transcendence weapon. Grants Legacy of First Transcendence (active, ATT or MATT +10% for 60s, 120s CD), Decisive Willpower (passive, Final Damage 10%, Boss Damage +15%, Ignore Defense +15%) and Undying Determination (active, invincible 10s, re-press to end, 120s CD). Destroyed weapon restored from the Ark of Determination in Shangri-La for 10,000,000,000 mesos.",
+            "classes": "all",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "drops",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "NEW weekly boss Jupiter (Lv. 295+), Normal and Hard.",
+            "detail": "Requires '[Geardock] In the Aftermath'. Party 1-3, 30-minute limit, entry via Geardock: Forge Entrance, opened 2026-07-23 00:00 UTC. Drops: Original Sin of Pride (face accessory, Req Lv 250, all stats +15, ATT +15, MATT +15, DEF +300, 7 upgrades, Brilliant Boss set); Jupiteroid chair; Lingering Twisted Desire (collect 10 -> choice of Eternal Shoes/Gloves/Cape); Eternal Twisted Armor Box (7-day); Jupiter's Soul Shard (collect 10 -> random Jupiter's Soul; Magnificent bonus lines ATT +3%, MATT +3%, All Stats +5%, Max HP +2,000, Crit Rate +12%, IED +7%, Boss Damage +7%). Soul skills Rejection, Control and Madness. On Heroic Worlds drops are untradable and permanent. NOTE: the notes publish Adversary Determination (Normal 160 / Hard 500), Vestige of Erion Coupons (Normal 45) and Traces of Battle (Normal 210 / Hard 630) but NO boss crystal meso value for either difficulty.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "drops",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Vestige of Erion economy (the Astra currency).",
+            "detail": "Grandis Daily Quests grant permanent untradable Vestiges scaled by the highest-level daily completed that day: Cernium Research 1, Clean Up Around Hotel Arcus 3, Odium Area Expedition 6, Shangri-La Contamination Purification 10, Defeat the Arteria Remnants 15, Carcion Recovery Support 25, Investigate the Tallahart Ancient God's Power 45, Cleaning Up Kronos 65; completing a higher daily later the same day pays the difference. Vestige of Erion Coupons drop from Grandis bosses: Extreme Seren 30, Extreme Kalos 180, Hard First Adversary 30, Extreme First Adversary 240, Hard Kaling 60, Extreme Kaling 480, Hard Malefic Star 90, Hard Limbo 60, Hard Baldrix 120, Normal Jupiter 45. Heroic coupon tradability changed on 2026-08-13 to 'Tradable within world, Permanent'.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "meso",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "NEW recurring meso sink: Weekly Portrait Commission Ticket.",
+            "detail": "Added to the Coin Shops tab. Heroic Worlds price 1,500,000,000 mesos per ticket (Interactive Worlds 300,000,000), limit 7 per week, account-shared, resets Thursday 00:00 UTC. Tradable within world, 30-day duration, Lv. 15+, not available in Challenger Worlds. Up to 10.5B mesos/week on Heroic.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": false,
+            "summary": "Genesis Pass (sale 2026-06-18 to 2026-11-02, 30,000 NX, max 2 per account, Lv. 255+ pre-liberation only).",
+            "detail": "Genesis Mission parties expand from 2 to 6 for same-stage pass holders (Lotus and above; the 50% Final Damage party penalty, 60% for Lotus Awakening, still applies); Trace of Darkness from bosses increased 3x with a hard cap of 3,000 total; a Trace of Darkness boss buff (all stats +20, ATT/MATT +20, Boss Damage 10%, IED 10%, Max HP/MP +1,000, Arcane Power +150); guaranteed ATT or MATT Weapon Soul on liberation via Commander's Soul Box. Materially changes any Genesis liberation timeline model.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "other",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "v.270.2.0 (2026-07-30) system deltas.",
+            "detail": "Ride or Die Guardian Charm shield-limit increase 10%/25%/50% -> 10%/15%/20%; Ride or Die boss HP increased, timer now starts when the boss appears, 10-second re-entry cooldown added. Operation: Dive Record Shop incident: an incorrect setting allowed over-purchase of Sol Erda Fragments; all unused Sol Erda Fragment x10 Coupons and Fragments were recovered and Kroma Coins refunded, with residual recovery applied on opening the HEXA Matrix / Erda Link UI (that UI is blocked until recovery completes). Purchase limit restored to 450 coins, max 30.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/43574",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          }
+        ],
+        "negativeFindings": [
+          {
+            "area": "crystals",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "v.270 contains NO boss crystal price change, no weekly sale-limit change, and no crystal re-tiering.",
+            "detail": "The strings do not appear anywhere in the 803 KB official body. Deliberately recorded so the negative survives.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          },
+          {
+            "area": "cubes",
+            "region": "gms",
+            "status": "live",
+            "corroborated": true,
+            "summary": "v.270 contains no cube system change.",
+            "detail": "The only cube mention in the entire body is a Mystical Cube as a Ride or Die coin shop reward (tradable within world, permanent). No potential-tier, cube-rate or cube-cost change.",
+            "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+            "route": "Nexon's own CMS behind the maplestory.com SPA: read the SPA JS bundle (web.nxfs.nexon.com/maplestory/assets/index-CplyPfYS.js), found the content API baseURL //g.nexonstatic.com/maplestory/cms/v1, then GET /news/42415 -> 1.17 MB JSON whose `body` field is the complete 803 KB patch-notes HTML the page renders. Minor-patch deltas independently corroborated against the Steam News API (ISteamNews/GetNewsForApp, appid 216150) and the CMS 'v.270 Known Issues' post /news/43420."
+          }
+        ]
+      }
+    ]
+  },
+  "upcoming": {
+    "region": "kms",
+    "readOn": "2026-09-12",
+    "standingWarning": "EVERYTHING IN THIS BLOCK IS KOREAN. Korea runs ahead of GMS. Nothing here describes GMS behaviour. KMS changes do not always reach GMS, and frequently land ALTERED - Reboot/Heroic differs between regions (GMS Heroic runs 6x field meso vs KMS's 5x, has no daily meso cap, allows 14 crystal sales per character at 180 per world, and has higher cube tier-up odds). A KMS percentage does not translate into the same GMS delta even if GMS ever adopts the change. Never render any of this as current.",
+    "regionState": {
+      "kmsLive": "client 1.2.418, 2026-08-20 - the newest entry on maplestory.nexon.com/news/update as of 2026-09-12",
+      "kmsTest": "client 1.2.206, 2026-09-10, test world only (maplestory.nexon.com/testworld/news/update/198 and /199)",
+      "gmsLive": "v.271, 2026-09-09",
+      "measuredLag": "About five months on common-core content: KMS live 1.2.414 (2026-04-16) shipped the 3rd Common HEXA Core that GMS is receiving now as v.271's HEXA Common Nodes."
+    },
+    "items": [
+      {
+        "id": "kmst-1.2.206-balance",
+        "region": "kms",
+        "status": "upcoming",
+        "kmsShipped": false,
+        "kmsState": "test world only (KMST 1.2.206). NOT in KMS live 1.2.418.",
+        "dated": "2026-09-10",
+        "area": "class-balance",
+        "korea": "The September all-class balance patch promised on the July Maple NOW broadcast: 200+ individual skill modifications across all 49 KMS classes.",
+        "gms": "GMS does not have it. GMS v.271 has no class balance section of this kind - its class work is the common-core retune, HEXA Common Nodes and Special Skill Rings.",
+        "alterationRisk": "HIGH on two axes: (a) test-server numbers are routinely revised before KMS live - Nexon already revised the July 3rd-skill-core round after test feedback (15% cost cut, level-1 buff); (b) GMS may take it altered or not at all.",
+        "source": "https://maplestory.nexon.com/testworld/news/update/198",
+        "route": "Official KMS test-world patch notes fetched directly - unlike the GMS page these are NOT an SPA and render to a fetcher. Community reaction cross-read on inven.co.kr board 5974/7161560 (49-class roundup) and the Inven webzine Maple NOW recap.",
+        "corroborated": true,
+        "themes": [
+          "Damage-oriented PARTY SYNERGY buffs stripped out and partially returned as personal buffs: Dark Knight Beholder party attack/defense/accuracy removed; Wild Hunter Sharp Eyes party crit removed; Battle Mage Yellow Aura party attack speed removed; Cannoneer Monkey Magic party buffs removed (replaced by a personal 'Monkey's Blessing' passive); Bishop Resurrection no longer applies a party damage buff.",
+          "Movement/rush skills converted from combat skills into pure mobility that grants a PERMANENT attack-power passive, plus cancel functionality (Hero/Paladin/Dark Knight rush; Bowmaster/Marksman/Pathfinder Double Jump; Kaiser Piercing Rush).",
+          "Several summon and installation skills converted into persistent or passive effects (Ice/Lightning Thunder Sphere becomes fixed damage, 296% -> 466%; Cannoneer Support Monkey duration 60s -> 600s)."
+        ],
+        "notableClasses": [
+          "Xenon - the single largest nerf. Opartz Code final damage 32% -> 5%; Triangle Formation 340% -> 166% (and loses its accuracy debuff); Snipe 340% -> 286%; Mega Smasher 660% -> 627%; Installation Smasher 550% -> 523%; Photon Ray 880% -> 827%. Inven's community measurement puts the net at roughly -13% real DPS.",
+          "Xenon symbol conversion RAISED as compensation: Arcane Symbol 144 -> 198 base and 48 -> 66 per enhancement level; Authentic Symbol 240 -> 330 base and 96 -> 132 per level, with HEXA stat gains scaled proportionally (up to +60% at level 10). HIGHEST GMS-ALTERATION RISK ITEM IN THIS FILE - Xenon uniquely converts symbols into all three main stats, and Heroic symbol acquisition differs from KMS regular worlds.",
+          "Pathfinder - the Relic Gauge system is DELETED outright. Relic Charge I and II removed, attack skills move to MP consumption, Relic Materialization triggers on a hit chance requiring 2 attacks instead of 8. A full resource-system rework.",
+          "Kaiser - best received. Will of Sword spawn time 70% faster, damage 300% -> 510%; Final Trance cooldown 240s -> 120s with duration 60s -> 30s (uptime holds at 25% but aligns to the 2-minute burst); Piercing Rush becomes utility with a permanent attack-power rider.",
+          "Demon Avenger - Exceed max stacks 20 -> 10, Exceed Overload gains 1 per skill instead of 2, Release Overload grants a permanent 20% final damage bonus, Shield Charge deleted and replaced by a new Blood Charge, Blood Fist reworked into a heal/defense hybrid with no HP cost.",
+          "Mihile - Royal Guard triggerable by direct body-contact hits, Soul Attack final damage and crit bonuses become permanent. A precursor already shipped in KMS LIVE 1.2.417 (Royal Guard buff duration 20s -> 60s).",
+          "Bishop - self-buff vs party-buff distinction removed, Angelic Touch 350% -> 690% with hit count 5 -> 11, new Divine Refinement (stance + ignore defense), Triumph Feather prioritises the highest-HP boss target.",
+          "Fire/Poison Arch Mage - Poison Breath DoT 10s -> 30s with the tick 60% -> 275%, Poison Mist DoT 6s -> 30s, new Poison Flare. Ice/Lightning - loses Teleport Mastery, gains Frost Edge.",
+          "Battle Mage - Dark Genesis 520% -> 1850% with hit count 8 -> 10, new Aura Enhance and Necrotic Hex (10% ignore defense).",
+          "Marksman - True Sniping redesigned, scope targeting narrowed 12 enemies -> 5.",
+          "Demon Slayer - Demonic Concentration gains a permanent ignore-defense rider; Demon Awakening enhanced slash 830% -> 893-1170%; Jormungandr summonable in the air and repositions on recast.",
+          "Buccaneer - Screw Punch master level 20 -> 10 with MP and damage formulas rescaled plus a downward cancel. Blaster - new Explosion Spurt; the worst-received class in the patch per Inven.",
+          "Luminous - new Lachesis Resonance built on the light/dark equilibrium. Illium - primary-skill consolidation, passive charging removed."
+        ],
+        "communityDirectional": "Inven's 49-class community roundup (player measurements on a test build, NOT patch-note data): positive Kaiser, Shadower, Hoyoung, Luminous, Illium, Cannoneer; negative Xenon (~-13% measured), Ark, Blaster, Cadena (core ultimate damage halved), Wind Archer; neutral Adele."
+      },
+      {
+        "id": "kms-3rd-hexa-skill-core",
+        "region": "kms",
+        "status": "upcoming",
+        "kmsShipped": true,
+        "kmsState": "KMS LIVE, client 1.2.417",
+        "dated": "2026-07-23",
+        "area": "hexa",
+        "korea": "All 48 KMS classes received a 3rd HEXA SKILL Core - a brand-new class-unique 6th job skill with 30 master levels. Sol Erda costs run roughly 7 Erda + 140 Fragments at level 1 up to 14 Erda + 357 Fragments at level 30. Examples: Hero 'Rage Explosion' (4 sword strikes at 551% x8 on up to 12 enemies, then 6 explosions at 685% x10, 60s cooldown), Paladin 'Divine Convergence' (three-hit combo up to 1306% per hit, 60s cooldown), Marksman 'Lethal Punisher' (accumulate explosive arrows, fire Lethal Bolts at 750% x7). Nexon calibrated the net gain at only ~2.5-3% damage, cut level-up material cost 15% and boosted level-1 performance after test feedback.",
+        "gms": "GMS does NOT have this. v.271 delivered the 3rd HEXA COMMON Node (one per class GROUP, 16 nodes) - a different, earlier system. Do not conflate the two.",
+        "alterationRisk": "Unknown ship date for GMS; the common-node lag suggests roughly five months.",
+        "source": "https://orangemushroom.net/2026/07/31/kms-ver-1-2-417-maplestory-overdrive-3rd-hexa-skill-core/",
+        "route": "orangemushroom.net (long-standing English KMS translation blog), cross-read with pinkbean.gg/update version history.",
+        "corroborated": true
+      },
+      {
+        "id": "kmst-hexa-reweight-and-sol-hecate-retune",
+        "region": "kms",
+        "status": "upcoming",
+        "kmsShipped": false,
+        "kmsState": "test world only (KMST 1.2.206)",
+        "dated": "2026-09-10",
+        "area": "hexa",
+        "korea": "Rebalances 6th-job HEXA Core damage WEIGHTING across skills, with HEXA Matrix Reset Scrolls covering every skill except Sol Janus handed out through 2026-10-22 so players can re-spec without paying the Sol Erda cost. Also retunes Sol Hecate particle damage per class, roughly -10% to +30% depending on the job.",
+        "gms": "GMS has the Sol Hecate skill itself and shipped its own Sol Hecate NERF in v.271 (see live). What GMS does not have is the KMS per-class Sol Hecate retune. These are different changes to the same skill - do not merge them.",
+        "alterationRisk": "High. Test build, and GMS already took a different Sol Hecate adjustment.",
+        "source": "https://mmohuts.com/news/maplestory-september-update-reworks-combat-feel-boss-crystals-and-teases-blue-archive-collab",
+        "route": "English repost of the 2026-09-10 Maple NOW broadcast, cross-read against the official KMS test-world notes.",
+        "corroborated": true
+      },
+      {
+        "id": "kms-damage-cap-10t",
+        "region": "kms",
+        "status": "upcoming",
+        "kmsShipped": true,
+        "kmsState": "KMS LIVE, client 1.2.417",
+        "dated": "2026-07-23",
+        "area": "other",
+        "korea": "Per-line damage cap raised from 700 billion to 10 trillion (~14x headroom).",
+        "gms": "GMS v.271 contains no damage cap change. CRITICAL: the current GMS cap could NOT be established from any official GMS source, so do not assume GMS sits at the old KMS 700 billion either. GMS's cap is unknown.",
+        "alterationRisk": "Unknown.",
+        "source": "https://www.invenglobal.com/articles/23869/balance-patch-scheduled-for-september-maple-now-key-highlights",
+        "route": "Inven Global (English arm of Inven), rendering of the Maple NOW broadcast.",
+        "corroborated": false
+      },
+      {
+        "id": "kms-lethe",
+        "region": "kms",
+        "status": "upcoming",
+        "kmsShipped": true,
+        "kmsState": "KMS LIVE, client 1.2.416",
+        "dated": "2026-06-18",
+        "area": "class-balance",
+        "korea": "New mage class LETHE released.",
+        "gms": "GMS has no new class in v.271. data/classes.json's legacyClasses already records Lethe as 'not-in-gms'. A Korean aggregator also attributes a blanket -30% damage adjustment to all classes' main skills to this same patch - that figure appeared on ONE aggregator only, was not seen in the official 1.2.416 notes, and must be re-verified before it is carried anywhere.",
+        "alterationRisk": "Class releases reach GMS on their own schedule and are localised.",
+        "source": "https://pinkbean.gg/update",
+        "route": "Korean patch-note aggregator, used only for the 2026 KMS version history.",
+        "corroborated": false
+      },
+      {
+        "id": "kms-economy-package-2026-09-10",
+        "region": "kms",
+        "status": "upcoming",
+        "kmsShipped": false,
+        "kmsState": "ANNOUNCED ONLY on the 2026-09-10 Maple NOW broadcast, and present in KMST 1.2.206. NOT in KMS live as of 2026-09-12 (the KMS update board's newest entry is 2026-08-20). Community summaries point to 2026-09-17 for live application; that date is NOT confirmed by any official patch note.",
+        "dated": "2026-09-10",
+        "area": "economy",
+        "korea": "Weekly boss crystal sale limit REMOVED entirely (Korean: '결정 주간 판매 12개 제한 해제'), with crystal sale prices re-tiered DOWNWARD across the whole range (roughly 50% below Hard Lotus, 5% for the Hard solo bosses below Black Mage, 35% for Extreme Seren and Extreme Black Mage; GameToc adds that Hard Limbo and above are untouched and renders the middle band as 5-15%). Also: a steeper field-meso penalty when hunting monsters 11+ levels below the character; Memento Cube boss payout re-tiered (Gold Cubes extended down to Normal Kaling); a new Prime / Prime Additional Cube that locks the first potential line and rerolls the rest, sold on a two-month trial; a scroll economy rework making core scrolls meso-purchasable while DELETING boss-dropped scrolls and existing vendors; a Soul overhaul adding Soul Ether as a new boss drop currency with soul enhancement and soul potential, deleting Soul Skills outright; Inner Ability advanced reset consuming meso and fame for up to 3 Legendary lines; MVP Symbol Quick Pass changed from per-region counts to one pooled count; Mileage split into Exploration Coins and Maple Credit.",
+        "gms": "GMS DOES NOT HAVE ANY OF THIS, and Nexon America has said nothing in either direction. Nexon itself frames the crystal limit removal as near-neutral, NOT a buff: the boss clear limit stays at 12 and it ships bundled with price cuts. Reading it as an income increase inverts the intent.",
+        "alterationRisk": "MAXIMUM. namu.wiki's GMS-divergence page (edited 2026-09-03) records that GMS is the only overseas service that has NOT taken KMS's repeated crystal price nerfs; GMS fixes weekly crystal sales at 14 per character with free boss entry where KMS fixes 12 and blocks the 13th boss; KMS cut per-world weekly crystal sale volume 180 -> 90 while GMS still sits at 180; GMS never imported KMS's daily meso acquisition cap. Only percentage bands were announced, and the middle band is reported inconsistently (5% vs 5-15%) - do not hardcode a number.",
+        "source": "https://www.inven.co.kr/webzine/news/?news=320689&site=maple",
+        "route": "Headless-browser get_page_text on the Inven KR news article (closest thing to a primary transcript of the broadcast), corroborated by invenglobal.com article 25798, mmohuts.com and gametoc.co.kr article 111373. Official KMS test-world notes /testworld/news/update/199 carry the same items. arca.live and en.namu.wiki returned HTTP 403.",
+        "corroborated": true,
+        "seeAlso": "negativeConstraints[0] and [1] - this is the documented project trap."
+      },
+      {
+        "id": "kms-earlier-2026-single-class-passes",
+        "region": "kms",
+        "status": "unknown",
+        "kmsShipped": true,
+        "kmsState": "KMS LIVE in earlier 2026 clients",
+        "dated": "2026-01-15 / 2026-03-19 / 2026-04-16 / 2026-05-14",
+        "area": "class-balance",
+        "korea": "1.2.411 (2026-01-15) new shared HEXA core plus class-wide skill tuning; 1.2.413 (2026-03-19) Lara skill damage adjustment; 1.2.414 (2026-04-16) 3rd Common HEXA Core, shared-core cooldown reductions and a Pathfinder Raven-series overhaul; 1.2.415 (2026-05-14) Mechanic attack-delay improvements.",
+        "gms": "STATUS UNKNOWN per item. Some of this has clearly arrived - GMS v.271 carries the 3rd HEXA Common Nodes, shared-core cooldown cuts (TAR/Solar Crest 250s -> 230s), Mechanic action-delay reductions and a Lara rework, all of which match the shape of these KMS patches. Whether the GMS versions are numerically identical was NOT verified and should not be assumed. A GMS forum thread separately asks Nexon America NOT to import the KMS Lara change, which is evidence GMS players did not have it at the time of writing.",
+        "alterationRisk": "Demonstrated: GMS v.271's Lara rework and the KMS 1.2.413 Lara pass are not known to be the same numbers.",
+        "source": "https://pinkbean.gg/update",
+        "route": "Korean patch-note aggregator version history.",
+        "corroborated": false
+      }
+    ]
+  },
+  "negativeConstraints": [
+    {
+      "id": "no-crystal-sale-limit-removal-in-gms",
+      "claimNotTrueOfGms": "The weekly boss crystal sale limit has been removed / crystal prices have been re-tiered.",
+      "whySomeoneWouldAddIt": "The 2026-09-10 Korea-side Maple NOW broadcast announced exactly this, and it is the headline item in every English repost of that broadcast.",
+      "truth": "It is KMS, it is not even KMS-live (test world KMST 1.2.206 as of 2026-09-12), and it is ABSENT from GMS v.271: 'sale limit' and 'boss crystal' both return zero hits across all 172,741 chars of the rendered official v.271 page, and across the full 803 KB v.270 body. GMS must retain its existing weekly crystal sale cap.",
+      "doNot": "Do NOT set lib/meso.ts CRYSTAL_SALE_LIMIT.crystalsPerReset to null-meaning-unlimited, or to any Korean number, on the strength of this announcement. That field is already null for a different and correct reason: no GMS source establishes the value.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://www.inven.co.kr/webzine/news/?news=320689&site=maple",
+      "gmsCheckSource": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-10",
+      "route": "Inven KR broadcast transcript; GMS absence established by string-searching the rendered official v.271 page and the v.270 CMS body."
+    },
+    {
+      "id": "no-crystal-price-change-in-gms",
+      "claimNotTrueOfGms": "GMS boss crystal meso values have changed (e.g. down 50% / 35% / 5-15%).",
+      "whySomeoneWouldAddIt": "Percentage bands from the same Korean broadcast, plus an older fmkorea table with concrete numbers (Checkmate Solus 800M -> ~580M, Nosoi Kalingal 1.88B -> ~1.4B).",
+      "truth": "The fmkorea table is dated 2025-10-16 and belongs to a DIFFERENT, earlier KMS crystal nerf announced at the 2025-10-16 Maple NOW. It is not the 2026-09-10 change, and neither is GMS. namu.wiki records that GMS is the only overseas service that has not taken any KMS crystal price nerf.",
+      "doNot": "Do not merge the 2025 and 2026 Korean crystal tables, and do not apply either to GMS.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://www.gametoc.co.kr/news/articleView.html?idxno=111373",
+      "gmsCheckSource": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-10",
+      "route": "GameToc and Inven KR reposts of the broadcast; the 2025 table surfaced separately on fmkorea and was rejected on its date."
+    },
+    {
+      "id": "gms-has-no-daily-meso-cap",
+      "claimNotTrueOfGms": "MapleStory has a daily meso acquisition cap.",
+      "whySomeoneWouldAddIt": "KMS has one; Korean economy discussion assumes it.",
+      "truth": "GMS never imported it. namu.wiki: 'GMS did not import the daily obtainable meso limit, so as long as you can hunt you can keep accumulating mesos.' The same page records GMS Heroic field meso at 6x versus KMS old Reboot's 5x.",
+      "doNot": "Do not add a daily meso ceiling to the meso model.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC/%ED%95%B4%EC%99%B8%20%EC%84%9C%EB%B9%84%EC%8A%A4/GMS/%ED%8A%B9%EC%A7%95",
+      "dated": "2026-09-03",
+      "route": "Headless browser get_page_text on namu.wiki's GMS-divergence page; WebFetch was refused HTTP 403."
+    },
+    {
+      "id": "level-gap-meso-penalty-is-a-retune-not-a-new-mechanic",
+      "claimNotTrueOfGms": "GMS has no level-difference meso penalty / GMS is about to gain one.",
+      "whySomeoneWouldAddIt": "KMS announced a steeper penalty for monsters 11+ levels below the character on 2026-09-10, and English summaries describe it as if it were new.",
+      "truth": "GMS already HAS its own, different, older level-difference meso penalty. The Korean change is a RETUNE of a shared mechanic, not a mechanic GMS lacks. Asserting 'GMS has no level meso penalty' would be wrong; asserting the KMS 11-level threshold is GMS's would also be wrong.",
+      "doNot": "Do not write the KMS 11-level threshold into the GMS farming model, and do not delete the GMS penalty either.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://www.inven.co.kr/webzine/news/?news=320689&site=maple",
+      "dated": "2026-09-10",
+      "route": "Inven KR broadcast transcript."
+    },
+    {
+      "id": "gms-has-common-nodes-not-class-unique-3rd-hexa-cores",
+      "claimNotTrueOfGms": "GMS classes each received a new class-unique 3rd HEXA Skill Core.",
+      "whySomeoneWouldAddIt": "KMS live 1.2.417 (2026-07-23) gave all 48 classes exactly that, it is well documented in English on orangemushroom.net, and GMS v.271 does contain something called a '3rd HEXA node'.",
+      "truth": "GMS v.271 added the 3rd HEXA COMMON Node - 16 nodes, one per class GROUP (HEXA Blitz Shield, HEXA Arcane Overdrive, HEXA Fury of the Wild, and so on). That is a different and earlier system than the class-unique 3rd HEXA Skill Core. GMS has no 'Rage Explosion', no 'Divine Convergence', no 'Lethal Punisher'.",
+      "doNot": "Do not add class-unique 3rd HEXA skills or their Sol Erda costs to any GMS class record.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://orangemushroom.net/2026/07/31/kms-ver-1-2-417-maplestory-overdrive-3rd-hexa-skill-core/",
+      "gmsCheckSource": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-07-23",
+      "route": "orangemushroom.net KMS translation; GMS side read directly off the official v.271 page."
+    },
+    {
+      "id": "gms-damage-cap-is-unknown-not-10t-and-not-700b",
+      "claimNotTrueOfGms": "The GMS per-line damage cap is 10 trillion.",
+      "whySomeoneWouldAddIt": "KMS raised it from 700 billion to 10 trillion in live 1.2.417.",
+      "truth": "GMS v.271 contains no damage cap change, and no official GMS statement of the current GMS cap could be reached. The GMS cap is UNKNOWN. Do not assume 10 trillion, and do not assume 700 billion either.",
+      "doNot": "Do not write any damage cap constant sourced from a Korean patch note.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://www.invenglobal.com/articles/23869/balance-patch-scheduled-for-september-maple-now-key-highlights",
+      "dated": "2026-07-23",
+      "route": "Inven Global rendering of the Maple NOW broadcast."
+    },
+    {
+      "id": "xenon-symbol-conversion-unchanged-in-gms",
+      "claimNotTrueOfGms": "Xenon's symbol stat conversion is 198 base / 66 per level (Arcane) and 330 / 132 (Authentic).",
+      "whySomeoneWouldAddIt": "KMST 1.2.206 raises exactly those numbers as compensation for Xenon's -13% nerf, and Xenon symbol conversion is a natural planner field.",
+      "truth": "Test world only, not KMS live, not GMS. GMS v.271 contains no Xenon symbol change and no Xenon nerf - GMS Xenon got the standard common-core retune (Erda 900 -> 970, the smallest in the patch).",
+      "doNot": "Do not touch Xenon's symbol conversion values.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://maplestory.nexon.com/testworld/news/update/198",
+      "dated": "2026-09-10",
+      "route": "Official KMS test-world notes (fetchable directly)."
+    },
+    {
+      "id": "no-authentic-symbol-change-in-v271",
+      "claimNotTrueOfGms": "v.271 increased Authentic Symbol income along with Arcane and Sacred.",
+      "whySomeoneWouldAddIt": "The headline 'symbol income doubled' invites generalising across all three symbol families.",
+      "truth": "A case-insensitive regex for 'authentic' over the entire 111k-char official v.271 page returns ZERO matches. Arcane doubled (20->40 daily, 40->80 weekly). Sacred DAILIES went up 1.5x only. Authentic is untouched. No Grandis WEEKLY increase is listed either.",
+      "doNot": "Do not model Sacred at 2x, do not model Authentic at anything but unchanged, and do not invent a Grandis weekly increase.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-10",
+      "route": "Browser-pane render of the official Nexon SPA, then document.querySelectorAll('details').forEach(x => x.open = true) to force-open the 68 collapsed accordions that hold the per-class tables (page innerText grew 111,291 -> 172,741 chars), then document.body.innerText read in slices. Plain WebFetch of the same URL returns only the page title, so a fetcher alone cannot see any of this."
+    },
+    {
+      "id": "no-kms-symbol-growth-cost-cut",
+      "claimNotTrueOfGms": "Arcane Symbol growth costs were cut 30%.",
+      "whySomeoneWouldAddIt": "GameToc's write-up of the 2026-09-10 broadcast mentions a 30% Arcane Symbol growth cost reduction and an Inven forum summary echoes it.",
+      "truth": "The number 30% also appears in those same pieces attached to CRYSTAL prices - it reads as a translation bleed between 결정 (crystal) and 심볼 (symbol). The primary Inven KR bullet list contains NO symbol growth cost change. Not recorded as a fact in either layer. Even if real it would be KMS.",
+      "doNot": "Do not change any symbol growth cost until the actual KMS patch note is read after it ships.",
+      "region": "kms",
+      "status": "unknown",
+      "source": "https://www.gametoc.co.kr/news/articleView.html?idxno=111373",
+      "dated": "2026-09-10",
+      "route": "GameToc article, contradicted by the primary Inven KR bullet list."
+    },
+    {
+      "id": "no-gms-roadmap-from-gold-sellers",
+      "claimNotTrueOfGms": "GMS ships 'Fall 2026 Update Part 1: Skill Balancing for All Jobs' on 2026-09-17, and Lethe in November.",
+      "whySomeoneWouldAddIt": "mmoexp.com publishes it as a 'GMS roadmap' and it is search-visible.",
+      "truth": "The source is a gold-selling site. 2026-09-17 reads like the KMS LIVE date one week after the 2026-09-10 test build, not a GMS date. No official GMS roadmap was obtainable. Deliberately not recorded as evidence.",
+      "doNot": "Do not date any GMS content from an RMT site.",
+      "region": "unknown",
+      "status": "unknown",
+      "source": "mmoexp.com (deliberately not linked as evidence)",
+      "dated": "2026-09",
+      "route": "Surfaced by WebSearch and rejected on source quality."
+    },
+    {
+      "id": "beast-tamer-is-not-a-53rd-or-54th-live-class",
+      "claimNotTrueOfGms": "Beast Tamer is a current GMS class that should be stamped to v.271.",
+      "whySomeoneWouldAddIt": "data/class-guides/beast-tamer.json exists, so roster-completion logic would try to fill it in.",
+      "truth": "Beast Tamer appears nowhere in the v.271 notes (zero hits). data/classes.json's legacyClasses already records it as converted to Forest Child Lynn in GMS on 2024-05-01. v.271 gives NO basis to restamp it.",
+      "doNot": "Do not add Beast Tamer to the 53-class roster and do not restamp beast-tamer.json to v.271 by roster-completion logic.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://maplestorywiki.net/w/Beast_Tamer",
+      "gmsCheckSource": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2024-05-01",
+      "route": "Repo legacyClasses entry, corroborated by the total absence of the string from the v.271 page."
+    },
+    {
+      "id": "gms-v271-did-not-nerf-xenon-or-delete-pathfinders-relic-gauge",
+      "claimNotTrueOfGms": "Pathfinder's Relic Gauge is gone / Xenon's Opartz Code is 5% / party synergy buffs were stripped.",
+      "whySomeoneWouldAddIt": "These are the loudest items in KMST 1.2.206 and they concern classes GMS also has.",
+      "truth": "GMS v.271 DID change Pathfinder heavily - three new skills (Storm Rider, Ancient Tempest, Primal Tempest) and two removed (Raven Tempest, Fury of the Wild Tempest) - but the Relic Gauge is NOT deleted in GMS, and GMS Xenon received no nerf. The two Pathfinder reworks are different changes. Do not describe the GMS Pathfinder using Korean text.",
+      "doNot": "Do not import any KMST 1.2.206 skill number into a GMS class record.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://maplestory.nexon.com/testworld/news/update/198",
+      "gmsCheckSource": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-10",
+      "route": "Official KMS test-world notes vs the rendered official GMS v.271 page."
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "v271-per-class-numbers-single-sourced",
+      "question": "Is any of the ~370 per-class percentage values in classBalance.perClass mis-transcribed?",
+      "state": "Single-sourced to the official Nexon page. No independent repost of the per-class tables exists (7mmo, gamemarket.gg, massivelyop all blurb-only; massivelyop 403; no Reddit route - the fetch tool refuses www.reddit.com). Official-primary is stronger than a repost, but it is one read by one agent.",
+      "nextStep": "A second independent render of the same page: re-open it, force-open the 68 <details> accordions, re-extract and diff against classBalance.perClass. Not a repost hunt.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "sol-janus-inversions",
+      "question": "Are the six classes whose Sol Janus Primal Crystal prints LOWER than Cyclic Ring genuine, or Nexon transcription errors?",
+      "state": "Hayato, Kanna, Lynn, Mo Xuan, Sia Astelle and Erel Light all invert the relationship every other class has, and Erel Light's Primal Crystal (1,035% -> 1,002%) is an outright decrease from the baseline. Transcribed exactly as printed and flagged per row rather than normalised. NOTE: the research pass that produced these numbers described the inversion as affecting five classes and did not list Kanna; recomputing from the transcribed values gives six. The discrepancy is in the prose summary, not the numbers.",
+      "nextStep": "Re-read those six rows on the official page, and re-check after any post-9/10 hotfix.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "post-9-10-hotfixes",
+      "question": "Was anything in v.271 hotfixed after the 2026-09-10 in-place page update?",
+      "state": "Not checked. A 'v.271 Known Issues' thread exists (7mmo.com/threads/v-271-known-issues.4002) and was not read. The official page carries [Updated 9/9/2026] and [Updated 9/10/2026] in-place revisions, proving Nexon edits it after publication - at least one attribution (Burning Rebirth Flame reset rates) was CORRECTED on 9/10, so a pre-9/10 reading of that line is wrong.",
+      "nextStep": "Read the v.271 Known Issues thread and the GMS maintenance posts after 2026-09-10; re-render the official page and diff.",
+      "region": "gms",
+      "status": "unknown",
+      "source": "https://7mmo.com/threads/v-271-known-issues.4002",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "exp-band-semantics",
+      "question": "Are the Lv. 210-259 EXP reduction percentages per-level or cumulative-to-next-level?",
+      "state": "The notes say 'the amount of EXP required to level up from Lv. 210 - 259' with a per-band '~' percentage, which reads as a per-level requirement, but the wording is not unambiguous. The ~58% figure for 250-259 is large enough that misreading it would badly skew any levelling projection.",
+      "nextStep": "Verify in-game against a known EXP table, or find a post-patch community EXP table.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "grandis-weekly-symbol-quest",
+      "question": "Did Grandis WEEKLY quest symbol rewards change in v.271?",
+      "state": "The notes explicitly list only 'Grandis Daily Quest rewards'. No Grandis weekly line appears. Absence strongly implies no change, but the weekly value being untouched cannot be positively confirmed from this source.",
+      "nextStep": "Confirm the current Grandis weekly reward in-game or from a post-patch wiki page.",
+      "region": "gms",
+      "status": "unknown",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "bonus-stat-reset-probability-table",
+      "question": "What are the actual tier probabilities behind 'reset rates are identical to Black Rebirth Flames' and 'identical to Powerful Rebirth Flames'?",
+      "state": "The notes state the equivalence but publish no probability table, so the outcome distribution of a 3,000,000-meso reset must come from existing Black Flame rate data already in the project, not from this patch.",
+      "nextStep": "Point the bonus-stat model at the project's existing flame rate tables and say which it used.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "net-flame-supply",
+      "question": "What is the net weekly Rebirth Flame supply change after the boss/elite drop removal?",
+      "state": "Not derivable from the patch notes. They list additions (Burning and Karma Burning Rebirth Flames, expanded Legion/Monster Collection/Dojo entries, Karma Black limit 40 -> 60) and removals but give no drop rates or quantities.",
+      "nextStep": "Needs in-game observation or a community supply table; do not estimate.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "crystal-sale-limit-value",
+      "question": "What IS the GMS weekly boss crystal sale limit and what is its scope?",
+      "state": "Still unknown from any GMS official source - lib/meso.ts CRYSTAL_SALE_LIMIT.crystalsPerReset is correctly null. v.271 and v.270 both change nothing here, so the unknown is unchanged, not resolved. A Korean source (namu.wiki, 2026-09-03) states GMS sits at 14 per character with 180 per world, but that is a Korean community page describing GMS, not a GMS source, and it conflicts with the 60-per-week figures in the repo's own forum-sourced notes.",
+      "nextStep": "A GMS-official or in-game determination. Do NOT resolve it from namu.wiki and do NOT resolve it from the Korean broadcast.",
+      "region": "gms",
+      "status": "unknown",
+      "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "jupiter-crystal-value",
+      "question": "What is the boss crystal meso value of Normal and Hard Jupiter?",
+      "state": "The v.270 notes publish Adversary Determination, Vestige of Erion Coupons and Traces of Battle for Jupiter but NO crystal meso value for either difficulty.",
+      "nextStep": "Needs a GMS source; do not infer it from neighbouring bosses.",
+      "region": "gms",
+      "status": "unknown",
+      "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "kinesis-skill-numbers",
+      "question": "What are the damage percentages, hit counts, cooldowns and MP costs of the remastered Kinesis kit?",
+      "state": "The v.270 notes give the remastered skill LIST with descriptions only - no numbers. No GMS official source reached publishes them. Kinesis skill names are now ground truth; Kinesis numbers are not. This also means the Grandis-Library-sourced innateCritRate 0.45 / innateCritDamage 0.41 in data/classes.json describe the PRE-remaster passive kit and may be wrong rather than merely stale.",
+      "nextStep": "Re-derive Kinesis base stats from a post-remaster source before restamping that record. Everything else in the Kinesis record (weapon Psy-limiter, secondary Chess Piece, INT/LUK, Link Skill Judgment +6% Critical Damage, Legion INT) is restated in the v.270 notes and is safe.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "v270-pts-vs-live-diff",
+      "question": "Did the v.270 Public Test Server notes contain class balance numbers that were cut before live?",
+      "state": "Not diffed. The PTS page (nexon.com/maplestory/public-test-server/news/update/42480) was not resolved to a CMS id.",
+      "nextStep": "Resolve the PTS post id against the same CMS API and diff it against /news/42415.",
+      "region": "gms",
+      "status": "unknown",
+      "source": "https://www.nexon.com/maplestory/public-test-server/news/update/42480/v-270-public-test-server-patch-notes",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "astra-secondary-per-class-matrix",
+      "question": "What is the Astra Secondary Weapon name for each of the 53 classes?",
+      "state": "Structure confirmed and several spot-checked (Astra Medallion for Hero, Astra Keir, Astra King Chess Piece for Kinesis, Astra Sacred/Topaz Aegis, Astra Bane Shield) but the full eligibility matrix was not transcribed. It lives in the v.270 CMS body.",
+      "nextStep": "Re-fetch /news/42415 and transcribe the eligibility tables if the roster ever needs per-class secondary names.",
+      "region": "gms",
+      "status": "live",
+      "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "astra-base-potential-roll",
+      "question": "What potential and bonus-potential tier does an Astra Secondary roll at on first acquisition?",
+      "state": "The v.270 notes cover transfer-in but not the base roll.",
+      "nextStep": "Needs a GMS source.",
+      "region": "gms",
+      "status": "unknown",
+      "source": "https://g.nexonstatic.com/maplestory/cms/v1/news/42415",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "kms-september-live-date",
+      "question": "When does the KMS September economy and balance package actually go live in KMS?",
+      "state": "NOT confirmed by any official patch note. The KMS update board's newest entry is still 2026-08-20 as of 2026-09-12. 2026-09-17 rests on an Inven community summary and two unrelated Inven articles citing that date as the next KMS maintenance. Strongly indicated, not official.",
+      "nextStep": "Re-check maplestory.nexon.com/news/update after 2026-09-17 to convert the upcoming rows from announced to shipped. Shipping in KMS still does not make anything GMS.",
+      "region": "kms",
+      "status": "unknown",
+      "source": "https://maplestory.nexon.com/news/update",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "gms-adoption-of-kms-september-package",
+      "question": "Will GMS take the KMS September package, and in what form?",
+      "state": "No statement from Nexon America in either direction - no announcement adopting it, none declining it. The 'GMS will not take this' intuition comes from the historical pattern documented on namu.wiki (GMS uniquely skipped every prior KMS crystal price nerf), NOT from a Nexon America decision.",
+      "nextStep": "Watch GMS patch notes. Until then every such item stays status upcoming or unknown, never live.",
+      "region": "unknown",
+      "status": "unknown",
+      "source": "https://www.nexon.com/maplestory/news/update",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "kmst-1.2.206-coverage",
+      "question": "What are the remaining KMST 1.2.206 per-class numbers?",
+      "state": "The official notes state 200+ skill modifications; only the highest-impact changes per class were captured. Classes including Shadower, Cadena, Hoyoung, Ark, Wind Archer, Adele, Night Lord, Angelic Buster, Zero, Kain, Khali, Sia Astelle and Lethe have changes that were referenced but not enumerated. Inven thread 7156173 (the richest community compilation) returned HTTP 403 and the wiki it links to renders client-side. Two class names in the Inven roundup were garbled in translation ('Duchess', 'Evangelion') and were omitted rather than guessed.",
+      "nextStep": "Only worth doing if the project builds a real 'what is coming' layer. It is KMS test data and will change.",
+      "region": "kms",
+      "status": "upcoming",
+      "source": "https://maplestory.nexon.com/testworld/news/update/198",
+      "dated": "2026-09-12"
+    },
+    {
+      "id": "kms-1.2.416-minus-30-percent",
+      "question": "Did KMS 1.2.416 really apply a blanket -30% to all classes' main skill damage?",
+      "state": "One Korean aggregator (pinkbean.gg) attributes it to the Lethe release patch. Not seen in the official 1.2.416 notes. Plausible given community complaints about a 'collapse of the damage structure', but single-sourced.",
+      "nextStep": "Re-verify against the official KMS 1.2.416 notes before carrying the number anywhere.",
+      "region": "kms",
+      "status": "unknown",
+      "source": "https://pinkbean.gg/update",
+      "dated": "2026-09-12"
+    }
+  ]
+}
