@@ -51,7 +51,11 @@ export default function GuidePage() {
               </h2>
 
               {mine.map((n) => {
-                const fresh = n.patchVersion === cur && /patch notes/i.test(n.source);
+                // Fresh means current patch AND actually sourced. This used to test the
+                // literal words "patch notes", which silently stopped matching when the
+                // graph moved to real URLs and explicit UNVERIFIED markers - every badge
+                // on the page disappeared and nothing failed.
+                const fresh = n.patchVersion === cur && !/^s*UNVERIFIED/i.test(n.source ?? "");
                 return (
                   <article key={n.id} className="card" style={{ padding: "16px 18px 12px", display: "flex", flexDirection: "column", gap: 11 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
