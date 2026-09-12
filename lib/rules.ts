@@ -21,8 +21,60 @@
 // specified to export (relGain / DmgEnv / ENEMY_DEF_* / SOURCED / PLACEHOLDER_*).
 // Splitting them out later is a cut-and-paste plus a re-export; no call site
 // needs to change, and nothing in this file reaches back into the UI.
+//
+// ---------------------------------------------------------------------------
+// THE ONE CONFIDENCE VOCABULARY (this file is the authority; see Conf below)
+// ---------------------------------------------------------------------------
+// Four modules grew four ways of saying "how much of this is real":
+//
+//   rules.Conf          'sourced' | 'modelled' | 'placeholder'
+//   starforce           Provenance: 'nexon-primary' | 'community-cross-checked'
+//                       | 'community-single' | 'placeholder', plus a list of
+//                       named UnverifiedConstants attached to every result
+//   cubes / farming     Confidence: 'absolute' | 'ranking-only'
+//                       (farming also uses 'needs-measurement')
+//
+// One badge cannot render four. `Conf` WINS, because it is the only one whose
+// values map onto a decision a player actually makes: budget against it /
+// trust the ordering but not the magnitude / do not trust the number. Every
+// other vocabulary enters through an explicit, total mapping —
+// confFromProvenance() and confFromUnverified() below — so nothing is ever
+// silently upgraded, and the mapping is one function to argue with rather than
+// a dozen call sites. Rec.conf is the ONLY confidence field the UI reads.
+//
+// ---------------------------------------------------------------------------
+// MODULE CYCLE, PROVEN RATHER THAN ASSUMED
+// ---------------------------------------------------------------------------
+// lib/farming.ts imports SLOTS from this file and reads it at MODULE SCOPE
+// (farming.ts:210). A plain `import { isDeadLineFor } from "./farming"` here
+// therefore makes farming's body run while this module's body is suspended on
+// that import, with `SLOTS` still in its temporal dead zone. That is measured,
+// not assumed: with the static import in place `next build` dies with
+//   ReferenceError: Cannot access 'g' before initialization
+//   at module evaluation (lib/farming.ts:210:57)
+// lib/starforce.ts imports NOTHING, so it is imported the ordinary way. The
+// farming adoption goes through the deferred seam at __useObjectiveDeadLine().
 
 import type { RosterChar } from "./legion";
+// The damage model lives in ./damage and is the authority on its constants.
+// This file used to re-derive them, which is how two live models came to
+// disagree; anything the model owns is imported, never restated.
+import { CRIT_DAMAGE_BASE } from "./damage";
+import type { FarmObjective } from "./farming";
+import {
+  NO_EVENTS,
+  STAR_ROWS_MODE1,
+  UNVERIFIED_LABEL,
+  costPerAttempt,
+  effectiveRates,
+  isVerified,
+  modesAvailableAt,
+  rowFor,
+  traceRecoveryStar as sfTraceRecoveryStar,
+  type EnhancementMode,
+  type Provenance,
+  type UnverifiedConstant,
+} from "./starforce";
 import guideGraphRaw from "@/data/guide-graph.json";
 
 export type MainStat = "dex" | "str" | "int" | "luk";
@@ -93,14 +145,65 @@ export interface SlotDef {
   fl: boolean;
 }
 
-/** How much of a rec's number is real.
- *  - `sourced`     every input is cited, cost included.
+/** How much of a rec's number is real. THE confidence vocabulary — see the
+ *  header. Everything else in lib/ funnels into these three through
+ *  confFromProvenance() / confFromUnverified().
+ *  - `sourced`     every input is cited, cost included. Budget against it.
  *  - `modelled`    the meso cost is cited; the damage is derived through a
  *                  documented model whose assumptions are named in this file.
- *  - `placeholder` the COST itself rests on an uncited constant. This is the
- *                  one a player must not budget against, which is why it, and
- *                  only it, gets a warning appended to `w`. */
+ *  - `placeholder` a load-bearing input — usually the COST — rests on an
+ *                  uncited constant. Trust the ordering, not the magnitude.
+ *                  This is the one a player must not budget against, which is
+ *                  why it, and only it, gets a warning appended to `w`. */
 export type Conf = "sourced" | "modelled" | "placeholder";
+
+/** The mapping, as data, so the UI can render a legend without re-deriving it
+ *  and so a reviewer can disagree with one table instead of twelve literals. */
+export const CONFIDENCE_VOCABULARY: ReadonlyArray<{
+  conf: Conf;
+  badge: string;
+  meaning: string;
+  /** What the other modules call the same thing. */
+  aliases: readonly string[];
+}> = [
+  {
+    conf: "sourced",
+    badge: "Sourced",
+    meaning: "Every input is cited. Safe to budget against.",
+    aliases: ["starforce: nexon-primary", "starforce: community-cross-checked", "cubes/farming: absolute"],
+  },
+  {
+    conf: "modelled",
+    badge: "Modelled",
+    meaning: "The cost is cited; the damage comes from a documented model.",
+    aliases: ["farming: sourced (derived)", "cubes: absolute with a derived damage term"],
+  },
+  {
+    conf: "placeholder",
+    badge: "Estimate",
+    meaning: "A load-bearing constant is uncited. Trust the order, not the size.",
+    aliases: ["starforce: community-single", "starforce: placeholder", "cubes/farming: ranking-only", "farming: needs-measurement"],
+  },
+];
+
+/** starforce.Provenance -> Conf. Total, and deliberately pessimistic:
+ *  `community-single` is exactly the state the star force meso curve is in, and
+ *  a single community source is not something to hand a player as a budget. */
+export function confFromProvenance(p: Provenance): Conf {
+  return isVerified(p) ? "sourced" : p === "community-single" ? "placeholder" : "placeholder";
+}
+
+/** starforce's per-result `unverified[]` -> Conf. An empty list means every
+ *  constant the result touched was verified. */
+export function confFromUnverified(list: readonly UnverifiedConstant[]): Conf {
+  return list.length === 0 ? "sourced" : "placeholder";
+}
+
+/** cubes / farming's `Confidence` -> Conf. Accepts farming's third value too,
+ *  so the union can widen there without this becoming a partial function. */
+export function confFromRankingOnly(c: "absolute" | "ranking-only" | "needs-measurement"): Conf {
+  return c === "absolute" ? "sourced" : "placeholder";
+}
 
 export interface Rec {
   // pri / lv / t / w are load-bearing for components/Planner.tsx and keep their
@@ -310,7 +413,14 @@ function dmgIndex(s: Stats, env: DmgEnv): number | null {
 
   const statTerm = (4 * s.main + (env.secondary ?? 0)) * (1 + (env.pctStat ?? 0) / 100);
   const attTerm = s.att;
-  const critTerm = 1 + (Math.min(s.crit, 100) / 100) * (s.critdmg / 100);
+  // Base critical damage is NOT zero. MapleStory crits carry an inherent bonus
+  // on top of the printed Critical Damage stat, and lib/damage.ts declares it as
+  // a sourced constant. This file previously wrote `1 + cr * cd`, which is the
+  // same formula with an unnamed, unsourced 0 in place of that constant, and it
+  // overstated the 41.5% -> 60% crit-damage move by 24% relative (+12.89% vs
+  // +10.36%) on the reference character. Import the constant; do not restate it.
+  const cr = Math.min(s.crit, 100) / 100;
+  const critTerm = (1 - cr) + cr * (1 + CRIT_DAMAGE_BASE + s.critdmg / 100);
   const bossTerm = 1 + s.boss / 100;
   // Below ied = 1 - 1/enemyDef this term goes negative, which is the formula
   // telling us it is out of its range rather than telling us damage is negative.
@@ -386,6 +496,8 @@ export function dmgEnvFor(ch: Character): DmgEnv {
 const withMain = (s: Stats, d: number): Stats => ({ ...s, main: s.main + d });
 const withAtt = (s: Stats, d: number): Stats => ({ ...s, att: s.att + d });
 const withBoss = (s: Stats, d: number): Stats => ({ ...s, boss: s.boss + d });
+const withIed = (s: Stats, pct: number): Stats => ({ ...s, ied: pct });
+const withCritDmg = (s: Stats, pct: number): Stats => ({ ...s, critdmg: pct });
 
 /* ==================================================================== */
 /* costs                                                                 */
@@ -410,7 +522,14 @@ export interface SfRate { p: number; f: number; b: number }
 /** Per-star success / fail / boom, keyed by the star you are tapping FROM.
  *  Source: "Star Force success / boom table", DigitalTQ Star Force guide
  *  (Feb 2026), verified 2026-09-11 for v.271. Since v.264 an item can no
- *  longer LOSE a star on failure — only success, fail, or boom. */
+ *  longer LOSE a star on failure — only success, fail, or boom.
+ *
+ *  NOTE: this is the GUIDE table, kept because the guide page renders from it.
+ *  sfPlan() no longer reads it — it goes through starforce.effectiveRates(),
+ *  which is the same Mode-1 column plus the v.271 star-catch bonus and the
+ *  Enhancement Mode rows the guide text predates. The two are cross-checked in
+ *  __selfTest(): if the guide table ever disagrees with STAR_ROWS_MODE1 on
+ *  success or boom, that is a real drift and the test says so. */
 export const SF_RATES: Record<number, SfRate> = readSfRates();
 function readSfRates(): Record<number, SfRate> {
   const out: Record<number, SfRate> = {};
@@ -446,7 +565,15 @@ export function traceRecovery(star: number): number {
 
 /** "Safeguard doubles the meso cost and removes boom. Available up to 18 stars
  *  only." (starforce.rules) — so the protectable attempts are the ones that
- *  LAND on 18 or below, i.e. taps from 15, 16 and 17. */
+ *  LAND on 18 or below, i.e. taps from 15, 16 and 17.
+ *
+ *  @deprecated for pricing. lib/starforce.ts researched this properly and found
+ *  the guide text is a snapshot of a mechanic that has since grown: classic
+ *  Safeguard (additive x3, not x2) still covers taps from 15-17, and from 18-21
+ *  the boom-free option is Enhancement Mode 4, which buys 0% destroy by ALSO
+ *  cutting success and costing 6.5x. costPerAttempt() and effectiveRates()
+ *  know both regimes; these two constants know neither. Kept exported because
+ *  the guide page renders the old sentence. */
 export const SAFEGUARD_COST_MULT = 2;
 export const SAFEGUARD_MAX_TO_STAR =
   num(guideRows("starforce.rules").map((r) => r[0]).find((s) => /safeguard/i.test(s || ""))?.match(/up to (\d+) stars/i)?.[1]) ?? 18;
@@ -499,15 +626,41 @@ export const FLAME_TIER_FLOOR_ADVANTAGED = 4;
 // runtime. Any rec whose COST depends on one of these is marked conf:
 // 'placeholder' and says so in its own text.
 
-/** Star force meso cost per tap.
- *  TODO SOURCE: the guide states only "Meso cost scales with item level and
- *  current star count" and gives no curve; DigitalTQ's guide has no table and
- *  the community calculators do not publish their constants. The shape below is
- *  the formula those calculators are widely believed to implement. It lands on
- *  ~320K for a first star on Lv200 gear and ~98M for a 17 -> 18 tap on Lv200
- *  gear, both of which match commonly quoted figures, which is evidence but not
- *  a source. It has NOT been checked against v.271, which may have rebalanced
- *  costs. Needs: a per-star meso table for GMS v.271, Heroic. */
+/**
+ * @deprecated DO NOT PRICE ANYTHING WITH THIS. Use
+ * `costPerAttempt(itemLevel, star, opts)` from lib/starforce.ts, which this
+ * file now calls for every tap (see tapModel() below).
+ *
+ * WHY IT IS STILL HERE: it is exported, and deleting an export is a different
+ * change from correcting one. It is also the honest record of how wrong the
+ * guess was.
+ *
+ * WHY IT IS WRONG: it applies ONE divisor to the whole 10-14 band and a second
+ * to the whole 15+ band, where the real curve has a divisor PER STAR, and it
+ * cubes the raw item level instead of the level rounded down to a multiple of
+ * ten. At the stars that matter most it under-quotes badly — on Lv200 gear,
+ * tapping FROM the star named:
+ *
+ *     star   this function   starforce.costPerAttempt   under-quote
+ *     11      16.4M            29.8M                     1.82x
+ *     12      20.4M            54.3M                     2.67x
+ *     13      24.9M            90.4M                     3.64x
+ *     14      30.0M           159.8M                     5.33x
+ *     18     113.4M           324.1M                     2.86x
+ *     19     130.3M           579.0M                     4.44x
+ *
+ * The change brief quoted this gap as "1.8x-2.7x at stars 11-13". The first two
+ * are right; star 13 is 3.6x, and star 14 — which every 15-star push has to pay
+ * — is 5.3x. It is worse than advertised, not better. A 5x under-quote on the
+ * exact taps a mid-game player is saving for is the failure this app exists to
+ * avoid. (The ratios are divisor ratios and so are item-level independent,
+ * except on levels that are not multiples of ten, where the level rounding
+ * moves everything by a further 0.9x — e.g. a Lv145 Papulatus Mark.)
+ *
+ * TODO SOURCE (unchanged, and it applies to starforce.ts's curve too): a
+ * per-star meso table for GMS v.271, Heroic, from Nexon. Both curves are
+ * community-sourced; only one of them is per-star.
+ */
 export const PLACEHOLDER_SF_COST_DIV_LOW = 2500;
 export const PLACEHOLDER_SF_COST_DIV_MID = 40000;
 export const PLACEHOLDER_SF_COST_DIV_HIGH = 20000;
@@ -600,7 +753,12 @@ export const SOURCED: Record<string, boolean> = {
   // a rec changes IED, and none of them do yet.
   ENEMY_DEF_ARCANE: false,
   ENEMY_DEF_GRANDIS: false,
+  // No longer used for pricing — see the @deprecated block on the function. The
+  // curve that replaced it, starforce.costPerAttempt, is better (per-star
+  // divisors, correct level rounding) but is still single-sourced, so it is
+  // false here too and every star force rec stays conf: 'placeholder'.
   PLACEHOLDER_SF_TAP_MESO: false,
+  STARFORCE_COST_PER_ATTEMPT: false,
   PLACEHOLDER_SF_MAIN_STAT_PER_STAR_TO_15: false,
   PLACEHOLDER_SF_MAIN_STAT_PER_STAR_ABOVE_15: false,
   PLACEHOLDER_SF_ATT_PER_STAR_TO_15: false,
@@ -629,6 +787,73 @@ export interface SfPlan {
   /** Expected number of booms. Nobody else shows a player this number. */
   booms: number;
   safeguard: boolean;
+  /** Every soft constant this plan leaned on, named by lib/starforce.ts. Empty
+   *  would mean "budget against it"; it is never empty today, because the meso
+   *  formula itself is single-sourced. */
+  unverified: UnverifiedConstant[];
+  /** The single badge, derived from `unverified` through the one mapping. */
+  conf: Conf;
+}
+
+/**
+ * One tap, priced and rated by lib/starforce.ts rather than by this file.
+ *
+ * `guard` means "take the boom-free option if the game sells one at this star":
+ *   stars 0-14   there is no boom to remove; guard is ignored.
+ *   stars 15-17  classic Safeguard. Destroy goes to zero, success is unchanged,
+ *                and the cost multiplier is ADDITIVE (+2, i.e. 3x base).
+ *   stars 18-21  no Safeguard exists. The boom-free option is Enhancement
+ *                Mode 4, which zeroes destroy by CUTTING SUCCESS (15% -> 8% at
+ *                18) and charges 6.5x. That trade is why a guarded 18-19 climb
+ *                can cost more than it saves, and why the old
+ *                SAFEGUARD_COST_MULT = 2 could never have got this right.
+ *   stars 22+    nothing protects you. guard is ignored.
+ *
+ * Star catching is ON: v.271 applies the 1.05x success bonus automatically to
+ * every attempt, so a plan computed without it describes a game nobody plays.
+ */
+function tapModel(
+  itemLevel: number,
+  star: number,
+  guard: boolean,
+): { p: number; f: number; b: number; cost: number; unverified: UnverifiedConstant[] } | null {
+  let row;
+  try {
+    row = rowFor(star, 1);
+  } catch {
+    return null; // star outside 0..29
+  }
+  const boomFreeMode = modesAvailableAt(star).includes(4);
+  const wantGuard = guard && (row.safeguardStyle || boomFreeMode) && row.boom > 0;
+  const mode: EnhancementMode = wantGuard && !row.safeguardStyle ? 4 : 1;
+
+  const rates = effectiveRates(star, mode, NO_EVENTS);
+  // Classic Safeguard removes the destroy branch without touching success, so
+  // the failure branch absorbs it. Mode 4 already reports boom = 0.
+  const classic = wantGuard && row.safeguardStyle;
+  const p = rates.success;
+  const b = classic ? 0 : rates.boom;
+  const f = Math.max(0, 1 - p - b);
+
+  let cost: number;
+  let unverified: UnverifiedConstant[];
+  try {
+    const c = costPerAttempt(itemLevel, star, {
+      safeguard: wantGuard,
+      mode,
+      discount30: false,
+      mvpTier: "none",
+    });
+    cost = c.mesos;
+    unverified = [...c.unverified];
+  } catch {
+    // costPerAttempt throws by name rather than inventing a divisor. A star
+    // whose divisor is not sourced is a star we refuse to price, not one we
+    // guess at.
+    return null;
+  }
+  if (!(p > 0) || !Number.isFinite(cost) || cost < 0) return null;
+  return { p, f, b, cost, unverified };
 }
 
 /** Gauss-Jordan with partial pivoting. n is at most 30 here. */
@@ -668,6 +893,14 @@ function solveLinear(a: number[][], rhs: number[][]): number[][] | null {
  *
  * Superior equipment is deliberately NOT priced: the guide says it "uses its
  * own harsher table" and does not give that table.
+ *
+ * WHAT CHANGED IN THIS WAVE: every per-tap number — success, fail, boom, meso
+ * cost, trace recovery star and the whole meaning of `safeguard` — now comes
+ * from lib/starforce.ts via tapModel(). The chain itself is unchanged, and it
+ * stays an EXACT linear solve rather than starforce.simulate()'s 20,000-trial
+ * Monte Carlo: advise() runs for 25 slots on every render, and a sampled mean
+ * that wobbles in the third digit would make the ranking flicker between
+ * frames for no gain in truth.
  */
 export function sfPlan(itemLevel: number, from: number, to: number, safeguard: boolean): SfPlan | null {
   if (!(itemLevel > 0) || to <= from) return null;
@@ -678,24 +911,19 @@ export function sfPlan(itemLevel: number, from: number, to: number, safeguard: b
   const cCost: number[] = [];
   const cTaps: number[] = [];
   const cBooms: number[] = [];
+  const soft = new Set<UnverifiedConstant>();
 
   for (let s = 0; s < n; s++) {
-    const rate = SF_RATES[s];
-    if (!rate) return null;
-    const { p } = rate;
-    if (!(p > 0)) return null;
-    // Safeguard turns the boom branch into an ordinary failure and doubles the
-    // bill for that tap; it is only sold up to SAFEGUARD_MAX_TO_STAR.
-    const guarded = safeguard && rate.b > 0 && s + 1 <= SAFEGUARD_MAX_TO_STAR;
-    const f = guarded ? rate.f + rate.b : rate.f;
-    const b = guarded ? 0 : rate.b;
-    const cost = PLACEHOLDER_SF_TAP_MESO(itemLevel, s) * (guarded ? SAFEGUARD_COST_MULT : 1);
+    const tap = tapModel(itemLevel, s, safeguard);
+    if (!tap) return null;
+    const { p, f, b, cost } = tap;
+    for (const u of tap.unverified) soft.add(u);
 
     const row = new Array<number>(n).fill(0);
     row[s] += 1 - f;
     if (s + 1 < n) row[s + 1] -= p;
     if (b > 0) {
-      const back = traceRecovery(s);
+      const back = sfTraceRecoveryStar(s);
       if (back < n) row[back] -= b;
     }
     A.push(row);
@@ -707,13 +935,24 @@ export function sfPlan(itemLevel: number, from: number, to: number, safeguard: b
   const sol = solveLinear(A, [cCost, cTaps, cBooms]);
   if (!sol) return null;
   const [mesos, taps, booms] = sol;
-  const out = { mesos: mesos[from], taps: taps[from], booms: booms[from], safeguard };
+  const unverified = [...soft];
+  const out: SfPlan = {
+    mesos: mesos[from],
+    taps: taps[from],
+    booms: booms[from],
+    safeguard,
+    unverified,
+    conf: confFromUnverified(unverified),
+  };
   if (![out.mesos, out.taps, out.booms].every((x) => Number.isFinite(x) && x >= 0)) return null;
   return out;
 }
 
-/** Safeguard doubles the bill and removes the boom; whether that is worth it
- *  depends on the level and the range, so solve both and take the cheaper. */
+/** Protection costs more per tap and removes (or, at 18+, trades away) the
+ *  boom, so whether it is worth it depends on the level and the range. Solve
+ *  both and take the cheaper in tap mesos — and note that at 18-21 the guarded
+ *  branch also has a LOWER success rate, so "cheaper" there is a real question
+ *  rather than a formality. */
 export function sfPlanBest(itemLevel: number, from: number, to: number): SfPlan | null {
   const plain = sfPlan(itemLevel, from, to, false);
   const guarded = sfPlan(itemLevel, from, to, true);
@@ -723,6 +962,9 @@ export function sfPlanBest(itemLevel: number, from: number, to: number): SfPlan 
 }
 
 /* ---------- line analysis ---------- */
+/** Boss-objective only. Kept exactly as it was: components/Planner.tsx imports
+ *  it and lib/farming.ts asserts parity against it over a corpus. New code
+ *  inside this file goes through deadLine() below instead. */
 export function isDeadLine(txt: string, main: MainStat): boolean {
   if (!txt) return false;
   const t = txt.toLowerCase();
@@ -730,6 +972,102 @@ export function isDeadLine(txt: string, main: MainStat): boolean {
   if (JUNK.test(t) || FLAT_DEF.test(t)) return true;
   if (/all ?stat/.test(t)) return false;
   return OFF[main].some((o) => new RegExp(`\\b${o}\\b`).test(t));
+}
+
+/* ---------- the farming seam ----------
+ *
+ * THE PROBLEM THIS SOLVES. isDeadLine() asks one question — "is this line
+ * worthless for bossing?" — and the answer is wrong for the one item set where
+ * it matters most. On a dedicated farming carrier, Boss Damage and Ignore DEF
+ * are the dead lines and Mesos Obtained is the premium one, and judging that
+ * ring by DEX% tells a player to reroll away the best line in the game.
+ * lib/farming.ts's isDeadLineFor(txt, main, objective, slot, dedicated) answers
+ * the right question, with every extra parameter defaulted so the boss path is
+ * bit-identical.
+ *
+ * WHY IT IS NOT A PLAIN IMPORT. It cannot be one. farming.ts reads this file's
+ * SLOTS at module scope, so a static import here is a cycle that kills the
+ * build with a temporal-dead-zone ReferenceError — measured, quoted at the top
+ * of this file. Editing farming.ts is another session's call.
+ *
+ * SO: a seam. `deadLine()` starts as isDeadLine() — today's exact behaviour,
+ * which is requirement 2's floor — and is upgraded in place the moment
+ * farming.ts is evaluated. Two things make that safe rather than racy:
+ *
+ *   1. The fallback and the upgrade AGREE on the boss objective. farming's own
+ *      __selfTest() asserts that parity over a corpus. The only verdicts that
+ *      can differ are the ones on a dedicated farm carrier, and a character
+ *      with no farm loadout never asks for one.
+ *   2. Installing invalidates the plan cache, so the next render recomputes.
+ *      Advice is recomputed constantly; it cannot get stuck on the fallback.
+ *
+ * The deferred import below is what actually performs the upgrade. It runs
+ * after this module's body has finished, which is precisely why it does not hit
+ * the cycle. An integrator who would rather wire it explicitly — from a
+ * component, where both modules are already evaluated — can call
+ * __useObjectiveDeadLine(isDeadLineFor) instead and drop the import. */
+
+export type ObjectiveDeadLine = (
+  txt: string,
+  main: MainStat,
+  objective?: FarmObjective,
+  slot?: string,
+  dedicated?: boolean,
+) => boolean;
+
+let objectiveDeadLine: ObjectiveDeadLine = isDeadLine;
+/** True once farming.ts's evaluator is in place. Exported so the UI can say
+ *  "boss-objective only" rather than silently showing farm advice that has not
+ *  loaded. */
+export let objectiveDeadLineInstalled = false;
+
+export function __useObjectiveDeadLine(fn: ObjectiveDeadLine | null): void {
+  objectiveDeadLine = fn ?? isDeadLine;
+  objectiveDeadLineInstalled = fn !== null;
+  planCache = new WeakMap();
+}
+
+// Deferred on purpose. See the comment block above; a static import here is a
+// build-breaking cycle.
+void import("./farming")
+  .then((m) => __useObjectiveDeadLine(m.isDeadLineFor))
+  .catch(() => {
+    /* The boss-objective fallback is already correct. Nothing to report. */
+  });
+
+/** The one line-verdict call inside this file.
+ *
+ *  It is the UNION of the two verdicts, not a replacement, and that is
+ *  deliberate. farming's farm objective declines to call anything dead on a
+ *  slot that cannot roll drop or meso — correct advice for a Boss Damage line
+ *  there, but it would also stop flagging an outright dead STR line on a
+ *  DEX character. OR-ing with the boss baseline means adopting farming's
+ *  evaluator can only ever ADD verdicts (Boss Damage and IED on a dedicated
+ *  farm carrier) and can never silently drop one this app already made. That
+ *  is requirement 2's floor, enforced here rather than assumed. */
+function deadLine(txt: string, main: MainStat, ctx?: LineCtx): boolean {
+  if (isDeadLine(txt, main)) return true;
+  if (!ctx || ctx.objective === "boss") return false;
+  return objectiveDeadLine(txt, main, ctx.objective, ctx.slot, ctx.dedicated);
+}
+
+/** What objective a given slot's item should be judged under.
+ *
+ *  rules.Character has no `loadouts` field yet; farming.CharacterWithLoadouts
+ *  adds one and extends Character, so reading it structurally works today and
+ *  becomes a plain field read on the day loadouts move onto Character. Nothing
+ *  is imported for it — a value import would be the same cycle. */
+interface LineCtx { objective: FarmObjective; slot: string; dedicated: boolean }
+interface OverlayLike { id?: string; kind?: string; over?: Record<string, unknown> }
+
+function lineCtx(ch: Character, slotId: string): LineCtx {
+  const loadouts = (ch as { loadouts?: readonly OverlayLike[] }).loadouts;
+  const farm = loadouts?.find((l) => l?.kind === "farm" || l?.id === "farm");
+  // Present in the overlay === a separate physical item the player does not
+  // boss with. Absent === shared with the boss preset, and farming.ts's own
+  // safety rule says a shared item is never judged for farming.
+  const dedicated = !!farm?.over && Object.prototype.hasOwnProperty.call(farm.over, slotId) && farm.over[slotId] != null;
+  return { objective: dedicated ? "farm" : "boss", slot: slotId, dedicated };
 }
 
 export function statPct(txt: string, main: MainStat): number {
@@ -805,12 +1143,23 @@ export function __setDamageModelEnabled(on: boolean): void {
  *  A product threshold, not a game constant — tune it freely. */
 export const EFF_FLOOR = 5e-4;
 
+/* The character-sheet targets. These were bare literals inside the advice
+ * sentences; they are named now because they are also the END POINT of a damage
+ * delta, which makes them load-bearing rather than decorative. They are
+ * PRODUCT TARGETS, not game constants — nothing in the game caps boss damage at
+ * 250% — so they are not in SOURCED and nothing needs to source them. Changing
+ * one changes both the sentence and the number, which is the point. */
+export const CRIT_DMG_TARGET = 60;
+export const IED_TARGET = 95;
+export const BOSS_TARGET = 250;
+
 interface Price { dmg: number; cost: number; conf: Conf; note?: string }
 
 // A wrong number presented as fact sends a real player to grind for nothing; an
 // estimate labelled as an estimate does not. Every rec whose COST rests on an
 // uncited constant says which constant.
-const SF_NOTE = "Cost estimated; the star force meso curve is not yet sourced.";
+const SF_NOTE =
+  "Cost is the per-star curve from lib/starforce.ts, which is one community source rather than a patch note — treat the ordering as solid and the total as an estimate.";
 const CUBE_NOTE = "Cost estimated; cube tier-up rates are not yet sourced.";
 const GENERIC_NOTE = "Cost estimated; this figure is not yet sourced.";
 
@@ -841,6 +1190,28 @@ function price(r: Rec, p: Price | null): Rec {
   return r;
 }
 
+/**
+ * A damage number with NO meso cost, for the upgrades that are paid for in time
+ * and arcane symbols rather than mesos.
+ *
+ * These deliberately do not get `cost` or `eff`, so they never enter the
+ * meso-efficiency ranking and keep their authored priority — a zero cost would
+ * divide into infinity and pin symbols to the top of the list forever, which is
+ * true and useless. But "120 symbol levels left" is the single biggest lever on
+ * this character's page, and shipping it as the only rec on the page with no
+ * number attached is the opposite failure. So: the size, without the ratio, and
+ * a sentence saying which currency it is actually billed in.
+ */
+function priceDamageOnly(r: Rec, dmg: number | null, conf: Conf, currency: string, note?: string): Rec {
+  if (dmg === null || !Number.isFinite(dmg) || dmg <= 0) return r;
+  r.dmg = dmg;
+  r.conf = conf;
+  r.t = `${fmtDmg(dmg)} — ${r.t}`;
+  const mark = `${currency}, so it is not in the meso ranking.${note ? ` ${note}` : ""}`;
+  r.w = r.w ? `${r.w} ${mark}` : mark;
+  return r;
+}
+
 /** A tier's single-line value, with "none" worth nothing. */
 function lineValue(band: PotBand, tier: Tier): number {
   return tier === "none" ? 0 : band[tier];
@@ -860,20 +1231,68 @@ function lineValue(band: PotBand, tier: Tier): number {
  * Recs the model could not price keep their authored pri. If NOTHING is priced
  * this collapses to the old `sort((a,b) => a.pri - b.pri)` — the property
  * __selfTest() checks.
+ *
+ * THE DOMINANCE PASS, and why it is not a second invented ranking. Some recs
+ * carry a damage number and no meso cost — symbol levels, hyper stats — and
+ * they are deliberately kept out of the eff sort, because dividing by zero
+ * mesos would pin them at the top forever. But leaving them entirely alone
+ * produced a genuinely absurd page on the reference character: "+35% damage,
+ * boss damage 159% → 250%, costs no mesos" sat at LATER while "+0.29% damage
+ * for free cubes" sat at NOW. That is not a judgement call the ranking is
+ * entitled to make. A rec that delivers MORE damage for FEWER mesos strictly
+ * dominates, on the ranking's own axis, so it inherits the top band. No
+ * threshold is invented: the bar is the best priced NOW rec's own damage.
  */
 function assignPri(pool: Rec[]): void {
   const actionable = pool.filter((r) => typeof r.eff === "number" && r.pri !== 4);
   if (!actionable.length) return;
-  const byEff = [...actionable].sort((a, b) => (b.eff as number) - (a.eff as number));
+  // Compare rather than subtract: two free upgrades are both Infinity and
+  // Infinity - Infinity is NaN, which leaves Array.sort's output undefined.
+  const byEff = [...actionable].sort((a, b) => {
+    const x = a.eff as number;
+    const y = b.eff as number;
+    return x === y ? (b.dmg ?? 0) - (a.dmg ?? 0) : y > x ? 1 : -1;
+  });
   byEff.forEach((r, i) => {
     const q = i / byEff.length;
     r.pri = (r.eff as number) < EFF_FLOOR ? 4 : q < 0.1 ? 1 : q < 0.4 ? 2 : 3;
     r.lv = r.pri === 1 ? "hi" : r.pri === 2 ? "mid" : "ok";
   });
+
+  const bar = Math.max(0, ...byEff.filter((r) => r.pri === 1).map((r) => r.dmg ?? 0));
+  if (!(bar > 0)) return;
+  for (const r of pool) {
+    if (typeof r.eff === "number") continue; // already in the meso ranking
+    if (r.pri === 4 || typeof r.dmg !== "number") continue;
+    if (r.dmg >= bar) {
+      r.pri = 1;
+      r.lv = "hi";
+    }
+  }
 }
 
+/**
+ * Priority band first, then damage per meso inside the band.
+ *
+ * A rec carrying a damage number and NO cost field came from priceDamageOnly(),
+ * which means its meso cost is zero — so its damage per meso is infinite in the
+ * same literal sense as a free cube's, and it sorts with the free upgrades.
+ * Ties among the free ones break on raw damage, which is why "+35% damage, boss
+ * damage 159% → 250%" now leads the page instead of trailing behind "1 wasted
+ * flame line". It is still kept out of `eff` itself: `eff` is a published field
+ * and writing Infinity into it would claim a meso price that was never paid.
+ * Unpriced recs keep their authored order at the bottom of their band.
+ */
 function sortRecs(recs: Rec[]): Rec[] {
-  return [...recs].sort((a, b) => a.pri - b.pri || (b.eff ?? -1) - (a.eff ?? -1));
+  const key = (r: Rec) =>
+    r.eff !== undefined ? r.eff : r.dmg !== undefined && r.cost === undefined ? Number.POSITIVE_INFINITY : -1;
+  // Subtraction is wrong here and always was: two free upgrades both score
+  // Infinity, and Infinity - Infinity is NaN, which makes Array.sort's result
+  // implementation-defined. Compare, do not subtract.
+  const desc = (x: number, y: number) => (x === y ? 0 : y > x ? 1 : -1);
+  return [...recs].sort(
+    (a, b) => a.pri - b.pri || desc(key(a), key(b)) || desc(a.dmg ?? -1, b.dmg ?? -1),
+  );
 }
 
 /* ---------- per-slot advice ---------- */
@@ -884,6 +1303,12 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
   const label = STAT_LABEL[main];
   const env = dmgEnvFor(ch);
   const st = ch.stats;
+  const ctx = lineCtx(ch, slot.id);
+  const farming = ctx.objective === "farm";
+  // What a reroll on THIS item should be aimed at. On a boss item that is main
+  // stat; on a dedicated farm carrier it is Mesos Obtained / Item Drop Rate,
+  // and saying "reroll toward DEX%" there is the bug this seam exists to fix.
+  const rerollTarget = farming ? "Mesos Obtained % / Item Drop Rate %" : `${label}%`;
   const recs: Rec[] = [];
   const add = (pri: Rec["pri"], lv: Rec["lv"], t: string, w = "") => {
     const r: Rec = { pri, lv, t, w };
@@ -912,7 +1337,7 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
   if (slot.pot !== "no" && !it.noPot) {
     const tier: Tier = it.pot || "none";
     const lines = (it.p || []).filter(Boolean);
-    const dead = lines.filter((l) => isDeadLine(l, main));
+    const dead = lines.filter((l) => deadLine(l, main, ctx));
     const pct = lines.reduce((a, l) => a + statPct(l, main), 0);
     const band = potLineValue(it.lvl || 0);
 
@@ -932,10 +1357,16 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
       const cost = tier === "unique" ? CUBE_BRIGHT_MESO * PLACEHOLDER_CUBES_TO_TIER_UP[tier] : 0;
       const conf: Conf = cost > 0 ? "placeholder" : "modelled";
       const note = cost > 0 ? CUBE_NOTE : undefined;
-      if (slot.pot === "stat") {
+      if (slot.pot === "stat" && !farming) {
         const gainPct = lineValue(band, next) - lineValue(band, tier);
         const flat = gainPct > 0 ? pctToFlat(ch, gainPct) : null;
         if (flat !== null) price(r, mk(relGain(st, withMain(st, flat), env), cost, conf, note));
+      } else if (slot.pot === "stat" && farming) {
+        // Tiering up a farm carrier is worth doing — Legendary is where meso
+        // and drop lines live — but its payoff is mesos per hour, not damage.
+        // Pricing it in damage would rank it against boss gear on an axis it
+        // does not compete on, so it goes out with the reason and no number.
+        r.w = `${r.w} On a farm carrier the payoff is a Mesos Obtained or Item Drop Rate line, which Legendary is the only tier that rolls — so this is worth more here than the damage model can express.`;
       } else if (slot.pot === "atk" && next === "legendary") {
         // Only the legendary step is priced here: it is the one whose payoff
         // the guide names (a boss-damage line), and PLACEHOLDER_POT_BOSS_LINE_PCT
@@ -946,10 +1377,30 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
 
     if (slot.pot === "stat") {
       if (dead.length) {
-        add(2, "mid", `${dead.length} dead line${dead.length > 1 ? "s" : ""} — reroll toward ${label}%.`,
-          `${dead.join(" · ")} does nothing for you.`);
+        add(2, "mid", `${dead.length} dead line${dead.length > 1 ? "s" : ""} — reroll toward ${rerollTarget}.`,
+          farming
+            ? `${dead.join(" · ")} does nothing against normal mobs. This item is in your farming loadout only, so rerolling it costs you no boss damage.`
+            : `${dead.join(" · ")} does nothing for you.`);
       }
-      if (tier === "legendary") {
+      if (farming) {
+        // THE POINT OF ADOPTING farming.isDeadLineFor, stated in advice rather
+        // than just in a verdict. A dedicated farm carrier is not a damage
+        // item, so the %main-stat milestone ladder below — "only 0% DEX, aim
+        // for 19.5%" — is the wrong question asked loudly, on the one item
+        // where the right answer is Mesos Obtained. The ladder is skipped here
+        // and nothing replaces its NUMBER: meso and drop lines pay out in
+        // mesos per hour, not in damage, and this file's model prices damage.
+        // lib/farming.ts's scoreFarming()/recommendFarmLoadout() are where that
+        // number lives; wiring them in is the farming page's job, not this
+        // file's, and inventing a damage figure for a meso line here would be
+        // exactly the confidently-wrong number the engine is built to refuse.
+        const already = (it.p || []).filter((l) => /meso|drop/i.test(l)).length;
+        add(already >= 2 ? 4 : 2, already >= 2 ? "ok" : "mid",
+          already >= 2
+            ? `${already} farm lines — this carrier is doing its job.`
+            : `Farm carrier: ${already} of 3 meso/drop lines.`,
+          "Judged for farming, not for bossing, because this item is in the farming loadout and nowhere else. Value is mesos per hour — see the farming page, not the damage model.");
+      } else if (tier === "legendary") {
         const good = round1(band.legendary * MILESTONE_LINES_GOOD);
         const done = round1(band.legendary * MILESTONE_LINES_DONE);
         if (pct < good) {
@@ -1004,8 +1455,12 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
       add(1, "hi", `Superior gear — caps at 15 stars, currently ${cur}.`,
         "Expensive per star. Consider a non-superior replacement that goes to 30 instead.");
     } else if (cur === 0) {
-      const r = add(1, "hi", "0 stars. This is free power sitting on the floor.",
-        "Stars 0–14 cannot boom. Push to 15 during a 5/10/15 event.");
+      // It used to say "free power sitting on the floor". With the real per-star
+      // curve in front of it that sentence now sits next to a nine-figure price
+      // tag and reads as a lie. Nothing below 15 can boom — that is what was
+      // actually free, and it is all this claims now.
+      const r = add(1, "hi", "0 stars. Nothing below 15 can boom, so this is risk-free.",
+        "Mesos and time only, no destruction. Push to 15 during a 5/10/15 event.");
       priceStars(r, it, ch, env, 0, Math.min(15, cap));
     } else if (cur < tgt) {
       const r = add(2, "mid", `${cur} → ${tgt} stars.`,
@@ -1026,7 +1481,11 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
 
   if (slot.fl && !it.noFl) {
     const fl = (it.f || []).filter(Boolean);
-    const badf = fl.filter((l) => isDeadLine(l, main));
+    // Flames are judged on the BOSS objective even on a farm carrier, and that
+    // is not an oversight: bonus stats have no Mesos Obtained or Item Drop Rate
+    // line to roll, so the farm objective has nothing different to say about
+    // them. Passing ctx here would be noise dressed as precision.
+    const badf = fl.filter((l) => deadLine(l, main));
     const advantaged = it.bossDrop
       ? " This is boss-drop gear, so it is flame advantaged — tier 4 minimum and up to tier 7. Worth more rerolls than ordinary gear."
       : "";
@@ -1081,7 +1540,7 @@ function priceStars(r: Rec, it: Item, ch: Character, env: DmgEnv, from: number, 
   if (dmg === null) return;
   const risky = p.booms >= 0.005;
   const head = risky
-    ? `Expected ${p.taps.toFixed(0)} taps and ${p.booms.toFixed(2)} booms ${p.safeguard ? "with" : "without"} Safeguard, counting the re-climb after each boom. Replacing a boomed item is not priced.`
+    ? `Expected ${p.taps.toFixed(0)} taps and ${p.booms.toFixed(2)} booms ${p.safeguard ? "with" : "without"} protection, counting the re-climb after each boom. Replacing a boomed item is not priced.`
     : `Expected ${p.taps.toFixed(0)} taps and no boom risk in this range.`;
 
   // The two branches are compared on tap mesos, and tap mesos are the only part
@@ -1090,14 +1549,28 @@ function priceStars(r: Rec, it: Item, ch: Character, env: DmgEnv, from: number, 
   // cheaper branch is the unguarded one, say what the guarded one would have
   // cost rather than letting an unpriced externality make the decision quietly.
   let guardLine = "";
-  if (risky && !p.safeguard && from < SAFEGUARD_MAX_TO_STAR) {
+  if (risky && !p.safeguard) {
     const g = sfPlan(it.lvl, from, to, true);
     if (g && g.booms < p.booms) {
-      guardLine = ` Safeguarding through ${SAFEGUARD_MAX_TO_STAR} costs ${fmtMeso(g.mesos)} for ${g.booms.toFixed(2)} booms instead — dearer in mesos, and the guide still says use it.`;
+      guardLine = ` The protected route costs ${fmtMeso(g.mesos)} for ${g.booms.toFixed(2)} booms instead — dearer in mesos, and above 17 stars it also lowers your success rate, which is already priced in here.`;
     }
   }
 
-  price(r, { dmg, cost: p.mesos, conf: "placeholder", note: `${head}${guardLine} ${SF_NOTE}` });
+  price(r, {
+    dmg,
+    cost: p.mesos,
+    conf: p.conf,
+    note: `${head}${guardLine} ${sfNote(p)}`,
+  });
+}
+
+/** Names the exact soft constants a star force quote leaned on, using
+ *  lib/starforce.ts's own labels, instead of one vague sentence for all of
+ *  them. Plus the one this file owns: what a star is actually worth. */
+function sfNote(p: SfPlan): string {
+  const names = p.unverified.map((u) => UNVERIFIED_LABEL[u]);
+  names.push("Stat and ATT gained per star (lib/rules.ts placeholder; starforce.ts declines to guess it)");
+  return `${SF_NOTE} Unverified inputs: ${names.join("; ")}.`;
 }
 
 function priceFlame(r: Rec, it: Item, ch: Character, env: DmgEnv): void {
@@ -1195,8 +1668,13 @@ export function advise(slot: SlotDef, ch: Character): Rec[] {
 function buildCharAdvice(ch: Character): Rec[] {
   const st = ch.stats;
   const label = STAT_LABEL[ch.main];
+  const env = dmgEnvFor(ch);
   const out: Rec[] = [];
-  const add = (pri: Rec["pri"], lv: Rec["lv"], t: string, w = "") => out.push({ pri, lv, t, w });
+  const add = (pri: Rec["pri"], lv: Rec["lv"], t: string, w = "") => {
+    const r: Rec = { pri, lv, t, w };
+    out.push(r);
+    return r;
+  };
 
   if (st.crit >= 100)
     add(1, "hi", `Crit rate is capped at ${st.crit}%.`,
@@ -1204,12 +1682,32 @@ function buildCharAdvice(ch: Character): Rec[] {
   else if (st.crit >= 95)
     add(2, "mid", `Crit rate ${st.crit}% — nearly capped.`, "Find the last few points cheaply, then stop investing.");
 
-  if (st.critdmg && st.critdmg < 60)
-    add(2, "mid", `Crit damage ${st.critdmg}% is low.`, "Hyper stat, gloves potential, link skills and legion. Target 60%+.");
-  if (st.ied && st.ied < 95)
-    add(2, "mid", `IED ${st.ied}% — push toward 95%.`, "Arcane bosses sit at 300% defense, Grandis at 380%.");
-  if (st.boss && st.boss < 250)
-    add(3, "mid", `Boss damage ${st.boss}%.`, "Hyper stat, weapon/secondary/emblem lines, familiars. Endgame is 300%+.");
+  if (st.critdmg && st.critdmg < CRIT_DMG_TARGET) {
+    const r = add(2, "mid", `Crit damage ${st.critdmg}% is low.`,
+      `Hyper stat, gloves potential, link skills and legion. Target ${CRIT_DMG_TARGET}%+.`);
+    priceDamageOnly(r, relGain(st, withCritDmg(st, CRIT_DMG_TARGET), env), "modelled",
+      "Paid for in hyper stat points and link levels, not mesos",
+      `That is the whole ${st.critdmg}% → ${CRIT_DMG_TARGET}% move.`);
+  }
+  if (st.ied && st.ied < IED_TARGET) {
+    const r = add(2, "mid", `IED ${st.ied}% — push toward ${IED_TARGET}%.`,
+      "Arcane bosses sit at 300% defense, Grandis at 380%.");
+    // IED is the ONE stat whose value does not cancel out of the ratio: it
+    // interacts with enemy defense, and ENEMY_DEF_ARCANE is uncited. So this
+    // number is the one on this page that genuinely moves if that constant is
+    // wrong, and it is labelled accordingly rather than sharing the 'modelled'
+    // badge with the stat gains.
+    priceDamageOnly(r, relGain(st, withIed(st, IED_TARGET), env), "placeholder",
+      "Paid for in hyper stat points, familiars and potential lines, not mesos",
+      `Assumes ${Math.round(ENEMY_DEF_ARCANE * 100)}% enemy defense, which is the one uncited number in this figure — against Grandis' ${Math.round(ENEMY_DEF_GRANDIS * 100)}% the same IED is worth more.`);
+  }
+  if (st.boss && st.boss < BOSS_TARGET) {
+    const r = add(3, "mid", `Boss damage ${st.boss}%.`,
+      `Hyper stat, weapon/secondary/emblem lines, familiars. Endgame is 300%+.`);
+    priceDamageOnly(r, relGain(st, withBoss(st, BOSS_TARGET - st.boss), env), "modelled",
+      "Hyper stat points and familiars cost no mesos; the weapon, secondary and emblem lines are cubes, which do",
+      `That is the whole ${st.boss}% → ${BOSS_TARGET}% move.`);
+  }
   if (st.hp && st.hp < 60000)
     add(2, "mid", `HP ${st.hp.toLocaleString()} is thin for Lucid/Will.`,
       "Max HP hyper stat, Decent Hyper Body on your bottom, Demon Avenger link.");
@@ -1217,17 +1715,23 @@ function buildCharAdvice(ch: Character): Rec[] {
   if (st.arcane) {
     const lv = Math.max(0, Math.round((st.arcane - 120) / 10));
     const left = 120 - lv;
-    if (left > 0)
-      add(1, "hi", `${left} Arcane symbol levels left (+${(left * 100).toLocaleString()} ${label}).`,
+    if (left > 0) {
+      const flat = left * 10 * ARCANE_MAIN_STAT_PER_FORCE;
+      const r = add(1, "hi", `${left} Arcane symbol levels left (+${flat.toLocaleString()} ${label}).`,
         `Arcane Power ${st.arcane} of 1,320. Symbol stat is flat and is not multiplied by your %stat — which is why %lines are worth less than they look right now.`);
+      priceDamageOnly(r, relGain(st, withMain(st, flat), env), "modelled",
+        "Paid for in daily Arcane River dailies, not mesos",
+        "It is the largest single number on this page, and the reason it does not sit at the top of the meso ranking is that dividing by a zero meso cost would pin it there forever.");
+    }
   }
   if (st.starforce && st.starforce < 260)
     add(2, "mid", `Total star force ${st.starforce}.`,
       "Everything at 17 stars is roughly 290+. One of the two biggest levers you have.");
 
-  // These are deliberately unpriced. Hyper stats and symbol levels are paid for
-  // in time and arcane symbols, not mesos, and dividing a damage gain by a meso
-  // cost of zero would put them permanently at the top of a meso ranking.
+  // Hyper stats and symbol levels stay OUT of the meso ranking: they are paid
+  // for in time and arcane symbols, and dividing a damage gain by a meso cost
+  // of zero would put them permanently at the top. They now carry the damage
+  // number without the ratio — see priceDamageOnly().
   // TODO: a second efficiency axis (damage per day of play) is the honest way
   // to rank these against gear.
   return out;
@@ -1282,6 +1786,28 @@ export function __selfTest(): { ok: boolean; failures: string[] } {
       const on = SLOTS.flatMap((s) => advise(s, ch));
       if (on.some((r) => r.pri < 1 || r.pri > 4)) failures.push("pri left the 1..4 range Planner.tsx indexes");
     }
+
+    // The guide table and the simulator's table are now two copies of the same
+    // data in two files. Two copies drift. This is the check that says so, in
+    // the only place that can compare them.
+    for (const row of STAR_ROWS_MODE1) {
+      const g = SF_RATES[row.from];
+      if (!g) continue;
+      const near = (a: number, b: number) => Math.abs(a - b) <= 0.0005;
+      if (!near(g.p, row.success) || !near(g.b, row.boom)) {
+        failures.push(
+          `star ${row.from}: guide-graph says ${(g.p * 100).toFixed(1)}%/${(g.b * 100).toFixed(2)}% boom, ` +
+            `starforce.STAR_ROWS says ${(row.success * 100).toFixed(1)}%/${(row.boom * 100).toFixed(2)}%`,
+        );
+      }
+    }
+
+    // The whole point of requirement 3, asserted rather than described: the
+    // deprecated curve must not be what anyone is quoted.
+    const lv200 = sfPlan(200, 11, 12, false);
+    if (lv200 && Math.abs(lv200.mesos - PLACEHOLDER_SF_TAP_MESO(200, 11)) < 1e6) {
+      failures.push("sfPlan is still quoting PLACEHOLDER_SF_TAP_MESO");
+    }
   } finally {
     __setDamageModelEnabled(prev);
   }
@@ -1299,14 +1825,23 @@ export function emptyCharacter(): Character {
 
 /** The demo every first-time visitor sees, and therefore the product pitch. It
  *  is the real character this app exists to serve: GMS Heroic Bow Master,
- *  Lv 244, 5.26M CP, at v.271. The 17 star-forceable pieces below add up to
+ *  Lv 244, 5,260,117 CP, at v.271. The 17 star-forceable pieces below add up to
  *  exactly the 188 total star force on the character sheet — if you edit one,
  *  edit stats.starforce to match. Bottom is empty on purpose: the Arcane Umbra
- *  archer overall occupies the top slot and fills it. */
+ *  archer overall occupies the top slot and fills it.
+ *
+ *  The stat block is now the account holder's stated reference sheet to the
+ *  digit, and is the same block as damage.REFERENCE_CHARACTER: DEX 20,689 /
+ *  ATT 1,471 / crit 98% / crit dmg 41.5% / boss 159% / IED 92.9% / Arcane Power
+ *  1,060 / star force 188 / HP 45,822. It previously carried DEX 19,860 and HP
+ *  44,190, which were close enough to look right and wrong enough that no
+ *  number computed from this page could be checked against the game. Two
+ *  modules disagreeing about the one character the whole app is calibrated on
+ *  is the sort of drift that makes every downstream figure unfalsifiable. */
 export function exampleCharacter(): Character {
   return {
-    name: "Archerroni", cls: "Bow Master", main: "dex", lvl: 244, cp: 5260000,
-    stats: { main: 19860, att: 1471, crit: 98, critdmg: 41.5, boss: 159, ied: 92.9, hp: 44190, arcane: 1060, starforce: 188 },
+    name: "Archerroni", cls: "Bow Master", main: "dex", lvl: 244, cp: 5260117,
+    stats: { main: 20689, att: 1471, crit: 98, critdmg: 41.5, boss: 159, ied: 92.9, hp: 45822, arcane: 1060, starforce: 188 },
     items: {
       hat: { name: "Arcane Umbra Archer Hat", lvl: 200, star: 17, pot: "legendary", sup: 0, bossDrop: true,
         p: ["DEX +12%", "DEX +9%", "All Stats +3%"], f: ["DEX +70", "All Stats +6%", "STR +40"] },

@@ -231,6 +231,74 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 .rec .why { display: block; color: var(--ink-3); font-size: .745rem; margin-top: 3px; line-height: 1.45; }
 .hint { color: var(--ink-3); font-size: .8rem; padding: 30px 14px; text-align: center; }
 
+/* ---------- the numbers on a recommendation ----------
+ * A recommendation the model could PRICE leads with its figures; one it could
+ * not keeps the plain shape it has always had, so an absent number never reads
+ * as a zero. */
+.rnums {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 5px;
+  margin: 0 0 5px;
+}
+.rnums .n {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: .7rem; line-height: 1.5; white-space: nowrap;
+  padding: 1px 6px; border-radius: 2px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--ink-2);
+}
+.rnums .n.dmg { font-size: .82rem; font-weight: 500; color: var(--ink); }
+.rnums .n.eff { color: var(--ink-3); }
+
+/* Confidence is carried by COLOUR on the figure itself, not only by the badge
+ * beside it — a number the model could not source must not be readable as a
+ * fact by someone who skims past the badge. */
+.rec.has-num.sourced .n.dmg { color: var(--good); border-color: rgba(95,211,155,.45); background: rgba(95,211,155,.08); }
+.rec.has-num.modelled .n.dmg { color: var(--gold-2); border-color: var(--gold-deep); background: rgba(240,192,96,.07); }
+.rec.has-num.placeholder .n.dmg,
+.rec.has-num.placeholder .n.cost,
+.rec.has-num.placeholder .n.eff {
+  color: var(--warn); border-color: rgba(240,169,79,.5); border-style: dashed;
+  background: rgba(240,169,79,.06);
+}
+
+.conf {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500;
+  padding: 2px 5px; border-radius: 2px; border: 1px solid; white-space: nowrap; cursor: help;
+}
+.conf.sourced { color: var(--good); border-color: rgba(95,211,155,.5); background: rgba(95,211,155,.09); }
+.conf.modelled { color: var(--blue); border-color: rgba(111,168,255,.5); background: rgba(111,168,255,.09); }
+.conf.placeholder { color: var(--warn); border-color: var(--warn); border-style: dashed; background: rgba(240,169,79,.09); }
+
+.conf-legend {
+  display: flex; flex-direction: column; gap: 4px;
+  background: var(--well); border: 1px solid var(--line-soft); border-radius: 3px;
+  padding: 8px 10px; font-size: .705rem; color: var(--ink-3); line-height: 1.4;
+}
+.conf-legend > span { display: flex; align-items: baseline; gap: 7px; }
+.conf-legend .conf { flex: 0 0 auto; cursor: default; }
+
+.rslot {
+  display: inline-block; margin-right: 6px;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: .55rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-3); border: 1px solid var(--line); border-radius: 2px; padding: 1px 4px;
+  vertical-align: 1px;
+}
+
+.ranktools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ranktools .sub-h { margin-right: auto; }
+.seg { display: flex; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.seg button {
+  background: transparent; border: 0; cursor: pointer; padding: 4px 9px;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: .56rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+}
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button:hover { color: var(--ink); background: rgba(255,255,255,.04); }
+.seg button.on { color: var(--gold-2); background: rgba(240,192,96,.1); }
+.railnote { margin: 0; font-size: .705rem; color: var(--ink-3); line-height: 1.45; }
+
 /* ---------- dialogs ---------- */
 .ed-back { position: fixed; inset: 0; z-index: 60; background: rgba(4,7,13,.78); backdrop-filter: blur(3px); padding: 24px; overflow: auto; }
 .ed-in {

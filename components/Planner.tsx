@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  SLOTS, TIER_LABEL, STAT_LABEL, advise, charAdvice, emptyCharacter,
-  exampleCharacter, isDeadLine, sfCap,
-  type Character, type Item, type Rec, type SlotDef, type Tier,
+  CONFIDENCE_VOCABULARY, SLOTS, TIER_LABEL, STAT_LABEL, advise,
+  emptyCharacter, exampleCharacter, isDeadLine, planAdvice, sfCap,
+  type Character, type Conf, type Item, type Rec, type SlotDef, type Tier,
 } from "@/lib/rules";
 import { getStore } from "@/lib/storage";
 import { resolveItem } from "@/lib/itemLookup";
@@ -16,12 +16,106 @@ import type { ItemHit } from "@/app/api/items/route";
 
 const PRI_LABEL = ["", "NOW", "SOON", "LATER", "DONE"];
 
-function RecRow({ r }: { r: Rec }) {
+/* ---------- the numbers ----------
+ * lib/rules.ts already formats its damage/cost prefix INTO Rec.t, because until
+ * this wave nothing rendered r.dmg / r.cost / r.eff and the string was the only
+ * way a number could reach the screen. Now that the fields are rendered as
+ * their own typed, confidence-marked chips, that prefix would appear twice.
+ *
+ * These two formatters are deliberate byte-for-byte mirrors of fmtDmg/fmtMeso
+ * in lib/rules.ts (which are module-private) so the prefix can be reconstructed
+ * EXACTLY and removed by equality, never by a regex that might eat a real title.
+ * If the engine ever changes its formatting the match simply fails and the full
+ * string renders as it does today — the failure mode is a duplicated number,
+ * not a lost one. */
+function fmtDmg(d: number): string {
+  const pct = d * 100;
+  const s = pct >= 10 ? pct.toFixed(0) : pct >= 0.1 ? pct.toFixed(1) : pct.toFixed(2);
+  return `${d >= 0 ? "+" : ""}${s}% dmg`;
+}
+function fmtMeso(m: number): string {
+  if (m <= 0) return "free";
+  if (m >= 1e9) return `${(m / 1e9).toFixed(2)}B mesos`;
+  if (m >= 1e6) return `${Math.round(m / 1e6)}M mesos`;
+  return `${Math.round(m / 1e3)}K mesos`;
+}
+/** eff is damage-fraction per 1e9 mesos. 0.0752 -> "+7.5%". */
+function fmtEff(e: number): string {
+  const pct = e * 100;
+  const s = pct >= 10 ? pct.toFixed(0) : pct >= 0.1 ? pct.toFixed(1) : pct.toFixed(2);
+  return `+${s}%`;
+}
+
+/** r.t with the engine's own number prefix removed, when it is present. */
+function bareTitle(r: Rec): string {
+  if (r.dmg === undefined) return r.t;
+  const priced = r.cost !== undefined ? `${fmtDmg(r.dmg)} · ${fmtMeso(r.cost)} — ` : null;
+  if (priced && r.t.startsWith(priced)) return r.t.slice(priced.length);
+  const dmgOnly = `${fmtDmg(r.dmg)} — `;
+  if (r.t.startsWith(dmgOnly)) return r.t.slice(dmgOnly.length);
+  return r.t;
+}
+
+const CONF_INFO: Record<Conf, { badge: string; meaning: string }> = Object.fromEntries(
+  CONFIDENCE_VOCABULARY.map((v) => [v.conf, { badge: v.badge, meaning: v.meaning }]),
+) as Record<Conf, { badge: string; meaning: string }>;
+
+/* One vocabulary, one badge. rules.Conf is the only confidence type that
+ * reaches this component — cubes' 'ranking-only' and farming's
+ * 'needs-measurement' are folded into it by rules.confFrom*() before a Rec is
+ * built, so there is nothing here to reconcile. */
+function ConfBadge({ conf }: { conf: Conf }) {
+  const info = CONF_INFO[conf];
+  return <span className={`conf ${conf}`} title={info.meaning}>{info.badge}</span>;
+}
+
+function ConfLegend() {
   return (
-    <div className={`rec ${r.lv}`}>
+    <div className="conf-legend">
+      {CONFIDENCE_VOCABULARY.map((v) => (
+        <span key={v.conf}>
+          <span className={`conf ${v.conf}`}>{v.badge}</span>
+          {v.meaning}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+const SLOT_NAME: Record<string, string> = Object.fromEntries(SLOTS.map((s) => [s.id, s.n]));
+
+/** How many of the ranked account-wide moves to show before "show all". */
+const TOP_N = 12;
+
+function RecRow({ r, showSlot }: { r: Rec; showSlot?: boolean }) {
+  // A rec the model could not price renders exactly as it did before this wave:
+  // priority chip, bold sentence, prose. No badge, no empty number slot, no
+  // implication that a missing figure is a zero.
+  const priced = r.dmg !== undefined;
+  const slotLabel = showSlot ? (r.slot === "character" ? "Character" : SLOT_NAME[r.slot ?? ""]) : null;
+  return (
+    // No conf on a priced rec should never happen — price() and
+    // priceDamageOnly() both set it — but if it ever did, the number falls back
+    // to neutral styling rather than borrowing a confidence it was not given.
+    <div className={`rec ${r.lv}${priced ? ` has-num${r.conf ? ` ${r.conf}` : ""}` : ""}`}>
       <span className="p">{PRI_LABEL[r.pri]}</span>
       <span>
-        <b>{r.t}</b>
+        {priced && (
+          <span className="rnums">
+            <span className="n dmg">{fmtDmg(r.dmg as number)}</span>
+            <span className="n cost">
+              {r.cost === undefined ? "no meso cost" : fmtMeso(r.cost)}
+            </span>
+            {r.eff !== undefined && Number.isFinite(r.eff) && (r.eff as number) > 0 && (
+              <span className="n eff" title="Damage per 1 billion mesos — the sort key">
+                {fmtEff(r.eff as number)} dmg / 1B
+              </span>
+            )}
+            {r.conf && <ConfBadge conf={r.conf} />}
+          </span>
+        )}
+        {slotLabel && <span className="rslot">{slotLabel}</span>}
+        <b>{bareTitle(r)}</b>
         {r.w && <span className="why">{r.w}</span>}
       </span>
     </div>
@@ -34,6 +128,13 @@ export default function Planner() {
   const [editing, setEditing] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
   const [ready, setReady] = useState(false);
+  // Damage per meso is the right axis and the wrong answer to "what next?" when
+  // the player has no budget: a 3M flame roll beats a 1.5B tier-up on the ratio
+  // while being a fiftieth of the step. The engine has no budget input yet, so
+  // the honest stopgap is to let the reader flip the axis rather than to pick
+  // one and hide the other.
+  const [sortBy, setSortBy] = useState<"eff" | "dmg">("eff");
+  const [showAll, setShowAll] = useState(false);
   const store = useMemo(() => getStore(), []);
 
   useEffect(() => {
@@ -89,7 +190,21 @@ export default function Planner() {
   }, [store]);
 
   const slot = SLOTS.find((s) => s.id === hover) || null;
-  const recs = slot ? advise(slot, ch) : charAdvice(ch);
+  // With no slot under the cursor the rail used to show charAdvice() — seven
+  // sentences about the character sheet. planAdvice() is the same pool plus all
+  // 25 slots, already ranked account-wide by damage per meso, which is the
+  // question ("what do I do next?") the character-only list could not answer.
+  // Nothing is lost: every charAdvice rec is in this list.
+  const plan = useMemo(() => planAdvice(ch), [ch]);
+  const ranked = useMemo(() => {
+    if (sortBy === "eff") return plan; // the engine's own order
+    // Compare, never subtract: dmg is absent on unpriced recs and eff can be
+    // Infinity, and subtraction on either makes Array.sort's result undefined.
+    const desc = (x: number, y: number) => (x === y ? 0 : y > x ? 1 : -1);
+    return [...plan].sort((a, b) => desc(a.dmg ?? -1, b.dmg ?? -1));
+  }, [plan, sortBy]);
+  const recs = slot ? advise(slot, ch) : ranked;
+  const shown = slot || showAll ? recs : recs.slice(0, TOP_N);
   const label = STAT_LABEL[ch.main];
 
   const statGroups: Array<[string, Array<[string, keyof Character["stats"]]>]> = [
@@ -213,7 +328,7 @@ export default function Planner() {
 
       {/* advice */}
       <section className="card">
-        <h2>{slot ? slot.n : "Character"}</h2>
+        <h2>{slot ? slot.n : "Best next upgrades"}</h2>
         <div className="tip">
           {slot && (
             <>
@@ -261,12 +376,48 @@ export default function Planner() {
               <div className="sub-h">What to do next</div>
             </>
           )}
-          {recs.length ? (
+          {!slot && (
+            <>
+              <div className="ranktools">
+                <span className="sub-h">
+                  {recs.length} move{recs.length === 1 ? "" : "s"}, account-wide
+                </span>
+                <div className="seg" role="group" aria-label="Sort recommendations">
+                  <button
+                    className={sortBy === "eff" ? "on" : ""}
+                    aria-pressed={sortBy === "eff"}
+                    onClick={() => setSortBy("eff")}
+                  >
+                    Per meso
+                  </button>
+                  <button
+                    className={sortBy === "dmg" ? "on" : ""}
+                    aria-pressed={sortBy === "dmg"}
+                    onClick={() => setSortBy("dmg")}
+                  >
+                    Raw damage
+                  </button>
+                </div>
+              </div>
+              <p className="railnote">
+                {sortBy === "eff"
+                  ? "Ranked by damage per meso with no budget, so a 3M flame roll outranks a 1.5B tier-up on the ratio while being a fiftieth of the step. Flip to raw damage for size."
+                  : "Ranked by the size of the gain alone. Cost is ignored here — the top of this list can be the worst value on the page."}
+              </p>
+              <ConfLegend />
+            </>
+          )}
+          {shown.length ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-              {recs.map((r, i) => <RecRow r={r} key={i} />)}
+              {shown.map((r, i) => <RecRow r={r} showSlot={!slot} key={i} />)}
             </div>
           ) : (
             <p className="hint">Fill in your stats to get advice.</p>
+          )}
+          {!slot && recs.length > TOP_N && (
+            <button className="btn" style={{ alignSelf: "flex-start" }} onClick={() => setShowAll(!showAll)}>
+              {showAll ? `Show top ${TOP_N}` : `Show all ${recs.length}`}
+            </button>
           )}
         </div>
       </section>

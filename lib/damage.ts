@@ -1,30 +1,91 @@
 /**
- * MapleStory GMS damage model — the quantitative core.
+ * MapleStory GMS damage model — the quantitative core, plus the bridge that
+ * makes it usable from the app.
  *
  * WHAT THIS IS
  * A single comparable number (`damageIndex`) for a character, plus the marginal
- * value of each stat. It exists so the planner can answer "which stat is worth
- * more" in numbers instead of adjectives.
+ * value of each stat, plus a `Character` -> inputs adapter so the planner can
+ * call it with the object it already holds.
  *
  * WHAT THIS IS EXPLICITLY NOT — do not assume a later piece can read these off
  * this module, because they are not modelled here at all:
  *   - attack speed, skill rotations, cooldowns, summon uptime
- *   - per-class final-damage passives, hyper skill passives, buff uptime
+ *   - per-class final-damage passives (LISTED in CLASS_CONSTANTS, not applied
+ *     by default — see `classBuffs` on the adapter), buff uptime
  *   - meso cost of any upgrade
  *   - hit count / lines per skill, mob count, positioning
  * `damageIndex` is therefore NOT DPS and must never be labelled as such in the
  * UI. It answers "which stat is worth more", never "how long to kill Lucid".
- * Cost-per-damage is the next piece and needs a meso-cost curve module; that
- * module should consume `damageIndex`, never reimplement the math.
  *
- * DEPENDENCIES: none, deliberately. No React, no storage, no ./rules import.
- * Every value here is a plain number so this is testable without a browser.
+ * ────────────────────────────────────────────────────────────────────────────
+ * UNITS. THIS IS THE ONE THING THAT WILL BITE YOU.
+ *
+ * Everything in THIS module that is percentage-shaped is a FRACTION:
+ *   92.9% IED -> 0.929,  41.5% crit damage -> 0.415,  159% boss -> 1.59.
+ *
+ * `lib/cubes.ts` has its own damage model whose percentage-shaped fields are
+ * PRINTED PERCENTS (92.9, 41.5, 159). The two models are NOT interchangeable
+ * and mixing them is a silent 100x error, so the names here are unit-tagged:
+ *
+ *   this module            lib/cubes.ts          units
+ *   FractionalDamageInputs DamageInputs          fraction vs printed percent
+ *   stackIedFractions      stackIed              fraction vs printed percent
+ *
+ * There is exactly ONE place a printed percent becomes a fraction in this file:
+ * `printedPercentToFraction`. Every adapter routes through it. If you are
+ * writing `/ 100` anywhere else, you are re-introducing the bug.
+ *
+ * `DamageInputs` survives here only as a deprecated alias of
+ * `FractionalDamageInputs` because lib/farming.ts still imports that name.
+ * See WHAT THE OTHER SIDE MUST DO at the bottom of this header.
+ * ────────────────────────────────────────────────────────────────────────────
+ *
+ * DEPENDENCIES: none, deliberately. No React, no storage, no ./rules import —
+ * the `Character` adapter takes a structural `CharacterLike`, which
+ * `rules.Character` satisfies without either file importing the other. Every
+ * value here is a plain number so this is testable without a browser.
  *
  * SCOPE OF TRUTH: GMS Heroic (Reboot), patch v.271. KMS numbers are not GMS
  * numbers and are not used.
  *
+ * WHAT THE OTHER SIDE MUST DO (neither file is owned by this change):
+ *   1. lib/cubes.ts should rename its `DamageInputs` -> `PercentDamageInputs`
+ *      and its `stackIed` -> `stackIedPercents`. Its units are printed
+ *      percents; the names should say so, exactly as they now do here.
+ *   2. lib/farming.ts should import `FractionalDamageInputs` instead of
+ *      `DamageInputs` (line 77). Once it does, delete the deprecated alias.
+ *   Until (1) lands, never write `import { stackIed } from "./cubes"` in the
+ *   same file as anything from here.
+ *
  * @module lib/damage
  */
+
+/* ============================================================================
+ * UNIT DISCIPLINE
+ *
+ * The single conversion point. Named so that reading a call site tells you the
+ * units on both sides without opening this file.
+ * ==========================================================================*/
+
+/** Printed percents are hundredths. Exported so the number 100 never appears
+ *  bare in a conversion anywhere in this codebase. */
+export const PRINTED_PERCENT_DIVISOR = 100;
+
+/**
+ * THE conversion. A stat window reads "Ignore DEF 92.9%"; the model wants
+ * 0.929. Nothing else in this module divides by 100.
+ *
+ * Call it at the boundary — the moment a number leaves `rules.Stats`, a form
+ * field, or an OCR import — never in the middle of a formula.
+ */
+export function printedPercentToFraction(printed: number): number {
+  return printed / PRINTED_PERCENT_DIVISOR;
+}
+
+/** The inverse, for putting a model number back on screen. */
+export function fractionToPrintedPercent(fraction: number): number {
+  return fraction * PRINTED_PERCENT_DIVISOR;
+}
 
 /* ============================================================================
  * GAME CONSTANTS
@@ -37,17 +98,31 @@
  * ==========================================================================*/
 
 /**
+ * How much of a constant is real. Deliberately the SAME three string literals
+ * as `rules.Conf` so one UI badge renders both vocabularies — this module does
+ * not add a fourth confidence language to the three that already exist.
+ *   - `sourced`     a named source states this exact number for modern GMS.
+ *   - `modelled`    the inputs are sourced, the number here needs a documented
+ *                   interpretation on top (e.g. a buff-uptime assumption).
+ *   - `placeholder` legacy or inferred. Do not budget against it.
+ */
+export type ConstantConf = "sourced" | "modelled" | "placeholder";
+
+/**
+ * LEGACY per-weapon table. Kept because `inputsFromPercentStats` takes a weapon
+ * key and lib/farming.ts calls it with "bow", but it is NOT the number a modern
+ * GMS class uses — see CLASS_CONSTANTS, which supplies the class multiplier
+ * that actually occupies this slot today.
+ *
  * Source: https://ayumilove.net/maplestory-formula/ weapon table, corroborated
  * by https://maplestorywiki.net/w/Damage_Formula for the shape of the range
- * formula.
+ * formula. `placeholder` for every modern class: for a Bow Master the correct
+ * figure is 1.3 (CLASS_CONSTANTS), not the 1.15 legacy Bow row — a 13%
+ * difference on the absolute number.
  *
- * UNVERIFIED for post-class-multiplier GMS. This table is the legacy per-weapon
- * table. Modern GMS folds a per-CLASS multiplier into the same slot: community
- * sources give Bowmaster 1.3 while the legacy Bow row gives 1.15. That is a 13%
- * difference on the absolute number. It cancels exactly in every ratio this
- * module reports (see `marginal`), so the percentages are unaffected — but the
- * absolute `damageIndex` is only comparable against itself, never against a
- * number produced by any other tool.
+ * It cancels exactly in every ratio this module reports (see `marginal`), so
+ * percentages are unaffected — but an absolute `damageIndex` built on this
+ * table is comparable only against itself.
  */
 export const WEAPON_MULTIPLIER: Record<string, number> = {
   bow: 1.15,
@@ -65,14 +140,8 @@ export const WEAPON_MULTIPLIER: Record<string, number> = {
   polearm: 1.49,
 };
 
-/**
- * Source: community class-multiplier tables surfaced alongside the AyumiLove
- * weapon table ("for Bowmasters ... the class multiplier is 1.3").
- * UNVERIFIED. Swap `WEAPON_MULTIPLIER.bow` for this to test the other reading.
- * Kept as a separate named export rather than a second table so there is
- * exactly one place a correction has to land.
- */
-export const BOW_CLASS_MULTIPLIER_ALTERNATIVE = 1.3;
+/** Confidence of every row of WEAPON_MULTIPLIER, as one value. */
+export const WEAPON_MULTIPLIER_CONF: ConstantConf = "placeholder";
 
 /**
  * Source: https://maplestorywiki.net/w/Damage_Formula — the crit branch of the
@@ -86,6 +155,10 @@ export const BOW_CLASS_MULTIPLIER_ALTERNATIVE = 1.3;
  * midpoint; a single crit rolls somewhere inside the band. Using the midpoint
  * is correct for expected damage and wrong for any variance question, which is
  * fine here because this module only ever reports expectations.
+ *
+ * The band matters for one Bow Master constant specifically: Bow Expert raises
+ * MINIMUM crit damage, which moves the band's floor, not the printed stat. See
+ * `BOW_MASTER.minCritDamageBonus`.
  */
 export const CRIT_DAMAGE_BASE = 0.35;
 
@@ -97,10 +170,10 @@ export const CRIT_DAMAGE_BAND_HIGH = 0.5;
 /**
  * Source: https://ayumilove.net/maplestory-formula/ — initial mastery by combat
  * type: melee 20%, ranged (bow/crossbow) 15%, magic 25%.
- * UNVERIFIED as a modern GMS number, and note this is BASE mastery before job
- * skills; a fourth-job Bowmaster sits far higher (community figures put total
- * Bowmaster mastery near 85–90%). Mastery does not affect maximum damage, only
- * how close minimum sits to it — see `expectedDamageIndex`.
+ * Corroborated for bow specifically by https://grandislibrary.com/explorers/bowmaster,
+ * which itemises Bow Master's 85% mastery as "Base: +15%, Bow Expert: +70%".
+ * Mastery does not affect maximum damage, only how close minimum sits to it —
+ * see `expectedDamageIndex` and `damageRange`.
  */
 export const RANGE_MASTERY_BASE = 0.15;
 
@@ -175,27 +248,252 @@ export const DEFAULT_PDR = 3.0;
 export const DEF_TERM_FLOOR = 0;
 
 /* ============================================================================
+ * CLASS CONSTANTS
+ *
+ * ONE exported table, keyed by class. Adding Night Lord later is a new entry in
+ * CLASS_CONSTANTS and nothing else — never a change to a formula above.
+ *
+ * ONLY BOW MASTER IS PRESENT. That is deliberate and binding: no constant for
+ * any other class has been researched, and a confidently wrong damage number
+ * sends a real person to grind for nothing. `classConstantsFor` returns
+ * undefined for an unknown class and every caller degrades visibly.
+ * ==========================================================================*/
+
+/** Structurally identical to `rules.MainStat`; declared locally to keep this
+ *  module import-free. */
+export type StatKey = "dex" | "str" | "int" | "luk";
+
+/** One sourced number, with the citation attached to the value rather than to a
+ *  comment that can drift away from it. */
+export interface SourcedNumber {
+  /** The value, in this module's units (fractions for anything percentage-shaped). */
+  readonly value: number;
+  readonly conf: ConstantConf;
+  /** URL or publication the value came from. */
+  readonly source: string;
+  /** What the number means and what would make it wrong. */
+  readonly note: string;
+}
+
+export interface ClassConstants {
+  /** Exactly as `Character.cls` spells it. */
+  readonly cls: string;
+  readonly mainStat: StatKey;
+  readonly secondaryStat: StatKey;
+  /** Key into WEAPON_MULTIPLIER. Retained for the legacy path only. */
+  readonly weaponKey: string;
+  /**
+   * The multiplier this class actually uses in the modern range formula. This
+   * supersedes the WEAPON_MULTIPLIER row for `weaponKey`, which is legacy.
+   */
+  readonly weaponMultiplier: SourcedNumber;
+  /** Total weapon mastery as a fraction. Moves minimum damage only. */
+  readonly mastery: SourcedNumber;
+  /**
+   * Final Damage sources, each as a fraction. They stack MULTIPLICATIVELY, not
+   * additively — fold them with `stackFinalDamage`. NOT applied by default:
+   * every one of these is a skill with an uptime this module cannot know.
+   */
+  readonly finalDamageSources: readonly SourcedNumber[];
+  /**
+   * Bow Expert raises MINIMUM Critical Damage, which lifts the floor of the
+   * [20%, 50%] crit band rather than adding to the printed Critical Damage
+   * stat. Whether the stat window already reflects it is unresolved, so it is
+   * listed and never applied. See `critBandMidpointWithMinBonus`.
+   */
+  readonly minCritDamageBonus: SourcedNumber;
+  /**
+   * Class contributions that the stat window ALREADY SHOWS. Listed so nobody
+   * re-adds them on top of `Character.stats` — adding these would double-count.
+   * Read-only documentation; no function in this file consumes them.
+   */
+  readonly alreadyInStatWindow: {
+    readonly critRate: SourcedNumber;
+    readonly critDamage: SourcedNumber;
+    readonly bossDamage: SourcedNumber;
+    readonly ied: SourcedNumber;
+    readonly attPct: SourcedNumber;
+  };
+}
+
+/**
+ * Bow Master, GMS, v.271.
+ *
+ * Primary source for every figure below unless stated otherwise:
+ * https://grandislibrary.com/explorers/bowmaster — the class overview's base
+ * stat table, which itemises each figure by the skill that grants it.
+ */
+export const BOW_MASTER: ClassConstants = {
+  cls: "Bow Master",
+  mainStat: "dex",
+  secondaryStat: "str",
+  weaponKey: "bow",
+  weaponMultiplier: {
+    value: 1.3,
+    conf: "sourced",
+    source: "https://grandislibrary.com/explorers/bowmaster — 'Weapon Multiplier: 1.3x'",
+    note:
+      "The modern GMS range formula folds a per-CLASS multiplier into the weapon slot. " +
+      "The legacy AyumiLove Bow row says 1.15; Grandis Library states 1.3 for Bow Master " +
+      "specifically and that is the GMS-current reading. This is the single largest lever " +
+      "on the absolute index (13% between the two) and it is directly falsifiable: see " +
+      "`damageRange`, which must match the character's in-game stat window.",
+  },
+  mastery: {
+    value: 0.85,
+    conf: "sourced",
+    source:
+      "https://grandislibrary.com/explorers/bowmaster — 'Weapon Mastery: 85% (Base +15%, Bow Expert +70%)'; " +
+      "corroborated by https://maplestorywiki.net/w/Bow_Master/Skills — Bow Expert Lv30 'Bow Mastery: +70%'",
+    note:
+      "Total mastery at Bow Expert level 30. Affects MINIMUM damage only: max range is " +
+      "untouched, so `damageIndex` (a max-range index) does not use it. Consumed by " +
+      "`expectedDamageIndex` and `damageRange`.",
+  },
+  finalDamageSources: [
+    {
+      value: 0.3,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Reckless Hunt: Bow: +30%' under Final Damage",
+      note: "Toggle buff. Costs HP to maintain; uptime is a player choice this module cannot see.",
+    },
+    {
+      value: 0.06,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Enchanted Quiver: +6%' under Final Damage",
+      note: "Buff skill. Uptime not modelled.",
+    },
+    {
+      value: 0.16,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Armor Break: +16%' under Final Damage",
+      note: "Applied as a debuff on the target; also the source of +40% of the class IED. Uptime not modelled.",
+    },
+    {
+      value: 0.15,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Quiver Barrage: +15%' under Final Damage",
+      note: "Conditional, the least reliable of the four. Excluded from any 'realistic' subset a caller builds.",
+    },
+  ],
+  minCritDamageBonus: {
+    value: 0.15,
+    conf: "modelled",
+    source:
+      "https://maplestorywiki.net/w/Bow_Master/Skills — Bow Expert Lv30 'Minimum Critical Damage: +15%'. " +
+      "Grandis Library's crit-damage row lists 'Bow Expert: +16%', a 1pp disagreement.",
+    note:
+      "UNRESOLVED and therefore never applied: this raises the FLOOR of the [20%, 50%] crit " +
+      "band, moving the band midpoint from 35% to 42.5%, i.e. a +7.5pp effective crit damage. " +
+      "It is unknown whether the printed Critical Damage stat already folds it in. Applying it " +
+      "on a stat window that already includes it double-counts by 7.5pp. Use " +
+      "`critBandMidpointWithMinBonus` to price the other reading.",
+  },
+  alreadyInStatWindow: {
+    critRate: {
+      value: 0.75,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Crit Rate: +75% (base +5%)'",
+      note: "From Adventurer's Curiosity +10, Critical Shot +40, Sharp Eyes +20. DO NOT ADD: stats.crit already shows it.",
+    },
+    critDamage: {
+      value: 0.31,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Crit Damage: +31%'",
+      note: "Sharp Eyes +15, Bow Expert +16. DO NOT ADD: stats.critdmg already shows it.",
+    },
+    bossDamage: {
+      value: 0.2,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Boss Damage: Concentration +20%'",
+      note: "DO NOT ADD: stats.boss already shows it.",
+    },
+    ied: {
+      value: 0.5725,
+      conf: "sourced",
+      source:
+        "https://grandislibrary.com/explorers/bowmaster — Marksmanship +25%, Armor Break +40%, " +
+        "Sharp Eyes-Guardbreak +5%, stacked multiplicatively: 1 - 0.75*0.60*0.95 = 0.5725",
+      note: "DO NOT ADD: stats.ied already shows the stacked total. Re-stacking would push 92.9% to 97.0%.",
+    },
+    attPct: {
+      value: 0.29,
+      conf: "sourced",
+      source: "https://grandislibrary.com/explorers/bowmaster — 'Attack: +29% (49%) +150 (200)'",
+      note:
+        "DO NOT ADD: the GMS stat window's ATT figure is already the post-multiplier total. " +
+        "This is why the adapter defaults attPct to 0 — that default is CORRECT, not a degradation.",
+    },
+  },
+};
+
+/**
+ * THE class table. One entry, on purpose.
+ *
+ * Keys are lower-cased and space-stripped so "Bow Master", "Bowmaster" and
+ * "bow master" all resolve. Add a class by adding a row, never by editing a
+ * formula above.
+ */
+export const CLASS_CONSTANTS: Record<string, ClassConstants> = {
+  bowmaster: BOW_MASTER,
+};
+
+/** Normalise a `Character.cls` string into a CLASS_CONSTANTS key. */
+export function classKey(cls: string): string {
+  return cls.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+/**
+ * Look up a class. Returns undefined for anything but Bow Master — callers must
+ * degrade visibly rather than substituting a guess, because there is no
+ * defensible "average class" multiplier.
+ */
+export function classConstantsFor(cls: string): ClassConstants | undefined {
+  return CLASS_CONSTANTS[classKey(cls)];
+}
+
+/** Final Damage buckets multiply. Fold a subset of `finalDamageSources` into
+ *  one fraction suitable for `FractionalDamageInputs.finalDmgPct`. */
+export function stackFinalDamage(sources: readonly SourcedNumber[]): number {
+  return sources.reduce((acc, s) => acc * (1 + s.value), 1) - 1;
+}
+
+/**
+ * The crit-band midpoint under the OTHER reading of Bow Expert: if the printed
+ * Critical Damage stat does NOT already include the minimum-crit-damage bonus,
+ * the band is [low + bonus, high] and its midpoint replaces CRIT_DAMAGE_BASE.
+ * At the Bow Master value that is 0.425 rather than 0.35 — about +2.8% index.
+ * Exported so the question can be priced instead of argued about.
+ */
+export function critBandMidpointWithMinBonus(minCritDamageBonus: number): number {
+  const low = Math.min(CRIT_DAMAGE_BAND_LOW + minCritDamageBonus, CRIT_DAMAGE_BAND_HIGH);
+  return (low + CRIT_DAMAGE_BAND_HIGH) / 2;
+}
+
+/* ============================================================================
  * TYPES
  * ==========================================================================*/
 
 /**
  * Every input the GMS formula needs. All percentage-shaped fields are
- * FRACTIONS, not display percentages: 41.5% crit damage is `0.415`, 159% boss
+ * FRACTIONS, not printed percentages: 41.5% crit damage is `0.415`, 159% boss
  * damage is `1.59`, 92.9% IED is `0.929`. `att` and the stat fields are flat
- * game values. Use `inputsFromPercentStats` if you are holding display numbers.
+ * game values.
  *
- * Widened deliberately past the current `Stats` shape in ./rules: a model fed a
- * character with no Damage % and no Final Damage % is off by a large
- * multiplicative factor, which is worse than having no model.
+ * The name says `Fractional` because lib/cubes.ts exports a `DamageInputs` of
+ * the same shape in PRINTED PERCENTS. Never construct one of these by hand from
+ * a stat window — use `fractionalInputsFromCharacter` or
+ * `inputsFromPercentStats`, both of which route through
+ * `printedPercentToFraction`.
  */
-export interface DamageInputs {
-  /** Flat primary stat, totalled as the stat window shows it (DEX for a Bowmaster). */
+export interface FractionalDamageInputs {
+  /** Flat primary stat, totalled as the stat window shows it (DEX for a Bow Master). */
   mainStat: number;
-  /** Flat secondary stat (STR for a Bowmaster). 0 is a legitimate value, not a sentinel. */
+  /** Flat secondary stat (STR for a Bow Master). 0 is a legitimate value, not a sentinel. */
   secondaryStat: number;
   /** Flat weapon attack / magic attack as shown in the stat window. */
   att: number;
-  /** ATT % from potentials and buffs, as a fraction. */
+  /** ATT % from potentials and buffs, as a fraction. Normally 0 — see BOW_MASTER.alreadyInStatWindow.attPct. */
   attPct: number;
   /** Damage % (the generic bucket), as a fraction. */
   dmgPct: number;
@@ -207,14 +505,18 @@ export interface DamageInputs {
   critRate: number;
   /** Critical Damage % as shown in the stat window, as a fraction. Excludes CRIT_DAMAGE_BASE. */
   critDmg: number;
-  /** EFFECTIVE Ignore Enemy DEF as a fraction, i.e. already stacked. See `stackIed`. */
+  /** EFFECTIVE Ignore Enemy DEF as a fraction, i.e. already stacked. See `stackIedFractions`. */
   ied: number;
-  /** Key into WEAPON_MULTIPLIER, e.g. "bow". */
-  weaponMultiplier: string;
+  /**
+   * The range multiplier. A NUMBER, resolved from CLASS_CONSTANTS or
+   * WEAPON_MULTIPLIER before it gets here, so the model never has to guess what
+   * an unknown string meant.
+   */
+  weaponMultiplier: number;
   /**
    * Weapon mastery as a fraction. NOT used by `damageIndex` — mastery moves the
-   * minimum of the range, never the maximum. Consumed only by
-   * `expectedDamageIndex`, which averages over the range.
+   * minimum of the range, never the maximum. Consumed by `expectedDamageIndex`
+   * and `damageRange`.
    */
   mastery: number;
   /**
@@ -233,6 +535,14 @@ export interface DamageInputs {
   skillPct: number;
 }
 
+/**
+ * @deprecated Ambiguous name — lib/cubes.ts exports `DamageInputs` in PRINTED
+ * PERCENTS while this one is FRACTIONS. Import `FractionalDamageInputs`.
+ * Retained only because lib/farming.ts:77 still imports this spelling; delete
+ * once that import is updated.
+ */
+export type DamageInputs = FractionalDamageInputs;
+
 export interface DamageOptions {
   /** Target boss PDR as a fraction: 3.0 = 300%. Look one up in BOSS_PDR. */
   pdr: number;
@@ -240,8 +550,10 @@ export interface DamageOptions {
 
 export type DamageWarningCode =
   | "def-term-floored"
+  | "unknown-class"
   | "unknown-weapon"
   | "crit-rate-overcapped"
+  | "assumed-default"
   | "unused-input";
 
 export interface DamageWarning {
@@ -321,20 +633,24 @@ export function clampDefTerm(x: number): number {
 }
 
 /**
- * Effective IED after stacking one more source. IED sources multiply their
- * REMAINDERS rather than adding, which is the whole reason the last points are
- * expensive to buy and cheap to own.
+ * Effective IED after stacking one more source, IN FRACTIONS. IED sources
+ * multiply their REMAINDERS rather than adding, which is the whole reason the
+ * last points are expensive to buy and cheap to own.
+ *
+ * NAME: lib/cubes.ts exports a `stackIed` doing the same arithmetic on PRINTED
+ * PERCENTS. `stackIedFractions(0.929, 0.20)` and `stackIed(92.9, 20)` are both
+ * right and mixing them is a 100x error, so neither is called `stackIed` here.
  *
  * Source: https://grandislibrary.com/content/stat-terms — "calculated
  * multiplicatively ... it is impossible to obtain 100% IED". VERIFIED.
  */
-export function stackIed(current: number, line: number): number {
+export function stackIedFractions(current: number, line: number): number {
   return 1 - (1 - current) * (1 - line);
 }
 
-/** Fold a list of IED sources into one effective value. */
-export function stackIedAll(sources: readonly number[]): number {
-  return sources.reduce<number>((acc, s) => stackIed(acc, s), 0);
+/** Fold a list of IED sources, all fractions, into one effective value. */
+export function stackIedAllFractions(sources: readonly number[]): number {
+  return sources.reduce<number>((acc, s) => stackIedFractions(acc, s), 0);
 }
 
 /**
@@ -355,15 +671,21 @@ export function iedWall(pdr: number): number {
  * and nothing is folded together, so a term can be checked against its source
  * without unpicking an expression.
  */
-export function damageBreakdown(inputs: DamageInputs, opts: DamageOptions): DamageBreakdown {
+export function damageBreakdown(
+  inputs: FractionalDamageInputs,
+  opts: DamageOptions,
+): DamageBreakdown {
   const warnings: DamageWarning[] = [];
 
-  const wm = WEAPON_MULTIPLIER[inputs.weaponMultiplier];
-  const weapon = typeof wm === "number" ? wm : 1;
-  if (typeof wm !== "number") {
+  const weapon = Number.isFinite(inputs.weaponMultiplier) && inputs.weaponMultiplier > 0
+    ? inputs.weaponMultiplier
+    : 1;
+  if (weapon !== inputs.weaponMultiplier) {
     warnings.push({
       code: "unknown-weapon",
-      message: `Unknown weapon "${inputs.weaponMultiplier}" — using a multiplier of 1. Absolute numbers are wrong; ratios are unaffected.`,
+      message:
+        `Weapon multiplier ${String(inputs.weaponMultiplier)} is not a usable number — using 1. ` +
+        `Absolute numbers are wrong; ratios are unaffected.`,
     });
   }
 
@@ -373,7 +695,7 @@ export function damageBreakdown(inputs: DamageInputs, opts: DamageOptions): Dama
   if (inputs.critRate > 1) {
     warnings.push({
       code: "crit-rate-overcapped",
-      message: `Crit rate is ${(inputs.critRate * 100).toFixed(1)}% — everything above 100% is dead. Move it to crit damage.`,
+      message: `Crit rate is ${fractionToPrintedPercent(inputs.critRate).toFixed(1)}% — everything above 100% is dead. Move it to crit damage.`,
     });
   }
 
@@ -402,22 +724,22 @@ export function damageBreakdown(inputs: DamageInputs, opts: DamageOptions): Dama
     warnings.push({
       code: "def-term-floored",
       message:
-        `Effective IED ${(inputs.ied * 100).toFixed(1)}% is below the ${(iedWall(opts.pdr) * 100).toFixed(1)}% wall for a ` +
-        `${(opts.pdr * 100).toFixed(0)}% defence boss. In game you would deal 1 damage per hit. ` +
+        `Effective IED ${fractionToPrintedPercent(inputs.ied).toFixed(1)}% is below the ${fractionToPrintedPercent(iedWall(opts.pdr)).toFixed(1)}% wall for a ` +
+        `${fractionToPrintedPercent(opts.pdr).toFixed(0)}% defence boss. In game you would deal 1 damage per hit. ` +
         `This number is floored and is not a damage figure — fix IED before reading anything else here.`,
     });
   }
 
-  for (const [name, value] of [
-    ["skillPct", inputs.skillPct],
-    ["mastery", inputs.mastery],
-  ] as const) {
-    if (value !== 0) {
-      warnings.push({
-        code: "unused-input",
-        message: `${name} is carried but not applied by damageIndex — it cancels in every marginal, so no comparison on this page is affected.`,
-      });
-    }
+  // Only skillPct earns this warning. `mastery` is also unused HERE, but it has
+  // real consumers in this module (`damageRange`, `expectedDamageIndex`) and the
+  // Character adapter always sets it from the class table, so warning on it
+  // would fire on every single character and mean nothing.
+  if (inputs.skillPct !== 0) {
+    warnings.push({
+      code: "unused-input",
+      message:
+        "skillPct is carried but not applied by damageIndex — it cancels in every marginal, so no comparison on this page is affected.",
+    });
   }
 
   const damageIndexValue = range * damageTerm * fdTerm * critTerm * defTerm;
@@ -431,7 +753,7 @@ export function damageBreakdown(inputs: DamageInputs, opts: DamageOptions): Dama
     rawDefTerm,
     damageIndex: damageIndexValue,
     warnings,
-    meaningful: rawDefTerm > 0 && typeof wm === "number",
+    meaningful: rawDefTerm > 0 && weapon === inputs.weaponMultiplier,
   };
 }
 
@@ -440,7 +762,7 @@ export function damageBreakdown(inputs: DamageInputs, opts: DamageOptions): Dama
  * emphatically not DPS. Only ever compare it against another `damageIndex`
  * produced by this same module with the same constants.
  */
-export function damageIndex(inputs: DamageInputs, opts: DamageOptions): number {
+export function damageIndex(inputs: FractionalDamageInputs, opts: DamageOptions): number {
   return damageBreakdown(inputs, opts).damageIndex;
 }
 
@@ -450,9 +772,38 @@ export function damageIndex(inputs: DamageInputs, opts: DamageOptions): number {
  * place mastery is used. Kept separate from `damageIndex` because a mastery
  * factor is common to every stat comparison and would only obscure the audit.
  */
-export function expectedDamageIndex(inputs: DamageInputs, opts: DamageOptions): number {
+export function expectedDamageIndex(
+  inputs: FractionalDamageInputs,
+  opts: DamageOptions,
+): number {
   const m = Math.min(Math.max(inputs.mastery, 0), MASTERY_CAP);
   return damageIndex(inputs, opts) * ((1 + m) / 2);
+}
+
+/**
+ * THE FALSIFIABLE CHECK.
+ *
+ * Damage Range is the one number in this whole model that the game prints back
+ * at the player, on the stat window, with no opaque Nexon formula in between.
+ * It is `weaponMultiplier * (4*main + secondary) * att/100`, with the minimum
+ * being `max * mastery`.
+ *
+ * If `max` here does not match what the character's stat window shows, the
+ * class constants are wrong and everything downstream is wrong with them. That
+ * is a much better test than comparing an index to Combat Power, which is a
+ * different, undocumented formula.
+ */
+export function damageRange(inputs: FractionalDamageInputs): { min: number; max: number } {
+  const weapon = Number.isFinite(inputs.weaponMultiplier) && inputs.weaponMultiplier > 0
+    ? inputs.weaponMultiplier
+    : 1;
+  const max =
+    weapon *
+    (STAT_MULTIPLIER_MAIN * inputs.mainStat + inputs.secondaryStat) *
+    (inputs.att / 100) *
+    (1 + inputs.attPct);
+  const m = Math.min(Math.max(inputs.mastery, 0), MASTERY_CAP);
+  return { min: max * m, max };
 }
 
 /* ============================================================================
@@ -469,9 +820,9 @@ export function expectedDamageIndex(inputs: DamageInputs, opts: DamageOptions): 
  */
 function diffPct(
   base: number,
-  inputs: DamageInputs,
+  inputs: FractionalDamageInputs,
   opts: DamageOptions,
-  patch: Partial<DamageInputs>,
+  patch: Partial<FractionalDamageInputs>,
 ): number {
   if (base === 0) return 0;
   return (damageIndex({ ...inputs, ...patch }, opts) / base - 1) * 100;
@@ -485,7 +836,7 @@ function diffPct(
  * directly comparable to each other but are NOT additive — buying two of them
  * does not gain the sum, because the terms multiply.
  */
-export function marginal(inputs: DamageInputs, opts: DamageOptions): Marginal[] {
+export function marginal(inputs: FractionalDamageInputs, opts: DamageOptions): Marginal[] {
   const base = damageIndex(inputs, opts);
   const rows: Marginal[] = [
     {
@@ -551,14 +902,14 @@ export function marginal(inputs: DamageInputs, opts: DamageOptions): Marginal[] 
       label: "+1 effective IED point",
       delta: 0.01,
       gainPct: diffPct(base, inputs, opts, { ied: Math.min(1, inputs.ied + 0.01) }),
-      // The brief's framing — "at 92.9% IED the next point is worth far less
-      // than at 50%" — is the opposite of what the formula does, and coding it
-      // as written would teach the wrong lesson. For a FIXED boss the damage
-      // term is linear in EFFECTIVE IED: d/di of (1 - P(1-i)) is exactly P, a
-      // constant. Because the denominator shrinks as IED rises, the RELATIVE
-      // gain per effective point actually RISES near the cap. The real
-      // diminishing return lives entirely in the stacking step — see
-      // marginalIedLine, which is the number a player buying a cube needs.
+      // The framing "at 92.9% IED the next point is worth far less than at 50%"
+      // is the opposite of what the formula does, and coding it as written would
+      // teach the wrong lesson. For a FIXED boss the damage term is linear in
+      // EFFECTIVE IED: d/di of (1 - P(1-i)) is exactly P, a constant. Because
+      // the denominator shrinks as IED rises, the RELATIVE gain per effective
+      // point actually RISES near the cap. The real diminishing return lives
+      // entirely in the stacking step — see marginalIedLine, which is the number
+      // a player buying a cube needs.
       note: "Per EFFECTIVE point. Effective points get harder to buy near the cap, not less valuable — see the IED line figure.",
     },
   ];
@@ -576,14 +927,16 @@ export function marginal(inputs: DamageInputs, opts: DamageOptions): Marginal[] 
  *
  * Show `effectiveIedPoints` next to `gainPct` in the UI. Showing either alone
  * teaches the wrong lesson.
+ *
+ * @param lineValue the line as a FRACTION: "Ignore DEF +20%" is 0.20.
  */
 export function marginalIedLine(
-  inputs: DamageInputs,
+  inputs: FractionalDamageInputs,
   lineValue: number,
   opts: DamageOptions = { pdr: DEFAULT_PDR },
 ): IedLineResult {
   const before = damageBreakdown(inputs, opts);
-  const newIed = stackIed(inputs.ied, lineValue);
+  const newIed = stackIedFractions(inputs.ied, lineValue);
   const effectiveIedPoints = (newIed - inputs.ied) * 100;
   const after = damageBreakdown({ ...inputs, ied: newIed }, opts);
   const gainPct = before.damageIndex === 0 ? 0 : (after.damageIndex / before.damageIndex - 1) * 100;
@@ -612,7 +965,7 @@ export function marginalIedLine(
  *        inventing a constant about a specific player's gear.
  */
 export function marginalMainStatLine(
-  inputs: DamageInputs,
+  inputs: FractionalDamageInputs,
   opts: DamageOptions,
   linePct: number,
   baseStatPortion: number,
@@ -621,28 +974,248 @@ export function marginalMainStatLine(
   const gained = inputs.mainStat * baseStatPortion * linePct;
   return {
     stat: "mainStat",
-    label: `+${(linePct * 100).toFixed(0)}% main stat line`,
+    label: `+${fractionToPrintedPercent(linePct).toFixed(0)}% main stat line`,
     delta: linePct,
     gainPct: diffPct(base, inputs, opts, { mainStat: inputs.mainStat + gained }),
-    note: `Assumes ${(baseStatPortion * 100).toFixed(0)}% of your stat is base stat the line can multiply.`,
+    note: `Assumes ${fractionToPrintedPercent(baseStatPortion).toFixed(0)}% of your stat is base stat the line can multiply.`,
   };
 }
 
 /* ============================================================================
- * ADAPTERS AND FIXTURES
+ * THE BRIDGE: Character -> FractionalDamageInputs
  * ==========================================================================*/
 
 /**
- * Display-percentage shape, i.e. what the stat window and the planner's own
- * inputs hold: 41.5 rather than 0.415.
+ * The shape this module needs off a character. `rules.Character` satisfies it
+ * structurally, so the planner can pass one straight in and neither file has to
+ * import the other. If `rules.Stats` grows a field, widen this — do not import.
+ */
+export interface CharacterLike {
+  readonly cls: string;
+  readonly lvl: number;
+  readonly stats: {
+    /** PRINTED. Total main stat as the stat window shows it. */
+    readonly main: number;
+    /** PRINTED. Total weapon attack — already includes ATT% multipliers. */
+    readonly att: number;
+    /** PRINTED PERCENT. 98 means 98%. */
+    readonly crit: number;
+    /** PRINTED PERCENT. 41.5 means 41.5%. */
+    readonly critdmg: number;
+    /** PRINTED PERCENT. 159 means 159%. */
+    readonly boss: number;
+    /** PRINTED PERCENT, already stacked. 92.9 means 92.9%. */
+    readonly ied: number;
+  };
+}
+
+/**
+ * How much of the class's own buff stack to fold into Final Damage.
+ *   - "none"         (default) finalDmgPct = 0 unless the caller passes one.
+ *   - "all-buffs-up" the full multiplicative stack from CLASS_CONSTANTS, i.e.
+ *                    every listed skill active simultaneously. That is a
+ *                    ceiling, not a realistic sustained figure.
+ * There is deliberately no middle option: no source gives buff uptimes, so a
+ * "realistic" preset would be an invented constant. A caller who wants a subset
+ * builds it explicitly with `stackFinalDamage`.
+ */
+export type ClassBuffMode = "none" | "all-buffs-up";
+
+export interface CharacterAdapterOptions {
+  /** Target boss PDR as a fraction. Defaults to DEFAULT_PDR (3.0). */
+  readonly pdr?: number;
+  /** See ClassBuffMode. Defaults to "none". */
+  readonly classBuffs?: ClassBuffMode;
+  /** Flat secondary stat (STR for a Bow Master). `Character` does not carry it. Defaults to 0. */
+  readonly secondaryStat?: number;
+  /** Damage % as a PRINTED PERCENT, if the caller knows it. `Character` does not carry it. Defaults to 0. */
+  readonly dmgPctPrinted?: number;
+  /** Final Damage % as a PRINTED PERCENT. Overrides `classBuffs` when supplied. Defaults to the classBuffs result. */
+  readonly finalDmgPctPrinted?: number;
+  /** ATT % as a PRINTED PERCENT. Defaults to 0, which is CORRECT — stats.att is already post-multiplier. */
+  readonly attPctPrinted?: number;
+  /**
+   * Force a multiplier instead of resolving one from the class table. Use for
+   * the unverified-class path or to A/B the 1.3 vs legacy-1.15 reading.
+   */
+  readonly weaponMultiplierOverride?: number;
+}
+
+/** What the adapter produced, and every assumption it had to make to produce it. */
+export interface CharacterAdaptation {
+  readonly inputs: FractionalDamageInputs;
+  readonly opts: DamageOptions;
+  /** The class row used, or undefined when the class is not in CLASS_CONSTANTS. */
+  readonly classConstants: ClassConstants | undefined;
+  /** One plain sentence per defaulted field. Render these next to any number derived from them. */
+  readonly assumptions: string[];
+  readonly warnings: DamageWarning[];
+}
+
+/**
+ * THE adapter. `rules.Character` holds PRINTED percents; the model wants
+ * FRACTIONS. This is the only function in the app that spans that boundary for
+ * a whole character, and it routes every field through
+ * `printedPercentToFraction`, so a call site cannot get the 100x wrong.
  *
- * ASSUMPTION RECORDED: this is structurally compatible with the widened `Stats`
- * interface in ./rules that another agent is adding (`main`, `att`, `crit`,
- * `critdmg`, `boss`, `ied`, plus the new `dmgPct`, `finalDmg`, `attPct`,
- * `secondary`, `mastery`). It is declared locally rather than imported so this
- * module stays dependency-free and cannot be broken by a change over there. If
- * the field names in ./rules land differently, fix the mapping here, not the
- * model.
+ * DEFAULTS, and what each one assumes — all of them also come back in
+ * `assumptions` so the UI can say them out loud:
+ *
+ *   secondaryStat  0.  `Character` has no STR field. A Bow Master's STR
+ *                  contributes at 1x against DEX's 4x, so a realistic ~1,500
+ *                  STR is worth about 1.8% of range. UNDERSTATES the index by
+ *                  that much; cancels in every marginal except main stat's.
+ *   attPct         0.  NOT a degradation — GMS prints total ATT in the stat
+ *                  window, already multiplied. Anything else double-counts.
+ *   dmgPct         0.  `Character` has no Damage% field and GMS does not print
+ *                  one. Bow Master's own passives alone are +6% baseline
+ *                  (BOW_MASTER.alreadyInStatWindow is explicit that boss% IS
+ *                  printed but damage% is not). UNDERSTATES the index, and this
+ *                  is the one default that also biases a comparison: because
+ *                  boss% and damage% share one additive bucket, a zero damage%
+ *                  makes the boss-damage marginal LOOK BETTER than it is.
+ *   finalDmgPct    0.  Not printed anywhere in game. Bow Master's sourced
+ *                  sources multiply to +83.8% with everything up. A pure common
+ *                  factor: it changes the absolute index and no comparison at
+ *                  all. Pass classBuffs:"all-buffs-up" to include it.
+ *   mastery        class value (0.85 for Bow Master), else RANGE_MASTERY_BASE.
+ *                  Unused by damageIndex; used by damageRange.
+ *   pdr            DEFAULT_PDR, 3.0 — the Arcane River standard.
+ */
+export function fractionalInputsFromCharacter(
+  ch: CharacterLike,
+  options: CharacterAdapterOptions = {},
+): CharacterAdaptation {
+  const assumptions: string[] = [];
+  const warnings: DamageWarning[] = [];
+
+  const cc = classConstantsFor(ch.cls);
+  if (!cc) {
+    warnings.push({
+      code: "unknown-class",
+      message:
+        `"${ch.cls}" is not in the class table — only Bow Master is modelled. ` +
+        `Falling back to the legacy bow weapon multiplier (${WEAPON_MULTIPLIER.bow}), which is a placeholder ` +
+        `for every modern class. Ratios on this page still hold; the absolute number does not.`,
+    });
+  }
+
+  const weaponMultiplier =
+    options.weaponMultiplierOverride ??
+    cc?.weaponMultiplier.value ??
+    WEAPON_MULTIPLIER.bow;
+
+  const mastery = cc?.mastery.value ?? RANGE_MASTERY_BASE;
+  if (!cc) {
+    assumptions.push(
+      `Mastery defaulted to the ranged base ${fractionToPrintedPercent(RANGE_MASTERY_BASE).toFixed(0)}% because the class is unknown. Affects minimum damage only.`,
+    );
+  }
+
+  const secondaryStat = options.secondaryStat ?? 0;
+  if (options.secondaryStat === undefined) {
+    assumptions.push(
+      "Secondary stat assumed 0 — the character sheet does not record it. A Bow Master's STR adds at 1x against DEX's 4x, so a realistic value would raise range by roughly 1-2%.",
+    );
+  }
+
+  const attPct = printedPercentToFraction(options.attPctPrinted ?? 0);
+  if (options.attPctPrinted === undefined) {
+    assumptions.push(
+      "ATT% assumed 0. This is correct, not missing: the GMS stat window's ATT figure is already the post-multiplier total, so adding ATT% again would double-count.",
+    );
+  }
+
+  const dmgPct = printedPercentToFraction(options.dmgPctPrinted ?? 0);
+  if (options.dmgPctPrinted === undefined) {
+    assumptions.push(
+      "Damage% assumed 0 — the game does not print it and the character sheet does not record it. The real value is positive, so the index is low AND the boss-damage row of the marginal table is optimistic (boss% and damage% share one additive bucket).",
+    );
+  }
+
+  const classBuffs: ClassBuffMode = options.classBuffs ?? "none";
+  let finalDmgPct: number;
+  if (options.finalDmgPctPrinted !== undefined) {
+    finalDmgPct = printedPercentToFraction(options.finalDmgPctPrinted);
+    assumptions.push(
+      `Final Damage taken from the caller: +${options.finalDmgPctPrinted.toFixed(2)}%.`,
+    );
+  } else if (classBuffs === "all-buffs-up" && cc) {
+    finalDmgPct = stackFinalDamage(cc.finalDamageSources);
+    assumptions.push(
+      `Final Damage +${fractionToPrintedPercent(finalDmgPct).toFixed(2)}% assumes every ${cc.cls} buff in the table is active at once (${cc.finalDamageSources.length} sources, stacked multiplicatively). That is a ceiling, not a sustained figure. It is a common factor: it moves the absolute index and changes no comparison.`,
+    );
+  } else {
+    finalDmgPct = 0;
+    assumptions.push(
+      "Final Damage assumed 0 — it is not printed in game and not recorded on the sheet. A Bow Master's sourced skills multiply to roughly +84% with everything up. Purely a common factor: the index is low, every marginal is unaffected.",
+    );
+  }
+
+  const inputs: FractionalDamageInputs = {
+    mainStat: ch.stats.main,
+    secondaryStat,
+    att: ch.stats.att,
+    attPct,
+    dmgPct,
+    bossPct: printedPercentToFraction(ch.stats.boss),
+    finalDmgPct,
+    critRate: printedPercentToFraction(ch.stats.crit),
+    critDmg: printedPercentToFraction(ch.stats.critdmg),
+    ied: printedPercentToFraction(ch.stats.ied),
+    weaponMultiplier,
+    mastery,
+    charLevel: ch.lvl,
+    // Deliberately 0 and deliberately not configurable here: it cancels in every
+    // ratio and this module does not model skills.
+    skillPct: 0,
+  };
+
+  return {
+    inputs,
+    opts: { pdr: options.pdr ?? DEFAULT_PDR },
+    classConstants: cc,
+    assumptions,
+    warnings,
+  };
+}
+
+/** One-liner for the common case. Prefer `fractionalInputsFromCharacter` when
+ *  the UI should show the assumptions, which is most of the time. */
+export function damageIndexForCharacter(
+  ch: CharacterLike,
+  options: CharacterAdapterOptions = {},
+): number {
+  const a = fractionalInputsFromCharacter(ch, options);
+  return damageIndex(a.inputs, a.opts);
+}
+
+/** Breakdown plus adapter assumptions, which is what an explainable UI needs. */
+export function characterBreakdown(
+  ch: CharacterLike,
+  options: CharacterAdapterOptions = {},
+): DamageBreakdown & { assumptions: string[]; range: number } {
+  const a = fractionalInputsFromCharacter(ch, options);
+  const b = damageBreakdown(a.inputs, a.opts);
+  return { ...b, warnings: [...a.warnings, ...b.warnings], assumptions: a.assumptions };
+}
+
+/** Marginal table straight off a character. */
+export function marginalForCharacter(
+  ch: CharacterLike,
+  options: CharacterAdapterOptions = {},
+): Marginal[] {
+  const a = fractionalInputsFromCharacter(ch, options);
+  return marginal(a.inputs, a.opts);
+}
+
+/* ============================================================================
+ * LEGACY ADAPTER
+ * ==========================================================================*/
+
+/**
+ * Printed-percentage shape, i.e. what a stat window and the planner's own form
+ * inputs hold: 41.5 rather than 0.415.
  */
 export interface PercentStats {
   main: number;
@@ -658,54 +1231,159 @@ export interface PercentStats {
   mastery?: number;
 }
 
-/** Convert display percentages to model fractions. */
+/**
+ * Convert printed percentages to model fractions.
+ *
+ * KEPT for lib/farming.ts, which calls it with a weapon-key string. New code
+ * should use `fractionalInputsFromCharacter`, which resolves the class table
+ * and reports its assumptions. This path silently uses the LEGACY
+ * WEAPON_MULTIPLIER row — for a Bow Master that is 1.15 where the class table
+ * says 1.3.
+ *
+ * @param weaponMultiplierKey key into WEAPON_MULTIPLIER, e.g. "bow". Unknown
+ *        keys resolve to 1 and `damageBreakdown` raises `unknown-weapon`.
+ */
 export function inputsFromPercentStats(
   s: PercentStats,
-  weaponMultiplier: string,
+  weaponMultiplierKey: string,
   charLevel: number,
-): DamageInputs {
+): FractionalDamageInputs {
+  const wm = WEAPON_MULTIPLIER[weaponMultiplierKey];
   return {
     mainStat: s.main,
     secondaryStat: s.secondary ?? 0,
     att: s.att,
-    attPct: (s.attPct ?? 0) / 100,
-    dmgPct: (s.dmgPct ?? 0) / 100,
-    bossPct: s.boss / 100,
-    finalDmgPct: (s.finalDmg ?? 0) / 100,
-    critRate: s.crit / 100,
-    critDmg: s.critdmg / 100,
-    ied: s.ied / 100,
-    weaponMultiplier,
-    mastery: (s.mastery ?? 0) / 100,
+    attPct: printedPercentToFraction(s.attPct ?? 0),
+    dmgPct: printedPercentToFraction(s.dmgPct ?? 0),
+    bossPct: printedPercentToFraction(s.boss),
+    finalDmgPct: printedPercentToFraction(s.finalDmg ?? 0),
+    critRate: printedPercentToFraction(s.crit),
+    critDmg: printedPercentToFraction(s.critdmg),
+    ied: printedPercentToFraction(s.ied),
+    // NaN rather than a silent 1 so damageBreakdown's unknown-weapon warning fires.
+    weaponMultiplier: typeof wm === "number" ? wm : NaN,
+    mastery: printedPercentToFraction(s.mastery ?? 0),
     charLevel,
     skillPct: 0,
   };
 }
 
-/**
- * The live character this planner was built for, as a locked test vector.
- * GMS Heroic, v.271, Bow Master Lv 244.
+/* ============================================================================
+ * THE REFERENCE CHARACTER
  *
- * `secondaryStat`, `attPct`, `dmgPct` and `finalDmgPct` are 0 because they were
- * never captured — they are NOT known to be zero. `finalDmgPct` in particular
- * is almost certainly non-zero for a Bowmaster and its absence makes the
- * absolute index low. Every ratio this module reports is unaffected by
- * `finalDmgPct` (it is a common factor) but `dmgPct` DOES move the boss-damage
- * marginal, so that row is optimistic until the field is filled in.
+ * The whole point of the model is that it can be checked against a real
+ * character. This is that character, as PRINTED on the stat window.
+ * ==========================================================================*/
+
+/**
+ * Archerroni — GMS Heroic, v.271, Bow Master Lv 244, the live character this
+ * planner exists to serve. Every field is as the game PRINTS it.
+ *
+ * NOTE a discrepancy worth resolving by someone who can open the game:
+ * `rules.exampleCharacter()` carries main 19860 / hp 44190 / cp 5260000 while
+ * the account holder's own reading is 20689 / 45822 / 5260117. The numbers here
+ * are the account holder's. A 4% difference in DEX moves the absolute index by
+ * 4% and no ratio at all.
  */
-export const LIVE_CHARACTER: DamageInputs = {
-  mainStat: 19051,
-  secondaryStat: 0,
-  att: 1471,
-  attPct: 0,
-  dmgPct: 0,
-  bossPct: 1.59,
-  finalDmgPct: 0,
-  critRate: 0.98,
-  critDmg: 0.415,
-  ied: 0.929,
-  weaponMultiplier: "bow",
-  mastery: 0,
-  charLevel: 244,
-  skillPct: 0,
+export const REFERENCE_CHARACTER: CharacterLike & { readonly cp: number; readonly hp: number } = {
+  cls: "Bow Master",
+  lvl: 244,
+  cp: 5260117,
+  hp: 45822,
+  stats: {
+    main: 20689,
+    att: 1471,
+    crit: 98,
+    critdmg: 41.5,
+    boss: 159,
+    ied: 92.9,
+  },
 };
+
+/**
+ * @deprecated Use REFERENCE_CHARACTER (printed units) with
+ * `fractionalInputsFromCharacter`. Kept as a ready-made fraction fixture.
+ */
+export const LIVE_CHARACTER: FractionalDamageInputs =
+  fractionalInputsFromCharacter(REFERENCE_CHARACTER).inputs;
+
+export interface ReferenceCheck {
+  /** Max damage range — the number the player can read off the stat window. */
+  maxRange: number;
+  /** Min damage range, i.e. maxRange * mastery. */
+  minRange: number;
+  /** Max range under the legacy 1.15 bow multiplier, for comparison. */
+  maxRangeLegacyMultiplier: number;
+  /** The model's index, no class buffs assumed. */
+  damageIndex: number;
+  /** The model's index with every Bow Master buff in the table up. */
+  damageIndexAllBuffsUp: number;
+  /** Nexon's printed Combat Power. NOT a target — a different, opaque formula. */
+  printedCombatPower: number;
+  /** damageIndex / printedCombatPower. A coincidence of scale, not a validation. */
+  indexOverCp: number;
+  assumptions: string[];
+  warnings: DamageWarning[];
+  /** What must be true in game for the class constants to be right. */
+  falsifier: string;
+}
+
+/**
+ * Run the model on the reference character.
+ *
+ * WHAT THE NUMBERS MEAN, precisely, because this is the part it would be easy
+ * to lie about:
+ *
+ * `damageIndex` is a UNITLESS relative index. It is not damage, not DPS, and
+ * not Combat Power. Combat Power is Nexon's own undocumented formula and this
+ * model makes no claim to reproduce it — if the index happens to land near
+ * 5,260,117 that is a coincidence of scale, since both are roughly "stat times
+ * attack times multipliers", and it is NOT evidence the model is correct.
+ *
+ * `maxRange` is different, and it is the real check. Damage Range IS printed on
+ * the stat window, and the model computes it from the same published formula
+ * the game uses. So:
+ *
+ *   FALSIFIER — if Archerroni's stat window does not show a max range close to
+ *   `maxRange`, the Bow Master constants in this file are wrong. Specifically,
+ *   the 1.3 weapon multiplier and the 1.15 legacy row give ranges that differ
+ *   by 13%, which is far larger than any rounding, so the stat window decides
+ *   between them on sight. `maxRangeLegacyMultiplier` is printed alongside so
+ *   the comparison takes one glance.
+ *
+ * Anything the check CANNOT catch: Damage%, Final Damage% and secondary stat
+ * are all defaulted (see `fractionalInputsFromCharacter`), and none of them
+ * appear in the range formula, so a correct range does not validate them.
+ */
+export function referenceCheck(): ReferenceCheck {
+  const plain = fractionalInputsFromCharacter(REFERENCE_CHARACTER);
+  const buffed = fractionalInputsFromCharacter(REFERENCE_CHARACTER, {
+    classBuffs: "all-buffs-up",
+  });
+  const legacy = fractionalInputsFromCharacter(REFERENCE_CHARACTER, {
+    weaponMultiplierOverride: WEAPON_MULTIPLIER.bow,
+  });
+
+  const r = damageRange(plain.inputs);
+  const b = damageBreakdown(plain.inputs, plain.opts);
+  const idx = b.damageIndex;
+
+  return {
+    maxRange: r.max,
+    minRange: r.min,
+    maxRangeLegacyMultiplier: damageRange(legacy.inputs).max,
+    damageIndex: idx,
+    damageIndexAllBuffsUp: damageIndex(buffed.inputs, buffed.opts),
+    printedCombatPower: REFERENCE_CHARACTER.cp,
+    indexOverCp: idx / REFERENCE_CHARACTER.cp,
+    assumptions: plain.assumptions,
+    warnings: [...plain.warnings, ...b.warnings],
+    falsifier:
+      `Open Archerroni's stat window and read Damage Range. If the maximum is not near ` +
+      `${Math.round(r.max).toLocaleString("en-US")}, the Bow Master weapon multiplier of ` +
+      `${BOW_MASTER.weaponMultiplier.value} is wrong. The legacy 1.15 reading would show ` +
+      `${Math.round(damageRange(legacy.inputs).max).toLocaleString("en-US")} instead. ` +
+      `Damage Range is unbuffed-stat-window truth, so this test does not depend on any ` +
+      `buff-uptime assumption in this file.`,
+  };
+}
