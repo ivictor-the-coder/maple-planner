@@ -6,6 +6,17 @@ import {
   emptyCharacter, exampleCharacter, isDeadLine, planAdvice, sfCap,
   type Character, type Conf, type Item, type Rec, type SlotDef, type Tier,
 } from "@/lib/rules";
+import {
+  DEFAULT_PDR, REFERENCE_CHARACTER, WEAPON_MULTIPLIER, WEAPON_MULTIPLIER_CONF,
+  damageRange, fractionToPrintedPercent, fractionalInputsFromCharacter,
+  printedPercentToFraction, referenceCheck,
+  type DamageWarning,
+} from "@/lib/damage";
+import {
+  CLASS_META, guideFor, guideStatus, hyperStatPriorities, isUnverified,
+  unverifiedReason, verificationState,
+  type EvaluatedRule,
+} from "@/lib/classes";
 import { getStore } from "@/lib/storage";
 import { resolveItem } from "@/lib/itemLookup";
 import { mergeRoster } from "@/lib/legion";
@@ -69,15 +80,33 @@ function ConfBadge({ conf }: { conf: Conf }) {
   return <span className={`conf ${conf}`} title={info.meaning}>{info.badge}</span>;
 }
 
-function ConfLegend() {
+/* The legend used to print all three tiers unconditionally, which advertised
+ * "Sourced — safe to budget against" on a page where nothing carries it: every
+ * meso cost the engine can price leans on at least one constant rules.ts marks
+ * unverified (see its SOURCED table — STARFORCE_COST_PER_ATTEMPT and every cube
+ * and flame placeholder are false), so confFromUnverified() never returns
+ * 'sourced'. A legend entry for a badge nothing wears is a promise the page
+ * does not keep, so the tiers are now derived from what is actually rendered
+ * and the rest is named as absent rather than offered. */
+function ConfLegend({ present }: { present: ReadonlySet<Conf> }) {
+  const shown = CONFIDENCE_VOCABULARY.filter((v) => present.has(v.conf));
+  const absent = CONFIDENCE_VOCABULARY.filter((v) => !present.has(v.conf));
   return (
     <div className="conf-legend">
-      {CONFIDENCE_VOCABULARY.map((v) => (
+      {shown.map((v) => (
         <span key={v.conf}>
           <span className={`conf ${v.conf}`}>{v.badge}</span>
           {v.meaning}
         </span>
       ))}
+      {absent.length > 0 && (
+        <span className="absent">
+          <span className="conf-none">Not shown</span>
+          {absent.map((v) => v.badge).join(", ")} — nothing on this page carries{" "}
+          {absent.length === 1 ? "that tier" : "those tiers"}, so the{" "}
+          {absent.length === 1 ? "badge is" : "badges are"} withheld rather than advertised.
+        </span>
+      )}
     </div>
   );
 }
@@ -118,6 +147,217 @@ function RecRow({ r, showSlot }: { r: Rec; showSlot?: boolean }) {
         <b>{bareTitle(r)}</b>
         {r.w && <span className="why">{r.w}</span>}
       </span>
+    </div>
+  );
+}
+
+/* ---------- damage range: the one number the game prints back ----------
+ * Everything else on this page is our arithmetic. Damage Range is Nexon's, and
+ * lib/damage.ts computes it from the same published formula, so it is the only
+ * external check the model has: if the stat window disagrees, the class weapon
+ * multiplier is wrong and every figure downstream of it is wrong too.
+ *
+ * The number, its assumptions and its warnings all come from
+ * fractionalInputsFromCharacter() — the ONE printed-percent -> fraction adapter.
+ * Nothing here re-derives a constant; the legacy comparison reads
+ * WEAPON_MULTIPLIER[weaponKey] out of the module rather than naming a figure. */
+type RangeView = ReturnType<typeof damageRangeFor>;
+
+function damageRangeFor(ch: Character) {
+  const a = fractionalInputsFromCharacter(ch);
+  const range = damageRange(a.inputs);
+  const cc = a.classConstants;
+  // The legacy per-weapon row is the rival reading of the same slot. Only worth
+  // printing when the class table actually disagrees with it — with no class row
+  // the adapter already fell back to it, so the two are one number.
+  const legacyMult = cc ? WEAPON_MULTIPLIER[cc.weaponKey] : undefined;
+  const legacy =
+    cc && legacyMult !== undefined && legacyMult !== cc.weaponMultiplier.value
+      ? {
+          mult: legacyMult,
+          max: damageRange(
+            fractionalInputsFromCharacter(ch, { weaponMultiplierOverride: legacyMult }).inputs,
+          ).max,
+        }
+      : null;
+  /* Conf for the range itself, derived rather than chosen: the multiplier and
+   * mastery are cited, but secondary stat is defaulted to 0 because the sheet
+   * has no field for it, and that is a documented interpretation sitting on top
+   * of sourced inputs — rules.ts calls that 'modelled'. With no class row the
+   * multiplier IS the legacy placeholder, so the range inherits its confidence
+   * instead. */
+  const conf: Conf = cc
+    ? cc.weaponMultiplier.conf === "sourced" ? "modelled" : cc.weaponMultiplier.conf
+    : WEAPON_MULTIPLIER_CONF;
+  return { a, range, cc, legacy, conf };
+}
+
+function DamageRange({ ch, d }: { ch: Character; d: RangeView }) {
+  const [open, setOpen] = useState(false);
+  const ref = useMemo(() => referenceCheck(), []);
+  const isRef = useMemo(() => {
+    const r = REFERENCE_CHARACTER;
+    return (
+      ch.cls === r.cls &&
+      (["main", "att", "crit", "critdmg", "boss", "ied"] as const).every(
+        (k) => ch.stats[k] === r.stats[k],
+      )
+    );
+  }, [ch]);
+
+  const has = d.range.max > 0;
+  const n = (x: number) => Math.round(x).toLocaleString("en-US");
+  const warnings: DamageWarning[] = d.a.warnings;
+
+  return (
+    <div className="dr">
+      <div className="dr-top">
+        <span className="l">Damage range</span>
+        {/* No badge over a dash: a confidence marker belongs to a number, and
+            with no stats entered there is no number to be confident about. */}
+        {has && <ConfBadge conf={d.conf} />}
+      </div>
+      {has ? (
+        <>
+          <div className="v">{n(d.range.max)}</div>
+          <div className="v2">
+            min {n(d.range.min)} <span className="mut">at {fractionToPrintedPercent(d.a.inputs.mastery).toFixed(0)}% mastery</span>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="v dash">—</div>
+          <div className="v2">Enter {STAT_LABEL[ch.main]} and Attack to compute a range.</div>
+        </>
+      )}
+
+      <p className="dr-note">
+        This is the number the <b>game prints back at you</b> on the stat window.
+        Ours is computed from the published range formula at a{" "}
+        {d.cc ? d.cc.weaponMultiplier.value : d.a.inputs.weaponMultiplier}&times; weapon
+        multiplier. If yours reads differently, that multiplier is wrong — and so is every
+        figure on this page that depends on it.
+      </p>
+
+      {has && d.legacy && (
+        <p className="dr-alt">
+          The legacy {d.legacy.mult}&times; reading would print{" "}
+          <b>{n(d.legacy.max)}</b> instead. Your stat window decides between them on sight.
+        </p>
+      )}
+
+      {warnings.map((w) => (
+        <p className="dr-warn" key={w.code}>{w.message}</p>
+      ))}
+
+      <div className="dr-fals">
+        <div className="sub-h">
+          {isRef ? "Falsifier — for this character" : "Falsifier — for the reference character"}
+        </div>
+        <p>{ref.falsifier}</p>
+        {!isRef && (
+          <p className="mut">
+            Stated against {REFERENCE_CHARACTER.cls} Lv. {REFERENCE_CHARACTER.lvl}, the character
+            the class constants were fitted to. The check above is the same test on your numbers.
+          </p>
+        )}
+      </div>
+
+      <button className="dr-more" aria-expanded={open} onClick={() => setOpen(!open)}>
+        {open ? "Hide" : "Show"} the {d.a.assumptions.length} assumption
+        {d.a.assumptions.length === 1 ? "" : "s"} behind this
+      </button>
+      {open && (
+        <ul className="dr-asm">
+          {d.a.assumptions.map((a, i) => <li key={i}>{a}</li>)}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+/* ---------- hyper stats: the per-character verdict ----------
+ * A static guide ranks hyper stat lines for an imagined average player.
+ * classes.hyperStatPriorities() evaluates each rule against THIS character's
+ * crit rate and IED — the IED rule's threshold is damage.iedWall() rather than
+ * a typed number — so the same class can read "critical" for a fresh Lv 200 and
+ * "diminishing" for a geared one. That difference is the product. */
+function ruleProvenance(rule: EvaluatedRule["rule"]): string {
+  if (isUnverified(rule)) return `Unverified — ${unverifiedReason(rule)}`;
+  let host = rule.source;
+  try { host = new URL(rule.source).hostname.replace(/^www\./, ""); } catch { /* not a URL */ }
+  const state = verificationState(rule);
+  return state === "stale"
+    ? `${rule.claimType} · ${host} · read at ${rule.patchVersion}, game is ${CLASS_META.gameVersion}`
+    : `${rule.claimType} · ${host} · read ${rule.lastVerified}`;
+}
+
+function HyperStats({ ch }: { ch: Character }) {
+  const rules = useMemo(
+    () =>
+      hyperStatPriorities(ch.cls, {
+        critRate: printedPercentToFraction(ch.stats.crit),
+        ied: printedPercentToFraction(ch.stats.ied),
+      }),
+    [ch.cls, ch.stats.crit, ch.stats.ied],
+  );
+  const labels = useMemo(() => {
+    const m: Record<string, string> = {};
+    for (const l of guideFor(ch.cls)?.hyperStats.lines ?? []) m[l.stat] = l.label;
+    return m;
+  }, [ch.cls]);
+  const tablesNote = guideFor(ch.cls)?.hyperStats.tablesNote;
+  const status = guideStatus(ch.cls);
+
+  return (
+    <div className="hs-block">
+      <div className="ranktools">
+        <span className="sub-h">Hyper stats — computed for this character</span>
+      </div>
+      {rules.length ? (
+        <>
+          {rules.map((e) => (
+            <div className={`hs ${e.priority}`} key={e.rule.id}>
+              <span className="hsp">{e.priority}</span>
+              <span>
+                <b>{labels[e.rule.stat] ?? e.rule.stat}</b>
+                {/* A rule can be gated on a DIFFERENT stat than the one it
+                    ranks: "Critical Damage" is promoted once crit RATE caps, so
+                    evaluateRule()'s sentence carries crit rate's numbers under a
+                    crit damage heading. Unlabelled, "98.0% is 2.0% below the
+                    100.0% threshold" reads as this character's crit damage,
+                    which is 41.5% — a wrong number about a real character. The
+                    term the condition actually measured is printed against the
+                    figures, on every row, so the pairing is never inferred. */}
+                <span className="hsv">
+                  <span className="hsterm">
+                    {labels[e.rule.condition.term] ?? e.rule.condition.term}
+                  </span>
+                  {e.verdict}
+                </span>
+                <span className="why">{e.rule.rationale}</span>
+                <span className="hssrc">{ruleProvenance(e.rule)}</span>
+              </span>
+            </div>
+          ))}
+          <p className="railnote">
+            Thresholds are evaluated against your own crit rate and IED, at the default{" "}
+            {fractionToPrintedPercent(DEFAULT_PDR).toFixed(0)}% boss defence.
+            {tablesNote ? ` ${tablesNote}` : ""}
+          </p>
+        </>
+      ) : (
+        /* written:false must never render as advice. guideStatus().message is
+         * the empty state the data layer wrote for exactly this case; it is
+         * rendered verbatim and nothing is generated to fill the gap. */
+        <p className="hint hs-empty">
+          {status
+            ? status.written
+              ? `No hyper stat rules are written for ${status.displayName} yet.`
+              : status.message
+            : `"${ch.cls}" is not in the class roster, so no per-character hyper stat verdict can be computed.`}
+        </p>
+      )}
     </div>
   );
 }
@@ -207,6 +447,17 @@ export default function Planner() {
   const shown = slot || showAll ? recs : recs.slice(0, TOP_N);
   const label = STAT_LABEL[ch.main];
 
+  // One computation of the range, shared by the panel that prints it and the
+  // legend that has to know which confidence tiers this page actually uses.
+  const range = useMemo(() => damageRangeFor(ch), [ch]);
+  const confsPresent = useMemo(() => {
+    const s = new Set<Conf>();
+    // Only counts when the panel actually prints a number.
+    if (range.range.max > 0) s.add(range.conf);
+    for (const r of shown) if (r.conf) s.add(r.conf);
+    return s;
+  }, [shown, range]);
+
   const statGroups: Array<[string, Array<[string, keyof Character["stats"]]>]> = [
     ["Offense", [[label, "main"], ["Attack", "att"], ["Crit rate %", "crit"], ["Crit dmg %", "critdmg"], ["Boss dmg %", "boss"], ["Ignore DEF %", "ied"]]],
     ["Survivability", [["Max HP", "hp"]]],
@@ -245,6 +496,11 @@ export default function Planner() {
             <div className="l">Combat Power</div>
             <div className="v">{ch.cp ? ch.cp.toLocaleString() : "—"}</div>
           </div>
+          {/* Damage Range sits directly under Combat Power on purpose: CP is
+              Nexon's undocumented formula and we make no claim to reproduce it,
+              while Damage Range is a published formula we do compute — so the
+              two together are "their number, then the one you can check us on". */}
+          <DamageRange ch={ch} d={range} />
           {statGroups.map(([group, rows]) => (
             <div key={group}>
               <div className="statgroup">{group}</div>
@@ -378,6 +634,7 @@ export default function Planner() {
           )}
           {!slot && (
             <>
+              <HyperStats ch={ch} />
               <div className="ranktools">
                 <span className="sub-h">
                   {recs.length} move{recs.length === 1 ? "" : "s"}, account-wide
@@ -404,7 +661,7 @@ export default function Planner() {
                   ? "Ranked by damage per meso with no budget, so a 3M flame roll outranks a 1.5B tier-up on the ratio while being a fiftieth of the step. Flip to raw damage for size."
                   : "Ranked by the size of the gain alone. Cost is ignored here — the top of this list can be the worst value on the page."}
               </p>
-              <ConfLegend />
+              <ConfLegend present={confsPresent} />
             </>
           )}
           {shown.length ? (

@@ -20,6 +20,34 @@
  * building this, so NOTHING here is marked nexon-primary. That is a sourcing gap,
  * not an oversight. See ENHANCEMENT_MODE_QUESTION below.
  *
+ * THE "SOURCED" TIER IS NOT REACHABLE FROM THIS FILE, AND THAT IS THE ANSWER
+ * A critic found that 0 of 91 recommendations on the reference character could earn
+ * lib/rules.ts's top confidence tier ("Sourced - Every input is cited. Safe to budget
+ * against."), and traced it to costPerAttempt() seeding "meso-cost-formula"
+ * unconditionally. The count is right and the diagnosis is one third of the story.
+ * There are THREE independent reasons, and no flag edit removes any of them:
+ *
+ *   1. Nexon publishes no star force meso cost table. Re-confirmed against
+ *      data/patches.json, whose v.271 record is explicit that the entire "Star Force
+ *      Changes" section is one line about Star Catching with "NO change to destruction
+ *      rates, star costs, safeguard, or the 22-star cap". v.271 tells us the curve did
+ *      not move; it does not tell us what the curve is. Two community calculators do
+ *      agree on it - see COST_MODEL_CROSS_CHECK - on 19 of 20 divisors, which is
+ *      corroboration but not the "exactly, from two independent sources" this file
+ *      requires, and not a citation a player should budget against.
+ *   2. This app is Heroic-only and nothing says a Heroic tap is priced like a
+ *      regular-world tap. That assumption sits under every meso figure at every star.
+ *   3. ATT per star has no published table at all, so any damage-per-meso answer also
+ *      leans on UNVERIFIED_PLACEHOLDER_ATT_PER_STAR_15PLUS, which is null on purpose.
+ *
+ * (1) and (2) can only be closed by MEASUREMENT - somebody reading a price off the
+ * in-game enhancement window - not by more source-hunting. So the honest fix was not
+ * to source the formula and not to drop the flag: it was to say out loud that the
+ * ceiling for every star force number in this app is `placeholder`, and to export that
+ * as data so the UI can stop advertising a tier nothing can reach. See
+ * STARFORCE_CONFIDENCE_CEILING at the bottom of this file, and __selfTest(), which
+ * fails if a future wave quietly deletes the seed to light the badge up.
+ *
  * SCOPE: GMS, Heroic (Reboot), v.271. No trading, no Star Force Transfer modelling
  * (transfer is a separate decision), no Superior-equipment rate table.
  */
@@ -46,6 +74,14 @@ export const SOURCES = {
   /** Open-source GMS calculator. Cost function, rate table and mode table read from src.js. */
   blushiemagic:
     "https://github.com/blushiemagic/Maplestory-Starforce-Calculator/blob/master/src.js",
+  /**
+   * A SECOND open-source GMS calculator, transcribed independently of this file by the
+   * wave that wrote data/guide-graph.json#starforce.cost. Its cost table is written in
+   * the "one divisor plus per-star extra multipliers" form rather than this file's
+   * "one divisor per star" form. COST_MODEL_CROSS_CHECK below reconciles the two.
+   */
+  brendonmay:
+    "https://github.com/brendonmay/brendonmay.github.io/blob/master/starforceCalculator/serverDiffs.js",
   /** Second, independent GMS calculator advertising "v269 GMS Enhancement Modes". */
   tadeucci: "https://starforce.tadeucci.dev/",
   strategyWiki: "https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force",
@@ -441,12 +477,19 @@ export type MvpTier = "none" | "silver" | "gold" | "diamond";
  *   mesos = (round(base) + 10) * 100
  *   mesos *= mvp (stars < 17) * 0.7 (discount event) * mode/safeguard multiplier
  *
- * UNVERIFIED. One public source for the divisors, and StrategyWiki's statement that
- * server costs "vary slightly at lower levels but equalise from 15 stars onwards" is
- * the only thing said about Reboot at all - no Reboot multiplier could be sourced in
- * either direction. So 15+ is treated as server-agnostic (that part is sourced) and
- * anything below 15 stars carries rebootMultiplier, which is 1 and flagged. Every
- * result that consumed a soft constant names it in SimResult.unverified.
+ * UNVERIFIED, and it stays that way. Two public calculators now agree on this table -
+ * see COST_MODEL_CROSS_CHECK for exactly how far that agreement goes and exactly why
+ * it does not clear this file's verification bar. StrategyWiki's statement that server
+ * costs "vary slightly at lower levels but equalise from 15 stars onwards" is still
+ * the only thing said about Reboot, and it is a statement about server-to-server
+ * variation, not a statement that Heroic equals a regular world. So there are TWO
+ * separate soft things here, and as of this wave both are named:
+ *   - rebootMultiplier, the extra low-star difference nobody quantified: 1, flagged
+ *     below star 15 as "reboot-sub15-multiplier".
+ *   - the standing assumption that a Heroic tap costs a regular-world tap's price at
+ *     all: flagged on EVERY tap as "heroic-cost-multiplier". It was unflagged at 15+
+ *     before, which made a 17 -> 22 quote look better sourced than it was.
+ * Every result that consumed a soft constant names it in SimResult.unverified.
  */
 export const SF_COST = {
   base: {
@@ -498,9 +541,12 @@ export const SF_COST = {
     29: 20000,
   } as Record<number, number | null>,
   /**
-   * Reboot/Heroic adjustment below 15 stars. Sources say server costs differ "slightly"
-   * at low levels without saying how, so this is 1 and loudly unverified rather than a
-   * guess. At 15 stars and up, sources agree the servers are identical.
+   * The EXTRA low-star server difference, below 15 stars. Sources say server costs
+   * differ "slightly" at low levels without saying how, so this is 1 and loudly
+   * unverified rather than a guess. At 15 stars and up, sources agree the servers are
+   * identical to each other - which is NOT the same claim as "Heroic is priced like a
+   * regular world", and that second claim is flagged separately on every tap as
+   * "heroic-cost-multiplier". Two assumptions, two flags; do not collapse them.
    */
   rebootMultiplier: 1 as number | null,
   rebootMultiplierAppliesBelowStar: 15,
@@ -528,9 +574,131 @@ export const SF_COST = {
  */
 export const MVP_IN_HEROIC_PROVENANCE: Provenance = "community-single";
 
+/* ------------------------------------------------------------------ *
+ * 3b. The cost model, cross-checked against a second transcription
+ * ------------------------------------------------------------------ */
+
+/**
+ * The SAME cost table as SF_COST.perStarDivisor, in the other form.
+ *
+ * brendonmay's calculator writes the high-star band as ONE divisor (20000) plus a
+ * per-star `extraMult`, rather than one divisor per star. data/guide-graph.json's
+ * `starforce.cost` node transcribed that form, independently of this file, from a
+ * DIFFERENT calculator's source. Both forms are kept so the two can be reconciled by
+ * arithmetic instead of by eye - __selfTest() asserts
+ * `EXTRA_MULT_FORM.baseDivisor / extraMult[s] === SF_COST.perStarDivisor[s]` and fails
+ * the build's own check list if a future wave edits one form and not the other.
+ *
+ * Star 10 is deliberately ABSENT here: the second transcription has no divisor for it
+ * (see COST_MODEL_CROSS_CHECK.disagreements). Do not fill it in from this file's value
+ * - that would launder this file's number into the corroborating source.
+ */
+export const EXTRA_MULT_FORM = {
+  baseDivisor: 20000,
+  /** Stars with no entry use baseDivisor unmodified. */
+  extraMult: { 17: 4 / 3, 18: 20 / 7, 19: 40 / 9, 21: 8 / 5 } as Record<number, number>,
+  /** Low band, identical in both transcriptions. */
+  lowBandDivisor: 2500,
+  lowBandExponent: 1,
+  /** Divisors below the 20000 band, identical in both transcriptions. */
+  midBandDivisor: { 11: 22000, 12: 15000, 13: 11000, 14: 7500 } as Record<number, number>,
+  source: SOURCES.brendonmay,
+  transcribedBy: "data/guide-graph.json#starforce.cost",
+} as const;
+
+/**
+ * WHAT THE CROSS-CHECK ACTUALLY ESTABLISHED, AND WHAT IT DID NOT.
+ *
+ * Two calculators, transcribed by two different waves into two different files in two
+ * different notations, reproduce this cost table exactly on 19 of 20 per-star divisors
+ * and on 4 of 4 high-star multipliers (20000 / (4/3) = 15000, 20000 / (20/7) = 7000,
+ * 20000 / (40/9) = 4500, 20000 / (8/5) = 12500). That is the strongest corroboration
+ * anyone in this repo has produced for the meso curve.
+ *
+ * IT IS STILL NOT `verified`, and SF_COST.verified stays false, for two reasons this
+ * file will not talk itself out of:
+ *
+ *  1. NOT EXACT. The two disagree at star 10 by a factor of 3.68 - see below. The bar
+ *     at the top of this file is "reproduced EXACTLY by two independent public
+ *     sources". 19 of 20 is not 20 of 20, and the one that differs is a real tap a
+ *     real player pays for.
+ *  2. NOT INDEPENDENT, as far as anyone can show. Both are community reverse
+ *     engineerings of an undocumented formula. Agreement between two implementations
+ *     is evidence that the community implements one formula; it is not evidence that
+ *     the game charges it. This file already refused to promote the Enhancement Mode
+ *     rows on exactly this reasoning (see ENHANCEMENT_MODE_QUESTION) and the cost
+ *     model gets the same treatment. Consistency is the point: a bar that bends when
+ *     it is inconvenient is not a bar.
+ *
+ * Nexon publishes no star force meso cost table. That was re-confirmed, not assumed:
+ * data/patches.json records the whole of v.271's "Star Force Changes" section as a
+ * single line about Star Catching, with the explicit scope note "NO change to
+ * destruction rates, star costs, safeguard, or the 22-star cap", read off a 172,741
+ * character render of the official page. v.271 therefore tells us the curve did not
+ * MOVE. It does not tell us what the curve IS.
+ */
+export const COST_MODEL_CROSS_CHECK = {
+  performed: "2026-09-12",
+  formA: { form: "one divisor per star", where: "lib/starforce.ts SF_COST.perStarDivisor", source: SOURCES.blushiemagic },
+  formB: { form: "one divisor plus per-star extraMult", where: "data/guide-graph.json#starforce.cost", source: SOURCES.brendonmay },
+  agreements: [
+    "stars 11-14 divisors: 22000 / 15000 / 11000 / 7500, identical",
+    "stars 15, 16, 20, 22-29 divisor: 20000, identical",
+    "stars 17, 18, 19, 21: 20000/extraMult reproduces 15000 / 7000 / 4500 / 12500 to the last digit",
+    "low band: exponent 1, divisor 2500, identical",
+    "level rounds DOWN to a multiple of 10 before cubing, identical",
+  ],
+  disagreements: [
+    {
+      what: "where the low band ends",
+      formA: "stars 0-9 use exponent 1 / divisor 2500; star 10 uses exponent 2.7 / divisor 40000",
+      formB: "stars 0-10 use exponent 1 / divisor 2500, and no divisor is given for star 10 at all",
+      effect:
+        "On a Lv. 200 item the 10 -> 11 tap is 12,966,500 mesos under form A and 3,521,000 under form B: 3.68x apart.",
+      thisFileUses: "form A",
+      why:
+        "Form B lists divisors for 11, 12, 13 and 14 but none for 10, which is the signature of an " +
+        "off-by-one in a prose transcription rather than of a real band boundary: a band genuinely " +
+        "ending at 10 would leave star 10 priced and star 11 the first special case, and it does not. " +
+        "Form A is also the form that is internally complete - every star 0-29 has a value.",
+      unresolved: true,
+      repoImpact:
+        "data/guide-graph.json#starforce.cost rows 'E (exponent) stars 0-10' and 'D (divisor) stars 0-10' " +
+        "read one star too wide and the node has no row for star 10. Not this wave's file to edit; " +
+        "recorded here so the next wave that owns it does not have to rediscover it.",
+    },
+    {
+      what: "where the +10 sits in the formula",
+      formA: "(round(base) + 10) * 100",
+      formB: "prose row reads '100 x round(...) + 10', which is 1,000x smaller for the +10 term",
+      effect: "Arithmetically irrelevant here because 10 is an integer, but the prose row as written is wrong.",
+      thisFileUses: "form A",
+      why: "round(x + 10) === round(x) + 10 for integer 10, so both calculators compute the same number.",
+      unresolved: false,
+      repoImpact: "data/guide-graph.json#starforce.cost 'Formula shape' row should print 100 x (round(...) + 10).",
+    },
+  ],
+  /** What would actually close this, stated as a falsifier rather than a wish. */
+  wouldClose:
+    "A per-tap meso price read off the in-game enhancement window on a GMS Heroic world at a known " +
+    "item level and star, for any two stars either side of 10. Two readings settle the band boundary " +
+    "AND the Heroic multiplier at once, which is more than any amount of further source-hunting can do.",
+  stillUnverified: true,
+} as const;
+
 /** Names of soft constants, so a result can list exactly what it leaned on. */
 export type UnverifiedConstant =
   | "meso-cost-formula"
+  /**
+   * The standing assumption that a tap on a HEROIC world costs what it costs on a
+   * regular world. This app is Heroic-only, so that assumption is under every meso
+   * figure it prints, at every star. It was invisible before this wave: the sub-15
+   * flag below covered only the low band, so a 17 -> 22 quote named no Heroic
+   * assumption at all while resting on one. data/guide-graph.json#starforce.cost has
+   * recorded it as PLACEHOLDER_HEROIC_COST_MULT, "1.0 (assumed) - UNSOURCED. No source
+   * says Heroic costs match regular worlds", since that node was written. Now named.
+   */
+  | "heroic-cost-multiplier"
   | "reboot-sub15-multiplier"
   | "safeguard-multiplier"
   | "mvp-discount-in-heroic"
@@ -543,7 +711,9 @@ export type UnverifiedConstant =
 /** Human-readable text for the UNVERIFIED banner. */
 export const UNVERIFIED_LABEL: Record<UnverifiedConstant, string> = {
   "meso-cost-formula":
-    "Meso cost formula (one community source; not confirmed against patch notes)",
+    "Meso cost formula (two community calculators agree on 19 of 20 divisors and disagree at star 10; no Nexon table exists)",
+  "heroic-cost-multiplier":
+    "That a Heroic-world tap costs the same as a regular-world tap (assumed 1.0; no source says either way)",
   "reboot-sub15-multiplier":
     "Reboot cost difference below 15 stars (sources say servers differ 'slightly' but not how)",
   "safeguard-multiplier": "Safeguard cost multiplier (guide says x2, calculator says x3 additive)",
@@ -597,7 +767,22 @@ export function costPerAttempt(
   if (currentStar < 0 || currentStar >= STAR_FORCE_HARD_CAP) {
     throw new RangeError(`currentStar must be 0-29, got ${currentStar}.`);
   }
-  const unverified: UnverifiedConstant[] = ["meso-cost-formula"];
+  // BOTH of these are unconditional, and deliberately so.
+  //
+  // "meso-cost-formula": the shape and coefficients are community reverse engineering.
+  // A previous critic read this seed as a bug because it makes confFromUnverified()
+  // unable to return "sourced". It is not a bug, it is the finding. Deleting it would
+  // not source the formula, it would only stop the app saying that it isn't. If you
+  // are here to make a badge turn green, read COST_MODEL_CROSS_CHECK first and then
+  // STARFORCE_CONFIDENCE_CEILING, which states plainly that "sourced" is unreachable
+  // for star force and why, so the UI can stop advertising a tier that cannot exist.
+  //
+  // "heroic-cost-multiplier": this app is Heroic-only and no source says a Heroic tap
+  // is priced like a regular-world tap. That assumption is under every figure below,
+  // at every star, so it is named at every star. Numerically nothing changes - the
+  // multiplier is 1 - which is the whole point: the number was always this number,
+  // and now it carries the label it always deserved.
+  const unverified: UnverifiedConstant[] = ["meso-cost-formula", "heroic-cost-multiplier"];
 
   const L = Math.floor(itemLevel / SF_COST.base.levelFloorStep) * SF_COST.base.levelFloorStep;
   const levelTerm = Math.pow(L, SF_COST.base.levelExponent);
@@ -1301,4 +1486,268 @@ export function totalStarForceCost(
     for (const u of r.unverified) unverified.add(u);
   }
   return { expected, sumOfMedians, sumOfP90, slots: ranked.length, unverified: [...unverified] };
+}
+
+/* ------------------------------------------------------------------ *
+ * 7. The confidence ceiling, stated as data
+ * ------------------------------------------------------------------ */
+
+/**
+ * Which surfaces of this module produce numbers, and the soft constants each one
+ * CANNOT avoid no matter what the caller passes.
+ *
+ * This exists because "0 of 91 recommendations reached the top tier" was read as bad
+ * luck, or as one over-eager flag, when it is structural. costPerAttempt() is called
+ * for every star from 0 up to the target even when the player starts at 17 - not by
+ * accident but because a boom drops the item below the starting point and those taps
+ * have to be priced too - so every simulate() and every rules.sfPlan() prices at least
+ * one sub-15 tap and therefore always carries the low-band flag as well.
+ */
+export type SfSurface = "costPerAttempt" | "simulate" | "rank" | "rankWithStatModel";
+
+export const UNAVOIDABLE_UNVERIFIED: Record<SfSurface, readonly UnverifiedConstant[]> = {
+  costPerAttempt: ["meso-cost-formula", "heroic-cost-multiplier"],
+  simulate: ["meso-cost-formula", "heroic-cost-multiplier", "reboot-sub15-multiplier"],
+  rank: ["meso-cost-formula", "heroic-cost-multiplier", "reboot-sub15-multiplier"],
+  rankWithStatModel: [
+    "meso-cost-formula",
+    "heroic-cost-multiplier",
+    "reboot-sub15-multiplier",
+    "star-force-stat-gain",
+  ],
+};
+
+/** The soft constants a given surface always reports, whatever the inputs. */
+export function unavoidableUnverified(surface: SfSurface): readonly UnverifiedConstant[] {
+  return UNAVOIDABLE_UNVERIFIED[surface];
+}
+
+/**
+ * THE CEILING, FOR THE UI TO RENDER INSTEAD OF AN UNREACHABLE TIER.
+ *
+ * `bestReachableConf` is written as the string lib/rules.ts's Conf uses, deliberately
+ * as a plain literal rather than an import: this module imports nothing (see the note
+ * on SfCharacterLike) and rules.ts is edited in parallel. rules.ts's own
+ * confFromUnverified() stays the authority; this is the statement of what that
+ * function can possibly return for a star force result, so a legend can be built
+ * without running 91 recommendations to find out.
+ *
+ * A UI reading this should say something like "Estimate - the meso curve is community
+ * reverse engineering and the Heroic price is assumed; the ordering is solid, the
+ * totals are not a budget", and should NOT offer "Sourced" as a star force outcome.
+ */
+export const STARFORCE_CONFIDENCE_CEILING = {
+  /** Matches lib/rules.ts Conf. Not "sourced", and not by an accident of flagging. */
+  bestReachableConf: "placeholder" as const,
+  sourcedIsReachable: false,
+  /** Why, in the order a reader should be told. */
+  reasons: [
+    {
+      id: "no-nexon-cost-table",
+      flag: "meso-cost-formula" as UnverifiedConstant,
+      statement:
+        "Nexon has never published a star force meso cost table. v.271 confirms the curve did not change; it does not say what the curve is.",
+      evidence: "data/patches.json v.271 starforce scopeNote; COST_MODEL_CROSS_CHECK",
+      closableBySourceHunting: false,
+    },
+    {
+      id: "heroic-price-assumed",
+      flag: "heroic-cost-multiplier" as UnverifiedConstant,
+      statement:
+        "This planner is Heroic-only and no source says a Heroic tap costs what a regular-world tap costs. 1.0 is an assumption.",
+      evidence: "data/guide-graph.json#starforce.cost PLACEHOLDER_HEROIC_COST_MULT",
+      closableBySourceHunting: false,
+    },
+    {
+      id: "no-att-per-star-table",
+      flag: "star-force-stat-gain" as UnverifiedConstant,
+      statement:
+        "ATT gained per star has no published table, so any damage-per-meso answer is ranking-grade, not budget-grade.",
+      evidence: "UNVERIFIED_PLACEHOLDER_ATT_PER_STAR_15PLUS is null on purpose",
+      closableBySourceHunting: false,
+    },
+  ],
+  /**
+   * What the app CAN honestly claim today. Ordering by meso-per-star needs no damage
+   * model and no absolute cost accuracy - a monotone error in the curve largely
+   * cancels out of a ranking - so the ranking is the product and the totals are the
+   * estimate.
+   */
+  whatIsTrustworthy:
+    "The ORDERING of star force upgrades by meso-per-star, and the SHAPE of the cost distribution (median vs p90, boom risk). Both survive a scaled cost curve.",
+  whatIsNot:
+    "Any absolute meso total, and therefore any 'you need X mesos' budget or any cross-system comparison against a cube or flame cost.",
+  /** Stated as a falsifier, the way damage.referenceCheck() does. */
+  falsifier:
+    "Open the enhancement window on a GMS Heroic world with a known item level at a known star and read the price. If it matches costPerAttempt() for two stars either side of 10, reasons 1 and 2 both close at once and this ceiling is wrong - raise it. If it does not match, this module's numbers are wrong and should be marked so rather than left to look confident.",
+} as const;
+
+export interface CheckResult {
+  readonly name: string;
+  readonly ok: boolean;
+  readonly detail: string;
+}
+
+/**
+ * Self-test. Two of these are regression guards rather than correctness checks, and
+ * they are the reason this function exists: "the seed is still seeded" and "no result
+ * ever claims verified" exist so that the next wave which arrives wanting the green
+ * badge has to argue with a failing check instead of deleting one line.
+ */
+export function __selfTest(): CheckResult[] {
+  const out: CheckResult[] = [];
+
+  // 1. The two transcriptions of the cost table must not drift apart.
+  const drift: string[] = [];
+  for (let s = 11; s < STAR_FORCE_HARD_CAP; s++) {
+    const mine = SF_COST.perStarDivisor[s];
+    if (mine === null || mine === undefined) continue;
+    const theirs =
+      s in EXTRA_MULT_FORM.midBandDivisor
+        ? EXTRA_MULT_FORM.midBandDivisor[s]
+        : EXTRA_MULT_FORM.baseDivisor / (EXTRA_MULT_FORM.extraMult[s] ?? 1);
+    if (Math.abs(mine - theirs) > 1e-9) drift.push(`star ${s}: ${mine} vs ${theirs}`);
+  }
+  out.push({
+    name: "cost table agrees with the second transcription, stars 11-29",
+    ok: drift.length === 0,
+    detail:
+      drift.length === 0
+        ? "19 divisors reproduced exactly from EXTRA_MULT_FORM (the 17/18/19/21 multipliers included)"
+        : `drifted: ${drift.join("; ")}`,
+  });
+
+  // 2. Star 10 is the one known disagreement, and it must stay recorded rather than
+  //    be quietly reconciled by someone copying this file's value into the other one.
+  out.push({
+    name: "star 10 disagreement is still recorded, not papered over",
+    ok:
+      COST_MODEL_CROSS_CHECK.disagreements.some((d) => d.unresolved) &&
+      !(10 in EXTRA_MULT_FORM.midBandDivisor) &&
+      SF_COST.perStarDivisor[10] === 40000,
+    detail:
+      "form A prices star 10 at divisor 40000 / exponent 2.7; form B has no star 10 entry. 3.68x apart on a Lv. 200 item.",
+  });
+
+  // 3. REGRESSION GUARD. The cost model's two unconditional flags must still fire.
+  const c = costPerAttempt(200, 17, {
+    safeguard: false,
+    mode: 1,
+    discount30: false,
+    mvpTier: "none",
+  });
+  out.push({
+    name: "costPerAttempt still names the formula AND the Heroic assumption",
+    ok:
+      c.unverified.includes("meso-cost-formula") &&
+      c.unverified.includes("heroic-cost-multiplier") &&
+      c.verified === false,
+    detail:
+      c.verified === false
+        ? `star 17, Lv. 200: ${c.mesos} mesos, flagged ${c.unverified.join(" + ")}`
+        : "costPerAttempt claimed verified - the cost model is not verified and must never say it is",
+  });
+
+  // 4. The Heroic assumption must be flagged at 15+ too, which is what this wave fixed.
+  const low = costPerAttempt(200, 5, {
+    safeguard: false,
+    mode: 1,
+    discount30: false,
+    mvpTier: "none",
+  });
+  out.push({
+    name: "Heroic assumption is flagged above 15 stars, not only below",
+    ok:
+      c.unverified.includes("heroic-cost-multiplier") &&
+      low.unverified.includes("heroic-cost-multiplier") &&
+      low.unverified.includes("reboot-sub15-multiplier") &&
+      !c.unverified.includes("reboot-sub15-multiplier"),
+    detail:
+      "star 5 carries both the Heroic assumption and the extra low-band difference; star 17 carries the Heroic assumption alone",
+  });
+
+  // 5. Applying the multiplier at every star changed no number. The label is the change.
+  const byHand = (Math.round((Math.pow(200, 3) * Math.pow(18, 2.7)) / 15000) + 10) * 100;
+  out.push({
+    name: "re-flagging cost 0 mesos of movement",
+    ok: SF_COST.rebootMultiplier === 1 && c.mesos === byHand,
+    detail: `star 17 Lv. 200 recomputes by hand to ${byHand} mesos; costPerAttempt says ${c.mesos}`,
+  });
+
+  // 6. REGRESSION GUARD. No simulate() result can ever claim verified, for any range.
+  const claimedVerified: string[] = [];
+  const ranges: ReadonlyArray<readonly [number, number]> = [
+    [0, 17],
+    [12, 22],
+    [17, 22],
+    [21, 22],
+  ];
+  for (const [from, to] of ranges) {
+    const res = simulate({
+      itemLevel: 200,
+      from,
+      to,
+      spares: 0,
+      perStarPlan: mode1Plan(from, to),
+      events: NO_EVENTS,
+      trials: 200,
+      rng: mulberry32(1),
+    });
+    if (res.verified || res.unverified.length === 0) claimedVerified.push(`${from}->${to}`);
+  }
+  out.push({
+    name: "no star range can reach verified / 'sourced'",
+    ok: claimedVerified.length === 0,
+    detail:
+      claimedVerified.length === 0
+        ? "4 ranges incl. 21->22 all report unverified inputs, which is what STARFORCE_CONFIDENCE_CEILING says"
+        : `these claimed verified: ${claimedVerified.join(", ")}`,
+  });
+
+  // 7. The declared ceiling must match what simulate() actually reports.
+  const mid = simulate({
+    itemLevel: 200,
+    from: 17,
+    to: 22,
+    spares: 0,
+    perStarPlan: mode1Plan(17, 22),
+    events: NO_EVENTS,
+    trials: 200,
+    rng: mulberry32(2),
+  });
+  const missing = unavoidableUnverified("simulate").filter((u) => !mid.unverified.includes(u));
+  out.push({
+    name: "UNAVOIDABLE_UNVERIFIED.simulate matches a real simulate() run",
+    ok: missing.length === 0 && !STARFORCE_CONFIDENCE_CEILING.sourcedIsReachable,
+    detail:
+      missing.length === 0
+        ? `17->22 reports ${mid.unverified.join(" + ")}`
+        : `declared unavoidable but absent from the run: ${missing.join(", ")}`,
+  });
+
+  // 8. Every constant that can be emitted has a label, or rules.ts's sfNote() prints
+  //    `undefined` into a sentence a player reads.
+  const unlabelled = (Object.keys(UNAVOIDABLE_UNVERIFIED) as SfSurface[])
+    .flatMap((s) => UNAVOIDABLE_UNVERIFIED[s])
+    .filter((u) => !UNVERIFIED_LABEL[u]);
+  out.push({
+    name: "every emittable soft constant has a human label",
+    ok: unlabelled.length === 0,
+    detail:
+      unlabelled.length === 0
+        ? `${Object.keys(UNVERIFIED_LABEL).length} labels cover every UnverifiedConstant`
+        : `unlabelled: ${unlabelled.join(", ")}`,
+  });
+
+  // 9. And the cost model must never advertise itself as verified at the constant level.
+  out.push({
+    name: "SF_COST does not claim verification the cross-check did not earn",
+    ok:
+      SF_COST.verified === false &&
+      !isVerified(SF_COST.provenance) &&
+      COST_MODEL_CROSS_CHECK.stillUnverified,
+    detail: `provenance "${SF_COST.provenance}" after a 19-of-20 cross-check: agreement between two community implementations is not a citation`,
+  });
+
+  return out;
 }

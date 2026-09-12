@@ -277,6 +277,115 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 }
 .conf-legend > span { display: flex; align-items: baseline; gap: 7px; }
 .conf-legend .conf { flex: 0 0 auto; cursor: default; }
+/* A tier nothing on the page wears is named, not offered — so it must not look
+ * like a badge you could earn. */
+.conf-legend .absent { color: #4b5570; border-top: 1px solid var(--line-soft); padding-top: 5px; }
+.conf-none {
+  flex: 0 0 auto;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: .5rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500;
+  padding: 2px 5px; border-radius: 2px;
+  border: 1px dotted #3a4664; color: #4b5570; white-space: nowrap;
+}
+
+/* ---------- damage range: the falsifiable number ----------
+ * Deliberately quieter than the Combat Power plate above it. CP is Nexon's
+ * headline; this is the number you go and check us on, so it reads as an
+ * instrument panel rather than a trophy. */
+.dr {
+  background: var(--well);
+  border: 1px solid var(--line); border-left: 2px solid var(--blue);
+  border-radius: 4px; padding: 9px 11px 10px; margin-bottom: 14px;
+}
+.dr-top { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+.dr-top .l {
+  font-family: var(--font-jetbrains), monospace; font-size: .55rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--ink-3); margin-right: auto;
+}
+.dr .v {
+  font-family: var(--font-jetbrains), monospace; font-variant-numeric: tabular-nums;
+  font-size: 1.24rem; line-height: 1.2; color: var(--ink);
+}
+.dr .v.dash { color: var(--ink-3); }
+.dr .v2 {
+  font-family: var(--font-jetbrains), monospace; font-variant-numeric: tabular-nums;
+  font-size: .68rem; color: var(--ink-2); margin-top: 1px;
+}
+.dr .mut { color: var(--ink-3); }
+.dr p { margin: 7px 0 0; font-size: .69rem; line-height: 1.45; color: var(--ink-3); }
+.dr p b { color: var(--ink-2); font-weight: 600; }
+.dr-alt b {
+  font-family: var(--font-jetbrains), monospace; font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+/* An adapter warning means the absolute number is not trustworthy. It gets the
+ * warn colour so it cannot be skimmed past. */
+.dr-warn {
+  color: var(--warn) !important;
+  border-left: 2px solid rgba(240,169,79,.5); padding-left: 7px;
+}
+.dr-fals { margin-top: 9px; border-top: 1px solid var(--line-soft); padding-top: 7px; }
+.dr-fals p { margin-top: 4px; }
+.dr-more {
+  margin-top: 8px; background: none; border: 0; padding: 0; cursor: pointer;
+  font-size: .66rem; color: var(--blue); text-align: left; text-decoration: underline;
+  text-decoration-style: dotted; text-underline-offset: 2px;
+}
+.dr-more:hover { color: var(--gold); }
+.dr-asm {
+  margin: 6px 0 0; padding-left: 15px;
+  font-size: .665rem; line-height: 1.42; color: var(--ink-3);
+}
+.dr-asm li { margin-bottom: 5px; }
+
+/* ---------- hyper stats: per-character verdicts ----------
+ * Separated from the ranked move list below it by a rule, because the two
+ * answer different questions: these are free point allocations, those are
+ * purchases. */
+.hs-block {
+  display: flex; flex-direction: column; gap: 7px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--line-soft);
+}
+.hs {
+  display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.028), transparent);
+  border: 1px solid var(--line-soft); border-left-width: 2px; border-radius: 3px;
+  padding: 8px 11px; font-size: .81rem;
+  /* The rationales cite code by name — "BOW_MASTER.alreadyInStatWindow.critRate",
+   * "lib/damage.ts marginalIedLine()" — which are single unbreakable tokens
+   * wider than a phone column and pushed the whole page into a sideways
+   * scroll. Break inside them rather than truncating a sourced identifier. */
+  overflow-wrap: anywhere;
+}
+.hs b { color: var(--ink); font-weight: 600; }
+.hs .hsp {
+  font-family: var(--font-jetbrains), monospace; font-size: .52rem; letter-spacing: .12em;
+  text-transform: uppercase; padding-top: 3px; color: var(--ink-3);
+}
+.hs .hsv { display: block; color: var(--ink-2); font-size: .755rem; margin-top: 2px; }
+/* Names the stat the figures in the sentence were measured on — a rule can rank
+ * one stat while being gated on another. */
+.hs .hsterm {
+  display: inline-block; margin-right: 6px;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: .55rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-3); border: 1px solid var(--line); border-radius: 2px; padding: 1px 4px;
+  vertical-align: 1px;
+}
+/* .why is styled under .rec; the same prose treatment, scoped here too. */
+.hs .why { display: block; color: var(--ink-3); font-size: .745rem; margin-top: 4px; line-height: 1.45; }
+.hs .hssrc {
+  display: block; margin-top: 5px;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: .58rem; letter-spacing: .04em; color: #4b5570;
+}
+.hs.critical { border-left-color: var(--bad); } .hs.critical .hsp { color: var(--bad); }
+.hs.high { border-left-color: var(--warn); } .hs.high .hsp { color: var(--warn); }
+.hs.medium { border-left-color: var(--blue); } .hs.medium .hsp { color: var(--blue); }
+.hs.diminishing { border-left-color: var(--good); } .hs.diminishing .hsp { color: var(--good); }
+.hs.dead { border-left-color: #3a4664; }
+.hs.dead b, .hs.dead .hsv { color: #5b6684; }
+.hs-empty { text-align: left; padding: 10px 0 2px; line-height: 1.5; }
 
 .rslot {
   display: inline-block; margin-right: 6px;

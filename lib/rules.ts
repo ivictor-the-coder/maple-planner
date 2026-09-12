@@ -56,11 +56,22 @@
 // farming adoption goes through the deferred seam at __useObjectiveDeadLine().
 
 import type { RosterChar } from "./legion";
-// The damage model lives in ./damage and is the authority on its constants.
-// This file used to re-derive them, which is how two live models came to
-// disagree; anything the model owns is imported, never restated.
-import { CRIT_DAMAGE_BASE } from "./damage";
+// The damage model lives in ./damage and is the authority on its constants AND
+// on its formula. This file used to re-derive both, which is how two live models
+// came to disagree; anything the model owns is imported, never restated.
+// dmgIndex() below is now a thin call into damageBreakdown() through the one
+// printed-percent -> fraction adapter, so the app has exactly one crit term, one
+// damage term and one defence term.
+import {
+  DEFAULT_PDR,
+  damageBreakdown,
+  fractionalInputsFromCharacter,
+} from "./damage";
 import type { FarmObjective } from "./farming";
+// Set membership has to reach the superior-gear advice below, or the app tells a
+// player to break a set to escape a 15-star cap. lib/sets.ts already models this
+// and was imported by nobody.
+import { resolveSet, activeSets, describeEffects, isEmptyEffects } from "./sets";
 import {
   NO_EVENTS,
   STAR_ROWS_MODE1,
@@ -387,6 +398,18 @@ let planCache = new WeakMap<Character, Plan>();
 export interface DmgEnv {
   /** Boss defense as a fraction: 3.0 = 300%. See ENEMY_DEF_* below. */
   enemyDef: number;
+  /** Printed Damage % — the generic bucket Boss Damage % is ADDED INTO, not
+   *  multiplied against. Defaults to ASSUMED_DAMAGE_PCT, which is 0 and which
+   *  biases every boss-damage rec HIGH. A caller that knows the real figure
+   *  passes it here and the bias is gone. See ASSUMED_DAMAGE_PCT. */
+  dmgPct?: number;
+  /** Class name, passed straight to damage.ts's class table. It resolves the
+   *  weapon multiplier, which is a COMMON FACTOR: it moves the absolute index
+   *  and cancels exactly out of every relGain() ratio. Carried so the index is
+   *  not merely a ratio base, never relied on for a ranking. */
+  cls?: string;
+  /** Character level. The model carries it and no term uses it. */
+  charLevel?: number;
   /** The class's secondary scaling stat, flat. Defaults to 0.
    *  We do not track it (Stats has no field for it), and leaving it at 0
    *  slightly OVERSTATES the value of a main-stat gain, because the real
@@ -397,39 +420,105 @@ export interface DmgEnv {
    *  like the class constants above — it cancels. It is written out because the
    *  chain is easier to check against the game's formula with it present. The
    *  way a NEW %stat line actually enters the model is pctToFlat(), which
-   *  converts it into the flat stat it is worth at this character's base. */
+   *  converts it into the flat stat it is worth at this character's base.
+   *
+   *  NO LONGER READ BY THE MODEL, and that is a correction rather than a
+   *  regression: `Stats.main` is the PRINTED total, which already has every
+   *  %stat line baked in, so multiplying by it again double-counted. It was a
+   *  common factor either way, so no ratio this file ever printed was wrong.
+   *  The field stays because it is exported API and because dmgEnvFor() fills
+   *  it; pctToFlat() is still the route a new %stat line takes. */
   pctStat?: number;
 }
 
-/** Arcane River bosses. NOT sourced — see SOURCED below. */
-export const ENEMY_DEF_ARCANE = 3.0;
-/** Grandis bosses. NOT sourced — see SOURCED below. */
+/** Arcane River bosses, 300%. IMPORTED, not restated: lib/damage.ts owns this
+ *  number as DEFAULT_PDR (equal to its BOSS_PDR.lucid, cited to
+ *  gmsmeta.com/bsm/ied.html). What is still unsourced here is the CHOICE of an
+ *  Arcane River boss as the target every character is priced against — see
+ *  SOURCED below. */
+export const ENEMY_DEF_ARCANE = DEFAULT_PDR;
+/** Grandis bosses. NOT sourced — lib/damage.ts has no row for these and says so
+ *  ("Grandis-era content is widely reported at 380%"). See SOURCED below. */
 export const ENEMY_DEF_GRANDIS = 3.8;
+
+/**
+ * Printed Damage % assumed for every character this engine prices.
+ *
+ * `Character.stats` has no damage-% field, and it has none because GMS does not
+ * print one anywhere in the stat window. So the model must assume a value, and
+ * it assumes ZERO. Zero is a LOWER BOUND, not a reading: every character has
+ * some, from the Damage hyper stat, class passives, inner ability and links.
+ *
+ * WHICH DIRECTION IT BIASES, and it is not a rounding error. Boss Damage % and
+ * plain Damage % land in ONE ADDITIVE BUCKET — damage.damageBreakdown() builds
+ * it as `1 + dmgPct + bossPct`, cited to grandislibrary.com/content/stat-terms:
+ * "It is added to %Damage in calculations." A boss-damage rec is therefore
+ * priced as (1 + d + bossAfter) / (1 + d + bossBefore), which SHRINKS as d
+ * grows, because a bigger d is a bigger denominator for the same numerator gain.
+ * Assuming d = 0 makes that denominator as small as it can possibly be, so
+ * every boss-damage figure this engine prints is the MOST the move could be
+ * worth and is biased HIGH. On the reference character the 159% -> 250% move
+ * reads +35.1% at d = 0 and +30.4% at a plausible d = 40% — see
+ * DAMAGE_PCT_BIAS_PROBE, which is what puts that second number in the rec's own
+ * explanation instead of leaving the player to discover it.
+ *
+ * Nothing else in the engine moves with it: the damage term is a common factor
+ * in every rec that does not change boss damage, so it cancels exactly out of
+ * relGain() for main stat, ATT, crit damage, flames and star force alike.
+ *
+ * A caller who knows the real figure passes DmgEnv.dmgPct and gets an unbiased
+ * number. Listed as false in SOURCED.
+ */
+export const ASSUMED_DAMAGE_PCT = 0;
+
+/**
+ * An illustrative Damage % used ONLY to state the size of ASSUMED_DAMAGE_PCT's
+ * bias in a sentence the player can check against their own character.
+ *
+ * It prices nothing and it ranks nothing. It is a guess at a plausible late-game
+ * total, not a measurement, which is exactly why it never appears as a bare
+ * figure — only inside "at +40% Damage% the same move is worth ...". Listed as
+ * false in SOURCED.
+ */
+export const DAMAGE_PCT_BIAS_PROBE = 40;
 
 function dmgIndex(s: Stats, env: DmgEnv): number | null {
   const fin = (n: number) => typeof n === "number" && Number.isFinite(n);
   if (!s || !fin(s.main) || !fin(s.att) || !fin(s.crit) || !fin(s.critdmg) || !fin(s.boss) || !fin(s.ied)) return null;
   if (s.main <= 0 || s.att <= 0) return null;
 
-  const statTerm = (4 * s.main + (env.secondary ?? 0)) * (1 + (env.pctStat ?? 0) / 100);
-  const attTerm = s.att;
-  // Base critical damage is NOT zero. MapleStory crits carry an inherent bonus
-  // on top of the printed Critical Damage stat, and lib/damage.ts declares it as
-  // a sourced constant. This file previously wrote `1 + cr * cd`, which is the
-  // same formula with an unnamed, unsourced 0 in place of that constant, and it
-  // overstated the 41.5% -> 60% crit-damage move by 24% relative (+12.89% vs
-  // +10.36%) on the reference character. Import the constant; do not restate it.
-  const cr = Math.min(s.crit, 100) / 100;
-  const critTerm = (1 - cr) + cr * (1 + CRIT_DAMAGE_BASE + s.critdmg / 100);
-  const bossTerm = 1 + s.boss / 100;
-  // Below ied = 1 - 1/enemyDef this term goes negative, which is the formula
-  // telling us it is out of its range rather than telling us damage is negative.
-  // Refuse to price it instead of clamping to an invented floor.
-  const defTerm = 1 - env.enemyDef * (1 - s.ied / 100);
-  if (!(defTerm > 0) || !(critTerm > 0) || !(bossTerm > 0) || !(statTerm > 0)) return null;
+  // THE adapter, not a second copy of it. `Stats` holds printed percents and the
+  // model wants fractions; fractionalInputsFromCharacter() is the one function
+  // in the app allowed to span that boundary, and rules.Stats satisfies
+  // damage.CharacterLike structurally so no import goes the other way.
+  //
+  // Every term that used to be written out by hand here now comes from
+  // damageBreakdown(): the crit term with its sourced CRIT_DAMAGE_BASE, the
+  // defence term, the range — and the DAMAGE TERM, which is the fix. This file
+  // used to compute `1 + boss/100`, a damage term with no damage-% component at
+  // all, which gave a boss-damage recommendation no bucket to divide into and
+  // read 15-25% high. The bucket is `1 + dmgPct + bossPct` and it is
+  // damage.ts's, cited there.
+  const a = fractionalInputsFromCharacter(
+    { cls: env.cls ?? "", lvl: env.charLevel ?? 0, stats: s },
+    {
+      pdr: env.enemyDef,
+      secondaryStat: env.secondary ?? 0,
+      dmgPctPrinted: env.dmgPct ?? ASSUMED_DAMAGE_PCT,
+    },
+  );
+  const b = damageBreakdown(a.inputs, a.opts);
 
-  const v = statTerm * attTerm * critTerm * bossTerm * defTerm;
-  return Number.isFinite(v) && v > 0 ? v : null;
+  // Below ied = 1 - 1/enemyDef the defence term goes negative, which is the
+  // formula telling us it is out of its range rather than telling us damage is
+  // negative. damage.ts clamps it to DEF_TERM_FLOOR and raises a warning, which
+  // is right for a page that renders warnings; this engine has no warning
+  // channel on a Rec, so it REFUSES to price instead. A rec with no number
+  // degrades visibly. A rec built on a floored term does not.
+  if (!b.meaningful || !(b.rawDefTerm > 0)) return null;
+  if (!(b.damageTerm > 0) || !(b.critTerm > 0) || !(b.range > 0)) return null;
+
+  return Number.isFinite(b.damageIndex) && b.damageIndex > 0 ? b.damageIndex : null;
 }
 
 /** Ratio of final damage after/before, minus 1. Null for anything the model
@@ -490,7 +579,15 @@ export function pctToFlat(ch: Character, pct: number): number | null {
 }
 
 export function dmgEnvFor(ch: Character): DmgEnv {
-  return { enemyDef: ENEMY_DEF_ARCANE, secondary: 0, pctStat: gearStatPct(ch) };
+  return {
+    enemyDef: ENEMY_DEF_ARCANE,
+    secondary: 0,
+    pctStat: gearStatPct(ch),
+    // Character carries no damage-% field, so this is the assumption, named.
+    dmgPct: ASSUMED_DAMAGE_PCT,
+    cls: ch.cls,
+    charLevel: ch.lvl,
+  };
 }
 
 const withMain = (s: Stats, d: number): Stats => ({ ...s, main: s.main + d });
@@ -746,13 +843,22 @@ export const SOURCED: Record<string, boolean> = {
   FLAME_TIER_FLOOR_ORDINARY: true,
   FLAME_TIER_FLOOR_ADVANTAGED: true,
   ARCANE_MAIN_STAT_PER_FORCE: true,
-  // Carried over from this file's own charAdvice sentence ("Arcane bosses sit
-  // at 300% defense, Grandis at 380%"). That sentence has no citation in
-  // data/guide-graph.json, so neither does this. It happens not to move any
-  // number the app currently shows: enemy defense cancels out of relGain unless
-  // a rec changes IED, and none of them do yet.
+  // The 300% FIGURE is now imported from damage.DEFAULT_PDR, which cites
+  // gmsmeta.com/bsm/ied.html for Lucid. What stays uncited is this file's
+  // CHOICE of that boss as the target every character is measured against —
+  // the player might be at Grandis, where the same IED is worth more. Enemy
+  // defense cancels out of relGain unless a rec changes IED, so the only number
+  // on the page it moves is the IED rec, which is labelled 'placeholder' for
+  // exactly this reason.
   ENEMY_DEF_ARCANE: false,
   ENEMY_DEF_GRANDIS: false,
+  // Damage % is not printed in game and Character.stats has no field for it, so
+  // the model assumes 0 — a lower bound that makes every BOSS-damage figure an
+  // upper bound. See the constant's own comment for the arithmetic and the
+  // direction. DAMAGE_PCT_BIAS_PROBE is the illustrative figure used to say how
+  // big the bias is; it prices nothing.
+  ASSUMED_DAMAGE_PCT: false,
+  DAMAGE_PCT_BIAS_PROBE: false,
   // No longer used for pricing — see the @deprecated block on the function. The
   // curve that replaced it, starforce.costPerAttempt, is better (per-star
   // divisors, correct level rounding) but is still single-sourced, so it is
@@ -1162,6 +1268,12 @@ const SF_NOTE =
   "Cost is the per-star curve from lib/starforce.ts, which is one community source rather than a patch note — treat the ordering as solid and the total as an estimate.";
 const CUBE_NOTE = "Cost estimated; cube tier-up rates are not yet sourced.";
 const GENERIC_NOTE = "Cost estimated; this figure is not yet sourced.";
+// The one note about a DAMAGE figure rather than a cost. Boss Damage % shares an
+// additive bucket with Damage %, which the game never prints, so a boss-damage
+// row is the only row whose size depends on an assumption the player can check
+// against their own character — see ASSUMED_DAMAGE_PCT.
+const BOSS_BUCKET_NOTE =
+  `Boss Damage % is added into the same bucket as Damage %, which the game does not print; this figure assumes ${ASSUMED_DAMAGE_PCT}% Damage%, so it is the most the line could be worth rather than the likeliest.`;
 
 function fmtDmg(d: number): string {
   const pct = d * 100;
@@ -1371,7 +1483,13 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
         // Only the legendary step is priced here: it is the one whose payoff
         // the guide names (a boss-damage line), and PLACEHOLDER_POT_BOSS_LINE_PCT
         // is the only line size available at all.
-        price(r, mk(relGain(st, withBoss(st, PLACEHOLDER_POT_BOSS_LINE_PCT), env), cost, conf, note));
+        //
+        // Two separate soft spots, so both are said out loud: the COST rests on
+        // an unsourced cube rate (CUBE_NOTE) and the DAMAGE rests on assuming
+        // 0% Damage% (BOSS_BUCKET_NOTE). This branch is only reachable from
+        // tier 'unique', so `conf` here is already 'placeholder' on cost alone.
+        const bossNote = [note, BOSS_BUCKET_NOTE].filter(Boolean).join(" ");
+        price(r, mk(relGain(st, withBoss(st, PLACEHOLDER_POT_BOSS_LINE_PCT), env), cost, conf, bossNote));
       }
     }
 
@@ -1452,8 +1570,29 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
     if (it.sup && cur < 15) {
       // Superior gear runs on its own rate table, which the guide names but
       // does not give, so this one stays unpriced.
-      add(1, "hi", `Superior gear — caps at 15 stars, currently ${cur}.`,
-        "Expensive per star. Consider a non-superior replacement that goes to 30 instead.");
+      //
+      // "Replace it with a non-superior piece" is sound for a standalone item and
+      // ACTIVELY WRONG for a set piece: a Superior Gollux ring swapped out to reach
+      // 30 stars loses the Superior Gollux set bonus, which is worth more than the
+      // stars gained. This fired at priority 1 on EVERY superior item regardless,
+      // which is the exact mistake lib/sets.ts exists to prevent - and sets.ts was
+      // imported by nobody, so the model that knew better never saw the question.
+      const piece = resolveSet(slot.id, it);
+      if (piece) {
+        // Name the bonus actually at risk at this character's current piece count,
+        // not the set's theoretical maximum.
+        const live = activeSets(ch.items).find((a) => a.setId === piece.setId);
+        const lost = live && !isEmptyEffects(live.effects) ? describeEffects(live.effects) : "";
+        const at = live ? ` (${live.count} piece${live.count === 1 ? "" : "s"} equipped)` : "";
+        add(2, "mid", `Superior gear — caps at 15 stars, currently ${cur}.`,
+          `Expensive per star, but this is a ${piece.setName} piece${at}. Replacing it to ` +
+          `reach 30 stars gives up ${lost || "the set bonus"}, which is usually worth more ` +
+          `than the extra stars. Finish the set first, then reconsider.`);
+      } else {
+        add(1, "hi", `Superior gear — caps at 15 stars, currently ${cur}.`,
+          "Expensive per star, and this piece is not in a set. A non-superior " +
+          "replacement goes to 30 instead.");
+      }
     } else if (cur === 0) {
       // It used to say "free power sitting on the floor". With the real per-star
       // curve in front of it that sentence now sits next to a nine-figure price
@@ -1702,11 +1841,20 @@ function buildCharAdvice(ch: Character): Rec[] {
       `Assumes ${Math.round(ENEMY_DEF_ARCANE * 100)}% enemy defense, which is the one uncited number in this figure — against Grandis' ${Math.round(ENEMY_DEF_GRANDIS * 100)}% the same IED is worth more.`);
   }
   if (st.boss && st.boss < BOSS_TARGET) {
+    const delta = BOSS_TARGET - st.boss;
     const r = add(3, "mid", `Boss damage ${st.boss}%.`,
       `Hyper stat, weapon/secondary/emblem lines, familiars. Endgame is 300%+.`);
-    priceDamageOnly(r, relGain(st, withBoss(st, BOSS_TARGET - st.boss), env), "modelled",
+    // Boss damage is the one stat on this page whose figure moves with the
+    // damage-% assumption, because the two share a single additive bucket (see
+    // ASSUMED_DAMAGE_PCT). So it does not get the 'modelled' badge the crit and
+    // stat rows get: the ordering is sound, the magnitude is an upper bound, and
+    // 'placeholder' is this file's word for exactly that. The probe puts a
+    // second, smaller number in the player's hands rather than asserting a bias
+    // they cannot see.
+    const probe = relGain(st, withBoss(st, delta), { ...env, dmgPct: DAMAGE_PCT_BIAS_PROBE });
+    priceDamageOnly(r, relGain(st, withBoss(st, delta), env), "placeholder",
       "Hyper stat points and familiars cost no mesos; the weapon, secondary and emblem lines are cubes, which do",
-      `That is the whole ${st.boss}% → ${BOSS_TARGET}% move.`);
+      `That is the whole ${st.boss}% → ${BOSS_TARGET}% move, and it assumes ${ASSUMED_DAMAGE_PCT}% Damage% — the game never prints that stat, so the character sheet cannot record it. Boss Damage is added into the same bucket as Damage%, so your real Damage% makes this number SMALLER, never bigger${probe === null ? "" : `: at +${DAMAGE_PCT_BIAS_PROBE}% Damage% the same move is worth ${fmtDmg(probe)}`}.`);
   }
   if (st.hp && st.hp < 60000)
     add(2, "mid", `HP ${st.hp.toLocaleString()} is thin for Lucid/Will.`,
