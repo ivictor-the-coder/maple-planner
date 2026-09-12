@@ -756,6 +756,32 @@ export interface CostResult {
  * `safeguard` and an explicit mode are passed, safeguard wins where it exists and the
  * mode stands everywhere else.
  */
+/**
+ * OBSERVED IN GAME, GMS Heroic, 2026-09-12. Two per-tap prices read off the
+ * enhancement window, both reproduced EXACTLY by this file's existing formula:
+ *
+ *   Silver Blossom Ring  Lv 110   9 -> 10   533,400 mesos   (success 57.75%)
+ *   Mechanator Pendant   Lv 120  10 -> 11 2,801,600 mesos   (success 52.50%)
+ *
+ * What that settles, and what it does not:
+ *   - The SHAPE is right: 100 * (round(level^3 * (star+1)^exp / divisor) + 10).
+ *   - The star-9 branch (exp 1, divisor 2500) and the star-10 branch
+ *     (exp 2.7, divisor 40000) are both correct AS INDEXED HERE.
+ *   - HEROIC_COST_MULTIPLIER is 1 at these stars. That assumption was flagged
+ *     and never tested; two exact matches test it.
+ *   - It does NOT verify stars 15-25, where the divisors change again and where
+ *     a Heroic multiplier would most plausibly hide. Those stay unverified.
+ *
+ * It also resolves the "3.68x discrepancy at star 10" a critic found between
+ * this file and data/guide-graph.json. They were not two readings of one tap:
+ * guide-graph's table is off by one on which star index the exponent change
+ * begins. THIS FILE WAS RIGHT. The documentation was wrong.
+ */
+export const OBSERVED_TAPS = [
+  { item: "Silver Blossom Ring", itemLevel: 110, fromStar: 9, mesos: 533_400, successPct: 57.75 },
+  { item: "Mechanator Pendant", itemLevel: 120, fromStar: 10, mesos: 2_801_600, successPct: 52.50 },
+] as const;
+
 export function costPerAttempt(
   itemLevel: number,
   currentStar: number,

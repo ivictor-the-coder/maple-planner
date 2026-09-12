@@ -93,6 +93,43 @@ export interface UnverifiedNote {
   readonly why: string;
 }
 
+/**
+ * Honor EXP to reroll inner ability, by how many lines are locked.
+ *
+ * CONFIRMED IN GAME, 2026-09-12, from the Ability Setting panel on Archerroni,
+ * which prints "Required Honor EXP" and updates as lines are locked:
+ *   0 locked   8,000
+ *   1 locked  11,000
+ *   2 locked  16,000
+ * Legendary rank, Heroic world. Locking is what costs; the rank does not change.
+ *
+ * This was recorded as "rerollMethod is an empty array - the reroll items, costs
+ * and Heroic availability were not sourced, and Interactive-world advice does
+ * not transfer". It is now sourced for Heroic, from Heroic.
+ */
+export const INNER_ABILITY_REROLL_HONOR: Readonly<Record<0 | 1 | 2, number>> = {
+  0: 8_000,
+  1: 11_000,
+  2: 16_000,
+};
+
+/**
+ * OBSERVED, same session: Archerroni's live Legendary inner ability reads
+ * Boss Damage +17% / Item Drop Rate +10% / DEX +19, LUK +10.
+ *
+ * Worth noting for drift detection rather than as a constant: Item Drop Rate on
+ * line 2 is a FARMING line sitting on the bossing preset. Inner ability has
+ * three presets (observed), so the honest read is not "reroll it" but "that line
+ * belongs on a farm preset" - the same shape as the gear-side drift rule above.
+ */
+export const OBSERVED_INNER_ABILITY_BOSSING = {
+  observedAt: "2026-09-12",
+  rank: "legendary",
+  lines: ["Boss Damage +17%", "Item Drop Rate +10%", "DEX +19, LUK +10"],
+  presetsAvailable: 3,
+  note: "Line 2 is a farming line on a bossing preset.",
+} as const;
+
 export const UNVERIFIED: ReadonlyArray<UnverifiedNote> = [
   {
     name: "MESO_BAG_BASE_CHANCE",
@@ -128,7 +165,7 @@ export const UNVERIFIED: ReadonlyArray<UnverifiedNote> = [
   },
   {
     name: "BADGE_CAN_ROLL_DROP_MESO",
-    why: "UNKNOWN. The KMS accessory pool is face/eye/earring/ring/pendant only; badges and hearts are not in it and the heart pool contains no drop or meso line. A GMS player reportedly holding Item Drop Rate +20% on a Black Bean Mark is either evidence GMS pools differ or evidence the item is an eye accessory. Do not model badge odds.",
+    why: "UNKNOWN, but the evidence that raised it is RESOLVED and no longer supports GMS pools differing. The KMS accessory pool is face/eye/earring/ring/pendant only; badges and hearts are not in it. The Black Bean Mark carrying Item Drop Rate +20% was the one data point suggesting GMS might differ - it does not: api.maplestory.net gives its subcategory as \"Eye Decoration\", so it is an EYE ACCESSORY and sits squarely inside the known pool. Badge eligibility is therefore still unestablished either way, with one fewer reason to think it is allowed. Do not model badge odds.",
   },
   {
     name: "SPAWN_TICK_MS / SPAWN_TICKS_PER_HOUR",

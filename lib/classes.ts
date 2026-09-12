@@ -779,6 +779,38 @@ const PRIORITY_ORDER: Record<RulePriority, number> = {
 };
 
 /** Every hyper-stat rule for a class, evaluated and ordered for one character. */
+/**
+ * Cost in hyper stat points to REACH each level, 1-indexed.
+ *
+ * CONFIRMED IN GAME, 2026-09-12, from three Hyper Stat Level Up dialogs on
+ * Archerroni, which print "Required Points" for the next level:
+ *   Critical Rate      Lv  3 ->  4    8 points
+ *   DEX                Lv  6 ->  7   20 points
+ *   Attack & Magic ATT Lv 10 -> 11   50 points
+ * All three match the standard published table exactly, which is what promotes
+ * the whole curve rather than just the three observed rows.
+ *
+ * This closes a gap the guide research flagged explicitly: the app could ORDER
+ * hyper stat lines but not PRICE them, so it could not answer "what do my
+ * unspent points actually buy?" - which is the only question a player with
+ * points in hand is asking.
+ */
+export const HYPER_STAT_COST_TO_REACH: readonly number[] = [
+  1, 2, 4, 8, 10, 15, 20, 25, 30, 35, 50, 65, 80, 95, 110,
+];
+
+/** Total points to take a line from `from` to `to`. Null past the known table. */
+export function hyperStatCost(from: number, to: number): number | null {
+  if (!Number.isInteger(from) || !Number.isInteger(to) || to <= from || from < 0) return null;
+  let sum = 0;
+  for (let l = from + 1; l <= to; l++) {
+    const c = HYPER_STAT_COST_TO_REACH[l - 1];
+    if (c === undefined) return null;
+    sum += c;
+  }
+  return sum;
+}
+
 export function hyperStatPriorities(cls: string, ctx: RuleContext): readonly EvaluatedRule[] {
   const g = guideFor(cls);
   if (!g) return [];

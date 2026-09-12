@@ -434,6 +434,40 @@ export const BOW_MASTER: ClassConstants = {
  * "bow master" all resolve. Add a class by adding a row, never by editing a
  * formula above.
  */
+/**
+ * CONFIRMED IN GAME, 2026-09-12, from Archerroni's Damage Range tooltip, which
+ * prints the game's own values rather than a community transcription:
+ *
+ *   [Current Applied Weapon Constant]  1.30
+ *   [Weapon Mastery]                   85%
+ *
+ * Both match BOW_MASTER below exactly. The competing reading of 1.15, which
+ * would have moved every damage figure in the app by 13%, is refuted.
+ *
+ * The same tooltip also prints the ranges themselves:
+ *   Default 6,128,555 | Normal Enemy 6,199,405 | Boss 11,761,157
+ * at Lv 245, DEX 20,809, and those are roughly 3.9x what damageRange() returns.
+ * The CONSTANTS are therefore right and the MULTIPLIER STACK is incomplete -
+ * the tooltip says it accounts for "Damage bonuses and Final Damage bonuses
+ * from skills and equipment", and this model defaults both to zero. See
+ * DAMAGE_RANGE_GAP.
+ */
+export const OBSERVED_WEAPON_CONSTANT_BOWMASTER = 1.30;
+export const OBSERVED_WEAPON_MASTERY_BOWMASTER = 0.85;
+
+/** Measured shortfall of damageRange() against the game's own printed range. */
+export const DAMAGE_RANGE_GAP = {
+  observedAt: "2026-09-12",
+  character: "Archerroni, Bow Master, Lv 245, DEX 20,809, ATT 1,471",
+  gamePrinted: { default: 6_128_555, normalEnemy: 6_199_405, boss: 11_761_157 },
+  whatIsMissing:
+    "Final Damage and Damage% are both defaulted to 0 by the adapter, and the " +
+    "character has hyper stat Damage at Lv 10 plus Bow Master's passive final " +
+    "damage stack. Buffs alone (+83.83% FD) close less than half the gap, so " +
+    "something else is unmodelled. Do not scale the constants to fit - they are " +
+    "confirmed correct; the missing terms are multipliers.",
+} as const;
+
 export const CLASS_CONSTANTS: Record<string, ClassConstants> = {
   bowmaster: BOW_MASTER,
 };

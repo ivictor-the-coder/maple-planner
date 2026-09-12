@@ -5,6 +5,34 @@
 // a game constant unless it is in the CONSTANTS block below with a citation, and
 // every constant that could not be sourced for GMS Heroic v.271 is exported, typed
 // so the compiler forces the caller to handle the unknown, and listed in UNVERIFIED.
+
+/**
+ * OBSERVED IN GAME, 2026-09-12, on the Crystal Collector's Weekly Sale Status:
+ *
+ *   Crystal (all three types)  World      159 / 180
+ *   Crystal (weekly only)      Character    4 / 14
+ *
+ * Both figures were DISPUTED and are now settled by the game itself.
+ * The world cap is 180, not the 60 that was the last GMS-official figure
+ * anyone could source (2021) and not the 90 that KMS uses. The per-character
+ * weekly cap is 14, not 12 - 12 was the only value with a primary source
+ * (KMS v1.2.393, July 2024) and it does not describe GMS.
+ *
+ * The label matters too: the character row counts only the WEEKLY crystal type,
+ * which is direct evidence that daily and monthly crystals do not consume the
+ * per-character allowance. That was previously flagged as weakly corroborated
+ * and load-bearing for the whole daily-bossing conclusion.
+ */
+export const OBSERVED_CRYSTAL_CAPS = {
+  worldPerWeek: 180,
+  perCharacterWeeklyType: 14,
+  observedAt: "2026-09-12",
+  observedWorldUsed: 159,
+  observedCharacterUsed: 4,
+  source: "in-game Crystal Collector, Weekly Sale Status panel",
+} as const;
+
+// so the compiler forces the caller to handle the unknown, and listed in UNVERIFIED.
 //
 // WHY this file refuses to guess: a wrong crystal price does not produce a slightly
 // wrong number, it produces a wrong ORDER, and the ordered "add next" list is the

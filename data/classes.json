@@ -3660,33 +3660,21 @@
         "note": null
       },
       "linkSkill": {
-        "name": null,
-        "nameCandidates": [
-          "Guiding Stars — MapleStory Wiki infobox, given for BOTH Shine classes",
-          "Tree of Stars — Grandis Library (GMS v.269), Sia Astelle only, Buff Duration +10% and Critical Damage +3%"
-        ],
-        "effect": null,
-        "masterLevel": null,
+        "name": "Guiding Stars",
+        "nameCandidates": null,
+        "effect": "Buff Duration and Critical Damage. Lv 3: +10% buff duration, +3% critical damage. Lv 4: +13% / +4%.",
+        "masterLevel": 6,
         "stacks": null,
         "aliases": null,
-        "source": "UNVERIFIED — the Shine link appears to have become a stacking faction link when Erel Light launched, and no source opened on 2026-09-11 agrees on its name, value or stack count. Do not ship a number for Sia Astelle until it is read in-game.",
-        "lastVerified": "",
-        "patchVersion": "v.269",
-        "claimType": "consensus",
-        "conflictsWith": [
-          {
-            "source": "https://maplestorywiki.net/w/Sia_Astelle",
-            "claim": "'Guiding Stars' for both Shine classes"
-          },
-          {
-            "source": "https://grandislibrary.com/content/link-skills",
-            "claim": "'Tree of Stars', Buff Duration +10% / Critical Damage +3%, Sia only, no Erel Light entry"
-          },
-          {
-            "source": "https://gamemarket.gg/news/maplestory-global/erel-light-class-spotlight-gms-gets-the-new-shine-warrior-first-june-17",
-            "claim": "'Guiding Stars', Buff Duration +19% / Critical Damage +6% at master level, stacking up to 2 across Shine characters"
-          }
-        ]
+        "sharedWith": [
+          "Sia Astelle",
+          "Erel Light"
+        ],
+        "source": "in-game skill tooltip, 2026-09-12 — reads \"Sia Astelle, Erel Light's Link Skill\"",
+        "lastVerified": "2026-09-12",
+        "patchVersion": "v.271",
+        "claimType": "fact",
+        "conflictsWith": null
       },
       "legion": {
         "effect": "Abnormal Status Damage +1/2/3/5/6%",
@@ -3742,33 +3730,21 @@
         "note": null
       },
       "linkSkill": {
-        "name": null,
-        "nameCandidates": [
-          "Guiding Stars — MapleStory Wiki infobox, given for BOTH Shine classes",
-          "Tree of Stars — Grandis Library (GMS v.269), Sia Astelle only, Buff Duration +10% and Critical Damage +3%"
-        ],
-        "effect": null,
-        "masterLevel": null,
+        "name": "Guiding Stars",
+        "nameCandidates": null,
+        "effect": "Buff Duration and Critical Damage. Lv 3: +10% buff duration, +3% critical damage. Lv 4: +13% / +4%.",
+        "masterLevel": 6,
         "stacks": null,
         "aliases": null,
-        "source": "UNVERIFIED — the Shine link appears to have become a stacking faction link when Erel Light launched, and no source opened on 2026-09-11 agrees on its name, value or stack count. Do not ship a number for Erel Light until it is read in-game.",
-        "lastVerified": "",
-        "patchVersion": "v.269",
-        "claimType": "consensus",
-        "conflictsWith": [
-          {
-            "source": "https://maplestorywiki.net/w/Sia_Astelle",
-            "claim": "'Guiding Stars' for both Shine classes"
-          },
-          {
-            "source": "https://grandislibrary.com/content/link-skills",
-            "claim": "'Tree of Stars', Buff Duration +10% / Critical Damage +3%, Sia only, no Erel Light entry"
-          },
-          {
-            "source": "https://gamemarket.gg/news/maplestory-global/erel-light-class-spotlight-gms-gets-the-new-shine-warrior-first-june-17",
-            "claim": "'Guiding Stars', Buff Duration +19% / Critical Damage +6% at master level, stacking up to 2 across Shine characters"
-          }
-        ]
+        "sharedWith": [
+          "Sia Astelle",
+          "Erel Light"
+        ],
+        "source": "in-game skill tooltip, 2026-09-12 — reads \"Sia Astelle, Erel Light's Link Skill\"",
+        "lastVerified": "2026-09-12",
+        "patchVersion": "v.271",
+        "claimType": "fact",
+        "conflictsWith": null
       },
       "legion": {
         "effect": "Boss Damage +1/2/3/5/6%",
