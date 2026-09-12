@@ -1,0 +1,5334 @@
+{
+  "meta": {
+    "title": "MapleStory class roster and class guides",
+    "region": "GMS",
+    "gameVersion": "v.271",
+    "rosterPatchVersion": "v.269",
+    "lastBuilt": "2026-09-11",
+    "worldAssumption": "Heroic (Reboot) unless a record says otherwise",
+    "classCount": 53,
+    "verificationPolicy": "Same three computed states as data/guide-graph.json — VERIFIED (source is a URL, a human opened it on lastVerified), UNVERIFIED (source starts with 'UNVERIFIED — ' and lastVerified is empty), STALE (patchVersion is behind meta.gameVersion) — PLUS a third axis this file adds: claimType is 'fact' (falsifiable in-game in seconds), 'consensus' (several independent guides agree, no primary source) or 'judgement' (this guide's own call). A class guide is mostly judgement by volume, and without the third state the whole feature renders as a wall of UNVERIFIED and nobody reads it.",
+    "stalenessNote": "Every roster figure is stamped v.269 because the best GMS-specific source (Grandis Library) is footer-stamped GMS Ver. 269 and the MapleStory Wiki is region-agnostic and not version-stamped at all. They are therefore STALE against the app's declared v.271 by construction, not by neglect. The v.270 and v.271 class deltas could not be read: the Nexon patch-notes page is a JS SPA that returns no text to a fetcher and docs/sources/v271-patch-notes.md is not present in this repo.",
+    "sources": {
+      "roster": "https://maplestorywiki.net — per-class infoboxes (region-agnostic, availability-tagged)",
+      "gmsSpecific": "https://grandislibrary.com — GMS-specific, footer-stamped GMS Ver. 269",
+      "links": "https://grandislibrary.com/content/link-skills",
+      "legion": "https://maplestorywiki.net/w/Legion_System"
+    },
+    "licensing": {
+      "icons": "NO GAME ART SHIPS IN THIS APP. Nexon's Game IP Guide for Content Creators states 'Commercial use of UGC is prohibited' and 'You may not sell, display, or otherwise provide access to UGC in return for monetary compensation'; its only monetisation carve-out is ads or donations on platforms anyone can access free, which a subscription app is not. That binds regardless of where the file came from, so hotlinking a community CDN does not cure it — and maplestorywiki.net is separately CC BY-NC-SA 3.0, which a paid tier contradicts on its own. Class marks in this file are therefore typographic: a monogram plus a branch colour, rendered from tokens, with zero external image dependency.",
+      "iconsSource": "https://playersupport.nexon.com/hc/en-us/articles/360059079812-Nexon-Game-IP-Guide-for-Content-Creators",
+      "text": "Class names, skill names, skill IDs and job-advancement order are facts and short phrases, not protectable expression, and nominative fair use covers naming them. In-game skill DESCRIPTION prose is not: the wiki's text is CC BY-NC-SA over Nexon's own wording, so every description in this file is written here rather than paraphrased from it.",
+      "pictograms": "If a pictogram is ever wanted, game-icons.net is CC BY 3.0 with commercial use permitted on attribution ('Icons made by {author}. Available on https://game-icons.net') and is third-party fantasy art with no Nexon interest attached.",
+      "lastVerified": "2026-09-11"
+    },
+    "integration": {
+      "damage": "lib/damage.ts is the authority on damage constants. Guide records reference BOW_MASTER by path (the `from` field on a skill effect) and never restate a value.",
+      "legion": "lib/legion.ts owns the rank and link-level ladders. lib/classes.ts imports LINK_EFFECT and cross-checks it against this roster instead of forking it; see legionCrossCheck().",
+      "guideGraph": "data/guide-graph.json#nodes.v and #nodes.hexa hold the class-agnostic explainer. Keep them as the explanation of what a boost node IS and let the per-class plans own the ordering, or the two will contradict each other within one patch cycle."
+    }
+  },
+  "branches": [
+    {
+      "id": "explorer",
+      "name": "Explorer",
+      "aliases": [],
+      "color": {
+        "hex": "#5aa9f0",
+        "cssVar": "--branch-explorer",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "cygnus",
+      "name": "Cygnus Knights",
+      "aliases": [],
+      "color": {
+        "hex": "#f3cf4f",
+        "cssVar": "--branch-cygnus",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "heroes",
+      "name": "Heroes",
+      "aliases": [
+        "Legends"
+      ],
+      "color": {
+        "hex": "#b47ce8",
+        "cssVar": "--branch-heroes",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "resistance",
+      "name": "Resistance",
+      "aliases": [],
+      "color": {
+        "hex": "#f06a63",
+        "cssVar": "--branch-resistance",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "nova",
+      "name": "Nova",
+      "aliases": [],
+      "color": {
+        "hex": "#5fd39b",
+        "cssVar": "--branch-nova",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "sengoku",
+      "name": "Sengoku",
+      "aliases": [],
+      "color": {
+        "hex": "#e8874a",
+        "cssVar": "--branch-sengoku",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "flora",
+      "name": "Flora",
+      "aliases": [],
+      "color": {
+        "hex": "#8fd14f",
+        "cssVar": "--branch-flora",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "anima",
+      "name": "Anima",
+      "aliases": [],
+      "color": {
+        "hex": "#e87aa8",
+        "cssVar": "--branch-anima",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "jianghu",
+      "name": "Jianghu",
+      "aliases": [],
+      "color": {
+        "hex": "#4fd0d0",
+        "cssVar": "--branch-jianghu",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "shine",
+      "name": "Shine",
+      "aliases": [
+        "Child of God"
+      ],
+      "color": {
+        "hex": "#ffe1a0",
+        "cssVar": "--branch-shine",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    },
+    {
+      "id": "other",
+      "name": "Other",
+      "aliases": [
+        "Transcendent",
+        "Friends World"
+      ],
+      "color": {
+        "hex": "#9dabc7",
+        "cssVar": "--branch-other",
+        "decidedBy": "MaplePlanner design decision — NOT a game constant."
+      }
+    }
+  ],
+  "archetypes": [
+    {
+      "id": "warrior",
+      "name": "Warrior",
+      "emblem": {
+        "name": "Mitra's Rage: Warrior",
+        "level": 200,
+        "stats": "STR +40, DEX +40, Max HP +700, ATT +5, M.ATT +5",
+        "potentialLines": "Rolls %Attack, %Magic Attack, %Ignored Enemy Defense and %Damage.",
+        "source": "https://maplestorywiki.net/w/Emblem",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      }
+    },
+    {
+      "id": "magician",
+      "name": "Magician",
+      "emblem": {
+        "name": "Mitra's Rage: Magician",
+        "level": 200,
+        "stats": "INT +40, LUK +40, ATT +5, M.ATT +5",
+        "potentialLines": "Rolls %Attack, %Magic Attack, %Ignored Enemy Defense and %Damage.",
+        "source": "https://maplestorywiki.net/w/Emblem",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      }
+    },
+    {
+      "id": "bowman",
+      "name": "Bowman",
+      "emblem": {
+        "name": "Mitra's Rage: Bowman",
+        "level": 200,
+        "stats": "STR +40, DEX +40, ATT +5, M.ATT +5",
+        "potentialLines": "Rolls %Attack, %Magic Attack, %Ignored Enemy Defense and %Damage.",
+        "source": "https://maplestorywiki.net/w/Emblem",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      }
+    },
+    {
+      "id": "thief",
+      "name": "Thief",
+      "emblem": {
+        "name": "Mitra's Rage: Thief",
+        "level": 200,
+        "stats": "DEX +40, LUK +40, ATT +5, M.ATT +5",
+        "potentialLines": "Rolls %Attack, %Magic Attack, %Ignored Enemy Defense and %Damage.",
+        "source": "https://maplestorywiki.net/w/Emblem",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      }
+    },
+    {
+      "id": "pirate",
+      "name": "Pirate",
+      "emblem": {
+        "name": "Mitra's Rage: Pirate",
+        "level": 200,
+        "stats": "STR +40, DEX +40, ATT +5, M.ATT +5",
+        "potentialLines": "Rolls %Attack, %Magic Attack, %Ignored Enemy Defense and %Damage.",
+        "source": "https://maplestorywiki.net/w/Emblem",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      }
+    }
+  ],
+  "markPolicy": {
+    "kind": "monogram",
+    "description": "A rounded-square tile carrying a 2-3 letter monogram in the app's display face, coloured by branch. The branch taxonomy becomes the visual system, so the icon and the information architecture are the same thing — which a borrowed icon set never achieves.",
+    "colorsAre": "MaplePlanner design decisions, NOT game constants.",
+    "cssVars": [
+      "--branch-explorer",
+      "--branch-cygnus",
+      "--branch-heroes",
+      "--branch-resistance",
+      "--branch-nova",
+      "--branch-sengoku",
+      "--branch-flora",
+      "--branch-anima",
+      "--branch-jianghu",
+      "--branch-shine",
+      "--branch-other"
+    ],
+    "cssVarsNote": "These custom properties are NOT yet defined in app/globals.css. A UI wave must add them, or read the hex from this file directly."
+  },
+  "legacyClasses": [
+    {
+      "name": "Beast Tamer",
+      "status": "converted",
+      "becameClassId": "lynn",
+      "note": "Character creation disabled and existing Beast Tamers converted to Forest Child Lynn in GMS on 2024-05-01.",
+      "source": "https://maplestorywiki.net/w/Beast_Tamer",
+      "lastVerified": "2026-09-11"
+    },
+    {
+      "name": "Jett",
+      "status": "removed",
+      "becameClassId": null,
+      "note": "Removed from GMS. Not selectable; handle only as a legacy name in roster imports.",
+      "source": "https://grandislibrary.com/classes",
+      "lastVerified": "2026-09-11"
+    },
+    {
+      "name": "Lethe",
+      "status": "not-in-gms",
+      "becameClassId": null,
+      "note": "Appears in the region-agnostic MapleStory Wiki Legion table under a 'Demon' branch, but is absent from the GMS class index and GMS link-skill listings.",
+      "source": "https://maplestorywiki.net/w/Legion_System",
+      "lastVerified": "2026-09-11"
+    }
+  ],
+  "statExceptions": [
+    {
+      "classId": "demonavenger",
+      "what": "Main stat is HP",
+      "why": "Damage scales off Max HP, there is no MP, and Exceed skills cost HP. %HP flames and potential are MAIN-stat lines; %STR is the secondary line."
+    },
+    {
+      "classId": "xenon",
+      "what": "Three main stats",
+      "why": "STR, DEX and LUK all count with no single secondary. All Stat lines are worth roughly triple; single-stat flames are heavily devalued. Its Legion piece also has its own shape."
+    },
+    {
+      "classId": "zero",
+      "what": "Two forms, two weapon multipliers",
+      "why": "Alpha 1.34x and Beta 1.49x over a shared gear set, where each form's weapon occupies the other's secondary slot. Also the only class with its own Legion rank ladder (130/160/180/200/250)."
+    },
+    {
+      "classId": "dualblade",
+      "what": "The secondary slot is a real weapon",
+      "why": "The Katara needs full star force, potential and flame investment, unlike every other class's cheap NPC trinket."
+    }
+  ],
+  "classes": [
+    {
+      "id": "hero",
+      "name": "Hero",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Two-handed Axe, Two-handed Sword, One-handed Axe or One-handed Sword",
+      "secondaryWeapon": "Medallion (Shield with a one-handed weapon)",
+      "mark": {
+        "monogram": "HR"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": "40% unconditional, 70% conditional."
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": null,
+        "variants": {
+          "oneHanded": 1.34,
+          "twoHanded": 1.44
+        },
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Invincible Belief",
+        "nameCandidates": null,
+        "effect": "At 15% HP or below, restores 44% of Max HP every 1s for 3s. 90s cooldown.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Warrior",
+          "max": 3,
+          "note": "Stacks across unique Explorer Warriors, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Hero",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "paladin",
+      "name": "Paladin",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Two-handed Blunt, Two-handed Sword, One-handed Blunt or One-handed Sword",
+      "secondaryWeapon": "Rosary (Shield with a one-handed weapon)",
+      "mark": {
+        "monogram": "PAL"
+      },
+      "innateCritRate": {
+        "value": 0.47,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": null,
+        "variants": {
+          "oneHanded": 1.24,
+          "twoHanded": 1.34
+        },
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Invincible Belief",
+        "nameCandidates": null,
+        "effect": "At 15% HP or below, restores 44% of Max HP every 1s for 3s. 90s cooldown.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Warrior",
+          "max": 3,
+          "note": "Stacks across unique Explorer Warriors, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Paladin",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "darkknight",
+      "name": "Dark Knight",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Spear or Polearm",
+      "secondaryWeapon": "Iron Chain",
+      "mark": {
+        "monogram": "DK"
+      },
+      "innateCritRate": {
+        "value": 0.75,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.49,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Invincible Belief",
+        "nameCandidates": null,
+        "effect": "At 15% HP or below, restores 44% of Max HP every 1s for 3s. 90s cooldown.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Warrior",
+          "max": 3,
+          "note": "Stacks across unique Explorer Warriors, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Max HP +2/3/4/5/6%",
+        "values": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Max HP",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Dark_Knight",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "bishop",
+      "name": "Bishop",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Staff or Wand",
+      "secondaryWeapon": "Shield or Magic Book",
+      "mark": {
+        "monogram": "BIS"
+      },
+      "innateCritRate": {
+        "value": 0.75,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Empirical Knowledge",
+        "nameCandidates": null,
+        "effect": "31% chance on attack to mark the struck enemy with the highest Max HP: +5% Damage and +5% Enemy DEF Ignored per stack, 3 stacks, 10s.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Magician",
+          "max": 3,
+          "note": "Stacks across unique Explorer Magicians, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Bishop",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "archmagefirepoison",
+      "name": "Arch Mage (Fire, Poison)",
+      "aliases": [
+        "Arch Mage Fire Poison",
+        "F/P Mage",
+        "Fire Poison Mage"
+      ],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Staff or Wand",
+      "secondaryWeapon": "Shield or Magic Book",
+      "mark": {
+        "monogram": "FP"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Empirical Knowledge",
+        "nameCandidates": null,
+        "effect": "31% chance on attack to mark the struck enemy with the highest Max HP: +5% Damage and +5% Enemy DEF Ignored per stack, 3 stacks, 10s.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Magician",
+          "max": 3,
+          "note": "Stacks across unique Explorer Magicians, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Max MP +2/3/4/5/6%",
+        "values": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Max MP",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Arch_Mage_(Fire,_Poison)",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "archmageicelightning",
+      "name": "Arch Mage (Ice, Lightning)",
+      "aliases": [
+        "Arch Mage Ice Lightning",
+        "I/L Mage",
+        "Ice Lightning Mage"
+      ],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Staff or Wand",
+      "secondaryWeapon": "Shield or Magic Book",
+      "mark": {
+        "monogram": "IL"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Empirical Knowledge",
+        "nameCandidates": null,
+        "effect": "31% chance on attack to mark the struck enemy with the highest Max HP: +5% Damage and +5% Enemy DEF Ignored per stack, 3 stacks, 10s.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Magician",
+          "max": 3,
+          "note": "Stacks across unique Explorer Magicians, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Arch_Mage_(Ice,_Lightning)",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "nightlord",
+      "name": "Night Lord",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "DEX",
+      "weapon": "Claw",
+      "secondaryWeapon": "Charm",
+      "mark": {
+        "monogram": "NL"
+      },
+      "innateCritRate": {
+        "value": 0.75,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.75,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Thief's Cunning",
+        "nameCandidates": null,
+        "effect": "On debuffing an enemy, Damage +18% for 10s. 20s cooldown.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Thief",
+          "max": 3,
+          "note": "Stacks across unique Explorer Thieves, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Critical Rate +1/2/3/4/5%",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unit": "percent",
+        "stat": "Critical Rate",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Night_Lord",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "shadower",
+      "name": "Shadower",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "STR and DEX",
+      "weapon": "Dagger",
+      "secondaryWeapon": "Shield or Dagger Scabbard",
+      "mark": {
+        "monogram": "SHA"
+      },
+      "innateCritRate": {
+        "value": 0.55,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Thief's Cunning",
+        "nameCandidates": null,
+        "effect": "On debuffing an enemy, Damage +18% for 10s. 20s cooldown.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Thief",
+          "max": 3,
+          "note": "Stacks across unique Explorer Thieves, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "LUK +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "LUK",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Two secondary stats (STR and DEX) — flame and bonus-stat scoring must weight both."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Shadower",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "dualblade",
+      "name": "Dual Blade",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "STR and DEX",
+      "weapon": "Dagger",
+      "secondaryWeapon": "Katara",
+      "mark": {
+        "monogram": "DB"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Thief's Cunning",
+        "nameCandidates": null,
+        "effect": "On debuffing an enemy, Damage +18% for 10s. 20s cooldown.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Thief",
+          "max": 3,
+          "note": "Stacks across unique Explorer Thieves, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "LUK +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "LUK",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "The secondary slot holds a Katara, a real weapon — it needs full star force, potential and flame investment, unlike every other class's cheap NPC trinket.",
+        "Two secondary stats (STR and DEX)."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Dual_Blade",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "bowmaster",
+      "name": "Bow Master",
+      "aliases": [
+        "Bowmaster",
+        "Bow master"
+      ],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "bowman",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Bow",
+      "secondaryWeapon": "Arrow Fletching",
+      "mark": {
+        "monogram": "BM"
+      },
+      "innateCritRate": {
+        "value": 0.75,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Adventurer's Curiosity",
+        "nameCandidates": null,
+        "effect": "Critical Rate +15%, Monster Collection registration chance +50%.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Archer",
+          "max": 3,
+          "note": "Stacks across unique Explorer Archers, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "DEX +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "DEX",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Consumes Arrows and takes an attack bonus from the first arrow in the Use inventory."
+      ],
+      "guide": "bowmaster",
+      "completeness": "reference",
+      "source": "https://maplestorywiki.net/w/Bow_Master",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "marksman",
+      "name": "Marksman",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "bowman",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Crossbow",
+      "secondaryWeapon": "Bow Thimble",
+      "mark": {
+        "monogram": "MM"
+      },
+      "innateCritRate": {
+        "value": 0.75,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.5,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": null,
+        "variants": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat table read on 2026-09-11."
+      },
+      "linkSkill": {
+        "name": "Adventurer's Curiosity",
+        "nameCandidates": null,
+        "effect": "Critical Rate +15%, Monster Collection registration chance +50%.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Archer",
+          "max": 3,
+          "note": "Stacks across unique Explorer Archers, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Critical Rate +1/2/3/4/5%",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unit": "percent",
+        "stat": "Critical Rate",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Marksman",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "pathfinder",
+      "name": "Pathfinder",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "bowman",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Ancient Bow",
+      "secondaryWeapon": "Relic",
+      "mark": {
+        "monogram": "PF"
+      },
+      "innateCritRate": {
+        "value": 0.85,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": null,
+        "variants": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat table read on 2026-09-11."
+      },
+      "linkSkill": {
+        "name": "Adventurer's Curiosity",
+        "nameCandidates": null,
+        "effect": "Critical Rate +15%, Monster Collection registration chance +50%.",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Archer",
+          "max": 3,
+          "note": "Stacks across unique Explorer Archers, up to 3."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "DEX +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "DEX",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Ancient Bow is its own weapon type — ordinary Bow gear does not apply."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Pathfinder",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "buccaneer",
+      "name": "Buccaneer",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Knuckle",
+      "secondaryWeapon": "Wrist Band",
+      "mark": {
+        "monogram": "BUC"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.7,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Pirate Blessing",
+        "nameCandidates": null,
+        "effect": "STR/DEX/INT/LUK +100 each, Max HP/MP +1750, Damage Taken -21%. Carries a togglable effect that swaps the stats granted by equipment between STR/%STR and DEX/%DEX (excludes primary and secondary weapon, totems and symbols; owner only, not the transferred copy).",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Pirate",
+          "max": 3,
+          "note": "Stacks across unique Explorer Pirates, up to 3."
+        },
+        "aliases": [
+          "Pirate's Blessing"
+        ],
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Buccaneer",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "corsair",
+      "name": "Corsair",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Gun",
+      "secondaryWeapon": "Far Sight",
+      "mark": {
+        "monogram": "COR"
+      },
+      "innateCritRate": {
+        "value": 0.65,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.5,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.5,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Pirate Blessing",
+        "nameCandidates": null,
+        "effect": "STR/DEX/INT/LUK +100 each, Max HP/MP +1750, Damage Taken -21%. Carries a togglable effect that swaps the stats granted by equipment between STR/%STR and DEX/%DEX (excludes primary and secondary weapon, totems and symbols; owner only, not the transferred copy).",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Pirate",
+          "max": 3,
+          "note": "Stacks across unique Explorer Pirates, up to 3."
+        },
+        "aliases": [
+          "Pirate's Blessing"
+        ],
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Summon Duration +4/6/8/10/12%",
+        "values": [
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "unit": "percent",
+        "stat": "Summon Duration",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "The only DEX-main Explorer Pirate — it does not share a main-stat gear pool with Buccaneer or Cannoneer (though Pirate Blessing's stat-swap toggle lets them share equipment)."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Corsair",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "cannoneer",
+      "name": "Cannoneer",
+      "aliases": [],
+      "branch": "explorer",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Hand Cannon",
+      "secondaryWeapon": "Powder Keg",
+      "mark": {
+        "monogram": "CAN"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.5,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Pirate Blessing",
+        "nameCandidates": null,
+        "effect": "STR/DEX/INT/LUK +100 each, Max HP/MP +1750, Damage Taken -21%. Carries a togglable effect that swaps the stats granted by equipment between STR/%STR and DEX/%DEX (excludes primary and secondary weapon, totems and symbols; owner only, not the transferred copy).",
+        "masterLevel": 9,
+        "stacks": {
+          "group": "Explorer Pirate",
+          "max": 3,
+          "note": "Stacks across unique Explorer Pirates, up to 3."
+        },
+        "aliases": [
+          "Pirate's Blessing"
+        ],
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Cannoneer",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "dawnwarrior",
+      "name": "Dawn Warrior",
+      "aliases": [],
+      "branch": "cygnus",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Two-handed Sword or One-handed Sword",
+      "secondaryWeapon": "Jewel (Shield with a one-handed sword)",
+      "mark": {
+        "monogram": "DW"
+      },
+      "innateCritRate": {
+        "value": 0.5,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": null,
+        "variants": {
+          "oneHanded": 1.24,
+          "twoHanded": 1.34
+        },
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Cygnus Blessing",
+        "nameCandidates": null,
+        "effect": "Attack Power +35 and Magic ATT +35, Status Resistance +22, Elemental Resistance +22%.",
+        "masterLevel": 15,
+        "stacks": {
+          "group": "Cygnus Knight",
+          "max": 5,
+          "note": "Stacks across unique Cygnus Knights, up to 5. Mihile does NOT contribute."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Max HP +250/500/1000/2000/2500",
+        "values": [
+          250,
+          500,
+          1000,
+          2000,
+          2500
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Dawn_Warrior",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "blazewizard",
+      "name": "Blaze Wizard",
+      "aliases": [],
+      "branch": "cygnus",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Staff or Wand",
+      "secondaryWeapon": "Shield or Jewel",
+      "mark": {
+        "monogram": "BW"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Cygnus Blessing",
+        "nameCandidates": null,
+        "effect": "Attack Power +35 and Magic ATT +35, Status Resistance +22, Elemental Resistance +22%.",
+        "masterLevel": 15,
+        "stacks": {
+          "group": "Cygnus Knight",
+          "max": 5,
+          "note": "Stacks across unique Cygnus Knights, up to 5. Mihile does NOT contribute."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Blaze_Wizard",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "windarcher",
+      "name": "Wind Archer",
+      "aliases": [],
+      "branch": "cygnus",
+      "branchAliases": null,
+      "archetype": "bowman",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Bow",
+      "secondaryWeapon": "Jewel",
+      "mark": {
+        "monogram": "WA"
+      },
+      "innateCritRate": {
+        "value": 0.6,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Cygnus Blessing",
+        "nameCandidates": null,
+        "effect": "Attack Power +35 and Magic ATT +35, Status Resistance +22, Elemental Resistance +22%.",
+        "masterLevel": 15,
+        "stacks": {
+          "group": "Cygnus Knight",
+          "max": 5,
+          "note": "Stacks across unique Cygnus Knights, up to 5. Mihile does NOT contribute."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "DEX +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "DEX",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Consumes Arrows and takes an attack bonus from the first arrow in the Use inventory."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Wind_Archer",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "nightwalker",
+      "name": "Night Walker",
+      "aliases": [],
+      "branch": "cygnus",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "DEX",
+      "weapon": "Claw",
+      "secondaryWeapon": "Jewel",
+      "mark": {
+        "monogram": "NW"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.75,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Cygnus Blessing",
+        "nameCandidates": null,
+        "effect": "Attack Power +35 and Magic ATT +35, Status Resistance +22, Elemental Resistance +22%.",
+        "masterLevel": 15,
+        "stacks": {
+          "group": "Cygnus Knight",
+          "max": 5,
+          "note": "Stacks across unique Cygnus Knights, up to 5. Mihile does NOT contribute."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "LUK +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "LUK",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Night_Walker",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "thunderbreaker",
+      "name": "Thunder Breaker",
+      "aliases": [],
+      "branch": "cygnus",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Knuckle",
+      "secondaryWeapon": "Jewel",
+      "mark": {
+        "monogram": "TB"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.7,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Cygnus Blessing",
+        "nameCandidates": null,
+        "effect": "Attack Power +35 and Magic ATT +35, Status Resistance +22, Elemental Resistance +22%.",
+        "masterLevel": 15,
+        "stacks": {
+          "group": "Cygnus Knight",
+          "max": 5,
+          "note": "Stacks across unique Cygnus Knights, up to 5. Mihile does NOT contribute."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Thunder_Breaker",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "mihile",
+      "name": "Mihile",
+      "aliases": [],
+      "branch": "cygnus",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "One-handed Sword",
+      "secondaryWeapon": "Soul Shield",
+      "mark": {
+        "monogram": "MIH"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.24,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Knight's Watch",
+        "nameCandidates": null,
+        "effect": "Active buff, 20s duration: Status Resistance +100. 120s cooldown.",
+        "masterLevel": 3,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Max HP +250/500/1000/2000/2500",
+        "values": [
+          250,
+          500,
+          1000,
+          2000,
+          2500
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "A Cygnus Knight that does NOT have Cygnus Blessing and does NOT contribute to its 5-stack."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Mihile",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "mercedes",
+      "name": "Mercedes",
+      "aliases": [],
+      "branch": "heroes",
+      "branchAliases": null,
+      "archetype": "bowman",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Dual Bowguns",
+      "secondaryWeapon": "Magic Arrow",
+      "mark": {
+        "monogram": "MER"
+      },
+      "innateCritRate": {
+        "value": 0.6,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Elven Blessing",
+        "nameCandidates": null,
+        "effect": "Permanently receive 20% additional EXP. Also an active return-to-Elluel on a 1800s cooldown.",
+        "masterLevel": 3,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Skill Cooldown -2/3/4/5/6%",
+        "values": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Skill Cooldown",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Mercedes",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "aran",
+      "name": "Aran",
+      "aliases": [],
+      "branch": "heroes",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Polearm",
+      "secondaryWeapon": "Mass",
+      "mark": {
+        "monogram": "ARA"
+      },
+      "innateCritRate": {
+        "value": 0.55,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.49,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Combo Kill Blessing",
+        "nameCandidates": null,
+        "effect": "Combo Kill Marble EXP +900%. A training link; its value collapses after 200.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "70% chance to recover 2/4/6/8/10% of Max HP with each attack",
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Aran",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "phantom",
+      "name": "Phantom",
+      "aliases": [],
+      "branch": "heroes",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "DEX",
+      "weapon": "Cane",
+      "secondaryWeapon": "Card",
+      "mark": {
+        "monogram": "PHA"
+      },
+      "innateCritRate": {
+        "value": 0.6,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Phantom Instinct",
+        "nameCandidates": null,
+        "effect": "Critical Rate +20% — the largest crit-rate link in the game.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Mesos Obtained +1/2/3/4/5%",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unit": "percent",
+        "stat": "Mesos Obtained",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "The only meso Legion square — the one that matters to Heroic/Reboot meso income modelling."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Phantom",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "luminous",
+      "name": "Luminous",
+      "aliases": [],
+      "branch": "heroes",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Shining Rod",
+      "secondaryWeapon": "Orb",
+      "mark": {
+        "monogram": "LUM"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Light Wash",
+        "nameCandidates": null,
+        "effect": "Enemy DEF Ignored +20% when attacking.",
+        "masterLevel": 3,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": [
+          {
+            "source": "lib/legion.ts LINK_EFFECT",
+            "claim": "names this link 'Permeate'"
+          }
+        ]
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Luminous",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "evan",
+      "name": "Evan",
+      "aliases": [],
+      "branch": "heroes",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Staff or Wand",
+      "secondaryWeapon": "Shield or Document",
+      "mark": {
+        "monogram": "EVA"
+      },
+      "innateCritRate": {
+        "value": 0.5,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Rune Persistence",
+        "nameCandidates": null,
+        "effect": "Liberated Rune Power Duration +70%. A training link — runes give a 2x EXP buff.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "70% chance to recover 2/4/6/8/10% of Max MP with each attack",
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "One of two classes (with Mechanic) that can equip extra class-exclusive equipment categories."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Evan",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "shade",
+      "name": "Shade",
+      "aliases": [],
+      "branch": "heroes",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Knuckle",
+      "secondaryWeapon": "Fox Marble",
+      "mark": {
+        "monogram": "SHD"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.7,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Close Call",
+        "nameCandidates": null,
+        "effect": "15% chance to survive a fatal attack.",
+        "masterLevel": 3,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Critical Damage +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Critical Damage",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Shade",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "battlemage",
+      "name": "Battle Mage",
+      "aliases": [],
+      "branch": "resistance",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Staff",
+      "secondaryWeapon": "Shield or Magic Marble",
+      "mark": {
+        "monogram": "BAM"
+      },
+      "innateCritRate": {
+        "value": 0.6,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Spirit of Freedom",
+        "nameCandidates": null,
+        "effect": "12s of invincibility after being revived; removed on changing map.",
+        "masterLevel": 12,
+        "stacks": {
+          "group": "Resistance",
+          "max": 4,
+          "note": "Stacks across unique Resistance characters, up to 4 — EXCLUDING Demon Slayer, Demon Avenger and Xenon."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Staff only — cannot use a Wand, unlike the other Magicians."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Battle_Mage",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "wildhunter",
+      "name": "Wild Hunter",
+      "aliases": [],
+      "branch": "resistance",
+      "branchAliases": null,
+      "archetype": "bowman",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Crossbow",
+      "secondaryWeapon": "Arrowhead",
+      "mark": {
+        "monogram": "WH"
+      },
+      "innateCritRate": {
+        "value": 0.94,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.35,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Spirit of Freedom",
+        "nameCandidates": null,
+        "effect": "12s of invincibility after being revived; removed on changing map.",
+        "masterLevel": 12,
+        "stacks": {
+          "group": "Resistance",
+          "max": 4,
+          "note": "Stacks across unique Resistance characters, up to 4 — EXCLUDING Demon Slayer, Demon Avenger and Xenon."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "20% chance to deal +4/8/12/16/20% damage when attacking",
+        "values": [
+          4,
+          8,
+          12,
+          16,
+          20
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Highest innate crit rate on the roster (94%) — crit-rate links and hyper stat points are close to wasted here."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Wild_Hunter",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "mechanic",
+      "name": "Mechanic",
+      "aliases": [],
+      "branch": "resistance",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Gun",
+      "secondaryWeapon": "Magnum",
+      "mark": {
+        "monogram": "MEC"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.08,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.5,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Spirit of Freedom",
+        "nameCandidates": null,
+        "effect": "12s of invincibility after being revived; removed on changing map.",
+        "masterLevel": 12,
+        "stacks": {
+          "group": "Resistance",
+          "max": 4,
+          "note": "Stacks across unique Resistance characters, up to 4 — EXCLUDING Demon Slayer, Demon Avenger and Xenon."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Buff Duration +5/10/15/20/25%",
+        "values": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "unit": "percent",
+        "stat": "Buff Duration",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Largest single Legion square for Buff Duration — the reason Mechanic is a common mule for burst classes.",
+        "One of two classes (with Evan) that can equip extra class-exclusive equipment categories."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Mechanic",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "blaster",
+      "name": "Blaster",
+      "aliases": [],
+      "branch": "resistance",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Arm Cannon",
+      "secondaryWeapon": "Charge",
+      "mark": {
+        "monogram": "BLA"
+      },
+      "innateCritRate": {
+        "value": 0.6,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.14,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.7,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Spirit of Freedom",
+        "nameCandidates": null,
+        "effect": "12s of invincibility after being revived; removed on changing map.",
+        "masterLevel": 12,
+        "stacks": {
+          "group": "Resistance",
+          "max": 4,
+          "note": "Stacks across unique Resistance characters, up to 4 — EXCLUDING Demon Slayer, Demon Avenger and Xenon."
+        },
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Ignored Enemy Defense +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Ignored Enemy Defense",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Blaster",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "demonslayer",
+      "name": "Demon Slayer",
+      "aliases": [],
+      "branch": "resistance",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "One-handed Axe or One-handed Blunt Weapon",
+      "secondaryWeapon": "Demon Aegis",
+      "mark": {
+        "monogram": "DS"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Fury Unleashed",
+        "nameCandidates": null,
+        "effect": "Boss Damage +20% at master level 3.",
+        "masterLevel": 3,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": [
+          {
+            "source": "lib/legion.ts LINK_EFFECT",
+            "claim": "names Demon Slayer's link 'Defense' and attaches 'Fury Unleashed' to Demon Avenger"
+          }
+        ]
+      },
+      "legion": {
+        "effect": "Abnormal Status Resistance +1/2/3/4/5",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "A Resistance class EXCLUDED from the Spirit of Freedom 4-stack."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Demon_Slayer",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "demonavenger",
+      "name": "Demon Avenger",
+      "aliases": [],
+      "branch": "resistance",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "HP",
+      "secondaryStat": "STR",
+      "weapon": "Desperado",
+      "secondaryWeapon": "Demon Aegis",
+      "mark": {
+        "monogram": "DA"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Wild Rage",
+        "nameCandidates": null,
+        "effect": "Damage +15% at master level 3.",
+        "masterLevel": 3,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": [
+          {
+            "source": "lib/legion.ts LINK_EFFECT",
+            "claim": "attaches 'Fury Unleashed' to Demon Avenger"
+          }
+        ]
+      },
+      "legion": {
+        "effect": "Boss Damage +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Boss Damage",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Main stat is HP, not STR: damage scales off Max HP, so %HP flames and potential are MAIN-stat lines and %STR is the secondary line.",
+        "No MP; Exceed skills are paid for in HP.",
+        "Passives give +40% Max HP, +1000 (2500) flat and +15% to assigned AP (Grandis Library).",
+        "A Resistance class EXCLUDED from the Spirit of Freedom 4-stack."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Demon_Avenger",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "xenon",
+      "name": "Xenon",
+      "aliases": [],
+      "branch": "resistance",
+      "branchAliases": null,
+      "archetype": "thief and pirate",
+      "primaryStat": "STR, DEX and LUK",
+      "secondaryStat": "none",
+      "weapon": "Whip Blade",
+      "secondaryWeapon": "Controller",
+      "mark": {
+        "monogram": "XEN"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.06,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.3125,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Hybrid Logic",
+        "nameCandidates": null,
+        "effect": "All Stats +15%.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR, DEX and LUK +5/10/20/40/50 each",
+        "values": [
+          5,
+          10,
+          20,
+          40,
+          50
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Three main stats and no single secondary — All Stat lines are worth roughly triple and single-stat flames are heavily devalued.",
+        "Its Legion piece has its own shape, distinct from the five archetype shapes.",
+        "The Controller is granted and auto-evolved at job advancements: untradeable, 0 upgrade slots.",
+        "A Resistance class EXCLUDED from the Spirit of Freedom 4-stack.",
+        "UNVERIFIED — which Mitra's Rage emblem (Thief or Pirate) Xenon takes was not resolved by any source opened on 2026-09-11."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Xenon",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "kaiser",
+      "name": "Kaiser",
+      "aliases": [],
+      "branch": "nova",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Two-handed Sword",
+      "secondaryWeapon": "Dragon Essence",
+      "mark": {
+        "monogram": "KAI"
+      },
+      "innateCritRate": {
+        "value": 0.65,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.34,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Iron Will",
+        "nameCandidates": null,
+        "effect": "Max HP +20%.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Kaiser",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "kain",
+      "name": "Kain",
+      "aliases": [],
+      "branch": "nova",
+      "branchAliases": null,
+      "archetype": "bowman",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Whispershot",
+      "secondaryWeapon": "Weapon Belt",
+      "mark": {
+        "monogram": "KAN"
+      },
+      "innateCritRate": {
+        "value": 0.6,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.45,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Time to Prepare",
+        "nameCandidates": null,
+        "effect": "1 stack per 8 enemies defeated or 5 boss hits; at 5 stacks Damage +25% for 20s, 40s cooldown.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "DEX +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "DEX",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Kain",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "cadena",
+      "name": "Cadena",
+      "aliases": [],
+      "branch": "nova",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "STR and DEX",
+      "weapon": "Chain",
+      "secondaryWeapon": "Warp Forge",
+      "mark": {
+        "monogram": "CAD"
+      },
+      "innateCritRate": {
+        "value": 0.55,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Unfair Advantage",
+        "nameCandidates": null,
+        "effect": "+9% damage against lower-level enemies and +9% against enemies afflicted by an Abnormal Status.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "LUK +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "LUK",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Cadena",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "angelicbuster",
+      "name": "Angelic Buster",
+      "aliases": [],
+      "branch": "nova",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Soul Shooter",
+      "secondaryWeapon": "Soul Ring",
+      "mark": {
+        "monogram": "AB"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.41,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.7,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Terms and Conditions",
+        "nameCandidates": null,
+        "effect": "ACTIVE buff, not a passive: Damage +60% for 10s on a 60s cooldown.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "DEX +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "DEX",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Its link is an active on a 60s cooldown, which is why %Buff Duration sources (Mechanic's Legion square) are valued around it."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Angelic_Buster",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "kanna",
+      "name": "Kanna",
+      "aliases": [],
+      "branch": "sengoku",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Fan",
+      "secondaryWeapon": "Talisman",
+      "mark": {
+        "monogram": "KNA"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.35,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Elementalism",
+        "nameCandidates": null,
+        "effect": "Damage +15%.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Boss Damage +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Boss Damage",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Kanna",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "hayato",
+      "name": "Hayato",
+      "aliases": [],
+      "branch": "sengoku",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Katana",
+      "secondaryWeapon": "Kodachi",
+      "mark": {
+        "monogram": "HAY"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.25,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Keen Edge",
+        "nameCandidates": null,
+        "effect": "All Stats +35, Attack Power +20, Magic ATT +20. Flat, so it is worth proportionally more on a low-progression character.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Critical Damage +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Critical Damage",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Hayato",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "adele",
+      "name": "Adele",
+      "aliases": [],
+      "branch": "flora",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Bladecaster",
+      "secondaryWeapon": "Bladebinder",
+      "mark": {
+        "monogram": "ADE"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Noble Fire",
+        "nameCandidates": null,
+        "effect": "Boss Damage +6%, plus 3% per party member on the same map up to +12%.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Adele",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "ark",
+      "name": "Ark",
+      "aliases": [],
+      "branch": "flora",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Knuckle",
+      "secondaryWeapon": "Abyssal Path",
+      "mark": {
+        "monogram": "ARK"
+      },
+      "innateCritRate": {
+        "value": 0.6,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.7,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Solus",
+        "nameCandidates": null,
+        "effect": "Activates after 5s in combat: +1% damage on activation plus +3% per stack, max 5 stacks, 5s duration.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "STR +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "STR",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Ark",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "illium",
+      "name": "Illium",
+      "aliases": [],
+      "branch": "flora",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Lucent Gauntlet",
+      "secondaryWeapon": "Lucent Wings",
+      "mark": {
+        "monogram": "ILL"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Tide of Battle",
+        "nameCandidates": null,
+        "effect": "Activates on moving a certain distance: Damage +4% per stack, max 4 stacks, 15s.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Illium",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "khali",
+      "name": "Khali",
+      "aliases": [],
+      "branch": "flora",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "DEX",
+      "weapon": "Chakram",
+      "secondaryWeapon": "Hex Seeker",
+      "mark": {
+        "monogram": "KHA"
+      },
+      "innateCritRate": {
+        "value": 0.4,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.43,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Innate Gift",
+        "nameCandidates": null,
+        "effect": "Damage +7% and, on attacking, recover 3% of Max HP/MP per second for 5s, 30s cooldown. Explicitly unaffected by cooldown resets, cooldown reduction and buff duration increase.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "LUK +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "LUK",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Khali",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "hoyoung",
+      "name": "Hoyoung",
+      "aliases": [],
+      "branch": "anima",
+      "branchAliases": null,
+      "archetype": "thief",
+      "primaryStat": "LUK",
+      "secondaryStat": "DEX",
+      "weapon": "Ritual Fan",
+      "secondaryWeapon": "Fan Tassel",
+      "mark": {
+        "monogram": "HOY"
+      },
+      "innateCritRate": {
+        "value": 0.55,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.4,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Bravado",
+        "nameCandidates": null,
+        "effect": "Enemy DEF Ignored +15%, and Damage +19% against enemies at 100% HP.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "LUK +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "LUK",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Hoyoung",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "lara",
+      "name": "Lara",
+      "aliases": [],
+      "branch": "anima",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Wand",
+      "secondaryWeapon": "Ornament",
+      "mark": {
+        "monogram": "LAR"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Nature's Friend",
+        "nameCandidates": null,
+        "effect": "Damage +7%, plus after defeating 20 normal monsters, Damage Against Normal Monsters +15% for 30s, 30s cooldown.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Lara",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "ren",
+      "name": "Ren",
+      "aliases": [],
+      "branch": "anima",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Sword",
+      "secondaryWeapon": "Imugi Gem",
+      "mark": {
+        "monogram": "REN"
+      },
+      "innateCritRate": {
+        "value": 0.5,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.1,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.3,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Grounded Body",
+        "nameCandidates": null,
+        "effect": "Reduces damage taken by 4%, INCLUDING attacks that deal a ratio of maximum HP — the only link that mitigates %Max HP boss attacks.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Movement Speed and Maximum Movement Speed +2/4/6/8/10",
+        "values": [
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "unit": "special",
+        "stat": null,
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Ren",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "lynn",
+      "name": "Lynn",
+      "aliases": [
+        "Forest Child Lynn"
+      ],
+      "branch": "jianghu",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Memorial Staff",
+      "secondaryWeapon": "Shield or Leaf",
+      "mark": {
+        "monogram": "LYN"
+      },
+      "innateCritRate": {
+        "value": 0.85,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.34,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": null,
+        "nameCandidates": [
+          "Spirit Guide Blessing — MapleStory Wiki infobox",
+          "Focus Spirit — Grandis Library, GMS v.269"
+        ],
+        "effect": "Boss Damage +10%, Critical Rate +10%, Max HP +5%, Max MP +5%.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "UNVERIFIED — the two fan sources give different NAMES for this link and only Grandis Library attests the effect. Needs an in-game screenshot.",
+        "lastVerified": "",
+        "patchVersion": "v.269",
+        "claimType": "consensus",
+        "conflictsWith": [
+          {
+            "source": "https://maplestorywiki.net/w/Lynn",
+            "claim": "link skill is named 'Spirit Guide Blessing'"
+          },
+          {
+            "source": "https://grandislibrary.com/content/link-skills",
+            "claim": "link skill is named 'Focus Spirit'"
+          }
+        ]
+      },
+      "legion": {
+        "effect": "Ignored Enemy Defense +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Ignored Enemy Defense",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "The class Beast Tamer was converted into on 2024-05-01. Beast Tamer is not a selectable class."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Lynn",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "moxuan",
+      "name": "Mo Xuan",
+      "aliases": [],
+      "branch": "jianghu",
+      "branchAliases": null,
+      "archetype": "pirate",
+      "primaryStat": "DEX",
+      "secondaryStat": "STR",
+      "weapon": "Martial Brace",
+      "secondaryWeapon": "Brace Band",
+      "mark": {
+        "monogram": "MX"
+      },
+      "innateCritRate": {
+        "value": 0.55,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.75,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Qi Cultivation",
+        "nameCandidates": null,
+        "effect": "Boss Damage +6%, plus up to +3% per successful attack on a boss, max 6 stacks, one stack per 2s, 5s duration.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "Critical Damage +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Critical Damage",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Mo_Xuan",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "siaastelle",
+      "name": "Sia Astelle",
+      "aliases": [],
+      "branch": "shine",
+      "branchAliases": null,
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Celestial Light",
+      "secondaryWeapon": "Compass",
+      "mark": {
+        "monogram": "SIA"
+      },
+      "innateCritRate": {
+        "value": 0.35,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": null,
+        "nameCandidates": [
+          "Guiding Stars — MapleStory Wiki infobox, given for BOTH Shine classes",
+          "Tree of Stars — Grandis Library (GMS v.269), Sia Astelle only, Buff Duration +10% and Critical Damage +3%"
+        ],
+        "effect": null,
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "UNVERIFIED — the Shine link appears to have become a stacking faction link when Erel Light launched, and no source opened on 2026-09-11 agrees on its name, value or stack count. Do not ship a number for Sia Astelle until it is read in-game.",
+        "lastVerified": "",
+        "patchVersion": "v.269",
+        "claimType": "consensus",
+        "conflictsWith": [
+          {
+            "source": "https://maplestorywiki.net/w/Sia_Astelle",
+            "claim": "'Guiding Stars' for both Shine classes"
+          },
+          {
+            "source": "https://grandislibrary.com/content/link-skills",
+            "claim": "'Tree of Stars', Buff Duration +10% / Critical Damage +3%, Sia only, no Erel Light entry"
+          },
+          {
+            "source": "https://gamemarket.gg/news/maplestory-global/erel-light-class-spotlight-gms-gets-the-new-shine-warrior-first-june-17",
+            "claim": "'Guiding Stars', Buff Duration +19% / Critical Damage +6% at master level, stacking up to 2 across Shine characters"
+          }
+        ]
+      },
+      "legion": {
+        "effect": "Abnormal Status Damage +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Abnormal Status Damage",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Lowest innate crit rate on the roster (35%) — the class that gains most from Phantom, Explorer Archer and Lynn crit links."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Sia_Astelle",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "erellight",
+      "name": "Erel Light",
+      "aliases": [],
+      "branch": "shine",
+      "branchAliases": null,
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Gram",
+      "secondaryWeapon": "Keir",
+      "mark": {
+        "monogram": "ERL"
+      },
+      "innateCritRate": {
+        "value": 0.5,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.22,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.49,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": null,
+        "nameCandidates": [
+          "Guiding Stars — MapleStory Wiki infobox, given for BOTH Shine classes",
+          "Tree of Stars — Grandis Library (GMS v.269), Sia Astelle only, Buff Duration +10% and Critical Damage +3%"
+        ],
+        "effect": null,
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "UNVERIFIED — the Shine link appears to have become a stacking faction link when Erel Light launched, and no source opened on 2026-09-11 agrees on its name, value or stack count. Do not ship a number for Erel Light until it is read in-game.",
+        "lastVerified": "",
+        "patchVersion": "v.269",
+        "claimType": "consensus",
+        "conflictsWith": [
+          {
+            "source": "https://maplestorywiki.net/w/Sia_Astelle",
+            "claim": "'Guiding Stars' for both Shine classes"
+          },
+          {
+            "source": "https://grandislibrary.com/content/link-skills",
+            "claim": "'Tree of Stars', Buff Duration +10% / Critical Damage +3%, Sia only, no Erel Light entry"
+          },
+          {
+            "source": "https://gamemarket.gg/news/maplestory-global/erel-light-class-spotlight-gms-gets-the-new-shine-warrior-first-june-17",
+            "claim": "'Guiding Stars', Buff Duration +19% / Critical Damage +6% at master level, stacking up to 2 across Shine characters"
+          }
+        ]
+      },
+      "legion": {
+        "effect": "Boss Damage +1/2/3/5/6%",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "unit": "percent",
+        "stat": "Boss Damage",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Released in GMS on 2026-06-17 in v.269 'Ride the Lightning' — GMS received this class before KMS."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Erel_Light",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "kinesis",
+      "name": "Kinesis",
+      "aliases": [],
+      "branch": "other",
+      "branchAliases": [
+        "Friends World (MapleStory Wiki)",
+        "Other (Grandis Library)"
+      ],
+      "archetype": "magician",
+      "primaryStat": "INT",
+      "secondaryStat": "LUK",
+      "weapon": "Psy-limiter",
+      "secondaryWeapon": "Chess Piece",
+      "mark": {
+        "monogram": "KIN"
+      },
+      "innateCritRate": {
+        "value": 0.45,
+        "note": null
+      },
+      "innateCritDamage": {
+        "value": 0.41,
+        "note": null
+      },
+      "weaponMultiplier": {
+        "value": 1.2,
+        "variants": null,
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Judgment",
+        "nameCandidates": null,
+        "effect": "Critical Damage +6%.",
+        "masterLevel": null,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "INT +10/20/40/80/100",
+        "values": [
+          10,
+          20,
+          40,
+          80,
+          100
+        ],
+        "unit": "flat",
+        "stat": "INT",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Kinesis",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    },
+    {
+      "id": "zero",
+      "name": "Zero",
+      "aliases": [],
+      "branch": "other",
+      "branchAliases": [
+        "Transcendent (MapleStory Wiki)",
+        "Other (Grandis Library)"
+      ],
+      "archetype": "warrior",
+      "primaryStat": "STR",
+      "secondaryStat": "DEX",
+      "weapon": "Long Sword (Alpha) and Heavy Sword (Beta)",
+      "secondaryWeapon": "Each form's weapon occupies the other's secondary slot",
+      "mark": {
+        "monogram": "ZRO"
+      },
+      "innateCritRate": {
+        "value": 0.55,
+        "note": "55% in both forms; 85% conditional on Alpha."
+      },
+      "innateCritDamage": {
+        "value": null,
+        "note": "UNVERIFIED — not listed in the Grandis Library base-stat rows read on 2026-09-11."
+      },
+      "weaponMultiplier": {
+        "value": null,
+        "variants": {
+          "alpha": 1.34,
+          "beta": 1.49
+        },
+        "note": null
+      },
+      "linkSkill": {
+        "name": "Rhinne's Blessing",
+        "nameCandidates": null,
+        "effect": "Incoming damage reduced 18%, Enemy DEF Ignored 12%. Master level 6, and it is levelled by completing the Zero storyline rather than by character level.",
+        "masterLevel": 6,
+        "stacks": null,
+        "aliases": null,
+        "source": "https://grandislibrary.com/content/link-skills",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact",
+        "conflictsWith": null
+      },
+      "legion": {
+        "effect": "EXP Obtained +4/6/8/10/12%",
+        "values": [
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "unit": "percent",
+        "stat": "EXP Obtained",
+        "source": "https://maplestorywiki.net/w/Legion_System",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "fact"
+      },
+      "exceptions": [
+        "Legion character-rank thresholds are B 130 / A 160 / S 180 / SS 200 / SSS 250 — NOT the 60/100/140/200/250 ladder every other class uses. lib/legion.ts rankOf() is wrong for Zero.",
+        "Only the highest-level Zero character counts toward the account's total-level requirement.",
+        "Funds one set of two weapons and buys no stat trinket."
+      ],
+      "guide": null,
+      "completeness": "roster-only",
+      "source": "https://maplestorywiki.net/w/Zero",
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "claimType": "fact"
+    }
+  ],
+  "guides": {
+    "bowmaster": {
+      "classId": "bowmaster",
+      "displayName": "Bow Master",
+      "completeness": "reference",
+      "summary": "A DEX bowman built around one long keydown line, three stacking Final Damage buffs and a large native crit block. Its distinguishing planning property is that most of the numbers a damage calculator wants are ALREADY in the stat window: 75% crit rate, 31% crit damage, 20% boss damage and 57.25% stacked IED arrive from passives, so a Bow Master reaches the crit cap and approaches the IED wall earlier than almost any other class, and the usual 'more crit, more IED' advice stops paying long before the character feels finished. That is what this guide is for: naming the point where each line goes dead for THIS character rather than in general.",
+      "referenceCharacter": {
+        "name": "Archerroni",
+        "level": 244,
+        "combatPower": 5260117,
+        "note": "Joins lib/damage.ts REFERENCE_CHARACTER — do not restate its stats here; read them from that module so the two cannot drift."
+      },
+      "damageAuthority": {
+        "module": "lib/damage.ts",
+        "constants": "BOW_MASTER",
+        "note": "Every class constant (weapon multiplier, mastery, the four Final Damage sources, the already-in-stat-window block) lives there with its citation attached to the value. This guide REFERENCES those constants by path and never copies them. A previous wave re-implemented the damage model in-file and shipped a number 24% wrong."
+      },
+      "skills": [
+        {
+          "id": "arrowblow",
+          "name": "Arrow Blow",
+          "skillId": 3001004,
+          "advancement": 1,
+          "kind": "active",
+          "roleTags": [
+            "attack"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [],
+          "supersededBy": null,
+          "notes": "Name, skill ID and job tier only. The wiki's description prose is CC BY-NC-SA text over Nexon's own wording and is deliberately not reproduced here.",
+          "source": "https://maplestorywiki.net/w/Bow_Master/Skills",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "global",
+          "worldScope": "both"
+        },
+        {
+          "id": "windarrow",
+          "name": "Wind Arrow",
+          "skillId": 3101005,
+          "advancement": 2,
+          "kind": "active",
+          "roleTags": [
+            "attack"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://maplestorywiki.net/w/Bow_Master/Skills",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "global",
+          "worldScope": "both"
+        },
+        {
+          "id": "criticalshot",
+          "name": "Critical Shot",
+          "skillId": null,
+          "advancement": null,
+          "kind": "passive",
+          "roleTags": [
+            "passive"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "critRate",
+              "from": null,
+              "value": 0.4,
+              "partOf": "alreadyInStatWindow.critRate",
+              "note": "Component of the 75% class crit rate the stat window already shows. DO NOT add on top of Character.stats.crit.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            }
+          ],
+          "supersededBy": null,
+          "notes": "UNVERIFIED — job tier not recorded in the sources read on 2026-09-11.",
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "sharpeyes",
+          "name": "Sharp Eyes",
+          "skillId": null,
+          "advancement": null,
+          "kind": "party-buff",
+          "roleTags": [
+            "party-buff",
+            "buff"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "critRate",
+              "from": null,
+              "value": 0.2,
+              "partOf": "alreadyInStatWindow.critRate",
+              "note": "Component of the 75% class crit rate already in the stat window.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            },
+            {
+              "kind": "critDamage",
+              "from": null,
+              "value": 0.15,
+              "partOf": "alreadyInStatWindow.critDamage",
+              "note": "Component of the 31% class crit damage already in the stat window.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            }
+          ],
+          "supersededBy": null,
+          "notes": "The hyper-skill target for both recommended Sharp Eyes picks. UNVERIFIED — job tier not recorded on this pass.",
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "concentration",
+          "name": "Concentration",
+          "skillId": null,
+          "advancement": null,
+          "kind": "buff",
+          "roleTags": [
+            "buff"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "bossDamage",
+              "from": "alreadyInStatWindow.bossDamage",
+              "value": null,
+              "partOf": null,
+              "note": "lib/damage.ts attributes the whole +20% class Boss Damage to this skill. Already in the stat window."
+            }
+          ],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "marksmanship",
+          "name": "Marksmanship",
+          "skillId": null,
+          "advancement": null,
+          "kind": "passive",
+          "roleTags": [
+            "passive"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "ied",
+              "from": null,
+              "value": 0.25,
+              "partOf": "alreadyInStatWindow.ied",
+              "note": "One of three IED sources that stack multiplicatively into the 57.25% class total. DO NOT re-stack: the stat window shows the stacked figure.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            }
+          ],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "bowexpert",
+          "name": "Bow Expert",
+          "skillId": null,
+          "advancement": 4,
+          "kind": "passive",
+          "roleTags": [
+            "passive"
+          ],
+          "maxLevel": 30,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "mastery",
+              "from": null,
+              "value": 0.7,
+              "partOf": "mastery",
+              "note": "Bow Expert's share of the 85% total mastery (base 15% + 70%). Moves MINIMUM damage only.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            },
+            {
+              "kind": "critDamage",
+              "from": null,
+              "value": 0.16,
+              "partOf": "alreadyInStatWindow.critDamage",
+              "note": "Grandis Library's figure. The wiki says the skill's Minimum Critical Damage line is +15% — see minCritDamageBonus in lib/damage.ts for the unresolved 1pp disagreement.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            },
+            {
+              "kind": "minCritDamage",
+              "from": "minCritDamageBonus",
+              "value": null,
+              "partOf": null,
+              "note": "Raises the FLOOR of the crit band rather than the printed Critical Damage stat. lib/damage.ts lists it and never applies it; use critBandMidpointWithMinBonus to price the other reading."
+            }
+          ],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": [
+            {
+              "source": "https://maplestorywiki.net/w/Bow_Master/Skills",
+              "claim": "Bow Expert Lv30 Minimum Critical Damage +15%, against Grandis Library's +16% crit damage row"
+            }
+          ],
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "armorbreak",
+          "name": "Armor Break",
+          "skillId": null,
+          "advancement": null,
+          "kind": "active",
+          "roleTags": [
+            "debuff",
+            "burst"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "finalDamage",
+              "from": "finalDamageSources[2]",
+              "value": null,
+              "partOf": null,
+              "note": "Applied as a debuff on the target."
+            },
+            {
+              "kind": "ied",
+              "from": null,
+              "value": 0.4,
+              "partOf": "alreadyInStatWindow.ied",
+              "note": "The largest of the three class IED sources.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            }
+          ],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "enchantedquiver",
+          "name": "Enchanted Quiver",
+          "skillId": null,
+          "advancement": null,
+          "kind": "buff",
+          "roleTags": [
+            "buff"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "finalDamage",
+              "from": "finalDamageSources[1]",
+              "value": null,
+              "partOf": null,
+              "note": "Buff skill; uptime is not modelled by lib/damage.ts."
+            }
+          ],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "recklesshuntbow",
+          "name": "Reckless Hunt: Bow",
+          "skillId": null,
+          "advancement": null,
+          "kind": "toggle",
+          "roleTags": [
+            "toggle"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "finalDamage",
+              "from": "finalDamageSources[0]",
+              "value": null,
+              "partOf": null,
+              "note": "The single largest class Final Damage source. Costs HP to maintain, so its uptime is a player choice."
+            }
+          ],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "quiverbarrage",
+          "name": "Quiver Barrage",
+          "skillId": null,
+          "advancement": null,
+          "kind": "active",
+          "roleTags": [
+            "burst"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "finalDamage",
+              "from": "finalDamageSources[3]",
+              "value": null,
+              "partOf": null,
+              "note": "Conditional — the least reliable of the four Final Damage sources, and the one to exclude from any realistic subset."
+            }
+          ],
+          "supersededBy": null,
+          "notes": "UNVERIFIED — job tier not recorded on this pass. The wiki hosts a Skill_Quiver_Barrage icon, which places it on the class but not on a tier.",
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "hurricane",
+          "name": "Hurricane",
+          "skillId": null,
+          "advancement": 4,
+          "kind": "active",
+          "roleTags": [
+            "main-bossing"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [],
+          "supersededBy": null,
+          "notes": "Tier 4 is inferred from the fact that Hyper Skill passives boost 4th job skills and Grandis Library's recommended Bow Master hyper passives are all Hurricane lines. Its role as the main bossing line is community consensus, not a stated fact.",
+          "source": "https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "epicadventure",
+          "name": "Epic Adventure",
+          "skillId": null,
+          "advancement": null,
+          "kind": "buff",
+          "roleTags": [
+            "buff",
+            "burst"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [],
+          "supersededBy": null,
+          "notes": "The Bowman variant. Existence attested by the wiki's Skill_Epic_Adventure_(Bowman) icon and the Bow Master skill page; its numbers were not transcribed.",
+          "source": "https://maplestorywiki.net/w/Bow_Master/Skills",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "global",
+          "worldScope": "both"
+        },
+        {
+          "id": "erdanova",
+          "name": "Erda Nova",
+          "skillId": null,
+          "advancement": 5,
+          "kind": "bind",
+          "roleTags": [
+            "bind"
+          ],
+          "maxLevel": null,
+          "masterLevel": null,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [],
+          "supersededBy": null,
+          "notes": "A 5th job COMMON node — shared by every class, not Bow Master's own. Named here because bind uptime is how an undergeared character kills a boss, and the guide has to answer 'which key is my bind'.",
+          "source": "UNVERIFIED — carried from data/guide-graph.json#nodes.v, which is itself marked UNVERIFIED. Erda Nova being the common-node bind is community knowledge that no source opened on 2026-09-11 states outright",
+          "lastVerified": "",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "id": "adventurerscuriosity",
+          "name": "Adventurer's Curiosity",
+          "skillId": null,
+          "advancement": null,
+          "kind": "link",
+          "roleTags": [
+            "link"
+          ],
+          "maxLevel": null,
+          "masterLevel": 9,
+          "cooldownSec": null,
+          "durationSec": null,
+          "damageLine": null,
+          "damageLineNote": "Null by design. No licence-clean machine-readable source for GMS skill coefficients, hit counts or cast times exists; lib/damage.ts is explicit that hit count and lines per skill are outside its model. A user pasting their own in-game tooltip is the only honest route to a number here.",
+          "effects": [
+            {
+              "kind": "critRate",
+              "from": null,
+              "value": 0.1,
+              "partOf": "alreadyInStatWindow.critRate",
+              "note": "The link's contribution to the class's own stat window at the level lib/damage.ts models. Transferred to other characters it reads as Critical Rate +15% at master level.",
+              "source": "https://grandislibrary.com/explorers/bowmaster"
+            }
+          ],
+          "supersededBy": null,
+          "notes": null,
+          "source": "https://grandislibrary.com/content/link-skills",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        }
+      ],
+      "skillBuilds": [
+        {
+          "advancement": 1,
+          "spAvailableAtCap": null,
+          "spToMaxAll": null,
+          "sufficiency": null,
+          "order": [],
+          "resetMechanism": "Skill points can be reset with an SP Reset Scroll; the mechanism was not verified on this pass.",
+          "note": "UNVERIFIED — Grandis Library publishes an Example Skill Build Path for Bow Master and it was not transcribed in this pass. The taxonomy is here so a transcription drops straight in; no order is invented.",
+          "source": "UNVERIFIED — the per-advancement SP tables were not transcribed. Source to transcribe: https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "advancement": 2,
+          "spAvailableAtCap": null,
+          "spToMaxAll": null,
+          "sufficiency": null,
+          "order": [],
+          "resetMechanism": null,
+          "note": "UNVERIFIED — see 1st job.",
+          "source": "UNVERIFIED — the per-advancement SP tables were not transcribed. Source to transcribe: https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "advancement": 3,
+          "spAvailableAtCap": null,
+          "spToMaxAll": null,
+          "sufficiency": null,
+          "order": [],
+          "resetMechanism": null,
+          "note": "UNVERIFIED — see 1st job.",
+          "source": "UNVERIFIED — the per-advancement SP tables were not transcribed. Source to transcribe: https://grandislibrary.com/explorers/bowmaster",
+          "lastVerified": "",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        {
+          "advancement": 4,
+          "spAvailableAtCap": null,
+          "spToMaxAll": null,
+          "sufficiency": "abundant",
+          "order": [],
+          "resetMechanism": null,
+          "note": "SP at 4th job ends up abundant: players report finishing the tree with points left over, so the ORDER only matters for the ~30 levels spent grinding through it, not as a permanent build. The community heuristic worth following meanwhile: 1 SP into everything to clear prerequisites, then cheapest-to-master first, then passives, then buffs, then attacks. A 40-row build table here would be false precision.",
+          "source": "https://forums.maplestory.nexon.net/discussion/32375/after-max-skill-for-4th-job-still-have-skillpoints",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        }
+      ],
+      "hyperSkills": {
+        "passivePointLevels": [
+          140,
+          150,
+          165,
+          180,
+          190
+        ],
+        "activePointLevels": null,
+        "activePointLevelsNote": "UNVERIFIED — the active Hyper Skill point levels were not traced to a source on this pass.",
+        "picks": [
+          {
+            "hyperSkillId": "sharpeyes-guardbreak",
+            "name": "Sharp Eyes - Guardbreak",
+            "boostedSkillId": "sharpeyes",
+            "effect": "Enemy DEF Ignored +5%",
+            "rank": 1,
+            "rationale": "Already priced: it is one of the three IED sources folded into BOW_MASTER.alreadyInStatWindow.ied (Marksmanship 25% x Armor Break 40% x Guardbreak 5% = 57.25%). Taking it is what makes that constant true.",
+            "source": "https://grandislibrary.com/explorers/bowmaster",
+            "lastVerified": "2026-09-11",
+            "patchVersion": "v.269",
+            "claimType": "consensus",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "hyperSkillId": "sharpeyes-criticalchance",
+            "name": "Sharp Eyes - Critical Chance",
+            "boostedSkillId": "sharpeyes",
+            "effect": "Critical Rate",
+            "rank": 2,
+            "rationale": "Recommended by Grandis Library. Note the conditional in hyperStats: on a character already at 98-100% effective crit this is a dead line, and the pick is only worth it while the stat window is short of the cap.",
+            "source": "https://grandislibrary.com/explorers/bowmaster",
+            "lastVerified": "2026-09-11",
+            "patchVersion": "v.269",
+            "claimType": "consensus",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "hyperSkillId": "hurricane-reinforce",
+            "name": "Hurricane - Reinforce",
+            "boostedSkillId": "hurricane",
+            "effect": "Damage",
+            "rank": 3,
+            "rationale": "Recommended by Grandis Library for the class's main line.",
+            "source": "https://grandislibrary.com/explorers/bowmaster",
+            "lastVerified": "2026-09-11",
+            "patchVersion": "v.269",
+            "claimType": "consensus",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "hyperSkillId": "hurricane-bossrush",
+            "name": "Hurricane - Boss Rush",
+            "boostedSkillId": "hurricane",
+            "effect": "Boss Damage",
+            "rank": 4,
+            "rationale": "Recommended by Grandis Library; boss damage on the main bossing line.",
+            "source": "https://grandislibrary.com/explorers/bowmaster",
+            "lastVerified": "2026-09-11",
+            "patchVersion": "v.269",
+            "claimType": "consensus",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "hyperSkillId": "hurricane-splitattack",
+            "name": "Hurricane - Split Attack",
+            "boostedSkillId": "hurricane",
+            "effect": "Additional target",
+            "rank": 5,
+            "rationale": "Recommended by Grandis Library.",
+            "source": "https://grandislibrary.com/explorers/bowmaster",
+            "lastVerified": "2026-09-11",
+            "patchVersion": "v.269",
+            "claimType": "consensus",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          }
+        ],
+        "forgone": [
+          {
+            "what": "Every other passive hyper on the tree",
+            "why": "Five points total across Lv 140/150/165/180/190 and more picks than points — the five above spend all of them. Which specific lines are given up was not enumerated on this pass.",
+            "source": "UNVERIFIED — the full Bow Master passive hyper list was not transcribed, so the counterfactual cannot be named line by line",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "consensus",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          }
+        ],
+        "resetCostMesoCap": 10000000,
+        "resetCostNote": "Reset cost escalates with each reset but is capped at 10,000,000 mesos, so a wrong pick is cheap to undo. Surfaced because the fear of a permanent mistake is most of what the question carries.",
+        "source": "https://forums.maplestory.nexon.net/discussion/28286/hyper-skill-point-passive",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "consensus",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      },
+      "hyperStats": {
+        "hspGainedByLevel": null,
+        "costPerLevel": null,
+        "tablesNote": "UNVERIFIED — the Hyper Stat point-gain curve and the per-level cost curve were not traced to a source on this pass. Without them the app can order the lines but cannot price a point.",
+        "lines": [
+          {
+            "stat": "critRate",
+            "label": "Critical Rate",
+            "valuePerLevel": null,
+            "cap": null
+          },
+          {
+            "stat": "critDmg",
+            "label": "Critical Damage",
+            "valuePerLevel": null,
+            "cap": null
+          },
+          {
+            "stat": "ied",
+            "label": "Ignore Enemy Defense",
+            "valuePerLevel": null,
+            "cap": null
+          },
+          {
+            "stat": "bossPct",
+            "label": "Boss Damage",
+            "valuePerLevel": null,
+            "cap": null
+          },
+          {
+            "stat": "dmgPct",
+            "label": "Damage",
+            "valuePerLevel": null,
+            "cap": null
+          },
+          {
+            "stat": "att",
+            "label": "Attack Power",
+            "valuePerLevel": null,
+            "cap": null
+          },
+          {
+            "stat": "mainStat",
+            "label": "DEX",
+            "valuePerLevel": null,
+            "cap": null
+          }
+        ],
+        "conditionalRules": [
+          {
+            "id": "critrate-until-cap",
+            "stat": "critRate",
+            "condition": {
+              "term": "critRate",
+              "op": "lt",
+              "value": 1,
+              "valueFrom": null
+            },
+            "thenPriority": "high",
+            "elsePriority": "dead",
+            "rationale": "Critical Rate above 100% does nothing. Bow Master carries 75% before hyper stats, Legion, links or gear (BOW_MASTER.alreadyInStatWindow.critRate), which is why this line goes dead earlier here than on almost any other class. The reference character sits at 98% printed: two points of headroom, then every further point is waste.",
+            "pricedBy": {
+              "term": "critRate",
+              "via": "lib/damage.ts marginal()"
+            },
+            "source": "https://grandislibrary.com/explorers/bowmaster",
+            "lastVerified": "2026-09-11",
+            "patchVersion": "v.269",
+            "claimType": "fact",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "id": "ied-vs-wall",
+            "stat": "ied",
+            "condition": {
+              "term": "ied",
+              "op": "lt",
+              "value": null,
+              "valueFrom": "iedWall(BOSS_PDR[boss])"
+            },
+            "thenPriority": "critical",
+            "elsePriority": "diminishing",
+            "rationale": "Below the IED wall the defence term is zero or negative and the damage index means nothing — lib/damage.ts clamps it and warns. Above it, IED sources stack multiplicatively, so each further line buys fewer effective points; lib/damage.ts marginalIedLine() reports how many a specific cube line actually buys. Bow Master arrives with 57.25% stacked from passives, which is already most of the way to the ~66.7% wall on a 300% PDR boss.",
+            "pricedBy": {
+              "term": "ied",
+              "via": "lib/damage.ts marginalIedLine() and iedWall()"
+            },
+            "source": "https://grandislibrary.com/explorers/bowmaster",
+            "lastVerified": "2026-09-11",
+            "patchVersion": "v.269",
+            "claimType": "fact",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "id": "critdmg-after-critrate",
+            "stat": "critDmg",
+            "condition": {
+              "term": "critRate",
+              "op": "gte",
+              "value": 1,
+              "valueFrom": null
+            },
+            "thenPriority": "high",
+            "elsePriority": "medium",
+            "rationale": "Once crit rate is capped, crit damage is the line the crit points should move to. This is an ordering judgement, not a game fact; the app should confirm it by comparing marginal() rows for critRate and critDmg on the loaded character rather than trusting the sentence.",
+            "pricedBy": {
+              "term": "critDmg",
+              "via": "lib/damage.ts marginal()"
+            },
+            "source": "UNVERIFIED — ordering judgement. It is computable per character with lib/damage.ts marginal(), which is the honest way to settle it",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          }
+        ],
+        "profiles": [
+          {
+            "goal": "bossing",
+            "order": [
+              "ied",
+              "bossPct",
+              "critDmg",
+              "dmgPct",
+              "att",
+              "mainStat",
+              "critRate"
+            ],
+            "source": "UNVERIFIED — community-typical ordering, stated as judgement. Every entry is checkable against lib/damage.ts marginal() for the loaded character, which supersedes this list whenever the two disagree",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          }
+        ],
+        "source": "https://grandislibrary.com/explorers/bowmaster",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "consensus",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      },
+      "innerAbility": {
+        "presets": [
+          {
+            "name": "Preset 1",
+            "purpose": "Bossing — the line you keep."
+          },
+          {
+            "name": "Preset 2",
+            "purpose": "Training/utility, or a holding slot while rerolling."
+          },
+          {
+            "name": "Preset 3",
+            "purpose": "Third slot; Heroic players commonly leave it as a reroll buffer."
+          }
+        ],
+        "presetsNote": "UNVERIFIED — the number of presets and how they are unlocked was not traced to a source on this pass.",
+        "lines": [
+          {
+            "slot": 1,
+            "rank": "Legendary",
+            "option": "Boss Damage +20%",
+            "valueRange": "up to +20%",
+            "desirability": "best",
+            "classCondition": null,
+            "rationale": "Slot 1 has the widest value range, so it dominates the whole roll. Boss damage is the archer target of choice."
+          },
+          {
+            "slot": 1,
+            "rank": "Legendary",
+            "option": "Critical Rate +20%",
+            "valueRange": "up to +20%",
+            "desirability": "best-if-short-of-cap",
+            "classCondition": "Only if effective crit rate is below 100%. Bow Master starts at 75% from passives; the reference character is at 98%, where this line is worth 2 points and then nothing.",
+            "rationale": "The class-conditional trap: the generic archer advice says take crit rate, and for a geared Bow Master it is almost dead on arrival."
+          },
+          {
+            "slot": 1,
+            "rank": "Legendary",
+            "option": "Attack Speed +1",
+            "valueRange": "+1 stage",
+            "desirability": "class-dependent",
+            "classCondition": "Worthless to a class already at the attack speed cap. Whether Bow Master is capped with its own buffs up was NOT verified on this pass — do not assume either way.",
+            "rationale": "Commonly recommended for Warriors and Thieves; listed so the app does not repeat generic advice at a class it may not fit."
+          },
+          {
+            "slot": 1,
+            "rank": "Legendary",
+            "option": "Cooldown Skip (chance to ignore cooldown)",
+            "valueRange": "low chance",
+            "desirability": "high-variance",
+            "classCondition": "Does NOT apply to Hyper Skills or 5th job skills — which is where a Bow Master's cooldowns actually are. Named specifically because it is the trap line.",
+            "rationale": "High variance and a much smaller real skill pool than it appears to cover."
+          }
+        ],
+        "firstLineTargets": [
+          "Boss Damage +20%",
+          "Critical Rate +20% (only while short of the crit cap)"
+        ],
+        "stopRule": "Stop when slot 1 is a Legendary Boss Damage +20% (or a crit rate line while you are genuinely short of the cap) and the other two slots are not actively harmful. Inner ability is the largest open-ended meso sink available mid-game, and the only advice that saves money is the instruction to stop. Rerolling a good slot-1 line to chase a perfect slot-2 is how accounts lose a week of income.",
+        "rerollMethod": [],
+        "rerollMethodNote": "UNVERIFIED — the reroll items, their costs and which of them exist in Heroic (Reboot) were not traced to a source on this pass. Heroic has no cube trading and different meso costs, so Interactive-world advice does not transfer; anything written here must carry worldScope.",
+        "source": "https://www.digitaltq.com/maplestory-inner-ability-guide",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.269",
+        "claimType": "consensus",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      },
+      "vMatrix": {
+        "slotCurve": [],
+        "slotCurveNote": "UNRESOLVED, and it decides the whole build order — 'how many slots do I have at Lv 210' determines whether a third trio is even placeable. Two live sources disagree and neither could be opened directly on 2026-09-11. Show both and let the player check in-game in ten seconds.",
+        "slotCurveConflict": [
+          {
+            "source": "https://www.digitaltq.com/maplestory-v-maxtrix-5th-job-guide",
+            "claim": "5 slots at Lv 200, one more every 5 levels, cap at Lv 300."
+          },
+          {
+            "source": "https://maplestorywiki.net/w/V_Matrix",
+            "claim": "Starting slots raised 5 -> 7, maximum raised 25 -> 30, and max slots now open at Lv 260 rather than 300."
+          }
+        ],
+        "nodeTypes": [
+          {
+            "type": "skill",
+            "label": "Skill node",
+            "note": "The 5th job skills themselves."
+          },
+          {
+            "type": "boost",
+            "label": "Boost node",
+            "note": "Enhances three 4th-job-and-below skills. A trio."
+          },
+          {
+            "type": "special",
+            "label": "Special node",
+            "note": "Common/utility nodes such as Erda Nova and Rope Lift."
+          }
+        ],
+        "boostNodeMechanics": {
+          "maxLevel": 25,
+          "effectType": "final damage",
+          "multiplicative": true,
+          "masteryFifty": "Skills with a 50% mastery cap need two maxed boost nodes to reach it.",
+          "note": "Boost nodes grant FINAL DAMAGE, which multiplies with everything else — that is a game fact and it is the whole reason an ordering exists. A Lv 1 boost node contributes almost nothing, so spreading levels across many nodes is strictly worse than finishing one.",
+          "source": "https://www.digitaltq.com/maplestory-v-maxtrix-5th-job-guide",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        "craftEconomy": {
+          "shardsToCraft": {
+            "skillNode": 140,
+            "boostNode": 70,
+            "specialNode": 250
+          },
+          "shardsFromDisassembly": {
+            "skillNode": 30,
+            "boostNode": 10
+          },
+          "note": "This is what makes 'is this trio fodder' a computable question instead of a vibe: a trio you will never use is worth its disassembly value toward one you will.",
+          "source": "https://www.digitaltq.com/maplestory-v-maxtrix-5th-job-guide",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        "trios": [],
+        "triosNote": "UNVERIFIED — Grandis Library publishes Bow Master's six boost-node groupings labelled Primary / Secondary / Other, and they were NOT transcribed in this pass. That table is the single highest-value missing piece in this guide: 'I just opened a nodestone, is this trio worth keeping or is it shard fodder' is the decision a player makes dozens of times, and no invented trio is better than an empty table. Transcribe from https://grandislibrary.com/explorers/bowmaster (Skills Boosted By Each Node).",
+        "buildOrder": [
+          {
+            "rank": 1,
+            "what": "The boost node containing Hurricane",
+            "why": "The main bossing line, and boost nodes are final damage — multiplicative on top of the class's four existing FD buffs. Finishing one node beats levelling three.",
+            "pricedBy": {
+              "term": "finalDmgPct",
+              "via": "lib/damage.ts stackFinalDamage()"
+            },
+            "source": "UNVERIFIED — judgement. Hurricane as the main bossing line is community consensus; the ordering is this guide's call",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "rank": 2,
+            "what": "The boost node containing your main mobbing line",
+            "why": "Pays for itself immediately while grinding, which is where most of the levels before 260 are spent.",
+            "pricedBy": null,
+            "source": "UNVERIFIED — judgement, and it overlaps data/guide-graph.json#nodes.v which states the same class-agnostic order. Keep the generic node as the explainer of what a boost node IS and let this plan own the ordering, or the two will contradict each other within a patch cycle",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "rank": 3,
+            "what": "Erda Nova",
+            "why": "The bind. Bind uptime is how an undergeared character kills a boss — a survivability and clear-rate lever rather than a damage one, which is why it is not ranked by marginal damage.",
+            "pricedBy": null,
+            "source": "UNVERIFIED — judgement, mirrors data/guide-graph.json#nodes.v",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          }
+        ],
+        "nodestoneSources": [
+          "Monster Park daily",
+          "Boss drops",
+          "Event shops"
+        ],
+        "source": "UNVERIFIED — the class-agnostic half of this plan is carried from data/guide-graph.json#nodes.v, which is itself marked UNVERIFIED. The one hard fact inside it — boost nodes grant final damage — is recorded on boostNodeMechanics with its own source",
+        "lastVerified": "",
+        "patchVersion": "v.269",
+        "claimType": "consensus",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      },
+      "hexa": {
+        "unlockLevel": 260,
+        "prerequisiteQuest": "6th job advancement at Lv 260. The Origin skill is granted at Lv 1 on advancement and unlocks properly at 265.",
+        "nodes": [
+          {
+            "type": "mastery",
+            "name": "HEXA Mastery node",
+            "boostedSkillId": null,
+            "maxLevel": 30,
+            "breakpoints": [
+              10,
+              20,
+              30
+            ],
+            "addedInPatch": null,
+            "note": "Upgrades a 4th job skill."
+          },
+          {
+            "type": "boost",
+            "name": "HEXA Boost / Enhancement nodes",
+            "boostedSkillId": null,
+            "maxLevel": 30,
+            "breakpoints": [
+              10,
+              20,
+              30
+            ],
+            "addedInPatch": null,
+            "note": "Amplify 5th job skills."
+          },
+          {
+            "type": "skill",
+            "name": "HEXA Skill nodes (Origin / Ascent)",
+            "boostedSkillId": null,
+            "maxLevel": 30,
+            "breakpoints": [
+              10,
+              20,
+              30
+            ],
+            "addedInPatch": null,
+            "note": null
+          },
+          {
+            "type": "common",
+            "name": "HEXA Common nodes",
+            "boostedSkillId": null,
+            "maxLevel": 30,
+            "breakpoints": [
+              10,
+              20,
+              30
+            ],
+            "addedInPatch": "v.271",
+            "note": "v.271 added a 3rd Common node for all classes. data/guide-graph.json#nodes.hexa records the Explorer Bowman node as 'HEXA Fury of the Wild' and flags that the per-class node list was still unconfirmed at the time of writing. Treat the name as unconfirmed."
+          }
+        ],
+        "costTable": [],
+        "costTableNote": "UNVERIFIED and UNSCRAPEABLE — the per-level Sol Erda and Sol Erda Fragment costs could not be retrieved by any automated fetch (maplestorywiki.net 403, fandom 402, everycalculators.com 403). This is a manual-transcription job plus a second-source check, not a licensing block. Until it exists there is NO honest ETA.",
+        "incomeModel": {
+          "energyPerSolErda": 1000,
+          "dailyQuest": "3000 Authentic Field mobs -> 600 Sol Erda Energy + 12 Sol Erda Fragments.",
+          "dailyEnergyCapFromAuthenticFields": null,
+          "solErdaHoldCap": null,
+          "bossSources": [],
+          "note": "INTERNALLY INCONSISTENT and therefore not usable: the figures a search index returned were a 30,000 Energy/day cap from Authentic Force fields alongside a 20 Sol Erda holding cap — 30,000 Energy is 30 Sol Erda/day against a cap of 20. Both were left null. An ETA built on a 30x-wrong income rate is exactly the confidently-wrong number this repo forbids.",
+          "source": "UNVERIFIED — the daily Sol Erda Energy cap and the holding cap contradict each other across sources; both must be read in-game before any time-to-completion estimate is shown. Source to check: https://maplestorywiki.net/w/Sol_Erda",
+          "lastVerified": "",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        "investmentOrder": [
+          {
+            "rank": 1,
+            "what": "HEXA Mastery node",
+            "why": "Upgrades a 4th job skill you already press constantly.",
+            "source": "UNVERIFIED — ordering restated from data/guide-graph.json#nodes.hexa, which is itself unverified",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "rank": 2,
+            "what": "HEXA Boost nodes",
+            "why": "Amplify the 5th job skills that the V matrix already invested in.",
+            "source": "UNVERIFIED — ordering restated from data/guide-graph.json#nodes.hexa",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "rank": 3,
+            "what": "HEXA Skill nodes",
+            "why": "The 6th job skills themselves.",
+            "source": "UNVERIFIED — ordering restated from data/guide-graph.json#nodes.hexa",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          },
+          {
+            "rank": 4,
+            "what": "HEXA Stat last",
+            "why": "Cheapest to start, slowest to pay, and it competes with nodes that multiply skills you press every second.",
+            "source": "UNVERIFIED — ordering restated from data/guide-graph.json#nodes.hexa",
+            "lastVerified": "",
+            "patchVersion": "v.269",
+            "claimType": "judgement",
+            "conflictsWith": null,
+            "regionScope": "GMS",
+            "worldScope": "both"
+          }
+        ],
+        "breakpointRule": "Nodes cap at 30 with meaningful breakpoints at 10, 20 and 30. 'Stop at 10 and move to the next node' versus 'push this one to 30' is the entire investment strategy, which is why breakpoints are a first-class field and a flat level number would not do.",
+        "hexaStat": {
+          "creationCost": {
+            "solErda": 5,
+            "fragments": 10
+          },
+          "mainStatOptions": [],
+          "additionalStatOptions": [],
+          "statOptionsNote": "UNVERIFIED — the Main Stat and Additional Stat option lists were not transcribed on this pass.",
+          "maxRank": 20,
+          "rankUpCostCurve": {
+            "from0to1": 5,
+            "from19to20": 30,
+            "unit": "Sol Erda Fragments",
+            "note": "Escalates between those two endpoints; the intermediate curve was not transcribed."
+          },
+          "rerollMechanics": null,
+          "uniquenessRule": "The Main Stat can be assigned only once across all Stat Nodes; Additional Stats may repeat. That constraint turns stat-node planning into a small optimisation the app can actually solve for the player.",
+          "source": "https://www.digitaltq.com/maplestory-6th-job-guide",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.269",
+          "claimType": "consensus",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        "source": "UNVERIFIED — carried from data/guide-graph.json#nodes.hexa, which is itself marked UNVERIFIED: the v.271 Explorer Bowman common-node name, the Sol Erda costs and the Lv 30 breakpoints were not traced to a source there either",
+        "lastVerified": "",
+        "patchVersion": "v.271",
+        "claimType": "consensus",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      },
+      "rotation": {
+        "burstCycleSec": 120,
+        "burstCycleNote": "Classes were unified onto a 2-minute burst cycle, which is what makes this field comparable across classes rather than bespoke per class.",
+        "opener": [],
+        "openerNote": "UNVERIFIED — no sourced Bow Master opener was found. This is the single most video-locked piece of class knowledge and the main reason players open YouTube at all; an invented sequence would be worse than an empty one. Needs either an in-game recording or a named guide to transcribe.",
+        "sustainLoop": [],
+        "buffsToAlign": [
+          {
+            "skillId": "recklesshuntbow",
+            "cooldownSec": null,
+            "note": "Toggle — align by having it up, not by casting it in the window."
+          },
+          {
+            "skillId": "enchantedquiver",
+            "cooldownSec": null,
+            "note": "Cooldown not sourced."
+          },
+          {
+            "skillId": "armorbreak",
+            "cooldownSec": null,
+            "note": "Debuff on the target; also 40% of the class IED, so its uptime moves the defence term and not only the FD term."
+          },
+          {
+            "skillId": "quiverbarrage",
+            "cooldownSec": null,
+            "note": "Conditional FD source; cooldown not sourced."
+          },
+          {
+            "skillId": "epicadventure",
+            "cooldownSec": null,
+            "note": "Cooldown not sourced."
+          }
+        ],
+        "specialSkillRings": {
+          "choice": [
+            "Ring of Restraint",
+            "Weapon Jump"
+          ],
+          "note": "Both sit on 2-minute cooldowns and are alternated across burst windows. v.271 added a SECOND Special Skill Ring slot, gated on owning Ring of Restraint or Continuous Ring Lv 4+, so the question became 'which two' rather than 'which one'.",
+          "source": "https://www.nexon.com/maplestory/news/update/44597/v-271-maple-story-x-frieren-beyond-journey-s-end-patch-notes",
+          "lastVerified": "2026-09-11",
+          "patchVersion": "v.271",
+          "claimType": "fact",
+          "conflictsWith": null,
+          "regionScope": "GMS",
+          "worldScope": "both"
+        },
+        "bindWindow": {
+          "skillId": "erdanova",
+          "note": "The common-node bind. Damage buffs should land inside it."
+        },
+        "iframes": [],
+        "iframesNote": "UNVERIFIED — which Bow Master skills grant invincibility frames was not sourced. This deserves its own array because 'which key do I press so Lucid P3 does not one-shot me' is a survival question answered almost exclusively in video form today; it is the most valuable missing field in this section.",
+        "buffMacroGroups": [],
+        "keybindNotes": null,
+        "source": "https://orangemushroom.net/2025/04/12/kmst-ver-1-2-186-huge-skill-changes-and-ui-reorganization/",
+        "lastVerified": "2026-09-11",
+        "patchVersion": "v.271",
+        "claimType": "consensus",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      },
+      "levelBands": {
+        "bands": [
+          {
+            "from": 1,
+            "to": 139,
+            "focus": "Reach the gates. Nothing below them is a decision.",
+            "whatStartsMattering": "Getting to 140 for the first passive Hyper Skill point.",
+            "whatToStopDoing": "Optimising a skill build you will reset for free later.",
+            "gate": "Lv 140 — first passive Hyper Skill point."
+          },
+          {
+            "from": 140,
+            "to": 199,
+            "focus": "Hyper Skill passives arrive at 140, 150, 165, 180 and 190.",
+            "whatStartsMattering": "The five hyper passive picks, and the fact that a wrong one costs at most 10M mesos to undo.",
+            "whatToStopDoing": "Treating hyper picks as permanent.",
+            "gate": "Lv 200 — 5th job and the V matrix."
+          },
+          {
+            "from": 200,
+            "to": 209,
+            "focus": "5th job. Slots are the constraint, not nodes.",
+            "whatStartsMattering": "Finishing ONE boost node rather than levelling several. Boost nodes are final damage and a Lv 1 node is nearly nothing.",
+            "whatToStopDoing": "Hoarding nodestones for a perfect trio while running an empty matrix.",
+            "gate": "Lv 210 — link skill level 3."
+          },
+          {
+            "from": 210,
+            "to": 239,
+            "focus": "Link skills hit level 3 at 210; the V matrix fills out.",
+            "whatStartsMattering": "Every mule at 210 rather than 200 — that is the second half of the account's link value.",
+            "whatToStopDoing": "Buying crit rate anywhere once the stat window is at the cap.",
+            "gate": "Lv 260 — 6th job and HEXA."
+          },
+          {
+            "from": 240,
+            "to": 259,
+            "focus": "Slots stop being the constraint; Sol Erda Fragments become it.",
+            "whatStartsMattering": "Banking Sol Erda Fragments on the character that will reach 260 first — they are permanent and untradable, so the banking starts BEFORE they can be spent, sixteen-plus levels early.",
+            "whatToStopDoing": "Waiting until 260 to think about fragments.",
+            "gate": "Lv 260."
+          },
+          {
+            "from": 260,
+            "to": 300,
+            "focus": "HEXA. Breakpoints at 10/20/30 decide everything.",
+            "whatStartsMattering": "Mastery node first, then boosts; the 10/20/30 breakpoints over a flat push to 30.",
+            "whatToStopDoing": "Spreading Sol Erda across nodes evenly.",
+            "gate": "Lv 265 — Origin skill unlocks properly."
+          }
+        ],
+        "note": "The gates (140/200/210/260/265) are facts and come from lib/legion.ts's ladder and data/guide-graph.json. The EMPHASIS inside each band is this guide's judgement. v.271's EXP cut for Lv 210-259 moves how long each band takes, which is exactly why this is data with a patchVersion rather than prose.",
+        "source": "UNVERIFIED — band emphasis is editorial judgement built on top of sourced level gates. data/guide-graph.json#roadmap.bands is itself marked UNVERIFIED and is the account-wide version of this table",
+        "lastVerified": "",
+        "patchVersion": "v.271",
+        "claimType": "judgement",
+        "conflictsWith": null,
+        "regionScope": "GMS",
+        "worldScope": "both"
+      },
+      "openQuestions": [
+        "Transcribe Grandis Library's six Bow Master boost-node groupings (Primary/Secondary/Other) into vMatrix.trios — the highest-value single gap.",
+        "Transcribe Grandis Library's Example Skill Build Path into skillBuilds[].order.",
+        "Read the HEXA per-level Sol Erda / Fragment cost table in-game or from a second source; without it there is no ETA.",
+        "Resolve the V matrix slot curve in-game (10 seconds: open the matrix and count).",
+        "Record a Bow Master 2-minute opener and its iframes.",
+        "Confirm whether the printed Critical Damage stat already folds in Bow Expert's Minimum Critical Damage line (lib/damage.ts minCritDamageBonus, unresolved 15% vs 16%).",
+        "Confirm the v.271 Explorer Bowman HEXA Common node name ('HEXA Fury of the Wild' per guide-graph, unconfirmed)."
+      ],
+      "lastVerified": "2026-09-11",
+      "patchVersion": "v.269",
+      "patchVersionNote": "STALE BY CONSTRUCTION. The best GMS-specific source (Grandis Library) is footer-stamped GMS Ver. 269 while the app declares v.271, and the v.270/v.271 notes could not be read (the Nexon page is a JS SPA). Every figure here is stamped 269 until someone diffs the two patches for class changes."
+    }
+  },
+  "guideSections": [
+    {
+      "id": "skills",
+      "label": "Skills",
+      "required": true
+    },
+    {
+      "id": "skillBuilds",
+      "label": "Skill build order",
+      "required": true
+    },
+    {
+      "id": "hyperSkills",
+      "label": "Hyper skills",
+      "required": true
+    },
+    {
+      "id": "hyperStats",
+      "label": "Hyper stats",
+      "required": true
+    },
+    {
+      "id": "innerAbility",
+      "label": "Inner ability",
+      "required": true
+    },
+    {
+      "id": "vMatrix",
+      "label": "V Matrix (5th job)",
+      "required": true
+    },
+    {
+      "id": "hexa",
+      "label": "HEXA Matrix (6th job)",
+      "required": true
+    },
+    {
+      "id": "rotation",
+      "label": "Rotation and burst",
+      "required": true
+    },
+    {
+      "id": "levelBands",
+      "label": "What changes by level",
+      "required": true
+    }
+  ]
+}

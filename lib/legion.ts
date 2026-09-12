@@ -90,19 +90,33 @@ export function nextLink(lvl: number): { lv: 1 | 2 | 3; at: number; need: number
   return null;
 }
 
-// Link skill effects, only where verified. A class missing from this table still
-// gets the level ladder above — an unlabelled link is better than an invented one.
+// Link skill effects. data/classes.json is now the AUTHORITY for link skill names
+// and effects — it carries all 53 classes, each with a source URL and a patch stamp,
+// and lib/classes.ts exposes legionCrossCheck() which compares the two and reports
+// disagreements as data.
+//
+// That cross-check is what caught the errors below: three of these rows named the
+// wrong skill. "Fury Unleashed" was attached to Demon Avenger when it is Demon
+// Slayer's; Demon Avenger's is "Wild Rage"; Luminous's is "Light Wash", not
+// "Permeate". The EFFECTS were roughly right, which is exactly why nobody noticed —
+// a wrong name next to a right effect reads as authoritative. Names and effects now
+// come from grandislibrary.com/content/link-skills.
+//
+// This table remains only as the fallback for callers that cannot reach the roster.
+// Keep it in sync or delete it; do not let it drift again.
 export const LINK_EFFECT: Record<string, string> = {
-  "demon avenger": "Fury Unleashed - flat damage %. One of the strongest links in the game.",
-  luminous: "Permeate - Ignore DEF %. Top tier for bossing.",
+  "demon avenger": "Wild Rage - Damage +15% at master level 3. One of the strongest links in the game.",
+  luminous: "Light Wash - Enemy DEF Ignored +20% when attacking. Top tier for bossing.",
   phantom: "Phantom Instinct - critical rate %.",
-  "demon slayer": "Defense - boss damage %.",
+  "demon slayer": "Fury Unleashed - Boss Damage +20% at master level 3.",
   mercedes: "Elven Blessing - EXP %. Level this one early; it pays for the others.",
   "dawn warrior": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
   "blaze wizard": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
   "wind archer": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
   "night walker": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
-  thunder: "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
+  // Was keyed "thunder", which matched no class name, so Thunder Breaker silently
+  // got no link text. legionCrossCheck() reported it as an unmatched key.
+  "thunder breaker": "Cygnus Blessing - ATT and Magic ATT. Stacks with every other Cygnus Knight you own.",
 };
 
 export function linkEffect(cls: string): string | null {
