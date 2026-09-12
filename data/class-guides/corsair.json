@@ -1,0 +1,522 @@
+{
+  "slug": "corsair",
+  "className": "Corsair",
+  "branch": "Explorer - Pirate",
+  "primaryStat": "DEX",
+  "secondaryStat": "STR",
+  "weapon": "Gun",
+  "secondaryWeapon": "Far Sight",
+  "archetype": "Ranged gunslinger built around a 2-minute burst with a strong 60-second mini-burst. Sustained damage comes from a hurricane-style main attack plus a passive extra-hit proc. Self-reported damage split is roughly 40% burst / 22% mini-burst / 38% sustained. Sits mid-pack for damage among GMS classes, with high mobility, two i-frames and summons that absorb fatal status effects.",
+  "linkSkill": {
+    "name": "Pirate's Blessing",
+    "effect": "All four base stats +100, Max HP +1750, Max MP +1750, and a damage-taken reduction. Stacks up to three times, once per unique Explorer Pirate at master level. Double-clicking the skill toggles a swap between STR/%STR and DEX/%DEX on equipment, which is how players move gear between Buccaneer, Cannon Master and Corsair. The swap excludes primary and secondary weapon, totems and symbols; Oz rings, legion characters and symbols also stay on the original stat.",
+    "levels": "Master Level 9",
+    "conflict": "Damage-taken reduction is reported as -15% by the Corsair class doc (2026-09-09) and as -21% by Grandis Library and Mapler House. See conflicts.",
+    "sources": [
+      "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+      "https://grandislibrary.com/explorers/corsair",
+      "https://www.maplerhouse.com/en/classes/corsair"
+    ]
+  },
+  "legionEffect": "Summon duration +4/6/8/10/12% by legion rank (12% at Lv.250). The class doc notes this applies to summons from skills earned before 5th job.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Rapid Fire",
+        "why": "Main sustained-damage attack and the skill the 1st HEXA Mastery Node is gated behind. Must reach Lv.40 before Matrix Points to unlock that mastery.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Majestic Presence",
+        "why": "Passive extra-hit proc that fires off most attacking skills. Grandis Library groups it in the top boost-node slot with Rapid Fire; the class doc calls it a large share of total damage and quantifies it at roughly 5-8% of battle analysis.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Brain Scrambler",
+        "why": "Burst-damage skill used off cooldown every 5 seconds during sustained damage; it is also the skill that benefits from cooldown-skip. Gated behind the 3rd HEXA Mastery Node.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Tempest Bombardment",
+        "why": "The bossing toggle that converts the ship summons into proc-based bombardment. Listed in the class doc's bossing boost group and paired with Broadside on the 2nd HEXA Mastery Node.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair"
+        ]
+      },
+      {
+        "node": "Scurvy Summons",
+        "why": "Damage plus survivability - the crew absorbs up to two fatal status effects per summon. The class doc groups it with bossing skills; Grandis Library places it in the secondary trio.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Broadside",
+        "why": "Ship summon used for mobbing; gated behind the 2nd HEXA Mastery Node alongside Tempest Bombardment.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Siege Bomber",
+        "why": "Second summon used for mobbing; gated behind the 4th HEXA Mastery Node. Its HEXA version also passively adds damage to HEXA Tempest Bombardment.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Eight-Legs Easton",
+        "why": "Main training attack and an on-demand super stance when used while holding the down key. Gated behind the 3rd HEXA Mastery Node.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Nautilus Strike",
+        "why": "Not used for bossing and only situational for mobbing, but the class doc states it still has to be boosted because the 4th HEXA Mastery Node requires it. Its passive also adds to Majestic Presence damage.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "node": "Ugly Bomb",
+        "why": "Same as Nautilus Strike - not a bossing skill, but required to be boosted to unlock the 4th HEXA Mastery Node.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "name": "Bossing trio",
+        "skills": [
+          "Rapid Fire",
+          "Brain Scrambler",
+          "Majestic Presence"
+        ],
+        "why": "The three skills that carry sustained bossing damage. Grandis Library labels this the primary trio; MapleStory Wiki lists the same three as trinode 1.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "name": "Summons trio",
+        "skills": [
+          "Siege Bomber",
+          "Broadside or Tempest Bombardment",
+          "Scurvy Summons"
+        ],
+        "why": "Grandis Library's secondary trio; MapleStory Wiki lists Scurvy Summons / Broadside / Siege Bomber as trinode 2. The Broadside vs Tempest Bombardment slot differs between the two - see conflicts.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      },
+      {
+        "name": "Mobbing trio",
+        "skills": [
+          "Nautilus Strike",
+          "Ugly Bomb",
+          "Eight-Legs Easton"
+        ],
+        "why": "Grandis Library's tertiary trio, identical to MapleStory Wiki's trinode 3. Needed for mobbing and to unlock the 4th HEXA Mastery Node.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/corsair",
+          "https://maplestorywiki.net/w/Guide:Corsair"
+        ]
+      }
+    ],
+    "lowPriority": {
+      "skills": [
+        "Recoil Shot",
+        "Escape Shot",
+        "Blunderbuster",
+        "Parrotargetting",
+        "Rapid Blast",
+        "Blackboot Bill"
+      ],
+      "why": "Grandis Library marks these two node groups as not needing to be upgraded / lowest priority.",
+      "consensus": "moderate",
+      "sources": [
+        "https://grandislibrary.com/explorers/corsair"
+      ]
+    },
+    "notes": "The class doc (2026-09-09) states Corsair boosts 10 skills, filling the first four boost slots, and that all four slots are required for 6th job. Grandis Library adds two mechanical constraints: six boost nodes in total are needed to reach master level 60 on these skills once Matrix Points are counted, and two nodes that share the same main skill (the skill at the top of the node) cannot be equipped at the same time. Grandis Library also notes that mixing skills from the same trio tier is preferred so the primary skills max first. MapleStory Wiki's guide (2025-01-27) lists nine skills and omits Tempest Bombardment; its trios are otherwise the same, and a boss mule can stop after the first two trios. No source gives a numeric level-by-level boost order, only the tiering above.",
+    "levelScaling": "No source retrieved gives a Lv.200-vs-Lv.260 shift in boost node priority. Grandis Library's tiering and the class doc's grouping are presented as static. Treat any level-dependent reordering as unsourced."
+  },
+  "hexa": {
+    "originSkill": {
+      "name": "The Dreadnought",
+      "notes": "Lv.30 origin skill, 360-second cooldown. Invincible during the cast. Advancing storms hit up to 15 enemies, then a ship remains in the air for 15 seconds firing periodic bombardments at up to 7 enemies. Also counts as a bind and an i-frame.",
+      "sources": [
+        "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+        "https://grandislibrary.com/explorers/corsair",
+        "https://maplestory.fandom.com/wiki/Corsair/Skills"
+      ]
+    },
+    "ascentSkill": {
+      "name": "Firecracker Fusillade",
+      "notes": "Lv.30 ascent skill. Invincible during the cast. Fires aerial strikes hitting up to 15 enemies, then a rain of explosions. Carries +60% ignore defense, +40% boss damage and 100% critical rate. The class doc reproduces the standard ascent-skill caveat that its damage does not scale from hat stats, ring stats, conditional passives, active skill effects, monster debuffs, or consumables under 30 minutes' duration.",
+      "sources": [
+        "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+        "https://grandislibrary.com/explorers/corsair"
+      ]
+    },
+    "order": [
+      {
+        "step": "1st Mastery Node - upgrades Rapid Fire to HEXA Rapid Fire",
+        "why": "Unlock requires the Rapid Fire 5th-job boost node at Lv.40 or above before Matrix Points. HEXA Rapid Fire also carries a passive that adds 145% to Majestic Presence damage and introduces a clip/shootout mode, so it touches both the main attack and the passive proc.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/explorers/corsair",
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "step": "2nd Mastery Node - upgrades Broadside and Tempest Bombardment",
+        "why": "Unlock requires both the Broadside and Tempest Bombardment boost nodes at Lv.40 or above before Matrix Points. Tempest Bombardment is the bossing toggle, so this node covers the bossing ship damage.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/explorers/corsair"
+        ]
+      },
+      {
+        "step": "3rd Mastery Node - upgrades Brain Scrambler and Eight-Legs Easton",
+        "why": "Unlock requires both boost nodes at Lv.40 or above before Matrix Points. Covers the 5-second-cooldown burst skill and the main training attack.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/explorers/corsair"
+        ]
+      },
+      {
+        "step": "4th Mastery Node - upgrades Siege Bomber, Scurvy Summons, Nautilus Strike and Ugly Bomb",
+        "why": "Unlock requires all four of those boost nodes at Lv.40 or above before Matrix Points. This is why Nautilus Strike and Ugly Bomb still have to be boosted even though they are not used for bossing.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/explorers/corsair",
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "step": "Pirate's Banner VI mastery",
+        "why": "The class doc lists a Lv.30 Pirate's Banner VI mastery core: 60 seconds of +55% to all directly invested AP stats, +25% ignore defense and +30 attack for the user, and +25% invested-AP stats plus 25% ignore defense for party members. It can be registered in a skill sequence. Only the class doc lists this core; Grandis Library's node list predates it.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      }
+    ],
+    "enhancementCores": {
+      "skills": [
+        "Bullet Barrage",
+        "Target Lock",
+        "Nautilus Assault",
+        "Death Trigger"
+      ],
+      "effect": "Each grants up to +60% final damage to its 5th-job skill at max level.",
+      "orderNote": "No source retrieved states an investment order among these four.",
+      "sources": [
+        "https://grandislibrary.com/explorers/corsair"
+      ]
+    },
+    "hexaStatPriority": {
+      "order": [
+        "Attack",
+        "Main stat",
+        "Critical Damage",
+        "Boss Damage"
+      ],
+      "why": "Class doc reasoning: the stat line is flat while the attack line scales with gear.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+      ]
+    },
+    "notes": "IMPORTANT GAP: no source I could retrieve states an explicit Sol Erda spending order across skill core, mastery cores, enhancement cores and common cores for Corsair. The steps above are the in-game mastery-node unlock structure documented by Grandis Library, not a verified investment sequence. The class doc delegates that question entirely to a third-party optimizer at https://maplegains.com/corsair/1 (credited to 'Stew'), which is behind Cloudflare and could not be read; it also notes the older Google Sheet tracker for HEXA is discontinued. Anyone building a planner should either read MapleGains directly or leave HEXA order unspecified rather than guess. What is verifiable: every mastery node is gated on its underlying 5th-job boost nodes reaching Lv.40 before Matrix Points, so boost nodes precede the corresponding masteries by game rule."
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "stat": "Critical Damage",
+        "context": "bossing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "stat": "Boss Damage",
+        "context": "bossing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "stat": "Damage",
+        "context": "bossing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "stat": "Ignore Enemy Defense",
+        "context": "bossing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "stat": "Normal Monster Damage",
+        "context": "mobbing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "stat": "Critical Damage",
+        "context": "mobbing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "stat": "Damage",
+        "context": "mobbing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      },
+      {
+        "stat": "EXP",
+        "context": "mobbing",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit"
+        ]
+      }
+    ],
+    "notes": "Single-source (class doc, 2026-09-09) - marked weak. Remaining points go into Attack, DEX, STR, or Arcane Power if a boss needs the Arcane Force. Critical Rate is not on the bossing list because the class doc's own critical-rate breakdown reaches 85% from passives and actives alone (base 5%, Shadow Heart 20%, Gun Mastery 10%, Fullmetal Jacket 30%, Ahoy Mateys 10%, Decent Sharp Eyes 10%); it recommends filling the last 15% from legion characters, legion artifact, legion board, hyper stats, link skills and familiar badges, in roughly that order. The doc points readers at Brendon May's hyper stat calculator rather than prescribing point counts."
+  },
+  "hyperSkills": {
+    "bossing": [
+      "Brain Scrambler - Reinforce (+20% damage)",
+      "Brain Scrambler - Extra Strike (+1 hit)",
+      "Brain Scrambler - Boss Rush (+20% boss damage)",
+      "Rapid Fire - Reinforce (+30% damage)",
+      "Rapid Fire - Boss Rush (+20% boss damage)"
+    ],
+    "optional": [
+      "Double Down - Enhance: better odds of rolling high on the dice, a farming min-max",
+      "Rapid Fire - Add Range (+100 range): class doc swaps it in for Rapid Fire - Boss Rush only for Kaling P3 and the P1 tiger, and argues staying close to the boss is usually better"
+    ],
+    "consensus": "strong",
+    "why": "The class doc (2026-09-09), Grandis Library and MapleStory Wiki all land on the same three Brain Scrambler passives plus Rapid Fire Reinforce. Brain Scrambler is prioritised because it drives burst damage; Rapid Fire because it carries sustained damage.",
+    "conflict": "For the fifth pick, the class doc and Grandis Library both take Rapid Fire - Boss Rush. MapleStory Wiki presents Rapid Fire - Boss Rush, Rapid Fire - Add Range and Double Down - Addition as three equal alternatives.",
+    "sources": [
+      "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+      "https://grandislibrary.com/explorers/corsair",
+      "https://maplestorywiki.net/w/Guide:Corsair"
+    ]
+  },
+  "innerAbility": {
+    "bossing": {
+      "lines": [
+        "Number of enemies hit by multi-target skill +1",
+        "Chance to Skip Cooldown +10%",
+        "Boss Damage +10%"
+      ],
+      "why": "The +1 multi-target line is a GMS/CMS-only interaction: it adds a bullet to the Dual Pistol Crew from Scurvy Summons and the game counts it as an extra hit on a single target. The class doc tracks the stack as 2 base bullets, +1 from the 5th-job node, +1 from the EXP artifact passive, +1 from this inner ability line, for 5 total. Cooldown skip is valued because it skips Brain Scrambler's cooldown, the skill used off cooldown during sustained damage.",
+      "consensus": "moderate",
+      "consensusNote": "Two sources state it, but Grandis Library explicitly credits its inner ability build to the Corsair class doc, so this is one lineage rather than two independent findings.",
+      "sources": [
+        "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+        "https://grandislibrary.com/explorers/corsair"
+      ]
+    },
+    "bossingAlternative": {
+      "lines": [
+        "Boss Damage +20% or Chance to Skip Cooldown +20%",
+        "Boss Damage +10% or Chance to Skip Cooldown +10% (whichever was not taken on line 1)",
+        "Damage to monsters inflicted with Abnormal Status +8%"
+      ],
+      "why": "The fallback outside GMS and CMS, where the multi-target line does not work. The class doc prices this at roughly -2% final damage versus the GMS setup.",
+      "consensus": "moderate",
+      "sources": [
+        "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+        "https://grandislibrary.com/explorers/corsair"
+      ]
+    },
+    "farming": {
+      "lines": [
+        "Meso Obtained +20%",
+        "Item Drop Rate +15%",
+        "Damage to Normal Monsters +8%"
+      ],
+      "why": "Meso and drop lines are interchangeable between the first two slots.",
+      "consensus": "moderate",
+      "sources": [
+        "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+        "https://grandislibrary.com/explorers/corsair"
+      ]
+    },
+    "notes": "The class doc argues against the 38% buff duration line even for players short on legion buff duration: Whaler's Potion is the only relevant buff and it lasts 20 seconds, so extra duration is wasted, and giving up the cooldown-skip / boss damage / abnormal-status lines to extend an Angelic Buster link would likely be a net damage loss. It also notes that if cooldown skip procs on the Angelic Blessing link, that link should no longer be used, because the reset desynchronises the burst timing under the 2-minute cadence."
+  },
+  "gearingNotes": "Bullet: Glass Marble (+25 attack) is best in slot, locked behind the Grako's Request achievement questline in Showa Town and limited to one per account - pick the character carefully. Giant Bullet (+22 attack) is the accessible second best, bought from potion shops in Reboot. WSE (weapon / secondary / emblem): 7/1/1 attack/boss/IED works early; at late and endgame 9/0/0 or 8/1/0 tends to be better because IED and boss-damage familiars plus party debuffs stack, and Corsair itself applies an IED debuff. Cooldown hat: not needed. Cooldowns floor at 5 seconds and Brain Scrambler is already a 5-second cooldown, so there is nothing to gain until the very endgame case of fitting extra bursts into timed missions. Attack speed: Corsair is a hurricane-style class, so green potion and Decent Speed Infusion are not needed for bossing damage; most players still run them for skill start-up responsiveness, and they noticeably smooth Eight-Legs Easton while training. Oz rings: ROR4 with a WJ4 swap for the mini-burst is the endgame setup, worth roughly +4% final damage over permanent ROR4 on a 6-minute dummy according to the class doc, and ROR4 is preferred at bosses with frequent phase changes; CONT4 is the recommendation for players with low HEXA investment. Legion artifact priority per the class doc: Critical Damage, Boss Damage, Damage, All Stats, IED, Bonus EXP, Skill Cooldown Bypass, Buff Duration, Attack Power, Final Attack Skill Damage, Summon Duration - the Bonus EXP artifact is called out separately because its max-AoE-targets passive adds a Dual Pistol Crew bullet at only Lv.1. Buff duration: the class doc targets roughly 19-20 seconds and reaches it with Mechanic legion, max Empathy, artifact and legion grid rather than inner ability. Critical rate: 85% comes from passives and actives; the last 15% should come from legion, artifact, board, hyper stats, links and familiar badges. Sources: class doc 2026-09-09 for all of the above; Grandis Library corroborates weapon, secondary weapon and ammo type.",
+  "commonMistakes": [
+    "Placing Broadside and Siege Bomber during a boss fight. They cannot be placed while Tempest Bombardment is toggled on, and Tempest Bombardment is the bossing mode - the ship summons are for mobbing. (class doc)",
+    "Skipping the Nautilus Strike and Ugly Bomb boost nodes because neither is used for bossing. Both are still required to unlock the 4th HEXA Mastery Node. (class doc, Grandis Library)",
+    "Buying a cooldown-reduction hat. Cooldowns cannot go below 5 seconds and Brain Scrambler is already at 5. (class doc)",
+    "Taking the 38% buff duration inner ability line. The class doc says it is not recommended even without legion buff duration, because Whaler's Potion is only 20 seconds. (class doc)",
+    "Expecting green potion or Decent Speed Infusion to raise bossing damage. Rapid Fire is a hurricane skill and does not benefit from attack speed; MapleStory Wiki lists this as an explicit class weakness. (class doc, MapleStory Wiki)",
+    "Playing a STR Corsair. The class doc states there is no advantage and some disadvantage, because totems, secondary weapon stat, legion characters, Oz rings and symbols are not converted by the link skill toggle. (class doc)",
+    "Letting Scurvy Summons lapse. They tank up to two fatal status effects per summon and show a lock icon once a status has been absorbed; the doc treats 100% uptime as a requirement, not an optimisation. (class doc)",
+    "Redeeming the Glass Marble on the wrong character - it is one per account. (class doc)",
+    "Leaving Roll of the Dice on a bad roll. The class doc rerolls until at least double 5s and locks die #5 with Loaded Dice for bossing, or 6 for farming. (class doc)"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+      "what": "Corsair In-Depth Guide - the maintained community class doc from the Corsair Discord (maintainers named in the doc as Byssu/Styxa and KAIZEN). Covers boost nodes, all HEXA cores, rotation, skill sequences, survivability, Oz rings, legion artifact, inner ability, hyper skills, hyper stats, BiS bullet, WSE and class FAQs. The most detailed and most current source found. Reached via the cutt.ly/corsairfaq shortlink that Grandis Library publishes.",
+      "dated": "2026-09-09 (stated in the document as 'Up to date as of September 9th 2026' - the same date as patch v.271)",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/explorers/corsair",
+      "what": "Grandis Library Corsair class overview. Authoritative for structural data: skill build path, 5th-job boost node groupings and trio tiering, the four HEXA Mastery Node unlock requirements, HEXA enhancement cores, origin and ascent skills, i-frames and binds. Page base is GMS v.269; its 6th job infographic is dated 2026-06-25 and its overview and culvert infographics 2026-05-15.",
+      "dated": "2026-06-25 (6th job infographic); page base v.269",
+      "independent": false,
+      "independenceNote": "NOT independent for recommendations. The page's own credits line attributes 'Inner Ability + Hyper Passive Build + Boost Nodes Build' to the Class Doc, and its infographics are credited to the Corsair Discord. Its inner ability notes quote the Corsair Class Doc by name. Treat its judgement content as a republication of source 1; treat only its skill-data and node-structure content as independently verified."
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Guide:Corsair",
+      "what": "MapleStory Wiki community Corsair guide. Independent statement of hyper skill priority (bossing and training), V matrix trinodes, strengths and weaknesses, and bossing/mobbing gameplay. Corroborates the class doc's hyper skill picks and trio composition.",
+      "dated": "2025-01-27 (last revision timestamp from the wiki API)",
+      "independent": true,
+      "independenceNote": "Predates Tempest Bombardment appearing in the boost list, so its node list is nine skills rather than ten. Pre-dates the current HEXA state and contains no 6th job section."
+    },
+    {
+      "url": "https://www.maplerhouse.com/en/classes/corsair",
+      "what": "Mapler House Corsair class page. Independent confirmation of primary stat, class branch, link skill effect text, legion effect values, and a one-line class descriptor. Its HEXA Priority, Skill Sequence and Burst Rotation modules are explicitly empty ('No guide yet'), so it contributes nothing on build order.",
+      "dated": "2026-06-19 (page's own 'Updated Jun 19, 2026')",
+      "independent": true
+    },
+    {
+      "url": "https://maplestory.fandom.com/wiki/Corsair/Skills",
+      "what": "MapleWiki (Fandom) Corsair skill list. Used only to corroborate that Corsair has a live 6th job HEXA skill set in the current game, including The Dreadnought and HEXA Rapid Fire with its Shootout Mode.",
+      "dated": "not dated on the page; content reflects current HEXA skills",
+      "independent": true
+    },
+    {
+      "url": "https://maplegains.com/corsair/1",
+      "what": "MapleGains HEXA optimizer, the tool the class doc names as its HEXA priority and tracking answer (credited to 'Stew'). COULD NOT BE READ - the site is behind Cloudflare and returned a challenge page to every request. Recorded here so the gap in hexa.order is traceable.",
+      "dated": "unknown - could not be retrieved",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Pirate's Blessing damage-taken reduction",
+      "positionA": "-15% damage taken",
+      "sourceA": "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit (2026-09-09)",
+      "positionB": "-21% damage taken",
+      "sourceB": "https://grandislibrary.com/explorers/corsair (2026-06-25) and https://www.maplerhouse.com/en/classes/corsair (2026-06-19)",
+      "note": "Both positions describe the same Master Level 9 skill. Two sources say 21%, one says 15%, but the 15% source is the newest and is maintained by the class community. Not resolved here."
+    },
+    {
+      "topic": "Number of skills boosted in the V matrix",
+      "positionA": "10 skills filling the first four boost slots, including Tempest Bombardment",
+      "sourceA": "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit (2026-09-09)",
+      "positionB": "9 skills in three trinodes, no Tempest Bombardment",
+      "sourceB": "https://maplestorywiki.net/w/Guide:Corsair (2025-01-27)",
+      "note": "Most likely a recency artifact rather than a genuine disagreement - the wiki guide predates Tempest Bombardment entering the boost list, and Grandis Library's node groups include it."
+    },
+    {
+      "topic": "Second trio composition",
+      "positionA": "Siege Bomber / Broadside or Tempest Bombardment / Scurvy Summons",
+      "sourceA": "https://grandislibrary.com/explorers/corsair",
+      "positionB": "Scurvy Summons / Broadside / Siege Bomber, with no Tempest Bombardment option",
+      "sourceB": "https://maplestorywiki.net/w/Guide:Corsair",
+      "note": "Same three core skills; the disagreement is only over whether Tempest Bombardment can occupy the Broadside slot."
+    },
+    {
+      "topic": "Fifth hyper skill point",
+      "positionA": "Rapid Fire - Boss Rush by default, with Rapid Fire - Add Range swapped in for Kaling P3 and the P1 tiger",
+      "sourceA": "https://docs.google.com/document/d/1xmDcv2uF65cVIbLMHpJIGcd2NQGMbYaZZhwKTOaCsQg/edit",
+      "positionB": "Free choice among Rapid Fire - Boss Rush, Rapid Fire - Add Range and Double Down - Addition",
+      "sourceB": "https://maplestorywiki.net/w/Guide:Corsair",
+      "note": "Grandis Library's recommended build matches position A."
+    }
+  ],
+  "researchGaps": [
+    "No explicit Sol Erda investment order across HEXA skill core, mastery cores, enhancement cores and common cores. The class doc delegates this to MapleGains, which is Cloudflare-blocked. hexa.order records the game's mastery-node unlock structure instead and is labelled as such.",
+    "No source states how V matrix or HEXA priority shifts between Lv.200 and Lv.260. Do not present any such shift as sourced.",
+    "Hyper stat priority rests on the class doc alone - weak consensus.",
+    "The Pirate's Banner VI HEXA mastery appears only in the class doc; Grandis Library's HEXA list predates it.",
+    "Most of the judgement content in this file traces to one lineage - the Corsair Discord class doc - which Grandis Library republishes. MapleStory Wiki independently corroborates hyper skills and trios; nothing independently corroborates inner ability, hyper stats or HEXA content."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "hexa.order step 2 - 'upgrades Broadside and Tempest Bombardment' - is contradicted by its only cited source. Grandis's embedded data: '2nd Mastery Node' requires Broadside + Tempest Bombardment boost nodes at Lv.40, but the skill it unlocks is 'HEXA Broadside' ('Unlocked with 2nd Mastery Node'), while 'HEXA Tempest Bombardment' carries 'Unlocked with 3rd Mastery Node'. The file's attached reasoning ('Tempest Bombardment is the bossing toggle, so this node covers the bossing ship damage') is built on the wrong half. Either Grandis has a data error or the researcher conflated requirement with payload - either way the file states it with no flag.",
+      "archetype 'two i-frames' is stated by no source. Grandis's iFrame field enumerates three: Target Lock (5th Job, 30s cd), Nautilus Assault (5th Job, 120s cd), The Dreadnought (6th Job). Firecracker Fusillade is additionally 'Invincible during casting'. The file's own originSkill note says Dreadnought counts as an i-frame, contradicting its own archetype count.",
+      "VERIFIED CLEAN (no invented names found): I checked every node and skill name against grandislibrary.com's live embedded class JSON. All real and correctly described - Tempest Bombardment (4th job toggle), Broadside, Siege Bomber (3rd job), Scurvy Summons (2nd job), Majestic Presence, Eight-Legs Easton, Nautilus Strike, Ugly Bomb, Brain Scrambler, Rapid Fire; low-priority list Recoil Shot/Escape Shot/Blunderbuster/Parrotargetting/Rapid Blast/Blackboot Bill. Also verified verbatim-equivalent: all four Mastery Node unlock requirements (1st=Rapid Fire; 3rd=Brain Scrambler+Eight-Legs Easton; 4th=Siege Bomber+Scurvy Summons+Nautilus Strike+Ugly Bomb); enhancement cores Bullet Barrage/Target Lock/Nautilus Assault/Death Trigger each '+60% Final Damage'; HEXA Rapid Fire '[Passive Effect - Majestic Presence Damage: +145% (additive)]' and shootout mode; HEXA Siege Bomber '+312% to HEXA Tempest Bombardment'; The Dreadnought as Origin Skill (360s cd, 15 enemies, 15s ship, 7 enemies); Firecracker Fusillade typed literally 'Ascent Skill' with IED +60%, Boss Damage +40%, Crit Rate 100%; '6 Boost Nodes total are needed to reach Master Level 60' and 'Nodes with the same Main Skill cannot be equipped at the same time'; the Primary/Secondary/Tertiary Trio labels with exactly the three compositions listed, including the literal 'Broadside/Tempest Bombardment' slot; Pirate's Blessing 'Damage Taken: -21%' (the conflict is genuine). Mapler House confirmed: -21%, 'Updated Jun 19, 2026', and 'No guide yet' on HEXA Priority / Skill Sequence / Burst Rotation. The one unverifiable item is 'Pirate's Banner VI' - absent from Grandis and from Fandom - but the file already marks it weak and single-source, which is the correct handling.",
+      "STALE: maplestory.fandom.com/wiki/Corsair/Skills was last edited 2024-02-03 (MediaWiki API, editor Devwoof) - 2.5 years old and two jobs' worth of content behind. The file records it as 'not dated on the page; content reflects current HEXA skills'. The date IS obtainable, and the content is not current: the page has no 'Tempest Bombardment' and no 'Firecracker Fusillade'. It is cited as one of three sources for the origin skill. It corroborates only the Dreadnought and Shootout Mode strings, which it does contain.",
+      "STALE: grandislibrary.com is stamped 'GMS Ver. 269 [Ride the Lightning Update]' - two patches behind the file's v.271 - and it is the SOLE source for the entire hexa.order mastery-node structure and for the enhancement core list. The file discloses 'page base v.269' inside sources[] but the hexa block itself reads as current. The HEXA section is single-source AND two patches stale, which under the brief's recency rule is the file's most consequential weakness.",
+      "STALE: maplestorywiki.net Guide:Corsair last revision confirmed 2025-01-27T11:59:31Z by user 'Winter' (API) - the file's date is accurate. But it is a single-author page with zero 6th-job content, i.e. it cannot corroborate anything about the current HEXA state, and it is the only genuinely independent leg the file has. Its 'boost all 9 skills' line is pre-Tempest-Bombardment, which the file correctly identifies as a recency artifact rather than a conflict.",
+      "STALE: Not stale, credit where due: levelScaling and researchGaps correctly refuse to invent a Lv.200-vs-Lv.260 shift or a Sol Erda spending order, and the researchGaps entry about everything tracing to one lineage is accurate. The defect is that the per-claim consensus labels contradict that gap note."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "7 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

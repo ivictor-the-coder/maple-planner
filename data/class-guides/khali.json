@@ -1,0 +1,326 @@
+{
+  "slug": "khali",
+  "className": "Khali",
+  "branch": "Flora (Thief-type, LUK)",
+  "primaryStat": "LUK",
+  "secondaryStat": "DEX",
+  "weapon": "Chakram",
+  "secondaryWeapon": "Hex Seeker",
+  "archetype": "LUK thief whose kit splits into three named families. Arts skills are the direct chakram attacks, and the pre-5th-job Arts skills reduce the cooldowns of Void Rush and Void Blitz. Void skills are mostly utility: Void Rush and Void Blitz put the character into Dark Sight, Void Burst grants invincibility, and from 3rd job Void skills can spawn Chakri. Hex skills are the cooldown-gated wide or special attacks, and from 3rd job they consume the Chakri to throw projectiles called Resonate. Source for the family behaviour: Grandis Library's mechanics block.",
+  "linkSkill": {
+    "name": "Innate Gift",
+    "effect": "Passive damage increase plus an on-attack HP/MP regeneration window. At level 1: Damage +3%, and on attacking a 100% chance to recover 1% of Max HP/MP per second for 5 seconds, 30 second cooldown. At level 3: Damage +7% and 3% of Max HP/MP per second. The skill is explicitly not affected by cooldown resets, cooldown reduction, or buff duration increase.",
+    "levels": "Master Level 3. The level 1 and level 3 figures above are as listed on MapleStory Wiki; Grandis Library quotes the same maxed figures."
+  },
+  "legionEffect": "Flat LUK: +10 / +20 / +40 / +80 / +100 across Legion ranks B through SSS.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "PRIMARY tier - Node 1: Arts: Flurry, Arts: Crescentum",
+        "why": "Grandis Library's PRIMARY tier is defined on its own page as boost nodes that both unlock a 6th Job HEXA Mastery and cover frequently used skills, so levels put here keep paying out after 6th job.",
+        "consensus": "weak - single source family. Grandis Library's own credits assign the boost node build to the Khali Class Discord, so this is one opinion presented twice, not two.",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali"
+        ]
+      },
+      {
+        "node": "PRIMARY tier - Node 2: Void Rush, Void Blitz, Hex: Chakram Split",
+        "why": "Same PRIMARY definition: frequently used skills that also receive a 6th Job HEXA Mastery.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali"
+        ]
+      },
+      {
+        "node": "PRIMARY tier - Node 3: Hex: Chakram Fury, Hex: Chakram Sweep, Death Blossom",
+        "why": "Same PRIMARY definition. Death Blossom is a Hyper Skill active, confirmed present in Khali's hyper active list on MapleStory Wiki.",
+        "consensus": "weak - single source family for the tiering; the skill names are separately confirmed on MapleStory Wiki",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://maplestorywiki.net/w/Khali/Skills"
+        ]
+      },
+      {
+        "node": "SECONDARY tier - Node 4: Resonate, Deceiving Blade",
+        "why": "Grandis Library defines SECONDARY as boost nodes that do not unlock a 6th Job HEXA Mastery but are still used. See the recorded conflict - MapleStory Wiki, edited more recently, does list HEXA Resonate and HEXA Deceiving Blade as Mastery Skills.",
+        "consensus": "contested - the stated rationale disagrees with a more recently edited primary reference",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://maplestorywiki.net/w/Khali/Skills"
+        ]
+      },
+      {
+        "node": "OTHER tier - Node 5: Arts: Cross Cut, Arts: Dual Edge; Node 6: Arts: Triple Bash",
+        "why": "Grandis Library defines OTHER as boost nodes that do not need upgrading or carry the least priority.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Arts: Flurry, Void Rush, Void Blitz",
+        "labelledAs": "Trio 1 in a cross-class trio table; the table gives Khali no separate bossing and mobbing split",
+        "consensus": "weak - single source, dated 2024-11-21, which predates the v.269 boost node regrouping that Grandis Library's own 'View Pre-V.269 Boost Nodes' control is evidence of",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "trio": "Hex: Chakram Sweep, Resonate, Death Blossom",
+        "labelledAs": "Trio 2 in the same cross-class trio table",
+        "consensus": "weak - single source, dated 2024-11-21, and it disagrees with the current Grandis groupings; see conflicts",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "notes": "No node LEVELLING order could be sourced - nothing public states which Khali trio to take to 60 first, or how that changes between Lv 200 and Lv 260, so no order is given here. Khali's class-specific V skills, from the name-authoritative wiki table, are Hex: Pandemonium, Void Burst, Arts: Astra and Resonate: Ultimatum; note that Grandis Library's skill preview does not show Arts: Astra, so any tool validating node names should use the wiki list. Grandis Library exposes a 'View Pre-V.269 Boost Nodes' control on this page, which is direct evidence that Khali's boost node groupings changed at v.269; treat any undated or pre-2025 trio list as describing the old grouping."
+  },
+  "hexa": {
+    "order": [],
+    "notes": "NO HEXA INVESTMENT ORDER COULD BE SOURCED, and none is invented here. What exists and what blocks it: (1) Grandis Library hosts a Khali '6th Job' infographic at https://www.grandislibrary.com/class-infographic/khali/khali-6th-job.png, credited in the page data to the Khali Discord and dated 2026-06-25 - the most current Khali HEXA artefact found anywhere. It is a grid of roughly 165 in-game HEXA core icons each stamped with a target level, with no text labels at all. The icons are in-game HEXA core art rather than the named skill icons Grandis serves elsewhere, so they could not be matched to skill names by pixel comparison and were deliberately not transcribed. It needs a human or a vision/OCR pass. (2) MapleDoro carries a second image-only variant at /infographics/khali-hexa-heroic.webp under a HEXA Guide heading with a Heroic label and no accompanying text; the rest of that page is empty. (3) MapleGains, a GMS-data HEXA optimizer, supports only Battle Mage, Buccaneer, Cannon Master, Corsair, Mercedes and Mihile - Khali is not in its class list. (4) Khali has no public class Google Doc; Grandis Library's Other Resources block for Khali links only MapleStory Wiki, NamuWiki and the class Discord. SOURCED HEXA FACTS, which are structure rather than priority: Skill Node/Core 1 (Origin) is Hex: Sandstorm and Skill Node/Core 2 (Ascent) is Wake the Void. Hex: Sandstorm's level breakpoints are Lv10 Ignore Defense +20%, Lv20 Boss Damage +20%, Lv30 Ignore Defense +30% and Boss Damage +30%. Wake the Void's are Lv10 Ignore Defense +10% and Boss Damage +10%, Lv20 a further Ignore Defense +10% and Boss Damage +10%, Lv30 Ignore Defense +20%. The ten Mastery cores are HEXA Arts: Flurry, HEXA Arts: Crescentum, HEXA Void Rush, HEXA Void Blitz, HEXA Hex: Chakram Split, HEXA Hex: Chakram Fury, HEXA Hex: Chakram Sweep, HEXA Death Blossom, HEXA Resonate and HEXA Deceiving Blade. The four HEXA Enhancement cores are Hex: Pandemonium Boost, Void Burst Boost, Arts: Astra Boost and Resonate: Ultimatum Boost; each is a flat final damage boost to its 5th job skill with a jump at level 10 (Hex: Pandemonium Boost reads +11% at Lv1, +19% at Lv9, +25% at Lv10). Shared HEXA skills present are Sol Janus with Dawn and Dusk, and Sol Hecate with Styx, Charon, Phlegethon and Pactum. All of these names and numbers are from MapleStory Wiki, last edited 2026-08-25."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No hyper stat priority could be sourced for Khali from any reachable source. Grandis Library carries no hyper stat section for any class; the AyumiLove page was checked and explicitly has none; the cross-class trio table has none; and there is no Khali class doc. Nothing is recorded here rather than guessing an order."
+  },
+  "hyperSkills": {
+    "passivePicks": [
+      {
+        "pick": "Hex - Reinforce",
+        "consensus": "weak - single source family (Grandis Library, whose credits assign the hyper passive build to the Khali Class Discord). The skill name is separately confirmed to exist on MapleStory Wiki.",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://maplestorywiki.net/w/Khali/Skills"
+        ]
+      },
+      {
+        "pick": "Hex - Guardbreak",
+        "consensus": "weak - single source family; name confirmed on MapleStory Wiki",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://maplestorywiki.net/w/Khali/Skills"
+        ]
+      },
+      {
+        "pick": "Hex - Boss Rush",
+        "consensus": "weak - single source family; name confirmed on MapleStory Wiki",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://maplestorywiki.net/w/Khali/Skills"
+        ]
+      },
+      {
+        "pick": "Arts - Extra Strike",
+        "consensus": "weak - single source family; name confirmed on MapleStory Wiki",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://maplestorywiki.net/w/Khali/Skills"
+        ]
+      },
+      {
+        "pick": "Void - Reinforce",
+        "consensus": "weak - single source family; name confirmed on MapleStory Wiki",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://maplestorywiki.net/w/Khali/Skills"
+        ]
+      }
+    ],
+    "availablePassives": {
+      "list": "The full set Khali chooses from is Hex - Reinforce, Hex - Guardbreak, Hex - Boss Rush, Resonate - Range, Void - Reinforce, Void - Guardbreak, Arts - Reinforce, Arts - Spread, Arts - Extra Strike. Recorded so the five picks above can be read against what was passed over.",
+      "sources": [
+        "https://maplestorywiki.net/w/Khali/Skills"
+      ]
+    },
+    "activePicks": null,
+    "notes": "Khali's three hyper actives are Oblivion, Death Blossom and Divine Wrath, per MapleStory Wiki. No source found ranks or recommends between them, so no pick is recorded. No training-versus-bossing split of the passive build was published for Khali, unlike several other classes on the same site."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Chance to Skip Cooldown +20% (first line)",
+        "consensus": "moderate - two independent sources give the same first line: Grandis Library (credited to the Khali Class Discord) and AyumiLove, which is separately authored and outside that lineage",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://ayumilove.net/maplestory-khali-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%",
+        "consensus": "moderate - both sources list it, though AyumiLove presents it as one of a set of second and third line options rather than a fixed slot",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://ayumilove.net/maplestory-khali-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "Damage to monsters inflicted with an abnormal status +8%",
+        "consensus": "moderate - both sources list it, with the same caveat about fixed slot versus option",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://ayumilove.net/maplestory-khali-skill-build-guide/"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Meso Obtained or Item Drop Rate +20% (first line)",
+        "consensus": "moderate - both sources give a meso or drop first line for the training preset",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://ayumilove.net/maplestory-khali-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "Meso Obtained or Item Drop Rate +15% (second line)",
+        "consensus": "weak - stated by Grandis Library as a fixed second line; AyumiLove mentions a +15% meso or drop line only conditionally, for the case where Boss Damage occupies the first line",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali",
+          "https://ayumilove.net/maplestory-khali-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "Damage to Normal Monsters +8% (third line)",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://www.grandislibrary.com/flora/khali"
+        ]
+      }
+    ],
+    "notes": "This is the only judgement field on Khali with genuine independent agreement, and it is the field least likely to have moved: the two sources are roughly two years and several patches apart and still line up. Date caution: the AyumiLove page is stamped 2024-09-20, before the project's 2025-01-01 preference bar, and the Grandis page is stamped GMS Ver. 269 against a v.271 target. Neither states an attack speed line for Khali, and no source found addresses whether one is wanted - see gearingNotes for the attack speed facts."
+  },
+  "gearingNotes": "Facts that change gear and inner ability reasoning for Khali specifically, all from MapleStory Wiki (last edited 2026-08-25) unless noted, and all stated as facts rather than recommendations because no guide was found that draws conclusions from them. MAGIC ATT MATTERS ON GEAR: Khali carries the Flora racial passive Magic Conversion, which converts 50% of the Magic ATT on her equipment into Attack Power, excluding the weapon, with set effects not applying and the conversion capped at 20% of the weapon's base Attack Power. A planner that treats Magic ATT as dead stat for a thief will misprice Khali's gear. CRITICAL RATE: her own kit supplies Critical Rate +35% from the 2nd job passive Impulse at max, and nothing else in the 1st-4th job kit adds critical rate, so she is nowhere near self-capping and the remainder must come from links, legion, hyper stats and gear. CRITICAL DAMAGE: Impulse gives +20% and the 4th job passive Chakram Expert +23%, with Chakram Expert also giving Attack Power +42 and Chakram Mastery 71% at max. IGNORE DEFENSE AND FINAL DAMAGE FROM PASSIVES: Intuition at max reads Final Damage +28%, Ignore Defense +20%, Attack Power +30; Redemption at max reads Final Damage +35%, Ignore Defense +22%, Boss Damage +30%. The two Ignore Defense figures are quoted separately and deliberately not summed, since ignore-defense sources stack multiplicatively. ATTACK SPEED: the only persistent source inside her own kit is Chakram Booster at Chakram Attack Speed +2; the 5th job skill Hex: Pandemonium raises attack speed by up to +3 while its realm of chaos is active, which is a temporary window rather than a standing buff. No source found states what attack speed cap Khali sits at once geared, so no conclusion is drawn about the attack speed inner ability line. COOLDOWN IS A RESOURCE: her pre-5th-job Arts skills reduce the cooldowns of Void Rush and Void Blitz, and her Hex skills are cooldown-gated, per Grandis Library's mechanics block - which is the visible reason both sourced inner ability sets open with Chance to Skip Cooldown. DARK SIGHT: Void Rush and Void Blitz put Khali into Dark Sight, and Grandis Library publishes a tested list of boss attacks avoidable in Dark Sight on her page, credited to the Night Walker Discord.",
+  "commonMistakes": [
+    {
+      "mistake": "Planning around extending or resetting the Innate Gift link skill",
+      "detail": "The skill's own description states it is not affected by effects that reset cooldowns, reduce cooldown, or increase buff duration. Its 30 second cooldown and 5 second window are fixed regardless of what else the character stacks.",
+      "consensus": "strong as a fact - it is stated in the in-game skill description reproduced on the name-authoritative wiki, not a guide author's opinion",
+      "sources": [
+        "https://maplestorywiki.net/w/Khali/Skills"
+      ]
+    },
+    {
+      "mistake": "Taking a pre-v.269 boost node trio list as current",
+      "detail": "Grandis Library's Khali page carries a 'View Pre-V.269 Boost Nodes' control, which means her node groupings changed at that patch. The only consolidated cross-class trio table available for Khali self-reports 2024-11-21 and therefore describes the older grouping.",
+      "consensus": "moderate - the existence of the toggle is directly observable on the page, and the trio table's date is stated on its own page",
+      "sources": [
+        "https://www.grandislibrary.com/flora/khali",
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.grandislibrary.com/flora/khali",
+      "what": "The only public structured synthesis of Khali judgement: boost node groupings tiered PRIMARY/SECONDARY/OTHER with the tier definitions, hyper skill passive build, recommended inner ability split bossing versus training, the Arts/Void/Hex mechanics explanation, link skill, legion bonus, example skill build path, a Dark Sight avoidable-attack table, and three infographics. Its credits block reads: skill icons and animations by Ikasuu, class infographic by McCain, and inner ability plus hyper passive build plus boost nodes build by the Khali Class Discord.",
+      "dated": "Site footer GMS Ver. 269 [Ride the Lightning Update], two patches behind the v.271 target. Its embedded infographic metadata is dated: overview 2026-06-03, sequence 2026-06-25, 6th job 2026-06-25.",
+      "independent": false
+    },
+    {
+      "url": "https://www.grandislibrary.com/class-infographic/khali/khali-6th-job.png",
+      "what": "Khali 6th job HEXA infographic, credited in the page data to the Khali Discord. A grid of roughly 165 in-game HEXA core icons each stamped with a target level, in reading order. Entirely image-based with no text labels - downloaded and inspected for this entry, and deliberately not transcribed because the icons could not be matched to skill names with confidence. This is the single highest-value unextracted Khali artefact.",
+      "dated": "2026-06-25, per the date field Grandis Library ships alongside the image",
+      "independent": false
+    },
+    {
+      "url": "https://discord.gg/an6dkrgXTr",
+      "what": "Khali class Discord. Named on Grandis Library, MapleDoro and the one YouTube guide found as the place Khali information actually lives. It is the upstream of the Grandis judgement fields and of the 6th job infographic, so it is the same source family, not a second vote. Not machine readable from here.",
+      "dated": "live, no date available",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "Cross-class boost node trio table by mastermysty, covering Khali with two trios and no bossing/mobbing split. Genuinely independent of the Grandis and class-Discord lineage.",
+      "dated": "Page states last update 2024-11-21; predates the project's 2025-01-01 preference bar and the v.269 node regrouping",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-khali-skill-build-guide/",
+      "what": "Independently authored Khali page. Mostly an SP skill build listing, but it does carry inner ability line recommendations, which is where it provides the one genuine second opinion in this file. Verified to contain no hyper skill passive picks, no hyper stat priority, no boost node priority and no HEXA order.",
+      "dated": "Stated update 2024-09-20; before the 2025-01-01 preference bar",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Khali/Skills",
+      "what": "Name and number authority, carrying zero judgement. Used here for exact V, HEXA, Mastery, Enhancement and hyper skill names, the Origin and Ascent identification, HEXA level breakpoints, link skill values, and the passive stat figures behind gearingNotes. Returns 403 to plain fetching but serves normally to a browser-style request with a desktop user agent.",
+      "dated": "Page footer: last edited 25 August 2026",
+      "independent": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Sxx2fNFVGqw",
+      "what": "'The ONLY Khali Guide You Need In MapleStory' by the channel Nimbus (@NimbusReboot), a Reboot-focused creator. Confirmed to exist, with title and author verified through the YouTube oEmbed endpoint; its description points viewers to the Khali Discord for more. NO CLAIM IN THIS FILE COMES FROM IT - the video body is not readable here and the description could not be retrieved. Listed as the most promising unexamined independent Khali source.",
+      "dated": "2026-04-07 per search index; not verified on the page itself",
+      "independent": true
+    },
+    {
+      "url": "https://www.mapledoro.com/guides/character-guides/khali",
+      "what": "Community tool page. Carries the link skill values, the legion bonus, and a second image-only HEXA infographic labelled Heroic at /infographics/khali-hexa-heroic.webp, which was downloaded and inspected and is likewise icon-only with no text. Every other module is empty or marked work in progress, and the class infographic slot defers to external resources. Provenance of its infographic is not stated, so it is not counted as independent.",
+      "dated": "No dates published on the page",
+      "independent": false
+    },
+    {
+      "url": "https://maplegains.com/",
+      "what": "Negative finding, recorded so it is not rechecked. A GMS-data HEXA progression optimizer that outputs a per-node upgrade path ranked by final damage per fragment for Heroic and per Sol Erda for Interactive - exactly the shape Khali needs - but its class selector lists only Battle Mage, Buccaneer, Cannon Master, Corsair, Mercedes and Mihile. Khali is not supported.",
+      "dated": "Checked 2026-09-11",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "topic": "Whether Resonate and Deceiving Blade unlock 6th job HEXA Masteries, and therefore whether their boost node is genuinely second tier",
+      "positionA": "Their node is SECONDARY, defined on the page as a boost node that does not unlock a 6th Job HEXA Mastery but is still used.",
+      "sourcesA": [
+        "https://www.grandislibrary.com/flora/khali"
+      ],
+      "positionB": "HEXA Resonate and HEXA Deceiving Blade are both listed among Khali's Mastery Skills, alongside the eight belonging to skills Grandis places in its PRIMARY tier.",
+      "sourcesB": [
+        "https://maplestorywiki.net/w/Khali/Skills"
+      ],
+      "note": "Not resolved here. Recorded facts bearing on it: the Grandis page is stamped GMS Ver. 269 while the wiki page was last edited 2026-08-25, so the simplest explanation is that the Grandis tiering rationale predates the Mastery cores for these two skills. That would undercut the tier's stated justification but says nothing about whether the node's priority ranking is still correct, which nobody public has restated. Anything built on this tier should be marked provisional until the Khali Discord or a dated source confirms it."
+    },
+    {
+      "topic": "Boost node trio composition",
+      "positionA": "Grouped as Arts: Flurry with Arts: Crescentum; Void Rush with Void Blitz and Hex: Chakram Split; Hex: Chakram Fury with Hex: Chakram Sweep and Death Blossom; Resonate with Deceiving Blade.",
+      "sourcesA": [
+        "https://www.grandislibrary.com/flora/khali"
+      ],
+      "positionB": "Grouped as Arts: Flurry with Void Rush and Void Blitz (trio 1); Hex: Chakram Sweep with Resonate and Death Blossom (trio 2).",
+      "sourcesB": [
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "note": "Not resolved by preference. Recorded facts: position B self-reports 2024-11-21, and position A's page carries a 'View Pre-V.269 Boost Nodes' control, which is evidence that groupings changed at v.269 - after position B was written. The disagreement is therefore more likely a patch gap than a genuine difference of opinion, but the pre-v.269 grouping is behind a JavaScript modal and could not be read out of the page to confirm that, so both are recorded."
+    }
+  ],
+  "notFound": [
+    "HEXA investment order - no text source exists publicly for Khali. The only artefacts are two untranscribable icon-only infographics (Grandis Library / Khali Discord, 2026-06-25; and MapleDoro's Heroic variant).",
+    "Hyper stat priority - no source found carries one for Khali.",
+    "V matrix node levelling order - which trio to take to 60 first, and how priorities differ at Lv 200 versus Lv 260.",
+    "Hyper skill ACTIVE picks - the three actives are Oblivion, Death Blossom and Divine Wrath, but nothing found ranks them.",
+    "A Khali class Google Doc - none exists. Khali is absent from the maplestorywiki class-guide doc index, and Grandis Library's Other Resources block for Khali links only the wiki, NamuWiki and the Discord, with no Class Doc entry.",
+    "Reddit - r/Maplestory is unreachable from this environment for both fetching and the browser pane, so the Khali threads surfaced in search results were not read.",
+    "NamuWiki's Khali page - returns 403 to plain fetching and the browser pane could not be steered to it reliably, so the KMS-side cross-check was not performed.",
+    "Bossing sequence and burst rotation - Grandis Library ships a 'Sequence' infographic dated 2026-06-25 at https://www.grandislibrary.com/class-infographic/khali/khali-sequence.png, also image-only and not transcribed."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FABRICATED RELATIONSHIP - the SECONDARY tier. The file records 'SECONDARY tier - Node 4: Resonate, Deceiving Blade'. The Grandis Library page it cites contains only two node-tier arrays: \"primary\":[0,1,2,3] and \"other\":[4,5]. There is no secondary array and no node is rendered SECONDARY. Node index 3 IS Resonate + Deceiving Blade, so Grandis classes it PRIMARY. The PRIMARY/SECONDARY/OTHER legend the file quotes is generic boilerplate shared across class pages, not a Khali assignment. A planner shipping this would tell players to deprioritise a node their own cited source calls primary.",
+      "FABRICATED CONFLICT #1. The recorded conflict says Grandis classifies the Resonate + Deceiving Blade node SECONDARY 'on the stated grounds that those skills do not unlock a 6th Job HEXA Mastery'. Grandis never says this. The same page's sixth.masteryCore block explicitly contains a '4th Mastery Node' whose detail reads 'Requires Resonate / Deceiving Blade (3rd Job) enhanced with V Matrix at least Lv. 40 (before Matrix Points) to unlock', unlocking HEXA Resonate and HEXA Deceiving Blade. Grandis and MapleStory Wiki agree completely - 4 mastery nodes, node 4 = Resonate + Deceiving Blade. There is no disagreement to record, and the file's speculation that 'the Grandis rationale predates those cores' is explaining away a conflict that does not exist.",
+      "CONFLICT #2 IS A CATEGORY ERROR, not a real disagreement. It compares Grandis's boost-node groupings against mastermysty's trio recommendations as if they were the same object. They are not: the Grandis groupings are the game's own fixed core compositions, confirmed identically by MapleStory Wiki's independent V Enhancements list. Grandis's actual TRIO recommendation is a separate field (nodeInfo.recommended) the researcher never extracted - 'Primary Trio': Arts: Flurry/Crescentum + Void Rush + Hex: Chakram Sweep/Split/Fury; 'Secondary Trio': Resonate/Deceiving Blade + Void Blitz + Death Blossom. Against mastermysty (Trio #1 Flurry/Void Rush/Void Blitz, Trio #2 Chakram Sweep/Resonate/Death Blossom) the two sources largely AGREE - both pair Flurry with Void Rush, both pair Resonate with Death Blossom - and differ only by swapping Void Blitz and Chakram Sweep between the trios. The real conflict is one slot wide, not two whole trios.",
+      "FALSE NEGATIVE CLAIM. vMatrix.notes states 'Grandis Library's skill preview does not show Arts: Astra, so any tool validating node names should use the wiki list.' The Grandis page carries Arts: Astra with a full stat line (MP Cost: 500, Max Enemies Hit: 8, Damage: 1000%, Number of Attacks: 6, Ancient Chakram Summoned: 3) and also Arts: Astra Boost as an Upgraded Passive. The claim is wrong and the validation instruction it seeds is unfounded."
+    ],
+    "clearedOnInspection": [
+      "No fabricated skill or node NAMES. I checked every name in the file against maplestorywiki.net/w/Khali/Skills fetched with a desktop UA: all 1st-4th job skills (Arts: Cross Cut / Dual Edge / Crescentum / Triple Bash / Flurry, Void Rush / Blitz, Hex: Chakram Sweep / Split / Fury, Resonate, Deceiving Blade, Intuition, Redemption, Chakram Expert, Impulse, Magic Conversion, Chakram Booster, Innate Gift), all 9 hyper passives, all 3 hyper actives, all 4 V skills, both HEXA skill cores, all 10 Mastery cores, all 4 Enhancement cores and the Sol Janus/Sol Hecate set exist exactly as written. The HEXA breakpoints and link-skill and legion values are also exact. That part of the file is clean."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "4 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

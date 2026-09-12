@@ -1,0 +1,460 @@
+{
+  "slug": "mo-xuan",
+  "className": "Mo Xuan",
+  "branch": "Jianghu (Pirate job group)",
+  "primaryStat": "DEX",
+  "secondaryStat": "STR",
+  "weapon": "Martial Brace",
+  "secondaryWeapon": "Brace Band",
+  "archetype": "Melee combo burst class. Two basic attacks, Xuanshan Arts [Tian] (punch) and Xuanshan Arts [Di] (kick), each with a first and second stance. Damage skills labelled \"Divine Art\" carry the same Tian/Di alignment. Casting a Divine Art shortly after a matching-alignment Xuanshan Art triggers [Form Link] (bonus final damage on that Divine Art, plus a stacking [Divine Fist] final-damage buff). From 4th job, [Reincarnation] adds a second layer: the next Divine Art after a Form Link gets either extra final damage (opposite alignments) or a cooldown reduction (same alignment). The class community describes the damage split as roughly 65% burst / 35% sustained, so rotation order matters more than for most classes. High APM. Five dashes plus a backdash, three i-frames, a damage-reduction skill, and an on-demand 3-second single-target stun (Divine Art: Righteous Thunder).",
+  "linkSkill": {
+    "name": "Qi Cultivation",
+    "effect": "Passive. Boss Damage +6% at max level, plus a stacking boss-damage buff: up to +3% per successful hit on a boss, max 6 stacks, one stack can be gained every 2 seconds, each buff lasting 5 seconds. Shared with Zen (the class Mo Xuan replaced in ChinaMS/TaiwanMS).",
+    "levels": "Max level 3. Lv.1 +2% / +1% per hit, Lv.2 +4% / +2% per hit, Lv.3 +6% / +3% per hit."
+  },
+  "legionEffect": "Critical Damage +1% / +2% / +3% / +5% / +6% across the five legion rank tiers.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Xuanshan Arts [Di] (2nd Job)",
+        "why": "Main mobbing attack and the setup half of every Di combo, so it carries the highest uptime of any skill in the kit. Also gates the 1st HEXA mastery core, which needs the node at Lv. 40 before matrix points.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan",
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      },
+      {
+        "node": "Xuanshan Arts [Tian] (1st Job)",
+        "why": "Highest-damage of the two basic attacks and the filler used whenever every Divine Art is on cooldown. Shares the 1st HEXA mastery core gate with [Di].",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan",
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      },
+      {
+        "node": "Divine Art: Howling Storm (4th Job)",
+        "why": "The Tian burst finisher and the largest single share of burst damage; both sources put it third, immediately after the two Xuanshan Arts.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan",
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      },
+      {
+        "node": "Divine Art: Swirling Tide (3rd Job)",
+        "why": "Highest-damage of the general (non-burst) Divine Arts and the bulk of off-burst damage, since it is meant to be cast on every cooldown.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      },
+      {
+        "node": "Secret Art: Qi Projection (3rd Job)",
+        "why": "Passive afterimage attacks that run constantly while bossing and grinding; gates the 4th HEXA mastery core.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg",
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "node": "Divine Art: Righteous Thunder (3rd Job)",
+        "why": "Used mainly for its 3-second stun rather than damage, so its node value is lower than the pure-damage Divine Arts.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      },
+      {
+        "node": "Soul Art: Black Wind (Hyper Skill)",
+        "why": "Hyper-skill attack that doubles as an i-frame; gates the 3rd HEXA mastery core.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg",
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "node": "Divine Art: Erupting Flame (1st Job)",
+        "why": "Tian setup Divine Art; lower damage than the others and used mostly to open combos.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      },
+      {
+        "node": "Divine Art: Tearing Wind (2nd Job)",
+        "why": "Di setup Divine Art, mostly a filler when everything else is on cooldown.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "tier": "Primary",
+        "skills": [
+          "Xuanshan Arts [Di] (2nd Job)",
+          "Xuanshan Arts [Tian] (1st Job)",
+          "Divine Art: Howling Storm (4th Job)"
+        ],
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "tier": "Secondary",
+        "skills": [
+          "Divine Art: Tearing Wind (2nd Job)",
+          "Secret Art: Qi Projection (3rd Job)",
+          "Soul Art: Black Wind (Hyper Skill)"
+        ],
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "tier": "Tertiary",
+        "skills": [
+          "Divine Art: Erupting Flame (1st Job)",
+          "Divine Art: Swirling Tide (3rd Job)",
+          "Divine Art: Righteous Thunder (3rd Job)"
+        ],
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      }
+    ],
+    "notes": "Mo Xuan wants boost nodes on every damaging skill except the class bind (Secret Art: Qi Disruption); levelling the nine skills above evenly is an acceptable alternative to a strict order, and the class doc explicitly labels its left-to-right order as temporary. Six boost nodes in total are needed to bring the recommended skills to Master Level 60 once matrix points are spent, and two nodes sharing the same main skill (the skill at the top of the node) cannot be equipped at the same time. Separate from boost nodes, the class doc gives a 5th-job skill-node levelling order: (1) Soul Art: The Opened Gate and Soul Art: The Conquered Self levelled together, (2) Overdrive, (3) Decent Holy Symbol, (4) Erda Nova, (5) Maple World Goddess's Blessing and Power of Destiny levelled together with a slight lean toward Goddess around Lv. 15, (6) Divine Art: Crashing Earth, (7) Soul Art: Beneath Heaven, (8) Loaded Dice and Blink. Push Decent Holy Symbol higher if you are grinding heavily. Source: https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg (single source, weak consensus).",
+    "sources": [
+      "https://grandislibrary.com/jianghu/mo-xuan",
+      "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+    ]
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Origin skill: Soul Art: Jianghu Dragon",
+        "why": "The class Origin skill (Lv. 30 cap). Nexon's own class page lists it at +30% Ignore Defense and +30% Boss Damage, and it is also a 10-second bind on a 360-second cooldown with a 7.3-second i-frame, so it is both the largest burst window and a defensive tool.",
+        "consensus": "moderate",
+        "sources": [
+          "https://g.nexonstatic.com/maplestory/cms/v1/classes-jobs",
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "step": "Ascent skill: Soul Art: Where Destiny Falls",
+        "why": "The class Ascent (post-Origin) 6th job skill core.",
+        "consensus": "moderate",
+        "sources": [
+          "https://g.nexonstatic.com/maplestory/cms/v1/classes-jobs",
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "step": "1st Mastery core - unlocks HEXA Xuanshan Arts [Tian] and HEXA Xuanshan Arts [Di]",
+        "why": "Gated behind having the Xuanshan Arts [Tian] / [Di] boost node at Lv. 40 or higher before matrix points. These are the two highest-uptime attacks, which is why both build sources also put their boost nodes first.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "step": "2nd Mastery core - unlocks HEXA Divine Art: Howling Storm, HEXA Divine Art: Erupting Flame, HEXA Divine Art: Righteous Thunder",
+        "why": "Gated behind the corresponding boost node at Lv. 40+ before matrix points. Howling Storm is the main burst finisher.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "step": "3rd Mastery core - unlocks HEXA Divine Art: Swirling Tide, HEXA Divine Art: Tearing Wind, HEXA Soul Art: Black Wind",
+        "why": "Gated behind the corresponding boost node at Lv. 40+ before matrix points.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "step": "4th Mastery core - unlocks HEXA Secret Art: Qi Projection",
+        "why": "Gated behind the Secret Art: Qi Projection boost node at Lv. 40+ before matrix points.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "step": "Boost cores available: Soul Art: Beneath Heaven, Soul Art: The Conquered Self, Soul Art: The Opened Gate, Divine Art: Crashing Earth",
+        "why": "These are the four 5th-job skills that take a 6th-job boost core. Each gives +120% final damage to its skill with additional effects at Lv. 20 and Lv. 40.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/mo-xuan"
+        ]
+      },
+      {
+        "step": "HEXA Stats: run DEX, Critical Damage and Attack Power across the three available HEXA stat slots; the order among the three does not matter",
+        "why": "Stated directly on the Heroic/Reboot HEXA infographic maintained by Drakkinnite for the class community.",
+        "consensus": "weak",
+        "sources": [
+          "https://imgur.com/a/8i5Vw7I"
+        ]
+      },
+      {
+        "step": "Sol Janus: push to Lv. 10 early if you are focused on levelling, then to Lv. 20+ once you are 280+; pick Sol Janus: Dawn once Sol Janus is Lv. 10 or higher",
+        "why": "Lv. 10 lets you hold two Dawn orbs instead of one, which is enough to full-clear pre-280 maps; Lv. 20+ lets you hold all three orbs for the later-half maps. See the caveat in notes - the interaction this advice was built on changed on 2026-06-17.",
+        "consensus": "weak",
+        "sources": [
+          "https://imgur.com/a/8i5Vw7I",
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      }
+    ],
+    "notes": "IMPORTANT GAP: the class community publishes a full step-by-step core-levelling order for Heroic/Reboot (fragment-gated) and Interactive (energy-gated) worlds, but it is published only as an icon-based infographic with no text labels (https://imgur.com/a/8i5Vw7I, by Drakkinnite, linked from the class doc). The individual steps could not be transcribed to named skills with confidence, so they are deliberately omitted here rather than guessed. The readable shape of the Heroic sequence is: spread the first several cores to Lv. 1 each, then push a batch to Lv. 9-11, then 19-21, then 29-30. Two HEXA stat gates are called out on the infographic (HEXA Stat 1 opens at Lv. 9 of one gating core, HEXA Stat 2 after Lv. 19 of another; further HEXA stats once HEXA Stat 2 is done) but the gating cores are identified only by icon. Go to the infographic or the class Discord for the exact order. RECENCY CAVEAT: as of 2026-06-17 Secret Art: Qi Projection no longer procs Sol Janus, and the class doc says testing of replacement training methods was still pending at the time of writing (June 2026) - treat the Sol Janus and Qi Projection training advice as possibly stale.",
+    "sources": [
+      "https://grandislibrary.com/jianghu/mo-xuan",
+      "https://g.nexonstatic.com/maplestory/cms/v1/classes-jobs",
+      "https://imgur.com/a/8i5Vw7I",
+      "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+    ]
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "page": "Bossing",
+        "order": "Boss Damage = Critical Damage > Damage > Ignore Enemy Defense > Attack Power > Main Stat (DEX)",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      },
+      {
+        "page": "Farming",
+        "order": "EXP Gained > Normal Monster Damage > Critical Damage > Damage > Attack Power > Main Stat (DEX)",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+        ]
+      }
+    ],
+    "notes": "Run two saved hyper stat pages, one bossing and one farming. Arcane Force can be slotted into either page to clear a damage threshold. Critical Rate rarely needs hyper stat investment because the class already reaches roughly 100% critical rate from its own passives plus legion. Single-source claim - Grandis Library does not publish hyper stats for this class, so this is marked weak. Supporting note on critical rate: Grandis Library's base-stat table lists +55% critical rate from class skills on top of the 5% base (https://grandislibrary.com/jianghu/mo-xuan)."
+  },
+  "hyperSkills": {
+    "passives": [
+      "Xuanshan Forms - Reinforce",
+      "Xuanshan Forms - Boss Rush",
+      "Divine Arts - Reinforce",
+      "Divine Arts - Enhance",
+      "Qi Shield - Shield Reinforce"
+    ],
+    "passivesConsensus": "moderate",
+    "passivesSources": [
+      "https://grandislibrary.com/jianghu/mo-xuan",
+      "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+    ],
+    "actives": [
+      {
+        "name": "Secret Art: Strength Within",
+        "effect": "Buff that immediately grants maximum Divine Fist stacks."
+      },
+      {
+        "name": "Soul Art: Black Wind",
+        "effect": "Hard-hitting attack that is also one of the class's i-frames (1.2 seconds, 60-second cooldown)."
+      },
+      {
+        "name": "Aura of Destiny",
+        "effect": "The Jianghu-group party attack buff (the Epic Adventure equivalent)."
+      }
+    ],
+    "activesConsensus": "moderate",
+    "activesSources": [
+      "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg",
+      "https://grandislibrary.com/jianghu/mo-xuan"
+    ],
+    "notes": "The fifth passive point is contested - see the conflicts array. Both GMS sources take Qi Shield - Shield Reinforce; the two most recent CMS community submissions take Divine Arts - Ignore DEF instead and leave Qi Shield at 0."
+  },
+  "innerAbility": {
+    "bossing": [
+      "Chance to Skip Cooldown +20% (top line)",
+      "Boss Damage +10%",
+      "Buff Duration +38%"
+    ],
+    "bossingAlternate": [
+      "Chance to Skip Cooldown +20% (top line)",
+      "Boss Damage +10%",
+      "Damage to monsters inflicted with Abnormal Status +8%"
+    ],
+    "farming": [
+      "Item Drop Rate +20%",
+      "Mesos Obtained +15%",
+      "Damage to Normal Monsters +8%"
+    ],
+    "consensus": "moderate",
+    "sources": [
+      "https://grandislibrary.com/jianghu/mo-xuan",
+      "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+    ],
+    "notes": "Cooldown skip is the priority line because the class's damage is gated by how many Divine Art casts fit inside a burst - the same reasoning that drives the cooldown-reduction hat. The class doc suggests keeping a third preset holding only Item Drop Rate +20% for boss loot rooms, and swapping the drop and meso lines on the farming preset as needed. Both listed sources trace back to the same class community, so this is corroboration of presentation rather than independent agreement."
+  },
+  "gearingNotes": "WSE (weapon / secondary / emblem) potential: on Heroic (Reboot) aim for 9/0/0 - three lines of %Attack Power on each of the weapon, secondary and emblem. On Interactive/Regular worlds in GMS the target is 18/0/0 (all six lines %Attack Power), because GMS players get boss damage from more sources such as familiars; other regions may differ. HAT: Mo Xuan should take a cooldown-reduction hat over a stat hat. More reduction is strictly better, with -3s the minimum worth aiming for; the payoff is an extra Divine Art: Swirling Tide cast inside burst plus more Divine Art casts during sustained damage, which outweighs the stat line. RINGS (Oz/skill rings): the class doc's current best-in-slot is Ring of Restraint plus Weapon Jump, with the expectation that it becomes Ring of Restraint (main) plus Continuous Ring (sub); a Lv. 4 Continuous Ring beats a Lv. 3 Ring of Restraint plus a Lv. 3 Weapon Jump, and a Lv. 4 Ring of Restraint used alone is at least as good as a Lv. 4 Continuous Ring while being far easier to time. If you do run a Continuous Ring, only cast Swirling Tide while its buff is up. LEGION GRID priority: Boss Damage = Critical Damage > Ignore Enemy Defense > Buff Duration. LEGION ARTIFACTS for bossing: Critical Damage, Boss Damage, Damage, Ignore Defense, Skill Cooldown Bypass Chance, Attack Power, Buff Duration, Critical Rate; for mobbing: Item Drop Rate, Mesos Obtained, EXP Obtained. ATTACK SPEED: the class sits at attack speed stage 6 by default and gains +2 from Secret Art: Fists of Fury, and reaches 90% weapon mastery (20% base plus 70% from Boundless). Note that the class doc reports macro reliability problems for Xuanshan Arts at attack speed 0/10 in GMS specifically, so extreme attack speed may not be the pure upgrade it looks like. All gearing claims above come from the class community doc (https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg, v1.1 June 2026) except the attack speed and mastery figures, which are from Grandis Library (https://grandislibrary.com/jianghu/mo-xuan, GMS v.269). The gearing section is single-source and should be treated as weak consensus.",
+  "commonMistakes": [
+    {
+      "mistake": "Firing a Divine Art without first casting a matching-alignment Xuanshan Art",
+      "why": "You lose the [Form Link] final damage on that Divine Art (+50% on general Divine Arts, +100% on burst Divine Arts) and you do not gain a Divine Fist stack, which is a stacking final-damage buff on the whole kit. Alignment matching, not raw APM, is where the damage is.",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg",
+        "https://grandislibrary.com/jianghu/mo-xuan"
+      ]
+    },
+    {
+      "mistake": "Using Divine Art: Righteous Thunder's stun while a normal bind or an Origin bind is already running",
+      "why": "Righteous Thunder overrides the boss's current bind timer. The class doc is explicit that doing this during a party bind is griefing your team; wait until the existing bind timer has about 90 seconds left.",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+      ]
+    },
+    {
+      "mistake": "Spending Secret Art: Qi Disruption as your boss bind",
+      "why": "It is the class bind but the community recommendation is to bind with Erda Nova and keep Qi Disruption as an i-frame (1.1 seconds on a 120-second cooldown).",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+      ]
+    },
+    {
+      "mistake": "Defaulting to cooldown-reduction comboing",
+      "why": "When the two Divine Arts in a Reincarnation window share an alignment you get a cooldown cut; when they differ you get +50% final damage. Final-damage comboing is the correct default in almost all situations. The documented exceptions are parts of a culvert rotation, and bursts where Howling Storm skips its cooldown.",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+      ]
+    },
+    {
+      "mistake": "Taking a stat hat instead of a cooldown-reduction hat",
+      "why": "Extra Divine Art casts per burst are worth more than the stat line for this class. -3s is the floor.",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+      ]
+    },
+    {
+      "mistake": "Tuning your build from Battle Analysis numbers",
+      "why": "The class doc reports a live bug where the final-damage bonus from Divine Fist combos is displayed inconsistently, so Battle Analysis and the on-screen damage numbers do not reflect real output for Mo Xuan. Reported as still present as of June 2026.",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+      ]
+    },
+    {
+      "mistake": "Skipping the [JOB] quests",
+      "why": "Every [JOB] quest in the lightbulb/recommended quest window must be completed to advance, and Mo Xuan quests through Level 100 are required before 4th job advancement.",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg",
+        "https://maplestorywiki.net/w/Mo_Xuan"
+      ]
+    },
+    {
+      "mistake": "Expecting strong 6th job damage at low core levels",
+      "why": "The class community lists weak early HEXA damage relative to other classes as a known downside; the class needs real HEXA investment before it catches up.",
+      "sources": [
+        "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://g.nexonstatic.com/maplestory/cms/v1/classes-jobs",
+      "what": "Nexon's own GMS website class data (the feed behind nexon.com/maplestory/game/classes-and-jobs). Lists Mo Xuan as a live, selectable GMS class in the Jianghu group with DEX main stat, and names its 1st-4th, 5th and 6th job skills including the Origin skill Soul Art: Jianghu Dragon (+30% Ignore Defense, +30% Boss Damage at Lv. 30) and the Ascent skill Soul Art: Where Destiny Falls. This is the official website, not the Open API. Primary evidence for existence in GMS.",
+      "dated": "Live data, retrieved 2026-09-11. The same site's metadata identifies the current patch as v271 (MapleStory x Frieren update).",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/jianghu/mo-xuan",
+      "what": "GMS-facing class overview: class group, stats, weapons, link skill, legion effect, base stats from skills, boost node trios and node composition, hyper passive build, inner ability, HEXA mastery/skill/boost core structure, and the Form Link / Divine Fist / Reincarnation mechanic. States plainly that Mo Xuan is creatable in the China, Global, SEA and Taiwan versions.",
+      "dated": "Page footer marks it current to GMS Ver. 269 (Ride the Lightning Update); its infographics are dated 2026-06-04 and 2026-06-25. Two patches behind live v.271.",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Mo_Xuan",
+      "what": "Independent wiki. States Mo Xuan is a Jianghu Pirate released in GMS during the 20th Anniversary Update and in MSEA during the Assemble Update, and that CMS/TMS Zen characters were converted to Mo Xuan in the MapleStory: Awake update. Confirms Martial Brace / Brace Band, DEX/STR, Qi Cultivation link skill, Critical Damage +1/2/3/5/6% legion effect, and that quests to Level 100 are required for 4th job. The companion page https://maplestorywiki.net/w/Qi_Cultivation gives the per-level link skill values and is tagged GMS v270.",
+      "dated": "Skill data tagged GMS v270; class page current as of retrieval 2026-09-11.",
+      "independent": true
+    },
+    {
+      "url": "https://maplestory.fandom.com/wiki/Mo_Xuan",
+      "what": "Independent wiki. Its availability table marks Mo Xuan as Available in China, Global and Taiwan. Useful for the class's origin as the CMS/TMS replacement for Zen and for the shared link skill / legion effect with Zen. Its prose is stale - see conflicts.",
+      "dated": "Page last revised 2025-05-04.",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg",
+      "what": "\"Xuanshan School's Martial Arts Manual\", the community class document, covering both Heroic (Reboot) and Interactive servers. Source for boost node priority, 5th job node levelling order, hyper stats, hyper skill picks, inner ability presets, WSE targets, hat and ring choices, legion grid and artifacts, combo routing, bossing and training advice, and a list of live bugs. Maintained out of the Xuanshan Discord; contributors credited include Teddyloid (Ray), Flyk, JangoFett and imMoXuan (Drakkinnite).",
+      "dated": "Version 1.1, June 2026. Contains notes dated as recently as 2026-06-17.",
+      "independent": false
+    },
+    {
+      "url": "https://imgur.com/a/8i5Vw7I",
+      "what": "Drakkinnite's HEXA infographics for Heroic (fragment-gated) and Interactive (energy-gated) worlds, linked from the class doc. Source for the HEXA stat lines (DEX, Critical Damage, Attack Power), the HEXA stat gating notes, and the Sol Janus level guidance. The per-core order is icon-only and was not transcribed.",
+      "dated": "Not dated on the image itself; linked from the June 2026 class doc. Flagged as undated.",
+      "independent": false
+    },
+    {
+      "url": "https://wiki.biligame.com/maplestory/%E5%A2%A8%E7%8E%84",
+      "what": "ChinaMS community wiki page for Mo Xuan, carrying multiple player-submitted hyper skill builds with submission dates. Used only as an outside check on the hyper passive picks; most submissions are from 2021-2022 and predate HEXA, so only the two 2025 submissions were used.",
+      "dated": "Most recent usable submissions dated 2025-10-24 and 2025-02-20, both against CMS v211. CMS runs a different version of the class from GMS, so this is a cross-region check, not a GMS source.",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Is Mo Xuan region-locked?",
+      "positionA": "MapleStory Fandom's prose still describes Mo Xuan as \"a Chinese exclusive job\" replacing Zen in ChinaMS and TaiwanMS (https://maplestory.fandom.com/wiki/Mo_Xuan, page last revised 2025-05-04).",
+      "positionB": "Mo Xuan is live and creatable in GMS. Nexon's own website class feed lists it (https://g.nexonstatic.com/maplestory/cms/v1/classes-jobs), maplestorywiki records it as released in GMS during the 20th Anniversary Update (https://maplestorywiki.net/w/Mo_Xuan), Grandis Library states it can be created in China, Global, SEA and Taiwan (https://grandislibrary.com/jianghu/mo-xuan), and Fandom's own availability table marks Global as Available.",
+      "resolution": "Not resolved by preference - but the Fandom sentence is contradicted by that same page's own availability table and by three other sources including Nexon's. Treat the Fandom prose as stale text that was not updated when GMS received the class."
+    },
+    {
+      "topic": "Fifth hyper skill passive point",
+      "positionA": "Qi Shield - Shield Reinforce, alongside Xuanshan Forms Reinforce, Xuanshan Forms Boss Rush, Divine Arts Reinforce and Divine Arts Enhance. Both GMS sources agree (https://grandislibrary.com/jianghu/mo-xuan, https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg).",
+      "positionB": "Divine Arts - Ignore DEF, with Qi Shield - Shield Reinforce left at 0. Both of the recent CMS community submissions on https://wiki.biligame.com/maplestory/%E5%A2%A8%E7%8E%84 (2025-10-24 and 2025-02-20, CMS v211) take this line; older CMS submissions on the same page are split, with two of nine taking Qi Shield.",
+      "resolution": "Recorded, not resolved. The CMS build is a damage pick and the GMS build is a survivability pick; CMS also runs a different version of the class, so this may be a genuine regional difference rather than a disagreement about the same game."
+    },
+    {
+      "topic": "Boost node priority below the top three",
+      "positionA": "Class doc order after the two Xuanshan Arts and Howling Storm: Swirling Tide, Qi Projection, Righteous Thunder, Black Wind, Erupting Flame, Tearing Wind (https://docs.google.com/document/d/1-NDXtiC_skCkx56yWHqvqu7EPNeFcHW68tWF67W1Odg). The doc calls this order temporary.",
+      "positionB": "Grandis Library's trio tiers put Tearing Wind, Qi Projection and Black Wind in the Secondary trio, and Erupting Flame, Swirling Tide and Righteous Thunder in the Tertiary trio - which places Swirling Tide lower and Tearing Wind higher than the doc does (https://grandislibrary.com/jianghu/mo-xuan).",
+      "resolution": "Recorded, not resolved. The two are not strictly comparable: Grandis is grouping skills into equippable node trios while the doc is ranking individual skills. Both agree the two Xuanshan Arts and Howling Storm come first, and the doc adds that levelling all nine evenly is acceptable."
+    },
+    {
+      "topic": "Primary weapon naming",
+      "positionA": "Martial Brace / Brace Band - the current GMS names (https://grandislibrary.com/jianghu/mo-xuan, https://maplestorywiki.net/w/Mo_Xuan).",
+      "positionB": "War Fist / Fist Ring (https://maplestory.fandom.com/wiki/Mo_Xuan).",
+      "resolution": "Same equipment, different naming. The Fandom names predate the GMS release; use Martial Brace and Brace Band when searching GMS markets or guides."
+    }
+  ],
+  "researchNotes": "INDEPENDENCE WARNING, read before trusting the build sections. The identity and existence facts in this file rest on four independent sources (Nexon's official site, Grandis Library, maplestorywiki, Fandom) and are solid. The judgement - boost node priority, HEXA order, hyper stats, hyper skills, inner ability, gearing - traces overwhelmingly to ONE community: Grandis Library credits the Mo Xuan Discord for its inner ability, hyper passive and boost node builds, its infographics are by Drakkinnite, and Drakkinnite is also a credited contributor to the class Google Doc. Grandis Library and the class doc are therefore best counted as one independent voice presented in two venues, not two. The only genuinely outside check found was the ChinaMS bilibili wiki, which runs a different version of the class. No independent GMS-side second opinion (a Reddit guide thread, a rival doc, a dated YouTube guide) was reachable: reddit.com blocked every access route attempted, and Nexon's own Maple Guides pages render client-side with no server-rendered text. RECENCY: Grandis Library is current to GMS v.269 and live GMS is v.271, so it is two patches behind. The class doc is v1.1 June 2026. One specific change is already known to have invalidated advice: as of 2026-06-17 Secret Art: Qi Projection no longer procs Sol Janus, and the doc's replacement training method was still untested at the time of writing. DELIBERATE OMISSION: the step-by-step HEXA core levelling order exists but is published only as an untitled icon sequence; it is left out rather than guessed.",
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "HEXA BOOST CORE VALUE IS WRONG. hexa.order step 'Boost cores available' claims 'Each gives +120% final damage to its skill with additional effects at Lv. 20 and Lv. 40', cited to Grandis. Grandis's actual boostCore data: 'Soul Art: Beneath Heaven Boost - Final Damage: +60%', 'Soul Art: The Conquered Self Boost - Final Damage: +60%', 'Divine Art: Crashing Earth Boost - Final Damage: +60%', and 'Soul Art: The Opened Gate Boost - Critical Damage: +20%, Duration: 23 sec, increases damage of Xuanshan Forms and Divine Arts by 550% points while active'. So the number is double the source's, and the claim that all four are final-damage boosts is false - The Opened Gate Boost is not a final damage core at all. The four skill names are correct; the effect description is invented. This is the kind of error that misdirects fragment spending.",
+      "CONFLICT #2 ('Fifth hyper skill passive point') MISREPORTS ITS SOURCE. The file says the two recent CMS submissions 'take Divine Arts - Ignore DEF instead and leave Qi Shield at 0', framing it as a one-slot swap. I parsed both submissions on wiki.biligame.com/maplestory/%E5%A2%A8%E7%8E%84 (2025-10-24 by caguestjan, 2025-02-20 by 再见大美妞). Both take, at level 1: 玄山-强化 (Xuanshan - Reinforce), 玄山-无视防御 (Xuanshan - Ignore DEF), 玄山-首领怪征服者 (Xuanshan - Boss Rush), 神功-增强 (Divine Arts - Enhance), 神功-无视防御 (Divine Arts - Ignore DEF). At 0: 护身罡气-护盾强化 (Qi Shield) AND 神功-强化 (Divine Arts - Reinforce). So the CMS build differs from the GMS build in TWO slots, not one: it also picks up Xuanshan Forms Ignore DEF and DROPS Divine Arts - Reinforce, a skill the file lists as an uncontested GMS pick. The conflict as written understates the disagreement and misidentifies which line is contested.",
+      "The same conflict entry never notes that GMS's names for those lines are 'Xuanshan Forms - Guardbreak' and 'Divine Arts - Guardbreak' (both present in Grandis's icon set: xuanshan-forms-guardbreak.png, divine-arts-guardbreak.png). A reader searching GMS for 'Divine Arts - Ignore DEF' will not find it. The file's conflict #4 does this naming-translation work for the weapon; it should have done it here.",
+      "hexa.order and hexa.sources attribute the Sol Janus orb-count reasoning ('Lv. 10 lets you hold two Dawn orbs instead of one... Lv. 20+ lets you hold all three orbs for the later-half maps') to BOTH the imgur album and the class doc. I read the doc's full text. Its Sol Janus sections say only to get Sol Janus to 20 and stand still while Qi Projection attacks. There is no orb-count reasoning and no Lv.10 threshold anywhere in the document. The doc is cited for something it does not say.",
+      "STALE: THE ENTIRE vMatrix.trios ARRAY IS SUPERSEDED GRANDIS DATA PRESENTED AS CURRENT. This is the most consequential finding. The file's three trios (Primary: Di/Tian/Howling Storm; Secondary: Tearing Wind/Qi Projection/Black Wind; Tertiary: Erupting Flame/Swirling Tide/Righteous Thunder) match Grandis's embedded nodeInfo.recommended block verbatim - but that block is what sits behind the page's chip labelled 'View Pre-V.269 Boost Nodes'. The word 'Trio' appears nowhere in Grandis's server-rendered visible HTML; only 'Node 1' through 'Node 6' render by default. Grandis's CURRENT (V.269+) recommendation, from nodeInfo.nodes with \"primary\":[0,1,2,3,4,5] marking all six as primary, is: Node 1 = Xuanshan Arts [Tian] + Xuanshan Arts [Di]; Node 2 = Divine Art: Erupting Flame + Divine Art: Righteous Thunder; Node 3 = Divine Art: Swirling Tide + Divine Art: Tearing Wind; Node 4 = Secret Art: Qi Projection + Secret Art: Qi Disruption; Node 5 = Divine Art: Howling Storm; Node 6 = Soul Art: Black Wind. The file's own sources[] entry says Grandis is 'current to GMS Ver. 269' - which is exactly the patch at which this data was replaced. The trios array should be deleted or relabelled pre-V.269.",
+      "STALE: TWO vMatrix.notes CLAIMS COME FROM THAT SAME LEGACY BLOCK. 'Six boost nodes in total are needed to bring the recommended skills to Master Level 60 once matrix points are spent' and 'two nodes sharing the same main skill (the skill at the top of the node) cannot be equipped at the same time' are Grandis's nodeInfo.recommended.notes - i.e. pre-V.269. The 'same main skill' restriction is a rule of the old randomly-rolled trio system; under fixed nodes there is no main-skill collision to avoid. Both are presented as live advice.",
+      "STALE: UNRECORDED CONFLICT CREATED BY THE STALE READING. vMatrix.notes states flatly that 'Mo Xuan wants boost nodes on every damaging skill except the class bind (Secret Art: Qi Disruption)'. That is the class doc's position (its wording is 'boost every skill besides our bind skill'). But Grandis's current Node 4 pairs Secret Art: Qi Projection WITH Secret Art: Qi Disruption as a recommended node - and Node 4 is the gate for the 4th HEXA Mastery, which the file itself lists. The two cited sources disagree about whether the bind gets a node, and the file records the doc's side as settled fact. Per the file's own conflict-recording standard this belongs in conflicts[], not in notes as an assertion.",
+      "STALE: CONFLICT #3 IS BUILT ON THE SUPERSEDED DATASET. Its positionB describes Grandis's trio tiers ('Tearing Wind, Qi Projection and Black Wind in the Secondary trio... Erupting Flame, Swirling Tide and Righteous Thunder in the Tertiary trio'). That description is accurate for the pre-V.269 block and wrong for what Grandis recommends today. Under the current six-node data the real disagreement is different in shape: the doc ranks Howling Storm 3rd of nine while Grandis puts it alone in Node 5 with every node flagged primary, and Grandis includes the bind that the doc excludes.",
+      "STALE: NOT STALE, and worth saying: the file's recency handling elsewhere is genuinely good. The 2026-06-17 Secret Art: Qi Projection / Sol Janus change is real - I found it in the doc's Post-6th Job Training section, phrased as the file describes, with testing still pending - and the file flags the downstream training advice as possibly stale in two separate places. The biligame source is correctly identified as CMS v211 cross-region rather than GMS. The Fandom 'Chinese exclusive job' / 'War Fist' / 'Fist Ring' prose is confirmed stale exactly as conflict #1 and #4 say (I read it in the page's own abstract), and maplestorywiki confirms the 20th Anniversary GMS release, Assemble in MSEA, and the Zen conversion in CMS/TMS during MapleStory: Awake. The Google Doc is publicly readable (export?format=txt returns HTTP 200, 'Version 1.1 - June 2026') - the researcher's note that reddit and Nexon's Maple Guides were unreachable is plausible, but the doc itself was verifiable and every doc-attributed claim I checked held up."
+    ],
+    "clearedOnInspection": [
+      "NO FABRICATED SKILL OR NODE NAMES FOUND - stating this explicitly because it is the highest-stakes check. I verified every name in vMatrix.priority, vMatrix.trios, hexa.order, hyperSkills and commonMistakes against Grandis's raw page data and Nexon's own class feed. All exist: Xuanshan Arts [Tian]/[Di], Divine Art: Erupting Flame / Tearing Wind / Righteous Thunder / Swirling Tide / Howling Storm / Crashing Earth, Secret Art: Qi Projection / Qi Disruption / Strength Within / Fists of Fury, Soul Art: Black Wind / Beneath Heaven / The Conquered Self / The Opened Gate / Jianghu Dragon / Where Destiny Falls, Boundless, Aura of Destiny, Qi Cultivation. The boost node priority order in vMatrix.priority reproduces the doc's stated left-to-right order exactly, including its self-description as temporary. Jianghu Dragon (Lv.30, +30% Ignore Defense, +30% Boss Damage, 360s cd, 10s bind, 7.3s i-frame), Where Destiny Falls typed 'Ascent Skill' on Grandis, the i-frame durations (Qi Disruption 1.1s/120s, Black Wind 1.2s/60s), the 65/35 burst-DPS ratio, the Righteous Thunder bind-override/griefing/90-seconds-remaining etiquette, the Battle Analysis final-damage bug, the Erda Nova-over-Qi-Disruption bind advice, the -3s CD hat, 9/0/0 and 18/0/0 WSE, the Ring of Restraint / Weapon Jump / Continuous Ring comparisons, the legion grid and artifact lists, the inner ability presets, both hyper stat pages, and the '2 of 9 biligame submissions take Qi Shield' count are all confirmed verbatim-in-substance against their cited sources."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "9 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

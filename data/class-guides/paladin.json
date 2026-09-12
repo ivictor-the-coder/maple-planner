@@ -1,0 +1,653 @@
+{
+  "slug": "paladin",
+  "className": "Paladin",
+  "branch": "Explorer",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": [
+    "One-Handed Sword",
+    "Two-Handed Sword",
+    "One-Handed Blunt Weapon",
+    "Two-Handed Blunt Weapon"
+  ],
+  "secondaryWeapon": [
+    "Rosary",
+    "Shield"
+  ],
+  "archetype": "Tanky STR warrior. Sustained damage rather than burst, built around holding Blast inside the Divine Echo window, with heavy party support (shared i-frame, shared final damage, 50% ignore-defence debuff, a class bind, an ally revive). Low mobility, no summons before 6th job, damage sits low on DPM charts but survivability is class-defining.",
+  "linkSkill": {
+    "name": "Invincible Belief",
+    "effect": "Passive. Fires automatically when HP drops to 15% of Max HP or lower and restores a percentage of Max HP each second for 3 seconds. Stacks up to 3 times, once per unique Explorer Warrior at master level.",
+    "levels": 9,
+    "detail": {
+      "atMasterLevel": "Restores 44% Max HP per second for 3 seconds.",
+      "cooldownConflict": "Sources disagree on the cooldown and on whether a damage passive is attached - see conflicts[].",
+      "sources": [
+        "https://grandislibrary.com/explorers/paladin",
+        "https://maplestorywiki.net/w/Paladin/Skills",
+        "https://www.maplerhouse.com/classes/paladin"
+      ]
+    }
+  },
+  "legionEffect": {
+    "effect": "Flat STR: +10 / +20 / +40 / +80 / +100 by Legion rank.",
+    "sources": [
+      "https://grandislibrary.com/explorers/paladin",
+      "https://www.maplerhouse.com/classes/paladin"
+    ],
+    "consensus": "strong"
+  },
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Blast (paired with Divine Judgment)",
+        "why": "Main bossing attack and the single largest share of boss damage. +2% final damage per boosted level, up to +120%. Lv. 20 adds one more target; Lv. 40 adds 20% ignore-defence that applies off-screen on Blast hits. Also the boost node that unlocks the 1st HEXA Mastery core.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+          "https://grandislibrary.com/explorers/paladin"
+        ]
+      },
+      {
+        "node": "Divine Judgment / Divine Mark",
+        "why": "Divine Judgment detonates every 5th Divine Brand stack applied by Blast, so it scales directly with Blast uptime and carries a large slice of single-target DPM. +2% final damage per level. Lv. 20 adds 5% crit rate on those hits, Lv. 40 adds 20% ignore-defence on those hits.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+          "https://grandislibrary.com/explorers/paladin"
+        ]
+      },
+      {
+        "node": "Divine Charge (paired with Divine Mark)",
+        "why": "Main mobbing attack. +2% final damage per level; Lv. 20 adds one more target hit, which is what makes training maps clear. Unlocks the 2nd HEXA Mastery core. Pure-bossing players may swap this slot for Final Attack.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+          "https://grandislibrary.com/explorers/paladin"
+        ]
+      },
+      {
+        "node": "Heaven's Hammer",
+        "why": "Large-radius AoE on a short cooldown; also the class's repeatable super-knockback-resistance button in bosses. Unlocks the 3rd HEXA Mastery core. The class doc rates boosting it optional because base damage plus the Extra Strike hyper passive already one-shots most training mobs - value is in clearing at an Arcane/Sacred Force deficit.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+          "https://grandislibrary.com/explorers/paladin"
+        ]
+      },
+      {
+        "node": "Final Attack",
+        "why": "Unusual scaling: +4% final damage per boosted level, up to +240%, double the normal rate. But Paladin's Final Attack only procs 40% of the time for 80% damage and there is no Advanced Final Attack, so it is boosting a small slice. Unlocks the 4th HEXA Mastery core (HEXA Final Attack / Rising Justice).",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+          "https://grandislibrary.com/explorers/paladin"
+        ]
+      },
+      {
+        "node": "Smite Shield",
+        "why": "Filler. Boosting it does not lengthen the bind at bosses in practice - duration scales with percentage of target HP dealt, which is negligible against boss HP pools. Useful only as extra training damage and to fill a fourth slot when doubling up six skills.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/"
+        ]
+      },
+      {
+        "node": "Leap Attack / Rush, Divine Swing / Close Combat",
+        "why": "Lowest priority. Grandis Library marks these two node groupings as the ones that do not need upgrading; they unlock no HEXA mastery.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/explorers/paladin"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "name": "Core trio",
+        "nodes": [
+          "Blast",
+          "Divine Judgment / Divine Mark",
+          "Divine Charge"
+        ],
+        "why": "Paladin has essentially one trio that covers both bossing and training. Swap Divine Charge for Final Attack if you only boss and do not want to spend a second node slot.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/"
+        ]
+      },
+      {
+        "name": "Optional / second trio",
+        "nodes": [
+          "Heaven's Hammer",
+          "Final Attack",
+          "Smite Shield"
+        ],
+        "why": "Second set for ancillary skills, worth running now that more matrix slots are available early.",
+        "consensus": "moderate",
+        "conflictNote": "mystyjl's node guide lists the third slot as Leap Attack OR Smite Shield.",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "skillNodeLevelingOrder": {
+      "bossingAllRounder": {
+        "order": [
+          "Divine Echo",
+          "Blast (boost node)",
+          "Hammers of the Righteous",
+          "Grand Guardian",
+          "Mighty Mjolnir",
+          "Maple World's Goddess Blessing (uncertain - see note)"
+        ],
+        "why": "Divine Echo first. Every level raises four things at once: self final damage (+60% to +75% across Lv.1-30), buff duration (15s to 30s), the duration the echoed party member mimics you, and the share of your final damage they mimic (25% to 40%). Those compound, which the class doc argues outweighs maxing Blast or Divine Judgment boost nodes first, most of all in a party. Solo-versus-duo gap is roughly 10-12% final damage at maxed HEXA.",
+        "consensus": "weak",
+        "note": "Read off icon images in the class doc, which prints this list as icons with no text. The first five were matched byte-for-byte against icons the same document labels by name elsewhere. The sixth icon I could only place as Maple World's Goddess Blessing (it sits immediately before that section heading, ahead of the Weapon Aura icon) - treat it as unconfirmed.",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+        ]
+      },
+      "trainingFocused": {
+        "order": [
+          "Erda Fountain, Decent Holy Symbol and Divine Charge (grouped, no ordering between them)",
+          "Hammers of the Righteous",
+          "Mighty Mjolnir",
+          "Divine Echo"
+        ],
+        "consensus": "weak",
+        "note": "Same icon-derived reading as above.",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+        ]
+      }
+    },
+    "notes": "Pairing rule that catches people out: two boost nodes cannot be equipped at the same time if their FIRST skill is the same. To double a skill's boost you need two nodes that both contain it but lead with different skills; then you can push past the single-node cap (50 for an unboosted slot, 60 for a double-boosted one). Ancillary nodes worth slotting: Decent Holy Symbol (EXP while grinding, drop rate while bossing), Decent Speed Infusion and Decent Sharp Eyes (skippable if you have them on gloves; Lv. 1 is fine early, later push to Lv. 25 plus one boosted slot for +6 all stats), Rope Lift and Blink as one-point utilities, Erda Nova as a second bind for fast-phasing bosses, Erda's Will as a second Hero's Will. Special node slot: Comeback II for drawn-out fights (cuts 30% of remaining cooldowns on death, helps recover Sacrosanctity), or Fatal Strike I for straight damage. The class doc records no consensus on maxing Maple World's Goddess Blessing before Weapon Aura or the reverse."
+  },
+  "hexa": {
+    "order": [],
+    "orderNote": "No verified Paladin-specific Sol Erda investment order was found, and inventing one would be worse than leaving it empty. The class doc states directly that the previously circulated KMS level path became obsolete with the Dreamer patch, and now points readers at a per-character spreadsheet (the 'Paladin Enhancement Calculator', https://docs.google.com/spreadsheets/d/1UXdvFBgog9C5pauyjYNhTcKuZ9LVOA98tHB-C9GD4UU/) which ranks the next upgrade by efficiency once you enter your current HEXA levels, your boss damage / damage / IED, and whether you are limited by Sol Erda or by Sol Erda Fragments. GMS is fragment-limited.",
+    "structure": {
+      "skillCores": [
+        {
+          "name": "Sacred Bastion",
+          "role": "Origin skill core",
+          "note": "Unlocked on completing the 6th Job Advancement rather than bought with Sol Erda. Invincible during the cast, binds the target for 10 seconds (including bosses that normally resist binds, on the separate 100-second origin-skill bind timer per the class doc), and leaves a 30-second sanctuary. Inside the sanctuary, Paladin's attacks trigger Light of Judgment on a 0.5s internal cooldown, which applies Divine Brand - the same stack Blast applies, so Divine Judgment detonates far more often. Threshold bonuses at Lv. 10 / 20 / 30 give ignore-defence and boss damage.",
+          "sources": [
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+            "https://maplestorywiki.net/w/Paladin/Skills"
+          ]
+        },
+        {
+          "name": "Dominus Oblivion",
+          "role": "Ascent skill core",
+          "note": "Second class-specific HEXA skill core. Confirmed present for Paladin; no sourced investment guidance found.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://grandislibrary.com/explorers/paladin"
+          ]
+        }
+      ],
+      "masteryCores": [
+        {
+          "core": "1st Mastery",
+          "upgrades": [
+            "HEXA Blast",
+            "HEXA Divine Judgment"
+          ],
+          "note": "Both upgrade together. Requires the Blast / Divine Judgment boost node at Lv. 40+.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://grandislibrary.com/explorers/paladin",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+          ]
+        },
+        {
+          "core": "2nd Mastery",
+          "upgrades": [
+            "HEXA Divine Charge",
+            "HEXA Divine Mark",
+            "Falling Justice"
+          ],
+          "note": "All three upgrade together. Falling Justice is a new attack on a 30s cooldown.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+          ]
+        },
+        {
+          "core": "3rd Mastery",
+          "upgrades": [
+            "HEXA Heaven's Hammer"
+          ],
+          "note": "Carries a large passive rider on top of its own damage: HEXA Blast damage and HEXA Divine Judgment damage both increase substantially as it levels (the class doc records +20% / +230% at Lv. 1 rising to +80% / +410% at Lv. 30). The doc says to cast it off cooldown once unlocked, which reverses the pre-HEXA habit of dropping it from the boss rotation.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+          ]
+        },
+        {
+          "core": "4th Mastery",
+          "upgrades": [
+            "HEXA Final Attack",
+            "Rising Justice"
+          ],
+          "note": "Both upgrade together. Rising Justice triggers off Falling Justice.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+          ]
+        }
+      ],
+      "enhancementCores": [
+        {
+          "name": "Divine Echo Boost",
+          "effect": "Self final damage from Divine Echo +76% to +90%, and final damage of attack skills cast on the echo target +45% to +60% across Lv. 1-30.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+            "https://grandislibrary.com/explorers/paladin"
+          ]
+        },
+        {
+          "name": "Hammers of the Righteous Boost",
+          "effect": "+11% to +60% final damage.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+            "https://grandislibrary.com/explorers/paladin"
+          ]
+        },
+        {
+          "name": "Grand Guardian Boost",
+          "effect": "+11% to +60% final damage.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+            "https://grandislibrary.com/explorers/paladin"
+          ]
+        },
+        {
+          "name": "Mighty Mjolnir Boost",
+          "effect": "+11% to +60% final damage.",
+          "sources": [
+            "https://maplestorywiki.net/w/Paladin/Skills",
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+            "https://grandislibrary.com/explorers/paladin"
+          ]
+        }
+      ],
+      "commonCores": [
+        {
+          "name": "Sol Janus",
+          "note": "Passive EXP gain scales to +100% at Lv. 30, plus +30% damage to normal monsters. The class doc credits Janus with fixing Paladin's weak training.",
+          "sources": [
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+          ]
+        },
+        {
+          "name": "Sol Janus: Dawn",
+          "sources": [
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+          ]
+        },
+        {
+          "name": "Sol Janus: Twilight",
+          "sources": [
+            "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+          ]
+        }
+      ]
+    },
+    "notes": "Enhancement cores require the matching V skill maxed and equipped. A class-ranking site listed further enhancement cores (Blessed Hammer, Grand Cross, Holy Unity) and a Sol Hecate common core on a top-ranked non-GMS Paladin; I could not confirm any of those for GMS v.271 and they are recorded here only as a flag, not as advice.",
+    "unverifiedRegionalCores": {
+      "seen": [
+        "Sanctuary VI",
+        "Blitz Burst",
+        "Blitz Shield VI",
+        "Blessed Hammer Enhancement",
+        "Grand Cross Enhancement",
+        "Holy Unity Enhancement",
+        "Sol Hecate",
+        "Sol Hecate: Styx",
+        "Sol Hecate: Factum"
+      ],
+      "sources": [
+        "https://www.maplerhouse.com/classes/paladin"
+      ],
+      "consensus": "weak"
+    }
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No Paladin-specific hyper stat priority order was found in any source that met the evidence bar, so none is given. Two Paladin-specific hyper stat facts are sourced. First, hyper stats are one of the always-on ignore-defence sources (up to 45%) that count toward the class doc's 93-95% on-screen IED target; because Paladin already carries roughly 31% base IED from High Paladin (+10% more with a blunt weapon) plus 50% off-screen from Noble Demand and 20% off-screen from the Blast / Divine Judgment boost node at Lv. 40+, pushing IED higher than that band is usually worse than spending the same investment on boss damage or attack. Second, the Abnormal Status Resistance hyper stat (up to +25) is explicitly not recommended - Paladin already stacks status resistance from Shield Mastery (+40), Willpower trait (up to +20) and Vessel of Light (up to +10).",
+    "sources": [
+      "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+    ],
+    "consensus": "weak"
+  },
+  "hyperSkills": {
+    "bossing": {
+      "picks": [
+        "Blast - Extra Strike",
+        "Blast - Reinforce",
+        "Heaven's Hammer - Cooldown Cutter",
+        "Heaven's Hammer - Extra Strike"
+      ],
+      "fifthPointDisputed": true,
+      "why": "Blast is the damage engine, so both Blast passives come first. Heaven's Hammer Extra Strike (+2 hits) and Cooldown Cutter (-30% cooldown) are taken partly for damage and partly because Heaven's Hammer is the repeatable super-knockback-resistance button in boss fights.",
+      "consensus": "strong",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+        "https://maplestorywiki.net/w/Guide:Paladin",
+        "https://grandislibrary.com/explorers/paladin"
+      ]
+    },
+    "trainingMobbing": {
+      "picks": [
+        "Divine Charge - Extra Strike",
+        "Divine Charge - Reinforce",
+        "Heaven's Hammer - Cooldown Cutter",
+        "Heaven's Hammer - Extra Strike",
+        "Heaven's Hammer - Reinforce"
+      ],
+      "why": "Divine Charge is the mobbing attack and Heaven's Hammer is the AoE; Cooldown Cutter raises how often the AoE is available per spawn wave.",
+      "consensus": "strong",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+        "https://maplestorywiki.net/w/Guide:Paladin"
+      ]
+    },
+    "notes": "There are not enough hyper skill points to max everything, so bossing and training builds differ and are worth resetting between. The two independent sources disagree on the fifth bossing point - see conflicts[]. The class doc adds that Heaven's Hammer's base damage and hit count are already high enough that the Reinforce point and the boost node are not mandatory for training clear."
+  },
+  "innerAbility": {
+    "oneHandedWeapon": {
+      "lines": [
+        "20% Boss Damage (legendary, 1st line)",
+        "8% Damage to monsters with an Abnormal Status (2nd line)",
+        "3rd line flex: 38% Buff Duration or 21 Attack"
+      ],
+      "why": "A one-handed weapon has a base speed of 5, so it reaches the attack speed cap without spending the legendary line on +1 Attack Speed - that line goes to boss damage instead."
+    },
+    "twoHandedWeapon": {
+      "lines": [
+        "+1 Attack Speed (legendary, 1st line)",
+        "10% Boss Damage",
+        "8% Damage to monsters with an Abnormal Status",
+        "38% Buff Duration (alternative)"
+      ],
+      "why": "A two-handed weapon cannot reach attack speed 10 without the +1 Attack Speed inner ability, and Paladin is unusually attack-speed sensitive: at AS10 a Blast animation is about 510 ms against Light of Judgment's 500 ms internal cooldown, so nearly every Blast inside Sacred Bastion's sanctuary also procs Light of Judgment, which in turn stacks Divine Brand and fires Divine Judgment more often. The class doc puts the AS8 to AS9 step at roughly +11% final damage and AS9 to AS10 at roughly +5.9%, excluding the Light of Judgment gain."
+    },
+    "reasoning": {
+      "bossDamage": "Rated the best consistent line against bosses.",
+      "damageToAbnormalStatus": "Rated second best, and effectively a second boss damage line for this class specifically: Noble Demand debuffs the target with no cooldown, so bosses are always in an abnormal state.",
+      "buffDuration": "Third-line option; extends the Terms and Conditions link skill window and lines up better with Divine Echo.",
+      "flatAttack": "Third-best pure damage option for a one-handed user who already has boss damage and abnormal-status damage.",
+      "critRate": "No longer a priority pick now that Legion Artifact supplies crit rate."
+    },
+    "rolling": "Most honour-efficient route is to lock the unique 2nd and 3rd lines first and then roll for the legendary 1st line, though the class doc notes the New Age inner ability changes shrank that advantage to near-negligible; rolling all three at once is now viable if you have honour banked. Use Black Circulators until values are maxed, Chaos Circulators only once every line is already at its minimum value.",
+    "consensus": "weak",
+    "consensusNote": "Only one independent source. Grandis Library prints the same three lines but credits its inner ability, hyper passive and boost node data to this same class doc, so it is not a second opinion.",
+    "sources": [
+      "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+      "https://grandislibrary.com/explorers/paladin"
+    ]
+  },
+  "gearingNotes": "Weapon: Paladin can use one-handed or two-handed swords and blunt weapons. High Paladin pays out differently per weapon - a blunt weapon (either hand) adds +10% ignore-defence that a sword does not, a one-handed weapon adds +3% mastery, and crit damage differs by a point (+6% for a one-handed sword, +5% for the others). Weapon multiplier is 1.24x one-handed against 1.34x two-handed. The class doc's conclusion: in Reboot a two-handed weapon is strictly better, and a two-handed blunt weapon min-maxes; in regular server a one-handed weapon plus an exceptional Terminus Defender closes to within about 2-3% final damage of two-handed plus a Rosary, so the choice there is close enough that cosmetics can decide it. Swords keep the option of job-changing to Hero without regearing.\n\nAttack speed: treat attack speed 10 as the target, not 8. The stat window shows stage 8 either way; hover the attack speed tooltip and look for the bonus-attack-speed line to confirm you broke the soft cap. An Extreme Green Potion (or Decent Speed Infusion plus a Monster Park green potion) is part of reaching it. Two-handed users must spend the legendary inner ability line on +1 Attack Speed to get there.\n\nIgnore defence: target 93-95% on-screen including familiars. Paladin adds 50% off-screen from Noble Demand (no cooldown, recast for full uptime), 20% off-screen from the Blast / Divine Judgment boost node at Lv. 40+, up to 16% from Weapon Aura, and 31% base from High Paladin (+10% with a blunt weapon), so 95% on-screen already becomes about 98.3% off-screen. Pushing to 96-97% on-screen usually costs a WSE potential line that would be worth more as 30-40% boss damage or 9-12% attack.\n\nCooldown hat: not mandatory, unlike some classes, but roughly competitive with a stat hat because it lets a second Falling Justice fit inside one Divine Echo. The class doc recommends -4 seconds as the balance point (-3 is too tight outside regular server's bonus potential, -5 or -6 mostly buys leeway on the origin burst and can desync Falling Justice from Echo). It also costs far more than stat lines, and it makes the rotation more demanding. Cooldown reduction also helps training and Dojo/Culvert.\n\nLegion Artifact: primary bossing crystals run %Damage, %Boss Damage, %Crit Damage and %IED as the lead stats, each crystal repeating the others in a different order (the lead stat of each crystal must be unique), with %Crit Rate and Attack filling the third slots; later crystals are flex picks (All Stats, Buff Duration, Drop, Meso, EXP, Cooldown Skip).\n\nSkill rings: all skill rings run a 120-second cooldown that ignores cooldown skip, which lines up exactly with Grand Guardian's 120-second cooldown - sync them. Ring of Restraint, Weapon Jump S and Risk Taker are the ones the class doc discusses for bossing.",
+  "commonMistakes": [
+    {
+      "mistake": "Leaving attack speed at 8 on a two-handed weapon. Paladin loses more than most classes from this because Blast's animation length at AS10 is what keeps Light of Judgment procing inside Sacred Bastion's sanctuary.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Chasing ignore defence past the 93-95% on-screen band. Paladin's kit already supplies large off-screen IED, so extra lines buy almost nothing and cost a slot that boss damage or attack would use better.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Crafting two boost nodes that lead with the same first skill. They can be combined but never equipped together, so the second copy does nothing until you re-roll it.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Forgetting to recast Divine Blessing (and anything else you are passing) after casting Divine Echo or switching its target. The shared buffs do not carry across the switch.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Assuming the linked party member always gets the full Divine Echo window. Their duration scales with your total STR - you need about 35k STR for the full 30 seconds.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Following a pre-Dreamer KMS HEXA level path. The class doc states that path is obsolete and now recommends a per-character efficiency calculator instead.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Still dropping Heaven's Hammer from the boss rotation after unlocking its HEXA mastery. Post-HEXA it carries a large passive boost to HEXA Blast and HEXA Divine Judgment and the class doc says to cast it off cooldown.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Expecting Combat Orders to raise HEXA skills. It only affects 4th job skills, so its value shrinks as more of your damage moves into HEXA versions.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Boosting Smite Shield hoping for a longer bind. Bind duration scales with the percentage of the target's HP you deal, which is negligible against boss HP - the boost is training damage only.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Spending hyper stat points on Abnormal Status Resistance. Paladin already stacks it from Shield Mastery, Willpower and Vessel of Light.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    },
+    {
+      "mistake": "Burning the full 30 seconds of Sacrosanctity every time. Cancelling it early refunds cooldown (45 seconds per 5 seconds of duration left), and a full 30-second use leaves you with no i-frame for the next few minutes.",
+      "sources": [
+        "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      ],
+      "consensus": "weak"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+      "what": "'The Comprehensive Guide to Paladin' - the Paladin class doc maintained by the Paladin Discord community (credited contributors include UltimateNPC/5mayday, Vaiur, Rorik, Chau). Deepest source by far: weapon choice, attack speed, inner ability, boost node priorities and pairing, V matrix skill node leveling order, HEXA structure, IED targets, burst rotation, cooldown hat analysis.",
+      "dated": "2025-09-21 (stated 'LAST UPDATED' in the document, marked WIP)",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Guide:Paladin",
+      "what": "MapleStory Wiki community guide page for Paladin: strengths/weaknesses, bossing and mobbing gameplay, recommended hyper skills for bossing and for training, recommended trinodes.",
+      "dated": "2025-01-25 (page revision history; created and last edited that day)",
+      "independent": true
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "Community 'perfect trios' reference covering every class; used for the Paladin trinode pairings.",
+      "dated": "2024-11-21 (stated on page). Pre-dates the 2025-01-01 recency preference - flagged.",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+      "what": "'Perfect Boost Nodes For Every Class' - four-node Paladin boost node layout and the full list of skills to boost.",
+      "dated": "2026-03-31 (stated last-updated on page; original article from 2021)",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/explorers/paladin",
+      "what": "Grandis Library Paladin class overview: class properties, weapon multipliers and attack speed stages, base stats from skills, skill build path, boost node groupings and which are worth upgrading, link skill, legion bonus, HEXA mastery/enhancement core structure.",
+      "dated": "Page states GMS Ver. 269 [Ride the Lightning Update]",
+      "independent": false,
+      "dependencyNote": "The page credits its inner ability, hyper passive build and boost node build to the same Paladin class doc listed above, so for those three fields it is a restatement, not a second source."
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Paladin/Skills",
+      "what": "MapleStory Wiki Paladin skill data: full HEXA skill core / mastery core / enhancement listing and numbers, link skill values, V skill descriptions.",
+      "dated": "Page last edited 2026-09-12",
+      "independent": false,
+      "dependencyNote": "Same wiki as the Guide:Paladin page above; counted as one wiki rather than two independent sources."
+    },
+    {
+      "url": "https://www.maplerhouse.com/classes/paladin",
+      "what": "Class stats and ranking site: GMS/KMS/MSEA Paladin population and class share, top-character skill listings. Used only to confirm the class is live and played in GMS, not for build advice.",
+      "dated": "Guide modules 2026-06-19; GMS class statistics row dated 2026-09-11",
+      "independent": true,
+      "note": "The site states its data comes from Nexon's Open API. Only its public web page was read here; the Nexon Open API was not used."
+    }
+  ],
+  "independentSourceCount": 5,
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Fifth bossing hyper skill point",
+      "positionA": {
+        "claim": "Heaven's Hammer - Reinforce",
+        "source": "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+        "note": "Grandis Library prints the same, but credits the class doc."
+      },
+      "positionB": {
+        "claim": "Divine Charge - Extra Strike",
+        "source": "https://maplestorywiki.net/w/Guide:Paladin"
+      },
+      "resolved": false
+    },
+    {
+      "topic": "Third slot of the optional trio",
+      "positionA": {
+        "claim": "Smite Shield",
+        "sources": [
+          "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8",
+          "https://maplestorywiki.net/w/Guide:Paladin",
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/"
+        ]
+      },
+      "positionB": {
+        "claim": "Leap Attack or Smite Shield, either works",
+        "source": "https://mystyjl.github.io/reference/NodeGuide.html"
+      },
+      "resolved": false
+    },
+    {
+      "topic": "Invincible Belief link skill - cooldown and whether it carries a damage passive",
+      "positionA": {
+        "claim": "Cooldown 90 seconds, no damage passive mentioned",
+        "sources": [
+          "https://grandislibrary.com/explorers/paladin",
+          "https://www.maplerhouse.com/classes/paladin"
+        ],
+        "note": "Grandis page is marked GMS Ver. 269."
+      },
+      "positionB": {
+        "claim": "Cooldown 150 seconds at Lv. 9, plus [Passive Effect: Damage +6%], with Lv. 7 noted as granting permanent damage to Explorer Warriors",
+        "source": "https://maplestorywiki.net/w/Paladin/Skills",
+        "note": "Page last edited 2026-09-12, i.e. newer."
+      },
+      "resolved": false,
+      "comment": "Both agree on 44% Max HP per second for 3 seconds at master level and on the 15% HP trigger. The newer wiki page suggests the link skill was revised; the older Grandis figure may simply be stale."
+    },
+    {
+      "topic": "Sacred Bastion cooldown and first-shockwave trigger count",
+      "positionA": {
+        "claim": "Origin skills share a 100-second cooldown separate from class bind and Lucid earring timers; level 1 first shockwave triggers 17 times",
+        "source": "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      },
+      "positionB": {
+        "claim": "Skill cooldown 360 seconds; level 1 first shockwave triggers 28 times",
+        "source": "https://maplestorywiki.net/w/Paladin/Skills"
+      },
+      "resolved": false,
+      "comment": "Likely a version gap rather than a disagreement - origin skill cooldowns were shortened at some point - but both figures are recorded as found."
+    },
+    {
+      "topic": "Two-handed weapon base attack speed (internal inconsistency in one source)",
+      "positionA": {
+        "claim": "Two-handed weapons have a base speed of 4",
+        "source": "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      },
+      "positionB": {
+        "claim": "Two-handed users must take +1 Attack Speed 'due to a weapon speed of 6'",
+        "source": "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+      },
+      "resolved": false,
+      "comment": "The same document states both. Grandis Library separately lists the stat-window attack speed as 8 for one-handed and 7 for two-handed. The actionable claim all sources agree on: a two-handed Paladin needs the +1 Attack Speed inner ability to reach the cap, a one-handed Paladin does not."
+    }
+  ],
+  "existsInGms": {
+    "exists": true,
+    "evidence": "Paladin is an original Explorer Warrior branch and is live and creatable in GMS. A class-ranking site dated 2026-09-11 lists 10,302 GMS Paladins at Lv. 260+ (rank #30, 1.14% class share); the MapleStory Wiki Paladin skill page was edited 2026-09-12 and carries current HEXA skill data; Grandis Library's Paladin overview is stamped GMS Ver. 269; the community class doc was updated 2025-09-21 and discusses current GMS systems (HEXA, Legion Artifact, New Age inner ability changes). No source suggests removal or suspension.",
+    "caveat": "I could not find a page explicitly stamped v.271 to verify against that exact patch; the newest sources I could date are 2026-09-11 and 2026-09-12.",
+    "sources": [
+      "https://www.maplerhouse.com/classes/paladin",
+      "https://maplestorywiki.net/w/Paladin/Skills",
+      "https://grandislibrary.com/explorers/paladin",
+      "https://docs.google.com/document/d/1aAQV9QGR4UywDGhQq1O3X7blXADPGDMvgDIAKfCmrH8"
+    ]
+  },
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "vMatrix.priority last entry: 'Grandis Library marks these two node groupings as the ones that do not need upgrading'. Grandis does not say this. It files Leap Attack/Rush and Divine Swing/Close Combat under SECONDARY - 'don't unlock 6th Job HEXA Mastery but still used'. The 'OTHER - Boost Nodes that do not need to be upgraded or has least priority' bucket is a legend key with no nodes assigned to it. Confirmed on two separate fetches of the page. This is a claim attributed to a named source that the source does not make.",
+      "vMatrix.skillNodeLevelingOrder.trainingFocused appears to be invented. The file gives: Erda Fountain / Decent Holy Symbol / Divine Charge (grouped) -> Hammers of the Righteous -> Mighty Mjolnir -> Divine Echo. The class doc's own text gives: Divine Charge > Heaven's Hammer > Divine Judgment > Grand Guardian > Divine Echo > everything else. Two independent fetches of the doc both returned Heaven's Hammer and Divine Judgment in this list; neither returned Erda Fountain, Decent Holy Symbol, Hammers of the Righteous or Mighty Mjolnir. The researcher notes this was read off unlabeled icons - that reading failed. (The bossing order, by contrast, matches the doc exactly and is sound.)",
+      "The '93-95% on-screen ignore defence' target attributed to the class doc could not be located in it. Searched the document for '93%', '95%', and for any stated on-screen IED target: not found; the doc returns only per-skill IED values (Noble Demand 50%, Lv.40 node +20% off-screen, HEXA Divine Judgment +20%). The band is asserted three times - hyperStats.notes, gearingNotes, commonMistakes - and carries derived advice ('pushing to 96-97% costs a WSE line worth more as 30-40% boss damage or 9-12% attack'). Hedged finding: the doc is long and a search miss is possible, but as cited this band is unverified and should not be presented as the doc's target.",
+      "STALE: thedigitalcrowns.com is a 2021 article (last-updated stamp 03/31/2026 confirmed, but I could not reach its Paladin section - the page truncates before it). It is cited in support of 'unlocks the 1st/2nd/3rd/4th HEXA Mastery core' on four separate nodes - claims about a system that did not exist when the article was written. Anachronistic citation regardless of the refresh stamp.",
+      "STALE: mystyjl.github.io NodeGuide is dated 2024-11-21 (confirmed on page, 'Made by: mastermysty'), predating the 2025-01-01 recency preference. sources[] flags this, then the body counts it toward consensus 'strong' on five separate node entries anyway.",
+      "STALE: grandislibrary.com/explorers/paladin is stamped 'GMS Ver. 269 [Ride the Lightning Update]' against a v.271 target, and is one of the two positions in the unresolved Invincible Belief cooldown conflict (90 sec, confirmed verbatim on the page) - i.e. the likely-stale figure is being carried as a live position. The file does note this.",
+      "STALE: Ascent-era gap. The class doc is dated 2025-09-21 and marked WIP; Ascent skills entered KMS in July 2025 and the doc contains no 'Dominus' string. So the file's V matrix priorities, trios and hyper skill builds are all drawn from pre-Ascent material, while the HEXA section asserts an Ascent core is 'confirmed present'. The file never says its build advice predates the Ascent core it lists.",
+      "STALE: hexa.unverifiedRegionalCores is very likely a naming artifact, not a regional variant. KMS calls Paladin's 4th job skill 'Sanctuary' (confirmed in the Destiny remaster notes), so 'Sanctuary VI' is Heaven's Hammer VI; and Blessed Hammer / Grand Cross / Holy Unity are the KMS names for Hammers of the Righteous / Grand Guardian / Divine Echo. Those 'extra' enhancement cores are almost certainly the same four the file already lists under GMS names. Presenting them as possibly-additional cores invites a reader to hunt for cores that do not exist; the note should read 'KMS naming', not 'could not confirm'."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "8 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

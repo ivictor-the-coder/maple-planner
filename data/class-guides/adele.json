@@ -1,0 +1,499 @@
+{
+  "slug": "adele",
+  "className": "Adele",
+  "branch": "Flora (High Flora)",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Bladecaster",
+  "secondaryWeapon": "Bladebinder",
+  "archetype": "STR warrior built around a secondary resource called Aether Weaving, unlocked in 2nd job. Aether Weaving accrues passively and on hits from skills tagged as Trigger skills; every 100 Aether Weaving readies an Aether Sword, and Hunting Decree summons the readied swords. Bossing runs on a two-tier cadence: a full burst every 120 seconds and a shorter mini burst every 60 seconds. The class doc sequences both around Noble Summons plus Aether Bloom, then Ruin, Shardbreaker and Reign of Destruction, with Maestro folded into the full burst only when it is off cooldown.",
+  "linkSkill": {
+    "name": "Noble Fire",
+    "effect": "Boss Damage +6%, plus a damage bonus that scales with party size on the same map: 3% per member up to 12%. A character not in a party counts as its own party.",
+    "levels": "Master Level 3."
+  },
+  "legionEffect": "Flat STR: +10 / +20 / +40 / +80 / +100 as the character's legion rank rises.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost node group 1 - Cleave, Magic Dispatch, Aetherial Arms",
+        "why": "Cleave is the filler attack and the group gates HEXA Mastery Core 1 (HEXA Cleave, HEXA Magic Dispatch, HEXA Aetherial Arms). On the wiki, Magic Dispatch and Aetherial Arms share a single boost entry rather than occupying two slots.",
+        "consensus": "strong - the grouping is visible in three independent places: the aggregator page that restates the class doc, the wiki's mastery core listing, and the wiki's boost node names",
+        "sources": [
+          "https://grandislibrary.com/flora/adele",
+          "https://maplestorywiki.net/w/Adele/Skills",
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+        ]
+      },
+      {
+        "node": "Boost node group 2 - Hunting Decree, Plummet, Grave Proclamation",
+        "why": "Gates HEXA Mastery Core 2 (HEXA Hunting Decree, HEXA Plummet). Grave Proclamation sits in the boost group but has no HEXA mastery version. Hunting Decree is the skill that commands readied Aether Swords, and the HEXA ordering data pushes its mastery hardest in the early phase.",
+        "consensus": "strong on the grouping (aggregator plus wiki); weak on the emphasis (single source family)",
+        "sources": [
+          "https://grandislibrary.com/flora/adele",
+          "https://maplestorywiki.net/w/Adele/Skills",
+          "https://github.com/rumblebadger/adelesixth"
+        ]
+      },
+      {
+        "node": "Boost node group 3 - Impale, Resonance Rush, Noble Summons, Aether Bloom",
+        "why": "Gates HEXA Mastery Core 3 (HEXA Impale, HEXA Resonance Rush, HEXA Noble Summons, HEXA Aether Bloom). Noble Summons and Aether Bloom open both burst sequences.",
+        "consensus": "strong on the grouping",
+        "sources": [
+          "https://grandislibrary.com/flora/adele",
+          "https://maplestorywiki.net/w/Adele/Skills",
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+        ]
+      },
+      {
+        "node": "Boost node group 4 - Aether Forge, Reign of Destruction, Shardbreaker, Blade Torrent",
+        "why": "Gates HEXA Mastery Core 4 (HEXA Aether Forge, HEXA Reign of Destruction, HEXA Shardbreaker). Shardbreaker and Blade Torrent are hyper actives that ride in this group; Blade Torrent has no HEXA mastery version. In the class doc's own HEXA ordering data this is the first mastery core unlocked.",
+        "consensus": "strong on the grouping",
+        "sources": [
+          "https://grandislibrary.com/flora/adele",
+          "https://maplestorywiki.net/w/Adele/Skills",
+          "https://github.com/rumblebadger/adelesixth"
+        ]
+      },
+      {
+        "node": "Boost node group 5 - Blade of Will, Glint - optional only",
+        "why": "The class doc states plainly that this group is unnecessary: the damage-relevant skill in it is Glint, a movement skill that contributes no damage. It concedes Glint is used while bossing, so boosting it is a marginal optimisation once nodestones are in surplus, not a build step.",
+        "consensus": "weak - stated once, in the class doc, and consistent with the aggregator ranking this group below the four damage groups",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://grandislibrary.com/flora/adele"
+        ]
+      },
+      {
+        "node": "Boost node group 6 - Skewering, Eviscerate - lowest priority",
+        "why": "Ranked last by the aggregator and not mentioned at all in the class doc's boost node section, which accounts for only four damage groups plus one optional group.",
+        "consensus": "weak - an absence of discussion rather than a positive recommendation",
+        "sources": [
+          "https://grandislibrary.com/flora/adele",
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Current grouping as published for GMS v.269 and later: group 1 Cleave / Magic Dispatch / Aetherial Arms; group 2 Hunting Decree / Plummet / Grave Proclamation; group 3 Impale / Resonance Rush / Noble Summons / Aether Bloom; group 4 Aether Forge / Reign of Destruction / Shardbreaker / Blade Torrent; group 5 Blade of Will / Glint; group 6 Skewering / Eviscerate.",
+        "why": "This is the grouping the aggregator publishes as current, and the wiki's mastery core contents line up with groups 1 through 4.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/flora/adele",
+          "https://maplestorywiki.net/w/Adele/Skills"
+        ]
+      },
+      {
+        "trio": "Older cross-class trio table (data stated as of 2024-05-14): trio 1 Magic Dispatch + Aether Forge + Hunting Decree; trio 2 Cleave + Reign of Destruction + Aether Bloom; it also names Impale as a 6th job priority.",
+        "why": "Recorded because it is the only all-class trio reference outside the class doc lineage, and because it demonstrably does not match the current grouping.",
+        "consensus": "weak and contested - predates the v.269 boost node change, which the aggregator makes explicit by offering a separate pre-v.269 node view",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/flora/adele"
+        ]
+      }
+    ],
+    "notes": "Class doc node and V skill leveling order, after the boost nodes themselves: Infinity Blade, then Storm, then Weapon Aura, then Grandis Goddess's Blessing, then Legacy Restoration and Ruin, then Conversion Overdrive, then True Arachnid Reflection and Solar Crest, then Blink, then Impenetrable Skin and Rope Lift, then Decent Holy Fountain, then Erda Will, then the stat decents. Its own caveats: unlock a skill before pouring levels into anything, stat decents only need level 26, and Decent Hyper Body does not need to be cast. Source: class doc, 2026-06-25. Cross-check: the Korean wiki independently calls Weapon Aura the common core to strengthen first once the essential 5th job skills are done, which is consistent with its placement here. Adele's four class-specific V skills are Ruin, Infinity Blade, Legacy Restoration and Storm (wiki)."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Layout, not opinion: the Origin core is Maestro, the Ascent core is Einheit, there are four Mastery cores (core 1 HEXA Cleave / HEXA Magic Dispatch / HEXA Aetherial Arms; core 2 HEXA Hunting Decree / HEXA Plummet; core 3 HEXA Impale / HEXA Resonance Rush / HEXA Noble Summons / HEXA Aether Bloom; core 4 HEXA Aether Forge / HEXA Reign of Destruction / HEXA Shardbreaker), and four Enhancement cores (Ruin Boost, Storm Boost, Infinity Blade Boost, Legacy Restoration Boost). An Enhancement core requires its V skill maxed and equipped, and its final damage rises linearly with jumps at levels 10, 20 and 30.",
+        "why": "Game data. Verifiable on the wiki and mirrored, with the Korean skill names and their GMS equivalents, on the Korean wiki.",
+        "consensus": "strong - two independent wikis",
+        "sources": [
+          "https://maplestorywiki.net/w/Adele/Skills",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "step": "Unlock the Mastery cores before anything else, in this order: core 4 (Aether Forge / Reign of Destruction / Shardbreaker), then core 1 (Cleave / Magic Dispatch / Aetherial Arms), then core 2 (Hunting Decree / Plummet), then core 3 (Impale / Resonance Rush / Noble Summons / Aether Bloom).",
+        "why": "This is the head of the fragment-efficiency ordering the class doc publishes and credits to its contributor's open-source calculator. The first four unlocks in the recommended order file are exactly these, and the first three are the three most efficient steps in the entire list.",
+        "consensus": "weak on the exact order - one source family only (class doc plus the calculator repo it credits). Moderate on mastery-cores-first as a principle, because the Korean wiki independently ranks Sol Hecate as the best thing to open after the Mastery cores, which presupposes the same starting point.",
+        "sources": [
+          "https://github.com/rumblebadger/adelesixth",
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "step": "Push HEXA Hunting Decree mastery hard in the early phase - the calculator takes it to level 9 before most other cores leave single digits, and on to level 19 well before the other masteries move again.",
+        "why": "Hunting Decree commands the readied Aether Swords, so its mastery carries an outsized share of sustained damage in the ordering model.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://github.com/rumblebadger/adelesixth",
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+        ]
+      },
+      {
+        "step": "CONTESTED - order of the four Enhancement cores. The GMS class doc's ordering data unlocks Infinity Blade Boost first, then Legacy Restoration Boost, then Storm Boost, with Ruin Boost last. The Korean wiki states the reinforcement order as Legacy Restoration Boost, then Infinity Blade Boost, then Storm Boost, then Ruin Boost, arguing Legacy Restoration outranks Infinity Blade because of the extra 10% final damage it gains near the top of its range.",
+        "why": "Both sources are current, both are treated as authoritative in their own region, and they disagree only on which of the first two comes first. They agree Storm Boost is third and Ruin Boost is last.",
+        "consensus": "moderate on Storm third and Ruin last (two independent sources agree); contested on the first two",
+        "sources": [
+          "https://github.com/rumblebadger/adelesixth",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "step": "Take Legacy Restoration Boost to level 28, then stop and spend elsewhere; finish levels 29 and 30 only at the very end of the whole matrix.",
+        "why": "The final damage steps from 28 to 30 are worth very little relative to their fragment cost, so everything else is bought first.",
+        "consensus": "strong - two independent sources arrive at the same level-28 stopping point. The Korean wiki states it in prose; the GMS calculator's recommended order file places 27-to-28 at step 202 of 268 and puts 28-to-29 and 29-to-30 in the last three steps.",
+        "sources": [
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://github.com/rumblebadger/adelesixth"
+        ]
+      },
+      {
+        "step": "Maestro (Origin) is levelled in a long interleave rather than rushed. In the recommended ordering it starts moving only after the four Mastery cores and Infinity Blade Boost are opened. Its own breakpoints are level 10 for +20% ignore defense, level 20 for +20% boss damage, and level 30 for +30% ignore defense and +30% boss damage.",
+        "why": "The breakpoints are game data. The interleaved placement is the calculator's output, and the calculator explicitly prices those three breakpoints in.",
+        "consensus": "strong on the breakpoints (wiki); weak on the placement (single source family)",
+        "sources": [
+          "https://maplestorywiki.net/w/Adele/Skills",
+          "https://github.com/rumblebadger/adelesixth"
+        ]
+      },
+      {
+        "step": "Einheit (Ascent) is deliberately left out of any fixed ordering. It is used three times per boss rather than on a timer, so its worth depends on how long the fight runs. The class doc also records that Ascent skills are not affected by buffs shorter than 30 minutes, nor by hat or ring swaps - so Einheit is not cast during burst and needs no gear swap. Use it while burst skills are on cooldown, or as an iframe.",
+        "why": "The class doc gives this as its stated reason for excluding Einheit from the order, and derives its whole ordering from a 30-minute, five-origin-cycle minimum-spec clear model.",
+        "consensus": "weak - single source, but it is an explicit statement of method rather than a ranking, and the skill name is wiki-verified",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://maplestorywiki.net/w/Adele/Skills"
+        ]
+      },
+      {
+        "step": "Sol Janus is a preference call, not a damage step. A character that only does dailies and bossing needs at most level 1; everything else goes into damage. A character that trains a lot can push it as far as it likes.",
+        "why": "Sol Janus is an EXP core and cannot be used on boss maps at all, so past level 1 it does nothing for bossing.",
+        "consensus": "moderate - the class doc gives the judgement, and the wiki independently confirms Sol Janus is barred from boss maps and that its scaling passive is EXP obtained",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://maplestorywiki.net/w/Adele/Skills"
+        ]
+      },
+      {
+        "step": "Sol Hecate autocast bindings: bind Styx to one of the 60-second skills, with the Angelic Buster link preferred because it sits earlier in the sequence; bind Phlegethon to any burst skill; leave Charon unbound.",
+        "why": "Class doc reasoning: Phlegethon's damage does not land for about a second after the cast, so it does not need to sit at the head of the sequence, and Adele already opens with Infinity Blade for the iframe, so Phlegethon's short iframe is redundant here.",
+        "consensus": "weak - single source. Skill names Sol Hecate: Styx, Sol Hecate: Charon and Sol Hecate: Phlegethon are wiki-verified.",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://maplestorywiki.net/w/Adele/Skills"
+        ]
+      },
+      {
+        "step": "The Korean wiki ranks Sol Hecate as the highest-value common core to open and reinforce once the Mastery cores are done, on the grounds that its own damage is respectable on top of its utility.",
+        "why": "Recorded because no GMS source ranks the common cores against the class cores at all - the GMS ordering data excludes common cores entirely.",
+        "consensus": "weak - one source, and it is KMS-balance, so the fragment economy it assumes is not Heroic's",
+        "sources": [
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      }
+    ],
+    "notes": "HEXA Stat: the class doc gives ATT, then main stat, then critical damage as a general shape and says it shifts with progression stage, pointing at MapleScouter's HEXA stat optimiser for a real answer. Single source (class doc, 2026-06-25); MapleScouter is a Korean tool built on KMS balance. The published order assumes minimum-spec 30-minute clears, modelled as five origin cycles per boss; the class doc says orders for other origin-cycle counts exist on MapleScouter but that it computes and prioritises differently. The order itself is generated by an open-source Python script credited to RumbleBadger, a named contributor to the class doc - so the doc, the repo and the aggregator page that restates the doc are one source, not three."
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "No source found publishes an Adele hyper stat allocation order. The class doc has no hyper stat section at all; the only role it gives hyper stats is as the topping-up mechanism, alongside the legion board, to reach 100% critical rate once every other crit source is in place. Left null rather than filled with generic advice. One low-quality aggregator page does make a hyper stat claim, but it names attack speed as the benefit and attack speed is not a hyper stat - that page is recorded in sources as rejected. The community's operative answer to hyper stat priority is a per-character computation, not a list.",
+    "sources": [
+      "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+    ]
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "pick": "Trigger - Reinforce",
+        "why": "Raises the damage of Trigger skills, which is the tag on Adele's core attacks.",
+        "consensus": "strong - the GMS class doc, the aggregator that restates it, and the Korean wiki all list it, and the Korean wiki puts it in its required set",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://grandislibrary.com/flora/adele",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "pick": "Reign of Destruction - Persist",
+        "why": "Extends Reign of Destruction's duration; the class doc credits it for both bossing and mobbing.",
+        "consensus": "strong - present in the GMS class doc, in the Korean wiki's required set, and in an independently authored 2024 guide",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://thedigitalcrowns.com/adele-class-guide-maplestory-reboot/"
+        ]
+      },
+      {
+        "pick": "Aether Bloom - Cooldown Cutter",
+        "why": "Cuts Aether Bloom's cooldown. Same three-source agreement as above. Note the aggregator page misprints the skill as Aether Blossom; the wiki-correct name is Aether Bloom - Cooldown Cutter.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://maplestorywiki.net/w/Adele/Skills"
+        ]
+      },
+      {
+        "pick": "True Nobility - Shield Reinforce",
+        "why": "Adds damage while a shield is up during True Nobility, which lands in burst. The class doc picks it over Trigger - Boss Rush while conceding the two are close, on the grounds that it is the more burst-oriented of the pair and burst matters more in party bossing.",
+        "consensus": "moderate and contested - the GMS class doc takes it as standard; the Korean wiki treats it as one of two optional picks rather than required",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://grandislibrary.com/flora/adele",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "pick": "Aether Guard - Persist",
+        "why": "Raises Aether Guard's maximum key-down time; the class doc values it for shaving roughly 7 seconds off the effective cooldown so the guard is available more often.",
+        "consensus": "moderate and contested - GMS class doc standard, but the Korean wiki lists it as an optional pick",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://grandislibrary.com/flora/adele",
+          "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      }
+    ],
+    "swaps": [
+      {
+        "situation": "Culvert, Dojo and training",
+        "swap": "Drop Aether Guard - Persist and take Trigger - Boss Rush instead.",
+        "why": "Class doc: the guard is not needed in content that does not hit back hard. It also records that Impale - Efficiency used to be kept for Dojo to sustain aether while moving between stages, and that this is no longer done because HEXA Cleave and the one-minute HEXA swords make aether easier to accumulate.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+        ]
+      },
+      {
+        "situation": "Seren",
+        "swap": "One contributor to the class doc reallocates a point out of True Nobility - Shield Reinforce into Trigger - Reinforce or Trigger - Boss Rush, preferring to keep True Nobility itself as a survival shield for the gauge mechanic.",
+        "why": "Recorded because it is an explicit in-doc dissent from the doc's own standard build, attributed as a personal opinion.",
+        "consensus": "weak - one named opinion inside one source",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+        ]
+      }
+    ],
+    "actives": {
+      "picks": [
+        "Blade Torrent",
+        "Shardbreaker",
+        "Divine Wrath"
+      ],
+      "why": "These are the only three hyper actives Adele has, so there is no selection decision - all three are taken. Shardbreaker and Blade Torrent also appear inside boost node group 4.",
+      "consensus": "strong - the list is game data on the wiki, and the same three are named by an independently authored guide",
+      "sources": [
+        "https://maplestorywiki.net/w/Adele/Skills",
+        "https://thedigitalcrowns.com/adele-class-guide-maplestory-reboot/"
+      ]
+    },
+    "notes": "Adele's full hyper passive pool per the wiki is Trigger - Reinforce, Trigger - Boss Rush, Trigger - Guardbreak, Reign of Destruction - Persist, Aether Bloom - Cooldown Cutter, Resonance Rush - Efficiency, True Nobility - Shield Reinforce and Aether Guard - Persist. The Korean wiki notes Adele is short on hyper skill points relative to what it would like to take, which is why the last one or two slots are contested rather than settled."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "preset": "Option 1",
+        "lines": [
+          "Boss Damage +20% (legendary top line)",
+          "Buff Duration +38%",
+          "Damage to monsters inflicted with Abnormal Status +8%"
+        ],
+        "consensus": "weak - one source family (class doc, restated by the aggregator)",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://grandislibrary.com/flora/adele"
+        ]
+      },
+      {
+        "preset": "Option 2",
+        "lines": [
+          "Chance to Skip Cooldown +20% (legendary top line)",
+          "Boss Damage +10%",
+          "Buff Duration +38%"
+        ],
+        "consensus": "weak - one source family",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://grandislibrary.com/flora/adele"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "preset": "Farming",
+        "lines": [
+          "Item Drop Rate +20% (legendary top line)",
+          "Meso Obtained +15%",
+          "Third line open - Damage to Normal Monsters +8% if more damage is wanted"
+        ],
+        "consensus": "weak - one source family. The class doc says drop rate first is best for farming fragments in Grandis, notes familiar cards were added across Grandis in the Stargazer update, and says swapping drop and meso around is personal preference depending on whether the character needs mesos more.",
+        "sources": [
+          "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+          "https://grandislibrary.com/flora/adele"
+        ]
+      }
+    ],
+    "notes": "The class doc treats the two bossing presets as effectively equivalent and says to run whichever is preferred, with one caveat: at very high combat power (it cites roughly 1 billion and above) the cooldown skip line may overtake boss damage because boss damage contributes less final damage at that point, and it tells the reader to test rather than assume. Buff duration rule: stack it up to around 100%; 114% is reachable without event stats on a very strong legion. Once buff duration reaches roughly 100% from other sources, drop the unique buff duration line for whichever of 10% cooldown skip or 8% damage to abnormal status is not already slotted. Separately, the class doc says a high-level, high-legion character can stop using the critical rate inner ability line entirely, because crit rate is already solved by then. All of this is single-source. No independent guide was found that publishes Adele inner ability lines; the 2024 aggregator page names only a Boss Damage +20% top line, which is consistent but far too thin to count as corroboration of the full presets."
+  },
+  "gearingNotes": "Critical rate is the class-specific gearing constraint worth modelling. The class doc tabulates Adele's built-in crit at 45%: 5% base, 10% Decent Sharp Eyes, 20% Ascent (3rd job passive), 1% Decent Combat Orders adding a point to Strive, and 20% Strive (4th job passive). It then tabulates additional sources totalling 71%: Phantom link 20%, Lynn link 10%, Night Lord legion 4%, Marksman legion 4%, Ocean (Esfera) familiar badge 1%, Rebel (Edelstein) familiar badge 1%, legion artifact 20% at max, plus hyper stats and the legion board bonus. Its rule is to take whatever additional sources are available and then fill the remainder to 100% with hyper stats and the legion board - and once level and legion are high enough, Phantom link and the critical rate inner ability line can both be dropped. Buff duration is a first-class stat for Adele because the Angelic Buster link needs to cover Reign of Destruction and because Storm's buff extension depends on it; target around 100%, with 114% the practical ceiling without event stats. Hat decision: the class doc calls the cooldown hat stronger than the STR hat since the M3 and M4 masteries arrived, because Aether Bloom is now boosted, and adds that it also helps on tight-timer bosses by buying a few seconds of an extra burst. On rolls, -4 is always best, -2 has some merit because it allows two Aether Bloom casts in the fourth Reign of Destruction cycle, and -3 should be rerolled because the -1 component is half as efficient as a -2 or a stat line; a 36% stat hat is essentially only for culvert hat swapping. WSE: Adele uses ATT, not M.ATT. The doc's progression is at least two relevant lines per piece early, three by mid game weighted to ATT with at most one IED line, then 9/0/0, 8/1/0 or 7/2/0 once the liberated weapon and Seren emblem are in, and 9/0/0 or 8/1/0 at end game - it notes Adele has enough innate ATT%, boss% and IED in its own kit that 9/0/0 can beat 8/1/0 even when running Reign of Destruction. Boss lines are preferred on the secondary since it has no level-160-plus potential tier but the same boss values; double-prime the secondary first, then the emblem, then the weapon, and only once the other best-in-slot items are at least fake double prime. Legion board slotting order: critical damage, then boss damage, then IED, then STR roughly level with buff duration, then ATT - with the caveat that STR versus buff duration depends on whether the Angelic Buster link already covers Reign of Destruction, which the doc says it usually does once the Mechanic legion block, artifact release, inner ability and server lag are accounted for. Legion artifact tiering it reports as circulating across multiple class Discords after the update: S critical damage / damage / boss damage, A IED / critical rate / stat, B cooldown skip / ATT, C buff duration - with the note that this inflates critical rate for an already-high-legion character, and that summon and final attack do nothing for Adele. All gearing claims in this field come from the class doc, 2026-06-25, and none were independently corroborated.",
+  "commonMistakes": [
+    {
+      "mistake": "Building boost node group 5 for Glint as if it were a damage node.",
+      "why": "Glint is a movement skill and contributes no damage; the class doc calls the group completely unnecessary and only worth touching once nodestones are in surplus.",
+      "sources": [
+        "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+      ]
+    },
+    {
+      "mistake": "Casting Einheit inside the burst window, or swapping to a cooldown hat or ring for it.",
+      "why": "Ascent skills ignore buffs shorter than 30 minutes and ignore hats and rings, so none of that reaches Einheit. It belongs in the gaps while burst skills are on cooldown, or used as an iframe.",
+      "sources": [
+        "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+      ]
+    },
+    {
+      "mistake": "Forgetting to reapply Grave Proclamation after dying.",
+      "why": "The burst sequences assume Grave Proclamation is on the boss. It does not need reapplying otherwise, but a death wipes it. The class doc flags culvert and certain Baldrix phases as exceptions, and notes each Seren phase counts as a separate boss so it must be recast after every test.",
+      "sources": [
+        "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+      ]
+    },
+    {
+      "mistake": "Keeping a -3 cooldown hat.",
+      "why": "Class doc says reroll it - a -3 is not bad in itself, but its -1 component is half as efficient as a -2 or a stat line.",
+      "sources": [
+        "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+      ]
+    },
+    {
+      "mistake": "Levelling a V skill or node before the skill itself is unlocked, and levelling stat decents past 26.",
+      "why": "Both are explicit warnings in the class doc's node level order section.",
+      "sources": [
+        "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k"
+      ]
+    },
+    {
+      "mistake": "Taking Resonance Rush - Efficiency.",
+      "why": "Contested. A 2024 aggregator guide recommends it. The Korean wiki argues against it outright, saying that once action delay was eased and the damage cycle simplified, Resonance Rush became a mover that incidentally deals damage, so it should not be taken regardless of whether the aether-related mastery cores are open - and that Adele is short on hyper skill points anyway. The current GMS class doc does not include it in any build. Both current sources say no.",
+      "sources": [
+        "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+        "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+        "https://thedigitalcrowns.com/adele-class-guide-maplestory-reboot/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+      "what": "FAQ Guide to Adele V2 - the Adele Discord's maintained class doc, contributors credited as RumbleBadger, Hymn and Yoad. Carries boost node setup and node level order, 6th job skill upgrade order with its stated modelling assumptions, HEXA stat shape, Sol Hecate binding advice, inner ability presets, a critical rate table, hyper skill build with explanations and content-specific swaps, cooldown-versus-STR hat, legion slotting and artifact tiers, WSE progression, burst and mini-burst sequences, culvert and boss-specific notes. No hyper stat section. Read via the plain-text export (append /export?format=txt). Primary source for almost everything in this file. Note the MapleStory Wiki class-guide index still links the older V1 of this doc, which self-identifies as the less-maintained copy.",
+      "dated": "2026-06-25 (stated in the doc's own LATEST UPDATE line)",
+      "independent": true
+    },
+    {
+      "url": "https://github.com/rumblebadger/adelesixth",
+      "what": "Open-source Python tool plus two pre-computed HEXA leveling order files (a recommended order and a burst-optimised order) that the class doc credits by name for its 6th job skill upgrade order. The recommended order file is the machine-readable form of the doc's HEXA ordering image, giving each step's skill, level transition, efficiency, final damage gain and cumulative fragment cost - 268 steps. NOT independent: RumbleBadger is a credited contributor to the class doc, so this and the doc are one source.",
+      "dated": "undated in-repo; corresponds to the class doc it is credited in",
+      "independent": false
+    },
+    {
+      "url": "https://grandislibrary.com/flora/adele",
+      "what": "Aggregator class page. Boost node groupings with primary/secondary/other tiering, hyper skill passive build, recommended inner ability split bossing and training, link skill, legion bonus, base stats from skills, Aether Weaving explanation, example skill build path, and links to the class doc and Discord. NOT independent - its Credits block states that inner ability, hyper skill passives and boost nodes build all come from the Class Doc. No HEXA section, no hyper stats, and no class infographics for Adele. Two patches behind the target.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update]",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Adele/Skills",
+      "what": "Game-data reference. Used here as the name-validation table and as an independent check on structure: the four HEXA Mastery core contents, the four HEXA Enhancement cores and their requirement that the matching V skill be maxed and equipped, the linear-with-jumps-at-10/20/30 scaling, Maestro as the Origin core with its 10/20/30 breakpoints, Einheit as the Ascent core, the four class-specific V skills (Ruin, Infinity Blade, Legacy Restoration, Storm), the full hyper skill pool, and the fact that Sol Janus cannot be used on boss maps. Carries no judgement. Returns 403 to a plain fetch; loads with a normal browser user agent.",
+      "dated": "page last edited 2026-08-11",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "what": "Korean community wiki, Adele skills page, read in machine translation. The only genuinely independent judgement source found for this class: it publishes its own HEXA Enhancement core reinforcement order, the Legacy Restoration level-28 stopping point, a hyper passive required-versus-optional split that differs from the GMS build, an explicit argument against Resonance Rush - Efficiency, a ranking of Sol Hecate as the top common core after the Mastery cores, and a note that Weapon Aura is the common core to strengthen first among the 5th job skills. It also carries the GMS/MSEA/JMS/CMS/TMS name mapping for every skill, which is how the Korean names were matched to GMS ones. KMS balance - its fragment economy is not Heroic's. Returns 403 without a browser user agent.",
+      "dated": "continuously edited; page content references a client update dated 2026-01-15, so current within 2026. Per-revision date not verified.",
+      "independent": true
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "Cross-class boost node trio reference by mastermysty. Its Adele entry gives trio 1 as Magic Dispatch, Aether Forge and Hunting Decree, trio 2 as Cleave, Reign of Destruction and Aether Bloom, plus Impale as a 6th job priority. Independently authored, but the groupings it lists do not match the current ones - it predates the v.269 boost node change. Recorded as a contested historical data point; not used as a current recommendation.",
+      "dated": "page states last update 2024-11-21; author states the data itself is as of 2024-05-14",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/adele-class-guide-maplestory-reboot/",
+      "what": "Independently authored aggregator guide (byline James Chow). Used only to record two things: partial corroboration of four of the five hyper skill passives and of the three hyper actives, and one conflict - it recommends Resonance Rush - Efficiency, which neither current source does. LOW QUALITY, treat as rejected for anything else: it is pre-v.269, its boost node trios do not match current groupings, and its hyper stat claim names attack speed, which is not a hyper stat at all. No claim in this file rests on it alone.",
+      "dated": "2024-07-04",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/q7tYdfT",
+      "what": "Adele class Discord, linked as the class's own community from both the class doc and the aggregator page. Upstream of the class doc, so not an independent second source. Not machine-readable; not read for this file. Anything the class doc leaves thin - most importantly hyper stats, and any change after 2026-06-25 including the v.270 and v.271 patches - would have to be read here.",
+      "dated": "live",
+      "independent": false
+    },
+    {
+      "url": "https://maplescouter.com/hexa",
+      "what": "Korean HEXA core ordering tool. Recorded because the class doc defers to it twice - for HEXA stat optimisation, and for orders assuming a different number of origin cycles - and because Adele is one of the classes it covers (it is in fact the default class shown). It computes per character from live data rather than publishing a static Adele order, so no fixed ordering could be extracted; results render client-side and a plain fetch returns only the loading state. Not citable as a source of a published order.",
+      "dated": "not determinable from the page",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "HEXA Enhancement core order",
+      "positionA": "Infinity Blade Boost first, then Legacy Restoration Boost, then Storm Boost, then Ruin Boost - the order produced by the class doc's credited fragment-efficiency calculator, modelling five origin cycles in a 30-minute minimum-spec clear.",
+      "sourceA": "https://github.com/rumblebadger/adelesixth",
+      "positionB": "Legacy Restoration Boost first, then Infinity Blade Boost, then Storm Boost, then Ruin Boost - stated directly as the reinforcement order, with the reason that Legacy Restoration outranks Infinity Blade because of the extra 10% final damage it picks up near the top of its range.",
+      "sourceB": "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "status": "unresolved. Both are current. They differ only on the first two; both put Storm third and Ruin last. The likely cause is region - the Korean source assumes KMS balance and a different fragment economy from Heroic - but neither source acknowledges the other, so this is not resolved here."
+    },
+    {
+      "topic": "Which hyper passives are mandatory versus optional",
+      "positionA": "Trigger - Reinforce, Reign of Destruction - Persist, Aether Bloom - Cooldown Cutter, True Nobility - Shield Reinforce and Aether Guard - Persist, with Trigger - Boss Rush as the swap into training, dojo and culvert. The class doc concedes True Nobility - Shield Reinforce and Trigger - Boss Rush are roughly equal and that it prefers the former for being burst-oriented, noting Boss Rush only affects Plummet and Cleave, about 12% of basic attack damage and less once bossing dodges are counted.",
+      "sourceA": "https://docs.google.com/document/d/1kSlKPqFvBQr11qMzMJ1QyUjvLI0Oc8XLs_udUCTtG1k",
+      "positionB": "Required: Trigger - Reinforce, Reign of Destruction - Persist, Aether Bloom - Cooldown Cutter and Trigger - Boss Rush. Optional pick between Aether Guard - Persist and True Nobility - Shield Reinforce.",
+      "sourceB": "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "status": "unresolved, but narrow. The two agree on the first three picks and disagree only on whether Trigger - Boss Rush is a core pick or a situational swap. The class doc itself frames this as close, which makes it a genuine judgement split rather than an error on either side."
+    },
+    {
+      "topic": "Resonance Rush - Efficiency",
+      "positionA": "Take it as part of the main build.",
+      "sourceA": "https://thedigitalcrowns.com/adele-class-guide-maplestory-reboot/",
+      "positionB": "Do not take it. The Korean wiki says that once action delay was eased and the damage cycle simplified, Resonance Rush became a mover that incidentally deals damage, so it should not be taken regardless of whether the aether-related mastery cores are open - and that Adele is short on hyper skill points to begin with. The current class doc does not include it in any build.",
+      "sourceB": "https://en.namu.wiki/w/%EC%95%84%EB%8D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "status": "weighted against position A. Position A's source is from 2024 and predates the changes position B cites; both current sources exclude the skill. Recorded rather than deleted because it will keep surfacing in search results."
+    },
+    {
+      "topic": "Boost node groupings",
+      "positionA": "Current groupings as listed under vMatrix.trios, matching the HEXA Mastery core contents on the wiki.",
+      "sourceA": "https://grandislibrary.com/flora/adele",
+      "positionB": "Trio 1 Magic Dispatch + Aether Forge + Hunting Decree; trio 2 Cleave + Reign of Destruction + Aether Bloom.",
+      "sourceB": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "status": "resolved by date, not by preference. Position B's data is stated as of 2024-05-14, and the aggregator page exposes a separate pre-v.269 boost node view, which is direct evidence the groupings changed at v.269. Position B is recorded as historical."
+    },
+    {
+      "topic": "Tiering of boost node group 4 (Aether Forge / Reign of Destruction / Shardbreaker / Blade Torrent)",
+      "positionA": "Read from the colour coding the aggregator page applies to its own node blocks, groups 1 through 4 share the primary tier, group 5 is secondary and group 6 is other. This is consistent with the wiki, since group 4 does unlock HEXA Mastery Core 4, and with the class doc's framing of four damage groups plus one optional group.",
+      "sourceA": "https://grandislibrary.com/flora/adele",
+      "positionB": "A summarised reading of the same page returned groups 1 to 3 as primary, group 4 as secondary and groups 5 to 6 as other.",
+      "sourceB": "https://grandislibrary.com/flora/adele",
+      "status": "position A adopted. The page's own tier definition says primary means the node unlocks a 6th job HEXA Mastery, and the wiki shows group 4 does. Flagged because the page's accordion tiering renders client-side and was inferred from markup rather than read from a rendered page - worth one human look before this field is shown to users."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "MISATTRIBUTED DATA - gearingNotes critical rate table. This is the one hard error and it is the most load-bearing number in the file. The doc's table has TWO COLUMNS. Built-in Kit, TOTAL 45% = Base 5% + Ascent 20% + Strive 20%. Additional Sources, TOTAL 71% = Decent Sharp Eyes 10% + Decent Combat Orders 1% + Phantom Link 20% + Lynn Link 10% + Night Lord Legion 4% + Marksman Legion 4% + Ocean Familiar Badge 1% + Rebel Familiar Badge 1% + Hyper Stats & Legion Board N/A + Legion Artifact 20%. The file moved Decent Sharp Eyes and Decent Combat Orders OUT of Additional Sources and INTO the built-in kit - a two-column table read as rows. Consequence: the file's 'built-in 45%' item list now sums to 56%, and its 'additional 71%' list sums to 60%. Both stated totals contradict their own lists. Wiki data confirms the doc: Ascent is masterLevel 20 with Critical Rate +x%, Strive is masterLevel 20 with combatOrders=1 and Critical Rate +x%, so 5+20+20=45 built-in is right and the two Decent skills are external. A player trusting the file believes Sharp Eyes and Combat Orders are already in their baseline and will under-allocate hyper stats and legion board chasing 100% crit - the exact computation the brief names as the class-specific gearing constraint.",
+      "SPURIOUS CONFLICT - conflicts[3], 'Boost node groupings'. The file asserts mystyjl's trios 'demonstrably do not match the current grouping' and resolves it 'by date', filing the source as historical. This compares two different objects: mystyjl publishes TRIOS (which three skills you put on one node); the wiki and Grandis publish BOOST NODE GROUPS (which skills share a boost entry). I pulled Grandis's actual current recommended build, which names seven skills to boost - Magic Dispatch(+Aetherial Arms), Impale(+Resonance Rush+Shardbreaker), Aether Forge(+Noble Summons), Reign of Destruction(+Plummet), Cleave, Hunting Decree(+Grave Proclamation), Aether Bloom(+Blade Torrent). mystyjl's Trio 1 (Magic Dispatch, Aether Forge, Hunting Decree), Trio 2 (Cleave, Reign of Destruction, Aether Bloom) and '6th job: Impale' cover all seven with no main-skill collision. mystyjl AGREES with the current recommendation. The file labels its one independent corroboration of the trio build 'contested' and 'historical' on a false premise, and discards it.",
+      "MISSING SECTION, stated as if complete - the current trio build. The brief explicitly asks for 'the standard trio pairings'. vMatrix.trios contains no current trio composition at all: it files the six boost-node GROUPS under 'trios' (a category error - those are the skills that share a boost entry, not trio pairings) and its only genuine trio data is the mystyjl entry it wrongly marked historical. Grandis publishes the live build in nodeInfo.recommended together with the construction rules the file never captures: 5 boost nodes total to reach Master Level 60 with matrix points, each skill should appear in 2 nodes, nodes sharing the same main skill cannot be equipped together, and any combination of the seven is fine. That is the single most actionable V-matrix fact for the class and it is absent."
+    ],
+    "clearedOnInspection": [
+      "NO FABRICATED NAMES. I checked all ~35 node, skill and core names in the file against the maplestorywiki wikitext (fetched via api.php, which bypasses the 403): Aetherial Arms, Blade of Will, Glint, Skewering, Eviscerate, Grave Proclamation, Divine Wrath, Ascent, Strive, Aether Guard, Maestro, Einheit, Magic Dispatch, Hunting Decree, Plummet, Impale, Resonance Rush, Noble Summons, Aether Bloom, Aether Forge, Reign of Destruction, Shardbreaker, Blade Torrent, Cleave, Ruin, Infinity Blade, Legacy Restoration, Storm, True Nobility, Noble Fire, Sol Janus, Sol Hecate, Boss Rush, Guardbreak, Cooldown Cutter, Shield Reinforce. Every one exists. No invented names.",
+      "NO FABRICATED PRIORITY ORDERS. I downloaded the calculator's raw output file and every ordering claim holds. Mastery unlock order is sbreign, cleave, decree, bloom at steps 1, 2, 3, 10 = core 4, core 1, core 2, core 3 exactly as the file states. Enhancement unlock is infinity (step 11), legacy (30), storm (32), ruin (69) = the file's position A exactly. Hunting Decree hits level 9 at step 16 and 19 at step 54 while others are still in low single digits - the 'push it hard early' claim is real. Maestro first moves at step 27, after all four masteries and Infinity Blade - as stated. Common cores are genuinely absent from the file (only tokens: bloom, cleave, decree, infinity, legacy, maestro, ruin, sbreign, storm)."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "3 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

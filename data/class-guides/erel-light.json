@@ -1,0 +1,390 @@
+{
+  "slug": "erel-light",
+  "className": "Erel Light",
+  "branch": "Shine (SHINE) - Warrior job group. GMS-exclusive: MapleStory Wiki's availability table lists Erel Light as Unavailable in KMS, JMS, CMS, MSEA and TMS, and Available only in GMS. Released in the v.269 Ride the Lightning update; the class originated in MapleStory M before coming to GMS.",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Gram",
+  "secondaryWeapon": "Keir",
+  "archetype": "Melee STR warrior built around a Spear of Lugh main-attack loop that Fury of Roan and Sting of Roan can be cast into without casting delay, plus a persistent Shining Sentinel / Sentinel Captain summon layer. Carries unusually large self-contained survivability (Radiant Hold and Radiant Will each grant Max HP and damage-taken reduction; Shield of Chulainn turns the Roan combo into a barrier worth up to 30% of Max HP). Source: skill data on maplestorywiki.net/w/Erel_Light/Skills.",
+  "linkSkill": {
+    "name": "Guiding Stars",
+    "effect": "Passive. At master level: Buff Duration +19%, Critical Damage +6%. The skill text states it stacks up to 2 times for each unique Shine job character in the same world, so the link is shared across the Shine group rather than being one flat per-character line.",
+    "levels": "Master Level 6. Level 1: Buff Duration +4%, Critical Damage +1%. Level 6: Buff Duration +19%, Critical Damage +6%."
+  },
+  "legionEffect": "Boss Damage +1/2/3/5/6%",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Spear of Lugh Boost",
+        "why": "Grandis Library's page data classes this node Primary. Grandis's own boost-node legend states that nodes classed Primary and Secondary are the ones recommended to be upgraded. Spear of Lugh is the class's main-attack chain (Enhanced Spear of Lugh I/II/III) and is also the skill the first Erda Link mastery upgrades.",
+        "consensus": "weak - single source (Grandis Library), and Grandis is a presentation layer over Erel Light Discord material rather than an independent second opinion",
+        "sources": [
+          "https://grandislibrary.com/shine/erel-light"
+        ]
+      },
+      {
+        "node": "Fury of Roan Boost",
+        "why": "Classed Primary in Grandis Library's page data.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://grandislibrary.com/shine/erel-light"
+        ]
+      },
+      {
+        "node": "Sting of Roan Boost",
+        "why": "Classed Primary in Grandis Library's page data.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://grandislibrary.com/shine/erel-light"
+        ]
+      },
+      {
+        "node": "Spear of Light Boost",
+        "why": "Classed Secondary in Grandis Library's page data. Note the tension recorded in the conflicts array: maplestorywiki's enhancement table gives this node 3% final damage per level, the highest per-level value of any Erel Light boost node, while every node Grandis classes Primary is listed at 2% per level.",
+        "consensus": "weak - single source, and contested against a factual table from a second source",
+        "sources": [
+          "https://grandislibrary.com/shine/erel-light",
+          "https://maplestorywiki.net/w/Erel_Light/Skills"
+        ]
+      },
+      {
+        "node": "Impulse of Chulainn Boost",
+        "why": "Classed Secondary in Grandis Library's page data.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://grandislibrary.com/shine/erel-light"
+        ]
+      },
+      {
+        "node": "Charge of Fionn Boost / Path of Fionn Boost",
+        "why": "Classed Other in Grandis Library's page data, i.e. outside the set Grandis's legend says is recommended for upgrading. This is the only Erel Light node group containing two skills.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://grandislibrary.com/shine/erel-light"
+        ]
+      }
+    ],
+    "trios": null,
+    "notes": "NO TRIO SYSTEM APPLIES. Erel Light has six fixed single-skill (one group: two-skill) enhancement cores, not randomly rolled three-skill trio nodes. maplestorywiki lists the complete set as: Core 1 Spear of Lugh Boost; Core 2 Fury of Roan Boost; Core 3 Sting of Roan Boost; Core 4 Spear of Light Boost; Core 5 Charge of Fionn Boost + Path of Fionn Boost; Core 6 Impulse of Chulainn Boost. Grandis Library's underlying page data carries the note that the V Matrix system was overhauled in V.269 and all skills are boosted; Erel Light released in v.269, so it has never used the trio-lottery model and no trio-pairing advice exists or is needed for this class. FACTUAL PER-LEVEL VALUES (maplestorywiki): Spear of Lugh Boost, Fury of Roan Boost and Sting of Roan Boost each give 2% final damage per level, with Max Targets +1 at level 20 and Ignored Enemy Defense +20% at level 40; Spear of Light Boost gives 3% final damage per level; Charge of Fionn Boost, Path of Fionn Boost and Impulse of Chulainn Boost each give 2% final damage per level with Critical Rate +5% at level 20. Boost node level cap is 60. METHOD NOTE FOR ANY RE-SCRAPE: the Primary/Secondary/Other tiers above are NOT present as text on the rendered Grandis page - they are colour-coded only, and were read out of the page's own underlying data object (primary indices [0,1,2], secondary [3,5], other [4] against its nodes array). Two separate automated text reads of the same page produced two different and both incorrect tier assignments. Do not derive these tiers from page text.",
+    "sources": [
+      "https://grandislibrary.com/shine/erel-light",
+      "https://maplestorywiki.net/w/Erel_Light/Skills"
+    ]
+  },
+  "hexa": {
+    "usesHexaMatrix": false,
+    "system": "Erda Link",
+    "order": [
+      {
+        "step": "Unlock the M1 mastery for Spear of Lugh",
+        "why": "First goal in Eikonal's Erda Link Progression sheet. Cost 50 fragments. The sheet notes the unlock path requires 200 DEX plus either Sol Janus or 2% normal-monster damage stones. Efficiency is near zero (0.18 FD% per 100 fragments) because an unlock buys access, not damage - the payoff is the step immediately after it.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "M1 Spear of Lugh to level 1",
+        "why": "Rated 31.09 final damage percent per 100 fragments in Eikonal's sheet - roughly 1.7 times the next best step and an order of magnitude above everything after it. Cost 50 fragments. This is the single highest-return purchase in the whole Erel Light Erda Link progression.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Unlock the M2 mastery for Sting of Roan / Fury of Roan",
+        "why": "Cost 100 fragments. The sheet records that 2% Ignore Defense stones are required on the path to reach it. Again an access step, low efficiency in isolation.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "M2 Sting/Fury to level 1",
+        "why": "Rated 18.70 FD% per 100 fragments, the second highest single step in the sheet. Cost 50 fragments.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Sol Hecate to level 1",
+        "why": "Cost 125 fragments, efficiency 2.55. The sheet's note frames this as a quality-of-life purchase for the bind and the invincibility frame rather than a raw damage one.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Ascent to level 1",
+        "why": "Cost 100 fragments, efficiency 1.01. See the conflicts array: no source read here states which of Erel Light's two class-specific 6th job skills (Fall of Melin, Radiant Spear) is the Ascent skill.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "M1 Spear of Lugh from level 2 to level 9",
+        "why": "Cost 188 fragments, efficiency 3.54 - the best remaining block once the two level-1 mastery spikes are bought.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Unlock the first Eternal Guardian boost stone",
+        "why": "Cost 100 fragments, efficiency 0.10. The sheet records Ignore Defense prerequisites on the path. Access step for the following entry.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Eternal Guardian boost stone (1) to level 1",
+        "why": "Cost 37 fragments, efficiency 7.90 - the third-largest single spike in the sheet and the reason the low-efficiency unlock before it is worth paying.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "SHINE Stone #2 from level 1 to level 10 (the sheet spells these Shinestone)",
+        "why": "Cost 190.2 fragments, efficiency 1.22.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Eternal Guardian boost stone (1) from level 2 to level 4",
+        "why": "Cost 70 fragments, efficiency 1.14. The sheet flags this block as costing no Sol Erda.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Unlock the second Eternal Guardian boost stone, including the critical damage stones required on the path, and take it to level 10",
+        "why": "Cost 150 fragments, efficiency 0.79.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "Unlock SHINE Stones #1 and #4 and take both to level 10",
+        "why": "Cost 190.2 fragments, efficiency 1.07.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "M1 Spear of Lugh to level 19",
+        "why": "Cost 637 fragments, efficiency 1.31 - the first genuinely large fragment commitment in the ordering.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      },
+      {
+        "step": "M2 Sting/Fury to level 3",
+        "why": "Cost 30 fragments, efficiency 1.12.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+        ]
+      }
+    ],
+    "notes": "ERDA LINK, NOT HEXA MATRIX. This is a hard branch in the data model: MapleStory Wiki's Erel Light page states plainly that for SHINE classes 6th job skills are unlocked and enhanced using Erda Link instead of the HEXA Matrix. Grandis Library's Erel Light page carries no HEXA section at all and its Other Resources block links an Erda Link Tracker and an Erda Link Progression sheet where other classes link HEXA material. Erda Link was introduced in the v.260 Stargazer update. ERDA LINK MECHANICS (maplestorywiki, page last edited 2026-07-05): six stone types, upgraded with Sol Erda and Sol Erda Fragments - Origin Stone (unlocked automatically at job advancement, enhances Skill Nodes); Ultimate Stone (enhances Mastery Nodes when Light Power is active); Skill Stone (enhances Boost and Common Nodes when connected Rush Stones are active); Boost Stone (conditional effects, requires Light Power); Rush Stone (bonus stats, and connects stones along paths); SHINE Stone (bonus stats equivalent to HEXA Stats). Light Power is toggled in the Erda Link UI and shows as a glowing area; the area grows as stones are unlocked, and a 6th job skill becomes usable when that area covers it. PLANNING CONSEQUENCE WORTH SURFACING TO USERS: SHINE Stone enhancement costs Meso on top of Sol Erda and Sol Erda Fragments, and a failed enhancement can REDUCE the stone's level. That is a risk profile HEXA Stat does not have, and any Erda Link planner must model it rather than treating SHINE Stones as deterministic. SCOPE AND TOTALS FROM EIKONAL'S SHEET: the full ordering runs to roughly 70 goals; only the first 15 are recorded above because only those could be read verbatim. The sheet's own totals are 1166 Sol Erda (its note says this excludes Janus and rush stones), 38187 fragments, and 133.890% total final damage gained. Its columns are SKILL, LEVEL, ERDA, FRAGS, CUMULATIVE FRAGS, FD (%), EFFICIENCY (FD%/100 FRAGS), so the ordering is a greedy sort on final damage per fragment - it is a cost-efficiency ranking, not a rotation or gameplay judgement, and unlock steps score near zero by construction because they buy access rather than damage. NAME ALLOWLIST FOR 6TH JOB (maplestorywiki/w/Erel_Light/Skills, page last edited 2026-09-09, i.e. the v.271 patch date): class-specific skills are Fall of Melin (master level 30, 360 second cooldown) and Radiant Spear (master level 30); Mastery skills are SHINE Spear of Lugh, SHINE Fury of Roan and SHINE Sting of Roan; Enhancement (boost) nodes are Eternal Light Boost, Sentinel Rise Boost, Eternal Guardian Boost and Destruction of Roan Boost; shared skills are Sol Janus (with Sol Janus: Dawn and Sol Janus: Dusk), Sol Hecate and Sol Hecate: Styx. Do not emit any 6th job node name outside this list.",
+    "sources": [
+      "https://maplestorywiki.net/w/Erel_Light",
+      "https://maplestorywiki.net/w/Erda_Link",
+      "https://maplestorywiki.net/w/Erel_Light/Skills",
+      "https://grandislibrary.com/shine/erel-light",
+      "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g",
+      "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc"
+    ]
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "NOT SOURCED. No source reached in this pass publishes a hyper stat allocation or priority order for Erel Light. Grandis Library carries no hyper stat section for any class. The Erel Light FAQ has no hyper stat section. Leaving this empty is the correct outcome - do not fill it from a generic warrior template. If the product needs to answer this question, the community's operative answer for every class is MathBro's per-character Hyper Stat Optimizer (https://brendonmay.github.io/hyperCalculator/), which computes an allocation from a character's own stat sheet rather than publishing a fixed list.",
+    "sources": []
+  },
+  "hyperSkills": {
+    "passivesRecommended": [
+      "Spear of Lugh - Reinforce",
+      "Spear of Lugh - Extra Strike",
+      "Spear of Lugh - Boss Rush",
+      "Fury of Roan - Reinforce",
+      "Sting of Roan - Reinforce"
+    ],
+    "passivesRecommendedConsensus": "weak - single source (Grandis Library), whose credits block attributes the hyper passive build to the Erel Light Discord, so this is one community's view presented once rather than two agreeing sources",
+    "passivesRecommendedSources": [
+      "https://grandislibrary.com/shine/erel-light"
+    ],
+    "passivesAvailable": [
+      "Spear of Lugh - Reinforce (Lv140, Damage +20%)",
+      "Spear of Lugh - Extra Strike (Lv150, attack count +1)",
+      "Spear of Lugh - Boss Rush (Lv180, Boss Damage +20%)",
+      "Fury of Roan - Reinforce (Lv140, Damage +20%)",
+      "Fury of Roan - Guardbreak (Lv165, Ignore Defense +10%)",
+      "Fury of Roan - Critical Chance (Lv180, Critical Rate +20%)",
+      "Sting of Roan - Reinforce (Lv150, Damage +20%)",
+      "Sting of Roan - Guardbreak (Lv165, Ignore Defense +10%)",
+      "Sting of Roan - Critical Chance (Lv190, Critical Rate +20%)"
+    ],
+    "passivesAvailableSources": [
+      "https://maplestorywiki.net/w/Erel_Light/Skills"
+    ],
+    "actives": null,
+    "activesAvailable": [
+      "Piercing of Chulainn (Lv140, buff, Damage +10% for 30s, 60s cooldown)",
+      "Impulse of Chulainn (Lv160, attack, 480% x10, 60s cooldown)",
+      "Hundred Pole (Lv190, buff, Critical Damage +10% for 30s, 60s cooldown)"
+    ],
+    "activesAvailableSources": [
+      "https://maplestorywiki.net/w/Erel_Light/Skills"
+    ],
+    "notes": "The recommended passive list spends five of the available points and leaves the two Guardbreak lines and the two Critical Chance lines unpicked; no source read here explains why, so the rationale is not recorded. No source recommends which hyper actives to take, so that field is null rather than guessed. Note that Impulse of Chulainn is both a hyper active and the skill inside boost node 6."
+  },
+  "innerAbility": {
+    "bossing": [
+      "Passive Skill Levels +1",
+      "Boss Damage +10%",
+      "Damage to monsters inflicted with Abnormal Status +8%"
+    ],
+    "bossingConsensus": "weak - two sources state the same three lines, but they are not independent: Grandis Library's credits block attributes its Inner Ability section to the Erel Light Discord, which is also the venue of the FAQ document. Treat as one source stated twice.",
+    "bossingSources": [
+      "https://grandislibrary.com/shine/erel-light",
+      "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc"
+    ],
+    "training": [
+      "Meso Obtained / Item Drop Rate +20%",
+      "Meso Obtained / Item Drop Rate +15%",
+      "Damage to Normal Monsters +8%"
+    ],
+    "trainingConsensus": "weak - single source",
+    "trainingSources": [
+      "https://grandislibrary.com/shine/erel-light"
+    ],
+    "notes": "CONDITION ON THE THIRD BOSSING LINE: the FAQ makes the abnormal-status damage line contingent on actually having a source of abnormal status, and points at a Mage link skill as the pairing. Without that, the line is dead. A planner should surface it as conditional, not as a flat recommendation. NOTHING WAS FOUND on attack speed inner ability lines for this class either way, and no source read here gives a region-split (GMS vs KMS attack speed cap) recommendation for Erel Light as Grandis does for some other classes. That gap is unfilled, not resolved.",
+    "sources": [
+      "https://grandislibrary.com/shine/erel-light",
+      "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc"
+    ]
+  },
+  "gearingNotes": "No exotic stat model. Erel Light is a conventional STR main / DEX secondary warrior - unlike Demon Avenger it has no HP-as-damage-stat quirk, and unlike Xenon it has no cross-branch gear decision. The class-specific gearing facts that ARE sourced, all from the skill tables at maplestorywiki.net/w/Erel_Light/Skills: SELF-SOURCED CRITICAL RATE IS LARGE. Named passive and buff sources are Radiant Shock (Critical Rate +15% at max), Radiant Dawn (Critical Rate +20% at level 10, +22% at level 12), and the Light Enchant buff (Critical Rate +10% at max, 200 second duration). Two hyper passives add a further +20% critical rate each but only to Fury of Roan and to Sting of Roan specifically, not globally. The individual values are recorded rather than summed because no source publishes an Erel Light critical rate target or states where investment should stop - that calculation is left to the reader rather than asserted here. SELF-SOURCED IGNORE DEFENSE IS ALSO LARGE. Radiant Control gives Ignore Defense +40% at level 15; Path of Fionn carries Ignore Defense +100% on the skill itself; the 6th job skill Radiant Spear carries Ignore Defense +60%, Boss Damage +40% and a flat 100% critical rate; boost nodes for Spear of Lugh, Fury of Roan and Sting of Roan each add Ignored Enemy Defense +20% at node level 40. BOSS DAMAGE FROM PASSIVES: Radiant Control gives Boss Damage +20% at level 15, before the Boss Rush hyper passive and the legion effect. SURVIVABILITY IS UNUSUALLY SELF-CONTAINED: Radiant Hold (Max HP +10%, damage taken -20%, knockback resistance +40%) and Radiant Will (Max HP +20%, damage taken -20%, knockback resistance +60%) stack, and Shield of Chulainn passively creates a barrier absorbing up to 30% of Max HP whenever Fury of Roan and Sting of Roan are comboed off Spear of Lugh - which the FAQ notes happens naturally in the normal attack loop. Max HP therefore has real defensive value on this class beyond survival floor. BUFF DURATION MATTERS MORE THAN AVERAGE: the class's own link skill grants Buff Duration +19%, and its two main buffs (Light Enchant, Helian Blessing) both run 200 seconds. ERDA LINK RESOURCE RISK: SHINE Stone enhancement consumes Meso in addition to Sol Erda and Sol Erda Fragments and can fail, lowering the stone's level - budget for that, unlike HEXA Stat.",
+  "commonMistakes": [],
+  "sources": [
+    {
+      "url": "https://maplestorywiki.net/w/Erel_Light",
+      "what": "Class identity page. Source for: Shine faction, Warrior class, STR main / DEX secondary, Gram primary weapon, Keir secondary, Guiding Stars link skill, Boss Damage legion effect, release in the Ride the Lightning (v.269) update, MapleStory M origin, the availability table showing the class is GMS-only, and the statement that SHINE classes use Erda Link instead of the HEXA Matrix. Marked 'Under construction' by the wiki itself.",
+      "dated": "unverified - page history was not reachable; the sibling Skills page was last edited 2026-09-09",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Erel_Light/Skills",
+      "what": "Complete skill table across all job advancements plus hyper skills, V skills, V enhancement cores and 6th job skills. Used as the name allowlist and for every numeric gearing fact in this file. Zero judgement content - no priority order of any kind.",
+      "dated": "2026-09-09 (page footer, last edited 23:40) - the v.271 patch date",
+      "independent": false,
+      "independenceNote": "Same wiki as the Erel_Light page above. The three maplestorywiki.net entries in this list are ONE source, not three."
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Erda_Link",
+      "what": "Erda Link system mechanics: the six stone types and what each enhances, Light Power, the Sol Erda / Sol Erda Fragment currencies, and the SHINE Stone meso cost and failure-can-delevel rule. Self-flagged by the wiki as a stub.",
+      "dated": "2026-07-05 (page footer)",
+      "independent": false,
+      "independenceNote": "Same wiki as the Erel_Light page above. The three maplestorywiki.net entries in this list are ONE source, not three."
+    },
+    {
+      "url": "https://grandislibrary.com/shine/erel-light",
+      "what": "Class page. Source for boost node Primary/Secondary/Other tiering (read from the page's own data object, not its rendered text), the hyper skill passive build, and the bossing and training inner ability lines. Carries NO hyper stat section and NO HEXA or Erda Link section. Its Other Resources block links the class Discord, the Class FAQ and both Erda Link sheets, and notably does NOT link a 'Class Doc' - which is the reliable tell that Erel Light has no maintained class guide document.",
+      "dated": "site footer stamp GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target. Its Erel Light overview infographic is credited to Helpfully and dated 2026-07-06.",
+      "independent": false
+    },
+    {
+      "url": "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc",
+      "what": "Erel Light FAQ, linked from Grandis Library as the class's Class FAQ. The author describes it as a work in progress and a placeholder until a real Erel guide exists. Source for the three bossing inner ability lines and the Mage-link condition on the abnormal-status line, the M1 and M2 mastery unlock prerequisites, the Fury/Sting cast-during-Spear-of-Lugh tech, the Sol Hecate: Styx bind being bindable to buffs, and - importantly - the explicit statement that the community has produced no 6th job build. Also records a large final damage loss from passives following a balance change, which is why nothing in this file is carried over from pre-change material.",
+      "dated": "no date stamp in the document",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g",
+      "what": "Erda Link Progression sheet, credited to Eikonal (Vinny) with thanks to Edd, Helpfully and blazyb. A goal-ordered upgrade sequence of roughly 70 steps with per-step Sol Erda cost, fragment cost, cumulative fragments, final damage gained and an efficiency figure in final damage percent per 100 fragments. This is the only published Erel Light 6th-job investment ordering found anywhere, and is the functional equivalent of a HEXA priority chart for this class.",
+      "dated": "no date stamp on the sheet",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1N7pKMWa8cscPa_MtbiqRQNycCR8jbemKoyla1Z-mgto",
+      "what": "Erda Link Tracker sheet, linked from Grandis Library alongside the progression sheet. A per-character tracking tool from the same Erel Discord ecosystem, not a second opinion. Not read in this pass.",
+      "dated": "unknown",
+      "independent": false
+    },
+    {
+      "url": "https://discord.gg/yUAaBD46xp",
+      "what": "Erel Light class Discord, linked from Grandis Library. The venue behind both the FAQ and the Erda Link sheets, and - given the FAQ's own statement that no community 6th job build exists - the only place a more current answer can come from. Not machine-readable; not read.",
+      "dated": "live",
+      "independent": false
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%97%90%EB%A6%B4%20%EB%9D%BC%EC%9D%B4%ED%8A%B8",
+      "what": "NamuWiki page linked by Grandis Library. ATTEMPTED AND FAILED (HTTP 403). Note that because Erel Light is GMS-exclusive, the usual KMS cross-check lane does not exist for this class in the way it does for others - there is no Korean-server balance reference to compare against.",
+      "dated": "not reached",
+      "independent": false,
+      "independenceNote": "Marked false because nothing was read from it. It is listed as a lead, not as a source that contributed to this file."
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "issue": "Boost node tier versus per-level value for Spear of Light",
+      "positionA": "Grandis Library's page data classes Spear of Light Boost as Secondary, below Spear of Lugh, Fury of Roan and Sting of Roan.",
+      "positionB": "maplestorywiki's V Enhancement table gives Spear of Light Boost 3% final damage per level, the highest of any Erel Light node, while all three of Grandis's Primary nodes are listed at 2% per level.",
+      "resolution": "NOT RESOLVED. Both facts are recorded as stated. A plausible reconciliation is that the three Primary skills are cast far more often than the Spear of Light summon so absolute contribution differs from per-level rate, but no source says this and it is not asserted here.",
+      "sources": [
+        "https://grandislibrary.com/shine/erel-light",
+        "https://maplestorywiki.net/w/Erel_Light/Skills"
+      ]
+    },
+    {
+      "issue": "Which 6th job skill is Origin and which is Ascent",
+      "positionA": "maplestorywiki lists exactly two class-specific 6th job skills, Fall of Melin (master level 30, 360 second cooldown) and Radiant Spear (master level 30), and labels neither as Origin or Ascent.",
+      "positionB": "Eikonal's Erda Link Progression sheet contains separate goal rows for Origin and for Ascent but refers to them only by those generic role names, never by skill name.",
+      "resolution": "NOT RESOLVED and deliberately not guessed. Any UI that needs to show an Origin or Ascent skill name for Erel Light must confirm the mapping from a source before displaying it.",
+      "sources": [
+        "https://maplestorywiki.net/w/Erel_Light/Skills",
+        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+      ]
+    },
+    {
+      "issue": "Does a community 6th job build exist for Erel Light",
+      "positionA": "The Erel Light FAQ states outright that the community has not made a 6th job build yet.",
+      "positionB": "Eikonal's Erda Link Progression sheet is exactly such a build - a full ordered investment sequence with cost and efficiency per step - and Grandis Library links it from the Erel Light page.",
+      "resolution": "NOT RESOLVED because neither artifact carries a date. The likeliest explanation is that the FAQ statement predates the sheet and was never updated, but that is inference, not evidence. Consumers should treat the sheet as the current answer and the FAQ line as probably stale.",
+      "sources": [
+        "https://docs.google.com/document/d/1TQgJF3cbjlfZGK05GoEtA3oHLQxsMyyPcLAlpHcj4Jc",
+        "https://docs.google.com/spreadsheets/d/1ZaHBpObiHw52asuVT6pHUNlkGIt_bm4nk1I2iUFAi7g"
+      ]
+    }
+  ],
+  "evidenceWarning": "THE THREE-INDEPENDENT-SOURCES BAR IS NOT MET FOR ANY JUDGEMENT CLAIM IN THIS FILE, and the app must not present Erel Light advice with the confidence it gives a class like Bowmaster. Three independent sources exist for FACTS (maplestorywiki, the Erel Light FAQ, and Eikonal's Erda Link sheet), but every judgement field rests on exactly one: boost node tiering and hyper passives and training inner ability come only from Grandis Library, whose own credits block attributes the judgement fields to the Erel Light Discord; the Erda Link investment order comes only from Eikonal's sheet; the bossing inner ability lines appear in two places that share one community. There is no second opinion to check any of it against. Four structural reasons this class is worse-sourced than most: (1) it is roughly three months old, released in v.269; (2) Grandis Library links no Class Doc for it, meaning no maintained class guide document exists; (3) the FAQ that stands in for one self-describes as a placeholder; (4) because the class is GMS-exclusive, the NamuWiki / KMS cross-check lane that provides genuine independence for most classes does not exist at all. ADDITIONAL GAPS: reddit.com was not reachable in this pass, so r/Maplestory Erel Light discussion is entirely unexamined; the web search budget was exhausted, so no YouTube guide pass was run; and the Erel Light Discord itself - which the FAQ and both sheets all originate from - was not read. Anyone extending this file should start there.",
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "No skill or node name could be disproven; naming discipline is broadly sound and the refusal to guess the Origin/Ascent mapping is correct and confirmed (both rows exist unnamed in the sheet).",
+      "Terminology conflation: the sheet reads 'Eternal Guardian Skill Stone'; the file calls it 'Eternal Guardian boost stone' in four steps. The file's own Erda Link mechanics section defines Skill Stone and Boost Stone as distinct types, and its allowlist introduces a third name, 'Eternal Guardian Boost', as an Enhancement node. Three names, no disambiguation.",
+      "Unverified as discrete rows: the separate 'Unlock the M1 mastery' (50, eff 0.18) and 'Unlock the first Eternal Guardian boost stone' (100, eff 0.10) steps. The sheet's prerequisites appeared as rush stones at 0-2 Erda, not at these costs. Possibly real rows on a tab I could not read, possibly reconstructed.",
+      "Unverified names: 'Sol Hecate' and 'Sol Hecate: Styx' in the 6th job allowlist. The sheet says only 'Hecate'; maplestorywiki was unreachable (HTTP 403 on every route), so the 'Sol' prefix is uncorroborated.",
+      "Omission that alters the recommendation: the sheet's opening rows include Sentinel Rise Skill Stone L1 (efficiency 1.54) and Destruction of Roan Skill Stone L1, with Eternal Guardian at row 4 right after the masteries. Neither Sentinel Rise nor Destruction of Roan appears anywhere in the file's 15-step order, though Sentinel Rise's 1.54 outranks included steps SHINE Stone #2 (1.22) and M2 to level 3 (1.12). Caveat: gviz returns only the first sheet, so a tab difference could explain part of this."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

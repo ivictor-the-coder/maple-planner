@@ -1,0 +1,424 @@
+{
+  "slug": "mechanic",
+  "className": "Mechanic",
+  "branch": "Resistance",
+  "primaryStat": "DEX",
+  "secondaryStat": "STR",
+  "weapon": "Gun",
+  "secondaryWeapon": "Magnum",
+  "archetype": "Summon-and-station DEX pirate. Fights while riding a mech, swaps between a mobile form and a stationary high-single-target form, and layers ground-placed summons plus a party buff.",
+  "linkSkill": {
+    "name": "Spirit of Freedom",
+    "effect": "Passive. Grants a window of invincibility after being revived. Shared by every Resistance-branch character rather than unique to Mechanic; stacks up to 4 times from separate Resistance characters.",
+    "levels": "Max level 12 (12 seconds of invincibility at max)"
+  },
+  "legionEffect": "Buff duration increased: +5% / +10% / +15% / +20% / +25% across the five Legion rank tiers.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Heavy Salvo Plus / AP Salvo Plus",
+        "why": "Named as the primary boost target. It is the class main attacking line, so the node carrying it is the first to complete and level.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "node": "Homing Beacon",
+        "why": "Listed as the other primary boost target alongside the Salvo line; appears in the same trio as Salvo in every current trio listing found.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "node": "Distortion Bomb",
+        "why": "Third member of the damage-side trio in the two current trio listings found.",
+        "consensus": "moderate",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "node": "Robo Launcher RM7",
+        "why": "Member of the second, summon-side trio; treated as a secondary rather than primary boost target.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "node": "Rock n Shock",
+        "why": "Member of the second trio, and the skill that carries the recommended hyper passives, so it stays relevant after the boost node is built.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "node": "Bots n Tots",
+        "why": "Third member of the second trio.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": [
+          "Heavy Salvo Plus / AP Salvo Plus",
+          "Homing Beacon",
+          "Distortion Bomb"
+        ],
+        "why": "Damage trio. Ranked above the other by the source that ranks them at all: Grandis Library calls the Salvo line and Homing Beacon primary and the rest secondary.",
+        "consensus": "moderate",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build",
+          "https://www.grandislibrary.com/resistance/mechanic"
+        ]
+      },
+      {
+        "trio": [
+          "Robo Launcher RM7",
+          "Rock n Shock",
+          "Bots n Tots"
+        ],
+        "why": "Second trio, grouping the placed and summoned skills. All three sources give this grouping identically.",
+        "consensus": "strong",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build",
+          "https://www.grandislibrary.com/resistance/mechanic"
+        ]
+      }
+    ],
+    "notes": "Three independent sources agree on the summon trio (Robo Launcher RM7, Rock n Shock, Bots n Tots) and on the six skills that matter overall; they differ on how the damage-side three are grouped, see conflicts. Older lists that circulate under Korean skill names (Massive Fire, Support Waver H-EX, Magnetic Field, Robo Factory RM1) come from a 2021 page and predate HEXA. NO SOURCE FOUND states how node priority shifts between Lv 200 and Lv 260, or after 6th job. That is a real gap, not an omission."
+  },
+  "hexa": {
+    "order": [],
+    "notes": "NO MECHANIC-SPECIFIC HEXA INVESTMENT ORDER WAS FOUND IN ANY DATED, VERIFIABLE SOURCE. Left empty deliberately rather than guessed. What was found instead: (1) Class-agnostic order from The Digital Crowns, updated 2025-01-31: activate the 6th job Mastery node first, then Boost nodes, then open HEXA Stat once a HEXA Stat activation costs less than the next skill level; activate everything before deep-levelling one node. That same page states per-class HEXA priority is not yet written and sends readers to class Discords. (2) Grandis Library's Mechanic page has no HEXA section and points to the Mechanic class Discord at https://discord.gg/JenpnsgHBc. (3) The Korean community wiki namu.wiki is indexed as giving a mastery-core order of Multiple Option: M-FL, then Micro Missile Container, then Metal Armor Full Salvo and Mecha Carrier together. Single source, Korean naming that does not map cleanly onto GMS skill names, undated, and the page returned HTTP 403 on direct fetch, so it is recorded as unverified and NOT promoted into an order. (4) Orange Mushroom's Blog, 2026-07-11, reports a Mechanic HEXA skill core named Buster Station, an installed missile station, in KMST 1.2.203. KMST is the Korean test server; there is no evidence this is live in GMS v.271."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No Mechanic-specific hyper stat ordering was found in any source. The generic ordering that circulates (damage, then boss damage, then critical damage, then IED) is not class-specific and was not recorded as a Mechanic claim. Left empty on purpose."
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "pick": "Rock n Shock - Persist",
+        "why": "Named by both current Mechanic-specific sources.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "pick": "Support Unit: H-EX - Party Reinforce",
+        "why": "Named by both current Mechanic-specific sources; it is the party-buff side of the class.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "pick": "Heavy Salvo - Reinforce",
+        "why": "Both current sources put a Reinforce on the main attacking line.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "pick": "Rock n Shock - Guardbreak",
+        "why": "Grandis Library's third passive pick. Conflicts with the next entry.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic"
+        ]
+      },
+      {
+        "pick": "Rock n Shock - Cooldown Cutter",
+        "why": "DigitalTQ's third passive pick, taken instead of Guardbreak. Both positions recorded, neither resolved.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "pick": "Extra Strike on the Salvo line",
+        "why": "Both current sources take an Extra Strike, but disagree on whether it goes on AP Salvo Plus (Grandis Library) or Heavy Salvo (DigitalTQ).",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      }
+    ],
+    "actives": [
+      {
+        "pick": "Distortion Bomb",
+        "why": "Listed as a hyper active pick by both sources that list actives at all.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build",
+          "https://ayumilove.net/maplestory-mechanic-skill-build-guide/"
+        ]
+      },
+      {
+        "pick": "Full Spread",
+        "why": "Listed as a hyper active pick by both sources that list actives at all.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build",
+          "https://ayumilove.net/maplestory-mechanic-skill-build-guide/"
+        ]
+      },
+      {
+        "pick": "For Liberty",
+        "why": "Listed as the Lv 200 hyper active; it is the Resistance-branch skill.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build",
+          "https://ayumilove.net/maplestory-mechanic-skill-build-guide/"
+        ]
+      }
+    ],
+    "notes": "Only two sources here are current: Grandis Library, patch-stamped GMS Ver. 269, and DigitalTQ, dated 2024-02-19. The third, AyumiLove, is dated 2020-12-23, pre-HEXA and pre-several-reworks; it is used only to corroborate hyper active names, never priority. Under the three-independent-source bar nothing in this section is better than moderate."
+  },
+  "innerAbility": {
+    "recommended": [
+      {
+        "line": "+20% Boss Damage (legendary first line)",
+        "why": "Named as the endgame first line by both current sources and also by the 2020 source, so it has survived reworks.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build",
+          "https://ayumilove.net/maplestory-mechanic-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "+Attack (up to +21) or +Buff Duration (up to +38%)",
+        "why": "Grandis Library's endgame second line for Lv 260+ with 6th job. Buff duration pairs with the class Legion effect, which is also buff duration.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic"
+        ]
+      },
+      {
+        "line": "+8% damage to monsters inflicted with abnormal status",
+        "why": "Grandis Library's third line at both the sub-260 and the endgame tier.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic"
+        ]
+      },
+      {
+        "line": "Passive Skills +1 first line, +10% Boss Damage second (below Lv 260)",
+        "why": "Grandis Library's pre-260 recommendation; DigitalTQ also pairs Passive Skills +1 with Boss Damage.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic",
+          "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+        ]
+      },
+      {
+        "line": "+20% Meso Obtained or +20% Item Drop Rate (farming character only)",
+        "why": "Grandis Library lists these as the farming alternative, not a bossing line.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/mechanic"
+        ]
+      }
+    ],
+    "notes": "AyumiLove (2020-12-23) recommends a +30% Critical Rate line; neither current source does. Recorded as a conflict rather than resolved."
+  },
+  "gearingNotes": "DEX is the main stat and STR the secondary, so every stat roll, potential line and stat allocation follows the DEX-pirate pattern; the weapon is a Gun with a Magnum as the secondary weapon (Grandis Library, patch-stamped GMS Ver. 269). The one Mechanic-specific gearing lever found in sourced material is buff duration: the class Legion effect gives up to +25% buff duration and Grandis Library lists buff duration as a competitive inner-ability second line, which makes percent-buff-duration sources worth more on this character than on a class without that Legion effect. Nothing class-specific about armour set choice, arcane or genesis weapon path, familiar lines, or HEXA Stat lines was found in any source that could be dated, so those are left unwritten rather than guessed.",
+  "commonMistakes": [
+    {
+      "mistake": "Following a Mechanic boost-node list written under Korean skill names",
+      "detail": "Lists naming Massive Fire, Support Waver H-EX, Magnetic Field or Robo Factory: RM1 use KMS naming, and the widely linked page carrying them is from 2021, before HEXA. The GMS-named groupings are Heavy/AP Salvo Plus with Homing Beacon and Distortion Bomb, and Robo Launcher RM7 with Rock n Shock and Bots n Tots.",
+      "consensus": "moderate",
+      "sources": [
+        "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://www.grandislibrary.com/resistance/mechanic"
+      ]
+    },
+    {
+      "mistake": "Taking a pre-HEXA skill guide as current",
+      "detail": "The two most linked Mechanic skill-build pages are dated 2020-12-23 (AyumiLove) and 2024-02-19 (DigitalTQ). Neither covers 6th job at all, so any Sol Erda or HEXA decision taken from them is uninformed rather than merely out of date.",
+      "consensus": "weak",
+      "sources": [
+        "https://ayumilove.net/maplestory-mechanic-skill-build-guide/",
+        "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.grandislibrary.com/resistance/mechanic",
+      "what": "Class overview: stats, weapons, link skill, Legion effect, boost node priority, hyper skill passives, inner ability tiers. Confirms the class is live and creatable. No HEXA section; points to the Mechanic class Discord at https://discord.gg/JenpnsgHBc for depth.",
+      "dated": "No calendar date on page; stamped GMS Ver. 269 [Ride the Lightning Update], two patches before v.271",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/content/link-skills",
+      "what": "Corroborates Spirit of Freedom as the shared Resistance link skill at max level 12. Same site as the row above, so NOT an independent source.",
+      "dated": "Stamped GMS Ver. 269 [Ride the Lightning Update]",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "Community node guide by mastermysty giving explicit Mechanic boost-node trios; also carries trio-acquisition probability testing dated 2024-05-14.",
+      "dated": "2024-11-21 (page states last updated)",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-mechanic-skill-build",
+      "what": "Mechanic skill build: 5th job skill cores, boost node trios, hyper skill picks, inner ability. No HEXA content.",
+      "dated": "2024-02-19",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-mechanic-skill-build-guide/",
+      "what": "Older Mechanic skill build and hyper skill list. Used only to corroborate hyper active names; pre-HEXA and pre-rework, so not used for priority.",
+      "dated": "2020-12-23",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+      "what": "Class-agnostic HEXA investment order (mastery node, then boost nodes, then HEXA Stat). States that per-class HEXA priority is not written yet and to use class Discords.",
+      "dated": "2025-01-31 (page states last updated)",
+      "independent": true
+    },
+    {
+      "url": "https://orangemushroom.net/2026/07/11/kmst-ver-1-2-203-3rd-hexa-skill-core/",
+      "what": "KMST 1.2.203 patch coverage; reports a Mechanic HEXA skill core called Buster Station, an installed missile station. Korean TEST server, so not evidence of GMS v.271 content.",
+      "dated": "2026-07-11",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+      "what": "Pre-HEXA boost node list using Korean skill names for Mechanic. Recorded as the origin of the stale trio list still in circulation, not as current advice. Same outlet as the HEXA guide row above, so the two together count as one source.",
+      "dated": "2021 (per page title)",
+      "independent": false
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EB%A9%94%EC%B9%B4%EB%8B%89(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "what": "Korean community wiki Mechanic skill page. Search index shows a mastery-core upgrade order (Multiple Option: M-FL, then Micro Missile Container, then Metal Armor Full Salvo and Mecha Carrier). DIRECT FETCH FAILED with HTTP 403, so the claim sits in hexa.notes as unverified and was NOT promoted into hexa.order.",
+      "dated": null,
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Damage-side boost node grouping",
+      "positionA": "Homing Beacon, Distortion Bomb and the Heavy/AP Salvo Plus line form one trio.",
+      "sourcesA": [
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+      ],
+      "positionB": "Grandis Library groups Distortion Bomb with Support Unit H-EX and Giant Robot SG-88 instead, while naming the Salvo line and Homing Beacon as the primary nodes. Its second grouping (Robo Launcher RM7, Rock n Shock, Bots n Tots) matches the others exactly.",
+      "sourcesB": [
+        "https://www.grandislibrary.com/resistance/mechanic"
+      ],
+      "resolved": false
+    },
+    {
+      "topic": "Third Rock n Shock hyper passive",
+      "positionA": "Guardbreak",
+      "sourcesA": [
+        "https://www.grandislibrary.com/resistance/mechanic"
+      ],
+      "positionB": "Cooldown Cutter",
+      "sourcesB": [
+        "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+      ],
+      "resolved": false
+    },
+    {
+      "topic": "Which skill takes the Extra Strike hyper passive",
+      "positionA": "AP Salvo Plus - Extra Strike",
+      "sourcesA": [
+        "https://www.grandislibrary.com/resistance/mechanic"
+      ],
+      "positionB": "Heavy Salvo - Extra Strike",
+      "sourcesB": [
+        "https://www.digitaltq.com/maplestory-mechanic-skill-build"
+      ],
+      "resolved": false
+    },
+    {
+      "topic": "Inner ability critical rate line",
+      "positionA": "+30% Critical Rate is worth a line.",
+      "sourcesA": [
+        "https://ayumilove.net/maplestory-mechanic-skill-build-guide/"
+      ],
+      "positionB": "Critical rate is not listed at all; the lines are boss damage, attack or buff duration, and abnormal-status damage.",
+      "sourcesB": [
+        "https://www.grandislibrary.com/resistance/mechanic"
+      ],
+      "resolved": false,
+      "note": "Position A is from 2020-12-23; position B is stamped GMS Ver. 269. Recency favours B, but the two are recorded rather than reconciled."
+    },
+    {
+      "topic": "Mechanic HEXA skill core identity",
+      "positionA": "A Mechanic HEXA skill core named Buster Station appears in KMST 1.2.203.",
+      "sourcesA": [
+        "https://orangemushroom.net/2026/07/11/kmst-ver-1-2-203-3rd-hexa-skill-core/"
+      ],
+      "positionB": "No GMS-facing source found names any Mechanic HEXA skill core; Grandis Library's Mechanic page carries no HEXA section at all.",
+      "sourcesB": [
+        "https://www.grandislibrary.com/resistance/mechanic"
+      ],
+      "resolved": false,
+      "note": "KMST is the Korean test server and runs ahead of GMS. Do not present Buster Station to a GMS v.271 player as something they have."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "researchGaps": [
+    "HEXA / 6th job investment order for Mechanic: no dated, class-specific source found. The trail ends at the Mechanic class Discord (https://discord.gg/JenpnsgHBc), which both Grandis Library and The Digital Crowns point to and which this pass could not reach.",
+    "Hyper stat priority specific to Mechanic: none found.",
+    "How V matrix node priority shifts between Lv 200 and Lv 260, and after 6th job: none found.",
+    "HEXA Stat line priority: none found.",
+    "Class-specific gearing beyond stat, weapon and the buff-duration interaction: none found.",
+    "Web search budget for this session was exhausted (200/200) before the class Discord, YouTube guide descriptions, or r/Maplestory threads could be mined; those are the most likely homes for the missing HEXA judgement."
+  ],
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "Not fabrication, but unverifiable names promoted into prose: hexa.notes records a namu.wiki mastery-core order naming \"Metal Armor Full Salvo\", \"Multiple Option: M-FL\" and \"Micro Missile Container\". I re-fetched namu.wiki and got the same HTTP 403, so this is still unread. Grandis Library's full skill list for Mechanic contains no skill by any of those three names - the closest real 5th job skills are \"Full Metal Barrage\" and \"Mecha Carrier\". \"Metal Armor Full Salvo\" matches no GMS skill I could confirm anywhere. The file flags it as unverified, which is the right call, but a planner UI rendering hexa.notes would put three unconfirmed skill names in front of a user.",
+      "commonMistakes[0] attributes the Korean-named list (Massive Fire, Support Waver H-EX, Magnetic Field, Robo Factory: RM1) to the thedigitalcrowns 2021 page. That page's Mechanic entry is past the fetch truncation point on every attempt, so the attribution is unverified in both directions - I could not confirm the page carries those names, and the researcher's own notes give no sign they read past the truncation either.",
+      "STALE: The HEXA section's central negative is wrong. conflicts[4].positionB says \"No GMS-facing source found names any Mechanic HEXA skill core; Grandis Library's Mechanic page carries no HEXA section at all.\" Grandis Library names three Mechanic 6th job skills: Ground Zero (360s cooldown, 10s duration, bind + iFrame), Robo Conversion: CB-P1 (toggle), and Mechanized Extinction. The orangemushroom article the file cites is titled \"3rd Hexa Skill Core\" - consistent with two already live - and the researcher never reconciled that. As written, the file tells a GMS v.271 Mechanic that no HEXA core has been named for their class, which is false.",
+      "STALE: vMatrix.notes states \"NO SOURCE FOUND states how node priority shifts between Lv 200 and Lv 260, or after 6th job. That is a real gap, not an omission.\" The after-6th-job half is contradicted by the file's own top source. Grandis Library's Boost Node legend states that PRIMARY nodes \"unlock a 6th Job HEXA Mastery and are skills that are frequently used\" while SECONDARY nodes \"don't unlock a 6th Job HEXA Mastery but are still used\". That is exactly the 6th-job rationale for prioritising Node 1 (Salvo line) and Node 2 (Homing Beacon) over the summon trio, and it went unrecorded.",
+      "STALE: The staleness verdict in commonMistakes[0] rests on a mis-dated source. sources[] dates thedigitalcrowns/perfect-boost-nodes-for-every-class-maplestory-2021 as \"2021 (per page title)\" and vMatrix.notes says the Korean-named list \"comes from a 2021 page and predate[s] HEXA\". The page header states \"Last Updated 03/31/2026\". The researcher dated a source from its URL slug instead of its stated update date - the one mistake this brief most explicitly warns against - and then built a commonMistakes entry on it.",
+      "STALE: Recency rule is breached without disclosure. The brief requires sources dated after 2025-01-01. Not one Mechanic V matrix, hyper skill, hyper stat or inner ability claim in this file is supported by a post-2025 source: the support is 2024-11-21 (mystyjl), 2024-02-19 (DigitalTQ), 2020-12-23 (AyumiLove) and an undated page carrying a site-wide Ver. 269 footer. The only two post-2025 sources (thedigitalcrowns 2025-01-31, orangemushroom 2026-07-11) contribute nothing Mechanic-specific and nothing GMS-live respectively. hyperSkills.notes says \"Only two sources here are current\" - the honest statement is that zero sources in this file are both current and Mechanic-specific."
+    ],
+    "clearedOnInspection": [
+      "No fabricated node names in the actionable arrays. I confirmed every name in vMatrix.priority, vMatrix.trios and hyperSkills against Grandis Library's live skill list: Heavy Salvo Plus, AP Salvo Plus, Homing Beacon, Distortion Bomb, Robo Launcher RM7, Rock 'n Shock, Bots 'n Tots, Support Unit: H-EX, Giant Robot SG-88, Full Spread, For Liberty all exist. Spirit of Freedom (max 12, 4 stacks), the +5/10/15/20/25% buff-duration Legion effect, DEX/STR, Gun/Magnum all check out verbatim. \"Buster Station\" is real: orangemushroom.net 2026-07-11 exists and describes an installed missile station firing 12 missiles up to 180. Cosmetic defect only: the file writes \"Rock n Shock\" and \"Bots n Tots\" without the apostrophes the game uses, which will break exact-name matching in a planner."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "6 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

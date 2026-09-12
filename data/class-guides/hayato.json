@@ -1,0 +1,351 @@
+{
+  "slug": "hayato",
+  "className": "Hayato",
+  "branch": "Sengoku",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Katana",
+  "secondaryWeapon": "Kodachi",
+  "archetype": "Melee STR warrior rebuilt around a two-stance kit. Shinsoku skills are the fast, low-commitment half of the kit; Battou skills are the slow, heavy half. Using a Battou skill puts the character into the Akatsuki state, which grants final damage and ignore-defense for its duration, so the intended loop alternates between the two stances to hold Akatsuki up rather than committing to one stance. The 5th job buff Shogetsu Form layers on top of that state with higher multipliers, knockback immunity and amplified Battou damage. IMPORTANT: this describes the REWORKED Hayato introduced in GMS v266 (The Sengoku Warrior Reawakening). The pre-v266 kit (Rai Sanrenzan, Hitokiri Strike, Jin Battoujutsu) no longer exists and most guides still on the open web describe it.",
+  "linkSkill": {
+    "name": "Moonlit Blade Learnings",
+    "effect": "Conditional critical damage. While the character has 100% or more Critical Rate AND 50% Critical Damage, grants +7% Critical Damage at max level. The conditional gating is the notable part - the link does nothing until both thresholds are met, which is a real consideration for a low-progression character receiving it.",
+    "levels": "Master Level 3. Per-level values were not obtained from a dated source; only the max-level value above is sourced."
+  },
+  "legionEffect": "Critical Damage +1% / 2% / 3% / 5% / 6% across Legion ranks.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "The boostable skill set (what the Hayato boost nodes actually contain). Six nodes were readable: (1) [Shinsoku] Mist Slash, (2) [Shinsoku] Grazing Cut + Reactive Focus, (3) [Battou] Dark Moon Cut, (4) [Shinsoku] Afterimage Slash, (5) [Battou] Full Moon's Rage, (6) [Shinsoku] Silent Arc.",
+        "why": "This is the node-to-skill mapping, not a priority claim. It was read three separate times from the same source page and the skill contents were identical on all three reads, so the grouping itself is reliable even though the tier labels were not.",
+        "consensus": "moderate - one source family, but internally stable across three separate reads, and every skill name in it is corroborated as a real post-v266 skill by two further independent sources",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "TIER ORDER NOT ESTABLISHED - deliberately left unresolved.",
+        "why": "The source page labels each node PRIMARY / SECONDARY / OTHER, but three separate extractions of that same table returned three different label assignments. Read 1 put Mist Slash, Dark Moon Cut, Afterimage Slash and Full Moon's Rage in the top tier; read 2 put Mist Slash and the Grazing Cut + Reactive Focus node in the top tier; read 3 put Mist Slash, Dark Moon Cut and Full Moon's Rage in the top tier. Two of three reads agree that Mist Slash, Dark Moon Cut and Full Moon's Rage sit above Grazing Cut / Reactive Focus and Silent Arc, but that is an artifact of reading, not a sourced claim, and it is not strong enough to ship as a build order. A player levelling the wrong node to 60 loses weeks, so an empty field is the correct output here. Resolve by viewing the source page directly or by asking the Hayato Discord.",
+        "consensus": "none - unresolved extraction conflict, not a game-fact conflict",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "[Shinsoku] Mist Slash, [Shinsoku] Crescent Moon Cut, [Shinsoku] Afterimage Slash",
+        "labelledAs": "Trio #1",
+        "consensus": "weak - single source; its own page date stamp is unreliable (see notes)",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "trio": "[Battou] Full Moon's Rage, [Shinsoku] Silent Arc (listed as a two-skill pairing, not a full three)",
+        "labelledAs": "Trio #2",
+        "consensus": "weak - single source; the third slot was not stated",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "trio": "[Shinsoku] Mist Slash, [Battou] Full Moon's Rage, and either [Shinsoku] Crescent Moon Cut or [Battou] Dark Moon Cut",
+        "labelledAs": "first trinode",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      {
+        "trio": "[Shinsoku] Silent Arc, [Shinsoku] Afterimage Slash, and either [Shinsoku] Grazing Cut or [Shinsoku] Stormcloud Splitter",
+        "labelledAs": "second trinode",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      {
+        "trio": "Cross-class Sengoku nodes: Twilight Bloom and Princess Sakuno's Blessing",
+        "labelledAs": "recommended for all Sengoku classes, not Hayato-specific",
+        "consensus": "moderate - stated by one current source and independently echoed by the older pre-revamp class doc, which also put Princess Sakuno's Blessing in its high-priority list",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide",
+          "https://docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "The two independent trio sources DISAGREE on composition - see the conflicts array. Also note that Crescent Moon Cut and Stormcloud Splitter appear as trio members in both trio sources but did NOT appear in the boost node table read from Grandis Library; either that table was truncated on extraction (the page carries a 'View Pre-V.269 Boost Nodes' toggle indicating the groupings were changed at v269) or the two sets genuinely differ. Do not treat the six-node list as exhaustive. Relevant to a Lv 236 character: V matrix is the live system at this level, 6th job does not unlock until Lv 260, so node levelling is the decision that actually matters right now."
+  },
+  "hexa": {
+    "order": [],
+    "notes": "NO SOURCE FOR HEXA INVESTMENT ORDER. This is the single biggest gap for this class and it is a real hole in the public record, not a research shortfall. Specifically: (1) the Hayato class doc 'The Way of the Blade' DOES contain a 6th job section, but that doc is stranded at v252 and describes the pre-revamp kit - it names the Origin skill as 'Jin Battoujutsu: Owari No Susanoo' and Mastery cores as 'Rai Sanrenzan VI' and 'Rai Blade Flash VI', none of which are skills the reworked class has. Its HEXA order is therefore not merely stale, it is describing a different character. Do not use it. (2) Grandis Library's Hayato page has no HEXA Matrix section at all, consistent with Grandis having no HEXA layer for any class. It does list three Class Infographics tabs labelled Overview, 6th Job (Heroic) and 6th Job (Interactive) - the Heroic one is very likely the artifact a player needs, but it is an image and its contents could not be read here. (3) MapleDoro's Hayato HEXA guide is explicitly marked Work In Progress and redirects readers to the class doc or Discord. (4) DigitalTQ lists the 6th job skills but states no investment order. The only plausible live source is the Hayato Discord (https://discord.gg/EAkfmrx), which requires a human to read pins. HEXA skill NAMES are sourced and safe to display; the ORDER is not available. Because this character is Lv 236, this gap is not yet blocking - 6th job unlocks at Lv 260.",
+    "skillNames": {
+      "originSkill": {
+        "name": "Shin Quick Draw",
+        "consensus": "weak - single source, though it is post-revamp and patch-stamped v266",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      "ascentSkill": {
+        "name": "Fleeting Breath",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      "masteryCores": {
+        "names": [
+          "HEXA [Shinsoku] Mist Slash",
+          "HEXA [Shinsoku] Afterimage Slash",
+          "HEXA [Shinsoku] Crescent Moon Cut",
+          "HEXA [Shinsoku] Silent Arc",
+          "HEXA [Battou] Dark Moon Cut",
+          "HEXA [Battou] Full Moon's Rage"
+        ],
+        "consensus": "weak on the exact HEXA-prefixed naming (single source), but moderate on the underlying six skills, all of which appear as real post-revamp skills in two further independent sources",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      "enhancementCores": {
+        "names": [
+          "Shogetsu Form Boost",
+          "[Shinsoku] Crashing Tide",
+          "[Shinsoku] Light Cutter",
+          "[Battou] Wailing Heavens"
+        ],
+        "consensus": "weak - single source. These four correspond to 5th job skills, which matches the general rule that HEXA Boost nodes enhance 5th job skills.",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      "commonCore": {
+        "name": "Sol Janus",
+        "consensus": "strong - Sol Janus is the shared cross-class common node, not Hayato-specific",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      }
+    }
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "NO POST-REVAMP SOURCE. The only hyper stat guidance found anywhere for Hayato is in the v252 class doc, which lists Critical Damage, Ignore Enemy Defense and Boss Damage as the bossing focus. That doc predates the v266 rework, and the rework changed the class's passive crit and IED baselines, which is exactly what determines where hyper stat points stop paying off - so the pre-revamp ordering cannot be carried across and is recorded here only as a flagged historical claim, not a recommendation. Separately, and independent of Hayato: the community's operative answer to hyper stat priority is a per-character computation rather than a fixed list, via MathBro's Hyper Stat Optimizer (https://brendonmay.github.io/hyperCalculator/). A static priority list is a simplification that better-informed players reject, so for this class the honest output is to point at the calculator.",
+    "staleClaim": {
+      "claim": "Bossing focus on Critical Damage, Ignore Enemy Defense, Boss Damage",
+      "consensus": "weak and STALE - single source, pre-v266-revamp, describes a different version of the class",
+      "sources": [
+        "https://docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic"
+      ]
+    }
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "pick": "Shinsoku - Reinforce",
+        "why": "Damage increase on the fast-stance main line.",
+        "consensus": "strong - two independently authored post-revamp sources state the same passive set",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      {
+        "pick": "Shinsoku - Boss Rush",
+        "why": "Boss damage on the fast-stance main line.",
+        "consensus": "strong - two independent post-revamp sources",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      {
+        "pick": "Battou - Reinforce",
+        "why": "Damage increase on the heavy stance.",
+        "consensus": "strong - two independent post-revamp sources",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      {
+        "pick": "Battou - Boss Rush",
+        "why": "Boss damage on the heavy stance.",
+        "consensus": "strong - two independent post-revamp sources",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      },
+      {
+        "pick": "Reactive Focus - Cooldown Cutter",
+        "why": "Cooldown reduction on Reactive Focus. Both sources single this out as the fifth pick alongside the four stance passives.",
+        "consensus": "strong - two independent post-revamp sources",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://www.digitaltq.com/maplestory-hayato-skill-build-guide"
+        ]
+      }
+    ],
+    "actives": [],
+    "notes": "The five passives above are the most solidly sourced judgement in this file - two separately authored post-revamp sources name the identical set. Active hyper skill picks were NOT sourced for the reworked class and are left empty. [Shinsoku] Silent Arc appears as a hyper-skill-tier ability in both the boost node table and one source's skill listing, but no dated source stated which ACTIVE hypers to take, so no active list is given. For contrast, the pre-revamp doc recommended Shinsoku Reinforce / Extra Strike / Boss Rush plus Hitokiri Strike Cooldown Cutter - the Hitokiri Strike pick is dead (that skill no longer exists) and the survival of the Shinsoku picks across the rework is coincidental naming, not confirmation."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Boss Damage +20% (top line)",
+        "consensus": "moderate - stated by the current post-revamp source, and the pre-revamp class doc independently gave the same top-line target (15-20% Boss Damage). Those two share the Hayato Discord as an upstream, so treat as one-and-a-half sources rather than two.",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic"
+        ]
+      },
+      {
+        "line": "Damage to monsters inflicted with Abnormal Status +8%",
+        "consensus": "weak - single post-revamp source",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato"
+        ]
+      },
+      {
+        "line": "Attack +21, or Buff Duration +38% as the alternative on that line",
+        "consensus": "moderate - the current source gives both options; the pre-revamp doc separately listed Weapon Attack 15-21 and Buff Duration 38% as its non-top lines, matching the pairing",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Meso Obtained or Item Drop Rate +20% (top line)",
+        "consensus": "moderate - current source, corroborated by the pre-revamp doc which gave 18-20% Meso Obtained and 18-20% Item Drop",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic"
+        ]
+      },
+      {
+        "line": "Meso Obtained or Item Drop Rate +15%",
+        "consensus": "weak - single post-revamp source",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato"
+        ]
+      },
+      {
+        "line": "Damage to Normal Monsters +8%",
+        "consensus": "moderate - current source, and the pre-revamp doc also listed Normal Monster Damage as a farming line",
+        "sources": [
+          "https://grandislibrary.com/sengoku/hayato",
+          "https://docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "Inner ability is the best-preserved field across the rework, because IA lines are generic stat lines rather than skill-specific, so the pre-revamp doc's recommendations remain broadly meaningful where they agree with the current page. Attack speed does NOT appear in either source's recommended lines, which is consistent with the class reaching high attack speed from its own passives (see gearingNotes). No source was found that recommends a cooldown-skip line for this class despite Reactive Focus being cooldown-relevant."
+  },
+  "gearingNotes": "CLASS-SPECIFIC HOOKS, all from the current post-revamp source unless noted.\n\n1. The link skill is CONDITIONAL and the condition is a gearing target. Moonlit Blade Learnings only pays out at 100%+ Critical Rate and 50% Critical Damage. Both the link skill and the Legion effect give Critical Damage, so the class's own contributions push one side of a threshold that requires the other side to be satisfied first from gear and hyper stats.\n\n2. The class supplies a large amount of crit from passives - roughly +45% Critical Rate and +30% Critical Damage base from its own skills (rising into the 65-67% range on Critical Damage with buffs). That materially changes where crit investment stops paying off compared to a class with no passive crit, and it is the reason a flat cross-class hyper stat or inner ability recommendation is a poor fit here.\n\n3. Ignore DEF is around +48% from passives, reaching roughly +72.7% with buffs active. IED stacks multiplicatively, so a high passive baseline lowers the marginal value of further IED from gear and hyper stats.\n\n4. Attack speed reaches 8 from passives, with a 1.25x weapon multiplier and 99% weapon mastery. Because the class is already fast natively, the +1 attack speed inner ability line is not among either source's recommended lines.\n\n5. Akatsuki uptime is the mechanical constraint that gear should serve. Because Akatsuki is entered by using a Battou skill and grants final damage plus ignore-defense for its duration, buff duration has more value here than it would for a class with no maintained state - which is consistent with Buff Duration +38% appearing as a recommended inner ability line.\n\nSTALE, FROM THE v252 DOC AND FLAGGED AS SUCH - recorded only so they are not mistaken for current advice: a 10 attack speed target via Booster / Quick Draw / green potions / Decent Speed Infusion, a 95-97% visual IED target, Princess No's Kodachi as the secondary, Attack-line WSE with 9 attack preferred, and a cooldown hat as optional quality-of-life. The secondary weapon choice and WSE advice are the most likely of these to have survived the rework, but none of it was confirmed against a post-v266 source.",
+  "commonMistakes": [
+    "Using any Hayato guide that names Rai Sanrenzan, Rai Blade Flash, Hitokiri Strike or Jin Battoujutsu: Owari No Susanoo. Those skills belong to the pre-v266 class and no longer exist. This is the dominant failure mode for Hayato specifically, because the class doc linked from both the community wiki index and from Grandis Library is one of those guides.",
+    "Treating the linked class doc 'The Way of the Blade' as current. It is the top result a player will find, it is the doc the ecosystem points at, and it is stranded at v252 - before the v266 Sengoku Warrior Reawakening. Its 6th job section in particular describes an Origin skill the class does not have.",
+    "Counting Grandis Library and the Hayato class doc as two agreeing sources. Grandis credits the Hayato Discord for its inner ability, hyper passive and boost node fields, and the doc comes from that same Discord. They are one consensus family.",
+    "Rolling attack speed on inner ability. The class already reaches attack speed 8 from passives and no source recommends the line.",
+    "Assuming the link skill is working. Moonlit Blade Learnings does nothing until the character is at 100%+ Critical Rate and 50% Critical Damage, so on a fresh or low-progression character it can be contributing zero while appearing active.",
+    "Trusting a node-trio table's date stamp. The one consolidated cross-class trio reference used here displays 'Last update: November 21st, 2024' while simultaneously listing post-v266 skill names for both Hayato and Kanna - its own date line is demonstrably wrong, in the direction of understating currency."
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/sengoku/hayato",
+      "what": "Grandis Library Hayato class page. Post-revamp. Supplied class properties, link skill, legion effect, base stats from skills (crit rate/crit damage/IED/attack speed baselines), hyper skill passive build, the boost node table contents, and recommended inner ability split bossing/training. Has NO HEXA Matrix section, but lists three Class Infographics tabs - Overview, 6th Job (Heroic), 6th Job (Interactive) - which are images that could not be read here and are the most likely public home of a HEXA order. Credits block attributes inner ability, hyper passive build and boost nodes to the Hayato Discord, so it is a presentation layer over that Discord, not an independent opinion. Its PRIMARY/SECONDARY/OTHER tier labels could not be read consistently across three attempts.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] sitewide stamp - post-v266 revamp, two patches behind the v.271 target",
+      "independent": false
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-hayato-skill-build-guide",
+      "what": "DigitalTQ Hayato skill build guide, author credited as Aleph. Independently authored relative to the Hayato Discord lineage. Supplied post-revamp 5th job skill names, the two trinode groupings, the 6th job skill names (Origin 'Shin Quick Draw', Ascent 'Fleeting Breath', six HEXA Mastery skills, four Enhancement/Boost skills, Sol Janus common), the Akatsuki state and Shogetsu Form mechanic description, and the same five hyper passives as Grandis. Explicitly contains NO HEXA investment order, NO boost node ranking, NO hyper stat priority and NO inner ability recommendation - it is a skill dictionary plus a light build, and was treated as such. Part of the DigitalTQ / The Digital Crowns content-farm family, which the project brief flags as low quality; used here only for skill names and mechanic description, both verifiable facts, and for the trinode groupings which are recorded as weak single-source.",
+      "dated": "2026-02-13, explicitly targeting v266 The Sengoku Warrior Reawakening",
+      "independent": true
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's consolidated cross-class boost node trio reference. Supplied Hayato Trio #1 and Trio #2. Independent of both the Hayato Discord lineage and DigitalTQ. IMPORTANT DATE FINDING: the page displays 'Last update: November 21st, 2024', but its Hayato entry lists [Shinsoku] and [Battou] prefixed skills and its Kanna entry lists [Order] prefixed skills - both of which only exist after the v266 revamp of February 2026. The content is therefore verifiably newer than its own stamp. The date line is unreliable and the content should be treated as post-revamp but of unknown exact vintage.",
+      "dated": "page states 2024-11-21, but content is demonstrably post-v266 (2026) - the stamp is wrong",
+      "independent": true
+    },
+    {
+      "url": "https://www.mapledoro.com/guides/character-guides/hayato",
+      "what": "MapleDoro Hayato page. Independently corroborated the link skill name 'Moonlit Blade Learnings' and the Legion critical damage values (+1/2/3/5/6%). Carries a class infographic and a community resources block. Its HEXA guide section is explicitly marked Work In Progress and redirects readers to the class doc or class Discord - which is itself useful evidence that no public Hayato HEXA order exists. No boost node priority, no hyper stats, no inner ability.",
+      "dated": "no date shown on the page",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic",
+      "what": "'The Way of the Blade', the Hayato class doc linked from both Grandis Library and the community wiki class-guide index. READ AND THEN REJECTED FOR ALL PRIORITY DATA. Confirmed by direct reading that it references v252 as its currency, makes no mention of v266 or the Reawakening, and describes the pre-revamp kit throughout - its 6th job section names Origin 'Jin Battoujutsu: Owari No Susanoo' and Mastery cores 'Rai Sanrenzan VI' and 'Rai Blade Flash VI', none of which exist in the reworked class. Used ONLY for (a) inner ability corroboration, where the lines are generic stats that survive a rework, and (b) recording its stale gearing and hyper stat claims as explicitly flagged historical. Same consensus family as Grandis Library via the Hayato Discord.",
+      "dated": "v252 - PRE-v266 REVAMP, invalid for nodes, HEXA and skill-specific advice",
+      "independent": false
+    },
+    {
+      "url": "https://discord.gg/EAkfmrx",
+      "what": "Hayato class Discord. Credited by Grandis Library as the source of its inner ability, hyper passive and boost node judgement, and the destination MapleDoro redirects to for HEXA. Given that the public class doc is stranded pre-revamp, this is almost certainly the only live source of post-v266 Hayato HEXA investment order. Not machine-readable - requires a human to join and read pins.",
+      "dated": "live, not read",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "topic": "Boost node trio composition - which Moon Cut belongs in the main trio",
+      "positionA": "Trio #1 is [Shinsoku] Mist Slash + [Shinsoku] Crescent Moon Cut + [Shinsoku] Afterimage Slash, with [Battou] Full Moon's Rage and [Shinsoku] Silent Arc forming a second trio.",
+      "sourceA": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "positionB": "The first trinode is [Shinsoku] Mist Slash + [Battou] Full Moon's Rage + either [Shinsoku] Crescent Moon Cut or [Battou] Dark Moon Cut, and the second is [Shinsoku] Silent Arc + [Shinsoku] Afterimage Slash + either [Shinsoku] Grazing Cut or [Shinsoku] Stormcloud Splitter.",
+      "sourceB": "https://www.digitaltq.com/maplestory-hayato-skill-build-guide",
+      "status": "contested - recorded, not resolved. The two sources place Full Moon's Rage and Afterimage Slash in different trios and disagree on whether Crescent Moon Cut or Dark Moon Cut is the intended partner. Neither source is strong enough to override the other: one has an unreliable date stamp, the other is a content farm. Resolve via the Hayato Discord."
+    },
+    {
+      "topic": "Which skills are boostable at all",
+      "positionA": "The boost node table lists six nodes covering Mist Slash, Grazing Cut + Reactive Focus, Dark Moon Cut, Afterimage Slash, Full Moon's Rage, and Silent Arc. Crescent Moon Cut and Stormcloud Splitter do not appear.",
+      "sourceA": "https://grandislibrary.com/sengoku/hayato",
+      "positionB": "Crescent Moon Cut and Stormcloud Splitter are named as trio members, implying they are boostable.",
+      "sourceB": "https://www.digitaltq.com/maplestory-hayato-skill-build-guide and https://mystyjl.github.io/reference/NodeGuide.html",
+      "status": "contested - most likely an extraction truncation on the first source rather than a real disagreement, since that page carries a 'View Pre-V.269 Boost Nodes' toggle indicating collapsible content. Flagged so the six-node list is not treated as exhaustive."
+    },
+    {
+      "topic": "Boost node tier ordering (PRIMARY / SECONDARY / OTHER)",
+      "positionA": "Three separate reads of the same source page returned three different tier assignments; the skill contents of each node were identical across all three reads but the labels were not.",
+      "sourceA": "https://grandislibrary.com/sengoku/hayato",
+      "positionB": "No second source publishes a Hayato boost node tier ordering at all.",
+      "sourceB": null,
+      "status": "unresolved - this is a reading-reliability conflict rather than a disagreement between guides. Deliberately left blank in vMatrix.priority rather than resolved by picking the majority reading."
+    }
+  ],
+  "coverageGaps": [
+    "HEXA investment order - no usable public source exists for the post-v266 class. Not blocking at Lv 236 (6th job unlocks at 260) but must be filled before this character reaches endgame.",
+    "Hyper stat priority - no post-revamp source. Direct users to MathBro's Hyper Stat Optimizer, which computes it per character.",
+    "Active hyper skill picks - no post-revamp source.",
+    "Boost node tier order - a source exists but could not be read reliably.",
+    "Per-level link skill values - only the max-level value is sourced."
+  ],
+  "researchNotes": "Hayato is structurally harder to source than most classes for a reason worth recording: it is a Japan-originated class, so the KMS cross-check lane that the project brief relies on for other classes (NamuWiki, Orange Mushroom) does not usefully exist. A search of Orange Mushroom returned no Hayato posts, and the NamuWiki Hayato pages returned HTTP 403 to fetching on both URL forms tried. maplestorywiki.net/w/Hayato/Skills - the intended anti-fabrication name-validation table - returned 403 to fetching and the browser was denied navigation to that host, and the Fandom mirror returned HTTP 402. Skill names in this file were therefore validated by triangulation across three separately authored sources instead of against a neutral wiki table; every skill name recorded here appears in at least two of those, except where explicitly marked single-source. The web search budget for this session was exhausted (200/200) before this class was researched, so all findings come from direct fetches of URLs already known from the project's discovery phase. Nexon's official v266 patch notes are JS-rendered and returned an empty shell; reading them in a browser would be the cleanest way to validate the post-revamp skill list independently and is the recommended next step, alongside a human pass on the Hayato Discord for HEXA order.",
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FALSE SOURCE CLAIM, and it inverts the source's actual recommendation. vMatrix.trios[4] says the pre-revamp class doc 'also put Princess Sakuno's Blessing in its high-priority list'. I read the doc (docs.google.com/document/d/1P4mBaIAc-YgycrtemcaUmuo13YRkbA0FP-MbJb1fzIo/mobilebasic). It has two lists. High Priority: Shinsoku, Sanrenzan/Blade Flash, Hitokiri Hundred Strike, Falcon's Honor. LOW Priority: Iaijutsu Phantom Blade, Sengoku Force Assemble, Princess Sakuno's Blessing, Decent Holy Symbol, Weapon Aura. Princess Sakuno's Blessing is in the LOW list. The file used a deprioritization as corroboration to raise a recommendation from weak to moderate.",
+      "FALSE SOURCE CLAIM. The same entry says the class doc 'independently echoed' the Twilight Bloom + Princess Sakuno's Blessing pair. 'Twilight Bloom' does not appear anywhere in that document.",
+      "MISATTRIBUTED CORROBORATION. innerAbility.bossing[2] says 'the pre-revamp doc separately listed Weapon Attack 15-21 and Buff Duration 38% as its non-top lines, matching the pairing'. In the doc, Buff Duration 38% is in the FARMING/training list (18-20% Meso Obtained, 38% Buff Duration, 7-8% Normal Monster Damage). Its bossing list is Boss Damage / Weapon Attack / Abnormal Status Damage - no Buff Duration. The claimed pairing match does not exist, and this same misreading is what gearingNotes item 5 then builds its Akatsuki/buff-duration theory on.",
+      "UNVERIFIED DETAIL attributed to a source. innerAbility.training[0] says the class doc 'gave 18-20% Meso Obtained and 18-20% Item Drop'. The doc's farming list I retrieved contains Meso Obtained only; no Item Drop line was present. Lower confidence than the three above (fetch summarisation could be lossy), but it should be re-checked before it ships.",
+      "MISCHARACTERISED CLASS FACT (sourced, but conflicting and the conflict is unrecorded). vMatrix.trios[4] labels Twilight Bloom and Princess Sakuno's Blessing 'Cross-class Sengoku nodes ... recommended for all Sengoku classes, not Hayato-specific'. That framing is DigitalTQ's ('All Sengoku classes should try to also obtain these'), so it is not invented - but Grandis Library lists BOTH as Hayato's own 5th Job skills, alongside Shogetsu Form, Weapon Aura, Impenetrable Skin and [Battou] Wailing Heavens. The two sources disagree on what these things even are, and that disagreement is nowhere in the conflicts array."
+    ],
+    "clearedOnInspection": [
+      "NO fabricated skill or node names found. Every name in the file checks out against at least one source I re-read independently: all six boost-node skills, Crescent Moon Cut and Stormcloud Splitter (Grandis 3rd job), Silent Arc (Grandis Hyper Skill), Shogetsu Form / Princess Sakuno's Blessing / Twilight Bloom / Weapon Aura / Impenetrable Skin / [Battou] Wailing Heavens (Grandis 5th job), Shin Quick Draw and Fleeting Breath (Grandis 6th job AND DigitalTQ), the six HEXA Mastery names, Sol Janus, Bushido, Akatsuki Blessing, and 'Moonlit Blade Learnings' (Grandis and MapleDoro). The two weakest names are '[Shinsoku] Crashing Tide' (DigitalTQ only; absent from Grandis entirely) and '[Shinsoku] Light Cutter' (DigitalTQ, plus one unlabelled appearance in Grandis's preview strip). Neither is fabricated, but the file's 'weak - single source' tag on enhancementCores is doing more work than its prose admits."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

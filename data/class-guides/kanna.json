@@ -1,0 +1,230 @@
+{
+  "slug": "kanna",
+  "className": "Kanna",
+  "branch": "Sengoku",
+  "primaryStat": "INT",
+  "secondaryStat": "LUK",
+  "weapon": "Fan",
+  "secondaryWeapon": "Talisman",
+  "archetype": "INT magician whose damage is concentrated in summoned Shikigami (Oni, Tengu, Orochi) rather than in her own direct attacks. IMPORTANT: this file describes the REMASTERED Kanna. Kanna was rebuilt in the GMS v266 update (The Sengoku Warrior Reawakening). The entire pre-remaster kit - Shikigami Haunting, Kishin Shoukan, Vanquisher's Charm, Nine-Tailed Fury, Spirit's Domain, Liberated Spirit Circle - no longer exists. Searching the current skill list on maplestorywiki returns zero occurrences of every one of those names. The current kit is built on Soul-Shatter Talisman, Heart-Wreck Talisman, the three Shikigami summons, and the four [Order] skills. Most Kanna material still ranking on the open web describes the deleted kit and will mislead a planner.",
+  "linkSkill": {
+    "name": "Elementalism",
+    "effect": "Activating attack skills 40 times completes the preparation; the next attack skill use grants the Elementalism buff. At Master Level 3 the buff is Damage +20% for 12 seconds (Level 1 is Damage +10%). Grandis Library additionally records that the effect is unaffected by %Buff Duration.",
+    "levels": "Master Level 3. Level 1 = Damage +10% / 12 sec. Level 3 = Damage +20% / 12 sec. The 40-attack activation requirement is the same at all levels. Level 2 value was not read directly and is left unstated rather than interpolated."
+  },
+  "legionEffect": "Boss Damage +1% / 2% / 3% / 5% / 6% across Legion ranks.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost node / enhancement core groupings (which skills share a node). Core 1: Soul-Shatter Talisman Boost + Heart-Wreck Talisman Boost. Core 2: Summon Oni Boost. Core 3: Summon Tengu Boost. Core 4: Summon Orochi Boost. Core 5: [Order] Spinning Strike Boost + [Order] Pulverizing Strike Boost. Core 6: [Order] Shade-Fletched Arrow Boost + [Order] Execute Boost.",
+        "why": "This is the node-to-skill mapping, not a priority claim. It is the structural fact everything else rests on. Two independent sources give an identical grouping: the wiki's V Enhancements table (game data, no judgement attached) and Grandis Library's 'Skills Boosted by Each Nodes' table (class-doc lineage). Independent agreement on all six cores.",
+        "consensus": "strong - two independent sources, identical grouping, both post-remaster",
+        "sources": [
+          "https://maplestorywiki.net/w/Kanna/Skills",
+          "https://grandislibrary.com/sengoku/kanna"
+        ]
+      },
+      {
+        "node": "Tier ranking: Grandis Library marks cores 1, 2, 3 and 4 (the two Talisman skills and the three Shikigami summons) as PRIMARY, and cores 5 and 6 (the four [Order] skills) as SECONDARY. No core is marked OTHER.",
+        "why": "Grandis Library assigns these tiers directly. The ranking is separately made plausible by NamuWiki, which states independently that after the remaster Kanna's own attack damage lags well behind her summons' damage - which is consistent with the three summon nodes sitting in the top tier. NamuWiki does not itself rank the nodes, so it corroborates the reasoning, not the literal ordering.",
+        "consensus": "moderate - the tier labels come from one source family (Grandis restates the Kanna class doc). The underlying premise that damage is summon-concentrated is confirmed by a genuinely independent source.",
+        "sources": [
+          "https://grandislibrary.com/sengoku/kanna",
+          "https://en.namu.wiki/w/%EC%B9%B8%EB%82%98(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+        ]
+      },
+      {
+        "node": "Ordering WITHIN the primary tier is not established.",
+        "why": "Grandis marks four cores PRIMARY but does not rank them against each other, and no other readable post-remaster source ranks them. Which of Soul-Shatter/Heart-Wreck, Oni, Tengu or Orochi to take to 60 first is therefore unsourced. Left empty deliberately: a wrong answer here costs a player weeks of nodestones. Resolve via the Kanna Discord.",
+        "consensus": "none - no source found",
+        "sources": []
+      },
+      {
+        "node": "Per-node mechanical values (from the wiki's V Enhancement table, facts only): every Kanna boost node gives Final Damage +2% per level. The three summon nodes - Summon Oni Boost, Summon Tengu Boost, Summon Orochi Boost - each give Critical Rate +5% at node level 20. Soul-Shatter Talisman Boost, Heart-Wreck Talisman Boost, [Order] Spinning Strike Boost and [Order] Pulverizing Strike Boost each give Normal Monster Damage +10% at level 20. Soul-Shatter Talisman Boost gives Ignored Enemy Defense +20% at level 40.",
+        "why": "Directly read from the wiki table. Recorded because it interacts with the crit-rate shortfall noted under gearingNotes: the three summon nodes are also the three that carry crit rate, so taking each to level 20 yields +15% Critical Rate in total. That arithmetic is mine; the +5%-per-node figures are the source's.",
+        "consensus": "strong for the per-node values (single authoritative data source, no judgement involved). The level 40 column was only unambiguously readable for Soul-Shatter Talisman Boost; the other nodes' level 40 effects are not recorded here rather than guessed.",
+        "sources": [
+          "https://maplestorywiki.net/w/Kanna/Skills"
+        ]
+      }
+    ],
+    "trios": [],
+    "notes": "NO post-remaster boost node trio recommendation could be sourced. The one consolidated all-class trio table (mastermysty's Node Guide) self-reports its data as last updated 2024-05-14, which is roughly eighteen months before the v266 remaster; its Kanna entry is built on Shikigami Haunting and Kishin Shoukan, skills that no longer exist. It must NOT be used for Kanna. The trios array is empty because an empty field is correct here, not because the research was skipped."
+  },
+  "hexa": {
+    "order": [],
+    "notes": "NO usable public source for Kanna HEXA investment order exists that I could read. This is the single biggest gap in this file and it is an honest null, not an omission. What IS established: the HEXA node names, verified against the wiki so the planner can never emit a fabricated one. Skill Node/Core 1 (Origin) = [Divine Will] Advent of Crimson. Skill Node/Core 2 (Ascent) = [Divine Will] Final Rest. The nine Mastery cores are HEXA Soul-Shatter Talisman: Dance, HEXA Heart-Wreck Talisman, HEXA Summon Oni, HEXA [Order] Spinning Strike, HEXA [Order] Pulverizing Strike, HEXA Summon Tengu, HEXA Shade-Fletched Arrow, HEXA Summon Orochi, HEXA [Order] Execute. The HEXA Enhancement (boost) core for the V skill is [Spirit] Hakumenkonmou Juubi Boost, which scales Final Damage from +11% at level 1 to +60% at level 30 with jumps at levels 10, 20 and 30. Why no order: Grandis Library has no HEXA text section for any class - it ships a '6th Job' infographic IMAGE on the Kanna page, which is a real lead but is not machine-readable and was not read here. The Kanna class doc that both maplestorywiki and Grandis still link is 'Post-6th Job Kanna Guide (Updated August 2024)', which is pre-remaster AND whose own text tells readers it has stopped being maintained and to consult the Kanna Discord FAQ channel for current HEXA max order. So the community's own answer explicitly lives in Discord, which is not publicly readable. Next step for whoever extends this: read the Grandis 6th Job infographic with OCR or a human, and pull the Kanna Discord #faq pins.",
+    "originSkill": "[Divine Will] Advent of Crimson",
+    "ascentSkill": "[Divine Will] Final Rest",
+    "masteryCores": [
+      "HEXA Soul-Shatter Talisman: Dance",
+      "HEXA Heart-Wreck Talisman",
+      "HEXA Summon Oni",
+      "HEXA [Order] Spinning Strike",
+      "HEXA [Order] Pulverizing Strike",
+      "HEXA Summon Tengu",
+      "HEXA Shade-Fletched Arrow",
+      "HEXA Summon Orochi",
+      "HEXA [Order] Execute"
+    ],
+    "boostCores": [
+      "[Spirit] Hakumenkonmou Juubi Boost"
+    ],
+    "nameSources": [
+      "https://maplestorywiki.net/w/Kanna/Skills"
+    ]
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No Kanna-specific hyper stat allocation could be sourced. Grandis Library carries no hyper stat section for any class; the linked Kanna doc is pre-remaster; NamuWiki's Kanna pages discuss inner ability but not hyper stat point allocation. Recording null rather than importing a generic cross-class list. Two things worth carrying into the product instead: (1) the community's operative answer to hyper stat priority is a per-character computation from your own stat sheet, not a fixed list - MathBro's Hyper Stat Optimizer at https://brendonmay.github.io/hyperCalculator/ is the tool people actually use; (2) Kanna specifically runs short on Critical Rate (see gearingNotes), so the Critical Rate hyper stat line is likely to matter more for her than for a class that caps crit from passives - but no source states that as a Kanna hyper stat recommendation, so it is flagged here as an inference to verify, not a recommendation."
+  },
+  "hyperSkills": {
+    "passiveBuild": [
+      "Pulverizing Strike - Reinforce",
+      "Pulverizing Strike - Guardbreak",
+      "Shade-Fletched Arrow - Reinforce",
+      "Shade-Fletched Arrow - Boss Rush",
+      "Execute - Reinforce"
+    ],
+    "consensus": "moderate - the five picks come from Grandis Library (class-doc lineage, single source family). Every one of the five names was independently validated as a real skill against the wiki's hyper passive list, so there is no fabrication risk, but the selection itself is not multiply sourced.",
+    "sources": [
+      "https://grandislibrary.com/sengoku/kanna",
+      "https://maplestorywiki.net/w/Kanna/Skills"
+    ],
+    "availablePool": "The wiki lists nine hyper passives, three for each of the three boosted skills: Pulverizing Strike - Reinforce / Critical Chance / Guardbreak; Shade-Fletched Arrow - Reinforce / Critical Chance / Boss Rush; Execute - Reinforce / Critical Chance / Guardbreak. The recommended build above takes five of these nine, which is the standard number of hyper passive points.",
+    "actives": "The wiki lists three hyper actives: True Name Revelation, [Order] Pulverizing Strike, and Akatsuki Blessing. No source was found that recommends which hyper actives to take for Kanna, so no recommendation is given.",
+    "notes": "Note that Grandis phrases its build as 'Pulverizing Strike - Reinforce and Guardbreak', 'Shade-Fletched Arrow - Reinforce and Boss Rush', 'Execute - Reinforce'. The Critical Chance lines are available but not in the recommended build, which is worth flagging given Kanna's crit shortfall - no source explains that choice."
+  },
+  "innerAbility": {
+    "bossing": {
+      "lines": [
+        "Line 1: EITHER Passive Skills +1 OR Attack Speed +1 - see conflicts, both are legitimately recommended",
+        "Line 2/3: Boss Damage (Grandis states +10%; NamuWiki states the 5-10% legendary range)",
+        "Line 2/3: Damage to monsters inflicted with Abnormal Status (Grandis states +8%; NamuWiki states the 7-8% legendary range)"
+      ],
+      "consensus": "strong on lines 2 and 3 - Boss Damage plus Abnormal-Status damage is given by two independent sources (Grandis/class-doc lineage and NamuWiki), and a third low-quality source also names Boss Damage. Contested on line 1, recorded under conflicts.",
+      "sources": [
+        "https://grandislibrary.com/sengoku/kanna",
+        "https://en.namu.wiki/w/%EC%B9%B8%EB%82%98(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+        "https://www.digitaltq.com/maplestory-kanna-skill-build-guide"
+      ]
+    },
+    "training": {
+      "lines": [
+        "Line 1: Meso Obtained or Item Drop Rate +20%",
+        "Line 2: Meso Obtained or Item Drop Rate +15%",
+        "Line 3: Damage to Normal Monsters +8%"
+      ],
+      "consensus": "weak - single source (Grandis Library). It is also the generic training preset shape the cross-class inner ability guidance gives, so it is unlikely to be wrong, but nothing Kanna-specific confirms it.",
+      "sources": [
+        "https://grandislibrary.com/sengoku/kanna"
+      ]
+    },
+    "classSpecificReasoning": "NamuWiki gives the only readable reasoning for WHY Kanna's first line is contested, and it is worth encoding because it is a genuine post-remaster change. Its position: after the remaster, taking Passive Skills +1 is a meaningful damage gain because Kanna's damage is overwhelmingly summon-based and the passive levels feed that, whereas before the remaster the passive line was optional in GMS. Separately it notes that after the remaster attack speed reaches 7 stages, so in GMS an Attack Speed +1 roll is what lets a Kanna reach full attack speed - meaning the two line-1 candidates are solving different problems. It also notes Critical Rate as a stopgap first/second line for players who cannot yet source crit elsewhere in the early-to-mid game, and says artifacts usually make that unnecessary later.",
+    "reasoningSources": [
+      "https://en.namu.wiki/w/%EC%B9%B8%EB%82%98(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+    ]
+  },
+  "gearingNotes": "Two Kanna-specific facts change gearing advice, both independently sourced. (1) CRITICAL RATE SHORTFALL: NamuWiki states plainly that Kanna is short on Critical Rate. This matters because it inverts the advice you would give a class that caps crit from its own passives - Kanna needs crit sourced from gear, Legion, artifacts, hyper stats or a stopgap inner ability line, and NamuWiki specifically suggests an inner ability crit roll as an early-to-mid-game patch until artifacts cover it. This dovetails with a mechanical fact from the wiki: the three Shikigami summon boost nodes (Oni, Tengu, Orochi) each grant Critical Rate +5% at node level 20, so those three nodes at level 20 are themselves worth +15% crit - i.e. for Kanna the boost node plan and the crit-rate plan are the same plan. (2) DAMAGE IS IN THE SUMMONS: NamuWiki states that post-remaster Kanna's own average damage lags well behind her summons'. That is why the summon nodes sit in the primary tier and why the Passive Skills +1 inner ability line gained value after the remaster. (3) ATTACK SPEED: NamuWiki notes that after the remaster attack speed sits at 7 stages, so in GMS an Attack Speed +1 inner ability roll is what reaches full attack speed - relevant to whether you chase that line or the passive line. Nothing was sourced on weapon/secondary/emblem selection, flame targets, or IED targets for Kanna, so those fields are absent rather than guessed.",
+  "farmingNotes": "DIRECT CORRECTION TO A COMMON ASSUMPTION, AND TO THIS TASK'S OWN PREMISE. Kishin Shoukan no longer exists on Kanna. Three independent checks agree: the wiki's complete current Kanna skill list contains zero occurrences of 'Kishin' across all job tiers, hyper, V and HEXA sections; Grandis Library's full active-skill list for Kanna contains no Kishin entry; and both NamuWiki Kanna pages (main page last modified 2026-08-22, skill subpage 2026-07-23) contain zero occurrences. The pre-remaster kit that Kishin belonged to was removed wholesale in the v266 remaster. Caveat on strength: this is three sources independently showing ABSENCE from current skill listings, which is strong, but I did not read an official Nexon patch note saying 'Kishin Shoukan was removed' - Nexon's site is JavaScript-rendered and returned no content. A secondary, WEAKER claim from a low-quality source (DigitalTQ) holds that even before the remaster, GMS had already stripped Kishin's monster-spawn-rate increase in v233 and left it as an EXP buff; that is single-sourced from a content farm and should be treated as unverified history, not as current mechanics. PRACTICAL UPSHOT: do not plan a Kanna around Kishin, do not plan her as a spawn-support mule for another character, and treat any guide that recommends a Kishin boost node as proof that the guide predates v266. What replaces it for farming was NOT sourced - the current kit does carry Normal Monster Damage +10% at level 20 on four boost nodes and the standard Sol Janus EXP passive, but no source ranks Kanna's current farming performance, so no claim is made.",
+  "commonMistakes": [
+    "Using the 'Post-6th Job Kanna Guide (Updated August 2024)' Google Doc. It is still the doc linked from BOTH maplestorywiki's class-guide index AND Grandis Library, which makes it the first thing a player finds, and it is pre-remaster: it teaches Shikigami Haunting, Kishin Shoukan, Vanquisher's Charm and Nine-Tailed Fury, none of which exist. Its boost node priority recommends a Shikigami Haunting / Tengu Strike / Kishin Shoukan trio - two of those three skills are gone. Its own text says the author has stopped updating it and redirects to the Kanna Discord FAQ for current HEXA order.",
+    "Using mastermysty's cross-class Node Guide for Kanna. Its data is self-dated 2024-05-14, roughly eighteen months pre-remaster, so its Kanna trios are built on deleted skills. It is fine for other classes and wrong for this one.",
+    "Treating Grandis Library and the Kanna class doc as two agreeing sources. Grandis's credits block attributes its Inner Ability, Hyper Passive Build and Boost Node sections to 'Class Doc', so they are one source family, not two.",
+    "Expecting a Kishin-based farming or spawn-mule role from Kanna. See farmingNotes.",
+    "Assuming the Grandis Kanna page is current to v.271. Grandis carries a sitewide GMS Ver. 269 stamp, two patches behind the v.271 target."
+  ],
+  "levelContext": "Character is Lv 140, which is the level Hyper Skills unlock. At 140 the immediately actionable items in this file are the hyper passive build and the inner ability presets. V Matrix boost nodes begin at 200 and HEXA at 260, so the node and HEXA sections are forward planning, not current actions.",
+  "sources": [
+    {
+      "url": "https://maplestorywiki.net/w/Kanna/Skills",
+      "what": "Authoritative FACTS with no judgement attached: the complete current post-remaster skill list by job tier, the nine hyper passives and three hyper actives, the four [Spirit] V skills, the six V Enhancement boost node groupings with Final Damage per level and level 20/40 effects, the Origin and Ascent HEXA skill names, the nine HEXA Mastery core names, and the HEXA Enhancement scaling. Used as the name-validation allowlist for this entire file - every skill and node name emitted here was checked against this page. Also the primary evidence that Kishin Shoukan no longer exists. Returns HTTP 403 to plain fetching; read via a same-origin browser fetch.",
+      "dated": "Living wiki; page reflects the post-v266 remastered kit. Exact last-edit date not verified - page history was not reachable.",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/sengoku/kanna",
+      "what": "The only readable structured JUDGEMENT source for GMS Kanna: boost node groupings tiered PRIMARY/SECONDARY, the recommended hyper skill passive build, and Recommended Inner Ability split into bossing and training. Also class properties and the Elementalism link skill detail. Carries an 'Overview' and a '6th Job' class infographic - the 6th Job image is the most promising unread lead for HEXA order. NOT independent of the Kanna class doc / Discord: its credits attribute the inner ability, hyper passive and boost node sections to 'Class Doc'.",
+      "dated": "Sitewide stamp GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target, but post-remaster.",
+      "independent": false
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%B9%B8%EB%82%98(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+      "what": "Korean community wiki, machine-translated. The genuinely independent judgement lane for this class - a different editorial community from the GMS class-doc ecosystem. Source for the inner ability line-by-line reasoning (why passive +1 versus attack speed +1, where boss damage and abnormal-status damage sit, crit rate as an early-game stopgap), for the statement that Kanna's own damage lags her summons post-remaster, for the crit rate shortfall, and for the 7-stage attack speed note. Confirms Kanna is a JMS/GMS/TMS/CMS/MSEA class. Also independently shows zero Kishin occurrences. CAUTION: covers JMS/KMS balance and its skill names are machine-translated, so no translated name from this page was used in this file - GMS names all come from the wiki.",
+      "dated": "Last Modified 2026-08-22",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%B9%B8%EB%82%98(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "what": "NamuWiki Kanna skill subpage. Independently confirms the post-remaster kit structure - the Mastery core set and the [Spirit] Hakumenkonmou Juubi V skill are both present in translated form and match the wiki's structure. Its V Matrix and HEXA Matrix sections are descriptive skill documentation, NOT an investment order. Also zero Kishin occurrences.",
+      "dated": "Last Modified 2026-07-23",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-kanna-skill-build-guide",
+      "what": "Post-remaster skill dictionary - SP builds 1st through 6th job and skill descriptions, explicitly targeting v266. Its skill names corroborate the wiki's, which is its main value. Gives exactly one judgement line, an inner ability suggestion of Attack Speed +1 / Boss Damage 20%. Gives NO HEXA order, NO boost node priority, NO hyper stat allocation. Low quality: content-farm family, cites no sources. Used only as weak corroboration, never as a sole basis for any claim.",
+      "dated": "Page states last updated 2026-02-13, targeting v266",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/document/d/1Xp7JD_YEDGyZD613QT7BGXO1kOtF2ze1E2hUDSkuxSc/mobilebasic",
+      "what": "REJECTED - recorded so it is not rediscovered and trusted later. 'Post-6th Job Kanna Guide (Updated August 2024)', the doc still linked from both maplestorywiki's class-guide index and Grandis Library. Verified by reading it: it describes the deleted pre-remaster kit and its boost node priority is built on Shikigami Haunting, Tengu Strike and Kishin Shoukan. Its own text states the author has stopped updating it and points readers to the Kanna Discord FAQ channel for current HEXA max order. Do not ingest.",
+      "dated": "August 2024 - PRE-REMASTER, obsolete",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "REJECTED FOR KANNA - cross-class boost node trio table whose data is self-reported as last updated 2024-05-14, well before the v266 remaster. Its Kanna trios reference skills that no longer exist.",
+      "dated": "Page 2024-11-21; underlying data 2024-05-14 - PRE-REMASTER",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/zbH8e2xC7H",
+      "what": "Kanna class Discord. Not readable by this agent, and not used as a source for any claim in this file. Recorded because it is where the answers this file is missing actually live: the pre-remaster doc explicitly redirects to its FAQ channel for current HEXA max order, and it is the only plausible route to post-remaster HEXA investment order, hyper stat allocation, and intra-primary-tier boost node ordering.",
+      "dated": "Live, not read",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Inner ability first line for bossing",
+      "positionA": "Passive Skills +1. Stated by Grandis Library as the first bossing line. NamuWiki independently supports this, reasoning that post-remaster the passive levels feed Kanna's summons, which carry most of her damage, and noting this became recommended after the remaster where it had previously been optional in GMS.",
+      "positionB": "Attack Speed +1. Stated by DigitalTQ as its single inner ability recommendation. NamuWiki also presents this as a legitimate first-line option and explains the mechanism: post-remaster attack speed sits at 7 stages, so in GMS an Attack Speed +1 roll is what reaches full attack speed.",
+      "assessment": "Not resolved here, and arguably not a true disagreement - NamuWiki presents BOTH as valid legendary first lines solving different problems, and says players tend to favour the passive line because Kanna leans on her summons. Recorded as contested rather than resolved by preference. Lines 2 and 3 are NOT contested: Boss Damage and Damage to monsters with Abnormal Status, agreed by both independent lanes.",
+      "sources": [
+        "https://grandislibrary.com/sengoku/kanna",
+        "https://en.namu.wiki/w/%EC%B9%B8%EB%82%98(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+        "https://www.digitaltq.com/maplestory-kanna-skill-build-guide"
+      ]
+    }
+  ],
+  "gaps": [
+    "HEXA investment order - no readable public source. Leads: the Grandis '6th Job' infographic image, and the Kanna Discord FAQ channel.",
+    "Hyper stat allocation - no source of any kind found for Kanna.",
+    "Boost node ordering within the primary tier - Grandis tiers but does not rank.",
+    "Boost node trio recommendations post-remaster - none exist publicly that I could read.",
+    "Weapon/secondary/emblem, flame targets, IED and crit rate numeric targets - not sourced.",
+    "No official Nexon patch note was read confirming the Kishin removal; the finding rests on three independent absence checks instead.",
+    "reddit.com was not reachable and the WebSearch budget was exhausted before this class was researched, so r/Maplestory Kanna threads and any YouTube remaster guides are entirely unexamined."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FACTUAL ERROR (rowspan misread). vMatrix.priority[3] says 'Soul-Shatter Talisman Boost gives Ignored Enemy Defense +20% at level 40' and that 'the level 40 column was only unambiguously readable for Soul-Shatter Talisman Boost'. I parsed the table cells: the 'Ignored Enemy Defense: +20%' cell carries rowspan=\"9\". It applies to ALL NINE Kanna boost nodes at level 40. The file turns a universal into a distinguishing property of one node, which could push a planner to prioritise Soul-Shatter for IED.",
+      "FACTUAL ERROR (same cause). The file lists four nodes with Normal Monster Damage +10% at level 20: Soul-Shatter, Heart-Wreck, [Order] Spinning Strike, [Order] Pulverizing Strike. The cell on the Pulverizing Strike row carries rowspan=\"3\", also covering [Order] Shade-Fletched Arrow Boost and [Order] Execute Boost. It is SIX nodes, not four. farmingNotes repeats the error ('Normal Monster Damage +10% at level 20 on four boost nodes'). The crit half of the same entry is correct: Oni/Tengu/Orochi at +5% each, +15% total.",
+      "FALSE CLAIM ABOUT A SOURCE'S CONTENTS, and the most consequential finding. The file rejects mastermysty's Node Guide twice - vMatrix.notes ('its Kanna entry is built on Shikigami Haunting and Kishin Shoukan, skills that no longer exist... It must NOT be used for Kanna') and commonMistakes[1] ('its Kanna trios are built on deleted skills'). I fetched https://mystyjl.github.io/reference/NodeGuide.html: it contains ZERO occurrences of Kishin, Shikigami Haunting, Vanquisher, Nine-Tailed, Yosuzume or Tengu Strike. Its Kanna entry is fully post-remaster - Trio #1 Soul-Shatter Talisman / Summon Oni / [Order] Spinning Strike; Trio #2 Summon Tengu / Heart-Wreck Talisman / Summon Orochi; Trio #3 [Order] Pulverizing Strike / [Order] Shade-Fletched Arrow / [Order] Execute. Those nine are exactly the nine current boost-node skills, partitioned one each - a coherent plan against the current 6-core layout. So 'trios: []' and 'NO post-remaster boost node trio recommendation could be sourced' are wrong, and commonMistakes[1] actively steers users away from a usable source. Caveats to record if it is ingested: the trios are unranked, no selection rationale is given, and the page's own stamp reads 'Last update: November 21st, 2024' while its content is post-remaster - so it is weak/single-source, not authoritative.",
+      "The evidentiary basis for that rejection is also misread. The file says the guide's 'data self-reports as last updated 2024-05-14'. The only 'May 14th, 2024' on the page belongs to a Monte-Carlo note - '200 nodes: chance to find all trios. 10000 tests per class (May 14th, 2024)' - i.e. the date of a probability simulation, not of the skill data.",
+      "OMISSION presented as completeness: hexa.boostCores lists 1 of the 4 HEXA enhancement cores, inside a section that claims the wiki was used as a complete name-validation allowlist for the whole file."
+    ],
+    "clearedOnInspection": [
+      "NO fabricated names. I fetched https://maplestorywiki.net/w/Kanna/Skills same-origin and checked every name the file emits. All real and correctly spelled: the 6 boost-node core groupings (exact match), all 9 hyper passives and 3 hyper actives (exact match, including the availablePool description), all 9 HEXA Mastery cores (exact match, same order), '[Divine Will] Advent of Crimson' and '[Divine Will] Final Rest' (the wiki literally labels them 'Skill Node/Core 1 (Origin)' and 'Skill Node/Core 2 (Ascent)'), and Elementalism (Master Level 3, Lv1 +10%/12s, Lv3 +20%/12s, 40 activations at all levels - the file's refusal to interpolate Level 2 is correct). Grandis Library independently confirmed the PRIMARY/SECONDARY tiers, the hyper passive build, both inner ability presets, the 'Class Doc' credits, the GMS Ver. 269 stamp, and Legion Boss Damage +1/2/3/5/6%. Kishin absence reproduces: on the live wiki page 'Kishin' = 0, 'Shikigami Haunting' = 0, 'Vanquisher' = 0, 'Nine-Tailed' = 0, \"Spirit's Domain\" = 0, 'Liberated Spirit' = 0. DigitalTQ independently confirms the v266 'Sengoku Warrior Reawakening' remaster and the new skill names."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

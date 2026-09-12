@@ -1,0 +1,537 @@
+{
+  "slug": "zero",
+  "className": "Zero",
+  "branch": "Zero (standalone branch; Grandis Library files it under \"Other\" as the Child of the Goddess, job group Warrior)",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "One evolving two-part weapon shared by both bodies: Lazuli the Long Sword (Alpha) and Lapis the Heavy Sword (Beta). It upgrades for free every 10 levels to Lv. 170 (Type 7), then advances via AbsoLab Essence (Type 8, Lv. 180), Arcane Essence (Type 9, Lv. 200), Genesis Essence (Genesis, Lv. 200) and Distilled Destiny (Destiny, Lv. 250). The weapon cannot be unequipped and cannot take a Fusion Anvil.",
+  "secondaryWeapon": "Grandis Library lists Beta's Heavy Sword as the secondary slot, so a single cube roll applies to both halves. The class doc also describes an Astra Hour Glass secondary for late-game Zeros: it has built-in 45% boss damage and 20% IED, and because Zero never had a prior secondary there is nothing to inherit from, so it must be cubed from scratch. Zero's emblem is the Time Emblem, sold by Quartermaster Cello in Zero's Temple for 500 Time Coins (or awarded by the story).",
+  "archetype": "Melee STR warrior that controls two bodies. Alpha and Beta swap every few seconds via Dual Combat; the sibling on standby regenerates HP and Time Force and fires Assist attacks. Sustained-DPM bossing class on a 2-minute cycle rather than a burst class, with heavy mobility (flash jump plus a true teleport), two i-frames, two separate HP bars, and unusually long stackable bind support.",
+  "linkSkill": {
+    "name": "Rhinne's Blessing",
+    "effect": "Passive. At max level: damage taken -20%, ignore defense +15%, and Zero themselves also gain +4% damage. Leveled by progressing the Zero storyline (Goddess Teardrops), not by character level.",
+    "levels": 6
+  },
+  "legionEffect": "EXP obtained from monsters +4/6/8/10/12%.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Skill boost nodes (tri-nodes) before everything else",
+        "why": "Zero's 6th job mastery cores only unlock once the matching boosted skill is high enough, and the HEXA variants scale off the boosted base skills. Seven tri-nodes are needed to carry the whole attacking kit to master level 60 once matrix points are applied.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/other/zero",
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+          "https://web.archive.org/web/20250115231558/https://www.reddit.com/r/Maplestory/comments/1hiba5x/trinodes_vs_perfect_trinodes_zero_class/"
+        ]
+      },
+      {
+        "node": "Erda Fountain / Holy Symbol",
+        "why": "Treated as mandatory for grinding alongside the tri-nodes.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "node": "Shadow Flash / Ego Weapon (job node)",
+        "why": "Listed first among Zero's own skill nodes because both serve farming and bossing: Shadow Flash is a 40s-cooldown placed skill and Ego Weapon is an automatic 15s-cooldown DPM hit.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "node": "Weapon Aura / Twin Blades of Time (job node)",
+        "why": "Weapon Aura carries useful IED and final damage for both farming and bossing; Twin Blades of Time's damage per level is acceptable.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "node": "The Transcendent's Will / Chrono Break (job node)",
+        "why": "Both are burst buffs, so they sit behind the nodes that contribute outside burst. The doc rates the Transcendent node slightly more point-efficient than Chrono Break.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "node": "Transcendent Rhinne's Prayer (job node)",
+        "why": "Ranked last of the job nodes; Chrono Break carries the larger final-damage buff and has HEXA support behind it. Chrono Break also stops needing its +5 node points once its HEXA enhancement is unlocked, since the enhancement supplies the same buff figure.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "node": "Decent Sharp Eyes / Decent Speed Infusion",
+        "why": "One point each is enough for the full effect; Decent Sharp Eyes is also part of how Zero reaches 100% crit rate.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "node": "Decent Holy Fountain / Will skill / Seren skill",
+        "why": "Explicitly low priority.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Ten boostable attack entries must all be covered, each appearing in two different nodes: Moon Strike / Shadow Strike / Rising Slash, Piercing Thrust / Air Raid, Flash Assault / Flash Cut, Blade Ring / Throwing Weapon, Rolling Cross / Spin Driver, Rolling Assault / Wheel Wind, Wind Cutter / Giga Crash, Wind Striker / Falling Star, Storm Break / Groundbreaker, and Shadow Rain.",
+        "why": "Alpha and Beta counterparts share a boost node, so a single node covers both bodies. Seven nodes at three slots each gives 21 slots for 20 required entries, so one entry ends up boosted three times.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/other/zero",
+          "https://maplestorywiki.net/w/Zero/Skills",
+          "https://web.archive.org/web/20250115231558/https://www.reddit.com/r/Maplestory/comments/1hiba5x/trinodes_vs_perfect_trinodes_zero_class/"
+        ]
+      },
+      {
+        "trio": "Two nodes covering the same three skills are legal as long as the first (main) skill differs, e.g. Wind Cutter / Storm Break / Wind Striker paired with Wind Striker / Storm Break / Wind Cutter.",
+        "why": "The main skill at the top of a node is what cannot be duplicated across equipped nodes; the order of the other two slots is irrelevant. This is how a skill reaches master level 60.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/other/zero",
+          "https://web.archive.org/web/20250115231558/https://www.reddit.com/r/Maplestory/comments/1hiba5x/trinodes_vs_perfect_trinodes_zero_class/"
+        ]
+      },
+      {
+        "trio": "Keeping a combo family inside one node (e.g. the whole Wind Cutter line together) rather than splitting it across nodes.",
+        "why": "Advice from a Zero player in the Reddit thread; it makes the node set easier to track and matches how the published node groupings are laid out. Presented as preference, not a damage requirement.",
+        "consensus": "weak",
+        "sources": [
+          "https://web.archive.org/web/20250115231558/https://www.reddit.com/r/Maplestory/comments/1hiba5x/trinodes_vs_perfect_trinodes_zero_class/"
+        ]
+      }
+    ],
+    "notes": "In game data the boost nodes are named as combined entries: Wind Cutter/Wind Striker/Storm Break Boost, Giga Crash/Falling Star/Groundbreaker Boost, Spin Driver and Wheel Wind Boost, Rolling Cross and Rolling Assault Boost, Flash Cut and Throwing Weapon Boost, Flash Assault and Blade Ring Boost, Rising Slash and Air Raid Boost, Moon Strike/Piercing Thrust/Shadow Strike Boost, and Shadow Rain Boost. Grandis Library presents the same nodes grouped as Alpha/Beta skill pairs, which is why the two lists read differently; they describe the same set. Boost nodes give final damage per level with a jump at Lv. 20 (+1 max target) and Lv. 40 (+20% ignore defense); the Shadow Rain node instead grants +5% critical rate. Remember to raise node slots to level 5 for the five free skill levels. INDEPENDENCE CAVEAT: Grandis Library credits its boost-node build to the Zero class doc, so those two are one source for this section; the Reddit thread and the wiki's game data are the independent checks. The class doc's own V-Matrix section was last revised on June 17 of the current update cycle and says node stones are cheap enough that boosting skill nodes in any order is acceptable as long as tri-nodes and Holy Symbol come first."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "4th Mastery Core to Lv. 1",
+        "why": "Opens the Moon Strike / Piercing Thrust / Shadow Strike / Rising Slash / Air Raid / Shadow Rain mastery branch, which also carries Infinite Resonance.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg"
+        ]
+      },
+      {
+        "step": "1st Mastery Core to Lv. 1",
+        "why": "The Wind Cutter / Giga Crash branch (A4/B4). It also contains Time Piece, which is why players looking for Time Piece are told to check the mastery tree rather than a separate core.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg",
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "step": "HEXA Stat node I to Lv. 20 (Sol Erda-limited route) — or after the four mastery cores are opened on the fragment-limited route",
+        "why": "HEXA Stat costs fragments rather than Sol Erda Energy, so which chart you follow depends on which resource you are short of. Start the stat on main stat, attack and critical damage; boss damage is a viable opener depending on your stat ratios, and main stat is commonly displaced by boss damage as gear improves.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg"
+        ]
+      },
+      {
+        "step": "2nd and 3rd Mastery Cores to Lv. 1",
+        "why": "Opens the Spin Driver / Rolling Cross branch and the Flash Assault / Blade Ring / Flash Cut / Throwing Weapon branch, so all four mastery lines are unlocked early.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg"
+        ]
+      },
+      {
+        "step": "Sol Hecate to Lv. 1 early, then feed it gradually",
+        "why": "The common-core summon carries a flat passive of 20% boss damage and 20% ignore defense at Lv. 10, unlocks the Charon skill at Lv. 20 and Phlegethon at Lv. 30. The class doc binds Styx to manual cast (or Chrono Break plus manual cast), leaves Charon unbound, and binds Phlegethon to Twin Blades of Time.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg",
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+          "https://maplestorywiki.net/w/Zero/Skills"
+        ]
+      },
+      {
+        "step": "HEXA Stat nodes II and III to Lv. 20",
+        "why": "Both charts front-load all three HEXA Stat nodes to 20 before pushing enhancement cores.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg"
+        ]
+      },
+      {
+        "step": "Pour the bulk of remaining investment into the four Mastery Cores, cycling 1st, 2nd and 4th up through the high twenties",
+        "why": "Zero's damage scales unusually hard off mastery core levels; the doc states this outright and both charts spend most of their steps on mastery cores rather than enhancements.",
+        "consensus": "moderate",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg",
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "step": "Chrono Break Boost to Lv. 1, then Lv. 7, interleaved with mastery cores",
+        "why": "First enhancement core touched on both charts. At Lv. 30 it gives Chrono Break +60% final damage and pushes its buff to 30 seconds and +46% final damage.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg",
+          "https://maplestorywiki.net/w/Zero/Skills"
+        ]
+      },
+      {
+        "step": "Transcendent VI to Lv. 1",
+        "why": "The 6th job burst buff that fires alongside Rhinne's Prayer and Chrono Break, granting three blessings (Light, Life, Time) with different durations, including +5% final damage and a 60-second afterimage effect that builds Time Rifts.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg",
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "step": "Ego Weapon Boost to Lv. 1, then Bitemporis (ascent core) to Lv. 1",
+        "why": "Both appear late in the first block of the Sol Erda-limited chart. Bitemporis has no cooldown but is limited to three uses per fight and hands out 20% ignore defense at Lv. 30 on top of its built-in 60% ignore defense, 40% boss damage and 100% critical rate during the cast.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "step": "Shadow Flash Boost, Twin Blades of Time Boost and End Time (origin core) later",
+        "why": "The origin core End Time is a 360-second, 8.5-second-animation nuke with a 10-second bind; its level milestones are 20% ignore defense at Lv. 10, 20% boss damage at Lv. 20, and 30% of each at Lv. 30. Both charts leave End Time and the remaining enhancements for the back half.",
+        "consensus": "weak",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg",
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "step": "Sol Janus to Lv. 1 as soon as possible, beyond Lv. 10 only if you grind a lot",
+        "why": "Sol Janus sits outside the main sequence on both charts and is called out separately. Its passive is EXP obtained, +100% at Lv. 30, and it cannot be used on boss maps.",
+        "consensus": "moderate",
+        "sources": [
+          "https://i.imgur.com/MvSS8d9.jpeg",
+          "https://i.imgur.com/Ahl5KcP.jpeg",
+          "https://maplestorywiki.net/w/Zero/Skills"
+        ]
+      }
+    ],
+    "notes": "The Zero Discord publishes two HEXA priority charts explicitly labelled for patch v271, and the class doc's HEXA priority section was updated on Sep 9 of this cycle for the third common core. Pick the chart matching your bottleneck. Chart abbreviations resolve as: M1-M4 = 1st through 4th Mastery Core; H1/H2/H3 = the three HEXA Stat nodes; HC = Sol Hecate; CB = Chrono Break Boost; TB = Twin Blades of Time Boost; SF = Shadow Flash Boost; EW = Ego Weapon Boost; TR = Transcendent VI; BP = Bitemporis; ET = End Time. The mastery-core mapping and the enhancement/origin/ascent mapping were confirmed by matching the chart icons against Grandis Library's icon files; TR was matched to Transcendent VI by its three blessing orbs, which is the one identification made by icon inference rather than a caption. Literal opening sequence, Sol Erda-limited chart (core then target level): M4-1, M1-1, H1-20, M2-1, M3-1, M1-7, H2-20, HC-1, M4-7, H3-20, M1-9, M2-7, M1-18, M4-9, M1-19, CB-1, M4-18, M1-28, TR-1, M1-29, M2-9, CB-7, EW-1, M2-18, BP-1, M4-28. Literal opening sequence, Erda-fragment-limited chart: M4-1, M1-1, M2-1, M3-1, M1-2, M4-2, M1-5, HC-1, M1-8, M2-2, H1-20, M1-9, M4-4, M2-4, M4-6, M2-5, H2-20, M2-6, M4-8, M2-7, M1-14, CB-1, H3-20, M1-15, M2-8, M4-9. Both charts end with every core at 30. For HEXA Stat itself the charts recommend main stat, attack and critical damage to open, note that boss damage is viable depending on your ratios, and point at Maplescouter's boss setting optimization rather than a fixed answer. CAVEAT: these charts and the class doc come from the same Zero community, so the HEXA ordering rests on effectively one source. The MapleStory Wiki independently confirms the existence and numbers of the mastery cores, the four enhancement cores, Sol Janus, Sol Hecate, End Time and Bitemporis, but does not yet list Transcendent VI, so the wiki appears to lag v271 here. No independent third party was found publishing a competing Zero HEXA order."
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "stat": "Critical Rate",
+        "why": "Ranked first, taken only to the level needed to reach 100% crit rate once Decent Sharp Eyes and the Resolution Time passive are counted. Zero's own sources of crit total roughly 95-97% (5% base, 30% Reinforce Body/Heavy Sword Mastery, 20% Resolution Time, 10% Decent Sharp Eyes, 4-5% each from Night Lord and Marksman legion, 20% Legion Artifact, 1% each from Ocean and Holy familiar badges), so the hyper stat only has to close the last few points. Going past Lv. 10 here is expensive; with 8000 legion it is better to buy the crit elsewhere first.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Critical Damage",
+        "why": "Ranked second; minimum Lv. 10, then adjusted with a calculator.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Ignore Enemy Defense",
+        "why": "Lv. 10 baseline for bossing, enough to show at least 93% IED in Beta's stat window before external buffs; with Armor Split and Weapon Aura on top that lands near 97-98%. Often ends up lower after optimization. Filler only when mobbing.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Damage to Boss Monsters (bossing) / Damage to Normal Monsters (mobbing)",
+        "why": "Minimum Lv. 10. Past Lv. 10 the doc's rule of thumb is to keep this one level above Critical Damage and Damage%, because it scales better above 10.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Damage%",
+        "why": "Minimum Lv. 10 for both bossing and mobbing presets.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Weapon and Magic ATT",
+        "why": "Lv. 10 baseline, may settle lower after optimization.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Maximum Time Force",
+        "why": "Zero-specific. Minimum Lv. 5 for bossing because the class runs dry on Time Force; can go to Lv. 10 by preference, and the doc elsewhere recommends Lv. 10 outright for resource drought. Optional for mobbing.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "STR then DEX",
+        "why": "Filler stats; STR before DEX, DEX lowest priority of all.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Arcane Force",
+        "why": "Only as much as needed to qualify for Arcane River bosses or to smooth Arcane River mobbing.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      },
+      {
+        "stat": "Bonus EXP (mobbing preset only)",
+        "why": "Lv. 10, and up to Lv. 15 only if clear speed is already sufficient; the doc warns against buying EXP at the cost of map clear rate.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+        ]
+      }
+    ],
+    "notes": "Only one source publishes a Zero hyper stat build, so treat the whole section as weak consensus. The hyper stat allocation is given as a Lv. 260 example with separate bossing and mobbing presets, and the doc repeatedly defers to Maplescouter for anything past the Lv. 10 baselines. Alpha and Beta share one hyper stat allocation."
+  },
+  "hyperSkills": {
+    "priority": null,
+    "notes": "No hyper skill build is recorded because Zero appears not to have a hyper skill tree. The MapleStory Wiki's Zero/Skills page has sections for Zero Basics, Alpha Skills, Beta Skills, V Skills, V Enhancements, HEXA Skills, Mastery Skills and HEXA Enhancements, but no Hyper Skills section, while other classes' skill pages carry one. Grandis Library's hyper skill build field for Zero is empty, and the community class doc has no hyper skill section at all. Zero instead picks up reinforced versions of its kit automatically through levels 150-180 (Advanced Blade Ring, Advanced Throwing Weapon, Grand Rolling Cross, Advanced Wheel Wind, Advanced Rolling Assault, Air Riot, Divine Leer, Immune Barrier and so on). Left null rather than guessed.",
+    "sources": [
+      "https://maplestorywiki.net/w/Zero/Skills",
+      "https://grandislibrary.com/other/zero",
+      "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+    ]
+  },
+  "innerAbility": {
+    "priority": [
+      {
+        "line": "1st line: Boss Damage +20%",
+        "why": "The strongest option on paper and the raw-damage pick. Combined with 8% damage to monsters with abnormal status and +21 attack on the lower lines it comes to roughly 28% boss-equivalent plus 21 attack, which the doc calls the strongest theoretical combination. Independently echoed on Reddit as the best-on-paper line 1.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+          "https://grandislibrary.com/other/zero",
+          "https://web.archive.org/web/20250311214258/https://www.reddit.com/r/Maplestory/comments/1hqvrev/does_zero_use_1_attack_speed_inner/"
+        ]
+      },
+      {
+        "line": "1st line: Attack Speed +1",
+        "why": "Described as the most common choice among high-level Zero players. Alpha already sits at attack speed 10 without it; Beta only reaches 10 while certain buffs are up and otherwise sits at 9 with Decent Speed Infusion and a green potion. The +1 buys an occasional extra Assist, smoother attack delay for dodging, and consistent delay in and out of burst. Reddit users note it is wasted during burst because the burst buff already grants +2 attack speed, which is why boss damage edges it out on paper, but rate it as a reasonable pick if you do not want to manage green potions.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+          "https://grandislibrary.com/other/zero",
+          "https://web.archive.org/web/20250311214258/https://www.reddit.com/r/Maplestory/comments/1hqvrev/does_zero_use_1_attack_speed_inner/"
+        ]
+      },
+      {
+        "line": "1st line: Chance to Skip Cooldown +20%",
+        "why": "The bind-reset pick. It resets Transcendent's Will, Shadow Rain, Terms and Conditions, Time Distortion and Focused Time, which is how Zero chains binds. The doc recommends it specifically for players stuck on a 0-second cooldown hat, and warns against it for players who already run a -2s or -5s hat and struggle to keep Time Force up, since more casts make the resource problem worse. Several Reddit commenters push it as the only line they would take.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+          "https://grandislibrary.com/other/zero",
+          "https://web.archive.org/web/20250311214258/https://www.reddit.com/r/Maplestory/comments/1hqvrev/does_zero_use_1_attack_speed_inner/"
+        ]
+      },
+      {
+        "line": "2nd and 3rd lines: Boss Damage +10%, Damage to monsters with abnormal status +8%, Chance to Skip Cooldown +10%, Attack +21",
+        "why": "Boss Damage 10% is the strongest of the group. The abnormal-status line is effectively 8% boss damage for Zero because so much of the kit applies abnormal status. Attack +21 is called the weakest viable option. Critical Rate +20% is listed as an early- to mid-game settle only, and advised against otherwise.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+          "https://grandislibrary.com/other/zero",
+          "https://web.archive.org/web/20250311214258/https://www.reddit.com/r/Maplestory/comments/1hqvrev/does_zero_use_1_attack_speed_inner/"
+        ]
+      },
+      {
+        "line": "Farming preset: Meso Obtained or Item Drop Rate +20% on line 1, the other at +15%, then Damage to Normal Monsters +8%",
+        "why": "Recommended as a dedicated third ability preset for meso farming and Sol Erda / fragment farming.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+          "https://grandislibrary.com/other/zero"
+        ]
+      }
+    ],
+    "notes": "Rolling advice: once at Legendary tier, roll the Unique 2nd or 3rd lines first, lock them, then roll for the Legendary line. Use two of the three ability presets for combat setups and leave the third on meso/drop. INDEPENDENCE CAVEAT: Grandis Library credits its inner ability build to the Zero class doc, so those two are one source; the r/Maplestory thread is the independent corroboration and it agrees on the same three line-1 candidates and the same 8%-abnormal-status plus 21-attack pairing."
+  },
+  "gearingNotes": "Zero's gearing diverges from every other class, and most of the divergence is in the weapon.\n\nOne weapon, two halves, one set of rolls. Lazuli (Alpha's Long Sword) and Lapis (Beta's Heavy Sword) are a single evolving item. A potential roll is applied twice, once to each half, which means cubing the weapon effectively doubles up in place of a separate secondary weapon. Grandis Library lists Beta's Heavy Sword in the secondary slot for the same reason. Only one scroll or enhancement item is needed to upgrade both. The weapon cannot be unequipped, cannot take a Fusion Anvil, and cannot be essence-upgraded while locked. If it booms you may have to tag to the other sibling to use the matching weapon trace, and a destroyed weapon can be repurchased without enhancements.\n\nEverything carries forward. Scrolls, spell traces, souls, flames, main and bonus potential and star force bonuses all carry across every weapon upgrade, including the jump to Genesis, and flames/potentials/star force bonuses rescale to the new weapon level. Zero therefore never cubes a Genesis weapon and never receives a Sealed Genesis Weapon. Arcane Essence on a Type 7 weapon lets you skip Type 8 entirely.\n\nStar force. The class doc recommends stopping at 17-18 stars on the Type 7 weapon, because applying Genesis Essence fixes the weapon to exactly 22 stars regardless of what it had, so anything you pay for above 18 is wasted and anything above 22 is actively lost. Star force cost on Zero's weapon is fixed at the equivalent of a Lv. 150 weapon, which is why the doc's older advice was to push to 22 before applying an essence; both positions are in the current doc.\n\nWSE rolls. Weapon: 3 lines of attack in Heroic (and in Interactive if you can afford it); 2 lines attack plus 1 line boss is the Interactive fallback. The doc's own FAQ frames the same choice around Continuous Ring 5 uptime: 3 lines attack with Continuous Ring 5 active, 2 attack + 1 boss without. Emblem: 3 lines attack. Bonus potential: 3 lines attack. Do not roll IED anywhere on WSE — Beta's Armor Split alone stacks to 50% ignore defense, and the doc's breakdown puts effective IED near 98% for both siblings without any IED lines.\n\nFlames. Zero's weapon is not boss-advantaged, so flames cap at Tier 4 with Powerful Flames and Tier 5 with Eternal Flames, and a flame may roll only 1 to 4 stats rather than a guaranteed 4. Weapon attack for flames is calculated off Lapis and counted once in the stat window.\n\nCooldown hat is close to mandatory. The class doc's answer is an unqualified yes: a -2 second cooldown hat is the floor, -5 (or -6 for combo fluidity) is best in slot for players with good uptime. The reason is Ego Weapon breakpoints — at 0 cooldown reduction each sibling fires Ego Weapon roughly every 15.6 seconds, at -2 to -5 roughly every 12.5 seconds, and at -6 to -8 roughly every 9.4 seconds. A percent-STR hat still boosts everything else, but the doc treats it as the worse pick since v263 when paired with an SSS Mercedes legion block.\n\nLucky Helmet route is retired. Using a Chaos Root Abyss lucky helm to double-dip 4-piece Root Abyss plus 5-piece AbsoLab or Arcane Umbra was optimal from 2018 to 2024 and is explicitly not recommended in 2025 and later: an Arcane Umbra helmet out-damages it for bossing, and a Genesis weapon with a normal Royal Warrior Helm beats it outright. Reboot Zeros who do still want it can use any of the four CRA lucky helms since there is no scrolling difference.\n\nAstra Hour Glass. A late secondary with built-in 45% boss damage and 20% IED, meant to compensate for the boss and damage stats a normal sub-weapon would carry. It has to be cubed from scratch because Zero never had a secondary to inherit potential from, so it is an upgrade but a slow one — the doc suggests parking it until its potential matches the main weapon.\n\nRings. OZ ring priority is Ring of Restraint (active) and Continuous Ring (passive), upgraded RoR 5, then Continuous 5, then RoR 6, then Continuous 6.\n\nFamiliar badges. Recommended pool is Apocalypse, Lion, Holy, Ocean, Labyrinth, Showa, Cloud and Time; substitutes include Rebel, Commerci, Toy, Mineral and Future. The doc advises running the numbers before taking two IED badges over two crit rate or damage badges, since Zero's IED is already near cap.\n\nStory completion is a gear decision. Finishing the Zero storyline maxes Resolution Time (+17% final damage, +50 STR, +15% max HP, +20% crit rate, +1 attack speed, +20 movement speed) and maxes Rhinne's Blessing along the way. The doc treats the 17% final damage as non-negotiable for anyone maining Zero.\n\nCosmetics and shared slots. Alpha and Beta each wear their own NX; a non-gender-restricted item can be assigned to Alpha, Beta or both, as can hair/eye/face/skin coupons. They share damage skin slots and cannot pick different damage skins. Zero does not share Cash Shop storage with any other character.\n\nWeapon Points. Killing monsters and clearing dungeons in Mirror World accumulates WP, which for a small meso fee rerolls the bonus stats and potential on both weapons.",
+  "commonMistakes": [
+    "Star-forcing the Type 7 weapon past 18 before applying Genesis Essence. The Genesis upgrade fixes the weapon to 22 stars no matter what, so stars bought between 19 and 22 are wasted and stars above 22 are destroyed.",
+    "Spamming or holding the NPC dialogue during the Genesis upgrade. The upgrade asks whether to keep or replace your potentials, and holding the confirm key auto-selects the first option. A patch has since moved 'keep potential' to the first slot, but the doc still warns against clicking through liberation.",
+    "Rolling IED lines on weapon, secondary or emblem. Beta's Armor Split alone stacks 50% ignore defense and the class is already at roughly 98% effective IED without them.",
+    "Playing without a cooldown reduction hat. The class doc's FAQ answer is that Zero does not function well without one and that -2 seconds is the minimum; it is the single largest lever on Ego Weapon uptime and combo fluidity.",
+    "Chasing the Chaos Root Abyss Lucky Helmet setup in 2025 or later. It is now a time sink that loses to an Arcane Umbra helmet, and loses badly once you have a Genesis weapon.",
+    "Skipping the Zero storyline. Resolution Time's +17% final damage only maxes on story completion, and Rhinne's Blessing levels through it too.",
+    "Taking Cooldown Skip inner ability while already running a -2s or -5s hat and struggling with Time Force. The doc warns this compounds the resource problem rather than helping.",
+    "Treating Zero as a cheap boss mule. The doc flags a seven-tri-node requirement and a combo learning curve, and notes the class only comes online as mastery core levels climb.",
+    "Using 15% spell traces on the weapon before it reaches level 120. Below that you get stuck at +7 attack per scroll instead of the +9 you would get later.",
+    "Assuming Shadow Rain applies Critical Bind. They are separate bind systems that stack; this is a documented FAQ question."
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/other/zero",
+      "what": "Class overview page: class group, job group, primary/secondary stat, weapons, legion effect, link skill values, weapon multipliers and attack speed for both siblings, full skill list including all 6th job mastery/skill/boost cores, skill build path, recommended boost nodes and inner ability build. Note: the page credits its Inner Ability and Boost Node build to the Zero class Google Doc, so those two fields are not independent of that doc. Its infographics are credited to the Zero Discord.",
+      "dated": "Page itself undated; its three linked infographics are dated 2026-09-04",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+      "what": "'Zero Quick Notes', the maintained community class doc by XiaNiTian/SingAlongWithTsing, Locky, LitEmbers, MasterMysty, Kirby, Stinklord and Xet. Source for inner ability, hyper stats, crit and IED breakdowns, V-matrix node priority, HEXA priorities, every gearing judgement above, combos, and the FAQ.",
+      "dated": "2026-09-10 (latest entry in its own update history; HEXA priority updated 2026-09-09, burst rotation 2026-09-03, V-matrix section 2026-06-17). Explicitly states the v267 combo is still current as of v271.",
+      "independent": true
+    },
+    {
+      "url": "https://i.imgur.com/MvSS8d9.jpeg",
+      "what": "Zero Discord HEXA priority chart, Sol Erda-limited variant, headed 'HEXA Priority for Patch v271'. Full core-by-core investment order plus Sol Janus and HEXA Stat guidance.",
+      "dated": "Labelled for patch v271 (GMS v271 released 2026-09-09); linked from the class doc's HEXA section",
+      "independent": false
+    },
+    {
+      "url": "https://i.imgur.com/Ahl5KcP.jpeg",
+      "what": "Zero Discord HEXA priority chart, Erda-fragment-limited variant, same patch label and same legend.",
+      "dated": "Labelled for patch v271; linked from the class doc",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Zero",
+      "what": "Game-data reference: confirms Zero is Available in GMS, plus the Lazuli/Lapis evolving weapon system, Weapon Points, Lucky Item Scroll interaction, shared cash items, and the legion effect values.",
+      "dated": "Live wiki, no page date captured",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Zero/Skills",
+      "what": "Per-level skill data. Confirms Rhinne's Blessing at Lv. 6, the four V Enhancement boost-node groupings, the four HEXA Enhancements (Chrono Break, Twin Blades of Time, Shadow Flash, Ego Weapon), Sol Janus and Sol Hecate as shared HEXA skills, End Time and Bitemporis as the class-specific HEXA skills, and the four mastery cores. Has no Hyper Skills section and does not yet list Transcendent VI.",
+      "dated": "Live wiki, no page date captured; appears to lag v271 on Transcendent VI",
+      "independent": true
+    },
+    {
+      "url": "https://web.archive.org/web/20250311214258/https://www.reddit.com/r/Maplestory/comments/1hqvrev/does_zero_use_1_attack_speed_inner/",
+      "what": "r/Maplestory thread on Zero inner ability. Independent corroboration that the line-1 candidates are Boss Damage 20%, Attack Speed +1 and Cooldown Skip, that the 8%-abnormal-status plus 21-attack pairing is the raw-damage setup, and that attack speed is dead weight during burst because the burst buff grants +2.",
+      "dated": "Archived 2025-03-11; thread originally posted around late 2024",
+      "independent": true
+    },
+    {
+      "url": "https://web.archive.org/web/20250115231558/https://www.reddit.com/r/Maplestory/comments/1hiba5x/trinodes_vs_perfect_trinodes_zero_class/",
+      "what": "r/Maplestory thread on Zero tri-nodes. Independent corroboration of the seven-tri-node requirement, that each boostable skill must appear in two nodes with one boosted three times, that only the main (first) skill must differ between matching nodes, and that node slots should be raised to level 5.",
+      "dated": "Archived 2025-01-15; thread originally posted around December 2024",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Rhinne's Blessing link skill values",
+      "positionA": "Damage taken -20%, ignore defense +15%, and +4% damage for Zero at Lv. 6.",
+      "sourcesA": [
+        "https://maplestorywiki.net/w/Zero/Skills",
+        "https://grandislibrary.com/other/zero"
+      ],
+      "positionB": "Reduces incoming damage by 15% and gives +10% ignore enemy defense.",
+      "sourcesB": [
+        "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+      ],
+      "note": "Two sources agree on the higher figures and one of them is per-level game data, so the class doc's numbers look stale. Recorded rather than silently corrected. The doc separately notes the damage reduction is not %HP-based and is therefore of little use in bossing."
+    },
+    {
+      "topic": "Best inner ability 1st line",
+      "positionA": "Boss Damage +20% is the strongest on paper and the best raw-damage choice.",
+      "sourcesA": [
+        "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8",
+        "https://web.archive.org/web/20250311214258/https://www.reddit.com/r/Maplestory/comments/1hqvrev/does_zero_use_1_attack_speed_inner/"
+      ],
+      "positionB": "Attack Speed +1 is the most common pick among high-level bossing Zeros, for consistency and dodging rather than raw numbers.",
+      "sourcesB": [
+        "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+      ],
+      "positionC": "Chance to Skip Cooldown +20% is the only line worth taking, because it drives bind chaining; but the same doc advises against it for players with a -2s or -5s hat who already fight Time Force drought.",
+      "sourcesC": [
+        "https://web.archive.org/web/20250311214258/https://www.reddit.com/r/Maplestory/comments/1hqvrev/does_zero_use_1_attack_speed_inner/",
+        "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+      ],
+      "note": "All three positions are live; the sources frame it as a genuine playstyle choice rather than a solved question. Ability presets let you carry two of them."
+    },
+    {
+      "topic": "Star force target on the Type 7 weapon before essence upgrade",
+      "positionA": "Star force to 22 before applying a Type 8 or Type 9 essence, because Zero's star force cost is fixed at Lv. 150-equivalent and replacements are free.",
+      "sourcesA": [
+        "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+      ],
+      "positionB": "Do not go past 18, since the Genesis upgrade fixes the weapon to 22 stars anyway and anything above 22 is lost.",
+      "sourcesB": [
+        "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+      ],
+      "note": "Both statements sit in the same document; the 18-star advice is the later framing tied to how easy liberation has become, and it explicitly says 17-18 stars may be all you need. Recorded as an internal conflict rather than resolved."
+    },
+    {
+      "topic": "Boost node naming",
+      "positionA": "Nodes named as combined game-data entries, e.g. 'Moon Strike/Piercing Thrust/Shadow Strike Boost' and 'Rising Slash and Air Raid Boost'.",
+      "sourcesA": [
+        "https://maplestorywiki.net/w/Zero/Skills"
+      ],
+      "positionB": "Nodes presented as Alpha/Beta skill pairs, e.g. 'Moon Strike / Shadow Strike / Rising Slash' and 'Piercing Thrust / Air Raid'.",
+      "sourcesB": [
+        "https://grandislibrary.com/other/zero"
+      ],
+      "note": "Not a disagreement about what to build, only about how the same node set is labelled. Both cover the same ten boostable entries."
+    },
+    {
+      "topic": "Transcendent VI as a HEXA core",
+      "positionA": "Present in the v271 HEXA priority charts and described in detail in the class doc as a 120-second burst buff with Light, Life and Time blessings.",
+      "sourcesA": [
+        "https://i.imgur.com/MvSS8d9.jpeg",
+        "https://docs.google.com/document/d/1ygEhU_gZjm6tY8ngi0hzZ6ZduNoGuZqdcPsiMV1pdf8"
+      ],
+      "positionB": "Not listed among Zero's HEXA skills or HEXA enhancements.",
+      "sourcesB": [
+        "https://maplestorywiki.net/w/Zero/Skills"
+      ],
+      "note": "Most likely the wiki simply lags v271 rather than a real disagreement, but the chart abbreviation 'TR' was identified as Transcendent VI by matching the chart icon's three blessing orbs rather than by a printed caption, so treat that one mapping as the weakest link in the HEXA section."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "STALE: vMatrix.trios[0]: the ten boostable-entry pairing list is the pre-V.269 boost node layout, superseded. Current layout (maplestorywiki.net/w/Zero/Skills, V Enhancements): Core 1 Wind Cutter/Wind Striker/Storm Break Boost; Core 2 Giga Crash/Falling Star/Groundbreaker Boost; Core 3 Spin Driver and Wheel Wind Boost + Rolling Cross and Rolling Assault Boost; Core 4 Flash Cut and Throwing Weapon Boost + Flash Assault and Blade Ring Boost; Core 5 Rising Slash and Air Raid Boost + Moon Strike/Piercing Thrust/Shadow Strike Boost; Core 6 Shadow Rain Boost. Grandis's current page shows the same six groups.",
+      "STALE: conflicts[3] pits current wiki data against Grandis's archived pre-V.269 node list, so the 'conflict' is a patch-version artefact rather than a disagreement between sources.",
+      "STALE: The seven-tri-node figure and its 21-slots arithmetic pre-date the V-matrix system revamp the class doc itself logged on June 17. Both Reddit corroborations (archived 2025-01-15 and 2025-03-11, threads from Dec 2024 / early Jan 2025) pre-date V.269 and cannot support a v271 claim about node structure.",
+      "STALE: Grandis Library is cited throughout as current while the page is stamped GMS Ver. 269; the file assigns it a 2026-09-04 date from its infographics instead.",
+      "STALE: NOT stale: the HEXA section is genuinely v271-current. Both imgur charts are headed 'HEXA Priority for Patch v271', and the class doc's update history confirms Sep 10 / Sep 9 (HEXA priority for Common Core 3) / Sep 3 (burst rotation, Transcendent VI and Time Authority) / Jul 22 (Astra Hour Glass) / Jun 19 / Jun 17. No pre-HEXA advice is presented as current anywhere in the file.",
+      "STALE: GAP, not staleness: the class doc's Sep 3 entry adds 'Time Authority' alongside Transcendent VI. The file never mentions Time Authority. Its HEXA notes also cite the Sep 9 'third common core' update but the investment order names only Sol Hecate and Sol Janus and never places a third common core, so the transcribed charts may pre-date the doc's own latest HEXA revision. The doc's newest entry (Sep 10) is napkin math for KMST 1.2.206 balance changes, which the file uses for dating but never surfaces."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "6 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

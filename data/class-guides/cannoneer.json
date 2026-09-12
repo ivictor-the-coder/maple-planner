@@ -1,0 +1,394 @@
+{
+  "slug": "cannoneer",
+  "className": "Cannoneer",
+  "branch": "Explorer (Pirate)",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Hand Cannon",
+  "secondaryWeapon": "Powder Keg",
+  "archetype": "Ranged STR pirate artillery. Wide horizontal area attacks and a summoned monkey; high mobility from Monkey Push/Boost plus Cannon Jump. Job path is Cannoneer (2nd) -> Cannon Trooper (3rd) -> Cannon Master (4th); the class is picked directly at character creation rather than advanced into through the generic Pirate line. Job advancement quests unlock at Lv. 10 / 30 / 60 / 100, 5th job at Lv. 200, 6th job at Lv. 260.",
+  "linkSkill": {
+    "name": "Pirate's Blessing",
+    "effect": "At master level: STR +100, DEX +100, INT +100, LUK +100, Max HP +1750, Max MP +1750, Damage Taken -21%. Stacks up to 3 times, once per unique Explorer Pirate that reaches master level. Values scale with %Stat effects. On Explorer Pirates the skill can be double-clicked to toggle a mode that swaps STR+%STR and DEX+%DEX granted by equipment; primary weapon, secondary weapon, totems and symbols are excluded.",
+    "levels": "Master Level 9",
+    "sources": [
+      "https://grandislibrary.com/explorers/cannoneer",
+      "https://maplestorywiki.net/w/Cannoneer"
+    ],
+    "consensus": "moderate",
+    "note": "MapleStory Wiki names it 'Pirate Blessing' without the apostrophe-s; Grandis Library names it 'Pirate's Blessing'. Same skill. Pre-revamp guides list obsolete values - see conflicts."
+  },
+  "legionEffect": {
+    "effect": "Flat STR +10 / +20 / +40 / +80 / +100 by legion rank",
+    "consensus": "strong",
+    "sources": [
+      "https://grandislibrary.com/explorers/cannoneer",
+      "https://maplestorywiki.net/w/Cannoneer",
+      "https://www.digitaltq.com/maplestory-cannoneer-skill-build-guide"
+    ]
+  },
+  "classPassiveTotals": {
+    "note": "Totals Cannoneer gets from its own skill kit before any gear. Recorded because they change how much of each stat is worth buying from gear, hyper stats or inner ability.",
+    "critRate": "+45%",
+    "critDamage": "+20%",
+    "damage": "+40% base (up to 100% with conditional sources)",
+    "bossDamage": "+29%",
+    "finalDamage": "+57.66%",
+    "ignoreDef": "+20% base (up to 40% with conditional sources)",
+    "attackSpeed": "+5 attack speed from passives (Agile Cannons, Reinforced Cannon, Cannon Overload, Buckshot)",
+    "weaponMastery": "85%",
+    "weaponMultiplier": "1.5x",
+    "consensus": "weak",
+    "sources": [
+      "https://grandislibrary.com/explorers/cannoneer"
+    ]
+  },
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost node group 1 - Cannon Barrage",
+        "why": "Grandis Library groups Cannoneer boost nodes into six fixed sets and defines its PRIMARY tier as nodes that unlock a 6th job HEXA Mastery and cover frequently used skills. Cannon Barrage sits alone in group 1 and has a named HEXA counterpart, placing it in that bracket. The colour coding that assigns each group to a tier is image-only and could not be read as text, so the exact ranking between the six groups is NOT sourced here.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "node": "Boost node group 2 - Cannon Bazooka, Anchors Aweigh, Nautilus Strike, Monkey Mortar",
+        "why": "Four heavily used attack skills share one boost node group, so a single node feeds both the main bossing and the main mobbing lines. All four have named HEXA counterparts on the skill wiki.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer",
+          "https://maplestorywiki.net/w/Cannoneer/Skills"
+        ]
+      },
+      {
+        "node": "Boost node group 3 - Rolling Rainbow",
+        "why": "Listed as its own node group and has a named HEXA counterpart.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "node": "Boost node group 4 - Monkey Fury, Support Monkey",
+        "why": "Both summon-side skills share a node group and both have named HEXA counterparts. Support Monkey is also the skill Grandis Library's hyper passive build invests in first for both bossing and mobbing.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "node": "Boost node group 5 - Barrel Bomb, Scatter Shot, Cannon Spike, Cannon Crash",
+        "why": "Low-job skills outside the endgame rotation. Grandis Library's legend defines an OTHER tier for nodes that do not need upgrading or have least priority; these skills are the plausible occupants, but that assignment itself is NOT sourced.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "node": "Boost node group 6 - Cannon Blaster, Blast Back, Cannon Jump, Cannon Strike",
+        "why": "Low-job attack and movement skills outside the endgame rotation. Tier assignment NOT sourced.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      }
+    ],
+    "trios": null,
+    "notes": "RECENCY POINT THAT MATTERS. Boost nodes were restructured in GMS v.269; Grandis Library presents the fixed node groups above as current and keeps the old layout behind a separate 'View Pre-V.269 Boost Nodes' toggle. Any guide telling you to craft specific three-skill trios is describing the pre-v.269 system. The 2024 DigitalTQ guide, for instance, recommends the trios [Cannon Barrage / Rolling Rainbow / Monkey Militia] and [Cannon Bazooka / Monkey Fury / Anchors Away]; those are recorded here only as superseded history, not as current advice. No post-v.269 source was found that ranks the six node groups against each other, and Grandis Library's own tier colouring could not be extracted as text, so no ranked build order is asserted. The Cannoneer class Discord (https://discord.gg/XJzkgQRPcM) is the maintainer Grandis Library credits for these builds and is where the ranking would come from.",
+    "sources": [
+      "https://grandislibrary.com/explorers/cannoneer",
+      "https://www.digitaltq.com/maplestory-cannoneer-skill-build-guide"
+    ]
+  },
+  "hexa": {
+    "order": null,
+    "notes": "NOT SOURCED for Cannoneer specifically. No guide dated after the HEXA rollout was found that gives a Cannoneer investment order across origin skill core, mastery cores, enhancement/boost cores and common cores. Left null deliberately - misallocated Sol Erda is expensive to undo. What IS sourced: (1) Cannoneer's 6th job origin skill is Super Cannon Explosion, which doubles as the class's bind (10s duration, 360s cooldown) and carries an iFrame [Grandis Library]. (2) HEXA counterparts named for this class on the skill wiki include HEXA Cannon Barrage, HEXA Cannon Bazooka, HEXA Anchors Aweigh, HEXA Nautilus Strike, HEXA Monkey Mortar, HEXA Rolling Rainbow, HEXA Support Monkey and HEXA Monkey Fury [MapleStory Wiki]. (3) A class-agnostic HEXA guide updated 2025-01-31 recommends activating the 6th job mastery node, then boost nodes, then the origin skill node, then common nodes, leaving HEXA Stat until skills are at a decent level, reasoning that spreading activations across nodes beats levelling one node and that HEXA Stat returns less final damage per resource early [The Digital Crowns]. That is generic and is NOT a Cannoneer recommendation - a placeholder only, and it conflicts with the origin-skill-first ordering commonly repeated in the community, which no datable source in this pass could be found to support.",
+    "consensus": "none",
+    "sources": [
+      "https://grandislibrary.com/explorers/cannoneer",
+      "https://maplestorywiki.net/w/Cannoneer/Skills",
+      "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+    ]
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "stat": "Arcane Force (only until the map or boss requirement is met)",
+        "why": "Missing arcane force is a flat damage penalty, so it is filled before multipliers. Generic advice, not Cannoneer-specific.",
+        "consensus": "weak",
+        "sources": [
+          "https://gameslikefinder.com/article/maplestory-hyper-stats-guide/"
+        ]
+      },
+      {
+        "stat": "Critical Rate (up to 100%)",
+        "why": "Generic guidance; crit rate is dead value past 100%. Cannoneer caveat: the kit already supplies +45% crit rate on its own, so the gap left for hyper stats to fill is smaller than for classes with little innate crit.",
+        "consensus": "weak",
+        "sources": [
+          "https://gameslikefinder.com/article/maplestory-hyper-stats-guide/",
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "stat": "Critical Damage",
+        "why": "Few other sources of crit damage exist, so hyper stat points go further here. Generic advice.",
+        "consensus": "weak",
+        "sources": [
+          "https://gameslikefinder.com/article/maplestory-hyper-stats-guide/"
+        ]
+      },
+      {
+        "stat": "Ignore Enemy Defense",
+        "why": "Raises the share of damage that penetrates boss defence. Generic bossing advice. Cannoneer already carries +20% IED natively, up to +40% with its conditional sources.",
+        "consensus": "weak",
+        "sources": [
+          "https://gameslikefinder.com/article/maplestory-hyper-stats-guide/",
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "stat": "Boss Damage",
+        "why": "Generic bossing advice. Cannoneer's kit gives +29% boss damage before gear.",
+        "consensus": "weak",
+        "sources": [
+          "https://gameslikefinder.com/article/maplestory-hyper-stats-guide/",
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "stat": "STR",
+        "why": "Ranked below the multipliers: main stat is worth buying after the other damage levers are in place. Generic advice.",
+        "consensus": "weak",
+        "sources": [
+          "https://gameslikefinder.com/article/maplestory-hyper-stats-guide/"
+        ]
+      }
+    ],
+    "notes": "No Cannoneer-specific hyper stat priority was found in any source in this pass. The list above is a general STR-bossing order from a class-agnostic hyper stat guide last updated 2026-08-19, annotated with Cannoneer's own passive totals so the reader can see where the class already has coverage. Present it as a starting frame, never as a class build."
+  },
+  "hyperSkills": {
+    "bossingPassives": {
+      "selections": [
+        "Support Monkey - Reinforce",
+        "Support Monkey - Extra Strike",
+        "Cannon Bazooka - Extra Strike",
+        "Cannon Barrage - Reinforce",
+        "Cannon Barrage - Extra Strike"
+      ],
+      "consensus": "weak",
+      "sources": [
+        "https://grandislibrary.com/explorers/cannoneer"
+      ],
+      "note": "Grandis Library credits this build to the Cannoneer Discord, so this is one source chain, not two."
+    },
+    "mobbingPassives": {
+      "selections": [
+        "Support Monkey - Reinforce",
+        "Support Monkey - Extra Strike",
+        "Cannon Bazooka - Reinforce",
+        "Cannon Bazooka - Spread",
+        "Cannon Bazooka - Extra Strike"
+      ],
+      "consensus": "moderate",
+      "sources": [
+        "https://grandislibrary.com/explorers/cannoneer",
+        "https://www.digitaltq.com/maplestory-cannoneer-skill-build-guide"
+      ],
+      "note": "The three Cannon Bazooka passives are agreed on by both sources. Support Monkey Reinforce/Extra Strike appears only in the Grandis Library build."
+    },
+    "activeHypers": null,
+    "notes": "Hyper passive points are limited, so the bossing and mobbing lists are alternatives, not a combined shopping list. The 2024 DigitalTQ guide additionally lists Rolling Rainbow, Epic Adventure and Buckshot among its recommendations; the v.269 Grandis Library build does not include them in the passive selection. No source found in this pass covers the hyper active or hyper stat hyper skill choices for this class, so activeHypers is left null rather than guessed."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Attack Speed +1",
+        "why": "Top line for bossing. The Hand Cannon is slow at base and the class spends five passive skills' worth of bonuses climbing out of it, so the remaining stage is valuable. This is the one inner ability line every Cannoneer source agrees on, across a twelve-year span of guides.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer",
+          "https://www.digitaltq.com/maplestory-cannoneer-skill-build-guide",
+          "https://ayumilove.net/maplestory-cannon-shooter-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%",
+        "why": "Second and third lines for a bossing set-up.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "line": "Damage to monsters inflicted with Abnormal Status +8%",
+        "why": "Second and third lines for a bossing set-up.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Meso Obtained / Item Drop Rate +20%",
+        "why": "Farming set-up; throughput matters more than damage once mobs die in one hit.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "line": "Meso Obtained / Item Drop Rate +15%",
+        "why": "Second meso/drop line.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      },
+      {
+        "line": "Damage to Normal Monsters +8%",
+        "why": "Third line for farming.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/cannoneer"
+        ]
+      }
+    ],
+    "notes": "The bossing second and third lines and the whole training set come from Grandis Library, which credits the Cannoneer Discord - one chain. Only the Attack Speed +1 line is corroborated independently. The 2013 AyumiLove entry pairs Attack Speed +1 with Attack +30, which is a pre-modern second line and should not be shown as current."
+  },
+  "gearingNotes": "Cannoneer gears as a STR Explorer Pirate: Hand Cannon in the weapon slot, Powder Keg as the secondary, pirate-class armour, STR main and DEX secondary. Grandis Library records a 1.5x weapon multiplier and 85% weapon mastery from the kit. Two things in the kit should change what you buy. First, the class already carries +45% critical rate and +29% boss damage before any gear, and +20% ignore DEF rising to +40% with its conditional sources - so crit rate lines are worth less on this class than on one starting near zero, and early IED and boss damage stack onto an existing base. Second, the Hand Cannon is slow at base and the class climbs five attack speed stages back through Agile Cannons, Reinforced Cannon, Cannon Overload and Buckshot, which is why Attack Speed +1 is the recommended inner ability first line rather than a damage line. Pirate's Blessing carries an Explorer-Pirate-only toggle that swaps STR and DEX granted by equipment (weapons, totems and symbols excluded), which is what lets a Cannoneer make use of gear rolled for the other stat. NO SOURCE was found in this pass for Cannoneer-specific set choices - Arcane/Genesis/Eternal progression, Pitched Boss pieces, familiar lines, or Heroic-server meso and drop gearing - so none is asserted.",
+  "commonMistakes": [
+    {
+      "mistake": "Following a boost node trio guide written before GMS v.269",
+      "why": "Boost nodes were restructured in v.269 into fixed groups; Grandis Library keeps the old layout behind a separate pre-v.269 view. Trio-crafting advice from 2024 and earlier describes a system that no longer exists, and those pages still rank highly in search.",
+      "consensus": "weak",
+      "sources": [
+        "https://grandislibrary.com/explorers/cannoneer"
+      ]
+    },
+    {
+      "mistake": "Planning a party around Cannoneer's dice buffs",
+      "why": "Roll of the Dice and Double Down are random, so the party buff a Cannoneer contributes is not something to count on.",
+      "consensus": "weak",
+      "sources": [
+        "https://www.digitaltq.com/maplestory-cannoneer-skill-build-guide"
+      ]
+    },
+    {
+      "mistake": "Reading the old Pirate's Blessing numbers as current",
+      "why": "Guides from the 2013-2014 era list the link as all stats +15/25/35 with Max HP/MP +5/10/15%. The current skill gives flat +100 to each stat, +1750 Max HP/MP and -21% damage taken at master level, plus the STR/DEX equipment toggle. The old numbers are still widely mirrored.",
+      "consensus": "weak",
+      "sources": [
+        "https://ayumilove.net/maplestory-cannon-shooter-skill-build-guide/",
+        "https://grandislibrary.com/explorers/cannoneer"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/explorers/cannoneer",
+      "what": "Class overview: stats, weapons, link skill text, legion bonus, full passive stat totals, example skill build path, hyper passive builds for bossing and mobbing, the six post-v.269 boost node groups and their legend definitions, recommended inner ability for bossing and training, and the 6th job origin skill Super Cannon Explosion. The page states it was built with help from the Cannoneer Discord and credits that Discord specifically for the inner ability, hyper passive and boost node builds - so Grandis Library and the Cannoneer Discord are ONE source chain, not two.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] - version stamp only, no calendar date on the page. v.269 is two patches behind the v.271 this file targets.",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Cannoneer",
+      "what": "Existence and availability check: the per-region availability table lists Cannoneer as Available in GMS alongside KMS, JMS, CMS, MSEA and TMS. Also job advancement quest levels (10/30/60/100/200/260), faction and class, main and secondary stat, primary and secondary weapon, link skill name, legion effect, and the note that the class is created from the character creation window rather than advanced into.",
+      "dated": "No date shown on the page. Content references the 2025 UI revamp, so it is maintained at least into 2025.",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Cannoneer/Skills",
+      "what": "Named HEXA counterparts for the class: HEXA Cannon Barrage, HEXA Cannon Bazooka, HEXA Anchors Aweigh, HEXA Nautilus Strike, HEXA Monkey Mortar, HEXA Rolling Rainbow, HEXA Support Monkey, HEXA Monkey Fury. CAVEAT: direct fetch was blocked (HTTP 403) in this pass; these names were read from search-engine indexing of this page and cross-check cleanly against the boost node groups on Grandis Library, but the page itself was not read in full.",
+      "dated": "Not established.",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-cannoneer-skill-build-guide",
+      "what": "Skill build guide: hyper passive selections, pre-v.269 V matrix skill nodes and boost node trios, inner ability first line, legion and link skill summary, and the observation that the class's dice-based party buffs are random.",
+      "dated": "2024-02-19 article date, with an earlier 2023 Destiny Remastered revision noted. PRE-v.269, therefore superseded on boost nodes.",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-cannon-shooter-skill-build-guide/",
+      "what": "Early skill build guide. Used only to corroborate the Attack Speed +1 inner ability line and to document the obsolete Pirate Blessing values still circulating.",
+      "dated": "2013-04-06. STALE - predates 5th job, V matrix and HEXA entirely.",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-cannon-shooter-skill-build-guide-v1/",
+      "what": "Checked for V matrix and hyper stat content; contains none. Recorded so the gap is visible rather than silent.",
+      "dated": "2014-03-29. STALE.",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+      "what": "Class-agnostic HEXA Matrix order: mastery node, then boost nodes, then origin skill node, then common nodes, with HEXA Stat left until skills are levelled. NOT Cannoneer-specific.",
+      "dated": "2025-01-31 last updated. Post-HEXA.",
+      "independent": true
+    },
+    {
+      "url": "https://gameslikefinder.com/article/maplestory-hyper-stats-guide/",
+      "what": "Class-agnostic hyper stat priority for a STR bossing character. NOT Cannoneer-specific.",
+      "dated": "2026-08-19 last updated. Newest source in this file.",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "topic": "V matrix boost nodes",
+      "positionA": "Fixed six-group boost node layout with no trio crafting - Grandis Library, GMS v.269 layout, which files the older layout separately as pre-v.269.",
+      "positionB": "Craft the trios Cannon Barrage / Rolling Rainbow / Monkey Militia and Cannon Bazooka / Monkey Fury / Anchors Away - DigitalTQ, 2024-02-19.",
+      "note": "A version gap rather than a live disagreement: B predates the v.269 restructure. Recorded rather than dropped because pre-v.269 trio guides are still among the top search results for this class."
+    },
+    {
+      "topic": "Cannon Bazooka hyper passives for bossing",
+      "positionA": "Bossing takes Cannon Bazooka - Extra Strike only and spends the rest on Support Monkey and Cannon Barrage - Grandis Library / Cannoneer Discord, v.269.",
+      "positionB": "Cannon Bazooka Reinforce, Spread and Extra Strike all maxed, plus Cannon Barrage Reinforce and Extra Strike, Rolling Rainbow, Epic Adventure and Buckshot - DigitalTQ 2024 and AyumiLove 2013, neither of which separates a bossing build from a mobbing build.",
+      "note": "A is the only source that splits bossing from mobbing. B's combined list exceeds the hyper passive points available when read as a single build."
+    },
+    {
+      "topic": "Pirate's Blessing effect values",
+      "positionA": "STR/DEX/INT/LUK +100 each, Max HP/MP +1750, Damage Taken -21% at master level - Grandis Library.",
+      "positionB": "All Stats +15/25/35, Max HP and Max MP +5/10/15% - AyumiLove 2013.",
+      "note": "B is the pre-revamp version of the skill. A is current."
+    },
+    {
+      "topic": "HEXA investment order",
+      "positionA": "Mastery node first, then boost nodes, then origin skill node, then common nodes - The Digital Crowns, 2025-01-31, class-agnostic.",
+      "positionB": "No second source found. The origin-skill-first ordering widely repeated in the community could not be confirmed against any datable source in this pass.",
+      "note": "Left unresolved; hexa.order is null rather than picking one."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "coverageWarnings": [
+    "Cannoneer EXISTS and is creatable in GMS - confirmed by MapleStory Wiki's per-region availability table and by an actively maintained Grandis Library class page.",
+    "Only ONE Cannoneer-specific source in this pass is post-HEXA: Grandis Library, stamped GMS v.269, and its build recommendations are credited to the Cannoneer Discord, so it is one chain rather than two. Every other Cannoneer-specific source found is 2024 or older.",
+    "hexa.order is null, vMatrix.trios is null and hyperSkills.activeHypers is null because nothing sourceable was found. These are the highest-value gaps for this class; the Cannoneer Discord at https://discord.gg/XJzkgQRPcM is the maintainer to ask.",
+    "hyperStats.priority is generic STR-bossing advice, not a Cannoneer build. It is annotated with the class's own passive totals but must not be presented to a user as class-specific.",
+    "Reddit, YouTube and Discord could not be read in this pass (blocked by fetch policy or bot checks) and the session web search budget was exhausted mid-pass. The class-specific judgement that lives in those places is exactly what is missing above."
+  ],
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "UNSOURCED PRIORITY ORDER - the main defect. Grandis Library DOES state the boost node tiers in text, not only as colour coding. I confirmed across three separately-worded fetches: legend reads \"Each Boost Node provides a %Final Damage increase to the skills included in the node. Nodes categorized as Primary and Secondary are recommended to be upgraded\", with Node 1 = PRIMARY, Node 2 = SECONDARY, Nodes 3, 4, 5 and 6 ALL = OTHER. So (a) vMatrix.priority[0].why (\"the exact ranking between the six groups is NOT sourced here\"), priority[4].why and priority[5].why (\"Tier assignment NOT sourced\") and vMatrix.notes (\"No post-v.269 source was found that ranks the six node groups against each other\") are each FALSE - the researcher quoted the legend's Primary definition while claiming the assignment was unreadable; and (b) the file's 1-through-6 array ordering implies groups 3 > 4 > 5 > 6, a rank NO source states, since GL flattens all four into OTHER. That implied order is exactly the invented-priority failure mode.",
+      "EIGHT HEXA NODE NAMES REST ON A PAGE NOBODY OPENED. \"HEXA Cannon Barrage, HEXA Cannon Bazooka, HEXA Anchors Aweigh, HEXA Nautilus Strike, HEXA Monkey Mortar, HEXA Rolling Rainbow, HEXA Support Monkey, HEXA Monkey Fury\" come solely from search-engine snippets of maplestorywiki.net/w/Cannoneer/Skills, which 403s for me too. I could not confirm a single one. This is load-bearing: the \"has a named HEXA counterpart\" claim is the stated rationale for vMatrix groups 1, 2, 3 and 4 and for hexa.notes item (2). The BASE skill names are all real (verified on GL: Monkey Mortar is 3rd job, Nautilus Strike / Anchors Aweigh / Support Monkey / Cannon Barrage / Cannon Bazooka are 4th job, Monkey Fury is 3rd job, Rolling Rainbow is a Hyper Skill) - but eight HEXA masteries for one class is far more than classes typically receive, and nothing in this pass substantiates it. Treat as unverified, not confirmed.",
+      "SELF-DEFEATING RATIONALE. vMatrix.priority[0].why argues Cannon Barrage is top-bracket BECAUSE it \"has a named HEXA counterpart\" - but the file then asserts named HEXA counterparts for groups 2, 3 and 4 as well. The criterion does not discriminate, so the reasoning chain does not actually support the ordering it is offered for. This is inference standing in for a source label that was available on the page.",
+      "\"Monkey Militia\" is carried in vMatrix.notes and conflicts[0] as a DigitalTQ trio member with no note that the skill name no longer exists. GL's current skill list has no Monkey Militia anywhere (the monkey skills are Monkey Magic, Monkey Mortar, Monkey Fury, Mega Monkey Magic, Support Monkey, Monkey Business). A reader searching the name in-game finds nothing. Same problem with the spelling drift: the file uses \"Anchors Aweigh\" (correct, verified on GL) in vMatrix.priority and \"Anchors Away\" (DigitalTQ's spelling) in vMatrix.notes and conflicts[0] without flagging that one is a misspelling of the other.",
+      "No outright invented node or skill name found otherwise. Every skill in all six boost node groups matches GL's skill list exactly, group membership matches verbatim, both hyper passive builds match GL verbatim, both inner ability sets match GL, Super Cannon Explosion is confirmed as the 6th job origin skill, Powder Keg is confirmed as secondary, and the \"View Pre-V.269 Boost Nodes\" toggle exists with that exact label. hexa.order being null is correct - I confirmed GL states no HEXA investment order, only the legend phrase \"Boost Nodes that unlock a 6th Job HEXA Mastery and are skills that are frequently used\".",
+      "STALE: AYUMILOVE IS MISCHARACTERISED IN BOTH DIRECTIONS. sources[] says the 2013 page is \"STALE - predates 5th job, V matrix and HEXA entirely\" and that the v1 page \"contains none\" of V matrix content. Two separately-worded fetches of ayumilove.net/maplestory-cannon-shooter-skill-build-guide/ both report a V-Matrix / 5th job section in the body with a main V skill and trio recommendations. AyumiLove updates pages in place while keeping the original post date, so the \"2013-04-06\" stamp is a publication date, not a content date. Consequence: the file simultaneously over-trusts that stamp (using it as a \"twelve-year span\" corroboration for Attack Speed +1) and over-dismisses the page (declaring its V matrix content nonexistent). Caveat on my own check: the V skill name returned (\"Gigantic Cannonball\") does not appear in GL's 5th job list (Cannon of Mass Destruction, Monkey Business, Poolmaker, Pirate's Banner, Loaded Dice, Overdrive, Maple World Goddess's Blessing), so either AyumiLove's own V section is stale or the extraction is unreliable - but \"contains no V matrix content\" is not right either way.",
+      "STALE: DIGITALTQ DATING IS RIGHT BUT GENEROUS. I confirmed the visible dates: \"February 19, 2024\" publication, changelog \"06/03/2023 - Updated for Destiny Remastered Patch\", \"26/03/2021 - Added new 5th Job Skill from the Awake update\", \"16/11/2020 - First update\", footer \"(c) Copyright 2026\". So the newest CONTENT revision is 2023-06-03, not 2024-02-19; the file's \"2024-02-19 article date\" reads fresher than the guide is. The file's conclusion (pre-v.269, superseded on boost nodes) is correct and I confirmed the page references no version above Destiny Remastered.",
+      "STALE: NO pre-HEXA advice is passed off as current - this is the file's strongest quality. DigitalTQ trios and AyumiLove link values are explicitly quarantined into conflicts[] and commonMistakes[], hexa.order and vMatrix.trios and activeHypers are null rather than guessed, and the generic hyperStats import is labelled non-class-specific in three places. The residual staleness risk is disclosed rather than hidden: Grandis Library is stamped GMS v.269 [Ride the Lightning Update] (verified verbatim) against the file's v.271 target, i.e. two patches behind, and nothing in this pass covers what v.270 or v.271 changed for this class.",
+      "STALE: RECENCY FLOOR NOT MET IN SUBSTANCE. The brief asks for sources after 2025-01-01. Of the four Cannoneer-specific chains, zero carry a 2025-or-later date: GL has a version stamp only, the wiki is undated and unreadable, DigitalTQ's content is 2023, AyumiLove's stamp is 2013. The only two post-2025-dated sources in the file (The Digital Crowns 2025-01-31, GamesLikeFinder 2026-08-19) are both class-agnostic. The file's coverageWarnings say this, but consensusLevel \"weak\" undersells it - for V MATRIX, HEXA, HYPER STATS and GEARING there is effectively one datable class-specific source chain."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "9 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

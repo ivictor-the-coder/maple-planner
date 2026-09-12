@@ -1,0 +1,470 @@
+{
+  "slug": "battle-mage",
+  "className": "Battle Mage",
+  "branch": "Resistance",
+  "primaryStat": "INT",
+  "secondaryStat": "LUK",
+  "weapon": "Staff",
+  "secondaryWeapon": "Shield (Deimos Sage Shield is the endgame pick) or Magic Marble",
+  "archetype": "Close-range INT mage with an in-air teleport. Plays as a damage-dealing support: its aura buffs hand the party boss damage and attack speed, and most of its damage is dark/non-elemental, so bosses with elemental resistance do not halve it.",
+  "linkSkill": {
+    "name": "Spirit of Freedom",
+    "effect": "Grants a window of invincibility after reviving. Shared Resistance-branch link.",
+    "levels": "Stacks across up to 4 Resistance characters; the stacked skill is described as reaching level 12 at master level. Reported invincibility window at full stack: 12 seconds."
+  },
+  "legionEffect": "Flat INT: +10 / +20 / +40 / +80 / +100 by legion rank tier.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Condemnation boost node (KMS: Summon: Death)",
+        "why": "Head of the primary trio in every guide checked. Its boost node also gates the first HEXA Mastery core, so it is the first thing worth levelling past the trio-equalisation stage.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Finishing Blow boost node",
+        "why": "Main attack line. Pairs with Sweeping Staff in a single HEXA Mastery core, so both boosts have to come up together before that core is worth opening.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Sweeping Staff boost node (KMS: Battle King Bar)",
+        "why": "Short-cooldown hit used in both mobbing and bossing; shares a HEXA Mastery core with Finishing Blow.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Dark Shock boost node",
+        "why": "Third of the four boosts that gate HEXA Mastery cores; also the trigger condition for Abyssal Lightning.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Dark Genesis boost node",
+        "why": "Needed for the fourth HEXA Mastery core and carries mobbing, but the class doc ranks it last of the four for boss play because of its animation delay.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Aura Scythe (5th job skill node)",
+        "why": "Named as a first-to-max 5th job skill node in both the class doc and the older skill-build write-ups.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build",
+          "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/"
+        ]
+      },
+      {
+        "node": "Altar of Annihilation (5th job skill node)",
+        "why": "Max-first 5th job node. The class doc says current play applies Dark Brand through Altar of Annihilation rather than through telecasting.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build"
+        ]
+      },
+      {
+        "node": "Grim Harvest (5th job skill node)",
+        "why": "Max-first 5th job node; later gets a +60% final damage HEXA Boost core.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build"
+        ]
+      },
+      {
+        "node": "Abyssal Lightning (5th job skill node)",
+        "why": "Max-first 5th job node; fires off teleports taken while Dark Shock is up, so it rides the normal movement pattern.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build"
+        ]
+      },
+      {
+        "node": "Utility nodes: Mana Overload, Ethereal Form, Resistance Infantry, Maple World Goddess' Blessing, Erda Nova",
+        "why": "Class doc's recommended non-trio slots once the primary boosts are handled.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Primary: Finishing Blow / Dark Shock / Condemnation",
+        "why": "The trio a boss mule needs and the first one a main builds. Node name is set by whichever skill sits first, so ordering only matters for keeping two nodes from colliding.",
+        "consensus": "strong",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build"
+        ]
+      },
+      {
+        "trio": "Secondary: Dark Genesis / Sweeping Staff / Battle Burst or Dark Chain",
+        "why": "Only a main needs this second trio; a boss mule can stop at the primary.",
+        "consensus": "moderate",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build"
+        ]
+      }
+    ],
+    "notes": "The node guide and Grandis Library group the six boosted skills slightly differently (Grandis lists Condemnation, Finishing Blow/Sweeping Staff, Dark Shock and Dark Genesis as the HEXA-gating set, while the trio guide splits Sweeping Staff into the second trio). The practical reading that all three agree on: the same six skills must end up boosted, the grouping is a slot-packing problem, not a damage decision. The class doc asks for trinodes around level 20 each early, then pushes the four HEXA-gating boosts much higher."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Before touching HEXA, get the V boost nodes up. The class doc wants the four HEXA-gating boost nodes (Condemnation, Finishing Blow + Sweeping Staff, Dark Shock, Dark Genesis) at level 40+, and 5th job skill nodes at 25, before opening the matching HEXA cores.",
+        "why": "HEXA Mastery and HEXA Boost cores are gated on the underlying 5th job node levels, so HEXA points spent before this are points you cannot spend.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+        ]
+      },
+      {
+        "step": "Origin skill core: Crimson Pact.",
+        "why": "The class's burst. Named as the first HEXA skill core in the class doc and in an independent 2024 write-up.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/"
+        ]
+      },
+      {
+        "step": "HEXA Mastery cores in this order: Condemnation, then Finishing Blow / Sweeping Staff (one shared core), then Dark Shock, then Dark Genesis.",
+        "why": "Ordered by how much of the class's damage each line actually carries; Dark Genesis is last because it is not used in boss burst.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+        ]
+      },
+      {
+        "step": "Second HEXA skill core (the Ascent skill, listed in the class doc as Duskbound Aura / Gloomy Aura).",
+        "why": "Class doc frames it as an invincibility-window utility rather than a damage core, which is why it sits after the Origin skill.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+        ]
+      },
+      {
+        "step": "HEXA Boost cores: Aura Scythe, Altar of Annihilation, Grim Harvest, Abyssal Lightning. Each is a 60% final damage increase to its skill at master level.",
+        "why": "Flat multipliers on the four 5th job skills that are already in the rotation.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+        ]
+      },
+      {
+        "step": "Common core: Resistance Line Infantry VI (the Resistance-branch shared 5th job skill upgraded in HEXA).",
+        "why": "The shared Resistance common core; described as a periodic attack hitting up to 12 enemies 12 times at 2732% damage at master level.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.maplesea.com/updates/view/v253_HEXA/",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+        ]
+      },
+      {
+        "step": "Start HEXA Stat only once a level of a HEXA skill costs more than activating stat lines does. Aim for any combination summing to level 20 first rather than chasing a perfect roll.",
+        "why": "Fragments are the scarce currency on Heroic; a level-20 total is reported as roughly a 3-4% final damage gain, while a perfect roll is described as a six-figure fragment project.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+        ]
+      }
+    ],
+    "notes": "HEXA stat line value order given by the class doc, highest first: Magic Attack, INT, Critical Damage - single source, treat as weak. The doc also says to spend Sol Erda Fragments rather than whole Sol Erda on general progression, and that Sol Janus levelling to 10/20/30 is for heavy players only. The exact Origin and Ascent skill names could not be cross-checked against a wiki: maplestorywiki.net and the Fandom mirror both refused automated reads, and Nexon's own class pages render client-side. The class doc lists both GMS and KMS names side by side (Crimson Pact / Crimson Pactum, Duskbound Aura / Gloomy Aura), so the GMS in-game string may differ."
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "No sourced ranking. The 2026 class doc explicitly declines to publish a hyper stat order and tells players to run a hyper stat calculator instead, because positioning, gear and legion change the answer per character. Grandis Library's page has no hyper stat section. Older write-ups give only the generic mage advice (never put points into main stat, since flat stat does not scale with %stat) and are dated 2024 or earlier. Left empty rather than reconstructed - a fabricated order here would misdirect real points."
+  },
+  "hyperSkills": {
+    "core": [
+      {
+        "skill": "Dark Aura - Boss Rush",
+        "why": "Named a must-take in every source checked; it is the aura that turns the class's party buff into boss damage.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build"
+        ]
+      },
+      {
+        "skill": "Weakening Aura passive (see conflicts: sources disagree on whether the pick is Enhance or Elemental Decrease)",
+        "why": "Every source agrees one Weakening Aura passive is mandatory; they do not agree which.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/"
+        ]
+      }
+    ],
+    "situational": [
+      {
+        "skill": "Party Shield - Cooldown Cutter / Persist / Enhance",
+        "why": "The support-oriented remaining slots; picked when you are the party's shield.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/"
+        ]
+      },
+      {
+        "skill": "Dark Genesis - Reinforce / Additional Reinforce / Cooldown Cutter",
+        "why": "Training and mobbing value. The 2026 class doc narrows this to hyperburn only; older guides treat Additional Reinforce as a standard pick.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://www.grandislibrary.com/resistance/battle-mage",
+          "https://www.digitaltq.com/maplestory-battle-mage-skill-build"
+        ]
+      },
+      {
+        "skill": "Blue Aura - Dispel Magic",
+        "why": "Class doc calls it niche, useful at Tenebris-tier and later bosses.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+          "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/"
+        ]
+      }
+    ],
+    "notes": "Three of the five passive slots are genuinely open; the two aura passives are not. Active hyper skills consistently listed: Sweeping Staff, For Liberty, Master of Death."
+  },
+  "innerAbility": {
+    "bossing": [
+      "Boss Damage +20% (top line)",
+      "Damage to monsters with abnormal status +8%",
+      "Magic Attack +21, or Buff Duration +38%"
+    ],
+    "mesoFarming": [
+      "Meso Obtained +20%",
+      "Item Drop Rate +15%",
+      "Damage to Normal Monsters +8%"
+    ],
+    "dropFarming": [
+      "Item Drop Rate +20%",
+      "Item Drop Rate +15%",
+      "Damage to Normal Monsters +8%"
+    ],
+    "consensus": "moderate",
+    "notes": "Grandis Library and the class doc give the same three-line sets. Both are Battle Mage community outputs and Grandis links the same class doc, so treat this as two partly-related sources rather than two clean ones. Buff Duration is a real alternative only because the class's own long buffs are not affected by it - see commonMistakes.",
+    "sources": [
+      "https://www.grandislibrary.com/resistance/battle-mage",
+      "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+      "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/"
+    ]
+  },
+  "gearingNotes": "Staff only - the class doc is blunt that there is no alternate weapon path, so do not hold a Fafnir/Genesis wand for a Battle Mage. Secondary is a shield; Deimos Sage Shield is the endgame piece, worth full star force and magic attack scrolling (Grandis Library lists the secondary slot more loosely as shield or magic marble). Weapon/secondary/emblem potential is targeted at a magic attack heavy spread - the class doc gives a range of 7/2/0 up to 9/0/0 across magic attack / boss damage / IED lines and points at a WSE calculator rather than a fixed answer. Attack speed matters more than for most mages: reaching attack speed 10 via Decent Speed Infusion plus an active Yellow Aura, or a green potion, is reported as roughly 6% final damage over attack speed 8, so speed sources are a real gearing consideration and not a rounding error. Buff Duration lines and gear do not extend hyper skills, 5th job skills, HEXA skills or Oz Ring, which changes how much a Buff Duration inner ability line is worth. All of the above is from the class doc except the secondary-weapon type; treat the numbers as single-source.",
+  "commonMistakes": [
+    {
+      "mistake": "Building around telecasting. The class doc says to drop it entirely; Dark Brand is applied through Altar of Annihilation in current play.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ]
+    },
+    {
+      "mistake": "Letting the Weakening Aura debuff lapse. It has to be reapplied after it drops or damage quietly falls off.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ]
+    },
+    {
+      "mistake": "Casting Dark Genesis inside a boss burst window. Its animation delay costs more than the hit is worth; keep it for unreachable targets and for mobbing.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ]
+    },
+    {
+      "mistake": "Settling at attack speed 8 when attack speed 10 is reachable.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ]
+    },
+    {
+      "mistake": "Buying Buff Duration expecting it to stretch hyper, 5th job or HEXA buffs. It does not.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ]
+    },
+    {
+      "mistake": "Spending HEXA points before the underlying V boost nodes are high enough to unlock the Mastery and Boost cores.",
+      "consensus": "moderate",
+      "sources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+        "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM",
+      "what": "The Grimoire: A Battle Mage Guide - the maintained community class doc linked from Grandis Library and the class Discord. Carries the HEXA order, gearing, hyper skill reasoning and common mistakes.",
+      "dated": "2026-02-24 (guide version 4.2, self-described as work in progress for v269)",
+      "independent": true
+    },
+    {
+      "url": "https://www.grandislibrary.com/resistance/battle-mage",
+      "what": "Grandis Library class overview: stats, weapon, link skill, legion effect, boost node groupings, hyper skill picks, inner ability lines.",
+      "dated": "Page states GMS Ver. 269 (Ride the Lightning); no explicit calendar date shown",
+      "independent": true
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "Per-class boost node trio reference; gives the Battle Mage primary and secondary trios and the boss-mule vs main distinction.",
+      "dated": "2024-11-21",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-battle-mage-skill-build",
+      "what": "Skill build write-up; corroborates trio composition, top 5th job skill nodes and hyper skill actives. No 6th job content.",
+      "dated": "Page dated 2024-02-19; article states its content was last updated June 2021",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/",
+      "what": "Battle Mage build article; names Crimson Pact as the HEXA priority and gives hyper/inner ability picks.",
+      "dated": "2024-06-28",
+      "independent": false
+    },
+    {
+      "url": "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+      "what": "General HEXA matrix guide: activate mastery then boost cores before deep levelling; HEXA Stat timing and the level-20 total heuristic. Not class-specific.",
+      "dated": "2025-01-31",
+      "independent": true
+    },
+    {
+      "url": "https://www.maplesea.com/updates/view/v253_HEXA/",
+      "what": "Official regional patch page listing Resistance Line Infantry VI and its master-level numbers. MapleSEA, not GMS - used only to confirm the shared Resistance common core.",
+      "dated": "2026-08-18",
+      "independent": true
+    },
+    {
+      "url": "https://note.com/asamaru11/n/n59769c4c1004",
+      "what": "6th job skill efficiency chart across all classes, built from ~45-50k HEXA conversion data. Attempted as a fourth check on HEXA ordering; the data is published as images and could not be read, so nothing from it is cited in this file.",
+      "dated": "2026-04-18",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Which Weakening Aura hyper passive to take",
+      "positionA": "Weakening Aura - Enhance",
+      "positionASources": [
+        "https://www.grandislibrary.com/resistance/battle-mage",
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ],
+      "positionB": "Weakening Aura - Elemental Decrease",
+      "positionBSources": [
+        "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/"
+      ],
+      "note": "Unresolved here. The two Enhance sources are the more recent and the more closely related to the class community; the Elemental Decrease source is 2024."
+    },
+    {
+      "topic": "Dark Genesis hyper reinforcement",
+      "positionA": "Dark Genesis - Additional Reinforce is a standard max",
+      "positionASources": [
+        "https://www.digitaltq.com/maplestory-battle-mage-skill-build",
+        "https://thedigitalcrowns.com/battle-mage-skill-build-maplestory/",
+        "https://www.grandislibrary.com/resistance/battle-mage"
+      ],
+      "positionB": "Dark Genesis reinforcement is hyperburn-only, and Dark Genesis should not be cast in a boss burst at all",
+      "positionBSources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ],
+      "note": "This is a training-vs-bossing split as much as a disagreement, but the sources do not frame it that way, so both are recorded."
+    },
+    {
+      "topic": "Secondary weapon type",
+      "positionA": "Shield or Magic Marble",
+      "positionASources": [
+        "https://www.grandislibrary.com/resistance/battle-mage"
+      ],
+      "positionB": "Shield - Deimos Sage Shield specifically",
+      "positionBSources": [
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ],
+      "note": "Likely a difference between listing every equippable secondary type and naming the one worth wearing, but not stated as such by either source."
+    },
+    {
+      "topic": "Boost node trio grouping",
+      "positionA": "Primary trio Finishing Blow / Dark Shock / Condemnation; Sweeping Staff sits in the secondary trio",
+      "positionASources": [
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "positionB": "Condemnation, Finishing Blow/Sweeping Staff, Dark Shock and Dark Genesis are the primary set, because those four gate the HEXA Mastery cores",
+      "positionBSources": [
+        "https://www.grandislibrary.com/resistance/battle-mage",
+        "https://docs.google.com/document/d/1GSP16fN2SZC0f7StnHpyzxk_90NjTL337LkwbC_9yfM"
+      ],
+      "note": "The trio guide predates HEXA mastery gating being the main consideration (dated 2024-11-21). For a character heading to 6th job, position B is the one that changes what you level."
+    }
+  ],
+  "unverified": [
+    "Exact GMS in-game strings for the 6th job Origin skill (Crimson Pact) and Ascent skill (Duskbound Aura). Both come from the class doc, which prints GMS and KMS names together; maplestorywiki.net, the Fandom mirror and Nexon's own class pages could not be read to confirm.",
+    "Hyper stat priority - deliberately empty, see hyperStats.notes.",
+    "Whether anything in v.270 or v.271 changed Battle Mage. The newest class-specific source is dated 2026-02-24 and describes itself as written for v269."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FACTUAL ERROR in innerAbility.dropFarming: the file lists 'Item Drop Rate +20%' / 'Item Drop Rate +15%' / 'Damage to Normal Monsters +8%'. The Grimoire's fragment-farming set is Item Drop Rate +20% / **Meso Obtained +15%** / Damage to Normal Monsters +8%. The second line is wrong — no source states a doubled drop line.",
+      "UNSOURCED ORDERING, hexa.order step 3: 'HEXA Mastery cores in this order: Condemnation, then Finishing Blow / Sweeping Staff, then Dark Shock, then Dark Genesis', attributed to the Grimoire. The Grimoire lists those four Mastery nodes but gives no unlock sequence at all. The order is the researcher's inference presented as sourced (it is marked consensus 'weak', which is not the same as saying no source states it).",
+      "UNSOURCED ORDERING, hexa.order step 5: the HEXA Boost sequence 'Aura Scythe, Altar of Annihilation, Grim Harvest, Abyssal Lightning'. The Grimoire's high-priority list is 'Aura Scythe / Union Aura, Altar of Annihilation, Abyssal Lightning, Grim Harvest' (3rd and 4th swapped) and it tells you to level trinodes equally rather than in sequence. The 60% Final Damage per Boost core IS correct and verbatim-supported.",
+      "UNSOURCED ORDERING, hexa.order step 4: 'the Ascent skill sits after the Origin skill'. The Grimoire describes Duskbound Aura as an iframe/utility skill (three uses per boss, no cooldown, use outside burst) but never states its acquisition order relative to Crimson Pact.",
+      "UNSOURCED PRIORITY, vMatrix Condemnation entry: 'it is the first thing worth levelling past the trio-equalisation stage'. The Grimoire does not rank Condemnation first; it says level trinodes equally to 20 each.",
+      "UNSUPPORTED, hexa.notes: 'The doc also says to spend Sol Erda Fragments rather than whole Sol Erda on general progression.' No such guidance found in the Grimoire. The adjacent Sol Janus 10/20/30 = heavy-players-only claim IS supported ('Heavy wapper = Janus 10, 20, 30. Daily gamer = other skills').",
+      "MINOR: 'Resistance Infantry' in the utility-node list matches the Grimoire's shorthand but is not the GMS in-game string ('Resistance Line Infantry'), which the same file uses correctly elsewhere.",
+      "STALE: The 'newest source dated 2026-08-18' framing is misleading. That source is maplesea.com's **v253** HEXA launch page — MapleSEA received in Aug 2026 the patch GMS got in Dec 2023. Its calendar date is real; its content is ~2.5 years behind the v.271 target. It should not count toward the corpus's recency, and it contributes exactly one fact (Resistance Line Infantry VI numbers, which it does verify verbatim).",
+      "STALE: The only genuinely current class-specific source is the Grimoire, dated 2026-02-24 and self-described as written for v269. The file's target is v.271. The file does flag this in `unverified`, correctly — but it means every HEXA/node claim is one-source-and-two-patches-old, which sits badly with the file's four 'strong' consensus labels.",
+      "STALE: digitaltq.com is load-bearing for the 5th-job-node and trio entries while being pre-HEXA: it carries no 6th job content at all and its changelog dates the content to 2021. Using it to corroborate post-HEXA node priority is exactly the defect the brief warns about.",
+      "STALE: mystyjl NodeGuide (2024-11-21) is correctly dated and its trios verify verbatim (Trio 1: Finishing Blow / Dark Shock / Condemnation; Trio 2: Dark Genesis / Sweeping Staff / Battle Burst or Dark Chain). The file's conflicts entry already calls it pre-HEXA-gating — that handling is good and should be the template for the digitaltq problem.",
+      "STALE: thedigitalcrowns class article (2024-06-28) is the sole source for the 'Weakening Aura - Elemental Decrease' side of that conflict; both the 2026 Grimoire and Grandis say Enhance. The file records this conflict honestly, but a 2024 single source against the current maintained doc is closer to superseded than to an open disagreement.",
+      "STALE: No evidence found either way for v.270/v.271 Battle Mage changes — the file's own `unverified` note on this stands and should stay."
+    ],
+    "clearedOnInspection": [
+      "No invented node or skill names. Every name was checked and exists: Condemnation (KMS Summon: Death), Finishing Blow, Sweeping Staff (KMS Battle King Bar), Dark Shock, Dark Genesis, Aura Scythe, Altar of Annihilation, Grim Harvest, Abyssal Lightning, Weakening Aura, Party Shield, Blue Aura, Master of Death, For Liberty, Mana Overload, Ethereal Form, Maple World Goddess' Blessing, Erda Nova, Crimson Pact, Deimos Sage Shield, Resistance Line Infantry VI. The KMS alt-names and Abyssal Lightning's Dark Shock/Dark Brand trigger are confirmed in the Grimoire."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "13 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

@@ -1,0 +1,754 @@
+{
+  "slug": "night-lord",
+  "className": "Night Lord",
+  "branch": "Explorer",
+  "primaryStat": "LUK",
+  "secondaryStat": "DEX",
+  "weapon": "Claw",
+  "secondaryWeapon": "Charm",
+  "archetype": "Burst-window bossing thief. Stacks debuffs on the boss, then dumps a short, very high burst from close range. No lifesteal, and the whole damage profile is built around a single-target burst that must land inside the Ring of Restraint window.",
+  "linkSkill": {
+    "name": "Thief's Cunning",
+    "effect": "Passive. Debuffing an enemy grants roughly +18% damage for about 10 seconds, on a ~20 second internal cooldown. Stacks up to three times when three different Explorer Thieves contribute.",
+    "levels": "Master Level 9"
+  },
+  "legionEffect": "Critical Rate, scaling +1% through +5% as more Night Lord legion characters are placed.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Quad Star Boost",
+        "why": "Highest-priority boost node. Quad Star is the main single-target attack, so its boost node is the first thing to reach level 60. The boost node also carries +20% Ignore Enemy Defense, one of the few reliable IED sources among Night Lord's damage skills.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Assassin's Mark Boost",
+        "why": "Second priority. Assassin's Mark is a passive follow-up attack that fires constantly, so its boost node scales a large share of total output. It is the other Night Lord boost node granting +20% IED.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Showdown Boost",
+        "why": "Third priority. Showdown is a primary mobbing skill and also the source of the party-wide Untouchable effect, so it is wanted on a main and on a farming character.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Dark Flare Boost",
+        "why": "Fourth priority, and the other half of the mobbing pair with Showdown. Dark Flare is a placed summon that can clear a screen on its own with enough drop and meso gear.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Death Star Boost",
+        "why": "Fifth. Death Star is a 14-second-cooldown bossing skill and matters mostly because it drives Throw Blasting charm consumption, not for its raw number.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Sudden Raid Boost",
+        "why": "Sits in the same grouping tier as Death Star and is worth having in a trio, but it is the lowest of the six skills that actually get built. The class doc treats Sudden Raid as a fallback for when you cannot be in range of the boss.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Triple Throw / Shuriken Challenge / Gust Charm / Shuriken Burst Boosts",
+        "why": "Explicitly skipped. The class doc marks these two node groupings Skip and Grandis Library files them under Other.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": [
+          "Quad Star",
+          "Assassin's Mark",
+          "Showdown"
+        ],
+        "why": "The bossing-first trio. Two of the three are the top-priority damage skills and the third is the mobbing skill you also want at 60. Both independent sources land on the same three skills for the first trio.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/explorers/night-lord"
+        ]
+      },
+      {
+        "trio": [
+          "Death Star",
+          "Dark Flare",
+          "Sudden Raid"
+        ],
+        "why": "The second trio, built after the first, and the remainder of the six skills Night Lord actually builds. Same three skills in both sources.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/explorers/night-lord"
+        ]
+      }
+    ],
+    "notes": "V job (skill) node order given by the class doc: Throw Blasting, then Throwing Star Barrage, then Shadow Walker, then Last Resort, then Shurrikane. Common node guidance: take the useful shared skills to level 1 (Combat Orders, Sharp Eyes, Speed Infusion, Advanced Blessing); take Erda Nova to 25 for a 120-second cooldown, or simply max it to 30 if you would rather not manage cooldown desync; Erda Shower and Erda Fountain rank low because they already out-damage Dark Flare and Assassin's Mark by enough that one-shotting is not the constraint. Training caveat from the class doc: if Dark Flare is not killing in one or two hits in Grandis maps you cannot lean on the summon and end up running a circular rotation instead. Separately, being heavily overgeared for a map reduces Sol Janus: Dusk procs, so Dark Flare clear speed and Dusk synergy pull against each other.",
+    "sources": [
+      "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+      "https://mystyjl.github.io/reference/NodeGuide.html",
+      "https://grandislibrary.com/explorers/night-lord"
+    ]
+  },
+  "hexa": {
+    "nodeLayout": {
+      "skillCores": [
+        "Life and Death (Origin)",
+        "Deep Strike (Ascent)"
+      ],
+      "masteryCoresAvailable": {
+        "core1": [
+          "HEXA Quad Star"
+        ],
+        "core2": [
+          "HEXA Assassin's Mark"
+        ],
+        "core3": [
+          "HEXA Dark Flare",
+          "HEXA Showdown",
+          "Darkness Shuriken"
+        ],
+        "core4": [
+          "HEXA Sudden Raid",
+          "HEXA Death Star"
+        ]
+      },
+      "masteryCoresChosen": [
+        "HEXA Quad Star",
+        "HEXA Assassin's Mark",
+        "HEXA Dark Flare",
+        "HEXA Death Star"
+      ],
+      "boostCores": [
+        "Throwing Star Barrage Boost",
+        "Shurrikane Boost",
+        "Dark Lord's Omen Boost",
+        "Throw Blasting Boost"
+      ],
+      "commonCores": [
+        "Sol Janus",
+        "Sol Hecate"
+      ],
+      "classCommonCore": "Shadow Walker",
+      "notes": "Mastery core slots 3 and 4 each offer a choice. The Night Lord Discord's own v271 tracker picks Dark Flare for slot 3 (over Showdown and Darkness Shuriken) and Death Star for slot 4 (over Sudden Raid). The chosen-core list is judgement, not a game rule; the available-core lists are game facts from the wiki.",
+      "sources": [
+        "https://maplestorywiki.net/w/Night_Lord/Skills",
+        "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+      ]
+    },
+    "order": [
+      {
+        "step": "Life and Death (Origin) to level 1",
+        "why": "The Origin skill is the opening unlock and the largest single jump available at the start of 6th job.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Dark Flare, Quad Star and Assassin's Mark mastery cores to level 1",
+        "why": "Unlocking a mastery core at level 1 is disproportionately cheap relative to the damage it adds, so all three main mastery cores are switched on before any is levelled further.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Sol Hecate to level 1",
+        "why": "Placed immediately after the first mastery unlocks in the Heroic (fragment-gated) ordering.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Climb Assassin's Mark and Quad Star together toward level 4-5, with Dark Flare trailing",
+        "why": "Assassin's Mark leads Quad Star slightly in the Heroic ordering, where fragments rather than Sol Erda are the bottleneck.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Throwing Star Barrage boost core to 1, Shadow Walker to 1, Throw Blasting boost core to 1",
+        "why": "The cheap level-1 unlocks of the boost cores are slotted between mastery levels rather than saved for later.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Death Star mastery core from 1 to 4 in one block",
+        "why": "Death Star enters later than the other three masteries but is then pushed several levels at once.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Dark Lord's Omen boost core to level 1",
+        "why": "Another cheap unlock folded into the level 5-9 band.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Take Quad Star, Assassin's Mark, Dark Flare and Death Star to level 9 before crossing any of them into level 10",
+        "why": "Level 10 is a cost breakpoint on every HEXA node, so the tracker fills every core to 9 first. Shurrikane's boost core and Deep Strike (Ascent) get their level-1 unlocks inside this same band.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Assassin's Mark 10 to 19 first among the level-10-plus pushes, with Life and Death and Sol Hecate levelled alongside it",
+        "why": "Assassin's Mark is the first core taken past the level 10 breakpoint in the Heroic ordering.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "Death Star 10 to 16, then Quad Star 10 to 16, then Dark Flare 10 to 15",
+        "why": "Order of the second-tier pushes after Assassin's Mark clears the breakpoint.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      {
+        "step": "HEXA Stat cores 1, 2 and 3",
+        "why": "The tracker places all three HEXA Stat entries in the same band as the mid-teen mastery levels. The class doc's prose gives a different rule of thumb (see conflicts): max HEXA Stat 1 and 2 once HEXA Quad Star and HEXA Assassin's Mark are at level 9, because pushing those two to 10 is very expensive.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ",
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+        ]
+      }
+    ],
+    "hexaStats": {
+      "targetLevel": "Take each HEXA Stat core to level 20 and stop there, because rerolling is expensive.",
+      "placementRule": "Recommended shape is core 1 = Attack / main stat / Crit Damage, core 2 = main stat / Crit Damage / Attack, core 3 = Crit Damage / Attack / main stat. This is a template, not a fixed assignment: reorder each roll so the largest value sits on Attack, the next largest on the next priority, and so on. A roll of 4-10-6 becomes Crit Damage - Attack - main stat.",
+      "spread": "HEXA Stat configurations sit roughly half a percent of final damage apart, so there are no genuinely bad rolls. Good rolls are either very high main stat, for a larger absolute stat gain, or very low main stat, for better damage per fragment.",
+      "toolNote": "Maplescouter's HEXA efficiency output refers only to HEXA Stat core 3; it assumes cores 1 and 2 are already levelled and leaves them out of the ordering.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    "solJanus": {
+      "recommendation": "For Heroic and early Night Lord grinding, Sol Janus: Dusk at level 1 is enough. Dawn is the better pick for a semi-active farmer or when running Frenzy. Dark Flare triggers Dusk but not Dawn.",
+      "detail": "Dusk hits 9 mobs at level 1, 10 at level 15, 11 at level 30. Dawn gives 1 ring at level 1, 2 at level 10, 3 at level 20. The class doc's author states as a personal preference that they level Sol Janus as their first HEXA skill because Dusk helps farming so much; that is flagged in the doc as opinion, and the Discord's own tracker does not put Sol Janus first.",
+      "interaction": "It is better for Dark Flare to need more than three hits to kill a mob, so a second Dusk proc is guaranteed even with nothing adjacent to hit with Showdown. Being overgeared for the map therefore reduces Dusk uptime.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+        "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+      ]
+    },
+    "solHecate": {
+      "styx": "Styx has a 60-second cooldown even at level 1, so bind it to a 60-second-cooldown skill used near the end of both sequences. Last Resort is the example given.",
+      "phlegethon": "Phlegethon is only used in the main burst, so bind it to a 120-second-cooldown skill used near the end of the sequence. Throwing Star Barrage is the example given.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    "finalDamageTable": {
+      "note": "Final damage contribution per HEXA skill at levels 1 / 10 / 20 / 30, from KMS data the class doc sourced from maplebot.io in May 2026 and reconfirmed in July 2026. The doc says to treat the numbers as indicative. Total from these skills is stated as 112.074%.",
+      "values": {
+        "Quad Star": [
+          "4.641%",
+          "8.069%",
+          "11.877%",
+          "15.686%"
+        ],
+        "Assassin's Mark": [
+          "3.756%",
+          "7.185%",
+          "10.995%",
+          "14.806%"
+        ],
+        "Dark Flare and Darkness Shuriken": [
+          "5.889%",
+          "7.756%",
+          "9.831%",
+          "11.906%"
+        ],
+        "Death Star": [
+          "1.463%",
+          "3.446%",
+          "5.648%",
+          "7.851%"
+        ],
+        "Throw Blasting": [
+          "1.260%",
+          "2.863%",
+          "4.580%",
+          "6.870%"
+        ],
+        "Dark Lord's Omen": [
+          "1.127%",
+          "2.562%",
+          "4.100%",
+          "6.150%"
+        ],
+        "Shurrikane": [
+          "0.786%",
+          "1.785%",
+          "2.857%",
+          "4.285%"
+        ],
+        "Throwing Star Barrage": [
+          "1.451%",
+          "3.297%",
+          "5.275%",
+          "7.912%"
+        ],
+        "Life and Death": [
+          "0.000%",
+          "2.344%",
+          "5.180%",
+          "8.463%"
+        ],
+        "Deep Strike": [
+          "1.424%",
+          "3.605%",
+          "6.106%",
+          "8.629%"
+        ],
+        "Sol Hecate": [
+          "4.320%",
+          "6.991%",
+          "10.094%",
+          "14.560%"
+        ],
+        "Ultimate Dark Sight": [
+          "1.610%",
+          "2.336%",
+          "3.642%",
+          "4.956%"
+        ]
+      },
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    "totalCost": {
+      "solErda": 1708,
+      "solErdaFragments": 47376,
+      "note": "Total to take every tracked Night Lord HEXA node to target: Origin and Ascent to 30, the four chosen mastery cores to 30, the four boost cores to 30, Sol Janus and Sol Hecate to 30, Shadow Walker to 30, and three HEXA Stat cores.",
+      "sources": [
+        "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+      ]
+    },
+    "notes": "SOURCING CAVEAT: the HEXA ordering above comes from a single source family. The Night Lord Discord's v271 tracker spreadsheet and the Night Lord class doc are the same community; Grandis Library has no HEXA section at all for this class, and no source outside that Discord publishes a Night Lord HEXA order. Treat the order as the Night Lord Discord's position, not a cross-checked consensus. The Heroic ordering is fragment-bottlenecked and the Interactive ordering is Sol Erda-bottlenecked, and they differ materially: Heroic interleaves small level steps across several cores, while Interactive front-loads whole blocks (Assassin's Mark straight to 7, then Quad Star straight to 7, then Dark Flare to 7). Use the Heroic tab for GMS Heroic. The class doc also points at Maplescouter to answer 'what next' for a specific character rather than following a static list. Upcoming change: KMS ver. 1.2.417 (July 2026) added a third HEXA skill core with a new Night Lord skill named Shadow Ritual; it had not reached GMS as of this guide's date and will change the ordering when it lands.",
+    "sources": [
+      "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ",
+      "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+      "https://maplescouter.com/",
+      "https://orangemushroom.net/2026/07/31/kms-ver-1-2-417-maplestory-overdrive-3rd-hexa-skill-core/"
+    ]
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "The Night Lord class doc deliberately declines to publish a fixed hyper stat order, on the grounds that the correct allocation depends on the rest of the character's stat sheet, and points readers at MathBro's Hyper Stat Optimizer instead. Two hard rules survive that: keep critical rate at 100%, and do not buy critical rate with hyper stat points, because Night Lord can assemble 100% from cheaper sources and the points are worth more elsewhere. Attack speed hyper stat is also unnecessary. Recording a static priority list here would misrepresent the source.",
+    "doNotBuy": [
+      "Critical Rate",
+      "Attack Speed"
+    ],
+    "consensus": "moderate",
+    "sources": [
+      "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+      "https://brendonmay.github.io/hyperCalculator/"
+    ]
+  },
+  "hyperSkills": {
+    "availablePassives": [
+      "Showdown - Reinforce",
+      "Showdown - Spread",
+      "Showdown - Enhance",
+      "Frailty Curse - Enhance",
+      "Frailty Curse - Slow",
+      "Frailty Curse - Boss Rush",
+      "Quad Star - Reinforce",
+      "Quad Star - Boss Rush",
+      "Quad Star - Extra Strike"
+    ],
+    "actives": [
+      "Bleed Dart",
+      "Death Star",
+      "Epic Adventure"
+    ],
+    "builds": [
+      {
+        "name": "Bossing",
+        "passives": [
+          "Frailty Curse - Enhance",
+          "Frailty Curse - Boss Rush",
+          "Quad Star - Reinforce",
+          "Quad Star - Boss Rush",
+          "Quad Star - Extra Strike"
+        ],
+        "why": "Frailty Curse - Boss Rush is what lets the curse land on bosses at all, and Frailty Curse - Enhance adds 10% attack power and defence reduction on top. The three Quad Star lines add 20% damage, 20% boss damage and one extra attack to the main single-target skill.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://maplestorywiki.net/w/Night_Lord/Skills"
+        ]
+      },
+      {
+        "name": "Hybrid",
+        "passives": [
+          "Showdown - Enhance",
+          "Frailty Curse - Boss Rush",
+          "Quad Star - Reinforce",
+          "Quad Star - Boss Rush",
+          "Quad Star - Extra Strike"
+        ],
+        "why": "Trades Frailty Curse - Enhance for Showdown - Enhance to keep some mobbing strength while retaining the boss-facing curse and the full Quad Star package.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/night-lord"
+        ]
+      },
+      {
+        "name": "Training",
+        "passives": [
+          "Showdown - Reinforce",
+          "Showdown - Spread",
+          "Showdown - Enhance",
+          "Quad Star - Reinforce",
+          "Quad Star - Extra Strike"
+        ],
+        "why": "All three Showdown lines for farming, keeping two Quad Star lines so the character is not useless on a boss.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/night-lord"
+        ]
+      }
+    ],
+    "notes": "The class doc publishes only the bossing set. The hybrid and training variants come from Grandis Library, which restates the same class doc and so is not an independent confirmation; treat those two as single-source. The three hyper actives are granted rather than chosen.",
+    "sources": [
+      "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+      "https://grandislibrary.com/explorers/night-lord",
+      "https://maplestorywiki.net/w/Night_Lord/Skills"
+    ]
+  },
+  "innerAbility": {
+    "bossing": {
+      "lines": [
+        {
+          "slot": 1,
+          "rarity": "Legendary",
+          "line": "Boss Damage +20%"
+        },
+        {
+          "slot": 2,
+          "rarity": "Unique",
+          "line": "Attack +21"
+        },
+        {
+          "slot": 3,
+          "rarity": "Epic",
+          "line": "Damage to enemies with Abnormal Status +8%"
+        }
+      ],
+      "why": "Boss damage is the standard Legendary top line. Attack +21 now beats Buff Duration +38% on line 2 because Night Lord has more buff duration sources than it used to, the current sequence casts faster so Terms and Conditions is used more efficiently, the v263 patch cut Throw Blasting from 68 charms to 46, and HEXA Death Star burns about 20 charms almost immediately. The abnormal-status line works because Night Lord applies its own debuffs.",
+      "consensus": "moderate",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+        "https://grandislibrary.com/explorers/night-lord",
+        "https://www.mapledoro.com/guides/character-guides/night-lord"
+      ]
+    },
+    "training": {
+      "optionA": [
+        "Meso Obtained +20%",
+        "Item Drop Rate +15%",
+        "Damage to normal monsters +8%"
+      ],
+      "optionB": [
+        "Item Drop Rate +20%",
+        "Meso Obtained +15%",
+        "Damage to normal monsters +8%"
+      ],
+      "why": "Which of meso or drop goes on the Legendary line is a farming-goal choice, not a damage one.",
+      "consensus": "moderate",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+        "https://grandislibrary.com/explorers/night-lord"
+      ]
+    },
+    "doNotRoll": {
+      "line": "Attack Speed +1",
+      "why": "Night Lord already reaches the attack speed cap without it: 6 from the Claw, 2 from Agile Claws, 1 from Decent Speed Infusion and 1 from a green potion.",
+      "consensus": "strong",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+        "https://grandislibrary.com/explorers/night-lord"
+      ]
+    },
+    "notes": "Rolling all three lines to this shape costs millions of Honor EXP even during a 50% inner ability event; the class doc points at MathBro's Inner Ability Calculator for the estimate. MapleDoro lists the same three bossing lines, but also lists the identical three under mobbing, which reads as an unfinished page, so treat it as thin corroboration rather than a genuine second opinion."
+  },
+  "gearingNotes": "CRITICAL RATE. Night Lord has one of the highest base critical rates in the game at 75%: 5% base, 50% from Critical Throw (2nd job) and 20% from Expert Throwing Star Handling (3rd job). Getting to 100% is therefore cheap and should come from Night Lord and Marksman legion member bonuses (up to 5% each), Decent Sharp Eyes (10%), Sayram's Elixir (20%), Lynn's Focus Spirit link (10%), Holy/Rebel/Ocean badges (1% each) and up to 20% from the Legion Artifact. The class doc explicitly advises against buying crit rate with hyper stat points or the legion outer grid, because both are better spent elsewhere. This is the single biggest way Night Lord's gearing differs from a class that has to buy crit.\n\nATTACK SPEED. Night Lord reaches the cap (stage 10 / AS0) without any attack speed inner ability line or hyper stat: 6 from the Claw, +2 from Agile Claws, +1 from Decent Speed Infusion, +1 from a green potion.\n\nIED. Frailty Curse contributes 41% IED against bosses at level 31 with the hyper passive, which is unusually large and means Night Lord's visual IED requirement is lower than most classes'. With 95.47% visual IED plus Frailty Curse, total effective IED is 97.33%, which reaches 90% damage on 380% PDR bosses. Stated requirements: 300% PDR bosses (Lotus, Damien, Lucid, Will, Gloom, Verus Hilla, Darknell, Black Mage) need 94.35% visual, reaching 96.67% cumulative; 380% PDR bosses (Seren, Kalos, Kaling, Limbo, Baldrix) need 95.54% visual, reaching 97.37% cumulative. Note that Quad Star Boost and Assassin's Mark Boost carry +20% IED but Throw Blasting, Shurrikane and Dark Lord's Omen do not, so the class doc advises not counting skill-sourced IED when planning gear.\n\nBUFF DURATION. Night Lord used to need at least 50% buff duration so Terms and Conditions covered every Throw Blasting charm; that is no longer the binding constraint (see innerAbility). Sources named: 40% legion grid, 25% from a level 250 Mechanic legion block, 10% from level 100 Empathy, 20% from the Legion Artifact, 10% from Sia's Guiding Stars link. As of June 2026 the Night Lord Discord was discussing deliberately staying under 100% buff duration for Culvert.\n\nWSE POTENTIAL (Heroic). Rough guideline is 9/0/0 attack/boss/IED across the nine weapon-secondary-emblem lines as best and 8/1/0 second; the two are close and boss familiars shift the balance. A double or triple prime beats either. On Interactive, assuming 21% or more attack from bonus potentials, the shape given is weapon 2/1/0, secondary 1/2/0, emblem 2/0/1, and it moves with your familiars.\n\nWEAPON SOUL. Raw damage order given: Mu Gong Soul, then Attack +3%, then Boss Damage +7%. Mu Gong must be level 2 for the 20-second duration, its duration is not extended by buff duration from inner ability or legion, it needs charging, the charge is lost on death, and it cannot be used in Culvert.\n\nSECONDARY. Princess No's Charm is called BIS, with Astra as the eventual BIS once strong enough to obtain it.\n\nCOOLDOWN HAT. Night Lord does not need one. The Discord's stated positions: a stat hat has the strongest burst; a permanent -2 cooldown hat is roughly equal in full-rotation DPM and adds mini-burst quality of life; -4 or more is slightly weaker but can buy a seventeenth burst in a min-cut run; a -4 hat with a stat line is about equal to a 36% stat line; swapping between a stat hat and a cooldown hat is probably the highest output but needs two finished eternal hats.\n\nTHROWING STARS. Attack values matter. Listed by attack: Balanced Fury (30) from Phantom Forest dailies, Flaming Throwing Stars (29, craftable), Crystal Ilbi Throwing Stars (29, Phantom Forest dailies), White Gold Throwing Star (28), Infinite Throwing-Knives (27), Maple-Throwing Stars (21).\n\nRINGS. Night Lord needs Ring of Restraint; the class doc is unambiguous, and the whole burst is built around the RoR window. As of September 2026 the doc notes every class uses RoR and Continuous Ring.",
+  "commonMistakes": [
+    {
+      "mistake": "Standing too far from the boss during Throwing Star Barrage",
+      "detail": "Barrage throws in a fan. At correct range a throw lands 25 attacks: 10 from HEXA Quad Star (5 from you, 5 from Shadow Partner) plus 15 from Barrage (three extra directions of five). Too far out and stars miss entirely.",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Buying critical rate with hyper stat points or the legion outer grid",
+      "detail": "Night Lord starts at 75% crit and can reach 100% from legion members, links, badges, potions and the artifact. Those points and grid slots are worth more elsewhere.",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Rolling Attack Speed +1 inner ability or buying attack speed hyper stat",
+      "detail": "The class already caps attack speed from Claw base, Agile Claws, Decent Speed Infusion and a green potion.",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+        "https://grandislibrary.com/explorers/night-lord"
+      ]
+    },
+    {
+      "mistake": "Accidentally entering Last Resort stage 1 instead of stage 2",
+      "detail": "With Action Customization on, the down arrow plus the skill key enters stage 1 (+10% final damage, 30 seconds) rather than stage 2 (+24% final damage, 15 seconds if entered immediately). Easy to do while ducking during burst setup.",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Never triggering Dark Lord's Omen early",
+      "detail": "Omen is normally left to explode on its own with the burst, but detonating it early is correct when the boss is about to leave (Lucid disappearing in phase 2), to finish the current phase so Throw Blasting charms carry to the next one, or in Hard Limbo and Hard Baldrix min-clear parties.",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Being overgeared for the map you farm on",
+      "detail": "Sol Janus: Dusk needs mobs to survive long enough to proc. If Dark Flare kills in three hits or fewer, you lose a guaranteed second Dusk proc.",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Counting IED from every attacking skill when planning gear",
+      "detail": "Quad Star Boost and Assassin's Mark Boost give +20% IED, but Throw Blasting, Shurrikane and Dark Lord's Omen do not, so skill-sourced IED should be left out of the calculation.",
+      "sources": [
+        "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+      "what": "Night Lord Guide, written and maintained by @Lukishi for the Night Lord Discord, succeeding spicedcuttlefish's Night Lord FAQ. Covers V matrix boost and job nodes, common nodes, HEXA structure and HEXA Stat rules, Sol Janus and Sol Hecate binding, hyper passives, inner ability, crit rate, attack speed, IED, buff duration, WSE, weapon soul, cooldown hat, throwing stars and rings. Primary source for almost everything in this file.",
+      "dated": "2026-09-10",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ",
+      "what": "Night Lord 6th job tracker, tabs named 'v271 VI Tracker (Heroic)' and 'v271 VI Tracker (Interactive)'. Holds the step-by-step HEXA levelling order in the sheet's priority column, plus per-level Sol Erda and fragment costs and the 1708 Sol Erda / 47376 fragment totals. Its own header records it as a template passed from the Wind Archer Discord to Shade, then Battle Mage, then Angelic Buster, then Night Lord Discords, so it shares the class doc's community and is NOT an independent second opinion.",
+      "dated": "v.271 per tab names; no explicit edit date visible",
+      "independent": false
+    },
+    {
+      "url": "https://grandislibrary.com/explorers/night-lord",
+      "what": "Grandis Library Night Lord page. Boost nodes tiered Primary/Secondary/Other, three hyper passive builds, recommended inner ability, link skill, base stats from skills, Dark Sight avoidability chart. Its credits block attributes inner ability, hyper passive build and boost nodes to the Class Doc, so it restates the Lukishi guide rather than confirming it. It has no HEXA section.",
+      "dated": "GMS Ver. 269 (site-wide stamp; two patches behind v.271)",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio reference. Night Lord entry gives Trio 1 as Showdown / Quad Star / Assassin's Mark and Trio 2 as Sudden Raid / Death Star / Dark Flare, with no bossing/mobbing split for this class. Genuinely independent of the Night Lord Discord lineage, and the only outside corroboration of the V matrix trios found in this pass.",
+      "dated": "2024-11-21 (page); author notes underlying data 2024-05-14",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Night_Lord/Skills",
+      "what": "Authoritative name and mechanics table, used here as an anti-fabrication check. Confirms the HEXA structure: Skill cores Life and Death (Origin) and Deep Strike (Ascent); Mastery core 1 HEXA Quad Star, core 2 HEXA Assassin's Mark, core 3 a choice of HEXA Dark Flare / HEXA Showdown / Darkness Shuriken, core 4 a choice of HEXA Sudden Raid / HEXA Death Star; HEXA Enhancement cores Throw Blasting Boost, Throwing Star Barrage Boost, Shurrikane Boost, Dark Lord's Omen Boost; the nine hyper passives and three hyper actives; and that Enhancement final damage rises linearly with jumps at levels 10, 20 and 30. Carries no priority judgement. Returns 403 to plain fetching; readable with a browser user agent.",
+      "dated": "living wiki; revision date not verified",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Night_Lord",
+      "what": "Class facts: Explorer, Thief, LUK primary, DEX secondary, Claw primary weapon, Charm secondary weapon, Thief's Cunning link skill.",
+      "dated": "living wiki; revision date not verified",
+      "independent": true
+    },
+    {
+      "url": "https://www.mapledoro.com/guides/character-guides/night-lord",
+      "what": "Community tool page. Lists the same three bossing inner ability lines (Legendary Boss Damage +20%, Unique Attack +21, Epic Damage to Abnormal Status +8%) and the Night Lord legion crit-rate bonus. Its 6th job levelling order and recommended link skill sections both read 'Coming soon', and it lists the identical inner ability set under mobbing, which suggests placeholder content. It links out to Grandis Library, so its independence is doubtful. Thin corroboration only.",
+      "dated": "no date published",
+      "independent": true
+    },
+    {
+      "url": "https://maplescouter.com/",
+      "what": "Korean-built HEXA and damage optimisation tool with a HEXA core ordering feature. The Night Lord class doc defers to it for per-character HEXA ordering rather than publishing one fixed list, and notes its HEXA efficiency view only covers HEXA Stat core 3. Verified to exist and to offer HEXA core ordering; no Night Lord-specific output was extracted in this pass.",
+      "dated": "site copyright 2023; no build date shown",
+      "independent": true
+    },
+    {
+      "url": "https://brendonmay.github.io/hyperCalculator/",
+      "what": "MathBro's Hyper Stat Optimizer, cited by the Night Lord class doc as the way to answer hyper stat allocation. Referenced, not fetched in this pass.",
+      "dated": "not verified",
+      "independent": true
+    },
+    {
+      "url": "https://orangemushroom.net/2026/07/31/kms-ver-1-2-417-maplestory-overdrive-3rd-hexa-skill-core/",
+      "what": "KMS ver. 1.2.417 patch coverage, cited by the class doc as the source for the incoming third HEXA skill core and the new Night Lord skill Shadow Ritual. Referenced via the class doc, not fetched in this pass.",
+      "dated": "2026-07-31",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/AvP8wq4",
+      "what": "Night Lord class Discord. Origin of both the class doc and the v271 tracker; the doc invites corrections there. Not machine-readable, not read in this pass.",
+      "dated": "live",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Inner ability line 2 for bossing",
+      "positionA": {
+        "claim": "Attack +21",
+        "heldBy": "Lukishi's Night Lord guide, restated by Grandis Library and MapleDoro",
+        "reasoning": "More buff duration sources exist now, the faster sequence makes Terms and Conditions more efficient, v263 cut Throw Blasting from 68 to 46 charms, and HEXA Death Star consumes roughly 20 charms almost immediately.",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic",
+          "https://grandislibrary.com/explorers/night-lord",
+          "https://www.mapledoro.com/guides/character-guides/night-lord"
+        ]
+      },
+      "positionB": {
+        "claim": "Buff Duration +38%",
+        "heldBy": "A video guide by Hooning, presented in the class doc as the devil's advocate case",
+        "reasoning": "Not recorded in the class doc beyond the recommendation itself; the historical rationale was keeping Terms and Conditions up long enough to spend every Throw Blasting charm.",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+        ]
+      },
+      "status": "Contested. The Attack +21 position is current and better argued, but the dissent is recorded in the class doc itself rather than dismissed. The video was not located or read directly in this pass, so position B is known only through the class doc's summary of it."
+    },
+    {
+      "topic": "When to invest in HEXA Stat cores 1 and 2",
+      "positionA": {
+        "claim": "Max HEXA Stat 1 and 2 once HEXA Quad Star and HEXA Assassin's Mark are at level 9, because pushing those two past the level 10 breakpoint is very expensive.",
+        "heldBy": "Lukishi's Night Lord guide prose",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+        ]
+      },
+      "positionB": {
+        "claim": "The three HEXA Stat entries sit later, after Assassin's Mark reaches 19, Quad Star 15 and Dark Flare 14.",
+        "heldBy": "The Night Lord Discord's v271 Heroic tracker ordering",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      "status": "Unresolved inconsistency within one source family. The doc itself concedes it is hard to say exactly when to level HEXA Stat 1 and 2 and calls its own answer a general recommendation."
+    },
+    {
+      "topic": "Sol Janus as a first HEXA investment",
+      "positionA": {
+        "claim": "Level Sol Janus first, because Dusk mode transforms farming.",
+        "heldBy": "Lukishi, stated explicitly as personal preference",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+        ]
+      },
+      "positionB": {
+        "claim": "Sol Janus is tracked on its own separate track and does not appear early in the main Heroic ordering, which opens with Life and Death, the three mastery unlocks and Sol Hecate.",
+        "heldBy": "The v271 Heroic tracker",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1pVXMgRe7DvR_4_-T8_0AuZD7YjY9K6QWKSRPvm3dIMQ"
+        ]
+      },
+      "status": "Not really contested on the facts - one is a farming quality-of-life preference and the other is a damage ordering - but a planner should not present 'Sol Janus first' as the consensus build order."
+    },
+    {
+      "topic": "Boost node tier labels",
+      "positionA": {
+        "claim": "Node groupings 3 (Showdown / Dark Flare) and 4 (Death Star / Sudden Raid) are Essential.",
+        "heldBy": "Lukishi's Night Lord guide",
+        "sources": [
+          "https://docs.google.com/document/d/16GI6FLwcS3aunYHqXsOEuqQIZ3g5N8V3SHc--RyW8X8/mobilebasic"
+        ]
+      },
+      "positionB": {
+        "claim": "The same two groupings are Secondary, with only Quad Star and Assassin's Mark as Primary.",
+        "heldBy": "Grandis Library",
+        "sources": [
+          "https://grandislibrary.com/explorers/night-lord"
+        ]
+      },
+      "status": "Labelling difference only. Both place the same six skills in the same order and skip the same four; no practical disagreement."
+    }
+  ],
+  "sourcingCaveats": {
+    "independentJudgementSources": 2,
+    "detail": "Only two independent lanes carry judgement for Night Lord: (1) the Night Lord Discord lineage - Lukishi's guide, the v271 tracker spreadsheet and Grandis Library's page, which are one family because Grandis credits the Class Doc and the tracker comes from the same Discord; and (2) mastermysty's node guide, which is independent but dated 2024-11-21 and only covers boost node trios. maplestorywiki.net is a genuinely independent source but carries facts only, no priorities. MapleDoro's Night Lord page is largely placeholder and links to Grandis. Reddit was not reachable in this pass and the Night Lord Discord was not read. The V matrix section therefore has genuine cross-source agreement; the HEXA section does not, and rests on a single community.",
+    "notReached": [
+      "r/Maplestory Night Lord threads",
+      "Night Lord Discord pinned content",
+      "the Hooning video cited in the class doc as the dissenting inner ability view",
+      "Maplescouter's Night Lord-specific HEXA ordering output"
+    ]
+  },
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "THERE IS NO ATTACK SPEED HYPER STAT. hyperStats.doNotBuy lists 'Attack Speed', hyperStats.notes says 'Attack speed hyper stat is also unnecessary', and commonMistakes[2] warns against 'buying attack speed hyper stat'. maplestorywiki's Hyper Stats page lists all 17 allocatable stats (STR/DEX/INT/LUK, HP, MP, DF-TF, Crit Rate, Crit Damage, Ignore Defense, Damage, Boss Damage, Normal Damage, Status Resistance, ATT & MATT, EXP, Arcane Force) - attack speed is not among them. The class doc only says Night Lord does not need the Attack Speed +1 INNER ABILITY line. The researcher promoted an inner-ability line into a game mechanic that does not exist.",
+      "CONFLICT #4 ATTRIBUTES A POSITION TO GRANDIS LIBRARY THAT GRANDIS DOES NOT HOLD. The file says Grandis 'files the identical groupings as Secondary with only Quad Star and Assassin's Mark as Primary'. In the live page, Nodes 1, 2, 3 and 4 all carry the identical colour #2E94B6 and Nodes 5 and 6 carry #6C757D - two tiers, with no separation of Quad Star/Assassin's Mark from Showdown/Dark Flare/Death Star/Sudden Raid. The class doc labels Nodes 1-4 'Essential' and 5-6 'Skip'. The two sources agree exactly; the conflict is invented. Grandis's own legend even defines PRIMARY as 'Boost Nodes that unlock a 6th Job HEXA Mastery' - which all six of those skills do.",
+      "'Ultimate Dark Sight' in hexa.finalDamageTable is not a GMS skill or core name - zero hits across all of maplestorywiki.net (checked via the search API, not just the class page). It IS the class doc's own label (it appears twice there, under 'Common Skills'), so the researcher did not invent the string - but the file also names what is apparently the same node 'Shadow Walker' in hexa.nodeLayout.classCommonCore, ships both names, reconciles neither, and flags neither. A user will search the game for 'Ultimate Dark Sight' and find nothing."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "3 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

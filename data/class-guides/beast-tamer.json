@@ -1,0 +1,69 @@
+{
+  "slug": "beast-tamer",
+  "className": "Beast Tamer",
+  "exists": false,
+  "status": "removed",
+  "statusSummary": "Beast Tamer is NOT creatable or playable in GMS v.271. Character creation was disabled at the New Age update, the class was never given a 6th Job Advancement, and every existing GMS Beast Tamer character was converted to the class Lynn on 2024-05-01 (GMS v250). Equipment converted with the characters: Scepters became Lynn's Memorial Staffs, Whistles became Lynn's Leaves. Beast Tamer and Jett were the two jobs excluded from 6th Job. Players looking for this playstyle in v.271 should look at the successor class, Lynn.",
+  "successorClass": "Lynn",
+  "removalDates": {
+    "creationDisabled": "New Age update (exact GMS version not confirmed by the sources read)",
+    "gmsCharacterConversion": "2024-05-01 (GMS v250)",
+    "otherRegions": "CMS/TMS 2024-02-21 (CMS v205, TMS v259); JMS 2024-05-22 (JMS v424)"
+  },
+  "branch": "Magician (standalone Beast Tamer branch; historical)",
+  "primaryStat": "INT",
+  "secondaryStat": null,
+  "weapon": "Scepter (historical; converted to Lynn's Memorial Staff)",
+  "secondaryWeapon": "Shield or Whistle (historical; Whistle converted to Lynn's Leaf)",
+  "archetype": null,
+  "linkSkill": { "name": null, "effect": null, "levels": null },
+  "legionEffect": null,
+  "vMatrix": {
+    "priority": [],
+    "trios": [],
+    "notes": "No V Matrix guidance written. The class cannot be created in GMS v.271 and no current-patch node advice exists or would be actionable."
+  },
+  "hexa": {
+    "order": [],
+    "notes": "Beast Tamer never received a 6th Job Advancement. Per MapleStory Wiki it was one of two jobs (with Jett) excluded from 6th Job before creation was disabled. There is no HEXA matrix for this class in any region."
+  },
+  "hyperStats": { "priority": [], "notes": null },
+  "hyperSkills": { "priority": [], "notes": null },
+  "innerAbility": { "priority": [], "notes": null },
+  "gearingNotes": "Not applicable. No gearing advice is written because the class cannot be created in GMS v.271 and existing characters no longer exist under this job - they were converted to Lynn, whose gearing differs (Memorial Staff / Leaf, Jianghu branch).",
+  "commonMistakes": [
+    "Treating pre-2024 Beast Tamer guides, node lists or Google Docs as current. Every such guide predates the conversion and describes a job that no longer exists in GMS.",
+    "Assuming Beast Tamer merely lacks 6th job but is still rollable. Creation is disabled; there is no way to make one in GMS v.271."
+  ],
+  "sources": [
+    {
+      "url": "https://maplestorywiki.net/w/Beast_Tamer",
+      "what": "Page is tagged Removed Content / Feature. States creation was disabled in the New Age update due to development restrictions, that Beast Tamer was one of two jobs (with Jett) unable to advance to 6th Job, and that GMS converted Beast Tamer characters to Lynn on 2024-05-01 (GMS v250), with Scepters becoming Memorial Staffs and Whistles becoming Leaves. Also the source for main stat INT, primary weapon Scepter, secondary Shield or Whistle.",
+      "dated": "read 2026-09-11; search index date 2026-01-10",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/classes",
+      "what": "Grandis Library full GMS class overview index, page footer states GMS Ver. 269 (Ride the Lightning Update). The complete class roster is listed; Beast Tamer does not appear anywhere on it, while Lynn does. Corroborates that Beast Tamer is not a current GMS class.",
+      "dated": "read 2026-09-11; page states GMS Ver. 269",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/lynn-best-skill-build-maplestory/",
+      "what": "Class guide for Lynn that identifies Lynn as the class formerly known as Beast Tamer.",
+      "dated": "page states Last Updated 2024-06-28",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-lynn-skill-build-guide/",
+      "what": "States Lynn is a Jianghu Magician that replaced Beast Tamer in non-Korean regions as of 2024. Lists Lynn's primary weapon as Memorial Staff and secondary as Shield or Leaf, matching the conversion described by MapleStory Wiki.",
+      "dated": "page states updated 2024-09-18",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "strong",
+  "conflicts": [],
+  "researchNotes": "Four independent sources agree Beast Tamer is gone from GMS. No source consulted claims it is still creatable. Nexon's own website could not be read - nexon.com/maplestory class and news pages render client-side and returned no text - so the official GMS v250 patch note was not obtained directly; the 2024-05-01 / v250 conversion date comes from MapleStory Wiki alone and is marked accordingly. WebSearch budget for the session was exhausted, so discovery relied on direct fetches and one search-engine result page; Reddit and Fandom were unreachable (403/402/blocked). No V Matrix, HEXA, Hyper Stat, Hyper Skill or Inner Ability content was written: per the evidence standard, empty is correct rather than porting pre-2024 advice for a job that no longer exists.",
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271"
+}

@@ -1,0 +1,611 @@
+{
+  "slug": "sia-astelle",
+  "className": "Sia Astelle",
+  "branch": "Shine",
+  "primaryStat": "INT",
+  "secondaryStat": "LUK",
+  "weapon": "Celestial Light",
+  "secondaryWeapon": "Compass",
+  "archetype": "Magician. Teleport-based burst mage built on a Stellagram gauge: casting 'Marking' skills records symbols, and a matching set auto-fires the corresponding 'Constellation' skill with a bonus effect. The 5th job skill Shine removes the combo requirement for its duration, which turns the class into a conventional 2-minute burst mage. Cannot equip a shield. Female-only at character creation.",
+  "linkSkill": {
+    "name": "Guiding Stars",
+    "effect": "Buff Duration +19%, Critical Damage +6% at master level.",
+    "levels": "Master Level 6. Stacks twice - once per unique Shine class. Levelling both Sia Astelle and Erel Light to 210 reaches Level 6 while consuming only one link slot."
+  },
+  "legionEffect": "Abnormal Status Damage +1/2/3/5/6%",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Ray / Antares boost node",
+        "why": "Highest-priority boost node and a hard gate on 6th job: the node must reach Lv. 40 before the Erda Link Ultimate Stone 'SHINE Ray / SHINE Antares' (Mastery I) can be unlocked. Enhanced V slots do not count toward the level requirement.",
+        "consensus": "moderate - stated by the class Google Doc and mirrored by Grandis Library, which credits its node build to the Sia Astelle Discord, so these are not fully independent",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "node": "Boom / Algol boost node",
+        "why": "Boom, Algol and Fomalhaut must each be at Lv. 40 to unlock the second Ultimate Stone, 'SHINE Boom / SHINE Algol / SHINE Fomalhaut' (Mastery II).",
+        "consensus": "moderate - same two sources, not fully independent",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "node": "Pole / Fomalhaut boost node",
+        "why": "Third of the three Mastery-gating nodes. The class doc allows moving this ahead of Boom / Algol for a pure bossing character.",
+        "consensus": "moderate - same two sources, not fully independent",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "node": "Izar / Vega boost node",
+        "why": "Levelled after the three gating nodes; the class doc says to spend V points on this and the Canopus node evenly.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "node": "Canopus boost node",
+        "why": "Levelled evenly with Izar / Vega after the gating nodes. Canopus is a Hyper Skill active, so its boost node exists only once Hyper Skills are taken.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "node": "Starlight boost node",
+        "why": "Class doc places this last of the boost nodes. Grandis Library groups Starlight with its 'secondary' (still worth upgrading) tier rather than last - a mild disagreement, recorded in conflicts.",
+        "consensus": "weak - the two sources rank it differently",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "node": "Job node: Shine",
+        "why": "Maxed first among job nodes. Maxing drops its cooldown to 60 seconds, which lets it be cast in both the 2-minute burst and the 1-minute mini burst - the whole rotation is built around Shine being up for both.",
+        "consensus": "weak - one source (the class Google Doc)",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "node": "Job node: Stellar XII - Sadalsuud",
+        "why": "Second job node to max. If Hyper Burning to 260 and short on nodes, the doc says to balance Sadalsuud levels against the boost nodes that gate Mastery I and II rather than finishing it first.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "node": "Job nodes: Stellar XI - Sirius and Savior's Circle",
+        "why": "Levelled evenly after Shine and Sadalsuud.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "node": "Common nodes - unlock set",
+        "why": "Get Decent Sharp Eyes, Decent Speed Infusion, Decent Combat Orders, Decent Advanced Blessing, Maple World Goddess's Blessing, Tree of Stars and Mana Overload to Lv. 1 early. Decent Speed Infusion is called out because Sia needs the attack speed; Decent Combat Orders is credited with roughly 5% final damage on unlock.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "node": "Common nodes - maxing order",
+        "why": "Maple World Goddess's Blessing > Tree of Stars > Mana Overload > True Arachnid Reflection / Solar Crest > Blink (for the magic attack) > Rope Lift (for the stats), with the four Decents levelled evenly. Ethereal Form and Decent Holy Fountain are optional survivability picks; Erda Shower and Decent Holy Symbol are for training.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "node": "Special node: Fatal Strike I",
+        "why": "Named as the best special node. Inspector Power I (40% Boss Damage) is the substitute when Ride or Die is not up.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "note": "No trio recommendation exists for this class. The class Google Doc states that trinodes were removed from GMS in the v.269 patch, so boost nodes are now single-skill and the historical 'standard trio' concept does not apply.",
+        "consensus": "moderate - stated by the class doc; Grandis Library separately keeps its pre-v.269 boost node layout behind a 'View Pre-V.269 Boost Nodes' toggle, which corroborates that the system changed at v.269",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      }
+    ],
+    "notes": "Boost node names pair a Marking skill with its Constellation skill (Ray with Antares, Boom with Algol, Pole with Fomalhaut, Izar with Vega). The three Lv. 40 gates for Mastery I and II are the single most schedule-sensitive fact on this class: a Hyper Burning character that pours points into job nodes can arrive at 6th job unable to open its Ultimate Stones. Resetting V matrix points costs 10m mesos, so swapping between a bossing and a mobbing spread is cheap. Grandis Library's node page is stamped GMS Ver. 269; the class Google Doc is the only source consulted that is current to v.271."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Understand that Sia does not use the HEXA Matrix at all",
+        "why": "Shine classes advance 6th job through 'Erda Link', a branching stone tree, in place of the HEXA Matrix. Sia Astelle was the only class on this system at the time of the sources. Stone types: Origin Stone (auto-activated at 6th job advancement, enhanceable to Lv. 30 with extra effects at 10/20/30), Ultimate Stone (the equivalent of Mastery cores, enhanceable to Lv. 30), Skill Stone (enhances 5th job skills and activates shared skills such as Sol Janus, to Lv. 30), Boost Stone (conditional bonuses, not enhanceable), Rush Stone (flat stats, not enhanceable), and SHINE Stone (the Hexa Stat equivalent, enhanceable to Lv. 20 with failure and level loss possible from Lv. 11).",
+        "consensus": "strong - the wiki, Grandis Library and the class doc all describe Erda Link in place of HEXA; reddit discussion from Feb 2026 refers to it as live",
+        "sources": [
+          "https://maplestorywiki.net/w/Sia_Astelle",
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://www.reddit.com/r/Maplestory/comments/1qv95hn/sia_astelles_ascent_skill/"
+        ]
+      },
+      {
+        "step": "Open Mastery I (SHINE Ray / SHINE Antares)",
+        "why": "Requires the Ray / Antares V node at Lv. 40 AND the Ultimate Stone sitting inside the lit 'Light Power' zone. Light Power is expanded by unlocking the +200 LUK Rush Stone on the down branch plus either Sol Janus or the 2% Normal Enemy Damage Rush Stone to its left. The progression sheet puts this first because it is by far the largest single gain on the board.",
+        "consensus": "moderate - the class doc and the linked progression sheet agree, but both come out of the Sia Astelle Discord",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      },
+      {
+        "step": "Choose the Light Power route by character role",
+        "why": "Routing through Sol Janus costs 10 Sol Erda Energy and 225 fragments in total; routing through the 2% Normal Enemy Damage Rush Stone costs 4 Sol Erda Energy and 150 fragments. The doc recommends Sol Janus only for mains and grinders who wanted it anyway, and the cheaper route for mules.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "step": "Open Mastery II (SHINE Boom / SHINE Algol / SHINE Fomalhaut)",
+        "why": "Second Ultimate Stone, bottom right of the board. Needs Boom, Algol and Fomalhaut boost nodes at Lv. 40 and the stone inside Light Power - reached with the +200 LUK Rush Stone (already taken for Mastery I) plus the 2% Ignore Enemy DEF Rush Stone at the head of the right branch and any one of the three 1% Ignore Enemy DEF Rush Stones above it. The sheet prices Mastery I plus Mastery II at roughly 300 fragments for just under 40% final damage combined.",
+        "consensus": "moderate - class doc and progression sheet, same community",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      },
+      {
+        "step": "Sol Hecate to Lv. 1, then Mastery I to Lv. 9 and Mastery II to Lv. 4",
+        "why": "The progression sheet is ordered by final damage gained per fragment spent. After the two Mastery unlocks, one level of the shared skill Sol Hecate is the next best purchase, then the early Mastery levels.",
+        "consensus": "weak - one source (the progression sheet); the sheet's own labels are M1: Ray and M2: Boom",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      },
+      {
+        "step": "Ascent skill (Starlit Cosmos) to Lv. 1",
+        "why": "Next by fragment efficiency in the sheet's ordering.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      },
+      {
+        "step": "Shine skill stone to Lv. 9 (via the 2% All Stat and 150+150 INT down-branch Rush Stones)",
+        "why": "Shine's duration only grows every second level, so it is a deep investment for its payoff, but the doc ties concrete rotation breakpoints to it: Erda Link Shine Lv. 9 or higher helps fit a second Vega and Fomalhaut inside the Shine window, and Lv. 29 helps fit a second Izar. The sheet says this can be delayed if the player is comfortable comboing manually.",
+        "consensus": "moderate - class doc and sheet agree on the breakpoints, same community",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      },
+      {
+        "step": "Mastery II to Lv. 9, then SHINE Stones #2, #1 and #4 to Lv. 10",
+        "why": "SHINE Stones are the Hexa Stat equivalent and carry the stat lines other classes get from three Hexa Stats. Lv. 10 is the last safe tier - enhancement can fail and reduce the level from Lv. 11 upward.",
+        "consensus": "weak to moderate - sheet for the ordering, class doc for the SHINE Stone failure mechanic",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "step": "First Sadalsuud skill stone, then Mastery I to Lv. 14",
+        "why": "Sadalsuud is split across two skill stones whose levels sum; the sheet notes split stones cost roughly 1000 fewer fragments than the equivalent single-stone HEXA upgrade because levels can be spread. For mules the sheet says to take the Sadalsuud stone before the SHINE Stones.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      },
+      {
+        "step": "Boost Stones: 10% Boss Damage and 1000 INT (plus the crit damage, IED and boss damage Rush Stones on the way)",
+        "why": "Boost Stones cannot be enhanced and only become available inside Light Power, so they are bought once the surrounding branches are lit.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      },
+      {
+        "step": "Long tail: SHINE Stone #3, Mastery I to 19/29/30, Mastery II to 15/19/29/30, Sol Hecate and Ascent toward Lv. 30, Sadalsuud to 30 total, Origin, then Savior's Circle and the Sirius stone last",
+        "why": "The sheet's totals for the full board are about 1149 Sol Erda Energy and about 34,023 fragments for roughly 137.6% total final damage relative to a fresh 6th job, and it says the curve is heavily front-loaded. The sheet's shorthand: Salad = Sadalsuud, Circle = Savior's Circle, Doge = Sirius (identified by elimination from the sheet's own legend of five skill stones).",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+        ]
+      }
+    ],
+    "notes": "Class-specific 6th job skills: Celestial Design (Origin, 360s cooldown, invincible during cast, extra effects at Lv. 10/20/30) and Starlit Cosmos (Ascent). Ultimate Stones: SHINE Ray / SHINE Antares and SHINE Boom / SHINE Algol / SHINE Fomalhaut. Boost stones exist for Shine, Sirius, Sadalsuud and Savior's Circle. There is also a SHINE Tree of Stars entry, an enhanced version of the shared Tree of Stars skill. The class doc is explicit that Erda Link has a low ceiling because only two Masteries exist so far, and that more are expected but unannounced - treat any planner that assumes a third Mastery as speculation. Two stones are flagged as lower value than they look: Fruits of Mastery is measured at roughly 33-35 seconds of uptime against about 150 seconds of downtime (about 7% extra EXP), and Fragment of Distorted Time is described as not a priority, occasionally granting an extra Izar proc during Shine and shortening Pulse. SHINE Stone count: six total are planned, four were activatable at release."
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "stat": "Boss Damage",
+        "why": "First of the 'big four'. Late-game target given as level 15.",
+        "consensus": "weak - one source, though it matches the generic mage hyper stat ordering the doc itself says every class shares",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "stat": "Critical Damage and Damage (roughly equal)",
+        "why": "Late-game target given as 12-13 in each.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "stat": "Ignore Enemy DEF - capped at level 10",
+        "why": "Sia's own Stellar III - Alchiba supplies 30% IED, so hyper stat calculators overvalue further IED because they do not account for skill and party sources. The doc says to stop at 10.",
+        "consensus": "weak - one source, but it is a class-specific reason rather than generic advice",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "stat": "Magic ATT",
+        "why": "Late-game target given as level 7, after the big four.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "stat": "INT / LUK",
+        "why": "Leftover points only, roughly the last 1-5.",
+        "consensus": "weak - one source",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      }
+    ],
+    "notes": "The source frames hyper stats as character-specific and recommends running a hyper stat calculator rather than copying a fixed spread; it names brendonmay.github.io/hyperCalculator as a commonly used one. Separate farming and bossing presets are assumed. No second independent source for these numbers was found."
+  },
+  "hyperSkills": {
+    "actives": [
+      {
+        "name": "Stellar IX - Canopus",
+        "why": "Summon, 60s cooldown. All three hyper actives are normally taken; Canopus also appears in both the 2-minute and mini-burst sequences.",
+        "consensus": "strong - listed by the wiki, Grandis Library and the class doc's burst sequences",
+        "sources": [
+          "https://maplestorywiki.net/w/Sia_Astelle/Skills",
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "name": "Stellar X - Capella",
+        "why": "20s buff, Critical Rate +10% and Critical Damage +20%, with a further +10% Critical Damage when triggered by Stellagram Fusion. Used in both burst sequences.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Sia_Astelle/Skills",
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "name": "Observe",
+        "why": "60s buff, Damage +10%. Second entry in the 2-minute burst sequence.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Sia_Astelle/Skills",
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      }
+    ],
+    "passivePicks": [
+      {
+        "pick": "Marking - Reinforce",
+        "why": "Damage +20% to Marking skills, which are the filler skills cast constantly.",
+        "consensus": "moderate - Grandis Library's build, which it credits to the Sia Astelle Discord; the class doc's pictured default matches",
+        "sources": [
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "pick": "Marking - Extra Strike",
+        "why": "+1 attack on Marking skills.",
+        "consensus": "moderate - same two, not independent",
+        "sources": [
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "pick": "Stellar Marking - Reinforce Duration",
+        "why": "Damage +10%. The class doc says a change to Pole's duration made this the default over Marking - Persist. Contested - see conflicts.",
+        "consensus": "weak - one community, and that community records two positions",
+        "sources": [
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "pick": "Appear - Enhance",
+        "why": "Final Damage +10% on Appear.",
+        "consensus": "moderate - same two, not independent",
+        "sources": [
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      },
+      {
+        "pick": "Appear - Persist",
+        "why": "Duration +10 sec on Appear, which combines with the class's heavy buff duration stacking.",
+        "consensus": "moderate - same two, not independent",
+        "sources": [
+          "https://grandislibrary.com/shine/sia-astelle",
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      }
+    ],
+    "notPicked": [
+      "Marking - Persist (Pole duration +3s, Link HP recovery +5%) - see conflicts",
+      "Stellar Marking - Enhance",
+      "Stellar - Harden (10% damage taken reduction)",
+      "Appear - Cooldown Cutter (-25% cooldown)"
+    ],
+    "notes": "Nine passives are available and five are taken. Grandis Library is the only site that publishes the five-pick list, and it attributes the build to the Sia Astelle Discord, so the apparent agreement with the class doc is one community speaking twice."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Attack Speed +1 (first line)",
+        "why": "Named as a hard requirement, not a preference: Sia's attack speed sources are Celestial Light (4), Oort Wave (+1), Astral Force (+2), Decent Speed Infusion (+1), Inner Ability (+1) and a green potion (+1), and the IA line is what closes the gap to cap.",
+        "consensus": "moderate - the class doc gives the full breakdown; Grandis Library lists the same three-line set",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "line": "Buff Duration +38%",
+        "why": "Extends Alchiba, Bellatrix and Appear toward permanent uptime, which is also why the class stacks buff duration in legion and on the link skill.",
+        "consensus": "moderate - same two, not independent",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%",
+        "why": "Third line. Acceptable temporary substitutes while chasing it: +8% Damage to Abnormal Status, or +21 Magic ATT.",
+        "consensus": "moderate - same two, not independent",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      }
+    ],
+    "farming": [
+      {
+        "line": "Item Drop Rate +20% or Mesos Obtained +15-20% (first line), with the other on a second line, plus +8% Damage to Normal Monsters",
+        "why": "Standard farming page. The doc calls normal monster damage pure luxury, and suggests keeping a third page with Item Drop +20% top line for boss-room drops if the farming page leads with mesos.",
+        "consensus": "moderate - same two, not independent",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+          "https://grandislibrary.com/shine/sia-astelle"
+        ]
+      }
+    ],
+    "avoid": [
+      {
+        "line": "Cooldown Skip",
+        "why": "The only skill in the rotation that meaningfully benefits is Izar, which the doc estimates at about 5% of total damage; everything else desynchronises the cooldowns the burst sequence depends on. Buff Duration and Boss Damage are judged worth more.",
+        "consensus": "weak - one source, but it gives a specific class reason",
+        "sources": [
+          "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+        ]
+      }
+    ],
+    "notes": "Rolling order matters and the doc argues for a specific one: chase Buff Duration or Boss Damage on line 2 or 3 first, lock it, then the other, then Attack Speed +1 - because the reverse order risks ending with no Attack Speed +1, which is the line the class cannot do without. Roll only during 50% honor Sunny Sunday events. Settling on an epic-tier third line is explicitly endorsed once Attack Speed +1 and Buff Duration 33-38% are secured."
+  },
+  "gearingNotes": "INT main / LUK secondary magician, so Sia competes for the same INT gear pool as every other mage; the weapon (Celestial Light) and secondary (Compass) are class-unique and cannot be shared. She cannot equip a shield. Weapon/secondary/emblem potential: 9/0/0 %Magic ATT / Boss Damage / IED is the target, and the class doc says the same holds for bonus potential on interactive worlds, with the qualifier that midgame characters should settle for three %Magic ATT lines on main potential and two on bonus potential because a third bonus line costs disproportionately more cubes. 8/1/0 and 7/2/0 are acceptable once double-prime rolls are involved - the doc's example is that 13 matk / 13 matk / 30 boss beats 13/10/10. On a Gold Guardian Emblem rather than Mitra's Rage, settling at 12 matk / 9 matk plus one line of IED, %damage or %stat in that order is called fine. Best-in-slot secondary is Princess No's Compass, built from 15 Captivating Fragments dropped by Princess No; the drop is drop-rate affected and the doc warns it typically takes at least two weeks in drop gear with legion drop. Hat: Sia is a stat-hat class. Cooldown reduction is quality-of-life for keeping the 30-second and 1-minute cooldowns aligned but does not raise output, because she has few cooldown-cycled skills outside the burst window. A -3/-4 cooldown hat is worth owning as a second hat for Culvert and for squeezing an extra Origin into a timed run. Rings: Ring of Restraint plus Continuous Ring, level 4 of each as a baseline, Grindstones into Ring of Restraint first. As of v.271 ring swapping is gone, so the older Weapon Jump Int mini-burst trick no longer works. Which ring goes on the main versus mini burst depends on ring levels and stats. Legion board priority for bossing: Critical Damage > Boss Damage > Buff Duration > IED > INT > Magic ATT, with IED moved above Boss Damage early on until the stat window shows about 90%+, and above Buff Duration for Grandis bosses (Seren, Kalos and beyond) until about 94%+. Legion Artifact priority: S tier Boss Damage %, Buff Duration %, Damage %; A tier IED, Critical Damage, Critical Rate; B tier EXP, Meso Drop %, Item Drop %; C tier All Stat, Attack, Cooldown Skip. Critical rate is a known weak point - the doc's accounting is 35% base, 20% Legion Artifact, 10% Lynn link, 10% Decent Sharp Eyes, 2% Decent Combat Orders, 5% each from Lv. 250 Marksman and Night Lord legion blocks and 3% familiar badge, leaving roughly 10% to cover from the legion board, Phantom link (20%) or hyper stats. Link skills for bossing named by the doc: Terms and Conditions (Angelic Buster) 3, Empirical Knowledge (Explorer Mage) 9, Thief's Cunning (Explorer Thief) 9, Unfair Advantage (Cadena) 3, Qi Cultivation (Mo Xuan) 3, Fury Unleashed (Demon Slayer) 3, Wild Rage (Demon Avenger) 3, Moonlit Blade Learnings (Hayato) 3, Judgment (Kinesis) 3, Solus (Ark) 3, Elementalism (Kanna) 3, Focus Spirit (Lynn) 3 - with Lynn specifically there to patch critical rate and swappable once at 100%. Situational: Light Wash (Luminous) for PDR, Phantom Instinct for crit rate, Spirit of Freedom (Resistance) 8 for survivability, Hybrid Logic (Xenon) 3 at endgame, Time to Prepare (Kain) and Noble Fire (Adele) as filler. Because Guiding Stars is shared with Erel Light, levelling an Erel Light to 210 upgrades the link to its cap without spending a second link slot.",
+  "commonMistakes": [
+    {
+      "mistake": "Reaching 6th job with the Ray/Antares (or Boom/Algol/Fomalhaut) boost node below Lv. 40 and being unable to open Mastery I or II.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ]
+    },
+    {
+      "mistake": "Leaving every Constellation skill unlocked, so Antares stacks drain outside the burst window and Alchiba, Bellatrix, Capella, Canopus or Sirius fire on their own. These can be locked by right-clicking the skill icon; the doc recommends locking that set and optionally Sadalsuud, Sadalmelik and Vega.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+        "https://grandislibrary.com/shine/sia-astelle"
+      ]
+    },
+    {
+      "mistake": "Placing Shine-dependent skills immediately after Shine in a Skill Sequence. A live bug drops Shine's bonus in that case; the doc's workaround is inserting Celestial Alignment as a buffer in the mini-burst sequence. The 2-minute sequence is unaffected because enough non-dependent skills already follow Shine.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ]
+    },
+    {
+      "mistake": "Building a cooldown-reduction hat as the main hat. Sia is a stat-hat class; cooldown reduction is Culvert and min-clear tech only.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ]
+    },
+    {
+      "mistake": "Pushing the IED hyper stat past level 10 on a calculator's advice, ignoring Alchiba's own 30% IED and party sources.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ]
+    },
+    {
+      "mistake": "Taking Cooldown Skip in Inner Ability. It only helps Izar, at roughly 5% of total damage, and desynchronises the rest of the rotation.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ]
+    },
+    {
+      "mistake": "Pushing SHINE Stones past Lv. 10 early. Enhancement can fail and drop the level from Lv. 11 upward, and the progression sheet notes the downgrade risk becomes noticeable at Lv. 13 and above.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+        "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+      ]
+    },
+    {
+      "mistake": "Spending Sol Erda Energy on Sol Janus purely to open Mastery I on a mule. The 2% Normal Enemy Damage Rush Stone route costs 4 energy and 150 fragments against 10 energy and 225 fragments.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ]
+    },
+    {
+      "mistake": "Copying a pre-v.269 Sia boost node plan. Trinodes were removed in v.269; Grandis Library keeps the old layout behind a separate 'Pre-V.269' toggle.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+        "https://grandislibrary.com/shine/sia-astelle"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://maplestorywiki.net/w/Sia_Astelle",
+      "what": "Class identity: Shine faction, Magician, INT main / LUK secondary, Celestial Light and Compass, Guiding Stars link skill, legion effect values, GMS-only availability table (KMS/JMS/CMS/MSEA/TMS all unavailable), released in the Stargazer update, originally a MapleStory M exclusive, and the statement that Shine classes unlock and enhance 6th job skills through Erda Link instead of the HEXA Matrix.",
+      "dated": "Page render cache timestamp 2026-09-09. Article is flagged 'under construction'.",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Sia_Astelle/Skills",
+      "what": "Full skill tables: Celestial Design as Origin skill with its Lv. 10/20/30 effects, Starlit Cosmos as Ascent skill, Mastery Node 1 and 2, the shared 6th job skills Sol Janus and Sol Hecate, the SHINE Tree of Stars entry, and the hyper skill actives and passives with their numbers.",
+      "dated": "Same wiki render, 2026-09-09.",
+      "independent": false
+    },
+    {
+      "url": "https://grandislibrary.com/shine/sia-astelle",
+      "what": "Class overview: Shine class group, Magician job group, INT/LUK, Celestial Light and Compass, Guiding Stars (Master Lv. 6, +19% Buff Duration, +6% Critical Damage, stacks twice across Shine classes), legion 1/2/3/5/6% Abnormal Status Damage, attack speed and weapon mastery breakdowns, 1st-4th job skill build order, boost node tiering, hyper passive build, inner ability set, the Stellagram Fusion mechanic explanation, and the 6th job skill list split into mastery/skill/boost cores.",
+      "dated": "Site version banner reads GMS Ver. 269 (Ride the Lightning). No calendar date on the page. It also exposes a 'View Pre-V.269 Boost Nodes' toggle, so the current node data postdates v.269.",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+      "what": "Sia Astelle Class Guide, the class community's maintained document. Source of nearly all judgement in this file: V matrix job/boost/common/special node priorities, Erda Link mechanics and Mastery unlock conditions, hyper stat targets, inner ability sets and rolling strategy, legion and legion artifact priority, crit rate accounting, WSE and bonus potential targets, hat and ring guidance, link skill list, hyper passive reasoning, burst and mini-burst skill sequences, and the constellation-locking setup.",
+      "dated": "States 'Last Updated: 9/9/26' and references the v.271 ring-swap removal, so it is current to the target patch. Maintained by 'Star' with the Sia Astelle Discord.",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E",
+      "what": "Sia Erda Link Progression Guide: fragment-ordered upgrade sequence with per-step Sol Erda Energy cost, fragment cost, cumulative fragments, final damage gained and efficiency; SHINE Stone rates; totals of about 1149 Sol Erda Energy, 34,023 fragments and 137.6% total final damage.",
+      "dated": "No date stated on the sheet. Credited to Astroma. Linked as current from both Grandis Library and the class doc.",
+      "independent": false
+    },
+    {
+      "url": "https://youtu.be/ViZcEew1AxA",
+      "what": "Decatei, 'MapleStory - Guide to Sia Astelle'. Used only as dated evidence that the class is live and actively guided, and that its chapters cover skills, hyper skills and passives, 5th job, trinodes, 6th job, sequences, link skills, inner ability and burst. No build claims were extracted, because the content is in the video and could not be verified from text.",
+      "dated": "Published 2026-04-10.",
+      "independent": true
+    },
+    {
+      "url": "https://www.reddit.com/r/Maplestory/comments/1qv95hn/sia_astelles_ascent_skill/",
+      "what": "Community thread showing Sia's Ascent skill in game and referring to Erda Link as her live 6th job system. Used only as independent corroboration that the class and Erda Link exist in the current client.",
+      "dated": "2026-02-04.",
+      "independent": true
+    },
+    {
+      "url": "https://www.reddit.com/r/Maplestory/comments/1l94vha/sia_astelle_class_overview/",
+      "what": "Release-window discussion thread. Used only to date the class announcement/release window. Content is speculation, not build data.",
+      "dated": "2025-06-11.",
+      "independent": true
+    },
+    {
+      "url": "https://www.nexon.com/maplestory/news/update/27513",
+      "what": "Official GMS v.260 Stargazer patch notes, cited by the wiki as the release announcement for Sia Astelle and for the Erda Link system. Listed for provenance only - the page is a JavaScript application and could not be rendered by this research pass, so nothing was extracted from it directly.",
+      "dated": "Referenced by the wiki as the '6-30' v.260 Stargazer patch notes, i.e. 2025-06-30. Not independently verified here.",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Hyper passive: Stellar Marking - Reinforce Duration versus Marking - Persist",
+      "positionA": "Take Stellar Marking - Reinforce Duration. The class doc states that after a change to Pole's duration this is now always the pick.",
+      "positionB": "Take Marking - Persist (Pole duration +3 sec) instead. The same doc records a second school of thought: it is worth roughly 1% final damage on perfect play, is a loss on bosses that move frequently, but builds the muscle memory for using Pole ahead of an expected future Pole Mastery.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ],
+      "note": "Both positions come from the same document. Grandis Library publishes only position A."
+    },
+    {
+      "topic": "Where the Starlight boost node sits",
+      "positionA": "Max it last of the boost nodes (class Google Doc).",
+      "positionB": "Grandis Library groups Starlight in its 'secondary' tier - nodes that do not unlock a Mastery but are still used - rather than in its lowest-priority tier.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+        "https://grandislibrary.com/shine/sia-astelle"
+      ],
+      "note": "Grandis Library's node page is stamped GMS Ver. 269 while the doc is current to v.271, so this may be staleness rather than genuine disagreement."
+    },
+    {
+      "topic": "Boom/Algol versus Pole/Fomalhaut ordering",
+      "positionA": "Ray/Antares, then Boom/Algol, then Pole/Fomalhaut.",
+      "positionB": "The same doc allows Pole/Fomalhaut ahead of Boom/Algol for a character focused purely on bossing.",
+      "sources": [
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI"
+      ],
+      "note": "Both orders reach the same Lv. 40 gates; the difference is only which unlocks first."
+    },
+    {
+      "topic": "How many truly independent voices exist",
+      "positionA": "Three sites carry Sia build advice (Grandis Library, the class Google Doc, the Erda Link spreadsheet).",
+      "positionB": "Grandis Library explicitly credits its inner ability, hyper passive and boost node builds to the Sia Astelle Discord, and both the doc and the spreadsheet come from that same Discord. For build priorities this is effectively one community speaking three times, not three independent confirmations.",
+      "sources": [
+        "https://grandislibrary.com/shine/sia-astelle",
+        "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+        "https://docs.google.com/spreadsheets/d/1BDsJwMWZPjoNdV22_KSYxoLBQxcZ9Ls-WIXg5AzpO4E"
+      ],
+      "note": "Class identity, existence and mechanics are strongly sourced across independent sites. Build priorities are not. Every consensus field above is marked accordingly."
+    }
+  ],
+  "existence": {
+    "live": true,
+    "server": "Available in GMS. The wiki's availability table marks KMS, JMS, CMS, MSEA and TMS as unavailable - Sia Astelle is a Global MapleStory exclusive, originally a MapleStory M class.",
+    "released": "GMS v.260 Stargazer update, around 2025-06-30.",
+    "stillCurrentAtV271": "Yes. The class guide document dated 2026-09-09 discusses Sia under v.271 rules (the removal of ring swapping), and the 6th job Ascent skill Starlit Cosmos was in game by February 2026.",
+    "sources": [
+      "https://maplestorywiki.net/w/Sia_Astelle",
+      "https://docs.google.com/document/d/1l4anp8MVMuIAMpcGj9WLQgMRhpjTIgKbMlNj9KHx2CI",
+      "https://www.reddit.com/r/Maplestory/comments/1qv95hn/sia_astelles_ascent_skill/",
+      "https://youtu.be/ViZcEew1AxA"
+    ]
+  },
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "MISREPORTS A SOURCE. vMatrix 'Starlight boost node' says 'Grandis Library groups Starlight with its secondary (still worth upgrading) tier rather than last', and conflicts[] entry 2 repeats it. Grandis Library actually lists Starlight as Node 1 in its PRIMARY boost-node group - its first-listed node. The real disagreement is top-of-list vs bottom-of-list, not last vs second-tier. The file invents a middle position GL does not hold and then excuses it as possible staleness.",
+      "UNSOURCED AND UNVERIFIED. linkSkill.levels asserts 'Levelling both Sia Astelle and Erel Light to 210 reaches Level 6 while consuming only one link slot', and gearingNotes repeats it as a recommendation. The linkSkill object has NO sources array at all. GL confirms only 'Guiding Stars, Master Level 6, +19% Buff Duration, +6% Critical Damage, can be stacked up to 2 times for each unique Shine class' and never names Erel Light. I could not verify that Erel Light exists, that it is a Shine class, or the one-link-slot mechanic. This is the file's most confident unsourced claim and it drives a multi-week levelling recommendation.",
+      "PROBABLE SKILL-NAME ERROR. hexa.notes names the Origin skill 'Celestial Design (Origin, 360s cooldown, invincible during cast, extra effects at Lv. 10/20/30)'. The only reachable source on Sia's 6th job actives, Grandis Library, names her 6th job 360s-cooldown bind/iFrame skill 'Primal Asterism' - a name that appears nowhere in the guide file. 'Celestial Design' is sourced only to maplestorywiki.net/w/Sia_Astelle/Skills, which returned HTTP 403 and could not be checked. Either the file has the wrong name for the skill GL documents, or there are two skills and the file omits the one GL actually lists. Not confirmed fabricated, but unverifiable and contradicted by the one source I could read.",
+      "UNVERIFIABLE CITATIONS (not evidence of fabrication - I could not reach reddit at all; WebFetch refuses www.reddit.com and old.reddit.com, and the Browser pane blocks reddit.com by policy). Both reddit URLs are unchecked: /comments/1qv95hn/ is one of four sources propping up the 'strong' consensus that Erda Link replaces HEXA and is cited in existence[] as proof Starlit Cosmos was in game by Feb 2026; /comments/1l94vha/ dates the release window. Treat both as unconfirmed until someone can open them.",
+      "STALE: No pre-HEXA advice presented as current was found. The Erda Link material is current to the target patch: the class doc is dated 9/9/26 and explicitly discusses the v.271 ring-swap removal, and the file captures that correctly in gearingNotes.",
+      "STALE: Grandis Library carries a 'GMS Ver. 269 [Ride the Lightning]' banner and a 'View Pre-V.269 Boost Nodes' toggle - both confirmed, and both disclosed by the file. The defect is not the disclosure but the reliance: the file still leans on this v.269 page as the corroborating second source for node priority in five separate vMatrix entries while the target patch is v.271.",
+      "STALE: conflicts[] entry 2 note ('this may be staleness rather than genuine disagreement') is an unfounded excuse. GL's node data is explicitly its POST-v.269 set, since the pre-v.269 layout sits behind a separate toggle. Staleness does not explain why GL lists Starlight first and the doc lists it last.",
+      "STALE: Internal inconsistency with a recency flavour: hexa.order step 1 states 'Sia Astelle was the only class on this system at the time of the sources', while linkSkill and gearingNotes treat Erel Light as a second Shine class worth levelling to 210. Both cannot be right as written."
+    ],
+    "clearedOnInspection": [
+      "NOT FABRICATED - checked and cleared: every Stellar roman numeral in the file matches Grandis Library exactly (I - Antares, II - Algol, III - Alchiba, V - Fomalhaut, VI - Izar, VII - Vega, IX - Canopus, X - Capella, XI - Sirius, XII - Sadalsuud). The class doc (title 'A Star is Born - Guide to Sia Astelle', maintainer Star, Last Updated 9/9/26) independently confirms the boost node order, job node order, common node unlock and maxing order, Fatal Strike I / Inspector Power I, the hyper stat targets (Boss 15, IED 10, MATT 7, Damage and Crit Damage 12-13), the three bossing IA lines, the Cooldown Skip reasoning (Izar ~5% of total damage), trinodes removed in v.269, ring swapping removed in v.271, and the Mastery I / Mastery II names with their Lv. 40 gates and Light Power requirement. The spreadsheet is real ('Sia Erda Link Progression Guide'); its M1 tab reads Level 1 = 3 Erda / 100 fragments with cumulative FD gains of 0.1865 (Ray) and 0.0725 (Antares), so the file's '~300 fragments for just under 40% final damage combined' for the two Mastery unlocks is arithmetically consistent, not inflated. The YouTube citation resolves to a real video, 'MapleStory - Guide to Sia Astelle' by Decatei."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "8 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

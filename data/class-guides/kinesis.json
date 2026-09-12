@@ -1,0 +1,417 @@
+{
+  "slug": "kinesis",
+  "className": "Kinesis",
+  "branch": "Friends World (standalone Magician; some sites file the class under \"Other\")",
+  "primaryStat": "INT",
+  "secondaryStat": "LUK",
+  "weapon": "Psy-limiter",
+  "secondaryWeapon": "Chess Piece",
+  "archetype": "INT magician with a long burst window. The December 2025 KMS remaster (live in GMS by v.269) deleted the Psychic Points resource and moved the class to plain MP, converted the old summons into cooldown skills, and turned the kit into a fixed four-skill 'ultimate cycle' pressed off cooldown with a filler attack woven into the gaps. Damage is now weighted roughly 65% burst / 35% off-burst on a dummy, versus roughly 57/43 pre-remaster. Mobility is a class strength; party support is minimal (a 15% defense debuff and a movement slow).",
+  "linkSkill": {
+    "name": "Judgment",
+    "effect": "Critical Damage +2% / +4% / +6%",
+    "levels": 3
+  },
+  "legionEffect": "INT +10 / +20 / +40 / +80 / +100",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost Node 2 - Ultimate: Pressure / Ultimate: Gambit",
+        "why": "Both sit inside the repeated ultimate cycle that carries the class post-remaster; Ultimate: Pressure also fires a free micro black hole off every direct attack.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 3 - Psychic Smash",
+        "why": "The filler attack pressed between ultimate casts and the skill that carries off-burst damage; it also receives a large additive damage bonus from HEXA Kinetic Combo.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 4 - Ultimate: Opening / Ultimate: Check",
+        "why": "The other two members of the four-skill ultimate cycle; Opening also applies the debuff the rotation is built around.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 5 - Kinetic Combo",
+        "why": "A passive that triggers off most direct attacks, so its uptime scales with everything else in the rotation. Sources disagree on how high to rank it - see conflicts.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis"
+        ]
+      },
+      {
+        "node": "Boost Node 6 - Mental Shock",
+        "why": "A 120-second-cooldown stun on a single hyper skill; both ranked lists place it at or near the bottom.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis"
+        ]
+      },
+      {
+        "node": "Boost Node 1 - Psychic Force / Psychic Rise / Psychic Fall",
+        "why": "Disputed. The maintained class document marks this node optional and states Psychic Force no longer has a bossing role after the remaster removed its damage-over-time and the animation-cancel it used to serve. Grandis Library instead groups it with its primary nodes.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis"
+        ]
+      }
+    ],
+    "trios": null,
+    "notes": "Trinodes no longer exist for this class in GMS: the 17 June 2026 patch converted Kinesis' trinodes into the six boost nodes above, and the wiki lists the same six boost/enhancement cores with a cap of level 60. The four class-specific 5th job skill nodes in GMS v.271 are Psychic Shockwave, Psychic Nova, Ultimate: Checkmate and Psychic Castle. The class document tabulates those four as Psychic Castle, Ultimate: Checkmate, Psychic Nova, Psychic Shockwave with a note that Psychic Shockwave can be moved up if you cannot one-shot training mobs; the table's column headers are ambiguous about whether that listing is a priority order or simply node numbering, so no ordering is asserted here. Sources: class document (https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E, updated 2026-09-08) and https://maplestorywiki.net/w/Kinesis/Skills."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Skill cores: From Another Realm (Origin) and Fractal Horizon (Ascent) - these are the only two class HEXA skill cores available in GMS v.271.",
+        "why": "From Another Realm requires Breakthrough at level 30 and gains large ignore-defense and boss-damage breakpoints at core levels 10/20/30; Fractal Horizon carries its own 100% critical rate plus ignore-defense and boss-damage breakpoints. A third skill core, Gravity Object, exists in KMS as of July 2026 and is not in GMS yet.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Kinesis/Skills",
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://orangemushroom.net/tag/kinesis/"
+        ]
+      },
+      {
+        "step": "Mastery cores, by slot: 1 = HEXA Ultimate: Pressure + HEXA Ultimate: Check, 2 = HEXA Psychic Smash, 3 = HEXA Ultimate: Opening + HEXA Ultimate: Gambit, 4 = HEXA Kinetic Combo.",
+        "why": "These are the mastery groupings the game ships; both the wiki and the class document list them identically. HEXA Kinetic Combo additionally raises HEXA Psychic Smash damage as an additive passive, so the two interact.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Kinesis/Skills",
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+        ]
+      },
+      {
+        "step": "Enhancement cores, by slot: 1 = Ultimate: Checkmate, 2 = Psychic Nova, 3 = Psychic Shockwave, 4 = Psychic Castle.",
+        "why": "Each adds final damage to its 5th job skill. The class document advises against spending fragments on the Psychic Shockwave enhancement at all, preferring to bank fragments for future skill and common cores.",
+        "consensus": "moderate",
+        "sources": [
+          "https://maplestorywiki.net/w/Kinesis/Skills",
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+        ]
+      },
+      {
+        "step": "Common cores used by this class: Sol Janus, Sol Hecate, Afterimage of the Otherworld.",
+        "why": "Listed as the class' common-core lineup in the maintained document; Sol Hecate is the shared 6th job familiar with its own level 10/20/30 ignore-defense and boss-damage breakpoints.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "step": "HEXA Stat nodes 1-3: main stat (INT), Critical Damage, Magic Attack.",
+        "why": "Stated directly in the maintained class document; nodes 4-6 are listed as undetermined.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+        ]
+      }
+    ],
+    "notes": "No fragment-by-fragment investment order is recorded here. The maintained class document publishes its HEXA priority chart (updated 2026-08-19) as an image whose text legend only names the core slots, and the document itself says the correct order shifts with your progression stage and directs readers to generate a personalised chart at https://maplescouter.com/hexa. Anything more specific than the above would be invented. One measured data point from the same document: post-remaster fragment investment is more efficient than pre-remaster at low totals (roughly 23% final damage at 500 fragments versus roughly 10% pre-remaster), with the two converging past about 8,000 fragments."
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "No post-remaster hyper stat priority list was found in any source, so none is asserted. Two sourced facts: (1) the class document's critical rate table treats 4 levels of the Critical Rate hyper stat as one of the two interchangeable ways (the other being four legion board pieces) to close the last 4% and reach 100% critical rate (https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E); (2) the widely repeated pre-remaster advice to max the PP hyper stat first is now dead - the remaster removed Psychic Points entirely and the hyper stat was renamed accordingly (https://orangemushroom.net/2025/12/28/kms-ver-1-2-410-maplestory-crown-kinesis-remaster/, https://maplestorywiki.net/w/Kinesis/Skills). Treat any guide that still opens with 'max PP first' as pre-remaster."
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "skill": "Ultimate - Reinforce (+20% damage to Ultimate skills)",
+        "why": "The ultimate cycle is the bulk of the rotation post-remaster.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "skill": "Ultimate - Boss Rush (+20% boss damage to Ultimate skills)",
+        "why": "Same reason; boss damage is the scarcer of the two multipliers for this kit.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "skill": "Ultimate - Guardbreak (+20% ignore defense to Ultimate skills). The class document calls this line Ultimate - Overwhelm; same effect.",
+        "why": "Third of the three Ultimate passive lines, all of which apply to the cycle.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "skill": "Psychic Smash - Reinforce (+20% damage)",
+        "why": "Psychic Smash is the filler and the largest single non-ultimate damage share.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      },
+      {
+        "skill": "Kinetic Combo - Reinforce (+20% damage)",
+        "why": "Kinetic Combo procs off most direct attacks, so the multiplier applies throughout the rotation.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+          "https://grandislibrary.com/other/kinesis",
+          "https://maplestorywiki.net/w/Kinesis/Skills"
+        ]
+      }
+    ],
+    "actives": [
+      {
+        "skill": "Mental Tempest",
+        "why": "The class invincibility window (10 seconds at master level, 120-second cooldown).",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Kinesis/Skills",
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+        ]
+      },
+      {
+        "skill": "Mental Shock",
+        "why": "The class stun/bind, 10 seconds scaling with damage dealt, 120-second cooldown. The pre-remaster doc described its range as poor.",
+        "consensus": "moderate",
+        "sources": [
+          "https://maplestorywiki.net/w/Kinesis/Skills",
+          "https://docs.google.com/document/d/1eOsYMHVZMeb9X85p5K-O4JLIN15ifkczxTAuwS657OI"
+        ]
+      },
+      {
+        "skill": "Mental Overdrive",
+        "why": "Still present, but no longer the burst button: the 4th job skill Breakthrough (which resets ultimate cooldowns and grants final damage to Ultimate skills for about 30 seconds) is the two-minute burst buff post-remaster.",
+        "consensus": "moderate",
+        "sources": [
+          "https://maplestorywiki.net/w/Kinesis/Skills",
+          "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+        ]
+      }
+    ],
+    "notes": "Five passive hyper picks, and both independent post-remaster sources name exactly the same five. Any list that recommends Psychic Grab - Poss Point, Psychic Grab - Reinforce, Mind Tremor - Overwhelm or the Kinetic Combo - Opportunity / Extra Strike lines is pre-remaster: those skills no longer exist in GMS v.271."
+  },
+  "innerAbility": {
+    "recommended": {
+      "line1": "Attack Speed +1",
+      "line2": "Boss Damage +10%",
+      "line3": "Damage to monsters with abnormal status +8%",
+      "consensus": "strong",
+      "sources": [
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+        "https://grandislibrary.com/other/kinesis"
+      ]
+    },
+    "alternate": {
+      "lines": "Boss Damage +20% / Magic Attack +21 (or Buff Duration +38%) / Damage to monsters with abnormal status +8%",
+      "why": "The class document presents this as the KMS preference and Grandis Library lists it as a second bossing option. The document's own reasoning: on a dummy at maximum HEXA investment, reaching the attack speed hard cap is worth roughly 1.7% final damage over one step below it, and the boss damage / magic attack alternative rarely beats that in GMS and MSEA - so it treats Attack Speed +1 as best in slot there while KMS prefers buff duration because Kinesis' burst runs about 31 seconds and buff duration extends the Angelic Buster link across more ultimate cycles.",
+      "consensus": "moderate",
+      "sources": [
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+        "https://grandislibrary.com/other/kinesis"
+      ]
+    },
+    "training": {
+      "lines": "Meso Obtained or Item Drop Rate +20% / Meso Obtained or Item Drop Rate +15% / Damage to normal monsters +8%",
+      "consensus": "weak",
+      "sources": [
+        "https://grandislibrary.com/other/kinesis"
+      ]
+    },
+    "notes": "Passives +1 was the pre-remaster first line and is no longer recommended: the class document tabulates the remaster cutting most of the per-level passive gains (weapon mastery, critical damage, damage, final damage, boss damage and ignore defense all dropped from +2/+1 per level to 0), leaving only magic attack and buff duration. Attack speed matters mechanically because it shortens Psychic Smash's action delay and raises Kinetic Combo proc count, and those two together account for roughly 40-45% of a full rotation's damage in the document's dummy testing."
+  },
+  "gearingNotes": "Cooldown-reduction hat is the class-specific gearing lever. The maintained class document's recommendation: no cooldown hat for a boss mule, -2s for an early-to-late-game main, and -4s or -5s for an endgame main, because two or three cooldown lines buy one extra ultimate cycle inside the Breakthrough window (-4s makes the timing tight, -5s makes it lenient); it calls -1s and -3s non-optimal. On Oz rings the same document states that as of GMS v.271 (2026-09-09) the preferred setup is Ring of Restraint as the active ring with Continuous Ring as the passive, measuring RoR4 plus Continuous 4 at roughly 3% final damage over a RoR4/Weapon Jump 4 swap, and says level 5/6 ordering depends on your own gear and HEXA progression. Attack Speed +1 inner ability is wanted to reach the attack speed hard cap in GMS. Critical rate reaches 100% from class passives plus Decent Sharp Eyes, legion artifact, Night Lord and Marksman legion pieces, familiar badges and then either 4 levels of the Critical Rate hyper stat or four legion board pieces - plan the last 4% rather than over-buying critical rate lines. No arcane/genesis weapon, familiar, soul or symbol advice specific to Kinesis was found in any source, so none is given. Source for all of the above: https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E (updated 2026-09-08).",
+  "commonMistakes": [
+    {
+      "mistake": "Following a pre-remaster Kinesis guide. Psychic Points, Ultimate - Metal Press, Ultimate - Trainwreck, Ultimate - B.P.M, Psychic Grab/Clutch, Psychic Drain, Ultimate - Mind over Matter, Psychic Tornado and Law of Gravity are all gone from GMS v.271.",
+      "sources": [
+        "https://orangemushroom.net/2025/12/28/kms-ver-1-2-410-maplestory-crown-kinesis-remaster/",
+        "https://maplestorywiki.net/w/Kinesis/Skills",
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+        "https://www.youtube.com/watch?v=TT2dP73lzS8"
+      ]
+    },
+    {
+      "mistake": "Opening the wrong class document. The doc linked from some class hubs was last updated 2025-06-20 and is entirely pre-remaster; the current one is maintained by @Kurlen and was last updated 2026-09-08.",
+      "sources": [
+        "https://docs.google.com/document/d/1eOsYMHVZMeb9X85p5K-O4JLIN15ifkczxTAuwS657OI",
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+        "https://www.mapledoro.com/guides/character-guides/kinesis",
+        "https://www.youtube.com/watch?v=4LzXsKb39V0"
+      ]
+    },
+    {
+      "mistake": "Spending HEXA fragments on the Psychic Shockwave enhancement core - the class document says it is effectively never worth levelling and fragments should be saved for future skill and common cores.",
+      "sources": [
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+      ]
+    },
+    {
+      "mistake": "Assuming Ultimate: Checkmate resets your ultimate cooldowns the moment you cast it. The reset fires when the attack connects, so against a boss that teleports away (Verus Hilla, Kalos) you wait for it to reappear. Ultimate: Opening likewise needs a target to cast at all.",
+      "sources": [
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+        "https://maplestorywiki.net/w/Kinesis/Skills"
+      ]
+    },
+    {
+      "mistake": "Expecting pre-remaster grinding. Early 6th job single-ball Janus farming got worse: the spammable HEXA mobbing ultimate became a 30-second-cooldown skill, Psychic Drain is gone, and the long-duration summons became short active skills, which also makes looting harder. Two-ball and three-ball Janus farming is unaffected.",
+      "sources": [
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+      ]
+    },
+    {
+      "mistake": "Treating Psychic Force as a bossing skill. Post-remaster it lost its damage-over-time and the animation-cancel role it used to fill, and the class document states it no longer serves a purpose in bossing.",
+      "sources": [
+        "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+      "what": "Current Kinesis class guide, written and maintained by @Kurlen for the Kinesis Discord. Post-remaster; covers boost nodes, HEXA cores and stats, inner ability, hyper passives, cooldown hat, Oz rings, burst and DPM rotations, mobbing, and a pre-remaster archive section. Explicitly references GMS v.271 (2026-09-09).",
+      "dated": "2026-09-08",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/other/kinesis",
+      "what": "Grandis Library Kinesis class overview: stats, weapons, link skill, legion, boost node groupings and rankings, hyper skill passive picks, inner ability lines for bossing and training.",
+      "dated": "Labelled GMS Ver. 269 (Ride the Lightning); no calendar date shown on the page",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Kinesis/Skills",
+      "what": "Full GMS skill list for the remastered class: every job tier, hyper skills, 5th job skills, boost/enhancement core groupings, HEXA skill cores, mastery cores and HEXA enhancements, with numbers.",
+      "dated": "2026-08-11 (last edit reported by search index; content matches GMS v.271 skills)",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Kinesis",
+      "what": "Class infobox and availability table - faction, magician class, INT/LUK, Psy-limiter and Chess Piece, Judgment link skill, legion effect, and availability marked Available across regions. Same wiki as the skills page, so not an independent source.",
+      "dated": "Current GMS patch",
+      "independent": false
+    },
+    {
+      "url": "https://orangemushroom.net/2025/12/28/kms-ver-1-2-410-maplestory-crown-kinesis-remaster/",
+      "what": "KMS patch coverage of the Kinesis remaster: removal of Psychic Points in favour of MP, the hyper stat rename, and the reworked skill list by job advancement.",
+      "dated": "2025-12-28",
+      "independent": true
+    },
+    {
+      "url": "https://orangemushroom.net/tag/kinesis/",
+      "what": "Post index establishing the KMS timeline, including a third HEXA skill core added in KMS ver. 1.2.417. Same site as above, not independent.",
+      "dated": "2026-07-31 (most recent tagged post)",
+      "independent": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=4LzXsKb39V0",
+      "what": "Duky, 'Everything You NEED To Know About The NEW Remastered Kinesis in MapleStory'. Used to date the GMS remaster's test-server arrival and to locate the current maintained class document, which the description links.",
+      "dated": "2026-07-11",
+      "independent": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=TT2dP73lzS8",
+      "what": "KyoWantsCute, 'So you wanna be Kinesis Remastered'. Independent confirmation that the GMS remaster removed Psychic Points and a chaptered walkthrough of the reworked kit including hyper passives and burst.",
+      "dated": "2026-07-22",
+      "independent": true
+    },
+    {
+      "url": "https://www.mapledoro.com/guides/character-guides/kinesis",
+      "what": "Class hub page: link skill values and legion effect. Its own HEXA guide and infographic are marked work-in-progress, and the class document it links is the outdated 2025 one.",
+      "dated": "Undated",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/document/d/1eOsYMHVZMeb9X85p5K-O4JLIN15ifkczxTAuwS657OI",
+      "what": "The previous Kinesis Discord document. PRE-REMASTER AND OBSOLETE for build advice - retained only as evidence of what the stale advice looks like (PP management, Metal Press, Trainwreck, B.P.M, Passives +1 inner ability). Same Discord community as the current document, so not an independent voice from it.",
+      "dated": "2025-06-20",
+      "independent": false
+    },
+    {
+      "url": "https://www.maplerhouse.com/classes/kinesis",
+      "what": "Checked and rejected as a substantive source: its HEXA priority chart is loaded client-side and could not be read, and its class blurb still describes the pre-remaster kit. Listed for transparency only; no claim in this file rests on it.",
+      "dated": "2026-07-30",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Boost node 1 (Psychic Force / Psychic Rise / Psychic Fall) priority",
+      "positionA": "Optional, lowest tier alongside Mental Shock; Psychic Force has no bossing role post-remaster.",
+      "sourceA": "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E (2026-09-08)",
+      "positionB": "Grouped with the primary boost nodes.",
+      "sourceB": "https://grandislibrary.com/other/kinesis (GMS v.269)"
+    },
+    {
+      "topic": "Boost node 5 (Kinetic Combo) priority",
+      "positionA": "Essential, same tier as the ultimate and Psychic Smash nodes.",
+      "sourceA": "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E (2026-09-08)",
+      "positionB": "Secondary - below the four primary nodes.",
+      "sourceB": "https://grandislibrary.com/other/kinesis (GMS v.269)"
+    },
+    {
+      "topic": "Inner ability first line",
+      "positionA": "Attack Speed +1 in GMS and MSEA, because reaching the attack speed hard cap is worth roughly 1.7% final damage on a dummy and the alternatives rarely beat it.",
+      "sourceA": "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E (2026-09-08)",
+      "positionB": "Boss Damage +20% with Magic Attack +21 is presented as an equally valid bossing option; the same document reports KMS prefers Boss Damage +20% with Buff Duration +38%. This is a regional/gear-dependent split rather than a factual disagreement.",
+      "sourceB": "https://grandislibrary.com/other/kinesis (GMS v.269)"
+    },
+    {
+      "topic": "Name of the Ultimate ignore-defense hyper passive",
+      "positionA": "Ultimate - Guardbreak",
+      "sourceA": "https://maplestorywiki.net/w/Kinesis/Skills, https://grandislibrary.com/other/kinesis",
+      "positionB": "Ultimate - Overwhelm (KMS naming). Same +20% ignore defense effect.",
+      "sourceB": "https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E"
+    },
+    {
+      "topic": "Third HEXA skill core (Gravity Object)",
+      "positionA": "Added in KMS ver. 1.2.417 in July 2026.",
+      "sourceA": "https://orangemushroom.net/tag/kinesis/, https://docs.google.com/document/d/1mm0aLMLtWTNOo2VmtQazM5iO-J773Y9_kCeyO9Pmx3E",
+      "positionB": "Not present in GMS v.271 - the GMS wiki lists only two class HEXA skill cores. The class document estimates GMS arrival around November-December 2026; treat that as a projection, not a schedule.",
+      "sourceB": "https://maplestorywiki.net/w/Kinesis/Skills"
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "The vMatrix.priority ordering is asserted by no source. The class doc uses Essential/Optional tiers; Grandis Library uses Primary/Secondary/Other groups and explicitly does not rank within its Primary group. The ordered six-item array (node 2 > 3 > 4 > 5 > 6 > 1) is the file's own construction presented as sourced priority.",
+      "Placing the Psychic Force / Psychic Rise / Psychic Fall node LAST, below Mental Shock, is stated by no source. Grandis Library puts that node group in PRIMARY. The file's own conflict entry describes the doc as placing it 'alongside Mental Shock' - tied, not below. Ranking it sixth contradicts the file's own cited evidence.",
+      "NOTE - no fabricated names found. Every node and skill name verified as real: Ultimate: Pressure/Gambit/Opening/Check/Checkmate, Psychic Smash, Kinetic Combo, Psychic Nova, Psychic Shockwave, Psychic Castle, Mental Tempest/Shock/Overdrive, From Another Realm, Fractal Horizon, Sol Janus, Sol Hecate, Afterimage of the Otherworld. Breakthrough appears in the doc as 'Unleash (Breakthrough)'. Gravity Object is confirmed as the 3rd HEXA skill core in OrangeMushroom's KMS ver. 1.2.417 post (2026-07-31) and confirmed absent from GMS. Quantitative claims match the doc verbatim ('Burst 65% DPM 35%' vs 'Burst 57% DPM 43%'; '~40-45% of a full rotation BA'; '31s').",
+      "STALE: Grandis Library is labelled GMS Ver. 269, two patches behind the file's v.271 target, AND is a downstream copy of an older revision of the Kurlen doc. As the file's only corroborating voice, this means the current-patch advice is effectively single-sourced. The file honestly records that the page shows no calendar date, but still treats it as a live independent check.",
+      "STALE: maplestorywiki.net could not be reached for verification - the article, the raw wikitext endpoint and api.php all returned HTTP 403. The source entry's date '2026-08-11 (last edit reported by search index)' is therefore unverified by this review. Could-not-verify rather than confirmed stale.",
+      "STALE: Internal timeline tension worth reconciling: archetype states the remaster was 'live in GMS by v.269', while the source list dates Duky's 2026-07-11 video as marking the GMS remaster's TEST-SERVER arrival, and vMatrix.notes dates the trinode-to-boost-node conversion to 2026-06-17 - i.e. before the remaster reached test server. May be consistent if v.269 landed after July 2026, but the file never establishes v.269's date.",
+      "STALE: NO pre-HEXA advice is presented as current. This is a genuine strength: commonMistakes correctly flags the obsolete 2025-06-20 doc, names the removed skills, and explicitly kills the 'max PP first' hyper stat advice. The PP-to-MP conversion and the 'DF/TP/PP Increase' to 'DF/TF Increase' rename are both confirmed in OrangeMushroom's 2025-12-28 post. hyperStats.priority: null and vMatrix.trios: null are correct restraint."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "7 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

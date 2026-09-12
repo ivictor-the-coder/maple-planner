@@ -1,0 +1,408 @@
+{
+  "slug": "kain",
+  "className": "Kain",
+  "branch": "Nova (Archer branch)",
+  "primaryStat": "DEX",
+  "secondaryStat": "STR",
+  "weapon": "Whispershot",
+  "secondaryWeapon": "Weapon Belt",
+  "archetype": "Ranged burst DEX archer built on a Malice gauge. Malice accumulates over time and from certain attacks, and is spent to enter a Possess state that upgrades the main attacks; a separate Execute set of attacks covers the other half of the kit. Death Blessing is a mark that other skills detonate.",
+  "linkSkill": {
+    "name": "Time to Prepare",
+    "effect": "Stacking damage buff. Killing a set number of regular enemies, or landing a set number of hits on a boss, grants one stack; at full stacks the character gains a flat damage increase for a fixed duration, then the stack counter goes on cooldown. Two generations of sources disagree on the numbers - see conflicts.",
+    "levels": "Master Level 3 (levels 1-3). Per-level values were not obtained from a dated GMS source; only the maxed values are sourced."
+  },
+  "legionEffect": "Flat DEX: +10 / +20 / +40 / +80 / +100 across Legion ranks B through SSS.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost nodes for skills that also receive a HEXA Mastery Core - the PRIMARY tier: Falling Dust, Poison Needle, Strike Arrow, Scattering Shot, Chain Sickle, Tearing Knife",
+        "why": "These are the skills used most often in the live rotation and the ones whose HEXA Mastery Cores are unlocked later, so boost node levels on them keep paying off after 6th job instead of being stranded.",
+        "consensus": "moderate - one current GMS-facing source states the tiering explicitly; the underlying skill list overlaps heavily with what older guides also put in their main groupings",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain"
+        ]
+      },
+      {
+        "node": "SECONDARY tier: Shaft Break, Phantom Blade, Dragon Fang, Lasting Grudge",
+        "why": "Still used in the rotation, but without a Mastery Core tied to them at the patch the source describes.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain"
+        ]
+      },
+      {
+        "node": "LOWEST tier: Death's Blessing, Chasing Shot, Unseen Sniper, Dread Bolt",
+        "why": "Lowest return of the boostable set per the same source.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Death's Blessing / Unseen Sniper, Strike Arrow / Chasing Shot, Dragon Fang / Lasting Grudge",
+        "labelledAs": "main / all-purpose trio",
+        "consensus": "weak - single source, dated 2022-10-31, pre-HEXA",
+        "sources": [
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      },
+      {
+        "trio": "Scattering Shot, Falling Dust, Shaft Break",
+        "labelledAs": "mobbing trio",
+        "consensus": "weak - single source, dated 2022-10-31, pre-HEXA",
+        "sources": [
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      },
+      {
+        "trio": "Chain Sickle / Poison Needle, Phantom Blade / Tearing Knife, plus a utility node",
+        "labelledAs": "bossing / Execute trio",
+        "consensus": "moderate - a 2022 guide and a 2021 guide both group the Execute-side boosts (Chain Sickle/Poison Needle with Phantom Blade/Tearing Knife) together, and the same four skills sit in the current GMS-facing source's PRIMARY/SECONDARY tiers",
+        "sources": [
+          "https://gamerempire.net/maplestory-kain-class-guide/",
+          "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/",
+          "https://www.grandislibrary.com/nova/kain"
+        ]
+      },
+      {
+        "trio": "Strike Arrow, Dragon Fang, Shaft Break / Death's Blessing, Chain Sickle, Falling Dust / Phantom Blade, Scattering Shot, free slot",
+        "labelledAs": "alternative three-trio split",
+        "consensus": "weak - single source, dated 2024-06-12, and it conflicts with the other trio layouts",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-kain-skill-build"
+        ]
+      }
+    ],
+    "notes": "No source found gives a Lv.200 versus Lv.260 shift in boost node priority for Kain specifically. The three trio layouts located do not agree with each other and all predate the current patch; the tiered PRIMARY/SECONDARY/LOWEST list is the most recent framing and is the safer basis. Non-boost (special/active) V nodes named by multiple guides: Dragon Burst, Thanatos Descent, Grip of Agony, Fatal Blitz, plus the usual generic picks (Decent Sharp Eyes, Decent Speed Infusion, Erda Nova); no sourced ranking among them."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "HEXA Enhancement Cores on Kain's 5th job skills, in order: Thanatos Descent, then Dragon Burst, then Fatal Blitz, then Grip of Agony",
+        "why": "Thanatos Descent is placed first for the best return per level invested. Dragon Burst and Fatal Blitz rank lower because their role is detonating Death Blessing rather than carrying raw damage. Grip of Agony is last, described as a placed skill with less flexible application.",
+        "consensus": "weak - single source, a Korean community wiki, and the page could not be dated; also written from a KMS perspective, which runs ahead of GMS v.271",
+        "sources": [
+          "https://en.namu.wiki/w/%EC%B9%B4%EC%9D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "step": "The four skills eligible for Kain's HEXA Enhancement Cores are Dragon Burst, Fatal Blitz, Grip of Agony and Thanatos Descent",
+        "why": "Establishes which skills are even eligible, independent of the order to invest in them.",
+        "consensus": "moderate - two independent sources name the same four: a Korean wiki priority list, and a live top-character skill dump listing 'Dragon Burst Enhancement', 'Fatal Blitz Enhancement', 'Grip of Agony Enhancement' and 'Thanatos Descent Enhancement'",
+        "sources": [
+          "https://en.namu.wiki/w/%EC%B9%B4%EC%9D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://www.maplerhouse.com/classes/kaine"
+        ]
+      }
+    ],
+    "notes": "Deliberately left empty rather than guessed: the investment order across the four HEXA core categories for Kain (skill core vs mastery cores vs enhancement cores vs common cores), the Sol Erda and Sol Erda Fragment spend order, and any HEXA Stat line priority. No class-specific, dated, post-2025 source for these was located. Two regional cautions: (1) a live top-character skill list from a KMS/MSEA-leading account shows Mastery Core (VI) versions of Chain Sickle, Phantom Blade, Poison Needles, Tearing Knife, Falling Dust, Scattering Shot, Shaft Break, Strike Arrow, Sneaky Sniping, Chasing Shot, Death Blessing, Dragon Fang, Remain Incense and Pantheon, while the GMS-facing source at GMS v.269 implies only six skills had Mastery Cores unlocked - do not assume the longer list is live in GMS v.271; (2) a third HEXA skill core landed in KMS in July 2026 and may not be in GMS v.271."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No sourced priority order found, so none is given. The only directional claim located is that Kain's main damage skills gain most from Boss Damage, Ignore Defense and Damage hyper stats - a single community FAQ whose body could not be read and whose date could not be established, recorded as weak and unranked."
+  },
+  "hyperSkills": {
+    "passivePicks": [
+      {
+        "pick": "Whispershot - Reinforce",
+        "consensus": "strong - named by four independent guides including the current GMS-facing one",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://gamerempire.net/maplestory-kain-class-guide/",
+          "https://www.digitaltq.com/maplestory-kain-skill-build",
+          "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/"
+        ]
+      },
+      {
+        "pick": "Whispershot - Boss Rush",
+        "consensus": "strong - named by three independent guides",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://gamerempire.net/maplestory-kain-class-guide/",
+          "https://www.digitaltq.com/maplestory-kain-skill-build"
+        ]
+      },
+      {
+        "pick": "Whispershot - Guardbreak",
+        "consensus": "moderate - two independent guides, one of them current",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      },
+      {
+        "pick": "Execute - Reinforce",
+        "consensus": "strong - named by three independent guides",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://www.digitaltq.com/maplestory-kain-skill-build",
+          "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/"
+        ]
+      },
+      {
+        "pick": "Lasting Grudge - Reinforce",
+        "consensus": "moderate - two independent guides, one of them current",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://www.digitaltq.com/maplestory-kain-skill-build"
+        ]
+      },
+      {
+        "pick": "Execute - Guardbreak",
+        "consensus": "weak - single source, dated 2022-10-31; conflicts with the picks above because hyper skill points are limited",
+        "sources": [
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      }
+    ],
+    "situational": [
+      {
+        "note": "On bosses where being knocked out of the attack is the problem, take Execute - Enhance instead of Execute - Reinforce for the stance benefit, trading damage for uptime.",
+        "consensus": "weak - single source, dated 2021-11-25; a 2024 guide also lists Execute - Enhance among its picks without explaining why",
+        "sources": [
+          "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/",
+          "https://www.digitaltq.com/maplestory-kain-skill-build"
+        ]
+      }
+    ],
+    "activePicks": [
+      {
+        "note": "Chasing Shot, Unseen Sniper and Incarnation are named as the active hyper skill picks.",
+        "consensus": "moderate - two independent guides name the same actives",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-kain-skill-build",
+          "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/"
+        ]
+      }
+    ],
+    "notes": "The unlock levels attached to each passive (roughly 140 / 160 / 180 / 190 / 200) come from a single 2022 guide and are a game-wide hyper skill rule rather than a Kain claim, so they are not treated as Kain-specific here."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Boss Damage +20% (first line)",
+        "consensus": "moderate - two independent sources give the identical three-line set",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      },
+      {
+        "line": "Critical Rate +20% (second line)",
+        "consensus": "moderate - two independent sources",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      },
+      {
+        "line": "Damage to monsters with an abnormal status +8% (third line)",
+        "consensus": "moderate - two independent sources",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Meso Obtained or Item Drop Rate +20%, then Meso Obtained or Item Drop Rate +15%, then Damage to normal monsters +8%",
+        "consensus": "moderate - the current GMS-facing source gives this set; a second guide lists the same stats as alternatives for Reboot farming without fixing an order",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kain",
+          "https://gamerempire.net/maplestory-kain-class-guide/"
+        ]
+      }
+    ],
+    "notes": "This is the standard DEX-archer bossing set rather than anything unique to Kain. No source found argues for a Kain-specific deviation such as an attack speed line."
+  },
+  "gearingNotes": "Little that is genuinely Kain-specific was sourced. Confirmed: DEX main stat with STR secondary, Whispershot as the weapon and Weapon Belt as the secondary, so Kain competes for the same DEX gear pool as other archers. As a Nova class, Kain shares cash equipment on the account with Kaiser, Cadena and Angelic Buster. One weak, undated community claim holds that Kain's damage scales best with Boss Damage, Ignore Defense and Damage. No sourced, current guidance was found on Kain's attack speed requirement, cooldown reduction needs, Arcane or Sacred symbol ordering, or any stat breakpoint, so none is asserted.",
+  "commonMistakes": [
+    {
+      "mistake": "Agonising over 1st-4th job SP order",
+      "detail": "Kain receives enough skill points at each job advancement to max everything in that advancement, so build order changes only how levelling feels, not the finished character.",
+      "consensus": "weak - single source, dated 2022-10-31, though it is a structural fact about the SP budget rather than a balance opinion",
+      "sources": [
+        "https://gamerempire.net/maplestory-kain-class-guide/"
+      ]
+    },
+    {
+      "mistake": "Carrying pre-2023 link skill numbers into planning",
+      "detail": "Guides from 2021 and 2024 still state Time to Prepare as a 17% buff needing 17 boss hits per stack; current sources state 25% and 5 boss hits per stack. Planning a link or legion setup off the old figure undervalues the link.",
+      "consensus": "moderate - the two current sources agree with each other against the two older ones",
+      "sources": [
+        "https://www.grandislibrary.com/nova/kain",
+        "https://www.maplerhouse.com/classes/kaine",
+        "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/",
+        "https://www.digitaltq.com/maplestory-kain-skill-build"
+      ]
+    },
+    {
+      "mistake": "Reading KMS skill lists as if they are live in GMS",
+      "detail": "A KMS/MSEA-leading account shows far more Mastery Core (VI) skills than the GMS-facing source lists, and a third HEXA skill core shipped in KMS in July 2026. GMS v.271 is behind, so node plans copied from Korean sources can reference cores that do not exist yet on this server.",
+      "consensus": "moderate - inferred from the disagreement between a GMS-facing source and a live regional skill dump, plus a dated KMS patch record",
+      "sources": [
+        "https://www.grandislibrary.com/nova/kain",
+        "https://www.maplerhouse.com/classes/kaine",
+        "https://orangemushroom.net/tag/kain/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.grandislibrary.com/nova/kain",
+      "what": "GMS-facing class overview: stats, weapons, link skill, legion, boost node tiering (primary/secondary/lowest), hyper skill passive build, inner ability sets for bossing and training",
+      "dated": "Page states GMS Ver. 269 [Ride the Lightning Update]; no calendar date shown on the page",
+      "independent": true
+    },
+    {
+      "url": "https://www.maplerhouse.com/classes/kaine",
+      "what": "Live class data: per-region rank, character counts and class share (GMS row dated 2026-09-11), link skill and legion text, and a full skill list pulled from the top-ranked character of the class",
+      "dated": "2026-09-11 (GMS data row); 2026-09-12 (KMS data row)",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%B9%B4%EC%9D%B8(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "what": "Korean community wiki skill page; the only source found giving a Kain HEXA enhancement core priority order with reasoning",
+      "dated": "UNDATED - the page returned HTTP 403 to direct fetch and its content was read only through a search engine excerpt, so neither its date nor its patch context could be confirmed. KMS perspective.",
+      "independent": true
+    },
+    {
+      "url": "https://gamerempire.net/maplestory-kain-class-guide/",
+      "what": "Full class guide: boost node trios, hyper skill unlock order, inner ability, link and legion, SP budget note",
+      "dated": "2022-10-31 - pre-HEXA",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-kain-skill-build",
+      "what": "Skill build guide: an alternative set of boost node trios, hyper skill picks including actives",
+      "dated": "2024-06-12 - early HEXA era",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/",
+      "what": "Skill build guide: hyper skill picks, V matrix node groupings, link skill description, the Execute - Enhance stance swap tip",
+      "dated": "2021-11-25 - pre-HEXA, and its link skill numbers are superseded",
+      "independent": true
+    },
+    {
+      "url": "https://orangemushroom.net/tag/kain/",
+      "what": "Patch-note translation blog; its Kain tag archive shows Kain receiving skill balance changes and a third HEXA skill core in KMS through 2026, evidence the class is actively maintained and not retired",
+      "dated": "Most recent tagged post 2026-07-31 (KMS ver. 1.2.417); also 2026-07-11, 2025-11-23, 2025-11-01",
+      "independent": true
+    },
+    {
+      "url": "https://www.scribd.com/document/663255212/Kain-FAQ",
+      "what": "Community Kain FAQ document; only its summary blurb was readable, giving the weak claim that Kain benefits most from Boss Damage, Ignore Defense and Damage, and that Dragon Scale and Thanatos provide invincibility frames",
+      "dated": "UNDATED - document body not accessible",
+      "independent": true
+    },
+    {
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/67511/kain",
+      "what": "Official Nexon class page for Kain, live at the time of checking; the page body is script-rendered and could not be parsed, so it is used only as existence evidence",
+      "dated": "UNDATED",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Time to Prepare link skill magnitude and stack condition",
+      "positionA": "5 stacks give +25% damage for 20 seconds; one stack per 8 regular enemies killed or 5 boss hits; 40 second cooldown",
+      "sourcesA": [
+        "https://www.grandislibrary.com/nova/kain",
+        "https://www.maplerhouse.com/classes/kaine"
+      ],
+      "positionB": "+17% damage for 20 seconds at max, one stack per 8 enemies or 17 boss hits; 40 second cooldown",
+      "sourcesB": [
+        "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/",
+        "https://www.digitaltq.com/maplestory-kain-skill-build"
+      ],
+      "note": "Not resolved here by preference. Recorded fact: the two sources giving the higher figure are the two most recent (one carrying a 2026-09-11 data date); the two giving the lower figure are dated 2021-11-25 and 2024-06-12."
+    },
+    {
+      "topic": "V Matrix boost node trio composition",
+      "positionA": "Death's Blessing/Unseen Sniper + Strike Arrow/Chasing Shot + Dragon Fang/Lasting Grudge as the main trio; Scattering Shot + Falling Dust + Shaft Break for mobbing; Chain Sickle/Poison Needle + Phantom Blade/Tearing Knife for bossing",
+      "sourcesA": [
+        "https://gamerempire.net/maplestory-kain-class-guide/"
+      ],
+      "positionB": "Strike Arrow + Dragon Fang + Shaft Break; Death's Blessing + Chain Sickle + Falling Dust; Phantom Blade + Scattering Shot + free slot",
+      "sourcesB": [
+        "https://www.digitaltq.com/maplestory-kain-skill-build"
+      ],
+      "positionC": "No trios at all; instead a tiering where Falling Dust, Poison Needle, Strike Arrow, Scattering Shot, Chain Sickle and Tearing Knife are primary, Shaft Break, Phantom Blade, Dragon Fang and Lasting Grudge are secondary, and Death's Blessing, Chasing Shot, Unseen Sniper and Dread Bolt are lowest",
+      "sourcesC": [
+        "https://www.grandislibrary.com/nova/kain"
+      ],
+      "note": "Position C demotes Death's Blessing and Chasing Shot, which position A puts in its main trio. All three disagree; only C is framed against a recent patch."
+    },
+    {
+      "topic": "How many Kain skills have HEXA Mastery Cores",
+      "positionA": "Six skills (Falling Dust, Poison Needle, Strike Arrow, Scattering Shot, Chain Sickle, Tearing Knife), implied by the GMS v.269 boost node tiering",
+      "sourcesA": [
+        "https://www.grandislibrary.com/nova/kain"
+      ],
+      "positionB": "Fourteen skills show VI (Mastery Core) versions on a live top-ranked character",
+      "sourcesB": [
+        "https://www.maplerhouse.com/classes/kaine"
+      ],
+      "note": "Most likely a regional and patch gap rather than a factual dispute - the character in position B plays on a server ahead of GMS - but it is not resolved here, and a GMS v.271 player should verify in game before planning around the longer list."
+    },
+    {
+      "topic": "Execute hyper skill passive choice",
+      "positionA": "Execute - Reinforce",
+      "sourcesA": [
+        "https://www.grandislibrary.com/nova/kain",
+        "https://www.digitaltq.com/maplestory-kain-skill-build",
+        "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/"
+      ],
+      "positionB": "Execute - Guardbreak",
+      "sourcesB": [
+        "https://gamerempire.net/maplestory-kain-class-guide/"
+      ],
+      "positionC": "Execute - Enhance, specifically on bosses where stance matters more than the damage",
+      "sourcesC": [
+        "https://thedigitalcrowns.com/kain-best-skill-build-maplestory/",
+        "https://www.digitaltq.com/maplestory-kain-skill-build"
+      ],
+      "note": "Positions A and C come partly from the same source and are presented there as a situational swap rather than a disagreement."
+    }
+  ],
+  "notFound": [
+    "Hyper stat priority order for Kain - no source found",
+    "HEXA investment order across skill core, mastery, enhancement and common core categories - no source found",
+    "HEXA Stat line priority - no source found",
+    "How V Matrix priority shifts between Lv.200 and Lv.260 - no source found",
+    "Kain-specific attack speed, cooldown reduction or stat breakpoints - no source found",
+    "Kain's 6th job skill core name as it exists in GMS v.271 - not confirmed from a GMS source; a live regional skill dump lists names including Annihilation, Pantheon, Sol Janus and Sol Hecate, but these could not be attributed to GMS v.271 and are deliberately not asserted"
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "hexa.order step 1: the four-way order 'Thanatos Descent, then Dragon Burst, then Fatal Blitz, then Grip of Agony' plus its per-skill reasoning is not stated by the cited source. namu.wiki's reinforced-core section (10.2) carries exactly ONE priority remark, under Fatal Blitz: Death Blessing matters more than Fatal Blitz itself, so enhancing it is low priority. The Dragon Burst, Thanatos Descent and Grip of Agony entries contain no ranking prose at all - no 'best return per level', no 'placed skill with less flexible application'. A full ranking was constructed from one negative remark about one skill. This is the file's only HEXA ordering content.",
+      "The 14-skill Mastery Core (VI) list in hexa.notes is attributed to maplerhouse.com/classes/kaine as 'a live top-character skill dump'. That page's guide modules - Overview, HEXA Priority, Skill Sequence, Burst Rotation, Culvert - all read 'No guide yet', and its Skill module offers KMS/TMS/MSEA tabs. The list's machine-translated names ('Remain Incense', 'Sneaky Sniping', 'Pantheon') are verbatim namu.wiki section headings. The list came from namu, not maplerhouse - so both the 'two independent sources' in hexa.order and the Grandis-vs-maplerhouse conflict collapse to one source.",
+      "The count of fourteen is itself inflated by untranslated aliases: 'Remain Incense' is the machine translation of Lasting Grudge and 'Sneaky Sniping' of Unseen Sniper (both already on the list under their GMS names), and 'Pantheon VI' is listed on namu under 10.4 common core as Nova Common - not a Kain mastery core at all. maplestorywiki gives roughly 13 Kain mastery-core skill families.",
+      "sources[].dated for maplerhouse claims '2026-09-11 (GMS data row); 2026-09-12 (KMS data row)'. 2026-09-12 is tomorrow. Neither date could be reproduced on the page.",
+      "notFound says Kain's 6th job skill core name is 'not confirmed from a GMS source'. Grandis Library - the file's own source - lists 6th Job: Total Annihilation, and maplestorywiki lists both class-specific cores: Total Annihilation (Origin) and [Possess/Execute] Churning Malice (Ascent). The name was in hand and was withheld.",
+      "conflicts[1] positionC describes Grandis as giving 'No trios at all; instead a tiering'. Grandis presents explicit Node 1 through Node 6 groupings; the flat three-tier list is the researcher's reshaping of the source, not what it says.",
+      "STALE: digitaltq is dated '2024-06-12 - early HEXA era'. Its own changelog's last entry is 21/06/2021 (Skill Icon Update), it contains zero HEXA or 6th-job content, and its first trio (Strike Arrow, Dragon Fang, Shaft Break) is identical to thedigitalcrowns (2021-11-25). It is 2021-era content with a 2024 publish stamp, and it is not independent of thedigitalcrowns.",
+      "STALE: hexa.notes and commonMistakes[2] warn the reader 'do not assume the longer list is live in GMS v.271' and frame the long Mastery Core list as a KMS-ahead artifact. This is backwards: maplestorywiki.net/w/Kain/Skills, updated 2026-08-11, confirms the long list in GMS. A reader following this warning would under-invest in boost nodes for Shaft Break, Phantom Blade, Dragon Fang, Lasting Grudge, Death's Blessing, Chasing Shot and Unseen Sniper.",
+      "STALE: Three of the six content-bearing sources (gamerempire 2022-10-31, thedigitalcrowns 2021-11-25, digitaltq 2021/2024) contain no HEXA content whatsoever, yet they supply every trio layout and most hyper picks. All three also share the same bossing pairing wording (Chain Sickle/Poison Needle + Phantom Blade/Tearing Knife), pointing to a common ancestor rather than three readings.",
+      "STALE: maplestorywiki.net - named in the project brief as a good source - is absent from the file entirely. Its Kain/Skills page (updated 2026-08-11) is the most recent datable source available and resolves the mastery-core count, both 6th-job skill core names, the full hyper-skill list, and the link-skill per-level values, three of which the file logs as notFound or unresolved conflicts.",
+      "STALE: namu.wiki is recorded as UNDATED and 403 with only a search-engine excerpt read. The page loads fine in a browser (the 403 is user-agent filtering on direct fetch). The researcher built the file's only HEXA ordering claim on a snippet of a page they could have read in full.",
+      "STALE: consensusLevel 'moderate' is not supportable once nexon and scribd are removed as non-contributing, digitaltq is folded into thedigitalcrowns, and maplerhouse's skill list is reattributed to namu. The realistic base is four content-bearing sources, three of them pre-HEXA."
+    ],
+    "clearedOnInspection": [
+      "No fabricated names found, for the record: Falling Dust, Poison Needle, Strike Arrow, Scattering Shot, Chain Sickle, Tearing Knife, Shaft Break, Phantom Blade, Dragon Fang, Lasting Grudge, Death's Blessing, Chasing Shot, Unseen Sniper, Dread Bolt, Dragon Burst, Thanatos Descent, Grip of Agony, Fatal Blitz, Incarnation, Whispershot and the Reinforce/Boss Rush/Guardbreak/Enhance hyper passives all exist on maplestorywiki.net/w/Kain/Skills."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "12 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

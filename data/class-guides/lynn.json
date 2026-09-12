@@ -1,0 +1,420 @@
+{
+  "slug": "lynn",
+  "className": "Lynn",
+  "branch": "Jianghu",
+  "primaryStat": "INT",
+  "secondaryStat": "LUK",
+  "weapon": "Memorial Staff",
+  "secondaryWeapon": "Leaf or Shield (endgame pick is the Deimos Sage Shield)",
+  "archetype": "Magician-job Jianghu class. Two-minute burst cycle with an unusually flat damage curve: several toggles and summons keep damage flowing while the player is dodging, so uptime is high even on mechanic-heavy fights. Doubles as a party support - it hands one chosen ally a large Final Damage buff, heals, shields, cleanses and can teleport the party. Community doc describes the burst/sustained split as roughly 60/40.",
+  "linkSkill": {
+    "name": "Spirit Guide Blessing",
+    "effect": "Passive. At max level: Boss Damage +11%, Critical Rate +10%, Max HP +5%, Max MP +5%. Shared with Beast Tamer, which Lynn replaced.",
+    "levels": 3
+  },
+  "legionEffect": "Ignore Enemy DEF +1/2/3/5/6% by Legion rank.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Strike",
+        "why": "Core repeating attack and the backbone of sustained damage. Also the gate for the first HEXA mastery node, which needs this boost node at Lv.40 before Matrix Points.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Peck",
+        "why": "Toggled bird attack with near-permanent uptime; gates the third HEXA mastery node.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Sneak Attack",
+        "why": "Toggle that fires off Strike and Peck hits, so it scales with the whole rotation; shares the second HEXA mastery node with Predator's Blow / Raid.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Predator's Blow and Raid",
+        "why": "Fourth node that unlocks a HEXA mastery. Predator's Blow also supplies a boss debuff kept up permanently, and Raid is fired roughly every 30 seconds in the standard loop. This is the fourth node a boss mule should take before anything else.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "node": "Earth Pulverization and Roar",
+        "why": "Does not unlock any HEXA mastery, so it ranks below the four above. Still worth taking on a main - Earth Pulverization is the skill that keeps the mobbing loop alive.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Sweep and Whirlwind",
+        "why": "Does not unlock a HEXA mastery; lowest of the six but still used, so a main eventually wants it.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "name": "Primary trio",
+        "nodes": [
+          "Strike",
+          "Peck",
+          "Sneak Attack"
+        ],
+        "why": "The three most-used attacks and the ones that gate HEXA masteries 1-3.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "name": "Secondary trio",
+        "nodes": [
+          "Earth Pulverization and Roar",
+          "Sweep and Whirlwind",
+          "Predator's Blow and Raid"
+        ],
+        "why": "Second set of three. Of these only Predator's Blow / Raid unlocks a HEXA mastery, so it is pulled forward ahead of the other two.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "notes": "Lynn has exactly six boost nodes. A main wants all six; a boss mule or Legion character can stop at four - Strike, Peck, Sneak Attack, and Predator's Blow / Raid - which are precisely the four that unlock HEXA masteries. Grandis Library states four boost nodes total are needed to carry those skills to Master Level 60 once Matrix Points are spent, and that two nodes sharing the same lead skill cannot be equipped together. Node pairings were reshuffled in GMS v.269; Grandis Library keeps a separate pre-v.269 node view, so any node advice dated before that patch should be re-checked. V skill (non-boost) priority is sourced from one guide only and is therefore weak: Beak Strike, then [Focus] Awaken, then Beast's Rage, then Maple World Goddess's Blessing with Mana Overload, then Power of Destiny, then Nature's Grace; Erda Nova, Blink and Rope Lift are listed as recommended afterwards, with Erda Nova wanted mainly so its cooldown lines up with the two-minute burst."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Unlock gate: each HEXA mastery node requires its matching V boost node at Lv.40 or higher, counting only real levels - the +5 from Matrix Points does not count.",
+        "why": "Hard requirement, not a preference. It is the reason the four mastery-gating boost nodes outrank the other two in the V Matrix.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "step": "Mastery node 1 - HEXA Strike. Gated by the Strike boost node.",
+        "why": "Upgrades the main repeating attack; damage at max HEXA rises from 315% to 485% and the hitbox widens.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "step": "Mastery node 2 - HEXA Sneak Attack and HEXA Raid. Gated by the Sneak Attack and Predator's Blow / Raid boost nodes.",
+        "why": "One node upgrades two skills: Sneak Attack from 680% to 1280% and Raid from 1780% to 2880% at max HEXA.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "step": "Mastery node 3 - HEXA Peck. Gated by the Peck boost node.",
+        "why": "Peck damage rises from 660% to 1600% at max HEXA.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "step": "Mastery node 4 - HEXA [Focus] Heal, HEXA [Focus] Forest Protection, HEXA Mother Nature's Touch. No V Matrix prerequisite.",
+        "why": "Pure utility rather than damage: heal duration 40s to 70s, Forest Protection damage reduction 30% to 35% with its cooldown cut from 300s to 240s, and Mother Nature's Touch gaining up to 10% damage reduction. Because it has no gate it can be started at any time, but it buys survivability and party value, not DPM.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "step": "HEXA stat priority: Magic ATT first, then INT, then Critical Damage.",
+        "why": "Single-guide claim, so treat as weak. The same guide adds a caveat: pushing INT ahead of the default order can be right when it crosses an [Focus] Awaken threshold.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      }
+    ],
+    "notes": "The skill core is Source Flow, Lynn's Origin (Lv.10 bind, 10s, 360s cooldown, invincible while casting). The community guide is blunt that Lynn's Origin is weak, and weaker still since the v.262 removal of the 'bird cancel' trick: Beak Strike stops attacking during the Origin cutscene, so casting Origin inside [Focus] Awaken is a net damage loss when soloing - the guide casts it after Awaken ends instead. HEXA: Ring of Samsara is called out as a meaningful quality-of-life core: it grants all four Power of Destiny buffs at once and removes the daily buff-selection step. NOT EXTRACTED: the precise numeric HEXA levelling order. The only guide that publishes one presents it as an image chart, credits it to a third party, and states plainly that the data is from TMS and has not been adjusted for GMS. Rather than invent an order, it is left out - re-derive it from a GMS-specific simulator before trusting any ordering."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "NO SOURCE FOUND. None of the sources consulted publishes a Lynn-specific Hyper Stat allocation order. Left empty deliberately rather than copying a generic template."
+  },
+  "hyperSkills": {
+    "priority": [
+      {
+        "skill": "Strike - Reinforce",
+        "why": "Strike is the highest-frequency attack, so flat reinforcement on it is the largest single gain.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "skill": "Strike - Extra Strike",
+        "why": "Adds another hit to the same highest-frequency attack.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "skill": "Peck - Reinforce",
+        "why": "Peck runs as a near-permanent toggle, so its reinforcement applies almost all the time.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "skill": "Sneak Attack - Reinforce",
+        "why": "Sneak Attack triggers off Strike and Peck, so it inherits their frequency.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "skill": "Sneak Attack - Extra Strike",
+        "why": "Same reasoning as the Reinforce line; both guides list the pair together.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      }
+    ],
+    "notes": "Both sources list exactly the same five passive picks with no ordering between them, so read this as a set rather than a sequence. The two sources share contributors, so consensus is capped at moderate. No source consulted gave a recommendation for the active (level 140/160/180) hyper skill tier beyond Raid being part of a boost node pair and an in-rotation skill."
+  },
+  "innerAbility": {
+    "lines": [
+      {
+        "line": "Line 1: Passive Skills +1 Level",
+        "why": "Raises Guardian's Signet, which is a Final Damage passive applying to Lynn's whole kit, plus Forest Power IV, [Focus] Heal Boost and Commune. The community guide tested it against Attack Speed +1 at max HEXA and found Passive Skills +1 ahead by roughly 2.8 Final Damage, and argues the real-fight gap is larger because Attack Speed +1 only touches Strike.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "line": "Line 2: Boss Damage +10%",
+        "why": "Standard bossing second line; both sources list it.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      },
+      {
+        "line": "Line 3: Buff Duration +38%, or Damage to monsters with an Abnormal Status +8%",
+        "why": "The v.263 changes pushed Buff Duration to best-in-slot in the community guide's reading: Awaken moved to a 120s cooldown and Origin is now cast after Awaken, so Lynn wants an Angelic Buster link buff lasting at least 27 seconds, which 38% Buff Duration provides. The guide gives a concrete stack that reaches 170% buff duration: Passive Skills +1 and 38% Buff Duration inner ability, a 20% Legion artifact, a Lv.250 Mechanic Legion block, and 22 Legion blocks in buff duration.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/jianghu/lynn",
+          "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+        ]
+      }
+    ],
+    "notes": "Consensus marked weak throughout: Grandis Library credits its Lynn inner ability, hyper passive and boost node recommendations to the Lynn class Discord, and the community guide is maintained by a member of that same Discord. Two pages, one underlying source. The guide itself flags the post-v.263 buff duration conclusion as still under testing and says the difference may be small enough that a permanent Ring of Restraint 5 is good enough."
+  },
+  "gearingNotes": "Critical Rate is the one hard target that changes how a Lynn gears versus other magicians. Lynn's own kit plus her link skill already supplies 85% visual Critical Rate - 5% universal base, 20% from Spirit Guide Unity: Penni, 50% from Spirit Guide Unity: Paeon, 10% from the Spirit Guide Blessing link - and the guide wants 100% visual. The remaining 15% is expected to come from Decent Sharp Eyes plus Night Lord and Marksman Legion blocks. The practical consequence: Lynn does not need Phantom's link skill, which is otherwise a near-universal magician pick, and that frees a link slot.\n\nIgnore Enemy DEF: Lynn brings 10% from Spirit Guide Unity: Pan, 30% from Nature's Providence (100% uptime), and 30% from HEXA: Ring of Samsara. The guide's visual IED targets are 90%+ minimum, 93%+ for Arcane-era bosses at 300% PDR, and 95%+ for Grandis bosses at 380% PDR. Luminous's link skill is named as the fallback if a character is short on IED.\n\nINT is worth more than the usual stat-stick reasoning suggests because [Focus] Awaken scales with it: the buff handed to the focal target grows by 1% Final Damage per 2000 INT, and the guide states 90k INT caps it once HEXA Awaken is maxed. Explorer Pirate link skill is listed specifically as a way to cross an INT breakpoint. HEXA stat priority is given as Magic ATT, then INT, then Critical Damage, with the same INT-breakpoint caveat.\n\nStats and gear that do NOT help, per the class guide, each of which is a real money-saver: a cooldown-reduction hat is not wanted (it affects Raid and Roar, but not enough of the burst to justify losing INT); summon duration does nothing for any Lynn skill, Earth Pulverization included; and +1 All Skill Levels familiar lines do nothing - a trap inherited from Beast Tamer, which did benefit.\n\nSecondary weapon: the endgame craft is the Deimos Sage Shield. Rings: the guide runs Ring of Restraint 4 plus Continuous Ring 4, or level 5/6 versions where available. It also notes that weapon-jump and totalling ring effects do not snapshot into Awaken - they apply dynamically - so their timing relative to Awaken does not matter for Lynn, only relative to the party member being buffed.\n\nMobbing and Legion context: the guide reports comfortable rates around 14-15k mobs per hour on 9 Primal Crystals with Sol Janus: Dusk, with a very light rotation - refresh Earth Pulverization every 30s and Erda Fountain every 60s - and notes its farming rotations were built for Reboot servers without Frenzy Totem, which is direct evidence Lynn is played in Heroic/Reboot. It rates Lynn highly as a boss mule and Legion character, singling out solo Black Mage and Hard Seren because her self-healing works through Black Mage's potion lock and her toggles hold damage uptime while dodging.",
+  "commonMistakes": [
+    {
+      "mistake": "Casting Origin (Source Flow) during [Focus] Awaken when soloing.",
+      "why": "Beak Strike stops attacking for the whole Origin cutscene, so the Origin is a net damage loss inside Awaken. The class guide casts it after Awaken ends. The 'bird cancel' trick that used to work around this was removed in GMS v.262.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "mistake": "Picking the wrong Power of Destiny buff from the Ring of Samsara prompt.",
+      "why": "The choice locks until the in-game daily reset. The guide says Power of Destiny: Might is the only option ever wanted. Note this is obsolete once HEXA: Ring of Samsara is unlocked, which grants all four at once and removes the prompt.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "mistake": "Starting a burst without the setup layer active.",
+      "why": "The guide's pre-burst checklist is: Predator's Blow debuff applied to the boss, and Peck, Sneak Attack and Mana Overload all toggled on. These are passive-feeling toggles that are easy to forget after a death or a map change, and Lynn's damage model leans on them.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "mistake": "Rolling Attack Speed +1 inner ability instead of Passive Skills +1.",
+      "why": "Attack Speed +1 only affects Strike; Passive Skills +1 raises Guardian's Signet, a Final Damage passive that applies across the kit. The guide measured roughly 2.8 Final Damage in favour of Passive Skills +1 at max HEXA.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "mistake": "Buying a cooldown-reduction hat, chasing summon duration, or rolling +1 All Skill Levels familiar lines.",
+      "why": "All three are explicitly dead stats for Lynn per the class guide. The familiar line is a specific carryover misconception from Beast Tamer, the class Lynn replaced.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "mistake": "Leaving Peck toggled on when entering Seren's loot room.",
+      "why": "Known bug - Beak Strike will attack the loot box. Turn Peck off first.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "mistake": "Levelling the two non-mastery boost nodes before the four that gate HEXA.",
+      "why": "Earth Pulverization / Roar and Sweep / Whirlwind unlock no HEXA mastery. A mastery node cannot be touched until its boost node reaches Lv.40 excluding Matrix Points, so those four come first - and are the whole node set a boss mule needs.",
+      "sources": [
+        "https://grandislibrary.com/jianghu/lynn",
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "mistake": "Reassigning [Focus] Awaken to a different party member partway through its duration and expecting the buff to follow.",
+      "why": "It does not transfer. The guide also notes Awaken and Purification buffs are lost on death, including when the focal target dies.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/jianghu/lynn",
+      "what": "Grandis Library class page for Lynn. Class properties, stat table, link skill, legion effect, SP build path, recommended hyper passives, all six boost nodes with primary/secondary classification, full HEXA mastery and skill core listings, recommended inner ability. Page footer states it is current to GMS Ver. 269 (Ride the Lightning) and credits the inner ability, hyper passive and boost node recommendations to the Lynn Discord; its infographics are credited to Nanabelle and the Lynn Discord.",
+      "dated": "2026-06-04 (infographic date on page); page states currency to GMS v.269",
+      "independent": false
+    },
+    {
+      "url": "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg",
+      "what": "'Forest Child: A Comprehensive Lynn Guide' version 1.4, maintained by CocoKatze. GMS-specific. Source of nearly all judgement content here: boost node set and boss-mule subset, V skill priority, inner ability reasoning with a measured comparison against Attack Speed +1, hyper passive picks, HEXA stat priority, crit rate and IED breakdowns and targets, ring choices, burst rotation, mobbing rotation, dead stats, known bugs, and a dated patch changelog.",
+      "dated": "Header states 'Updated for: GMS v268 Maple University 21st Anniversary'; changelog entries run through GMS v263 (2025-10-03)",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Lynn",
+      "what": "Independent community wiki. Primary evidence for existence and GMS release: states Lynn is a Jianghu Magician released in the GMS v.250 Mayple Island update, cites Nexon's own patch notes for that, and records that Beast Tamer characters were converted to Lynn in CMS, TMS, GMS and JMS. Also corroborates faction, job, INT/LUK, Memorial Staff, Shield or Leaf, Spirit Guide Blessing, and the +1/2/3/5/6% Ignore DEF legion effect.",
+      "dated": "Page last edited 2026-08-03",
+      "independent": true
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "'MapleStory Node Trio Reference' by mastermysty. Independent corroboration of Lynn's trio composition - main damage trio Strike / Peck / Sneak Attack, second trio Earth Pulverization / Sweep / Predator's Blow.",
+      "dated": "2024-11-21 (stated last update). PRE-2025 - flagged; node pairings were reshuffled in GMS v.269, so this source's pairing data may be stale even though the trio composition still matches.",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-lynn-skill-build-guide/",
+      "what": "Independent long-running guide site. Used only to corroborate that Lynn exists as a Jianghu Magician replacing Beast Tamer outside Korea. Contains no V Matrix, HEXA, hyper stat or inner ability guidance.",
+      "dated": "2024-09-18. PRE-2025 - not relied on for any priority or build claim.",
+      "independent": true
+    },
+    {
+      "url": "https://www.maplerhouse.com/classes/lynn",
+      "what": "Mapler House class guide page. Checked and then set aside: its own 'References and thanks' block states it cross-checks Grandis Library and MapleStory Wiki, so it is derivative and was not counted as an independent source or cited for any claim.",
+      "dated": "Site copyright 2026; no per-page date exposed",
+      "independent": false
+    },
+    {
+      "url": "https://www.nexon.com/maplestory/news/update/17123/updated-5-1-v-250-mayple-island-patch-notes",
+      "what": "Official Nexon v.250 Mayple Island patch notes, which introduced Lynn. Cited here at second hand: maplestorywiki.net references this URL with an anchor to its 'New Job: Lynn' section. The page itself could not be read directly - nexon.com serves a JavaScript shell that returns no article text to a plain fetch.",
+      "dated": "v.250, GMS, 2025 (page slug indicates a 5/1 update)",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Independence of the two richest sources",
+      "positionA": "Grandis Library and the 'Forest Child' Google Doc look like two sources.",
+      "positionB": "They are one lineage. Grandis Library credits its Lynn inner ability, hyper passive and boost node recommendations to the Lynn Discord, and the Google Doc is maintained by CocoKatze with Nanabelle credited - Nanabelle also being the credited author of Grandis Library's Lynn overview infographic. Every judgement claim resting on both should be read as resting on one community.",
+      "resolution": "Not resolved in favour of either. Recorded, and consensus on jointly-sourced claims capped at moderate; where only the Doc carries a claim it is marked weak.",
+      "sources": [
+        "https://grandislibrary.com/jianghu/lynn",
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "topic": "Recency of the independent node source",
+      "positionA": "mystyjl's node reference gives the same two trios as the current guides, which reads as independent confirmation.",
+      "positionB": "That reference states a last update of 2024-11-21, and Grandis Library maintains a separate 'Pre-V.269 Boost Nodes' view, meaning node pairings changed in GMS v.269. The trio composition matches; the pairings from the older source cannot be assumed current.",
+      "resolution": "Both recorded. The trio claim is treated as corroborated; nothing about specific pairings is taken from the 2024 source.",
+      "sources": [
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://grandislibrary.com/jianghu/lynn"
+      ]
+    },
+    {
+      "topic": "Best third inner ability line after the v.263 changes",
+      "positionA": "38% Buff Duration is best-in-slot, because Awaken moved to a 120s cooldown and Origin is now used after Awaken, so the Angelic Buster link buff needs to last at least 27 seconds.",
+      "positionB": "The same guide immediately qualifies it: the conclusion is still being tested and the difference may be small enough that running a permanent Ring of Restraint 5 is good enough, which would leave 8% Abnormal Status Damage viable.",
+      "resolution": "Both positions are from the same document and are left standing side by side. No independent source was found that tests either.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    },
+    {
+      "topic": "HEXA levelling order",
+      "positionA": "A levelling order chart exists and is circulated in the community.",
+      "positionB": "The one guide that carries it publishes it as an image, credits it to a third party, and states the data is from TMS and not adjusted for GMS.",
+      "resolution": "No order is asserted in this file. Writing an unverified TMS-derived sequence as GMS guidance would be a defect; the gap is recorded instead.",
+      "sources": [
+        "https://docs.google.com/document/d/1jklP4eFm2ZL7UldT-NrmzGNwQekJOfRH54EAAlBWDUg"
+      ]
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "existenceNote": "CONFIRMED LIVE IN GMS. Lynn is a Jianghu-branch Magician introduced to GMS in the v.250 Mayple Island update, at which point existing Beast Tamer characters were converted to Lynn. Grandis Library's class page is maintained current to GMS v.269 (Ride the Lightning), the class Google Doc is updated for GMS v268, and the MapleStory Wiki page was last edited 2026-08-03 - none records any removal or suspension. No source consulted restricts Lynn from Heroic/Reboot worlds, and the class guide's own mobbing section states its farming rotations were built for Reboot servers without Frenzy Totem, which is positive evidence she is played there. Direct confirmation against a v.271 patch note was not obtained: nexon.com serves a JavaScript shell that returns no article text to a plain fetch, and this session's web-search budget was exhausted before the class was researched. The v.271 currency claim therefore rests on absence of any removal notice plus active v.268/v.269 maintenance, not on a read of the v.271 notes.",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "Unverifiable attribution: 'Nanabelle'. sources[] and conflicts[] both credit Grandis Library's Lynn infographic to Nanabelle and use that overlap as part of the argument that Grandis and the Doc are one lineage. The name does not appear anywhere I could retrieve from the page; the Credits section lists only 'Skill Icons + Animations: Ikasuu' and 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Lynn Discord'. The lineage conclusion survives on the explicit Lynn Discord credit plus the Class Doc link in Other Resources, but this specific supporting detail should be dropped.",
+      "Unverifiable date: '2026-06-04 (infographic date on page)' given as the Grandis Library source date. No date appears on the infographics in what I could retrieve; the only version marker on the page is the footer 'GMS Ver. 269 [Ride the Lightning Update]'. Since this is the file's freshest evidence for its most-used source, it needs re-checking or replacing with the v.269 footer.",
+      "Naming mismatch worth checking before publishing: the file's commonMistakes frames the daily buff choice as 'the Ring of Samsara prompt', while Grandis lists the four selectable modes (Might, Perceive, Boon, Journey) under the V skill Power of Destiny. The Doc uses 'Power of Destiny/Ring of Samsara' interchangeably, so this is probably a naming variant rather than an error - but the file states it one way with no hedge.",
+      "STALE: No pre-HEXA advice presented as current - the specific defect being hunted is absent. All judgement content traces to post-6th-job material (Doc changelog v262/v263, updated for v268; Grandis at v269).",
+      "STALE: mystyjl (last update 2024-11-21) is counted toward consensus 'strong' on three vMatrix.priority entries and one trio entry, while the file simultaneously records that node pairings were reshuffled in GMS v.269 (confirmed - Grandis keeps a 'View Pre-V.269 Boost Nodes' view). The file flags the source but still spends its weight. It also has no sourcing transparency of its own: single author, no credits, no region stated, no per-class dates, only a site-wide date - so its independence from the Lynn Discord is assumed, not shown.",
+      "STALE: The Doc's substance is older than the file implies. Its header says v268 but its changelog stops at GMS v263 (2025-10-03) - roughly 11 months and 8 patches behind the file's v.271 stamp. The v.263-dependent conclusions (Awaken on a 120s cooldown, Origin cast after Awaken, 38% Buff Duration as BiS, the 27s Angelic Buster window) are the ones most exposed, and the Doc itself calls that conclusion still under testing.",
+      "STALE: Nothing consulted covers v.270 or v.271. patchVersion 'v.271' and lastVerified '2026-09-11' sit on top of a source set that tops out at v.269 (Grandis) and v.268/v.263 (Doc). existenceNote is honest about this; the top-level fields are not."
+    ],
+    "clearedOnInspection": [
+      "No fabricated game content found. Every node name, skill name, number and priority order I could test matched a real source exactly. Verified on Grandis Library: the six boost nodes (Strike; Peck; Sneak Attack; Earth Pulverization and Roar; Sweep and Whirlwind; Predator's Blow and Raid), Memorial Staff, Leaf or Shield, INT/LUK, Spirit Guide Blessing (Boss Damage 11% / Crit Rate 10% / Max HP 5% / Max MP 5%, Master Level 3), Ignore DEF +1/2/3/5/6%, the three inner ability lines, the five hyper passives, Source Flow as the 6th-job skill with 10s duration and 360s cooldown, and the existence of a 'View Pre-V.269 Boost Nodes' section. Verified in the Doc (title 'Forest Child: A Comprehensive Lynn Guide' v1.4, CocoKatze, updated for GMS v268, changelog to v263 03 Oct 2025): the 60/40 burst/dpm split, 'Level 40 excluding Matrix Point Levels (the +5 doesn't count)', Strike 315->485, Sneak Attack 680->1280, Raid 1780->2880, Peck 660->1600, HEXA: Ring of Samsara granting all four Power of Destiny buffs, MATT > INT > Crit Damage, crit sources 5/20/50/10 to an 85% total against a 100% target, IED 10/30/30 with 90/93/95% targets, Ring of Restraint 4 + Continuous Ring 4, Deimos Sage Shield, the dead-stat list, 'Passive Skills +1 gives around 2.8 fd over Attack Speed +1', 1% FD per 2000 INT and the 90k INT cap, 14-15k mobs/hour on 9 Primal Crystals with Sol Janus: Dusk, the Seren loot-room Peck bug, the Origin-during-Awaken DPS loss, the full V-skill priority list, and the TMS-sourced levelling chart credited to 'Toolz'. Verified on mystyjl: 'Strike, Peck, Sneak Attack' and 'Earth Pulverization, Sweep, Predator's Blow', last update November 21st 2024."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "7 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

@@ -1,0 +1,594 @@
+{
+  "slug": "xenon",
+  "className": "Xenon",
+  "branch": "Resistance",
+  "primaryStat": "STR, DEX and LUK simultaneously - all three are main stats and all three scale damage",
+  "secondaryStat": null,
+  "weapon": "Whip Blade",
+  "secondaryWeapon": "Core Controller",
+  "archetype": "Burst-weighted hybrid DPS. The class doc states the damage split is roughly 60/40 burst to DPM, with most burst damage landing inside about 15 seconds.",
+  "linkSkill": {
+    "name": "Hybrid Logic",
+    "effect": "All Stats +5% at Lv1, +15% at Lv3",
+    "levels": 3
+  },
+  "legionEffect": "Flat STR, DEX and LUK: +5 / +10 / +20 / +40 / +50 by legion rank",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Hypogram Field: Fusion and Omega Blaster (treated as equal first priority)",
+        "why": "Top of the class doc's node leveling list for hyperburns and Lv260+ mains.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://en.namu.wiki/w/%EC%A0%9C%EB%85%BC(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Photon Ray",
+        "why": "Third in the class doc list; NamuWiki's KMS page independently places it third in skill-core enhancement order.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://en.namu.wiki/w/%EC%A0%9C%EB%85%BC(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Core Overload",
+        "why": "Class doc places it fourth for Lv260+ mains. NamuWiki's KMS page puts it last of the four class skill cores, reasoning that levelling it only raises plasma-current damage and does not change the extra energy charge or duration.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://en.namu.wiki/w/%EC%A0%9C%EB%85%BC(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Last Resort",
+        "why": "Fifth in the class doc's Lv260+ list. The doc's separate list for mules that will not reach Lv260 moves Last Resort to second, ahead of Photon Ray, and pushes Core Overload far down.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "node": "Boost nodes (the four priority trios)",
+        "why": "Class doc places boost nodes after the class skill cores, because the four priority boost nodes are what gate unlocking the 6th job Mastery Cores.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "node": "Maple World Goddess's Blessing, then Overdrive, then Resistance Infantry, then Decent Holy Symbol",
+        "why": "Remainder of the class doc's Lv260+ list. The doc says Decent Holy Symbol's position is a judgement call and should move up for players who value EXP and drop rate.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "node": "Everything else, in the class doc's stated order: True Arachnid Reflection and Solar Crest, Erda Nova, Venom Burst, Decent Holy Fountain, Erda Fountain, Will of Erda, Blink and Loaded Dice, Rope Lift, then the remaining Decent skills",
+        "why": "Class doc's 'all other nodes' list, to be worked through once the lists above are finished. It notes Erda Nova outperforms Xenon's own bind and has a shorter cooldown at max level.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Mecha Purge (all modes)",
+        "tier": "priority - required for 6th job",
+        "why": "Class doc lists four priority boost nodes and says only those four are needed to unlock every 6th job Mastery Core; Grandis Library lists the same grouping as its first primary node.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "trio": "Triangulation / Hypogram Field / Entangling Lash",
+        "tier": "priority - required for 6th job",
+        "why": "Second priority boost node in the class doc; listed as the second primary node on Grandis Library.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "trio": "Salvo System / Orbital Cataclysm / Gravity Pillar",
+        "tier": "priority - required for 6th job",
+        "why": "Third priority boost node in the class doc; Grandis Library lists the same three together.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "trio": "Beam Dance / Combat Switch",
+        "tier": "priority - required for 6th job",
+        "why": "Fourth priority boost node in the class doc; Grandis Library lists the same grouping.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "trio": "Diagonal Chase / Horizon Driver / Ion Thrust",
+        "tier": "filler - upgrade only with spare V points",
+        "why": "Class doc labels this a filler node that adds little to overall damage; Grandis Library files the same three under 'other'.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "trio": "Beam Spline / Quicksilver",
+        "tier": "filler - upgrade only with spare V points",
+        "why": "Second filler node in the class doc; Grandis Library files the same grouping under 'other'.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      }
+    ],
+    "notes": "The class doc says a Xenon being pushed as a main should eventually max all six boost nodes, but that only the four priority nodes matter for damage and for unlocking the 6th job Mastery Cores. Grandis Library's Xenon page is a restatement of this same class doc (its per-class credits attribute boost nodes, hyper passives and inner ability to the Class Doc), so doc-plus-Grandis agreement is one source agreeing with itself, not two. A separately authored cross-class trio table (mastermysty, data stated as 2024-05, page 2024-11-21) groups the trios differently - see conflicts. The class doc also advises fast levellers to avoid levelling Decent skills other than Decent Holy Symbol and Decent Holy Fountain, and to disassemble the rest into priority nodes."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Get the four priority 5th job boost nodes in place first - they are the gate on unlocking all four HEXA Mastery Cores.",
+        "why": "Stated in the class doc's boost node section.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "step": "Follow the class doc's published HEXA leveling chart, which is built for Heroic and assumes Sol Erda Fragments are the binding constraint, ranking each upgrade by final-damage gain per fragment.",
+        "why": "Stated explicitly by the class doc. The chart itself could not be transcribed - see notes.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "step": "Unlock HEXA Stat lines and take each to 20/20, but do not start optimising HEXA Stat until every HEXA core is maxed.",
+        "why": "Stated in the class doc alongside the chart.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "step": "Sanctioned deviation 1: pull Sol Hecate to level 20 earlier than the chart says, to get the extra lives it grants sooner.",
+        "why": "Named by the class doc as one of the two acceptable departures from its own order.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "step": "Sanctioned deviation 2: unlock the Ascent skill (Neoteric Snap) earlier than the chart says, for the three extra i-frames it provides.",
+        "why": "Named by the class doc as the second acceptable departure from its own order.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      }
+    ],
+    "hexaStat": {
+      "generalOrder": "ATT, then stats, then critical damage",
+      "caveat": "The class doc is explicit that this is a generalisation and not a line order: which attribute goes on which line depends on the values rolled. Its own worked example is a 3/10/7 roll, where the resulting order becomes crit damage, then ATT, then stats. It directs readers to Maple Scouter or a community HEXA stat calculator for a personal answer.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    "nodeInventory": {
+      "originSkill": "Artificial Evolution",
+      "ascentSkill": "Neoteric Snap",
+      "masteryCores": [
+        "HEXA Mecha Purge (covers HEXA Mecha Purge: Snipe, Execute, Bombardment and Fire; the HEXA upgrade removes the Mecha Purge: Bombard mode)",
+        "HEXA Triangulation and HEXA Hypogram Field (Force Field and Support) - the class doc describes HEXA Triangulation as half of the second mastery core",
+        "HEXA Salvo System and HEXA Orbital Cataclysm",
+        "HEXA Beam Dance"
+      ],
+      "enhancementNodes": [
+        "Omega Blaster Boost",
+        "Core Overload Boost",
+        "Hypogram Field: Fusion Boost",
+        "Photon Ray Boost"
+      ],
+      "commonNodes": [
+        "Sol Janus (with Sol Janus: Dawn and Sol Janus: Dusk)",
+        "Sol Hecate (with Styx, Charon, Phlegethon and Pactum)",
+        "HEXA Resistance Infantry - upgrades the 5th job Resistance Infantry; the class doc marks this section work-in-progress and says the skill's functionality is unchanged by the upgrade"
+      ],
+      "sources": [
+        "https://maplestorywiki.net/w/Xenon/Skills",
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+        "https://en.namu.wiki/w/%EC%A0%9C%EB%85%BC(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ]
+    },
+    "notes": "IMPORTANT GAP: the class doc's actual HEXA leveling order exists and is current, but it is published as a grid of skill icons paired with target levels, read left to right. Extracting it programmatically returns only the level numbers; the icons that say WHICH node each number belongs to are images. The order was therefore NOT transcribed and no order has been invented here. The nodes tracked by that chart are: Origin, Ascent, HEXA Resistance Infantry, Mastery Cores 1 through 4, the boost node cores, HEXA Stats 1 through 3, and Sol Hecate. Reading the chart needs a vision pass over the doc or a human. Two further sourced facts: the doc says Sol Hecate can be bound to Last Resort for a lazy setup, or given its own keybind (or both) via Sol Hecate: Pactum for more control; and it explains that HEXA Beam Dance is worth unlocking even though Beam Dance's active is never used in bossing. The doc scopes itself to Heroic and says Interactive overlaps but is not its focus, so there is no separate Interactive HEXA ordering here."
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "stat": "Critical Rate",
+        "why": "Reaching 100% crit rate is the class doc's first call, but it warns against pushing past level 10, and warns to check crit rate with Decent Sharp Eyes active - building to 100% without that buff on overshoots and wastes points.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "stat": "Critical Damage, Boss Damage and Damage",
+        "why": "Levelled roughly together, with slightly more weight on critical damage.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "stat": "IED",
+        "why": "Only invested in when total IED sits below roughly 96-97%; at that point it is levelled alongside crit damage, boss damage and damage.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "stat": "Attack Power",
+        "why": "Leftover points only, and the class doc says not to push it past level 6 because further points there are inefficient.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "stat": "Arcane Power",
+        "why": "Raised only as far as needed to clear the arcane force requirement of whichever boss is being run, so that full final damage applies.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      }
+    ],
+    "mobbingPriority": [
+      {
+        "stat": "EXP",
+        "why": "Top mobbing priority, up to level 15 - unless the character cannot one-shot on its farming map, in which case damage hyper stats come first.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "stat": "Critical Rate",
+        "why": "Same 100% target and same level 10 ceiling as the bossing preset, with the same Decent Sharp Eyes caveat.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "stat": "Critical Damage, Normal Monster Damage and Damage",
+        "why": "Levelled roughly together, weighted slightly toward critical damage.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      },
+      {
+        "stat": "Attack Power",
+        "why": "Leftover points.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "The class doc presents its list as a fallback for players who do not want to min-max, and points at MathBro's hyper stat calculator or Maple Scouter for the real answer. That matches the wider community position that hyper stat allocation is a per-character computation rather than a fixed list, so a static order should be presented as a default, not as the answer. Only one source: single-source, weak."
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "pick": "Beam Dance - Reinforce",
+        "why": "Class doc's hyper skill passive list; damage +20%.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "pick": "Mecha Purge - Reinforce",
+        "why": "Class doc's hyper skill passive list; damage +20%.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "pick": "Hypogram Field - Reinforce",
+        "why": "Class doc's hyper skill passive list; damage +10%.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "pick": "Hypogram Field - Extra Strike",
+        "why": "Class doc's hyper skill passive list; one extra Hypogram Field attack.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "pick": "Hypogram Field - Persist",
+        "why": "Class doc's hyper skill passive list; +10 seconds duration. The doc separately notes this is the only summon duration effect that reaches Hypogram Field: Fusion.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      }
+    ],
+    "actives": {
+      "available": [
+        "Amaranth Generator",
+        "Entangling Lash",
+        "Orbital Cataclysm"
+      ],
+      "note": "Xenon has exactly three hyper actives, so there is no selection decision to make - all three are taken. No source consulted framed this as a choice.",
+      "sources": [
+        "https://maplestorywiki.net/w/Xenon/Skills"
+      ]
+    },
+    "notes": "Grandis Library lists the identical five passives, but its own credits attribute the hyper passive build to the class doc, so it is a restatement rather than independent agreement. The individual skill effects are independently verifiable on the wiki's Xenon skill page. Single independent judgement source: weak."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Attack Speed +1 Level",
+        "why": "Class-specific and load-bearing: the class doc states Xenon needs the inner ability attack speed line to reach maximum attack speed in GMS, which both smooths the class and raises bossing damage. This is the opposite of classes that already cap attack speed from passives and should skip the line.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "line": "Damage to abnormal status monsters +8%",
+        "why": "Second line in the class doc's bossing preset; Grandis lists the same.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%",
+        "why": "Third line in the class doc's bossing preset; Grandis lists the same.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Item Drop Rate +20%",
+        "why": "First line of the class doc's mobbing preset. The doc says drop rate and meso obtained can be swapped to preference, and suggests a third preset with Item Drop Rate +20% specifically for boss loot rooms if the main mobbing roll went to Meso Obtained +20%.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "line": "Meso Obtained +15%",
+        "why": "Second line of the class doc's mobbing preset.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      },
+      {
+        "line": "Damage to normal monsters +8%",
+        "why": "Third line of the class doc's mobbing preset.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+          "https://grandislibrary.com/resistance/xenon"
+        ]
+      }
+    ],
+    "notes": "The class doc states attack speed +1 is not needed for the mobbing preset. Grandis Library agrees line for line but is a restatement of this same doc, so this is effectively single-source. Grandis also splits its inner ability recommendations by attack-speed-cap region elsewhere on the site, so a line copied from a Grandis page should be checked for which region it targets."
+  },
+  "gearingNotes": "Xenon is the only class that uses STR, DEX and LUK together, and that changes gearing in four concrete ways that no generic guide will tell you.\n\n1. THIEF OR PIRATE. Xenon can equip both Thief and Pirate gear (the Mimic Protocol passive). Set bonuses only apply across matching class gear, so mixing a Thief hat with a Pirate top forfeits the set bonus. The class doc's instruction is to pick one class of gear early and stay consistent; which one does not matter mechanically. On Interactive worlds it recommends Thief gear because it is more common on the Auction House.\n\n2. GENESIS WEAPON MUST MATCH. The Genesis Energy Chain comes in Thief and Pirate versions - Thief gives 150 LUK and 150 DEX, Pirate gives 150 STR and 150 DEX - and it must match the class of the Eternal gear. Players without Eternal gear yet should match their Arcane gear and keep every later piece consistent. The mismatch is recoverable: once three pieces of a set are equipped, the weapon counts toward the set bonus regardless of which version was chosen; below three pieces it does not.\n\n3. POTENTIALS COST MORE. Xenon wants percent All Stat on non-WSE gear, which the class doc calls out as roughly two to three times more expensive than a normal class's main-stat lines when chasing three lines. WSE potentials and starforcing cost the same as any other class. The doc's stated progression order is: two lines All Stat plus random, then two lines All Stat plus a single STR/DEX/LUK line, then two prime All Stat lines plus random, then two prime All Stat lines plus a single-stat line, then three All Stat lines. It also gives a comparison formula: All-Stat-equivalent = (percent All Stat) + one third of (percent STR, DEX or LUK), which makes a single-stat line worth about a third of an All Stat line.\n\n4. FLAME SCORING IS DIFFERENT. Because all three stats count, the class doc's flame formula is (STR + DEX + LUK) + (Attack Power x 5) + (percent All Stat x 20), rather than the single-main-stat formula used for other classes.\n\nABILITY POINTS. 330 points must go into each of STR, DEX and LUK before any can be specialised. The class doc's default is to keep the three even, because the relative value of each shifts every time gear or potentials change; only once cubing is effectively finished at a given progression level does it recommend pushing excess points past 330 into whichever stat the character has the highest percentage of, and it says re-cubing an item purely to swap one single-stat line is never worth it.\n\nOTHER. Xenon is not a buff duration class - the doc says its main use is extending the Angelic Buster link skill buff. Summon duration is similarly low value: only Hypogram Field: Force Field is affected by general summon duration, while Hypogram Field: Fusion is reached only by the Hypogram Field - Persist hyper passive. Crit rate is built to 100% and no further, with the Perspective Shift passive contributing up to 40%.",
+  "commonMistakes": [
+    {
+      "mistake": "Mixing Thief and Pirate gear across a set, which silently forfeits the set bonus.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Choosing a Genesis weapon that does not match the class of your Eternal gear. Below three set pieces the weapon does not count toward the set bonus.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Building crit rate to 100% without Decent Sharp Eyes active, which overshoots and wastes hyper stat points during actual bossing.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Pushing the Attack Power hyper stat past level 6, or crit rate past level 10.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Using the Ascent skill Neoteric Snap inside the burst window. The class doc states it gains nothing from buffs such as Maple World Goddess's Blessing, Last Resort or familiars, so casting it during burst wastes the time; it should be used off-burst or as an i-frame.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Trying to optimise HEXA Stat lines before all HEXA cores are maxed, rather than simply unlocking them and taking each to 20/20.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Spending V points on the two filler boost nodes (Diagonal Chase / Horizon Driver / Ion Thrust, and Beam Spline / Quicksilver) before the four priority nodes that gate the HEXA Mastery Cores.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Levelling Decent skills other than Decent Holy Symbol and Decent Holy Fountain while rushing levels, instead of disassembling them into priority nodes.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Re-cubing an item purely to swap a single STR/DEX/LUK potential line for a different single stat.",
+      "sources": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+      "what": "The Roo-D Files (The Official Xenon Guide) - the Xenon Mains Discord's maintained class doc, written by BeefTech (B E E F / Chip) with the Xenon Discord. Scopes itself explicitly to Heroic. Carries inner ability, hyper stats, link skills, ability points, equipment (Thief vs Pirate, Genesis weapon, potentials, flame score), 5th job boost nodes and node leveling priority, 6th job Origin/Ascent/Mastery/Boost/Common node explanations, a HEXA leveling priority chart, HEXA stat guidance and burst rotations. Self-flags only its Culvert section as out of date. Read through a browser; the /export?format=txt route also works once via its single-use redirect.",
+      "dated": "2026-09-09",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/resistance/xenon",
+      "what": "Grandis Library Xenon page - boost node Primary/Secondary/Other tiering, hyper skill passive build, recommended inner ability bossing and training, class properties, link skill and legion effect. NOT an independent vote: Grandis per-class pages credit inner ability, hyper passive build and boost nodes to the Class Doc, so for those three fields it restates the Roo-D Files. Useful as a structured cross-check that the doc was read correctly. No HEXA section.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Xenon/Skills",
+      "what": "Name-validation and mechanics table. Confirms Skill Node/Core 1 (Origin) = Artificial Evolution and Skill Node/Core 2 (Ascent) = Neoteric Snap; the mastery skill names HEXA Mecha Purge (Snipe / Execute / Bombardment / Fire), HEXA Hypogram Field (Force Field / Support), HEXA Triangulation, HEXA Salvo System, HEXA Orbital Cataclysm, HEXA Beam Dance; the four HEXA Enhancements (Omega Blaster Boost, Core Overload Boost, Hypogram Field: Fusion Boost, Photon Ray Boost); the shared HEXA commons (Sol Janus with Dawn/Dusk, Sol Hecate with Styx/Charon/Phlegethon/Pactum); the Mimic Protocol passive that lets Xenon wear Thief and Pirate gear; and that HEXA Enhancement final damage rises linearly with jumps at levels 10, 20 and 30. Carries zero judgement. Returns 403 to plain fetching; readable in a browser.",
+      "dated": "living wiki, revision date not verified",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%A0%9C%EB%85%BC(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "what": "NamuWiki Xenon skill page, Korean community wiki machine-translated to English, KMS balance. The one genuinely independent judgement source found: it states a V matrix class skill core enhancement order of Omega Blaster, then Hypogram Field: Fusion, then Photon Ray, then Core Overload, with the reasoning that levelling Core Overload only raises its plasma current damage without changing the extra energy charge or duration. Its 6th job section also independently corroborates the four mastery core groupings. Translated skill names diverge heavily (Mega Smasher = Omega Blaster, Hologram Graffiti = Hypogram Field, Purge Lob Masquerade = Mecha Purge, Rocket System = Salvo System, Blade Dancing = Beam Dance, Neoteric Trice = Neoteric Snap), so it must be name-mapped and never quoted for names. KMS-first: gear and content assumptions differ from GMS Heroic. Returns 403 to plain fetching; readable in a browser.",
+      "dated": "2026-08-07 (page's own last-modified stamp)",
+      "independent": true
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio reference. Its Xenon entry gives two trios - Beam Dance + Mecha Purge + Hypogram Field, and Triangulation + Salvo System + Orbital Cataclysm - which does not match the current class doc grouping. Independent of the class doc lineage but stale: the page states a 2024-11-21 update and its underlying data is older still, predating the v.269 boost node regrouping.",
+      "dated": "2024-11-21",
+      "independent": true
+    },
+    {
+      "url": "https://www.maplerhouse.com/classes/xenon",
+      "what": "Checked and largely empty. Independently corroborates the link skill (Hybrid Logic, All Stats +15%) and the legion effect (flat STR/DEX/LUK 5/10/20/40/50), and carries measured top-character ranking data. Its HEXA Priority, Skill Sequence, Burst Rotation and Culvert modules all render 'No guide yet'. Not usable as a judgement source. Returns 403 to plain fetching.",
+      "dated": "Overview module stamped 2026-06-19",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/4BCGuCC",
+      "what": "Xenon Mains Discord - where the Roo-D Files originates and where corrections land before the doc updates. Same source family as the class doc, not a second opinion. Not machine-readable; a human pass would be needed to decode the HEXA chart or to catch anything post-dating 2026-09-09.",
+      "dated": "live",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Boost node trio grouping",
+      "positionA": "Mecha Purge alone; Triangulation + Hypogram Field + Entangling Lash; Salvo System + Orbital Cataclysm + Gravity Pillar; Beam Dance + Combat Switch - these four are the priority nodes, with Diagonal Chase / Horizon Driver / Ion Thrust and Beam Spline / Quicksilver as filler.",
+      "sourceA": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic",
+        "https://grandislibrary.com/resistance/xenon"
+      ],
+      "positionB": "Two trios only: Beam Dance + Mecha Purge + Hypogram Field, and Triangulation + Salvo System + Orbital Cataclysm.",
+      "sourceB": [
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ],
+      "note": "Not resolved here. The likeliest explanation is age rather than disagreement: mastermysty's page is dated 2024-11-21 with older underlying data, and Grandis Library exposes a 'View Pre-V.269 Boost Nodes' toggle site-wide, which is direct evidence that boost node groupings changed at v.269. The current class doc should be preferred, but the discrepancy is recorded rather than deleted.",
+      "status": "contested, probably stale-vs-current"
+    },
+    {
+      "topic": "Whether Omega Blaster or Hypogram Field: Fusion is levelled first",
+      "positionA": "Treated as equal first priority (Hypogram Field: Fusion is approximately equal to Omega Blaster).",
+      "sourceA": [
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ],
+      "positionB": "Omega Blaster strictly first, Hypogram Field: Fusion second.",
+      "sourceB": [
+        "https://en.namu.wiki/w/%EC%A0%9C%EB%85%BC(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ],
+      "note": "Minor, and possibly a regional difference. Both agree Photon Ray is third and Core Overload last of the four class skill cores.",
+      "status": "contested, low impact"
+    },
+    {
+      "topic": "Number of HEXA skill cores",
+      "positionA": "Two class skill cores: Artificial Evolution (Origin) and Neoteric Snap (Ascent).",
+      "sourceA": [
+        "https://maplestorywiki.net/w/Xenon/Skills",
+        "https://docs.google.com/document/d/1bpARm1tksZ2LdVCBWoClaNlyjEhvs0IHJqQShr1o99M/mobilebasic"
+      ],
+      "positionB": "Three skill cores - the KMS page lists a third beyond Origin and Ascent.",
+      "sourceB": [
+        "https://en.namu.wiki/w/%EC%A0%9C%EB%85%BC(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ],
+      "note": "Almost certainly a region gap rather than a disagreement: KMS received a third HEXA skill core that GMS v.271 does not have. The third core's English name was not confirmed and is deliberately not recorded here. Do not surface it to GMS Heroic users; re-check when GMS receives that content.",
+      "status": "region difference, flagged"
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "coverageWarnings": [
+    "The HEXA investment ORDER - the single most valuable field for this class - was NOT extracted. The class doc has a current, Heroic-specific, fragment-optimised chart, but it is icon-encoded and only the level numbers survive text extraction. No order has been invented. Resolving this needs a vision pass over the doc or a human reading the chart.",
+    "Only one current, high-quality judgement source exists for Xenon (the Roo-D Files). NamuWiki corroborates V-skill core order independently but is KMS balance. mastermysty is independent but predates v.269. Grandis Library is a restatement of the class doc, not a vote. Treat hyper stats, inner ability, hyper passives and HEXA stat as effectively single-source.",
+    "No reddit source was consulted - reddit is blocked in this environment.",
+    "No YouTube guide descriptions were checked; the session's web search budget was already exhausted before this pass began."
+  ],
+  "written": false,
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "HEXA node inventory fully verified. maplestorywiki confirms Skill Node/Core 1 (Origin) = Artificial Evolution and Skill Node/Core 2 (Ascent) = Neoteric Snap - and only those two on GMS. Mastery Node/Core 1 = HEXA Mecha Purge: Snipe / Execute / Bombardment / Fire (the file's four modes, exactly, and Bombard indeed has no HEXA version); Core 2 = HEXA Hypogram Field: Force Field / Support + HEXA Triangulation; Core 3 = HEXA Salvo System + HEXA Orbital Cataclysm; Core 4 = HEXA Beam Dance. All four HEXA Enhancements confirmed by exact name: Omega Blaster Boost, Core Overload Boost, Hypogram Field: Fusion Boost, Photon Ray Boost, all Lv260, all with the stated jumps at 10/20/30.",
+      "Hyper skills fully verified. Exactly three hyper actives - Amaranth Generator (Lv140), Entangling Lash (Lv160), Orbital Cataclysm (Lv190) - so the file's 'no selection decision' note is correct. All five recommended passives exist with the stated values: Beam Dance - Reinforce +20%, Mecha Purge - Reinforce +20%, Hypogram Field - Reinforce +10%, Extra Strike +1 attack, Persist +10 sec.",
+      "NAME DEFECT 1: secondaryWeapon is recorded as 'Core Controller'. maplestorywiki's Xenon infobox says the secondary weapon is 'Controller'. 'Core Controller' does not appear on any source I checked. Fix or empty the field.",
+      "NAME DEFECT 2: gearingNotes repeatedly says 'Genesis Energy Chain' while the file's own weapon field says 'Whip Blade', and maplestorywiki's Xenon page has no 'Energy Chain' anywhere (primary weapon: Whip Blade). This looks like a pre-rework weapon-class name. The Thief-150-LUK/150-DEX vs Pirate-150-STR/150-DEX split and the must-match-your-Eternal-set rule were NOT independently verifiable and rest entirely on the class doc. Verify the item name before shipping - this field tells people which Genesis weapon to build.",
+      "The file correctly did NOT invent an English name for the third KMS HEXA skill core. I verified the core is real on NamuWiki (section 9.3.3, machine-translated as 'rail gun cannonade', alongside 9.3.1 Artificial Evolution and 9.3.2 Neoteric Trice) and that GMS has only two. Withholding the name was the right call - keep it withheld.",
+      "EXTRACTION HAZARD, not a fabrication, but the parent must know: one txt-export read of the class doc returned the priority/filler assignment SWAPPED - putting Beam Spline/Quicksilver in the priority four and Beam Dance/Combat Switch in filler. That read was internally inconsistent (said '2 filler' and listed one) and is contradicted by the wiki's Mastery-Core-to-Boost-Node-Core mapping and by Grandis. The FILE'S assignment is the correct one. Do not let a future extraction pass overwrite it."
+    ],
+    "clearedOnInspection": [
+      "NO FABRICATED NODE, SKILL OR CORE NAMES. I checked every name in the file against maplestorywiki.net/w/Xenon/Skills, including the ones that read as invented. All confirmed real and correctly spelled: Gravity Pillar, Ion Thrust, Horizon Driver, Diagonal Chase, Beam Spline, Quicksilver, Triangulation, Entangling Lash, Salvo System, Orbital Cataclysm, Combat Switch (Explosion/Air Whip/Fission), Mecha Purge (Snipe/Bombard/Bombardment), Beam Dance, Hypogram Field (Force Field/Support/Fusion), Omega Blaster, Photon Ray, Core Overload, Mimic Protocol, Perspective Shift, Last Resort, Maple World Goddess's Blessing, Overdrive, Resistance Infantry, Decent Holy Symbol, Decent Holy Fountain, True Arachnid Reflection, Solar Crest, Erda Nova, Venom Burst, Will of Erda, Blink, Loaded Dice, Rope Lift.",
+      "NO FABRICATED PRIORITY ORDER. I pulled the class doc independently via its /export?format=txt redirect and got the V skill core list back in the file's exact order: Hypogram Field: Fusion ~= Omega Blaster, Photon Ray, Core Overload, Last Resort, Boost Nodes, Maple World Goddess's Blessing, Overdrive, Resistance Infantry, Decent Holy Symbol. Matches vMatrix.priority item for item."
+    ],
+    "shipReady": false
+  },
+  "blockedReason": "6 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

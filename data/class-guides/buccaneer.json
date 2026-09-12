@@ -1,0 +1,509 @@
+{
+  "slug": "buccaneer",
+  "className": "Buccaneer",
+  "branch": "Explorer (Pirate)",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Knuckle",
+  "secondaryWeapon": null,
+  "archetype": "Sustained-DPM bossing class; damage comes from consistent output across the whole fight rather than from a single large burst window.",
+  "linkSkill": {
+    "name": "Pirate Blessing",
+    "effect": "Grants all-stat, Max HP/MP and damage reduction. Stacks up to 3 times, once per unique Explorer Pirate (Buccaneer, Corsair, Cannoneer) in the world. Reaches Lv. 9 when three unique Explorer Pirates are at Lv. 210. While the buff is ACTIVE it swaps the STR and DEX values of your equipment, so a Buccaneer should never toggle it on.",
+    "levels": "Master Level 9. Max-rank values are reported inconsistently across sources - see conflicts. maplestorywiki lists Lv. 9 as STR/DEX/INT/LUK +130, Max HP/MP +1750, Damage Taken -21%; the class doc and Grandis Library both state 100 all stat with the same +1750 HP/MP and -21% Damage Taken."
+  },
+  "legionEffect": "Flat STR, scaling +10 / +20 / +40 / +80 / +100 by Legion rank. Single-source (Grandis Library, which is not independent of the class doc) - treat as weak.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Lord of the Deep",
+        "why": "Named the top node to max; it is a toggle used for essentially all content and matters for both bossing and training.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Octopunch",
+        "why": "Main bossing attack; also the skill the first boost-node group (Node 1) covers on its own, and the skill the bossing hyper passives are spent on.",
+        "consensus": "moderate (class doc high priority list; Grandis ranks the Octopunch node PRIMARY; maplestorywiki confirms Octopunch Boost is Boost Node/Enhancement Core 1 by itself)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+          "https://grandislibrary.com/explorers/buccaneer",
+          "https://maplestorywiki.net/w/Buccaneer/Skills"
+        ]
+      },
+      {
+        "node": "Raging Serpent Assault + Nautilus Strike",
+        "why": "Treated as one priority entry because the two boosts sit in the same enhancement group. Nautilus Strike is boosted even though it is not cast in the rotation: the skill adds two extra final-attack lines to Corkscrew Blow, Octopunch, Serpent Vortex, Howling Fist and the opening cast of Unleash Neptunus.",
+        "consensus": "moderate (class doc states the reason; maplestorywiki lists Sea Serpent's Rage/Raging Serpent Assault Boost and Nautilus Strike Boost together under Core 3; Grandis lists the same grouping as Node 3)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+          "https://maplestorywiki.net/w/Buccaneer/Skills",
+          "https://grandislibrary.com/explorers/buccaneer"
+        ]
+      },
+      {
+        "node": "Lightning Form",
+        "why": "Listed high priority; it is the burst/damage buff skill and the source of the class's iframes.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Howling Fist",
+        "why": "Listed high priority; burst damage skill.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Decent Holy Symbol",
+        "why": "High priority for training - EXP plus drop rate.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Erda Nova",
+        "why": "High priority so that its cooldown lines up with the class's burst timing.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Decent Holy Fountain",
+        "why": "Mid priority; rated higher for newer players and lower once survivability is not the constraint.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Serpent Vortex",
+        "why": "Mid priority.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Goddess Blessing",
+        "why": "Mid priority.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Overdrive",
+        "why": "Mid priority.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Pirate's Banner",
+        "why": "Mid priority.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "True Arachnid Reflection",
+        "why": "Mid priority.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Solar Crest",
+        "why": "Mid priority.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Will of Erda",
+        "why": "Low priority early, moving up to mid priority once you start harder bosses such as Black Mage.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Hook Bomber",
+        "why": "Low priority as a training skill, but moves up if you cannot one-shot your training map.",
+        "consensus": "weak (one current source; Grandis separately ranks the Hook Bomber node SECONDARY)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+          "https://grandislibrary.com/explorers/buccaneer"
+        ]
+      },
+      {
+        "node": "Blink / Loaded Dice / Sea Serpent Burst / Rope Lift",
+        "why": "Grouped as low priority.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Decent Angelic Blessing / Decent Sharp Eyes / Decent Combat Orders",
+        "why": "Pick up at level 1 early for the passive stat, then leave them alone - levelling them further is min-max territory.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Decent Hyper Body / Decent Speed Infusion / Decent Mystic Door",
+        "why": "Lowest priority; deferred until a min-max stage.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "node": "Static Thumper",
+        "why": "Marked not needed.",
+        "consensus": "moderate (class doc says not needed; Grandis places the Static Thumper node in its OTHER / least-priority tier)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+          "https://grandislibrary.com/explorers/buccaneer"
+        ]
+      },
+      {
+        "node": "Corkscrew Blow",
+        "why": "Not needed for damage, but worth points once everything else is maxed because it is used for mobility and animation cancelling while bossing.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "label": "Boost node enhancement groups (game data, not an opinion)",
+        "groups": [
+          "Node 1: Octopunch",
+          "Node 2: Sea Serpent Burst / Serpent Assault",
+          "Node 3: Sea Serpent's Rage / Raging Serpent Assault, and Nautilus Strike",
+          "Node 4: Hook Bomber",
+          "Node 5: Corkscrew Blow / Turning Kick",
+          "Node 6: Static Thumper"
+        ],
+        "consensus": "strong (game data confirmed on two independent pages)",
+        "sources": [
+          "https://maplestorywiki.net/w/Buccaneer/Skills",
+          "https://grandislibrary.com/explorers/buccaneer"
+        ]
+      },
+      {
+        "label": "Bossing trio (contested / possibly stale)",
+        "skills": [
+          "Octopunch",
+          "Sea Serpent's Rage",
+          "Nautilus Strike"
+        ],
+        "consensus": "weak and contested - see conflicts",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "label": "Mobbing trio (contested / possibly stale)",
+        "skills": [
+          "Hook Bomber",
+          "Sea Serpent Burst",
+          "Corkscrew Blow"
+        ],
+        "consensus": "weak (single source, dated 2024-11-21, predates the v269 boost-node grouping change)",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "notes": "Fifth job and the V Matrix open at Lv. 200, so none of this applies yet at Lv. 140 - it is the next planning horizon after 4th job and hyper skills. The class doc is explicit that its node order is a preference, not a fixed rule, and that you should unlock most or all nodes before maxing any of them. Boost node and enhancement maximum level is 60. Nautilus Strike is the class's counter-intuitive pick: it is boosted despite never being cast, purely for the final-attack lines it grants to other skills."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Unlock some HEXA Mastery nodes first, then unlock Sol Janus.",
+        "why": "The class doc places Sol Janus immediately after the first masteries because it carries farming and daily/weekly clear speed; the doc notes Buccaneer's mobbing was considered below average before Sol Janus levelled the field between classes.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "step": "Level Sol Janus to a breakpoint that matches how much you actually farm: stay at 1 if you only do dailies and weeklies; go to 10 if you farm at least 30 minutes; go to 20 if you farm with WAPs; go to 30 only if you are farming heavily or pushing past Lv. 290.",
+        "why": "Sol Janus gains its real upgrades at levels 10, 20 and 30; the levels in between only add damage and EXP, so stopping partway to the next breakpoint wastes the investment.",
+        "consensus": "weak (one current source, but the 10/20/30 breakpoint structure is confirmed as game data on maplestorywiki)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+          "https://maplestorywiki.net/w/Buccaneer/Skills"
+        ]
+      },
+      {
+        "step": "Start HEXA Stat only after several skills are at level 10.",
+        "why": "Stated sequencing in the class doc; maxing a HEXA Stat core costs roughly 300 fragments on average.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "step": "For HEXA Stat, choose three main stats from Attack, Strength, Boss Damage and Critical Damage; level to 20 and stop there for now.",
+        "why": "The doc's position is that a higher main stat is better but resetting past level 20 is min-max only. Duplicate main stats are not allowed across cores, so the chosen stats are rotated between HEXA Stat I, II and III (or a calculator is used).",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "SOURCING GAP - READ THIS. The Buccaneer Bible does contain a full HEXA node levelling priority chart, updated 2026-09-10 for the Frieren Collab patch and explicitly including the new Common node, but it is published as an embedded image, not as text. It could not be extracted here and has deliberately NOT been guessed at. An earlier automated extraction of this same document produced a plausible-looking numbered HEXA order; re-reading the document's raw text showed no such list exists, so that ordering was a fabrication and was discarded. Anyone completing this field must read the chart image by eye or ask in the Buccaneer Discord. Verified node names for the planner's allowlist (maplestorywiki): Skill Node 1 (Origin) = Unleash Neptunus; Skill Node 2 (Ascent) = Haymaker; Mastery Node 1 = HEXA Octopunch; Mastery Node 2 = HEXA Sea Serpent and HEXA Nautilus Strike; Mastery Node 3 = HEXA Serpent Scale; Mastery Node 4 = HEXA Hook Bomber; HEXA Enhancements = Lightning Form Boost, Lord of the Deep Boost, Serpent Vortex Boost, Howling Fist Boost. Sixth job opens at Lv. 260, so this is far beyond a Lv. 140 character."
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "context": "bossing",
+        "order": [
+          "Boss Damage %",
+          "Damage %",
+          "Critical Damage %",
+          "IED %",
+          "Attack",
+          "STR"
+        ],
+        "why": "The class doc's stated allocation rule is to spread the majority of points roughly evenly across the first four and dump the remainder into Attack and STR. Critical Rate is deliberately absent because Buccaneer is already above 100% critical rate against bosses.",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      },
+      {
+        "context": "training",
+        "order": [
+          "EXP %",
+          "Critical Rate",
+          "Mob Damage %",
+          "Damage %",
+          "Critical Damage %",
+          "Attack",
+          "STR"
+        ],
+        "why": "EXP first, then the doc recommends using Legion and hyper stats together to reach a workable critical rate for mobbing (unlike bossing, mobbing crit is not self-capped).",
+        "consensus": "weak (one current source)",
+        "sources": [
+          "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "The class doc states outright that there is no standardised Buccaneer hyper stat build and that the optimum varies with your progression, and it points readers at SuckHard's hyper stat calculator for a per-character answer. The orders above are a priority of allocation, not a fixed point spread. A worked example the doc gives for a Lv. 280 character at 300% boss DEF is STR 3 / Critical Damage 13 / IED 10 / Damage 13 / Boss Damage 14 / Attack 7, and for training Critical Rate 6 / Critical Damage 11 / Damage 12 / Monster Damage 12 / Attack 5 / EXP 15. Hyper stat points begin at Lv. 140, so this is the first of these systems a Lv. 140 Buccaneer can actually act on."
+  },
+  "hyperSkills": {
+    "bossingPassives": [
+      "Double Down - Saving Grace",
+      "Double Down - Enhance",
+      "Octopunch - Reinforce",
+      "Octopunch - Boss Rush",
+      "Octopunch - Extra Strike"
+    ],
+    "mobbingPassives": [
+      "Double Down - Saving Grace",
+      "Double Down - Enhance",
+      "Hook Bomber - Reinforce",
+      "Hook Bomber - Spread",
+      "Hook Bomber - Extra Strike"
+    ],
+    "actives": [
+      "Serpent Spirit - became a passive skill as of the One Punch Man collaboration update, and gives 15% Critical Damage",
+      "Epic Adventure - damage buff that also buffs other Explorers in the party, 120 second cooldown",
+      "Stimulating Conversation - damage buff that also halves the cooldown of the Sea Serpent skills and of Lord of the Deep, 120 second cooldown"
+    ],
+    "consensus": "moderate on the passive lists (the class doc and Grandis Library give identical lists, but Grandis credits the class doc for this field, so they are one lineage rather than two votes); weak on the actives (class doc only)",
+    "sources": [
+      "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+      "https://grandislibrary.com/explorers/buccaneer"
+    ],
+    "notes": "The bossing and mobbing passive sets differ only in whether the three offensive picks go on Octopunch or Hook Bomber; both keep the two Double Down lines."
+  },
+  "innerAbility": {
+    "ideal": [
+      "+20% Boss Damage (top line)",
+      "+38% Buff Duration",
+      "+8% damage against enemies inflicted with an Abnormal Status"
+    ],
+    "alternatives": [
+      "Meso Obtained (Unique or Legendary) - the doc's pick for Reboot/Heroic players, trading damage for faster meso progression",
+      "Item Drop Rate (Unique or Legendary) - useful on both server types, for farming and for boss drops",
+      "Attack (Unique) - the former recommendation, now demoted; the doc's reasoning is that buff duration uptime matters more once you are using the Origin skill. Still acceptable as a stopgap while Honor EXP is short"
+    ],
+    "rejected": [
+      "Attack Speed - unnecessary, because Buccaneer self-caps attack speed with only a green potion",
+      "Critical Rate - fine to keep early to help proc the Hayato link, otherwise low value",
+      "Skill cooldown skip chance - the doc says it does not skip any skill that matters for this class",
+      "Passive Skills +1 level - calculated as weaker than the ideal set above"
+    ],
+    "consensus": "moderate on the ideal three lines (class doc and Grandis Library list the same three, but Grandis credits the class doc, so it is one lineage); weak on everything else (class doc only)",
+    "sources": [
+      "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+      "https://grandislibrary.com/explorers/buccaneer"
+    ],
+    "notes": "Buff Duration being a first-class Buccaneer inner ability line is a 6th-job-era change, tied to keeping buffs up through the Origin skill window. On Heroic specifically the doc prefers Meso Obtained during the progression phase over the ideal damage set."
+  },
+  "gearingNotes": "CRITICAL RATE: Buccaneer exceeds the critical rate cap against bosses from its own passives with no outside help, so bossing hyper stat points should not go into Critical Rate. The class does still want 100% visual critical rate, purely to trigger Hayato's Moonlight Blade Learnings link skill. The doc enumerates the cheap sources as Legion Familiar badges 3%, base 5%, Legion members Night Lord and Marksman 8-10%, Decent Sharp Eyes 10%, Precision Strikes 15%, Shadow Heart 20%, Legion Artifact 20% - totalling 81-83% - and fills the gap with the Lynn link (10% crit plus 10% damage), Legion grid blocks, and as little hyper stat as possible because the higher crit hyper stat levels return poorly. ATTACK SPEED: the knuckle chain is attack speed 5 base, 7 with Speed Infusion, 9 with Knuckle Mastery, and exactly 10 with a green potion - so a green potion is required, and the +attack speed inner ability line is redundant. IED TARGETS: Lotus through Verus Hilla, 85% minimum and 93% ideal; Black Mage through lower-difficulty Grandis bosses, 95% minimum; hard bosses, 97% or better. WSE POTENTIAL: between 9/0/0 and 7/2/0 attack/boss/IED lines is considered the ideal band, and the doc advises dropping IED lines off WSE later since set effects and other sources cover it. COOLDOWN HAT: the doc calls Buccaneer the worst class in the game for a cooldown hat and says a stat hat wins by a wide margin; the only exception is a -2 CD hat in min-cut scenarios where it buys one extra burst. RINGS: as of the Frieren collaboration patch Continuous and Ring of Restraint can be worn together; Ring of Restraint gets upgrade priority in both cases - to level 5 so it matches the length of the Origin skill, and to level 6 for the large attack-percentage jump between 5 and 6. All of the above is from The Buccaneer Bible (2026-09-10) unless otherwise noted, and is single-source.",
+  "commonMistakes": [
+    {
+      "mistake": "Activating or double-clicking the Pirate Blessing link skill.",
+      "why": "While the buff is active it swaps the STR and DEX values on your gear, which costs a large amount of damage. You can tell it happened by checking the buff bar.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Buying a cooldown hat.",
+      "why": "The class doc rates Buccaneer as the worst class for cooldown hats; a stat hat is better by a large margin outside of -2 CD min-cut edge cases.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Putting bossing hyper stat points into Critical Rate.",
+      "why": "Buccaneer is already over 100% critical rate against bosses without external sources, and high crit hyper stat levels have poor returns.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Playing without a green potion.",
+      "why": "The green potion is the last step that takes knuckle attack speed from 9 to 10; without it the class is permanently a stage short.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Stopping a Sol Janus investment partway between breakpoints.",
+      "why": "Real upgrades land at Sol Janus levels 10, 20 and 30; intermediate levels only add damage and EXP, so a half-finished push is wasted resource.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Standing still for long stretches while Lord of the Deep is up.",
+      "why": "The toggle stops registering hits after roughly 25 seconds without movement.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Skipping the Nautilus Strike boost because the skill is not in the rotation.",
+      "why": "The boost is taken for the two extra final-attack lines Nautilus Strike grants to Corkscrew Blow, Octopunch, Serpent Vortex, Howling Fist and the opening cast of Unleash Neptunus, not for casting the skill.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Relying on Buccaneer's iframes to survive.",
+      "why": "The iframes are tied to the burst - one second per Lightning Form activation up to three, plus the tail end of Howling Fist after its mouth closes - and the class doc advises against treating them as a survival tool.",
+      "sources": [
+        "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic",
+      "what": "The Buccaneer Bible, revision 2.0, the Buccaneer Discord's maintained class document. Author Subluxe; contributors SSJBread, ProddoSenpai, TenaciousB, HoppingFog, Dango, Alopecias, Crumbies, Malignant. Explicitly covers both Reboot and Regular server. Read directly as raw text, not through a summariser. Source of essentially all judgement in this file.",
+      "dated": "2026-09-10 (stamped Frieren Collab Patch; matches the v.271 cycle)",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/explorers/buccaneer",
+      "what": "Grandis Library Buccaneer class page. Boost node tiers (Primary/Secondary/Other with node groupings), hyper skill passive build, recommended inner ability, link skill, legion effect, base stats from skills. No HEXA section at all.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] sitewide stamp - two patches behind v.271",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio reference. Independent author, outside the class doc lineage. Gives a bossing trio and a mobbing trio for Buccaneer with no commentary.",
+      "dated": "page 2024-11-21; author states the underlying data is from 2024-05-14",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Buccaneer/Skills",
+      "what": "Authoritative skill and node name table plus raw numbers. Used here as the anti-fabrication allowlist: confirmed the four class V skills (Lightning Form, Lord of the Deep, Serpent Vortex, Howling Fist), the six boost node enhancement groups, the HEXA Origin (Unleash Neptunus) and Ascent (Haymaker) skills, the four Mastery nodes, and the four HEXA Enhancements. Carries no judgement. Returns 403 to plain fetching; read through a browser session.",
+      "dated": "living wiki; read 2026-09-11, page history not reachable",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "field": "linkSkill.levels",
+      "positions": [
+        {
+          "claim": "Pirate Blessing at Lv. 9 gives STR/DEX/INT/LUK +130, Max HP/MP +1750, Damage Taken -21%.",
+          "source": "https://maplestorywiki.net/w/Buccaneer/Skills"
+        },
+        {
+          "claim": "Pirate Blessing at max rank gives 100 all stat, 1750 HP/MP, -21% Damage Taken.",
+          "source": "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        },
+        {
+          "claim": "Pirate's Blessing (Master Level 9) grants STR/DEX/INT/LUK +100 each, Max HP/MP +1750, damage taken -21%.",
+          "source": "https://grandislibrary.com/explorers/buccaneer"
+        }
+      ],
+      "note": "Unresolved. The two sources that agree on 100 are not independent of each other. Not resolved by preference here."
+    },
+    {
+      "field": "vMatrix.trios (bossing)",
+      "positions": [
+        {
+          "claim": "Bossing trio is Octopunch + Sea Serpent's Rage + Nautilus Strike.",
+          "source": "https://mystyjl.github.io/reference/NodeGuide.html"
+        },
+        {
+          "claim": "Sea Serpent's Rage / Raging Serpent Assault Boost and Nautilus Strike Boost sit in the same boost node enhancement group (Core 3 / Node 3), which would make two of that trio's three slots redundant under current groupings.",
+          "source": "https://maplestorywiki.net/w/Buccaneer/Skills"
+        }
+      ],
+      "note": "Flagged contested rather than resolved. The mystyjl data is from 2024-05-14 and predates the v269 boost-node grouping change that Grandis Library advertises with its 'View Pre-V.269 Boost Nodes' toggle, so the most likely explanation is staleness rather than disagreement - but no current source states an explicit trio composition, so this is recorded as an open conflict, not a correction."
+    },
+    {
+      "field": "hexa.order",
+      "positions": [
+        {
+          "claim": "No textual HEXA levelling order exists in any source reached. The Buccaneer Bible's priority chart is an embedded image.",
+          "source": "https://docs.google.com/document/d/1M1jTSVxLkmXLbt1Dpwh9yP3D7yO7SIL5FWD6HCFweAo/mobilebasic"
+        }
+      ],
+      "note": "Recorded as a known gap, not a conflict between sources. Grandis Library has no HEXA section for any class. An automated summary of the class doc produced a confident-looking eight-step HEXA order that does not exist in the document text; it was discarded. Do not fill this field without reading the chart image or the Buccaneer Discord."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FABRICATED SOURCE ATTRIBUTION - vMatrix.priority[Hook Bomber].consensus: 'Grandis separately ranks the Hook Bomber node SECONDARY.' Grandis ranks it PRIMARY. Verbatim from grandislibrary.com/explorers/buccaneer: PRIMARY = Node 1 (Octopunch), Node 4 (Hook Bomber); SECONDARY = Node 2, Node 3, Node 5; OTHER = Node 6. This is wrong twice over: wrong tier, and wrong about what the tier means (see overconfident #1). It also BURIES A REAL, UNRECORDED CONFLICT: the Bible puts Hook Bomber in Lower Priority while Grandis puts its node in the same tier as Octopunch. That belongs in conflicts[], not softened into a parenthetical.",
+      "FABRICATED GLOSS - 'the opening cast of Unleash Neptunus.' The authoritative Nautilus Strike text on maplestorywiki reads: '[Final Attack Skill] 100% chance to strike 2 additional times ... when attacking with Somersault Kick, Corkscrew Blow, Octopunch, Serpent Vortex, Howling Fist, or Release Neptunus. Does not trigger with Neptunus Enrage.' No source says 'the opening cast of Unleash Neptunus' - the game names a distinct skill, Release Neptunus. The file also DROPS Somersault Kick from the list and drops the Neptunus Enrage exclusion. This wrong list appears twice (vMatrix.priority[Raging Serpent Assault + Nautilus Strike].why and commonMistakes[6].why), both times sourced only to the Bible even though maplestorywiki carries the authoritative text.",
+      "FABRICATED ORDERING - hexa.order step 1's masteries-before-Sol-Janus sequence. No source states it; the file's own conflicts[2] declares that no textual HEXA levelling order was obtainable. Listed here as well as under overconfident because it is precisely the failure mode the file warns about."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "3 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

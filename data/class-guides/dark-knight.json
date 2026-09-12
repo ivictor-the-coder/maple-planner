@@ -1,0 +1,432 @@
+{
+  "slug": "dark-knight",
+  "className": "Dark Knight",
+  "branch": "Explorer Warrior",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Spear or Polearm",
+  "secondaryWeapon": "Iron Chain",
+  "archetype": "Melee STR warrior whose damage scales off Max HP. Its 6th-job main attack (HEXA Gungnir's Descent) adds damage equal to 120% of Max HP on every hit, and the class carries large self-heal, HP-shield and damage-reduction layers (Calamitous Cyclone, Darkness Aura, Final Pact) instead of long invincibility windows. Weapon multiplier 1.49x.",
+  "linkSkill": {
+    "name": "Invincible Belief",
+    "effect": "Passive. Triggers automatically when HP drops to 15% of Max HP or lower, restoring 44% of Max HP each second for 3 seconds. Stacks up to 3 times, once per unique Explorer Warrior character in the world. At link level 7+ it also grants a permanent Damage bonus (+6% at level 9) to Explorer Warrior characters. Cooldown is disputed between sources - see conflicts.",
+    "levels": "Master Level 9"
+  },
+  "legionEffect": "Max HP +2/3/4/5/6% by Legion rank (grandislibrary.com/explorers/dark-knight). An older 2024 guide lists +1/2/3/4/5% - see conflicts.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Gungnir's Descent Boost",
+        "why": "Boosts the main single-target attack, which stays the primary damage skill after 6th job because the HEXA mastery version replaces it and inherits Boost Node enhancement. Grandis Library classes it as a primary node; every guide checked puts it in the first trio. Gives +2% final damage per level.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight",
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+          "https://maplestorywiki.net/w/Dark_Knight/Skills"
+        ]
+      },
+      {
+        "node": "Dark Impale Boost",
+        "why": "Boosts the main mobbing/filler attack, also replaced and inherited by its HEXA mastery version. Grandis Library classes it as a primary node. Gives +2% final damage per level.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight",
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+          "https://maplestorywiki.net/w/Dark_Knight/Skills"
+        ]
+      },
+      {
+        "node": "Nightshade Explosion Boost",
+        "why": "Third member of the standard primary trio. +2% final damage per level. Its HEXA mastery version also passively raises HEXA Gungnir's Descent damage, so the base skill stays relevant into 6th job.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight",
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+          "https://maplestorywiki.net/w/Dark_Knight/Skills"
+        ]
+      },
+      {
+        "node": "Evil Eye Boost",
+        "why": "One node that boosts four skills at once - Evil Eye of Domination, Evil Eye Shock, Revenge of the Evil Eye and Radiant Evil - at +3% final damage per level. Core of the second trio.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight",
+          "https://maplestorywiki.net/w/Dark_Knight/Skills",
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide"
+        ]
+      },
+      {
+        "node": "Final Attack Boost",
+        "why": "Highest per-level value among the secondary nodes at +4% final damage per level, and it is the only Dark Knight node with documented breakpoints: Critical Rate +5% at level 20 and Ignored Enemy Defense +20% at level 40.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Dark_Knight/Skills",
+          "https://grandislibrary.com/explorers/dark-knight",
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide"
+        ]
+      },
+      {
+        "node": "Rush Boost",
+        "why": "Common third slot in the secondary trio alongside Evil Eye and Final Attack. +3% final damage per level.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+          "https://grandislibrary.com/explorers/dark-knight"
+        ]
+      },
+      {
+        "node": "Spear Sweep Boost",
+        "why": "Listed by Grandis Library as an 'other' node. Highest per-level final damage of any Dark Knight boost node at +5% per level, and adds +1 max target at level 20, but it boosts a skill that is not part of the main rotation. No guide checked places it in a recommended trio.",
+        "consensus": "weak",
+        "sources": [
+          "https://maplestorywiki.net/w/Dark_Knight/Skills",
+          "https://grandislibrary.com/explorers/dark-knight"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": [
+          "Dark Impale Boost",
+          "Gungnir's Descent Boost",
+          "Nightshade Explosion Boost"
+        ],
+        "why": "The primary damage trio. All three are grouped separately by Grandis Library (nodes 1, 2 and 4), so they can legally sit on one tri-node.",
+        "consensus": "strong",
+        "sources": [
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+          "https://grandislibrary.com/explorers/dark-knight"
+        ]
+      },
+      {
+        "trio": [
+          "Evil Eye Boost",
+          "Final Attack Boost",
+          "Rush Boost"
+        ],
+        "why": "The secondary trio. Ayumilove lists only Evil Eye and Final Attack as required and treats the third slot as filler; DigitalTQ names Rush as the third.",
+        "consensus": "moderate",
+        "sources": [
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide"
+        ]
+      },
+      {
+        "trio": [
+          "Gungnir's Descent Boost",
+          "Nightshade Explosion Boost",
+          "Evil Eye Boost"
+        ],
+        "why": "Hybrid single tri-node described for a boss mule that will not build both full trios.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/"
+        ]
+      }
+    ],
+    "notes": "Boost node groups, as recorded in game data: node 1 Gungnir's Descent; node 2 Dark Impale; node 3 Evil Eye (boosts Evil Eye of Domination, Evil Eye Shock, Revenge of the Evil Eye and Radiant Evil); node 4 Nightshade Explosion / Final Attack; node 5 Leap Attack / Rush; node 6 La Mancha Spear / Spear Sweep. Skills inside the same numbered group cannot share a tri-node. Final damage per boost-node level: Spear Sweep 5%, Final Attack 4%, La Mancha Spear / Leap Attack / Rush / Evil Eye 3%, Dark Impale / Gungnir's Descent / Nightshade Explosion 2%. Boost node max level is 50, or 60 with Matrix Points. Source: https://maplestorywiki.net/w/Dark_Knight/Skills and https://grandislibrary.com/explorers/dark-knight. No source found that describes how the priority shifts between Lv200 and Lv260 specifically for this class."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Unlock all available HEXA cores first, then concentrate Sol Erda on levelling",
+        "why": "Stated as the Dark Knight approach by The Digital Crowns, and matches the general HEXA guidance of activating the 6th-job mastery node before pouring fragments into any one core. The Dark Knight class infographics also open with a long row of level-1 activations across many different cores before any core is pushed high.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+          "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+          "https://grandislibrary.com/class-infographic/dark-knight/dark-knight-6th-job-fragments.png"
+        ]
+      },
+      {
+        "step": "Skill core: Dead Space (Origin)",
+        "why": "Dead Space is the Dark Knight origin skill core. The Digital Crowns names it first in the class's HEXA priority. Its own level breakpoints are large: Ignore Defense +20% at Lv10, Boss Damage +20% at Lv20, and Ignore Defense +30% plus Boss Damage +30% at Lv30.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+          "https://maplestorywiki.net/w/Dark_Knight/Skills"
+        ]
+      },
+      {
+        "step": "Enhancement cores: Calamitous Cyclone Boost and Darkness Aura Boost",
+        "why": "Named after Dead Space in the only class-specific written priority found. Dark Knight has exactly four HEXA enhancement cores - Spear of Darkness, Radiant Evil, Calamitous Cyclone and Darkness Aura - and all four carry an identical curve (+25% final damage at Lv10, +40% at Lv20, +60% at Lv30), so the ordering between them is a question of how much of your damage each V skill actually does, not of node strength.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+          "https://maplestorywiki.net/w/Dark_Knight/Skills"
+        ]
+      },
+      {
+        "step": "Mastery cores: HEXA Gungnir's Descent, HEXA Dark Impale (grants Dark Bident), HEXA Nightshade Explosion, HEXA Revenge of the Evil Eye, HEXA Final Attack, HEXA Evil Eye Shock",
+        "why": "These are the six Dark Knight mastery cores confirmed in game data. HEXA Nightshade Explosion additionally raises HEXA Gungnir's Descent damage passively (+120% points at Lv30), and HEXA Evil Eye Shock passively raises HEXA Nightshade Explosion, HEXA Revenge of the Evil Eye and Evil Eye's Punishment - so these three cores feed each other. No dated source was found that ranks the six against one another; do not assume an order.",
+        "consensus": "none",
+        "sources": [
+          "https://maplestorywiki.net/w/Dark_Knight/Skills"
+        ]
+      },
+      {
+        "step": "HEXA Stat: in Reboot/Heroic, aim for Attack / Main Stat / Boss Damage lines",
+        "why": "Stated on both Dark Knight 6th-job optimization infographics published on Grandis Library ('Reboot and Mules: Att Stat Boss'; regular servers late game 'Att Boss Crit'). This is the one Reboot-specific HEXA recommendation found for this class.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/dark-knight/dark-knight-6th-job-fragments.png",
+          "https://grandislibrary.com/class-infographic/dark-knight/dark-knight-6th-job-energy.png"
+        ]
+      },
+      {
+        "step": "HEXA Stat: do not reroll until the rest of 6th job is finished; take the first node to Lv20 and stop",
+        "why": "The Digital Crowns argues HEXA Stat is random, that rerolling early wastes resources, and that any Lv20 node is worth roughly 2-3% final damage regardless of what lines it rolled. Single source, and it conflicts in emphasis with the infographics' specific line recommendation.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/"
+        ]
+      }
+    ],
+    "notes": "Dark Knight HEXA structure as of current game data: Skill cores - Dead Space (Origin) and Dark Halidom (Ascent). Mastery cores - HEXA Gungnir's Descent; HEXA Dark Impale plus Dark Bident; HEXA Nightshade Explosion; HEXA Revenge of the Evil Eye; HEXA Final Attack; HEXA Evil Eye Shock. Enhancement cores - Spear of Darkness Boost, Radiant Evil Boost, Calamitous Cyclone Boost, Darkness Aura Boost (all require level 260 and the matching V skill maxed and equipped). Common cores are the shared Sol Janus set. IMPORTANT GAP: the Dark Knight class Discord publishes two step-by-step 6th-job optimization charts (Fragments-efficient and Energy-efficient, by LazyVista / XseedGames) that are linked from Grandis Library, but they are icon-only images with no skill names, so the exact step order could not be transcribed without guessing and has been deliberately left out. The written priority that does exist (Dead Space, then Calamitous Cyclone, then Darkness Aura) is from a single source dated 2024-11-22 and is framed for party play; that source explicitly redirects solo progression players to the class Discord infographics. No source found describes where the Ascent core Dark Halidom sits in the investment order."
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "No Dark Knight-specific hyper stat priority was found in any of the sources checked. Grandis Library's class page has no hyper stat section, Ayumilove defers to a generic hyper stats guide, and the two Digital* guides discuss gear potential rather than hyper stats. Left empty rather than filled in with generic advice."
+  },
+  "hyperSkills": {
+    "passivePicks": [
+      "Evil Eye - Reinforce",
+      "Evil Eye - Hex Reinforce",
+      "Final Pact - Damage",
+      "Final Pact - Critical Chance",
+      "Gungnir's Descent - Reinforce"
+    ],
+    "passiveConsensus": "moderate",
+    "passiveWhy": "Two independent guides list exactly this five-pick passive set. Evil Eye - Reinforce is worth +150% damage across four Evil Eye skills at once; Evil Eye - Hex Reinforce adds +30 Attack and Magic ATT to the Hex buff; Final Pact - Damage is +5% final damage; Final Pact - Critical Chance is +20% crit rate; Gungnir's Descent - Reinforce is +20% damage on the main attack.",
+    "passiveSources": [
+      "https://grandislibrary.com/explorers/dark-knight",
+      "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+      "https://maplestorywiki.net/w/Dark_Knight/Skills"
+    ],
+    "activeSkills": [
+      "Dark Thirst",
+      "Nightshade Explosion",
+      "Epic Adventure"
+    ],
+    "activeConsensus": "strong",
+    "activeWhy": "Dark Knight has exactly three active hyper skills and all three are taken; there is no choice to make here.",
+    "activeSources": [
+      "https://maplestorywiki.net/w/Dark_Knight/Skills",
+      "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+      "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/"
+    ],
+    "notes": "Only five passive hyper picks fit, and the sources do not agree on the fifth - see conflicts. The full passive pool is: Evil Eye - Reinforce, Evil Eye - Hex Reinforce, Evil Eye - Aura Reinforce, Final Pact - Damage, Final Pact - Reduce Target, Final Pact - Critical Chance, Gungnir's Descent - Reinforce, Gungnir's Descent - Guardbreak (+20% monster DEF ignored), Gungnir's Descent - Boss Rush (+10% boss damage). Note that mastery cores inherit hyper passives from their base skill, so a hyper passive on Gungnir's Descent keeps working on HEXA Gungnir's Descent. Source: https://maplestorywiki.net/w/Dark_Knight/Skills"
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Attack Speed +1 (1st line)",
+        "why": "Recommended first-line target in regions where the class caps at attack speed stage 10 (AS10). Every source checked names Attack Speed +1 as the headline Dark Knight inner ability line.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight",
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+          "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+          "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide"
+        ]
+      },
+      {
+        "line": "Boss Damage +20% (1st line)",
+        "why": "Grandis Library names this as the first-line target instead of Attack Speed in regions capped at attack speed stage 8 (AS8), where the extra speed stage is wasted. This region-dependence is the key nuance and is stated by only one source.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight"
+        ]
+      },
+      {
+        "line": "Buff Duration +38%",
+        "why": "Listed as a second/third-line target. Dark Knight runs several long self-buffs, so duration reduces uptime gaps.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight",
+          "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%, or Damage to monsters with abnormal status +8%, or Attack +21",
+        "why": "Given as acceptable remaining lines once the first line is settled.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight"
+        ]
+      }
+    ],
+    "trainingHeroic": [
+      {
+        "line": "Meso Obtained +20% (1st line), or Item Drop Rate +20% (1st line), or Damage to Regular Monsters +10% (1st line), or Attack Speed +1 (1st line); then Meso Obtained +15% / Item Drop Rate +15%, Buff Duration +38%, Attack +21",
+        "why": "Grandis Library's explicit Heroic-server training loadout for this class, credited on the page to the Dark Knight Discord.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/explorers/dark-knight"
+        ]
+      }
+    ],
+    "notes": "Ayumilove's endgame legendary target is Attack Speed +1 with Buff Duration +50%, while Grandis Library lists Buff Duration +38% and makes the first line region-dependent. Both agree Attack Speed +1 is the line to chase. Also relevant: Agile Arms already gives +2 attack speed and Weapon Mastery gives +1 more while a Spear is equipped, which is what puts the class within one stage of the cap and makes the +1 line valuable rather than redundant (https://maplestorywiki.net/w/Dark_Knight/Skills)."
+  },
+  "gearingNotes": "SPEAR OVER POLEARM, and this is a mechanical fact rather than a preference: Weapon Mastery grants Attack Speed +1 and Damage +5% only while a Spear is equipped. Grandis Library's stat table shows the class landing at attack speed stage 4 with a Spear versus stage 5 with a Polearm. Sources: https://maplestorywiki.net/w/Dark_Knight/Skills, https://grandislibrary.com/explorers/dark-knight, https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/ (strong consensus). MAX HP IS A DAMAGE STAT for this class specifically: HEXA Gungnir's Descent adds damage equal to 120% of Max HP on every one of its twelve hits, so %Max HP sources (Iron Body +20%, Hyper Body +60%, Warrior Mastery's Max HP per level, the Legion HP block, and HP lines on gear) feed the main attack rather than only survivability. Source: https://maplestorywiki.net/w/Dark_Knight/Skills (single source, but it is in-game skill text). Weapon multiplier is 1.49x and the secondary weapon is the Iron Chain (https://grandislibrary.com/explorers/dark-knight). One 2024 source argues cooldown reduction lines on a hat beat STR% for this class in almost all cases; that is a single undated-for-v271 claim and is marked weak (https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/). No source was found giving a Heroic-specific gear progression path (arcane/genesis pacing, Sol Erda income, or set choices) for Dark Knight in particular.",
+  "commonMistakes": [
+    {
+      "mistake": "Using a Polearm because its base stats look better",
+      "why": "Weapon Mastery's Attack Speed +1 and Damage +5% only apply with a Spear, costing a full attack speed stage and 5% damage on a Polearm.",
+      "consensus": "strong",
+      "sources": [
+        "https://maplestorywiki.net/w/Dark_Knight/Skills",
+        "https://grandislibrary.com/explorers/dark-knight",
+        "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/"
+      ]
+    },
+    {
+      "mistake": "Pouring SP into Decent skills past level 1",
+      "why": "The extra levels are argued to be a poor return for every class except on Decent Holy Symbol.",
+      "consensus": "weak",
+      "sources": [
+        "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/"
+      ]
+    },
+    {
+      "mistake": "Rerolling HEXA Stat before the rest of the HEXA matrix is finished",
+      "why": "Argued to be a waste of resources, since any node taken to level 20 is worth roughly 2-3% final damage regardless of the lines it rolled. Single source; treat as one opinion, not settled.",
+      "consensus": "weak",
+      "sources": [
+        "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/"
+      ]
+    },
+    {
+      "mistake": "Putting two boost nodes from the same numbered group on one tri-node",
+      "why": "Nightshade Explosion and Final Attack share group 4, Leap Attack and Rush share group 5, and La Mancha Spear and Spear Sweep share group 6, so those pairs cannot sit together on one node.",
+      "consensus": "moderate",
+      "sources": [
+        "https://maplestorywiki.net/w/Dark_Knight/Skills",
+        "https://grandislibrary.com/explorers/dark-knight"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/explorers/dark-knight",
+      "what": "Class overview: stats, weapons, legion, link skill, weapon multiplier, attack speed table, boost node groups, hyper passive build, inner ability sets for bossing and for Heroic/Interactive training. Page credits its build recommendations to the Dark Knight Discord (contributors named DiXiMaN and Moobs).",
+      "dated": "Page states 'GMS Ver. 269 [Ride the Lightning Update]'. No calendar date published; read 2026-09-11.",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/class-infographic/dark-knight/dark-knight-6th-job-fragments.png",
+      "what": "Dark Knight 6th Job Optimization GMS (Fragments) step-by-step chart by LazyVista (XseedGames). Icon-only; the only machine-readable text is the HEXA Stat line 'Reg (Late Game): Att Boss Crit / Reboot and Mules: Att Stat Boss'.",
+      "dated": "Undated. Published alongside a v.269 page.",
+      "independent": false
+    },
+    {
+      "url": "https://grandislibrary.com/class-infographic/dark-knight/dark-knight-6th-job-energy.png",
+      "what": "Dark Knight 6th Job Optimization GMS (Energy) chart, same author, same HEXA Stat recommendation.",
+      "dated": "Undated. Published alongside a v.269 page.",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Dark_Knight/Skills",
+      "what": "In-game skill text: full 4th job kit, hyper skill pool with exact values, V skills (Spear of Darkness, Radiant Evil, Calamitous Cyclone, Darkness Aura), V enhancement core groups and per-level final damage, HEXA skill cores (Dead Space origin, Dark Halidom ascent), six mastery cores, four HEXA enhancement cores and their level curves.",
+      "dated": "Live wiki, no page date shown; content includes the Ascent skill core, so it reflects a post-2025 patch. Read 2026-09-11.",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/",
+      "what": "Skill build guide: V matrix trios, hyper skill ordering, inner ability target.",
+      "dated": "2025-05-04 (page states last updated)",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+      "what": "Class guide: HEXA priority naming Dead Space / Calamitous Cyclone / Darkness Aura, HEXA Stat advice, boost node pairings, hyper skill build, inner ability, spear-vs-polearm, Decent skill advice.",
+      "dated": "2024-11-22 (page states last updated)",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+      "what": "Skill build guide: V matrix main damage nodes and tri-nodes, hyper skill list, inner ability, link skill and legion block.",
+      "dated": "2024-02-19, describing the Destiny v.233 remaster. Pre-HEXA for build purposes; used only for 5th job and hyper skill facts.",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+      "what": "General HEXA matrix mechanics: core types, Sol Erda spending order (mastery node then boost nodes).",
+      "dated": "Undated on the page as read; same publisher as the Dark Knight guide above, so not independent of it.",
+      "independent": false
+    },
+    {
+      "url": "https://thedigitalcrowns.com/perfect-boost-nodes-for-every-class-maplestory-2021/",
+      "what": "Hybrid boost-node suggestion for a Dark Knight boss mule.",
+      "dated": "Title says 2021. Stale; used only for the single weak-marked hybrid trio claim.",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Invincible Belief link skill cooldown",
+      "positionA": "150 seconds at master level 9 (in-game skill text)",
+      "sourceA": "https://maplestorywiki.net/w/Dark_Knight/Skills",
+      "positionB": "90 seconds",
+      "sourceB": "https://grandislibrary.com/explorers/dark-knight",
+      "note": "Unresolved. Both agree on the 15% HP trigger and 44% Max HP per second for 3 seconds. The wiki additionally records a permanent Damage +6% passive at level 9 that Grandis Library does not list."
+    },
+    {
+      "topic": "Legion block effect magnitude",
+      "positionA": "Max HP +2/3/4/5/6%",
+      "sourceA": "https://grandislibrary.com/explorers/dark-knight",
+      "positionB": "Max HP +1/2/3/4/5%",
+      "sourceB": "https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide",
+      "note": "The lower figures come from a 2024-02 page describing a 2022 patch and are likely superseded, but both are recorded rather than resolved by preference."
+    },
+    {
+      "topic": "Which five hyper skill passives to take",
+      "positionA": "Evil Eye - Reinforce, Evil Eye - Hex Reinforce, Final Pact - Damage, Final Pact - Critical Chance, Gungnir's Descent - Reinforce",
+      "sourceA": "https://grandislibrary.com/explorers/dark-knight and https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+      "positionB": "Weight the Gungnir's Descent line harder: Guardbreak and Boss Rush alongside Reinforce, dropping one Evil Eye or Final Pact pick",
+      "sourceB": "https://ayumilove.net/maplestory-dark-knight-skill-build-guide/ and https://www.digitaltq.com/maplestory-dark-knight-skill-build-guide (DigitalTQ instead takes Final Pact - Reduce Target and Gungnir's Descent - Boss Rush)",
+      "note": "Real conflict with only five slots available. The two positions differ on whether Gungnir's Descent - Guardbreak (+20% monster DEF ignored) and - Boss Rush (+10% boss damage) beat the Evil Eye passives. Both sides on position B are older or equal in age to position A, and no source found shows the underlying math."
+    },
+    {
+      "topic": "HEXA Stat handling",
+      "positionA": "Target Attack / Main Stat / Boss Damage lines in Reboot",
+      "sourceA": "https://grandislibrary.com/class-infographic/dark-knight/dark-knight-6th-job-fragments.png",
+      "positionB": "HEXA Stat is random; do not reroll until the rest of 6th job is maxed, take a node to level 20 and leave it",
+      "sourceB": "https://thedigitalcrowns.com/dark-knight-skill-build-and-guide-maplestory/",
+      "note": "Not strictly contradictory - one is a target, the other is a spending policy - but a planner should not present the target as something to chase early."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "recencyWarning": "None of the community build sources is confirmed current for v.271. The most recent dated build source is Ayumilove (2025-05-04); Grandis Library's class page self-identifies as GMS Ver. 269; the two Digital* guides are from 2024 and the older of them predates HEXA entirely. Only the in-game skill data from maplestorywiki.net is current enough to include the Ascent skill core (Dark Halidom), and no source found tells you where that core belongs in the investment order. Treat the HEXA ordering in this file as provisional and re-check the Dark Knight class Discord (https://discord.gg/N36cqyAVfa, linked from Grandis Library) before spending Sol Erda.",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FABRICATED CITATION SUPPORT — 'Rush Boost': the file gives consensus 'moderate' citing digitaltq.com AND grandislibrary.com. Grandis does support Rush: it tags node group 5 (Leap Attack / Rush) as OTHER, defined on the page as 'Boost Nodes that do not need to be upgraded or has least priority'. The citation inverts the source. Only digitaltq (2022) actually recommends Rush as the third slot.",
+      "UNVERIFIED, HIGH RISK — the six HEXA mastery cores (HEXA Gungnir's Descent, HEXA Dark Impale granting 'Dark Bident', HEXA Nightshade Explosion, HEXA Revenge of the Evil Eye, HEXA Final Attack, HEXA Evil Eye Shock) are single-sourced to maplestorywiki.net/w/Dark_Knight/Skills, which returns HTTP 403 and could not be reached for verification. They also sit in direct tension with grandislibrary, whose PRIMARY tag means 'unlocks a 6th Job HEXA Mastery' and which tags ONLY Gungnir's Descent and Dark Impale as PRIMARY — implying Nightshade Explosion, Final Attack and Evil Eye do NOT unlock masteries. One of the two is wrong; the file asserts both without noticing. 'Dark Bident' could not be confirmed anywhere.",
+      "UNVERIFIED — 'Agile Arms already gives +2 attack speed' (innerAbility.notes). This skill name appears nowhere I could reach. It is single-sourced to the same 403 wiki page. The arithmetic is at least consistent with Grandis (base stage 7 -> spear stage 4), so something supplies +2, but the name is unconfirmed.",
+      "UNVERIFIED — 'Evil Eye - Aura Reinforce' in the stated full hyper passive pool. Not present on grandislibrary, ayumilove, digitaltq or thedigitalcrowns. Single-sourced to the unreachable wiki page.",
+      "UNVERIFIED DETAIL — HEXA Gungnir's Descent 'on every one of its twelve hits'. The 120% Max HP scaling IS real (confirmed independently at orangemushroom.net, 2023-06-26: damage increases 'by a value equal to 120% of your maximum HP and 40% defense ignore'). The hit count of twelve is not corroborated and is oddly precise.",
+      "UNVERIFIED — Invincible Belief '150 seconds' cooldown and the '+6% Damage at link level 9' passive. Grandis confirms Master Level 9, 3 stacks, 15% HP trigger, 44%/sec for 3 sec, and 90s cooldown; it lists no damage bonus. The 150s figure and the damage line rest solely on the unreachable wiki page. The file does log this as a conflict, which is the right handling — but note both disputed figures come from the one source nobody can open.",
+      "STALE: SOURCE DATE IS WRONG — digitaltq.com is recorded in the file as '2024-02-19, describing the Destiny v.233 remaster'. The page states last updated June 9, 2022. The file flatters the source by roughly two and a half years. It is then used as a consensus leg on every vMatrix node, on the active hyper skills ('strong'), and on Rush.",
+      "STALE: THE NEWEST SOURCE HAS NO HEXA CONTENT — ayumilove (2025-05-04) is the file's recency anchor and the basis for the reported 'newest dated 2025-05-04'. The page contains no mention of 6th job or HEXA anywhere. Its trio advice is 5th-job-era. So the newest source says nothing about the single section the product most needs, and the '2025-05-04' recency claim does not cover the HEXA block at all.",
+      "STALE: ALL HEXA JUDGEMENT PREDATES THE ASCENT RELEASE — the only written HEXA priority (thedigitalcrowns, 2024-11-22) predates Ascent skills, which shipped in KMS July 2025. Its 'Dead Space -> Calamitous Cyclone -> Darkness Aura' order structurally cannot account for Dark Halidom. The file honestly notes no source places Dark Halidom, but still presents the 2024 order as the current HEXA order rather than marking the whole ordering as pre-Ascent.",
+      "STALE: GRANDIS TAXONOMY MAY ITSELF BE STALE — the class page self-stamps GMS v.269 and defines PRIMARY as 'unlocks a 6th Job HEXA Mastery'. If the file's six-mastery-core list is correct, that tagging is out of date, which in turn undermines every 'Grandis classes it as a primary node' justification in the vMatrix section.",
+      "STALE: MISSED CONFLICT ON HEXA STAT — conflicts entry 4 claims the two positions are 'not strictly contradictory - one is a target, the other is a spending policy'. That is wrong. thedigitalcrowns states an explicit target: Attack / STAT / Critical Damage. The infographic states Reboot = Att Stat Boss. They differ on the third line (Boss vs Critical Damage). A genuine conflict is recorded as a non-conflict, and the hexa.order step 6 repeats the mischaracterization."
+    ],
+    "clearedOnInspection": [
+      "NOT FABRICATED (checked and cleared, so the parent does not over-correct): Dead Space is genuinely the Dark Knight origin skill core and Dark Halidom is genuinely the Ascent skill — both confirmed independently on orangemushroom.net (2023-06-26 and 2025-07-03), a source the file does not cite. Weapon multiplier 1.49x, Iron Chain secondary, legion +2/3/4/5/6%, attack speed base 7 / spear 4 / polearm 5, the six boost node groupings, and the HEXA Stat line 'Reg (Late Game): Att Boss Crit / Reboot and Mules: Att Stat Boss' are all confirmed verbatim-as-fact. I rendered the infographic PNG myself; the transcription is accurate and the researcher's refusal to guess at the icon-only step order was correct."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "11 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

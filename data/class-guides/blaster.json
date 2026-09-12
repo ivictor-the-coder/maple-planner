@@ -1,0 +1,228 @@
+{
+  "slug": "blaster",
+  "className": "Blaster",
+  "branch": "Resistance",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Arm Cannon",
+  "secondaryWeapon": "Charge",
+  "archetype": "Melee warrior DPS built entirely on charge-skill animation cancelling. Two extra resources drive the kit: Ammo (spent by Revolving Cannon, Detonate and Magnum Cannon, auto-reloaded when empty, refunded by cancelling with a charge skill) and the Dynamo Gauge (one bar per Revolving Cannon trigger, spent in full by Bunker Buster Explosion, which then locks the gauge in Overheat for 7 seconds). Two main loops exist: No-Reload (Magnum Punch into Double Blast, each auto-firing Revolving Cannon, cancelled with a charged Bobbing then a jump) and Shotgun Punch (the only skill cancellable without a full charge). Input-heavy and widely described as steep to learn rather than hard to play well once learned; the Dexless author flags hand strain from the APM as a real risk. Sources: grandislibrary.com/resistance/blaster; dexless.com/guides/blaster-guide.276/; nexon.com/maplestory/game/classes-and-jobs/1306/Warrior",
+  "linkSkill": {
+    "name": "Spirit of Freedom",
+    "effect": "12 seconds of invincibility after being revived; removed on changing maps. Stacks up to 4 times, once per unique Resistance character on the world (Demon classes and Xenon excluded). MapleStory Wiki additionally records a Lv.9 passive of Damage +5% for Blaster, Battle Mage, Wild Hunter and Mechanic themselves.",
+    "levels": 12
+  },
+  "legionEffect": "Ignore Enemy DEF +1/2/3/5/6% by Legion rank.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost Node 1 - Magnum Punch / Double Blast",
+        "why": "The two skills the No-Reload loop spams for the whole fight. Grandis Library classifies this node PRIMARY, defined on that site as a boost node that unlocks a 6th-job HEXA Mastery and covers frequently used skills. MapleStory Wiki independently lists HEXA Magnum Punch and HEXA Double Blast as real mastery cores, corroborating the unlock half of that classification.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/resistance/blaster",
+          "https://maplestorywiki.net/w/Blaster/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 2 - Bunker Buster Explosion",
+        "why": "The payoff of the Dynamo Gauge cycle and the largest pre-5th-job hit. Classified PRIMARY by Grandis Library; HEXA Bunker Buster Explosion exists as a mastery core on MapleStory Wiki.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/resistance/blaster",
+          "https://maplestorywiki.net/w/Blaster/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 3 - Shotgun Punch / Hammer Smash Blast / Revolving Cannon Mastery",
+        "why": "Shotgun Punch is the loop used while the Dynamo Gauge is Overheated, Revolving Cannon Mastery is a final-attack passive that fires on every direct Arm Cannon hit, and Hammer Smash Blast is the Overheat form of Hammer Smash. Classified PRIMARY by Grandis Library; all three have matching HEXA Mastery cores on MapleStory Wiki.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/resistance/blaster",
+          "https://maplestorywiki.net/w/Blaster/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 4 - Revolving Cannon / Ballistic Hurricane",
+        "why": "Revolving Cannon is appended to nearly every attack, so boosting it scales across the rotation. Classified PRIMARY by Grandis Library; HEXA Revolving Cannon and HEXA Ballistic Hurricane both exist as mastery cores. In-game caveat worth knowing: Rocket Punch is explicitly not affected by the Revolving Cannon boost node.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/resistance/blaster",
+          "https://maplestorywiki.net/w/Blaster/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 5 - Hyper Magnum Punch / Detonate / Muzzle Flash",
+        "why": "Grandis Library classifies this node OTHER, its lowest tier, defined as nodes that do not need to be upgraded or have least priority. None of these three skills has a HEXA Mastery core on MapleStory Wiki.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/resistance/blaster",
+          "https://maplestorywiki.net/w/Blaster/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 6 - Revolving Blast / Rocket Rush / Magnum Cannon",
+        "why": "Also classified OTHER by Grandis Library. Revolving Blast is the class bind, Rocket Rush and Magnum Cannon are utility and mobbing skills; none has a HEXA Mastery core.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/resistance/blaster",
+          "https://maplestorywiki.net/w/Blaster/Skills"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "No fixed trio is prescribed",
+        "why": "The Blaster Academy infographic republished on Mapler House labels its trinode row IN ANY COMBINATION, meaning what matters is that the primary-node skills appear often enough across your nodes rather than that any particular three share a node. It names no canonical trio.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.maplerhouse.com/en/classes/blaster",
+          "https://img.maplerhouse.com/published/guide-assets/blaster/overview/v1/0-blaster-overview.png"
+        ]
+      }
+    ],
+    "notes": "Grandis Library's boost node groupings are the post-V.269 layout; that page keeps a separate 'View Pre-V.269 Boost Nodes' link, so any Blaster node list written before GMS v.269 names different groupings and should not be trusted. No source we could read gave a numeric ordering (which node to 50 first, second, third) or described how priority shifts between Lv.200 and Lv.260 for Blaster specifically. The Blaster Academy infographic does publish a 5TH PRIO row ordering the 5th-job skills, but it is rendered as bare skill icons with no text labels, so transcribing it would require guessing and it is deliberately omitted. Blaster's class-specific 5th-job skills are Rocket Punch, Gatling Punch, Bullet Blast and Afterimage Shock (MapleStory Wiki)."
+  },
+  "hexa": {
+    "order": [],
+    "notes": "No transcribable Blaster-specific HEXA investment order was found, so this is empty rather than guessed. What is established: Blaster has two class HEXA skill cores, Final Destroyer (Skill Node/Core 1, Origin) and Vanguard Strike (Skill Node/Core 2, Ascent), and nine mastery cores - HEXA Magnum Punch, HEXA Double Blast, HEXA Bunker Buster Explosion (which adds Burst Pile Bunker), HEXA Revolving Cannon Mastery, HEXA Hammer Smash, HEXA Hammer Smash Blast, HEXA Shotgun Punch, HEXA Revolving Cannon and HEXA Ballistic Hurricane (MapleStory Wiki). Mapler House hosts a Blaster HEXA Priority infographic last updated 2026-06-19 giving an explicit roughly 150-step levelling order, but it is published as skill icons with only level ranges as text; identifying each step would mean guessing skills from small icons, so it is not transcribed. Orange Mushroom's Blog dates the 3rd HEXA skill core to KMS on 2026-07-31 (ver. 1.2.417) after a 2026-07-11 test server appearance; no source confirms it live in GMS v.271, so third-core advice should be treated as not yet applicable. The upstream every readable source defers to is the Blaster Academy Discord.",
+    "sources": [
+      "https://maplestorywiki.net/w/Blaster/Skills",
+      "https://www.maplerhouse.com/en/classes/blaster",
+      "https://img.maplerhouse.com/published/guide-assets/blaster/sixthJob/v1/0-blaster-6th-job.png",
+      "https://orangemushroom.net/tag/blaster/"
+    ]
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No Blaster-specific hyper stat priority was found in any source we could read. Grandis Library's Blaster page does not cover hyper stats, the Blaster Academy infographic republished on Mapler House omits them, and the Dexless guide predates the current hyper stat levels. Left empty rather than filled with generic warrior advice."
+  },
+  "hyperSkills": {
+    "passivePicks": [
+      "Punching Extra Strike (Lv.140) - +2 hits on Hammer Smash Blast and Shotgun Punch",
+      "Power Punch (Lv.150) - +10% damage on Magnum Punch, Double Blast, Hammer Smash Blast, Shotgun Punch, Muzzle Flash and Ballistic Hurricane",
+      "Piercing Punch (Lv.180) - +20% Ignore DEF on those same six skills",
+      "Improved Bunker Explosion (Lv.140) - +20% Bunker Buster Explosion damage",
+      "Improved Bunker Shockwave (Lv.165) - +15% damage on the Bunker Buster Explosion shockwave"
+    ],
+    "why": "Grandis Library lists exactly these five as the recommended hyper passive build, crediting the Blaster Discord. Each name and effect was then verified independently against MapleStory Wiki's hyper skill list; all five are real Blaster hyper passives with the effects stated.",
+    "consensus": "moderate",
+    "notes": "The Blaster Academy infographic republished on Mapler House presents the hyper passives differently - four fixed icons followed by a 'then choose' slot labelled OFFENSIVE / DEFENSIVE / SURVIVAL - so the two publications disagree on whether the fifth pick is fixed. The infographic's icons are unlabelled, so which four it fixes cannot be stated. Competing Blaster hyper passives that exist for the same level slots: Bunker Buster Explosion - Guard Bonus, Blast Shield Recovery, Ballistic Hurricane - Reinforce, Speedy Vitality Shield. No source we could read gave a recommendation for the active hyper skills.",
+    "sources": [
+      "https://grandislibrary.com/resistance/blaster",
+      "https://maplestorywiki.net/w/Blaster/Skills",
+      "https://www.maplerhouse.com/en/classes/blaster"
+    ]
+  },
+  "innerAbility": {
+    "bossing": [
+      "Boss Damage +20%",
+      "Damage to monsters inflicted with Abnormal Status +8%",
+      "Attack +21"
+    ],
+    "training": [
+      "Meso Obtained / Item Drop Rate +20%",
+      "Meso Obtained / Item Drop Rate +15%",
+      "Damage to Normal Monsters +8%"
+    ],
+    "consensus": "moderate",
+    "notes": "Two publications carry this identical set - Grandis Library and the Blaster Academy infographic republished on Mapler House (updated 2026-06-19) - but Grandis Library explicitly credits its Inner Ability, Hyper Passive and Boost Node sections to the Blaster Discord, and the infographic is Blaster Discord output that links that Discord. Counted honestly they are ONE independent source restated twice, not two. Notable by absence: neither list recommends attack speed, which sits alongside Grandis Library's figure of Attack Speed 8 reached from skills alone (stage-5 base, +2 from Arm Cannon Boost, +1 from Combo Training) - but no source states that reasoning, so the connection is unconfirmed.",
+    "sources": [
+      "https://grandislibrary.com/resistance/blaster",
+      "https://www.maplerhouse.com/en/classes/blaster",
+      "https://img.maplerhouse.com/published/guide-assets/blaster/overview/v1/0-blaster-overview.png"
+    ]
+  },
+  "gearingNotes": "No Blaster-specific gearing advice was found in any dated source, and none is invented here. The only gear-relevant facts we could source: the class uses an Arm Cannon (weapon multiplier 1.7x per Grandis Library) with a Charge as secondary weapon, and reaches Attack Speed 8 from its own skills (stage-5 base, +2 Arm Cannon Boost, +1 Combo Training). Grandis Library also totals the class's skill-derived stats before gear as Crit Rate +60%, Crit Damage +14%, Boss Damage +10%, Ignore DEF +35% and Final Damage +87%. Nothing in any source we read points to a Blaster-specific deviation from standard STR-warrior gearing; check the Blaster Academy Discord before committing resources.",
+  "commonMistakes": [
+    "Holding Bobbing and Weaving charged at the same time. One charges fast enough alone, and the second charge slot is wanted for Hammer Smash. Source: dexless.com/guides/blaster-guide.276/ (2023-10-23).",
+    "Releasing the charge skill on the same frame the attack fires. There is a short window after every skill where its animation cannot be cancelled, so the cancel silently fails; the fix is to slow down, not speed up. Source: dexless (2023-10-23).",
+    "Pressing jump before the charge skill has actually gone off. Charge skills resolve on key release, so an early jump eats the cancel; pressing the charge key first and the attack second avoids it. Source: dexless (2023-10-23).",
+    "Comboing at full pace below 10 stacks of Combo Training. Link speed is gated by the stack count, so inputs drop until stacks are up. Source: dexless (2023-10-23).",
+    "Re-charging Weaving before the jump cancel, which fires Muzzle Flash unintentionally. Charge only after the jump cancel. Source: dexless (2023-10-23).",
+    "Sitting on a capped Dynamo Gauge while bossing. Bunker Buster Explosion should fire the instant the gauge maxes, because the 7-second Overheat is what gates the next cycle. Source: dexless (2023-10-23); Overheat mechanic confirmed at maplestorywiki.net/w/Blaster/Skills.",
+    "Trying to insert a non-combo action at an arbitrary point. Other skills, turning, up-jumps and i-frames only land cleanly immediately after a jump cancel. Source: dexless (2023-10-23).",
+    "Ignoring hand strain. The Dexless author puts ergonomics ahead of speed and flags Blaster's APM as a long-term injury risk. Source: dexless (2023-10-23).",
+    "Reading a pre-v.269 boost node list as current. GMS v.269 reshuffled which skills sit in which Blaster boost node, and Grandis Library keeps the old layout behind a separate link. Source: grandislibrary.com/resistance/blaster."
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/resistance/blaster",
+      "what": "Class properties, link skill, legion effect, skill-derived stat totals, post-V.269 boost node groupings with PRIMARY/SECONDARY/OTHER classification, recommended hyper passive build, recommended inner ability lines, gauge and charge mechanics.",
+      "dated": "Page footer states GMS Ver. 269 (Ride the Lightning Update); no calendar date given. Two patches behind v.271.",
+      "independent": "Partly. Its build sections are explicitly credited to the Blaster Discord and its mechanics section is credited to Repentant (the Dexless author), so it shares upstreams with the next two sources."
+    },
+    {
+      "url": "https://www.maplerhouse.com/en/classes/blaster",
+      "what": "Hosts the Blaster Academy infographic (signed made by YIS) covering inner ability presets, trinode guidance and hyper passive layout, plus a step-by-step HEXA levelling order infographic. Also carries legion and link skill text.",
+      "dated": "Overview and HEXA Priority modules both stamped Updated Jun 19, 2026.",
+      "independent": "No for build claims - the infographic is Blaster Discord output and links discord.gg/A7KrV5BRx5, the same upstream Grandis Library credits. Its HEXA order infographic is its only unique content, and that content is icon-only."
+    },
+    {
+      "url": "https://dexless.com/guides/blaster-guide.276/",
+      "what": "Full mechanical guide to Blaster combos, animation cancels, Dynamo Gauge handling, guard windows and a long list of common execution mistakes. Author Repentant.",
+      "dated": "2023-10-23, and the author marks it out of date in that same post, directing readers to the Blaster Academy Discord.",
+      "independent": "Yes as an author, but pre-HEXA. Only its mechanics and common-mistake content is used here; none of its build, node or inner ability recommendations were taken."
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Blaster",
+      "what": "Class existence and availability table (Available in KMS, JMS, CMS, GMS, MSEA, TMS), stats, weapons, link skill, legion effect, job advancement quest levels including 6th job at Lv.260.",
+      "dated": "Undated wiki page.",
+      "independent": "Yes."
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Blaster/Skills",
+      "what": "Full skill list with effects: 1st-4th job, hyper passives (used to verify the recommended picks are real skills with the stated effects), class 5th-job skills (Rocket Punch, Gatling Punch, Bullet Blast, Afterimage Shock), class HEXA skill cores (Final Destroyer as Core 1 Origin, Vanguard Strike as Core 2 Ascent) and all nine HEXA mastery cores.",
+      "dated": "Undated wiki page.",
+      "independent": "Yes. Used as the independent check on Grandis Library's PRIMARY node classification, since a node is PRIMARY there precisely when it unlocks a HEXA Mastery."
+    },
+    {
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/1306/Warrior",
+      "what": "Official Nexon America class page for Blaster - confirms the class is listed as a currently playable Warrior of Resistance origin with STR as main stat.",
+      "dated": "Undated page content; site footer reads 2026 NEXON America Inc.",
+      "independent": "Yes - first-party."
+    },
+    {
+      "url": "https://orangemushroom.net/tag/blaster/",
+      "what": "Dated KMS and KMST patch coverage, used only to place the 3rd HEXA skill core in time.",
+      "dated": "KMST ver. 1.2.203 on 2026-07-11; KMS ver. 1.2.417 (MapleStory Overdrive: 3rd Hexa Skill Core) on 2026-07-31.",
+      "independent": "Yes."
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Guide:Class_Guides",
+      "what": "The wiki's index of community Google Doc class guides. Recorded as a negative result: it lists docs for roughly forty classes and the Blaster row is empty.",
+      "dated": "Undated wiki page.",
+      "independent": "Yes."
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    "Source independence on build advice is weaker than the source count suggests. Grandis Library and the Mapler House infographic publish an identical inner ability set; Grandis Library credits the Blaster Discord for that section and the infographic is Blaster Discord output. Counted honestly, the inner ability and boost node recommendations rest on ONE upstream (the Blaster Academy Discord) restated twice.",
+    "Hyper passive count. Grandis Library names five fixed passives (Punching Extra Strike, Power Punch, Piercing Punch, Improved Bunker Explosion, Improved Bunker Shockwave). The Blaster Academy infographic shows four fixed picks plus a flexible fifth chosen from offensive / defensive / survival options. Both positions are recorded; neither is preferred here, and the infographic's icons are unlabelled so we cannot say which four it fixes.",
+    "Recency gap. Grandis Library, the most detailed readable source, is stamped GMS v.269 while the target patch is v.271. The Mapler House infographic is newer (2026-06-19) but its unique content is untranscribable. The Dexless guide is 2023 and self-declared obsolete. Nothing readable is both current and text-based on build priorities.",
+    "No community Google Doc exists for Blaster. MapleStory Wiki's class guide index carries Google Doc links for most classes and leaves the Blaster row blank, consistent with every readable source deferring to the Blaster Academy Discord rather than a written doc."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "MISATTRIBUTED ENUMERATION in hexa.notes: the nine mastery cores credited to MapleStory Wiki are not the wiki's nine. The wiki lists Mastery Core 1: HEXA Magnum Punch, HEXA Double Blast | Core 2: HEXA Bunker Buster Explosion, Burst Pile Bunker | Core 3: HEXA Revolving Cannon Mastery, HEXA Hammer Smash, HEXA Shotgun Punch | Core 4: HEXA Revolving Cannon, HEXA Ballistic Hurricane. The file substitutes 'HEXA Hammer Smash Blast' for 'Burst Pile Bunker' and demotes Burst Pile Bunker to a parenthetical effect of HEXA Bunker Buster Explosion rather than a co-listed core skill. HEXA Hammer Smash Blast does exist on the page, but as the Cannon-Overdrive-converted form of HEXA Hammer Smash, not as a mastery core.",
+      "FALSE SOURCE CLAIM in vMatrix node 3: 'all three have matching HEXA Mastery cores on MapleStory Wiki' is untrue for Hammer Smash Blast, which has no core of its own. The wiki's Core 3 covers Revolving Cannon Mastery, Hammer Smash and Shotgun Punch.",
+      "NOT a fabrication, but a trap for re-auditors: the PRIMARY/OTHER tier labels on nodes 1-6 are CORRECT. WebFetch's summarizer twice reported Nodes 3 and 4 as SECONDARY. That is a hallucination - the tier is carried by a CSS class, and .kTnboi resolves to rgb(46,148,182) = the legend's PRIMARY (nodes 1-4) while .bIlqwy resolves to rgb(108,117,125) = OTHER (nodes 5-6). No Blaster node is SECONDARY. Verify this from the DOM, not a page summary.",
+      "STALE: Cannon Overdrive is absent from the file entirely. MapleStory Wiki states 'While Cannon Overdrive's cylinder gauge overheat reduction is active, Hammer Smash is converted into Hammer Smash Blast.' The file's node 3 calls Hammer Smash Blast simply 'the Overheat form of Hammer Smash' and the archetype never mentions the mechanic. Hammer Smash Blast carries two of the five recommended hyper passives (Punching Extra Strike, Power Punch), so its gating condition is planning-relevant. This is a symptom of sourcing mechanics from a 2023 pre-HEXA guide.",
+      "STALE: commonMistakes item 'Sitting on a capped Dynamo Gauge while bossing / Bunker Buster Explosion should fire the instant the gauge maxes' is a rotation-priority judgement taken from the 2023-10-23 Dexless guide, which its own author marks out of date. Only the 7-second Overheat mechanic is corroborated (confirmed on the wiki). Post-HEXA, Burst Pile Bunker unlocks after 5 uses of Bunker Buster Explosion, so the cycle economics have changed; this entry is presented as current without a staleness caveat.",
+      "STALE: RECENCY UNDERSTATED, not stale: the file reports its newest source as 2026-07-31 (Orange Mushroom). Mapler House carries live Class Statistics dated 2026-09-11 (GMS) and 2026-09-12 (KMS), plus per-character equipment, inner ability and skill setups for top KMS/TMS/MSEA Blasters. That data is independent of the Blaster Discord and is the one readable source that is both current and non-icon-based - it could have corroborated or challenged the single-upstream inner ability set. The source note claiming the HEXA infographic is Mapler House's 'only unique content' is wrong.",
+      "STALE: The overview infographic (img.maplerhouse.com/.../0-blaster-overview.png) is fully legible at native resolution and carries a labelled DECENTS/COMMONS block (a +10 FD decent, EXP, FOUNTAIN; BIND, MOB, ATT). Decent skills and common nodes are V Matrix content in scope for this guide and are omitted. The HEXA order image is genuinely icon-only with level ranges, so leaving hexa.order empty was the right call.",
+      "STALE: UNVERIFIABLE FROM HERE: dexless.com returned HTTP 403 to WebFetch and refused browser navigation, so the 2023-10-23 date, the author's self-declared-obsolete note and all nine commonMistakes rest on the researcher's reading alone. I could neither confirm nor refute them.",
+      "STALE: Staleness handling is otherwise sound and should be kept: the GMS v.269 vs v.271 gap is flagged, the pre-V.269 node reshuffle is flagged (the 'View Pre-V.269 Boost Nodes' link exists as described), Dexless is correctly restricted to mechanics, and the 3rd HEXA skill core is correctly ruled KMS-only - Orange Mushroom's KMST 1.2.203 (2026-07-11) and KMS 1.2.417 (2026-07-31) dates check out exactly."
+    ],
+    "clearedOnInspection": [
+      "NO invented node, skill or core names were found. Every name in the file - all six boost node groupings and their member skills, Rocket Punch, Gatling Punch, Bullet Blast, Afterimage Shock, Final Destroyer, Vanguard Strike, all five recommended hyper passives and all four named competing passives - exists on maplestorywiki.net/w/Blaster/Skills. The six node groupings match Grandis Library member-for-member."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "9 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

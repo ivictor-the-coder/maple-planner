@@ -1,0 +1,83 @@
+{
+  "ranAt": "2026-09-12",
+  "waves": [
+    {
+      "id": "wvm8l4hbi",
+      "classes": 31,
+      "written": 26,
+      "thin": [
+        "Bow Master",
+        "Night Walker",
+        "Thunder Breaker",
+        "Lara",
+        "Hero"
+      ],
+      "consensus": {
+        "weak": 18,
+        "moderate": 13
+      }
+    },
+    {
+      "id": "wy7v25fc4",
+      "classes": 23,
+      "written": 22,
+      "notLiveInGms": [
+        "Beast Tamer"
+      ],
+      "thin": []
+    }
+  ],
+  "defectsRecorded": 206,
+  "filesBlocked": [
+    "adele",
+    "angelic-buster",
+    "aran",
+    "arch-mage-fp",
+    "arch-mage-il",
+    "ark",
+    "battle-mage",
+    "bishop",
+    "blade-master",
+    "blaster",
+    "blaze-wizard",
+    "bow-master",
+    "buccaneer",
+    "cadena",
+    "cannoneer",
+    "corsair",
+    "dark-knight",
+    "dawn-warrior",
+    "demon-slayer",
+    "dual-blade",
+    "erel-light",
+    "evan",
+    "hayato",
+    "hero",
+    "illium",
+    "kain",
+    "kaiser",
+    "kanna",
+    "khali",
+    "kinesis",
+    "lara",
+    "luminous",
+    "lynn",
+    "marksman",
+    "mechanic",
+    "mercedes",
+    "mihile",
+    "mo-xuan",
+    "night-lord",
+    "paladin",
+    "phantom",
+    "shade",
+    "shadower",
+    "sia-astelle",
+    "thunder-breaker",
+    "wild-hunter",
+    "wind-archer",
+    "xenon",
+    "zero"
+  ],
+  "note": "The dominant defect is CITATION INVERSION: a claim attributed to a source that the source contradicts. It is more dangerous than an uncited guess because it looks checkable. No file with an unresolved defect is renderable."
+}

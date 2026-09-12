@@ -1,0 +1,382 @@
+{
+  "slug": "illium",
+  "className": "Illium",
+  "branch": "Flora / Magician",
+  "primaryStat": "INT",
+  "secondaryStat": "LUK",
+  "weapon": "Lucent Gauntlet",
+  "secondaryWeapon": "Lucent Wings",
+  "archetype": "Two-minute DPM magician built around a deployable orb (Crystal Battery). Charges the orb, then converts a full gauge into the Wings of Glory flight window where most of its damage is dealt. Extremely high mobility (teleport, flight, float, portals, up-jump) and strong party utility (party i-frame, party attack buff, party heal). Rewards constant micromanagement; punishes idle time and high ping.",
+  "linkSkill": {
+    "name": "Tide of Battle",
+    "effect": "Passive. Moving a set distance grants a stacking damage buff: up to 4 stacks, +4% damage each (+16% at cap), 10 second duration. Duration is shortened on characters other than Illium.",
+    "levels": 3
+  },
+  "legionEffect": "Flat INT: +10 / +20 / +40 / +80 / +100 by legion rank tier.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Crystal Gate",
+        "why": "Top of the community guide's 5th-job skill-node leveling order. Leveling extends portal duration (to 160s) and raises the damage of the gate's periodic bombardments, which drive Illium's farming throughput.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Crystalline Spirit",
+        "why": "Second in the guide's order. Leveling raises the final damage of the Reactions the spirits trigger, which is the class's main filler damage outside the Wings window.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Grandis Goddess's Blessing",
+        "why": "Third in the guide's order. Leveling raises the share of equipment attack converted to magic attack (to 100%) and the flat attack/magic attack granted (to +100). Lasts long enough to cover the whole Wings window.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Conversion Overdrive",
+        "why": "Fourth in the guide's order. Leveling extends duration (to 60s) and scales the MP-proportional damage bonus and Spell Storm damage. Also covers the full burst window.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Erda Nova",
+        "why": "Guide says to level it only as far as a 2-minute cooldown, so the bind lines up with the two-minute burst cycle. Beyond that point it is not a damage node.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Crystal Ignition",
+        "why": "Key-down burst beam, roughly 6 seconds held. Leveling raises its damage over time. Sits mid-list because the class's damage is concentrated in Wings of Glory rather than in the key-down.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Templar Knight",
+        "why": "Summon with wide horizontal coverage; leveling raises its damage over time.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Mana Overload",
+        "why": "Last of the eight in the guide's order. A toggle worth a modest final-damage increase across most skills; still wanted, just after everything above it.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Blink (common node)",
+        "why": "Guide recommends Lv. 30 for the scaling magic attack it grants and for a longer float.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Rope Lift (common node)",
+        "why": "Guide recommends Lv. 30 for the scaling INT it grants.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "node": "Ethereal Form (common node)",
+        "why": "Guide states it can stay at Lv. 1 permanently; do not spend nodes on it.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": [
+          "Radiant Javelin + Winged Javelin",
+          "Reaction - Destruction II",
+          "Machina + Reaction - Domination II"
+        ],
+        "why": "First of three boost-node sets. Covers the main attack line and both Reaction procs, which are the skills that gate the HEXA masteries unlocked earliest.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+          "https://grandislibrary.com/flora/illium"
+        ]
+      },
+      {
+        "trio": [
+          "Umbral Brand III",
+          "Crystal Skill - Deus + Ex",
+          "Longinus Spear"
+        ],
+        "why": "Second set. Covers the debuff passive, the transformed robot burst and the charging skill.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+          "https://grandislibrary.com/flora/illium"
+        ]
+      },
+      {
+        "trio": [
+          "Vortex Wings + Crystal Skill - Vortex of Light",
+          "Longinus Zone",
+          "any duplicate (community example repeats Umbral Brand III)"
+        ],
+        "why": "Third set. Illium has eight boostable skills and nine trio slots, so the last slot is a free duplicate. Vortex Wings matters far more after 6th job because its HEXA form, Mortal Wingbeat, became part of the burst.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+          "https://grandislibrary.com/flora/illium"
+        ]
+      }
+    ],
+    "notes": "Eight skills need boost nodes: Radiant Javelin/Winged Javelin, Reaction - Destruction II, Reaction - Domination II, Vortex Wings/Crystal Skill - Vortex of Light, Crystal Skill - Deus/Ex, Machina, Umbral Brand III, and Longinus Spear/Longinus Zone. Six boost nodes (three trios) are needed; each skill should appear in two nodes so it can reach master level 60 with matrix points. Two nodes whose top (main) skill is the same cannot be equipped at once, so the pairings above matter. This has become mandatory rather than optional since HEXA mastery cores require the underlying V-matrix skill at Lv. 40 or higher before matrix points to unlock. IMPORTANT SOURCING CAVEAT: Grandis Library credits its boost-node build to the same community class doc, so the two sources agreeing here is one root source, not two. Treat this whole section as single-source until a genuinely independent guide corroborates it."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Unlock the HEXA mastery cores before spending erda on Sol Janus",
+        "why": "Community guide's stated reason is that hyperburn leveling outpaces gear, so players reach Grandis lacking the damage to one-shot mobs; the mastery cores give an immediate damage jump, while Sol Janus only makes farming more convenient.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+        ]
+      },
+      {
+        "step": "HEXA Radiant Javelin (1st mastery core line) is the highest-value mastery for bossing",
+        "why": "It upgrades the main attack and adds an every-30th-javelin triple-throw. The guide calls it extremely important for bossing. The 1st mastery core requires the Radiant Javelin / Winged Javelin boost node at Lv. 40+ before matrix points.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+          "https://grandislibrary.com/flora/illium"
+        ]
+      }
+    ],
+    "notes": "NOT FOUND, deliberately left incomplete: no source I could reach states the full HEXA investment order (skill core vs. mastery vs. boost vs. common) in text. The community guide points to a leveling infographic image made by bluemagic123 and Luxuriously, which I could not read, and Grandis Library hosts the same class-Discord infographic as an image. Rather than guess an order, this field carries only the two steps that are stated in prose. Reference data that IS confirmed: origin skill is Mytocrystal Expanse (supplies a 10-second bind and extends Wings of Glory by 5s to a 20s total; 360s cooldown, so roughly every 6 minutes, with Erda Nova binding in between); the second skill core is Excidium; the four mastery core lines in order are (1) Radiant Javelin / Winged Javelin, (2) Reaction - Destruction / Reaction - Domination / Vortex Wings, (3) Ex / Machina / Crystal Skill - Deus, (4) Longinus Spear / Umbral Brand III / Longinus Zone; the four HEXA boost cores are Crystal Ignition, Templar Knight, Crystalline Spirit and Crystal Gate. HEXA stat priority per the community guide (single source, weak): Magic Attack > INT > Critical Damage > Boss Damage. The guide notes the 6th-job upgrade to Vortex Wings, Mortal Wingbeat, turned a previously skipped skill into a real part of the burst, and that HEXA Longinus Spear matters because Longinus Spear is the main manual charging tool (20 crystal charges per cast).",
+    "conflicts": [
+      "The same community guide contradicts itself on Sol Janus: the HEXA section recommends masteries before Sol Janus, while its FAQ says Sol Janus can be unlocked at any point in HEXA progression and the sooner the better. Both positions come from the one source; neither is resolved here."
+    ]
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "NOT FOUND: none of the sources I could reach gives an Illium hyper stat priority ordering. The only sourced claim is narrow - the community guide's critical-rate table adds up Illium's crit sources (base 5%, Endless Research +20%, Lucent Gauntlet Mastery +20%, Focus Spirit link Lv.3 +10%, Decent Sharp Eyes +10%, legion artifact +20%, Night Lord legion block +4%, Marksman legion block +4%, three familiar badges +1% each) to about 96%, and says that if crit rate is still short, roughly 4 points of hyper stat is a better way to close it than spending 4 legion grid blocks. Single source, weak. Everything else about hyper stat allocation is unsourced and deliberately left empty."
+  },
+  "hyperSkills": {
+    "passiveBuild": [
+      "Javelin - Reinforce (Lv. 140): Radiant Javelin damage +20%",
+      "Javelin - Extra Strike (Lv. 150): Radiant Javelin attack count +1",
+      "Javelin - Boss Rush (Lv. 180): Radiant Javelin boss damage +20%",
+      "Longinus - Cooldown Cutter: reduces Longinus Spear cooldown",
+      "Deus - Extra Strike: Crystal Skill - Deus attack count +1"
+    ],
+    "why": "All three Javelin passives go to the main attack, which is what Illium spams inside Wings of Glory. Longinus - Cooldown Cutter supports the charging loop, since Longinus Spear is the only manual source of crystal charge and the community guide says to use it off cooldown whenever the crystal is not full.",
+    "activeSkills": [
+      "Crystalline Bulwark (Lv. 140): party-wide i-frame; duration 2.5s plus 0.4s per Lucent Brand stack, up to 6.5s at 10 stacks",
+      "Longinus Zone (Lv. 160): attack that also gives roughly 2-3s of i-frame on cast",
+      "Divine Wrath (Lv. 190): +10% damage, and it also applies to any other Flora class in the party"
+    ],
+    "consensus": "weak",
+    "sources": [
+      "https://grandislibrary.com/flora/illium",
+      "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+    ],
+    "notes": "The passive build comes from Grandis Library, which credits its hyper passive build to the same community class doc - one root source, not two. The active-skill facts and the Crystalline Bulwark stack scaling are from the class doc. The Lv. 140/150/180 unlock levels are from Grandis Library's skill data."
+  },
+  "innerAbility": {
+    "bossing": [
+      "Legendary line: Attack Speed +1",
+      "Unique line: Boss Damage +10%",
+      "Third line: contested - see conflicts"
+    ],
+    "mobbing": [
+      "Legendary line: Meso Obtained +18-20% or Item Drop Rate +18-20%",
+      "Unique line: the other of Meso Obtained / Item Drop Rate, +13-15%",
+      "Third line: Damage to Normal Monsters +7-8% (guide calls this slot flexible)"
+    ],
+    "settleLines": [
+      "Magic Attack +15-21 in place of Boss Damage on the unique line",
+      "Buff Skill Duration +32-38% as an alternative unique line"
+    ],
+    "why": "Attack Speed +1 is described as non-skippable for Illium specifically, because attack speed still governs how fast javelins are thrown. The guide lays out the stack: base 4, Wisdom of the Crystal +1 (5), Gauntlet Frenzy +2 (7), Decent Speed Infusion +1 (8, the soft cap), Extreme Green Potion +1 (9, breaking the soft cap), inner ability +1 (10, the cap). Without the inner ability line the class sits one stage below cap. The guide also warns that needing this line makes Illium a more funding-dependent boss mule than classes that can ignore attack speed. Recommended rolling order is unique line first (lock it), then the Attack Speed +1 legendary line (lock it), then settle the third.",
+    "mobbingNote": "The guide states the 'number of enemies hit by multi-target skill +1' line is no longer needed on the inner ability, because it is now reachable through the legion artifact EXP line. It also notes the +1 mobs applies to Crystal Gate's bombardments.",
+    "consensus": "weak",
+    "sources": [
+      "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+      "https://grandislibrary.com/flora/illium"
+    ],
+    "notes": "Attack Speed +1 and Boss Damage +10% agree across both pages, but Grandis Library credits its inner ability recommendation to the same class doc, so this is one root source. The third line disagrees between the two pages - recorded under conflicts, not resolved."
+  },
+  "gearingNotes": "All of the following comes from the #IlliumGang community guide (single source unless stated) and is current as of GMS v.269, not v.271. Secondary weapon: Princess No's Lucent Wings is best in slot; it is assembled from 15 emblems she drops, double-clicked in the inventory. Weapon/secondary/emblem potential: the guide argues for 9 lines of %magic attack and zero lines of %boss or %IED (9/0/0) at endgame, on the grounds that the familiar system already supplies large amounts of boss damage in this region, that party bossing stacked around burst windows pushes %damage and %boss high enough that further %boss has diminishing value, and that 9/0/0 also scales for mobbing. Hat: a cooldown hat is wanted, not optional - -2s for better Longinus Spear timing and to fit a third Wings of Glory, or -4s when chasing a minimum clear time or aligning with a party. Special skill (Oz) rings: Ring of Restraint is called best in slot now that the burst window is condensed, because two HEXA Mortal Wingbeats fit inside a Ring of Restraint Lv.5 window; the stated Ring of Restraint sequence is origin, Wingbeat, laser, cancel Wings about two seconds early, Flash Crystal Battery, second Wings, Wingbeat, ring ends. Weapon Jump ring is used for ring-swapping alongside Ring of Restraint, timed to the 60-second HEXA Mortal Wingbeat. Continuous Ring 4 remains a valid substitute if Ring of Restraint and Weapon Jump are not available, and Continuous 5 is described as about a 2 final-damage gain over Continuous 4. Critical rate: the guide's stacking table reaches about 96% from skills, links, legion artifact and familiar badges, with the last few points expected from hyper stat rather than legion grid blocks. Legion artifact order given: artifacts 1-2 boss damage / IED / crit rate, 3-4 attack / critical damage / damage, 5-6 summon duration / buff duration / all stat, 7-8 cooldown skip; for training, artifacts 5 and 6 are swapped to EXP, meso and drop. HEXA stat priority: magic attack, then INT, then critical damage, then boss damage. Sol Hecate: the guide binds Styx to the Angelic Buster buff or to the Crystal Ignition burst, or to a dedicated key fired whenever the 60-second cooldowns come up, and binds Phlegethon to the Ignition burst - an independent EU rotation video (AfflictedEU, 2026-07-06) separately recommends placing Lv. 30 Hecate on Crystal Ignition and binding Styx to a dedicated key pressed inside Wings so Mortal Wingbeat always connects, which corroborates the general approach. Buff duration affects only the Angelic Buster link buff; summon duration no longer affects any Illium skill per the guide's FAQ. Ping is treated as a gearing-adjacent concern: the guide's own testing claims measurable javelin-count loss at high ping inside Wings of Glory and recommends a latency service for players far from the US west coast.",
+  "commonMistakes": [
+    {
+      "mistake": "Mashing the javelin key inside Wings of Glory",
+      "why": "The guide is explicit that Winged Javelin should be held down, not mashed; mashing costs javelin casts in the window where most of Illium's damage happens.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Letting the crystal sit uncharged",
+      "why": "The crystal charges passively at 3 per second, so a full 150-charge gauge takes about 50 seconds unaided. Every second not charging delays Wings of Glory, and the guide says roughly half of Illium's damage comes from that window. Longinus Spear is the only manual charge source, at 20 charges per cast, and should be used off cooldown whenever the crystal is not full - including during Wings.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Using the origin skill before popping Wings of Glory",
+      "why": "Mytocrystal Expanse extends Wings of Glory by 5 seconds, so it must be cast after Wings is already active to get the 20-second window.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Poor crystal positioning against a boss",
+      "why": "Javelins bounce between the boss and the orb. The guide's answer to maximising bounces is to place the orb on the boss and attack from close range, accepting the extra risk, rather than standing far away and hitting the orb so javelins travel to the boss.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Picking the wrong Crystal Attunement branch for bossing",
+      "why": "Crystal Attunement offers two choices; the guide says to take the right-hand option, Crystalline Essence, for bossing, which makes the real crystal produce double reactions without needing a decoy crystal placed.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Planning to skip Attack Speed +1 inner ability",
+      "why": "Illium's attack speed stack tops out at 9 without it; the inner ability line is what reaches the cap of 10, and javelin throw rate is damage. The guide treats it as mandatory and warns the roll can be expensive.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Forgetting to summon Ex and Machina before casting Crystal Skill - Deus",
+      "why": "Deus transforms Ex and Machina into a single larger robot and refreshes both on completion, so with correct ordering they never need resummoning; casting Deus without them out wastes the refresh.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Treating two Crystal Gates as free safety",
+      "why": "The guide calls a second gate double-edged: it lets you shuttle across a boss map to dodge, but it also makes it easy to teleport straight into an attack.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    },
+    {
+      "mistake": "Skipping Crystal Skill - Resonance before entering a boss",
+      "why": "It is primarily a party heal, but casting it just before loading into a fight starts you at the full 10 Lucent Brand stacks, which is also what makes Crystalline Bulwark last its full 6.5 seconds.",
+      "sources": [
+        "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds"
+      ]
+    }
+  ],
+  "mechanicSummary": "Crystal Battery is unlocked in 2nd job after the storyline. Deploy Crystal places an orb you steer; it charges passively at 3 charges per second and holds up to 150. Crystal Skills unlock at charge thresholds and do not consume charges - each can be used once per fill, and they reset when the gauge next reaches maximum: Crystal Skill - Vortex of Light at 30, Crystal Skill - Resonance at 60, Crystal Skill - Deus at 90, Crystal Skill - Wings of Glory at 150. Radiant Javelin, Radiant Orb and Longinus Spear all trigger an attack from the orb when they hit it; Reaction - Destruction fires when Radiant Javelin or Longinus Spear hits it, Reaction - Domination when Radiant Orb hits it. Radiant Orb and Longinus Spear home to the orb regardless of facing. Lucent Brand stacks (1-10, shown above the character, built by casting Radiant Orb) raise attack, magic attack and Radiant Javelin damage and scale Crystalline Bulwark's duration; Umbral Brand is the enemy-side debuff that cuts defence and amplifies Illium's damage. Flash Crystal Battery instantly fills the gauge. Per the community guide, weaving Radiant Orb between javelins is no longer required, but casting it about every 4-5 seconds is still recommended for the reaction damage.",
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/flora/illium",
+      "what": "Fan class reference page. Used for: class group, job group, INT/LUK, Lucent Gauntlet / Lucent Wings, legion INT values, Tide of Battle wording and master level, the six boost-node pairings, the hyper passive build, inner ability recommendation, the full 5th and 6th job skill lists (including mastery core lines, skill cores Mytocrystal Expanse and Excidium, and the four HEXA boost cores), hyper skill unlock levels, and the Crystal Battery mechanic.",
+      "dated": "Page labelled GMS Ver. 269 (Ride the Lightning); its two class infographics are dated 2026-06-03",
+      "independent": true,
+      "dependencyNote": "The page's own credits attribute its inner ability, hyper passive build and boost-node build to the #IlliumGang class doc listed below. For those three fields it is NOT an independent source."
+    },
+    {
+      "url": "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+      "what": "#IlliumGang community class guide and FAQ, authored by Ibly, EminentWings and Luxuriously. The substantive judgement source: boost node trios, 5th-job skill node leveling order, HEXA masteries-before-Sol-Janus advice, HEXA stat priority, inner ability including the attack speed stack table, crit rate stacking table, legion artifact order, secondary weapon, WSE potential lines, cooldown hat, Oz ring choice, Sol Hecate binding, burst structure, per-boss tips and FAQ.",
+      "dated": "Marked 'Updated as of [V.269 Patch] [Ride The Lightning]'; change log says created 2024-11-15, last updated to completion March 2026",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Illium",
+      "what": "Wiki class entry. Used only to independently confirm existence and identity facts: Flora faction, Magician class, INT main / LUK secondary, Lucent Gauntlet primary and Lucent Wings secondary, Tide of Battle link skill, legion member effect INT +10/20/40/80/100. Carries no build advice.",
+      "dated": "Page last edited 2026-06-30",
+      "independent": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=-iuaqQ3CApM",
+      "what": "AfflictedEU, 'MapleStory Solis (EU) - Illium - Rotation Guide - Hecate Edition'. Independent corroboration on Sol Hecate placement: Lv. 30 Hecate on Crystal Ignition, and Styx on a dedicated key pressed inside Wings so Mortal Wingbeat connects. Only the description text was readable; video contents were not transcribed.",
+      "dated": "2026-07-06",
+      "independent": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=2Kn7bbgZHUA",
+      "what": "AfflictedEU, 'MapleStory Solis (EU) - Illium Burst Guide v.267'. Independent evidence that Illium's burst was reworked around the v.267 balance patch, which matches the class doc's remark that a recent change condensed the burst window. Description only.",
+      "dated": "2026-03-27",
+      "independent": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=KDl1j_cfdmo",
+      "what": "Ibly, 'MapleStory Illium Bossing Guide 2025'. Listed for completeness and NOT counted as independent: Ibly is a named author of the #IlliumGang class doc above.",
+      "dated": "Published roughly January 2026 (YouTube reported '8 months ago' as of 2026-09-11)",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Inner ability third line for bossing",
+      "positionA": "8% Damage to enemies with abnormal status",
+      "sourceA": "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+      "positionB": "Chance to skip cooldown +10%",
+      "sourceB": "https://grandislibrary.com/flora/illium",
+      "note": "Not resolved here. Grandis Library credits its inner ability block to the class doc, so one of the two is probably a stale copy of the other rather than a genuine second opinion - but which one is stale is not determinable from what I could read. The first two lines (Attack Speed +1, Boss Damage +10%) agree."
+    },
+    {
+      "topic": "Whether to unlock Sol Janus before or after the HEXA masteries",
+      "positionA": "Unlock the HEXA masteries first for the immediate damage",
+      "sourceA": "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds (HEXA Matrix section)",
+      "positionB": "Sol Janus can be unlocked at any point in HEXA progression, and sooner is better",
+      "sourceB": "https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds (FAQ section)",
+      "note": "Both positions are inside the same document, which means the source contradicts itself rather than two sources disagreeing."
+    },
+    {
+      "topic": "Patch currency",
+      "positionA": "Every Illium-specific source I could reach describes GMS v.267-v.269",
+      "sourceA": "https://grandislibrary.com/flora/illium, https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds",
+      "positionB": "This file targets v.271 (2026-09-09), and community coverage of a September 2026 balance pass was being published on 2026-09-10 and 2026-09-11",
+      "sourceB": "https://www.youtube.com/watch?v=9bgotXnGBF0 (2026-09-10), https://www.youtube.com/watch?v=sZKrG92i_3Y (2026-09-11)",
+      "note": "I could not verify whether Illium was touched in v.271. The official patch notes site renders client-side and returned no readable content. Nothing in this file should be assumed to account for v.271 changes. Treat damage-relevant judgement here as v.269-era."
+    }
+  ],
+  "evidenceNotes": "Existence is firmly established: three independent sources describe Illium as a live, creatable GMS Flora magician. Build judgement is weaker than it looks. Grandis Library and the #IlliumGang class doc agree on nodes, inner ability and hyper passives, but Grandis Library explicitly credits the class doc for exactly those sections, so that agreement is one root source, not two. The HEXA leveling order exists only inside infographic images on both pages and is therefore absent from this file rather than guessed at. No source I reached publishes an Illium hyper stat priority list. Web search was unavailable for this run (session search budget exhausted) and Reddit blocked unauthenticated access, so r/Maplestory guide threads - a listed good source - were not reachable and should be checked on a later pass.",
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FABRICATED NUMBER: gearingNotes says 'Weapon Jump ring is used for ring-swapping alongside Ring of Restraint, timed to the 60-second HEXA Mortal Wingbeat.' The 60-second cooldown is not in the cited source - I queried the class doc directly (mobilebasic view) and it gives no cooldown for Mortal Wingbeat, describing it only as the enhanced form of Vortex Wings. Independent game data contradicts a 60s cooldown outright: maplestorywiki.net/w/Illium/Skills lists HEXA Vortex Wings as 'Usable once per Wings of Glory' - gated by the Wings window, not by a timer. A player timing ring swaps to a nonexistent 60s cycle will mistime the burst.",
+      "CONTRADICTED NODE PAIRINGS: vMatrix.trios states 'Machina + Reaction - Domination II' as one boost node, and splits Umbral Brand III, Longinus Spear and Longinus Zone into three different trios. Two independent sources give the fixed groupings as: (1) Radiant Javelin II/Winged Javelin, (2) Reaction - Domination II + Reaction - Destruction II, (3) Vortex Wings + Crystal Skill - Vortex of Light, (4) Crystal Skill - Deus + Ex, (5) Machina + Umbral Brand III, (6) Longinus Spear + Longinus Zone. Sources: maplestorywiki.net/w/Illium/Skills ('V Enhancements' section, game data, not opinion) and grandislibrary.com/flora/illium ('Skills Boosted by Each Nodes', Nodes 1-6). No 'Machina + Reaction - Domination II' node exists in either. The file then says 'Two nodes whose top (main) skill is the same cannot be equipped at once, so the pairings above matter' - so the wrong pairings are presented as decision-critical.",
+      "UNSUPPORTED MECHANIC, stated twice as a hard requirement: vMatrix.notes ('HEXA mastery cores require the underlying V-matrix skill at Lv. 40 or higher before matrix points to unlock') and hexa.order step 2 ('The 1st mastery core requires the Radiant Javelin / Winged Javelin boost node at Lv. 40+ before matrix points'). No reachable source states this. maplestorywiki.net/w/Illium/Skills says the opposite shape of thing in two places: under Mastery Skills, 'Mastery Skills are affected by Hyper Skill passives (if applicable) and Boost Node enhancements applied to the base skill' (a benefit, not a gate); and the Lv-requirement language that does exist belongs to HEXA Enhancements (the 4 boost cores), which 'require the corresponding V Skill to be leveled to max and equipped' - max, i.e. Lv.30, and for a different core type. The file's Lv.40 gate reads like a conflation of those two rules. This claim is used to justify 'This has become mandatory rather than optional', i.e. it drives spending.",
+      "WRONG NUMBER (propagated from the source without checking): vMatrix.priority Crystal Gate says leveling 'extends portal duration (to 160s)'. The class doc does say 160s (I confirmed the '(Max: 160s)' wording in the doc). But both current sources say 110s: maplestorywiki.net/w/Illium/Skills gives Crystal Gate Lv.1 duration 81 sec -> Lv.30 duration 110 sec, and grandislibrary.com's actives list shows the same summon at [110s]. 160s is stale or wrong and the file records it as fact with no conflict entry.",
+      "MISSTATED LINK SKILL DURATION: linkSkill says '+16% at cap, 10 second duration. Duration is shortened on characters other than Illium.' maplestorywiki.net/w/Illium/Skills gives Tide of Battle Lv.3 as 'Duration: 25 sec., Damage per stack: +4% / When used as a Link Skill, the duration is reduced to 10 seconds.' 10s is the value ON THE LINKED CHARACTER; on Illium itself it is 25s. The file reports the reduced number as the base and then says it is reduced further elsewhere. (Grandis Library's link-skill box shows the same 10s framing, so this is inherited from the one non-independent source, not invented - but it is wrong and the wiki conflict is unrecorded.)",
+      "MISDESCRIBED SKILL: vMatrix.priority Conversion Overdrive says leveling 'scales the MP-proportional damage bonus and Spell Storm damage.' maplestorywiki.net/w/Illium/Skills gives Lv.30 as a flat 'Damage: +45%' with Spell Storm costing an additional 150 MP per 4 sec. The damage bonus is flat, not MP-proportional.",
+      "MINOR: vMatrix.priority Rope Lift says Lv.30 is taken 'for the scaling INT it grants.' The wiki gives Rope Lift Lv.30 as '[Passive Effect - All Stats: +30]', not INT.",
+      "STALE: BOTH build sources are v.269 and the file is stamped patchVersion 'v.271' / lastVerified '2026-09-11'. The file discloses this honestly in gearingNotes and conflicts[2], which is good practice - but the machine-readable top-level fields still say v.271, so any downstream consumer reads this as verified-current. I re-confirmed both datestamps independently: grandislibrary.com/flora/illium footer reads 'GMS Ver. 269 [Ride the Lightning Update]'; the class doc (title 'The Comprehensive Guide to Illium 2026') reads 'Updated as of V.269 Patch [Ride The Lightning]', last updated to completion March 2026. Nothing in this file has been checked against v.271. patchVersion should read v.269 with a separate field for the target patch.",
+      "STALE: 'summon duration no longer affects any Illium skill per the guide's FAQ' (gearingNotes) is contradicted by current game data. The doc does say it - I confirmed the FAQ line 'Skill(s) affected by Summon Duration? None anymore.' - but maplestorywiki.net/w/Illium/Skills states HEXA Ex is 'Unaffected by enemy attack reflection and receives summon duration increase effect.' The doc's FAQ answer predates or misses the HEXA Ex behaviour. The file also contradicts itself here: the same gearingNotes paragraph recommends 'artifacts 5-6 summon duration / buff duration / all stat' while asserting summon duration does nothing.",
+      "STALE: The Crystal Gate 160s figure (see fabrications) is stale doc data carried forward as current; live values are 110s.",
+      "STALE: hexa.notes says 'no source I could reach states the full HEXA investment order ... in text' and leaves the field at two steps. That conservatism is correct for the FULL order, but the class doc does appear to state a partial order in prose - my read of it returned 'HEXA Radiant Javelin first, followed by Mortal Wingbeat and reaction skills', which is more than the file captured. Re-read the doc's HEXA Matrix section directly (the doc IS readable at https://docs.google.com/document/d/1yRtTynFk6jNthJlBwCSTeM4rcV3taEnwx9DOJ9MzBds/mobilebasic - the researcher's note that only an unreadable infographic exists is only partly true) before leaving the field empty.",
+      "STALE: NAMING DRIFT, HEXA-era: the file uses 'Mortal Wingbeat' in three places (hexa.notes, vMatrix.trios[2].why, gearingNotes) as if it were the skill's name. It is the class doc's term. The name does not appear anywhere on maplestorywiki.net/w/Illium/Skills or grandislibrary.com/flora/illium; the documented name is 'HEXA Vortex Wings'. A planner that tells a player to invest in 'Mortal Wingbeat' names something they cannot find in-game."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "12 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

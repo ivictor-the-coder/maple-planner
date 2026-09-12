@@ -1,0 +1,580 @@
+{
+  "slug": "dawn-warrior",
+  "className": "Dawn Warrior",
+  "branch": "Cygnus Knights",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Two-Handed Sword (One-Handed Sword is also usable; see gearingNotes for why Heroic players are told to use a two-hander)",
+  "secondaryWeapon": "Shield / Jewel class secondary. The Cygnus Knight secondary obtained from Princess No is treated as best-in-slot until the starrable Astra secondary becomes available.",
+  "archetype": "STR melee warrior built on the Equinox Cycle: Solar and Luna stances alternate automatically as Solar/Luna skills are used, and at Master of the Sword both stance bonuses apply at once (Rising Sun final damage and attack speed, Falling Moon crit rate and doubled attack count at reduced per-hit final damage). Damage arrives as a roughly 30-second burst window stacked around Soul Eclipse, Cosmic Forge, Cosmos and Rift of Damnation, with Cosmic Shower held down permanently as a placed zone. Carries its own bind (Impaling Rays), a party-wide defence-reduction debuff (True Sight), two invincibility dashes on a shared 45-second cooldown (Blazing Assault / Luster Charge), and very strong mobility.",
+  "linkSkill": {
+    "name": "Cygnus Blessing (Warrior)",
+    "effect": "Grants flat Attack Power and Magic ATT plus Abnormal Status Resistance and All Elemental Resistance. It stacks up to five times - once for each distinct Cygnus Knights job character on the same world - which is the reason Cygnus players level multiple Knights rather than one.",
+    "levels": "Master Level 15. Lv1: ATT and MATT +7, Abnormal Status Resistance +1, All Elemental Resistance +1%. Lv15: ATT and MATT +35, Abnormal Status Resistance +22, All Elemental Resistance +22%. Source: maplestorywiki.net Dawn Warrior/Skills, page last edited 2026-08-11. Grandis Library lists the same Lv15 values."
+  },
+  "legionEffect": "Flat Max HP, scaling +250 / +500 / +1000 / +2000 / +2500 with legion rank. Single source (Grandis Library) - not independently confirmed.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Solar Slash / Luna Divide boost node",
+        "why": "Main-attack node and the class doc's first V-matrix priority. It is also one of the four boost nodes that must reach level 40 before the corresponding 6th job HEXA Mastery can be unlocked.",
+        "consensus": "moderate - the level 40 HEXA gating requirement is stated by the class doc and independently reflected in NamuWiki's KMS boost-core table, which marks Solar Slash/Luna Divide as the primary core; the ordinal position (first) is the class doc only",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Rift of Damnation (V skill node)",
+        "why": "Second in the class doc's V-matrix ordering. NamuWiki independently ranks the equivalent KMS skill (Elysion) first among the four class V skills for enhancement.",
+        "consensus": "moderate - two independent sources place Rift of Damnation above Cosmos, Soul Eclipse and Flare Slash",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Cosmic Burst boost node",
+        "why": "Third in the class doc's ordering. Also a level-40 gate for the HEXA Cosmic Burst mastery.",
+        "consensus": "weak for the ordinal position (class doc only); the level 40 HEXA gate is corroborated by NamuWiki",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Cosmos (V skill node)",
+        "why": "Fourth in the class doc's ordering; NamuWiki places Cosmos second among the four class V skills, behind Rift of Damnation / Elysion.",
+        "consensus": "moderate - both sources rank Cosmos below Rift of Damnation and above Soul Eclipse and Flare Slash",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Soul Eclipse and Flare Slash (V skill nodes)",
+        "why": "Fifth in the class doc's ordering, listed as a pair. NamuWiki ranks the same two last of the four class V skills.",
+        "consensus": "moderate - two independent sources agree these two sit at the bottom of the four class V skills",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Cosmic Shower boost node",
+        "why": "Sixth in the class doc's ordering, despite being the node that gates the mastery most guides open first in 6th job. Also a level-40 HEXA gate.",
+        "consensus": "weak for the ordinal position (class doc only); the level 40 HEXA gate is corroborated by NamuWiki",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Equinox Slash boost node",
+        "why": "Seventh in the class doc's ordering. Fourth and last of the level-40 HEXA gates. NamuWiki notes the same four nodes are mandatory for 6th job.",
+        "consensus": "weak for the ordinal position (class doc only); the level 40 HEXA gate is corroborated by NamuWiki",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Weapon Aura (common V node)",
+        "why": "Eighth in the class doc's ordering.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+        ]
+      },
+      {
+        "node": "Transcendent Cygnus's Blessing (Cygnus common V node)",
+        "why": "Ninth and last in the class doc's ordering.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "node": "Boost Node 1 (Primary)",
+        "skills": [
+          "Solar Slash",
+          "Luna Divide"
+        ],
+        "note": "Level 40 required to unlock HEXA Mastery Core 1.",
+        "consensus": "strong - identical grouping reported by Grandis Library (GMS) and NamuWiki (KMS), which are independently authored",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Boost Node 2 (Primary)",
+        "skills": [
+          "Cosmic Shower"
+        ],
+        "note": "Level 40 required to unlock HEXA Mastery Core 2.",
+        "consensus": "strong - same two independent sources",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Boost Node 3 (Primary)",
+        "skills": [
+          "Cosmic Burst"
+        ],
+        "note": "Level 40 required to unlock HEXA Mastery Core 3. NamuWiki records a +5% critical rate effect at boost level 40 on this node.",
+        "consensus": "strong for the grouping; the level 40 crit rate effect is NamuWiki only",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Boost Node 4 (Primary)",
+        "skills": [
+          "Equinox Slash"
+        ],
+        "note": "Level 40 required to unlock HEXA Mastery Core 4.",
+        "consensus": "strong - same two independent sources",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Boost Node 5 (Secondary)",
+        "skills": [
+          "Bluster",
+          "Flicker",
+          "Blazing Assault",
+          "Luster Charge"
+        ],
+        "note": "No HEXA unlock attached. NamuWiki calls this an optional core and still recommends levelling it because all four skills see use.",
+        "consensus": "strong for the grouping (two independent sources); the recommendation to level it is NamuWiki only",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Boost Node 6 (Secondary)",
+        "skills": [
+          "Impaling Rays",
+          "Cosmic Matter"
+        ],
+        "note": "No HEXA unlock attached.",
+        "consensus": "strong - same two independent sources",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      }
+    ],
+    "notes": "Dawn Warrior's boost nodes are fixed skill groupings, not free three-skill trios you roll for. Grandis Library (GMS, stamped v269) and NamuWiki (KMS, last modified 2026-08-31) list the same six groupings independently of each other, so this is the strongest-evidenced part of the Dawn Warrior V matrix picture. Four of the six are mandatory because they gate 6th job HEXA masteries at boost level 40: Solar Slash/Luna Divide, Cosmic Shower, Cosmic Burst and Equinox Slash. See conflicts for a stale free-trio recommendation that still ranks well in search. KMS-to-GMS name mapping used when reading NamuWiki: Elysion = Rift of Damnation, Soluna Slash = Equinox Slash, Soluna Power = Equinox Power, Soluna Time = Equinox Cycle, Soul Penetration = Impaling Rays, Loud Rush / Silent Move = Bluster / Flicker."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Open HEXA Mastery Core 2 first (HEXA Cosmic Shower + Equinox Power)",
+        "why": "Opening this core grants an additional passive skill, Equinox Power, on top of the Cosmic Shower upgrade - so the first core opened is chosen for the extra skill it unlocks rather than for the mastery's own damage share. Both of the class doc's routes begin here, and NamuWiki independently recommends opening this lower-priority core first for the same stated reason.",
+        "consensus": "moderate - two independent sources (GMS class doc, KMS NamuWiki) agree, and they agree on the reason",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "step": "HEXA Mastery Core 1 (HEXA Solar Slash / HEXA Luna Divide) second",
+        "why": "Main-attack mastery. NamuWiki puts it at the top of the steady-state reinforcement order and says it is the better of the top two for grinding one-shot thresholds specifically.",
+        "consensus": "moderate - class doc route and NamuWiki steady-state ranking agree it is the highest-value mastery once the unlock-driven first core is done",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "step": "HEXA Mastery Core 4 (HEXA Equinox Slash + Equinox Power II) third",
+        "why": "Class doc places it third in both of its routes. Like Core 2 it carries an extra passive, Equinox Power II, which is the same unlock-first logic. CONTESTED: NamuWiki's steady-state reinforcement ranking puts Equinox Slash last of the four masteries.",
+        "consensus": "weak / contested - see conflicts",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "step": "Fourth step splits by which resource is the bottleneck: fragment-limited returns to Mastery Core 1; energy-limited goes to Mastery Core 3 (HEXA Cosmic Burst)",
+        "why": "The class doc publishes two routes, one for players short on Sol Erda Fragments and one for players short on Sol Erda energy. GMS Heroic players are normally fragment-limited, which makes the Core 1 branch the Heroic-facing answer.",
+        "consensus": "weak - single source for the split. The Heroic-is-fragment-limited framing is a general GMS Heroic convention rather than something this doc states in those words",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+        ]
+      },
+      {
+        "step": "Sol Hecate after that step in both routes",
+        "why": "Class doc places Sol Hecate at this point in both the fragment-limited and energy-limited sequences.",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+        ]
+      },
+      {
+        "step": "HEXA Enhancement (boost) nodes in the order Rift of Damnation Boost, then Cosmos Boost, then Soul Eclipse Boost, then Flare Slash Boost",
+        "why": "All four enhancement nodes do exactly one thing - add final damage to their skill, capping at +60% at level 30 - so the order simply follows how much of the class's damage each skill carries. NamuWiki states this order explicitly and notes it is the same order as the 5th job V skill priority; the class doc's V-matrix ordering independently ranks the same four skills the same way.",
+        "consensus": "moderate - two independent sources land on the same ordering. The +60% cap and the level 10/20/30 breakpoints are confirmed factually by maplestorywiki",
+        "sources": [
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC",
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+        ]
+      },
+      {
+        "step": "HEXA Stat: Attack, Critical Damage and main stat",
+        "why": "Class doc names these three as the usual picks but immediately says the allocation is individual and points at a calculator rather than publishing a fixed order.",
+        "consensus": "weak - single source, and that source declines to give an order",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+        ]
+      }
+    ],
+    "notes": "Exact node names, verified against maplestorywiki.net/w/Dawn_Warrior/Skills (last edited 2026-08-11) so nothing here is a guessed name. Skill Node 1 (Origin) = Astral Blitz. Skill Node 2 (Ascent) = Totality. Mastery Core 1 = HEXA Luna Divide + HEXA Solar Slash. Mastery Core 2 = Equinox Power + HEXA Cosmic Shower. Mastery Core 3 = HEXA Cosmic Burst. Mastery Core 4 = HEXA Equinox Slash + Equinox Power II. HEXA Enhancements = Cosmos Boost, Rift of Damnation Boost, Soul Eclipse Boost, Flare Slash Boost, each +60% final damage to its skill at level 30 with jumps at levels 10, 20 and 30. The class doc's shorthand M1-M4 maps onto Mastery Cores 1-4 in that order. Sol Janus: one additional summon placement per 10 levels, starting at one summon at level 1 (class doc). Sol Hecate: at level 1 (Styx) assign to Cosmos or Blazing Assault; at level 20 (Charon) no assignment is needed; at level 30 (Phlegethon) assign to Rift of Damnation (class doc, single source). No sourced guidance was found for when to level Astral Blitz or Totality relative to the mastery cores - that field is deliberately left empty rather than guessed."
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "entry": "Keep critical rate at 100% - treat that as the binding constraint, then allocate the rest",
+        "why": "The class doc states hyper stats depend on the individual character and gives no fixed order, but does set maintaining 100% crit rate as a requirement. NamuWiki independently records that Dawn Warrior's own passives supply roughly 50% crit rate and that the rest is normally covered by legion and artifacts rather than by hyper stats or inner ability.",
+        "consensus": "moderate - two independent sources on the crit-rate picture; neither publishes a ranked hyper stat list",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0"
+        ]
+      }
+    ],
+    "notes": "There is no sourced Dawn Warrior hyper stat priority list, and that is a finding rather than a gap. The class doc explicitly declines to give one on the grounds that the correct allocation is derived from the character's own stat sheet, and refers readers to MathBro's Hyper Stat Optimizer (brendonmay.github.io/hyperCalculator/). Grandis Library carries no hyper stat section for any class. A static priority list would therefore be an invention. Grandis lists Dawn Warrior's aggregate passive contributions as roughly +50% critical rate, +43.3% ignore DEF baseline, +68.19% final damage baseline and +20% boss damage, which is the input a calculator needs."
+  },
+  "hyperSkills": {
+    "passivesBossing": [
+      "True Sight - Enhance",
+      "True Sight - Guardbreak",
+      "Cosmic Shower/Burst - Reinforce",
+      "Divide and Slash - Reinforce",
+      "Divide and Slash - Guardbreak"
+    ],
+    "passivesSources": [
+      "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+    ],
+    "passivesConsensus": "weak / contested - the class doc is the only independent source for this exact five. Grandis Library lists a different fifth pick (see conflicts), and Grandis is a restatement of this same doc, so the disagreement is most likely a version drift rather than two opinions.",
+    "actives": [
+      {
+        "name": "Cosmic Forge",
+        "effect": "30 second buff: +10% damage, five extra Cosmic Burst orbs, and Cosmic Burst cooldown reduced by 5 seconds. 120 second cooldown. Part of the burst window.",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+        ]
+      },
+      {
+        "name": "Blazing Assault / Luster Charge",
+        "effect": "Paired dashes on a shared 45 second cooldown, each granting 1.8 seconds of invincibility, and each able to chain into the other once within 5 seconds. This is the class's main defensive tool.",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+        ]
+      },
+      {
+        "name": "Glory of the Guardians",
+        "effect": "+10% damage for 60 seconds on a 120 second cooldown, applying only to Cygnus Knights and Mihile in the party.",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+        ]
+      }
+    ],
+    "atLevel155": "At Lv 155 only four hyper passive points are available and only four of the recommended passives have unlocked: True Sight - Persist (Lv140), Cosmic Shower/Burst - Reinforce (Lv140), True Sight - Enhance (Lv150) and Divide and Slash - Reinforce (Lv150). Cosmic Burst - Guardbreak and Divide and Slash - Spread unlock at Lv165, True Sight - Guardbreak and Cosmic Shower - Persist at Lv180, and Divide and Slash - Guardbreak at Lv190 - so the bossing build above cannot be completed until Lv190. Level requirements from maplestorywiki; the implication for a Lv155 character is this file's own arithmetic, not a sourced recommendation.",
+    "atLevel155Sources": [
+      "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+    ]
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Boss Damage (Legendary, up to +20%)",
+        "slot": "first line",
+        "why": "Both sources put boss damage on the top line. NamuWiki frames it as the safe default for a class with no mandatory inner ability line of its own.",
+        "consensus": "strong - class doc, NamuWiki and Grandis Library all list it; class doc and NamuWiki are independent of each other",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0",
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior"
+        ]
+      },
+      {
+        "line": "Damage to enemies with abnormal status (Unique, up to +8%)",
+        "slot": "second or third line",
+        "why": "True Sight applies a debuff to the target, so this line is live in boss fights for Dawn Warrior specifically. NamuWiki states that reasoning explicitly.",
+        "consensus": "strong - class doc, NamuWiki and Grandis all list it; the True Sight justification is NamuWiki's and is a genuine class-specific reason rather than a generic pick",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0",
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior"
+        ]
+      },
+      {
+        "line": "Buff Duration (Unique, up to +38%) OR Attack Power (up to +21)",
+        "slot": "remaining line",
+        "why": "Buff duration is wanted not for self-buffs but to stretch the Angelic Buster link (Soul Contract) across the burst window - the class doc quantifies it as adding about 3.8 seconds to that link, and notes the class's burst is only about 30 seconds long while Cosmos runs 15 seconds on a 60 second cooldown. The class doc's stated switch condition is to take Attack instead once buff duration from other sources reaches roughly 95%. NamuWiki reports a measured near-tie and says either is acceptable - see conflicts.",
+        "consensus": "moderate / near-tie - two independent sources agree these are the two candidates and agree on the buff-duration reasoning, but disagree slightly on which wins",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Meso Obtained +20%",
+        "slot": "first line",
+        "why": "Standard Heroic grinding line. NamuWiki notes meso obtained outperforms drop rate and so should be the Legendary line you chase.",
+        "consensus": "strong - class doc, NamuWiki and Grandis all list a meso/drop training preset",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0",
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior"
+        ]
+      },
+      {
+        "line": "Item Drop Rate (up to +20% Legendary / +15% Unique)",
+        "slot": "separate drop preset, or second line of the training preset",
+        "why": "Class doc calls out drop rate as its own preset for loot rooms, nodestones and 6th job materials rather than as part of the meso preset.",
+        "consensus": "strong - class doc, NamuWiki and Grandis",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0",
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior"
+        ]
+      },
+      {
+        "line": "Damage to Normal Monsters (Unique, up to +8%), or Attack Power",
+        "slot": "second or third line of the training preset",
+        "why": "Fills the remaining training lines.",
+        "consensus": "strong - class doc, NamuWiki and Grandis",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0",
+          "https://grandislibrary.com/cygnus-knights/dawn-warrior"
+        ]
+      }
+    ],
+    "doNotRoll": [
+      {
+        "line": "Attack Speed +1",
+        "why": "Dawn Warrior does not need an attack speed line to reach the cap. See gearingNotes for the arithmetic. This is the single most useful inner ability fact for the class because it frees the line that many warriors are forced to spend.",
+        "consensus": "moderate - stated outright by the class doc and consistent with Grandis's listed base attack speed and with the wiki's Soul Speed and Master of the Sword values",
+        "sources": [
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+          "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+        ]
+      },
+      {
+        "line": "Critical Rate",
+        "why": "NamuWiki states Dawn Warrior's own passives give roughly 50% crit rate and that legion and artifacts normally cover the remainder, so a crit rate line is a fallback for characters with a thin legion rather than a target. The class doc says the same thing in different terms - crit rate used to need an inner ability line and is now supplied by the artifact system.",
+        "consensus": "moderate - two independent sources agree, with the same stated reason",
+        "sources": [
+          "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0",
+          "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+        ]
+      }
+    ],
+    "notes": "Grandis Library lists the bossing preset as Boss Damage +20%, Buff Duration +38%, Damage to enemies with abnormal status +8%, and the training preset as Drop Rate +20%, Drop Rate +15%, Damage to Normal Monsters +8%. Grandis credits its inner ability section to the class doc, so it is a restatement rather than a third vote - it is listed here because the exact percentage caps it publishes are useful and were not contradicted anywhere."
+  },
+  "gearingNotes": "Attack speed is the class-specific quirk that changes gearing advice most. Dawn Warrior reaches the attack speed cap on a two-handed sword without an inner ability attack speed line: the class doc walks the arithmetic as base 6 reduced by 2 from Soul Speed, 2 from the Rising Sun / Master of the Sword stance, 1 from Decent Speed Infusion and 1 from a green attack speed potion. The underlying skill values are confirmed independently on maplestorywiki - Soul Speed gives Attack Speed +2, and Master of the Sword gives Rising Sun Attack Speed +2 while applying both stances at once. Practical consequence: spend that inner ability line on buff duration or attack instead. Second quirk: the class doc says to use a two-handed sword on Heroic, on the grounds that the two-hander's higher weapon multiplier (given as 1.34 against 1.24 for a one-hander) outweighs a heavily starred one-handed weapon once the Cygnus secondary is accounted for. Grandis independently lists Dawn Warrior's base attack speed as stage 4 with a two-hander and stage 5 with a one-hander, which is consistent. Third quirk: IED. The class doc states Dawn Warrior arrives at roughly 96-98% ignore enemy defense from links, legion and boost node IED alone, so IED lines on weapon, secondary and emblem are not needed and the ideal potential spread is all-attack or attack with a single boss damage line. Grandis's aggregate figure of about +43.3% ignore DEF from passives before links and legion is consistent with that. Fourth: the cooldown hat. The class doc recommends stopping at -2 seconds because more cooldown reduction desynchronises Cosmos with the rest of the rotation and loses damage - this is the opposite of the usual 'more cooldown reduction is better' default and is a real class-specific trap. Fifth: crit rate. Roughly 50% comes from passives (Falling Moon / Equinox line, Soul Pledge, Decent Sharp Eyes), so the class needs less crit from gear and inner ability than a typical warrior, and hyper stat crit investment should be sized against that. Secondary weapon: the Cygnus Knight secondary from Princess No is treated as best-in-slot until the starrable Astra secondary. Buff duration is a real damage stat here only because of the Angelic Buster link interaction, not because of self-buffs.",
+  "commonMistakes": [
+    {
+      "mistake": "Rolling Attack Speed +1 on inner ability",
+      "why": "Unnecessary - the class caps attack speed from its own passives plus Decent Speed Infusion and a green potion. The line is better spent on buff duration or attack.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+      ]
+    },
+    {
+      "mistake": "Stacking more than -2 seconds of cooldown reduction on the hat",
+      "why": "The class doc states this is a damage loss because it desynchronises Cosmos from the rotation; -2s is kept for quality of life, not for throughput.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+      ]
+    },
+    {
+      "mistake": "Chasing IED lines on weapon, secondary and emblem",
+      "why": "Dawn Warrior already lands in the high-90s for IED from links, legion and boost nodes, so those lines are largely wasted.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+      ]
+    },
+    {
+      "mistake": "Turning on Action Customization for Rift of Damnation",
+      "why": "The class doc lists this as an explicit do-not. The wiki confirms the toggle exists and changes how Styx Crossing is triggered; the doc's position is that the non-customised behaviour is correct.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+        "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+      ]
+    },
+    {
+      "mistake": "Opening HEXA Mastery Core 1 first because it is the main-attack mastery",
+      "why": "Both independent sources open Mastery Core 2 first instead, because that core also unlocks the extra passive Equinox Power. The first core is chosen for what it unlocks, not for its own damage share.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+        "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+      ]
+    },
+    {
+      "mistake": "Leaving one of the four gating boost nodes below level 40",
+      "why": "Solar Slash/Luna Divide, Cosmic Shower, Cosmic Burst and Equinox Slash must each reach boost node level 40 before their HEXA mastery can be unlocked at 260. A Dawn Warrior who levelled only the nodes that felt strong will hit a wall at 6th job.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+        "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+      "what": "Dawn Warrior Coloring Book - the Dawn Warrior Discord's maintained class guide. Primary author Paul (IGN Naughty, Scania), contributors YouJelly, Jordan, Lite. Sole source for the HEXA leveling routes, Sol Hecate assignments, the attack speed arithmetic, the -2s hat rule and the IED position. Read via the /mobilebasic URL.",
+      "dated": "2026-08-07",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC",
+      "what": "NamuWiki Soul Master / Skill (KMS). Carries an explicit boost-core table, an explicit HEXA mastery reinforcement priority with its reasoning, and an explicit HEXA enhancement order. Korean community wiki, authored entirely outside the GMS class-doc lineage, so this is the genuine independent cross-check. KMS balance - names differ (mapping recorded in vMatrix.notes) and KMS is ahead of GMS on content.",
+      "dated": "2026-08-31 (page last-modified stamp)",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0",
+      "what": "NamuWiki Soul Master (KMS) main class page. Its 'ability' section is a full inner ability writeup with per-line reasoning and a cited damage experiment for the attack-vs-buff-duration comparison. Also the source for the roughly 50% base crit rate claim and for the class's boss-by-boss weakness against compression-heavy Grandis bosses.",
+      "dated": "2026-08-23 (page last-modified stamp)",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Dawn_Warrior/Skills",
+      "what": "Name and value validation only, zero judgement. Used as the allowlist for every node and skill name in this file, and as the factual source for the HEXA node structure (Origin Astral Blitz, Ascent Totality, the four Mastery Cores and their contents, the four HEXA Enhancements capping at +60% final damage at level 30 with jumps at 10/20/30), the Cygnus Blessing link values and the hyper skill level requirements. Returns HTTP 403 to plain fetching; read through a browser session.",
+      "dated": "2026-08-11 (page last edited)",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+      "what": "Grandis Library Dawn Warrior page. NOT an independent vote on judgement - its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so those three fields restate the Coloring Book. Used here for the six boost node groupings (which NamuWiki independently corroborates), the aggregate base-stat figures from passives, the legion effect, and the inner ability percentage caps. Site footer is stamped GMS v269, two patches behind the v.271 target.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update]; no per-page last-updated stamp",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio table. Independently authored, but its Dawn Warrior entry recommends a free trio of Solar Slash + Cosmic Shower + Cosmic Burst, which does not match how Dawn Warrior's boost nodes are grouped in either current GMS or current KMS. Recorded as a conflict and used for nothing else.",
+      "dated": "2024-11-21 (page); underlying data 2024-05-14",
+      "independent": true
+    },
+    {
+      "url": "https://brendonmay.github.io/hyperCalculator/",
+      "what": "MathBro's Hyper Stat Optimizer. Named by the class doc as the answer to hyper stat allocation in place of a fixed priority list. Cited as the reason this file does not publish one.",
+      "dated": "actively maintained; exact last-update not confirmed",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/WMGahCmmWT",
+      "what": "Dawn Warrior class Discord. Upstream of the Coloring Book, so not an independent second opinion. Listed because anything that changed after 2026-08-07 lands here first, and because the HEXA infographics Grandis links (Overview, 6th Job Fragments, 6th Job Energy) originate from this community.",
+      "dated": "live",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "HEXA mastery reinforcement order after the first two cores",
+      "positionA": "Class doc: Mastery Core 4 (HEXA Equinox Slash + Equinox Power II) is third in both the fragment-limited and energy-limited routes, ahead of Mastery Core 3 (HEXA Cosmic Burst).",
+      "positionB": "NamuWiki: the steady-state reinforcement priority is Solar Slash/Luna Divide at least equal to Cosmic Burst, then Cosmic Shower, then Equinox Slash last - which puts Cosmic Burst well above Equinox Slash.",
+      "note": "These may not actually be measuring the same thing. The class doc is sequencing which core to OPEN and level early, where the extra passive attached to Core 4 (Equinox Power II) is worth front-loading by the same logic that puts Core 2 first. NamuWiki is ranking long-run damage per level once everything is open. Both readings are recorded rather than merged.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+        "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+      ]
+    },
+    {
+      "topic": "Fifth hyper skill passive",
+      "positionA": "Class doc bossing list: True Sight - Enhance, True Sight - Guardbreak, Cosmic Shower/Burst - Reinforce, Divide and Slash - Reinforce, Divide and Slash - Guardbreak.",
+      "positionB": "Grandis Library lists True Sight - Persist, Enhance and Guardbreak alongside Cosmic Shower/Burst - Reinforce and Divide and Slash - Reinforce, i.e. it keeps True Sight - Persist where the class doc takes Divide and Slash - Guardbreak.",
+      "note": "Grandis credits this exact field to the class doc, so this is almost certainly Grandis (stamped v269) lagging a later revision of the doc (2026-08-07) rather than two genuine opinions. Recorded, not resolved. Note also that Divide and Slash - Guardbreak requires Lv190, so it is not a live choice before then.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+        "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+        "https://maplestorywiki.net/w/Dawn_Warrior/Skills"
+      ]
+    },
+    {
+      "topic": "Inner ability third line - Buff Duration 38% versus Attack +21",
+      "positionA": "Class doc: take Buff Duration 38%, because it adds roughly 3.8 seconds to the Angelic Buster link over the burst; switch to Attack only once buff duration from other sources is at roughly 95% or higher.",
+      "positionB": "NamuWiki: cites a damage experiment putting Attack Power ahead by roughly 0.25% over a six-minute fight at a stated stat baseline, but calls the gap negligible and says buff duration is still preferable for burst because of the link-skill extension - explicitly leaving it to the player.",
+      "note": "This is a near-tie both sources acknowledge, not a disagreement about direction. Both agree on the mechanism (extending the Angelic Buster link across a roughly 30-second burst). Worth surfacing to users as 'either is fine' rather than as a ranked answer.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g",
+        "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0"
+      ]
+    },
+    {
+      "topic": "Boost node structure - fixed groupings versus a free trio",
+      "positionA": "Current GMS (Grandis Library, v269) and current KMS (NamuWiki, 2026-08-31) both describe six fixed boost node groupings, four of which gate HEXA masteries at level 40.",
+      "positionB": "mystyjl's cross-class node guide recommends a Dawn Warrior trio of Solar Slash + Cosmic Shower + Cosmic Burst, with a note that Equinox Slash is nonetheless needed for HEXA.",
+      "note": "The mystyjl page self-reports 2024-11-21 with underlying data from 2024-05-14, which predates the v269 boost node regrouping that Grandis exposes via its 'View Pre-V.269 Boost Nodes' toggle. Treat the trio recommendation as superseded, not as a competing opinion. Flagged because it is a well-ranking, otherwise reputable page.",
+      "sources": [
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://grandislibrary.com/cygnus-knights/dawn-warrior",
+        "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+      ]
+    },
+    {
+      "topic": "Number of HEXA skill cores",
+      "positionA": "GMS (maplestorywiki, page last edited 2026-08-11) lists two class-specific HEXA skill cores: Astral Blitz (Origin) and Totality (Ascent).",
+      "positionB": "NamuWiki (KMS, 2026-08-31) documents a third skill core beyond those two.",
+      "note": "KMS is ahead of GMS here. Do not surface a third skill core to GMS v.271 players; recorded so that a later pass can confirm when and whether it arrives in GMS, and so nobody mistakes the KMS page for current GMS content.",
+      "sources": [
+        "https://maplestorywiki.net/w/Dawn_Warrior/Skills",
+        "https://en.namu.wiki/w/%EC%86%8C%EC%9A%B8%EB%A7%88%EC%8A%A4%ED%84%B0/%EC%8A%A4%ED%82%AC"
+      ]
+    },
+    {
+      "topic": "Which mastery core is literally opened first (internal to the class doc)",
+      "positionA": "The class doc's two published routes both begin at M2, matching NamuWiki.",
+      "positionB": "Elsewhere the same doc reads as though M1 opens first with M2 as a resource-dependent alternative.",
+      "note": "This is an ambiguity within one document, surfaced rather than smoothed over. The M2-first reading is the one corroborated independently by NamuWiki and by the stated reason (Equinox Power unlocks with that core), so it is what this file's hexa.order leads with - but the ambiguity is real and a reader of the doc may see the other phrasing.",
+      "sources": [
+        "https://docs.google.com/document/d/1iQfiF7q78bmZtBujnLcAkDNDjqiHqm7iZ2QjUfKRd-g"
+      ]
+    }
+  ],
+  "gaps": [
+    "No sourced hyper stat priority order exists, by design - the class doc refuses to publish one and points at MathBro's optimizer. Do not synthesise one.",
+    "No sourced guidance on when to level Astral Blitz (Origin) or Totality (Ascent) relative to the mastery cores.",
+    "No sourced HEXA Stat ordering beyond the three stats named (Attack, Critical Damage, main stat); the class doc defers to a calculator.",
+    "reddit.com is blocked in this environment, so r/Maplestory Dawn Warrior threads were not read.",
+    "The Dawn Warrior Discord's 6th Job (Fragments) and 6th Job (Energy) infographics, which Grandis links as image tabs, were not read - they are the most likely place a more granular HEXA order exists.",
+    "The web search budget for this session was exhausted, so no YouTube guide descriptions or 2025-2026 reddit threads could be surveyed. Everything here came from direct fetches and a browser session."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "SOL JANUS IS MISCHARACTERIZED. hexa.notes states 'Sol Janus: one additional summon placement per 10 levels, starting at one summon at level 1 (class doc).' The wiki shows Sol Janus is a two-form selector (Sol Janus: Dawn and Sol Janus: Dusk) whose own effect is a passive EXP bonus scaling +10% to +85%+. Only the Dawn form has rings ('Max Number of Rings: 1' at Lv1). Critically, the description states 'All forms of Sol Janus cannot be used on boss maps' - it is a training skill. Presenting it as a summon-placement progression inside a HEXA section that otherwise sequences bossing investment is materially misleading for the planner's purpose, and the boss-map restriction is omitted entirely.",
+      "UNSOURCED ARITHMETIC THAT LOOKS WRONG. hyperSkills.atLevel155 asserts 'At Lv 155 only four hyper passive points are available'. The file flags this as 'this file's own arithmetic, not a sourced recommendation', which is honest, but the number appears incorrect: hyper skill passive points are awarded at Lv 140/150/160/170/180/190/200, so a Lv155 character has TWO, not four. The file appears to have counted unlocked SKILLS (four are unlocked by 155 - True Sight Persist and Cosmic Shower/Burst Reinforce at 140, True Sight Enhance and Divide and Slash Reinforce at 150) and mislabelled that as available POINTS. The rest of that field - which passive unlocks at which level, and that the bossing five cannot be completed before Lv190 - is exactly right."
+    ],
+    "clearedOnInspection": [
+      "NO FABRICATED SKILL OR NODE NAMES FOUND. I searched every name the file lists against the live maplestorywiki Dawn Warrior/Skills page and all check out exactly: Astral Blitz (Skill Node/Core 1, Origin), Totality (Skill Node/Core 2, Ascent), Mastery Core 1 = HEXA Luna Divide + HEXA Solar Slash, Core 2 = Equinox Power + HEXA Cosmic Shower, Core 3 = HEXA Cosmic Burst, Core 4 = HEXA Equinox Slash + Equinox Power II, and HEXA Enhancements = Cosmos Boost, Rift of Damnation Boost, Soul Eclipse Boost, Flare Slash Boost. I specifically tried to break 'Flare Slash' - a Grandis fetch returned a V-skill list containing Phalanx Charge and NOT Flare Slash, which looked like a substituted name. It is not: the wiki's Class-Specific V Skills are exactly Cosmos, Rift of Damnation, Soul Eclipse and Flare Slash, each with a matching HEXA enhancement. Phalanx Charge is a Cygnus shared V skill that Grandis lists in the same block. The file is correct and my check was the unreliable one. All nine hyper passive names and level requirements in atLevel155 are also exact, including the unusual combined name 'Cosmic Shower/Burst - Reinforce' (Lv140), and the Cosmic Forge (30s, +10% damage, +5 orbs, -5s CD, 120s CD), Glory of the Guardians (60s, +10%, Cygnus Knights and Mihile only, 120s CD) and Blazing Assault (1.8s invincibility, 5s link window, 45s CD) numbers are verbatim correct."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "2 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

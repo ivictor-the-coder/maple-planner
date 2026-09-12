@@ -1,0 +1,446 @@
+{
+  "slug": "shade",
+  "className": "Shade",
+  "branch": "Heroes",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Knuckle",
+  "secondaryWeapon": "Fox Marble",
+  "archetype": "Melee pirate summoner. Burst-oriented damage on a roughly 2-minute cycle with a smaller 1-minute window, plus party utility (a shared damage buff and a debuff-nullifying guard) and high innate survivability.",
+  "linkSkill": {
+    "name": "Close Call",
+    "effect": "Passive chance to survive an otherwise fatal hit. Current GMS value reported as 15% at max; older guides list 10%. See conflicts.",
+    "levels": 3
+  },
+  "legionEffect": "Critical Damage increase, scaling by legion rank. Two sources give +1/2/3/5/6%; one source gives +1/2/3/4/5%. See conflicts.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Spirit Claw",
+        "why": "Listed as a first-tier boost node target. Spirit Claw is the main single-target attack and carries most bossing damage, and hyper skill advice across guides also concentrates on it.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade",
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "node": "Fox Spirits",
+        "why": "Listed as the other first-tier boost node target; the summoned spirits contribute damage continuously rather than only during burst.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade",
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "node": "Bomb Punch",
+        "why": "Second-tier boost node. Bomb Punch is the training and mobbing attack, so it matters more while levelling than at endgame bossing.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "node": "Death Mark",
+        "why": "Second-tier boost node, grouped alongside Bomb Punch.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "node": "Spirit Frenzy",
+        "why": "Second-tier boost node. Note the 2024 remaster converted Spirit Frenzy into a passive summoning effect, so its value comes from uptime rather than from being cast.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+          "https://orangemushroom.net/2024/06/09/kmst-ver-1-2-173-aran-eunwol-remaster/"
+        ]
+      },
+      {
+        "node": "Spirit Trap",
+        "why": "Second-tier boost node, grouped with Spirit Frenzy.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade"
+        ]
+      },
+      {
+        "node": "Spirit Incarnation / Blade Imp / Summon Other Spirit",
+        "why": "Third-tier grouping. Filled after the higher tiers.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade"
+        ]
+      },
+      {
+        "node": "Flash Fist / Ground Pound / Shockwave Punch",
+        "why": "Lowest-tier grouping of early-job skills; taken last.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": [
+          "Spirit Claw",
+          "Bomb Punch",
+          "Fox Spirits"
+        ],
+        "why": "Pairs the main bossing attack with the mobbing attack and the summon line into one node.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide"
+        ]
+      },
+      {
+        "trio": [
+          "Spirit Incarnation",
+          "Spirit Frenzy",
+          "Death Mark"
+        ],
+        "why": "Second trio in the same guide, covering the remaining mid-tier skills.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide"
+        ]
+      },
+      {
+        "trio": [
+          "Spirit Claw",
+          "Death Mark"
+        ],
+        "why": "A different guide pairs the skills differently: Spirit Claw with Death Mark, Bomb Punch with Fox Spirits, Spirit Frenzy with Soul Splitter. Recorded as a conflicting arrangement, not a correction.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "trio": [
+          "Bomb Punch",
+          "Fox Spirits"
+        ],
+        "why": "Part of the same alternative pairing scheme.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "trio": [
+          "Spirit Frenzy",
+          "Soul Splitter"
+        ],
+        "why": "Part of the same alternative pairing scheme.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      }
+    ],
+    "notes": "Skill nodes named as essential across guides: Fox God Flash, Spiritgate, True Spirit Claw, Smashing Multipunch (sources: digitaltq 2025-01-13; thedigitalcrowns 2024-12-05). Recommended shared and common nodes: Decent Holy Symbol, Decent Sharp Eyes, Decent Speed Infusion, Erda Nova, Rope Lift (source: digitaltq 2025-01-13); a second guide substitutes Erda Fountain for training (thedigitalcrowns). The 2024 Eunwol/Shade remaster reworked Spiritgate and Smashing Multipunch and added a 5th job skill, Reincarnated Fox God (source: orangemushroom 2024-06-09), so guides written before mid-2024 will not reflect this. No source reviewed described how boost node priority shifts between Lv 200 and Lv 260, so that is deliberately left unwritten.",
+    "trioConflictNote": "The two guides that publish trios do not agree on the groupings. Both arrangements are recorded above; neither is endorsed here."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Advent of the Fox (Origin skill / Skill Node)",
+        "why": "Granted on completing the 6th job quest line and named first by both guides that publish a Shade HEXA order. It is the class burst skill and applies a bind. Known in KMS materials as Advent of the Fox God.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/heroes/shade",
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+          "https://orangemushroom.net/2024/06/09/kmst-ver-1-2-173-aran-eunwol-remaster/"
+        ]
+      },
+      {
+        "step": "HEXA Spirit Claw (Mastery node)",
+        "why": "Both Shade-specific guides place the Spirit Claw mastery node immediately after the Origin skill, consistent with Spirit Claw being the main damage skill.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "step": "Third mastery node - guides disagree: HEXA Fox Spirits or HEXA Spirit Frenzy",
+        "why": "One guide names Fox Spirits third, the other names Spirit Frenzy. Recorded as an open conflict; neither is settled.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      },
+      {
+        "step": "Sol Janus (Common node)",
+        "why": "Named fourth by one guide. Sol Janus is the class-agnostic common node shared by every 6th job class.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide"
+        ]
+      },
+      {
+        "step": "Boost nodes for the 5th job skills (Fox God Flash, Spiritgate, True Spirit Claw, Smashing Multipunch)",
+        "why": "Both guides place 5th job boost nodes after the Origin and mastery investment, though one lists only the Fox God Flash boost explicitly.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+          "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+        ]
+      }
+    ],
+    "hexaStat": {
+      "priority": "One Shade guide gives Attack, then main stat, then Critical Damage, targeting 10/10/0 at endgame. A class-agnostic HEXA guide from the same publisher recommends ATT as the main line with Boss Damage and main stat as the two additional lines. These are the same publisher and therefore count as ONE source, not two.",
+      "consensus": "weak",
+      "sources": [
+        "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+        "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+      ]
+    },
+    "notes": "General, class-agnostic advice found: unlock every node before deepening any single one, because breadth pays more early; treat HEXA Stat as a late concern and do not reroll it until skill investment is essentially finished (source: thedigitalcrowns 6th job guide, 2025-01-31, one source only). Both Shade HEXA orders reviewed were published within about seven weeks of each other in late 2024 and January 2025; no Shade-specific HEXA source dated later than 2025-01-31 was located, so this section should be re-verified before it is trusted for v.271. Community infographics are said to circulate in the Shade class Discord; those were not accessible and are not reflected here.",
+    "recencyFlag": "Shade-specific HEXA ordering rests on two guides, both from late 2024 or January 2025. Treat as provisional."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No Shade-specific hyper stat ordering was found in any source reviewed. Only generic, class-agnostic priority advice was available, which is not Shade knowledge and is not recorded here. Left empty on purpose rather than filled with a guess."
+  },
+  "hyperSkills": {
+    "passiveBossing": {
+      "picks": [
+        "Spirit Claw - Reinforce",
+        "Spirit Claw - Boss Rush",
+        "Spirit Claw - Extra Strike",
+        "Fox Spirits - Repeated Attack Bonus",
+        "Fox Spirits - Summon Chance"
+      ],
+      "why": "Two independent sources give the same bossing passive set, concentrating on Spirit Claw damage and Fox Spirits uptime.",
+      "consensus": "strong",
+      "sources": [
+        "https://grandislibrary.com/heroes/shade",
+        "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+      ]
+    },
+    "passiveTraining": {
+      "picks": [
+        "Bomb Punch - Reinforce",
+        "Bomb Punch - Spread",
+        "Fox Spirits - Reinforce",
+        "Fox Spirits - Repeated Attack Bonus",
+        "Fox Spirits - Summon Chance"
+      ],
+      "why": "The training set shifts the Spirit Claw picks onto Bomb Punch for wider clears. One source offers Bomb Punch - Critical Chance as an alternative to Spread.",
+      "consensus": "moderate",
+      "sources": [
+        "https://grandislibrary.com/heroes/shade",
+        "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+      ]
+    },
+    "active": {
+      "picks": [
+        "Spirit Incarnation",
+        "Heroic Memories",
+        "Fox Marble Fusion"
+      ],
+      "why": "Three active hyper picks named by one guide; a second guide independently names Spirit Incarnation.",
+      "consensus": "weak",
+      "sources": [
+        "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+        "https://www.digitaltq.com/maplestory-shade-skill-build-guide"
+      ]
+    },
+    "notes": "The 2024 remaster renamed the Fire Fox Spirit hyper skills to plain Fox Spirit names and cut Spirit Incarnation's per-hit damage while raising its hit count and adding cooldown reduction (source: orangemushroom 2024-06-09). Guides still using the Fire Fox Spirits label are describing pre-remaster naming. A new hyper skill, Fox God Beginning, was added in the same remaster; no guide reviewed advised on whether to take it, so no recommendation is recorded."
+  },
+  "innerAbility": {
+    "firstLine": {
+      "pick": "Boss Damage +20%",
+      "why": "Two independent sources name Boss Damage as the legendary first line.",
+      "consensus": "moderate",
+      "sources": [
+        "https://grandislibrary.com/heroes/shade",
+        "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/"
+      ]
+    },
+    "otherLines": {
+      "picks": [
+        "Attack +21",
+        "Buff Duration +38%",
+        "Damage to monsters with an abnormal status +8%"
+      ],
+      "why": "Named as second and third line targets. Buff duration is relevant because Shade's damage is concentrated in timed burst windows.",
+      "consensus": "weak",
+      "sources": [
+        "https://grandislibrary.com/heroes/shade"
+      ]
+    },
+    "conflict": "One guide instead names Attack Speed +1 as the inner ability to chase. Recorded, not resolved. A much older guide (2013) names Attack Speed +1 with Critical Rate +30%, which predates the current inner ability pool and should not be used.",
+    "conflictSources": [
+      "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+      "https://ayumilove.net/maplestory-eunwol-skill-build-guide/"
+    ]
+  },
+  "gearingNotes": "STR is the main stat and DEX the secondary, so Shade gears as a STR pirate. The weapon is the Knuckle line (endgame: Genesis Claw) and the secondary is the Fox Marble line (endgame: Princess No's Fox Marble), which is Shade-exclusive and not shared with other pirates. Sources: grandislibrary.com/heroes/shade; thedigitalcrowns.com (2024-12-05), which names both endgame pieces; ayumilove.net corroborates Knuckle and Fox Marble. Two gearing-relevant class traits appear in sources: Spirit Bond grants passive damage reduction, knockback resistance and life steal at low stacks and a large boss damage bonus at full stacks, and the Close Call link grants a fatal-hit survival chance; both reduce the survivability burden that gear has to carry relative to a squishier class (sources: thedigitalcrowns and digitaltq Shade guides). Beyond that, no Shade-specific gearing advice - set choices, emblem, arcane or sacred force thresholds, familiar or potential targets - was found in any source reviewed, and none is invented here.",
+  "commonMistakes": [
+    {
+      "mistake": "Following a Shade guide written before mid-2024.",
+      "why": "The Eunwol/Shade remaster changed the class substantially: Spirit Frenzy became a passive, Soul Splitter's cooldown dropped from 210s to 120s, Spiritgate and Smashing Multipunch were reworked, Spirit Incarnation's damage profile changed, hyper skills were renamed, and new skills were added at several job levels. A pre-remaster build lists choices that no longer exist.",
+      "consensus": "moderate",
+      "sources": [
+        "https://orangemushroom.net/2024/06/09/kmst-ver-1-2-173-aran-eunwol-remaster/",
+        "https://www.digitaltq.com/maplestory-shade-skill-build-guide"
+      ]
+    },
+    {
+      "mistake": "Rerolling HEXA Stat before HEXA skill investment is essentially complete.",
+      "why": "Class-agnostic advice, not Shade-specific: HEXA Stat lines are random and the cost of chasing good ones outweighs the gain until skill nodes are already levelled. Single source, so treat as weak.",
+      "consensus": "weak",
+      "sources": [
+        "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+      ]
+    },
+    {
+      "mistake": "Deepening one HEXA node before unlocking the rest.",
+      "why": "The same class-agnostic guide argues total damage is higher when every node is activated first. Single source, weak.",
+      "consensus": "weak",
+      "sources": [
+        "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/heroes/shade",
+      "what": "Class overview: stats, weapons, link skill, legion, boost node tiers, hyper skill passive sets, inner ability targets, Advent of the Fox listed as the 6th job bind.",
+      "dated": "undated; page states GMS Ver. 269 (Ride the Lightning update), so it reflects a recent patch but no exact date could be established",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/content/link-skills",
+      "what": "Close Call link skill value at master level 3.",
+      "dated": "undated; same GMS Ver. 269 basis",
+      "independent": false
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+      "what": "Post-remaster Shade build: essential 5th job skill nodes, trio groupings, hyper skill picks, a five-step HEXA order, inner ability opinion.",
+      "dated": "2025-01-13",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+      "what": "Shade build: stats and weapons, V matrix priority and alternative trios, separate bossing and training hyper sets, active hypers, HEXA order and HEXA Stat targets, burst cadence and Soul Splitter party buff.",
+      "dated": "2024-12-05",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+      "what": "Class-agnostic HEXA node type ordering and HEXA Stat advice. Same publisher as the Shade page above, so counted as the same source.",
+      "dated": "2025-01-31",
+      "independent": false
+    },
+    {
+      "url": "https://orangemushroom.net/2024/06/09/kmst-ver-1-2-173-aran-eunwol-remaster/",
+      "what": "Patch-note coverage of the Eunwol (Shade) remaster: new and renamed skills at every job level, the 6th job Origin skill, and mechanical changes to Soul Splitter, Spirit Frenzy, Spiritgate and Smashing Multipunch. A patch-fact source rather than build opinion.",
+      "dated": "2024-06-09",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-eunwol-skill-build-guide/",
+      "what": "Very old Shade guide. Used only to corroborate weapon, secondary weapon and legion effect. Its build, inner ability and link skill values are pre-5th-job and must not be used.",
+      "dated": "2013-12-01 with later comment-thread updates through roughly 2016",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Close Call link skill value",
+      "positionA": "15% fatal attack survival chance at master level 3",
+      "sourceA": "https://grandislibrary.com/heroes/shade and https://grandislibrary.com/content/link-skills (GMS Ver. 269)",
+      "positionB": "10% fatal attack survival chance",
+      "sourceB": "https://www.digitaltq.com/maplestory-shade-skill-build-guide (2025-01-13) and https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/ (2024-12-05); a 2013 guide gives 5/10% by level",
+      "note": "Most likely a buff that landed after the two guides were written, but that is inference, not something any source states. Both values recorded."
+    },
+    {
+      "topic": "Legion (Maple Union) crit damage scaling",
+      "positionA": "+1/2/3/5/6%",
+      "sourceA": "https://grandislibrary.com/heroes/shade and https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+      "positionB": "+1/2/3/4/5%",
+      "sourceB": "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+      "note": "Two sources against one; not resolved here."
+    },
+    {
+      "topic": "Inner ability first line",
+      "positionA": "Boss Damage +20%",
+      "sourceA": "https://grandislibrary.com/heroes/shade and https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+      "positionB": "Attack Speed +1",
+      "sourceB": "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+      "note": "Both recorded. The two positions may reflect different progression stages rather than genuine disagreement, but no source says so."
+    },
+    {
+      "topic": "Third HEXA investment after Origin and HEXA Spirit Claw",
+      "positionA": "HEXA Fox Spirits, then Sol Janus, then Fox God Flash boost",
+      "sourceA": "https://www.digitaltq.com/maplestory-shade-skill-build-guide (2025-01-13)",
+      "positionB": "HEXA Spirit Frenzy, then boost nodes",
+      "sourceB": "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/ (2024-12-05)",
+      "note": "Only two sources publish a Shade HEXA order and they disagree from step three onward. Open."
+    },
+    {
+      "topic": "V matrix trio groupings",
+      "positionA": "Spirit Claw + Bomb Punch + Fox Spirits; Spirit Incarnation + Spirit Frenzy + Death Mark",
+      "sourceA": "https://www.digitaltq.com/maplestory-shade-skill-build-guide",
+      "positionB": "Spirit Claw + Death Mark; Bomb Punch + Fox Spirits; Spirit Frenzy + Soul Splitter",
+      "sourceB": "https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+      "note": "Different pairing philosophies. Neither preferred here."
+    },
+    {
+      "topic": "Origin skill name",
+      "positionA": "Advent of the Fox (GMS naming)",
+      "sourceA": "https://grandislibrary.com/heroes/shade, https://www.digitaltq.com/maplestory-shade-skill-build-guide, https://thedigitalcrowns.com/shade-best-skill-build-and-guide-maplestory/",
+      "positionB": "Advent of the Fox God (KMS/KMST naming)",
+      "sourceB": "https://orangemushroom.net/2024/06/09/kmst-ver-1-2-173-aran-eunwol-remaster/",
+      "note": "A localisation difference rather than a factual conflict. GMS players should look for Advent of the Fox."
+    }
+  ],
+  "gaps": [
+    "No Shade-specific hyper stat priority found anywhere.",
+    "No sourced account of how V matrix priority changes between Lv 200 and Lv 260.",
+    "No Shade HEXA source dated after 2025-01-31; nothing verified against v.271 itself.",
+    "No Shade-specific gearing detail beyond weapon and stat - no set, emblem, potential or force-threshold advice.",
+    "Class Discord infographics referenced by guides were not reachable and are not reflected here.",
+    "maplestorywiki.net and the Nexon official maple-guides pages returned 403 or empty content and could not be used."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "THE MAIN DEFECT - the entire hexa.order five-step sequence is invented. Neither cited guide publishes any HEXA investment ORDER. digitaltq's 6th job section is a flat inventory, quoted verbatim: '[Origin Skill] Advent of the Fox / [HEXA Skills] HEXA Spirit Claw / [HEXA Skills] HEXA Fox Spirits / [Common Skill] SolJanus / [Boost Skills] Fox God Flash Boost'. That is a list of what Shade gets, with no ranking. The file has converted list position into investment priority and then written per-step justifications for it. This is exactly the 'priority order no source states' failure, in the section where a wrong answer costs the most Sol Erda.",
+      "hexa.order step 2 asserts 'Both Shade-specific guides place the Spirit Claw mastery node immediately after the Origin skill'. thedigitalcrowns' section, headed '6th Job Shade HEXA Skill Priority', says only that you unlock everything first and then focus based on solo vs party play; it never orders individual nodes. digitaltq gives no order. Neither guide places anything after anything.",
+      "hexa.order step 4, 'Sol Janus (Common node) - Named fourth by one guide'. Nothing names it fourth; it is simply the fourth bullet in digitaltq's unordered inventory. The rationale given ('the class-agnostic common node shared by every 6th job class') also drops the only actual sourced judgement about it: thedigitalcrowns describes Sol Janus as +100% EXP and 'Only For Mobbing and Training', i.e. explicitly NOT a bossing investment.",
+      "conflicts entry 'Third HEXA investment after Origin and HEXA Spirit Claw' is a manufactured conflict. Position A (digitaltq: Fox Spirits, then Sol Janus, then Fox God Flash boost) is the invented order above. Position B (thedigitalcrowns: HEXA Spirit Frenzy, then boost nodes) is also not stated - thedigitalcrowns simply does not list HEXA Fox Spirits and does list HEXA Spirit Frenzy. The real situation is that the two pages enumerate DIFFERENT mastery nodes, which is a content discrepancy worth recording, not a disagreement about ordering.",
+      "V matrix trio groupings attributed to thedigitalcrowns ('Spirit Claw + Death Mark; Bomb Punch + Fox Spirits; Spirit Frenzy + Soul Splitter', three pairs) do not match the page. Two independent fetches both return a Primary/Secondary structure: Primary = Spirit Claw, Bomb Punch (Soul Splitter also appears in the primary grouping); Secondary = Death Mark, Fox Spirits, Spirit Frenzy. The three trios entries sourced to thedigitalcrowns, and the 'V matrix trio groupings' conflict entry and trioConflictNote built on them, all rest on this misreading. A genuine difference does exist versus digitaltq's trios, but it is not the one described.",
+      "STALE: Every build-opinion source predates the target patch by roughly 20 months: thedigitalcrowns 2024-12-05, digitaltq 2025-01-13, class-agnostic HEXA guide 2025-01-31, grandislibrary undated but self-stamped GMS Ver. 269 against a v.271 target. Nothing in the file has been checked against v.271. The file does flag this in recencyFlag and gaps, which is to its credit, but the flag sits only on the HEXA section while the V matrix, hyper skill and inner ability sections carry the same age with no flag.",
+      "STALE: orangemushroom 2024-06-09 is KMST test-server content used throughout as the authority for what current GMS Shade looks like. Test-server numbers routinely change before live release and before GMS localisation. Every mechanical figure drawn from it (Soul Splitter 120s, Spirit Incarnation hit profile, Smashing Multipunch 3 to 8 final attacks, the existence of Fox God Beginning) needs a GMS confirmation it does not have.",
+      "STALE: ayumilove.net is dated 2013-12-01 with comment activity through about 2018 - pre-5th-job, pre-HEXA, pre-remaster. The file uses it only for weapon, secondary weapon and legion, and marks it unusable elsewhere, which is handled correctly. But it also happens to give the same legion values (+1/2/3/5/6%) that the file cites as the majority position in the legion conflict, and a 2013 page agreeing about a 2026 legion value is not corroboration. It should be excluded from that count, not silently absent from it.",
+      "STALE: No post-HEXA-era primary source was reached at all. maplestorywiki.net returns 403, nexon.com/maplestory official guide pages return an empty SPA shell, reddit is not fetchable from this environment, and maplestory.fandom.com returns 402. The file's gaps entry reporting this is accurate and I reproduced every one of those failures independently.",
+      "STALE: The gap 'No sourced account of how V matrix priority changes between Lv 200 and Lv 260' is honestly stated and correct - no cited source addresses it."
+    ],
+    "clearedOnInspection": [
+      "NOT fabricated - checked and cleared: every node and skill name in the file exists on a cited source. Grandis Library does list Blade Imp, Summon Other Spirit, Flash Fist, Ground Pound, Shockwave Punch in its node 5 / node 6 groups, and does name 'Advent of the Fox (6th Job)'. HEXA Spirit Claw, HEXA Fox Spirits, HEXA Spirit Frenzy, Sol Janus, Fox God Flash, Spiritgate, True Spirit Claw, Smashing Multipunch, Fox Marble Fusion, Heroic Memories, Genesis Claw and Princess No's Fox Marble all verified on cited pages. Soul Splitter 210s to 120s, the new hyper 'Fox God Beginning', and the KMS name 'Advent of the Fox God' all verified on orangemushroom. The Close Call 15 vs 10 percent conflict and the legion 1/2/3/5/6 vs 1/2/3/4/5 conflict are both recorded accurately. The empty hyperStats section is correct - none of the three guides discusses hyper stats."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "10 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

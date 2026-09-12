@@ -1,0 +1,476 @@
+{
+  "slug": "arch-mage-fp",
+  "className": "Arch Mage (Fire, Poison)",
+  "branch": "Explorer",
+  "primaryStat": "INT",
+  "secondaryStat": "LUK",
+  "weapon": "Staff or Wand",
+  "secondaryWeapon": "Shield or Magic Book",
+  "archetype": "High-DPM sustained-damage mage built on stacking damage-over-time effects. Rewarded for staying close to the boss and pressing short-cooldown skills off cooldown rather than hiding and bursting. Weak 2-minute burst relative to Bishop and Ice/Lightning; its real burst is the 6-minute origin (Infernal Venom). Strong solo bosser, resource-hungry to bring online.",
+  "linkSkill": {
+    "name": "Empirical Knowledge",
+    "effect": "Passive. Attacks have a 31% chance to mark an enemy's weakness, granting +5% damage and +5% ignore DEF per stack for 10 seconds. Stacks up to 3 times, one stack per unique Explorer Magician on the account that has reached master level.",
+    "levels": "Master Level 9"
+  },
+  "legionEffect": "Max MP +2/3/4/5/6%",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost nodes before V skill nodes",
+        "why": "The first four boost nodes are the class's main damage source and are also the prerequisite for unlocking 6th job mastery cores (a mastery core needs its associated boost node at total level 40 without matrix points).",
+        "consensus": "single-source (class doc); Grandis Library repeats the same build but credits the class doc, so it is not an independent confirmation",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison"
+        ]
+      },
+      {
+        "node": "V skill node leveling order after boost nodes: DoT Punisher > Poison Nova > Poison Chain = Elemental Fury, with Arcane Overdrive kept even or slightly ahead",
+        "why": "Ranked by each skill's share of full-rotation damage. The doc advises leveling primary skill nodes evenly rather than letting any one fall far behind, for node-shard efficiency.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Damage buff nodes next: Maple World Goddess's Blessing, Mana Overload",
+        "why": "Mana Overload only gains 1% final damage at levels 10, 20 and 30, so it is worth pushing only when near one of those checkpoints.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Then mobbing/farming nodes: Decent Holy Symbol, Erda Shower",
+        "why": "Farming throughput and drop rate.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Then utility nodes: Erda Nova, Blink, Will of Erda, Ethereal Form, Decent Holy Fountain",
+        "why": "Bind, mobility, status cleanse and i-frame. Erda Nova only needs roughly level 27 for full bind uptime, because bosses resist re-binding for 90 seconds after a bind ends.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Last: passive-stat nodes (Rope Lift, Decent Sharp Eyes, Decent Speed Infusion, Decent Mystic Door, Decent Advanced Blessing)",
+        "why": "Rope Lift gains 1 stat per level; Decent skills only gain 1 stat per 5 levels, making them a final min-max.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "node": "Boost node 1 - Flame Sweep",
+        "why": "Primary. Only Flame Sweep matters in this node; the other two slots are filler. Unlocks Flame Sweep VI.",
+        "consensus": "single-source (class doc), restated by Grandis Library which credits the class doc",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Boost node 2 - Flame Haze + Mist Eruption",
+        "why": "Primary. Covers the Flame Haze / Mist Eruption explosion combo and unlocks both mastery cores.",
+        "consensus": "single-source (class doc), restated by Grandis Library which credits the class doc",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Boost node 3 - Ignite + Ifrit + Inferno Aura",
+        "why": "Primary. Three mastery cores in one node.",
+        "consensus": "single-source (class doc), restated by Grandis Library which credits the class doc",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Boost node 4 - Creeping Toxin + Meteor Shower + Megiddo Flame",
+        "why": "Primary. Three mastery cores in one node. Nodes 1 to 4 together cover all nine skills that have a 6th job mastery core.",
+        "consensus": "single-source (class doc), restated by Grandis Library which credits the class doc",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Boost node 5 - Explosion + Teleport Mastery + Poison Mist",
+        "why": "Secondary. These skills have no mastery core. The class doc values the fifth boost node at roughly 0.5% final damage.",
+        "consensus": "single-source (class doc), restated by Grandis Library which credits the class doc",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "node": "Boost node 6 - Poison Breath + Flame Orb",
+        "why": "Lowest priority. Grandis Library marks it as not needing upgrade; the class doc calls the sixth boost node useless.",
+        "consensus": "single-source (class doc), restated by Grandis Library which credits the class doc",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      }
+    ],
+    "notes": "The class doc calls F/P's boost-node situation rough because it eventually wants six boost nodes, which is a heavy node-and-shard investment compared with classes that need three or four. Nodes with the same main skill (the skill listed first on the node) cannot be equipped at the same time. The level 200 to 260 shift is not spelled out as a separate build in any source I could read: the same six nodes are the target throughout, with nodes 1 to 4 first because they gate the 6th job mastery cores at level 260. As of the Spring 2026 balance patch the Unreliable Memory node was replaced by a new node skill, Arcane Overdrive - a 30 second, 2 minute cooldown buff granting 21% final damage that decays by 7% every 10 seconds and is unaffected by buff duration. Older guides that still list Unreliable Memory or an active Infinity are describing a version of the class that no longer exists."
+  },
+  "hexa": {
+    "order": null,
+    "notes": "I could not source an investment order. The class doc's 6th job order (credited to the contributor Raziel) exists only as an infographic image inside the Google Doc, and no other source I reached publishes an ordered list. Inventing one would be worse than leaving it empty. What IS sourced from the class doc (updated 2026-06-19): (1) The published order is built around Sol Erda fragment limitations rather than raw final damage per node, and the doc says deviating from it still gains final damage - if a party needs burst for a damage check, prioritizing origin or ascent is reasonable. (2) Gating rules: a mastery core needs its associated boost node at combined level 40 or higher without matrix points; an enhancement core needs its skill node maxed first. (3) Enhancement cores carry no class-specific bonus and follow the generic final-damage curve (11% at level 1, 25% at 10, 40% at 20, 60% at 30), so levels 1, 10, 20 and 30 are the meaningful checkpoints. (4) The doc warns F/P's HEXA value is spread thinly across tens of thousands of fragments rather than frontloaded, so the class feels weak for a long stretch after 260. (5) Origin skill: Infernal Venom - sets fervent stacks to 10 (50% final damage), extends Elemental Fury to 9 seconds, is an i-frame and an absolute bind; 7 second cutscene with most damage landing between 2 and 6 seconds. (6) Ascent skill: Immortal Flame - three uses per boss fight with no cooldown, i-frame during its 3 second cutscene, and explicitly NOT boosted by rings, hat, burst buffs, conditional passives, link skills, short consumables or Infinity, so it must be used OFF burst; at max level three ascents are worth roughly 2.25 origins, and ascent pierces damage-reduction mechanics. (7) Mastery cores available: Flame Sweep VI, Flame Haze VI, Mist Eruption VI, Ignite VI, Ifrit VI, Inferno Aura VI, Creeping Toxin VI, Meteor VI, Megiddo Flame VI. (8) Common cores: Sol Janus (farming and EXP only, no bossing function) and Sol Hecate. Sol Hecate unlocks Styx at level 1 (60 second mini-burst with a 4 second critical bind), Charon at level 20 (survives a lethal hit with 10 seconds of true invincibility, 10 minute cooldown, works against mechanics that ignore normal invincibility), and Phlegethon at level 30 (120 second burst worth only about 1% of a battle analysis; the doc suggests linking it to Arcane Overdrive or Ring of Restraint rather than Elemental Fury, which desyncs). (9) Arcane Overload VI (Common Core 3) is KMS-only and not yet available in GMS. (10) HEXA stat: the doc recommends the maplescouter optimizer, and otherwise taking the highest available values with M.ATT > INT > Critical Damage, preferring Critical Damage for stability across party compositions; it advises against any HEXA stat reset until 6th job is finished."
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "No source I reached publishes a hyper stat priority order for this class, so none is recorded. Two hyper stat facts are sourced from the class doc: hyper stats contribute 30-36% ignore enemy DEF, and critical rate hyper stats contribute 15% at level 10 in the doc's worked 100% crit-rate table. The doc also notes hyper stat crit rate can be traded off against legion grid, legion artifact, event stats and link slots, so the right allocation depends on where the rest of your crit comes from. Context that should shape any allocation: F/P starts with only about 40% base critical rate and 20% base ignore DEF, both low for the roster, and the doc's IED targets are roughly 93% for 300% PDR bosses and 97% for 380% PDR bosses."
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "skill": "Flame Sweep - Reinforce",
+        "why": "Damage on the main filler and mobbing skill.",
+        "consensus": "strong - appears in the current Grandis Library build and in two older independent guides",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build",
+          "https://thedigitalcrowns.com/fire-poison-archmage-best-skill-build-and-guide/"
+        ]
+      },
+      {
+        "skill": "Flame Sweep - Extra Strike",
+        "why": "Extra line on the main filler and mobbing skill.",
+        "consensus": "strong - appears in the current Grandis Library build and in two older independent guides",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build",
+          "https://thedigitalcrowns.com/fire-poison-archmage-best-skill-build-and-guide/"
+        ]
+      },
+      {
+        "skill": "Mist Eruption - Reinforce",
+        "why": "Damage on one of the two highest-hitting bossing skills. Hyper skill bonuses also carry into the matching 6th job mastery upgrade, per the class doc.",
+        "consensus": "moderate - in the current Grandis Library build and one older guide; a second older guide omits it",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://thedigitalcrowns.com/fire-poison-archmage-best-skill-build-and-guide/",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "skill": "Mist Eruption - Guardbreaker",
+        "why": "Ignore enemy DEF on the class's key bossing skill, which matters because base IED is only 20%.",
+        "consensus": "strong - current Grandis Library build plus two older independent guides",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build",
+          "https://thedigitalcrowns.com/fire-poison-archmage-best-skill-build-and-guide/"
+        ]
+      },
+      {
+        "skill": "Mist Eruption - Cooldown Cutter",
+        "why": "More Mist Eruptions per fight, which suits a class whose whole rotation is pressing short cooldowns off cooldown.",
+        "consensus": "moderate - current Grandis Library build plus one older independent guide",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build"
+        ]
+      }
+    ],
+    "actives": [
+      {
+        "skill": "Inferno Aura",
+        "why": "Toggled damage-over-time aura around the character. The class doc notes it is not affected by damage reflection and that it can switch itself off if you stand still out of combat.",
+        "consensus": "strong - three independent sources",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build"
+        ]
+      },
+      {
+        "skill": "Megiddo Flame",
+        "why": "Another damage-over-time source pressed off cooldown; it can also trigger Creeping Toxin.",
+        "consensus": "strong - three independent sources",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build"
+        ]
+      },
+      {
+        "skill": "Epic Adventure",
+        "why": "Standard 10% damage burst buff, used in the 2 minute and origin burst sequences.",
+        "consensus": "strong - three independent sources",
+        "sources": [
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build"
+        ]
+      }
+    ],
+    "skipped": [
+      {
+        "skill": "Poison Mist passives and Flame Sweep's damage-over-time passive",
+        "why": "The class doc states Poison Mist does almost no damage and exists only as an extra damage-over-time stack and as Mist Eruption setup, and that Flame Sweep's damage-over-time is a single 240% line per second, so a 20% boost to it is negligible.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      }
+    ],
+    "notes": "Hyper skill points are unlocked from level 140 and there are not enough to take everything. Hyper skill bonuses also feed into the matching 6th job mastery upgrades, per the class doc, which is an argument for settling the hyper build before investing heavily in HEXA. Older guides written before the Destiny revamp use the pre-revamp skill name Paralyze where current sources say Flame Sweep - treat any guide still saying Paralyze as out of date."
+  },
+  "innerAbility": {
+    "ideal": [
+      {
+        "line": "Attack Speed +1 Level (legendary first line)",
+        "why": "Mages cap at cast speed 10 and cannot reach it in most parties without this line. The class doc measures roughly 6% final damage going from attack speed 8 to 10 on a dummy, plus the practical benefit of shorter cast animations for dodging.",
+        "consensus": "strong - recommended by every source checked across 2022, 2024, 2025 and 2026",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+          "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build",
+          "https://ayumilove.net/maplestory-fire-poison-archmage-skill-build-guide/"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%",
+        "why": "Second line for a solo-bossing class. The class doc notes this is expensive in Heroic - it recommends miracle circulators to land unique-tier boss damage rather than locking attack speed and rolling for it with honor.",
+        "consensus": "single-source (class doc); Grandis Library lists the same line but credits the class doc",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison"
+        ]
+      },
+      {
+        "line": "Damage against targets afflicted with an abnormal status +8%",
+        "why": "F/P keeps damage-over-time and status debuffs on essentially everything it fights, so this line is close to always active for this class specifically.",
+        "consensus": "single-source (class doc); Grandis Library lists the same line but credits the class doc",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+          "https://grandislibrary.com/explorers/arch-mage-fire-poison"
+        ]
+      }
+    ],
+    "alternates": [
+      {
+        "line": "If your party reliably provides +1 attack speed, a second preset of Boss Damage +20% / Buff Duration +38% / abnormal-status damage +8%, or Boss Damage +20% / M.ATT +21 / abnormal-status damage +8%",
+        "why": "Freeing the attack-speed line lets the first line carry unique-tier boss damage instead.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "line": "Budget: Attack Speed +1 with abnormal-status damage and either buff duration or M.ATT on the remaining lines; critical rate is acceptable on the third line early in progression",
+        "why": "The class doc calls these serviceable and cheap, and notes most F/P mages sit on one of them for a long time while rolling a second preset toward the ideal.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      },
+      {
+        "line": "Farming preset: Item Drop Rate +20% with Mesos Obtained, or Mesos Obtained +20% with Item Drop Rate",
+        "why": "The class doc recommends keeping at least one preset with 20% drop rate for boss loot, since total drop rate currently caps at 500%.",
+        "consensus": "single-source",
+        "sources": [
+          "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+        ]
+      }
+    ],
+    "notes": "The class doc states its inner ability section is written for GMS Heroic specifically and that Interactive and MSEA may need a different approach. Buff duration used to be a near-mandatory F/P line because Infinity was a ramping buff that needed uptime; after the Spring 2026 balance patch made Infinity a flat passive, the doc says buff duration is no longer important to the class and only still helps extend the Angelic Buster link. Any guide recommending Attack Speed +1 with Buff Duration +50% as the F/P ideal is describing the pre-2026 class."
+  },
+  "gearingNotes": "Weapon: staff over wand. A wand gives +5% critical rate, but the class doc says you should be able to reach 100% crit without it, and strongly recommends a staff for the Arcane and Genesis weapons; a wand is only a temporary patch if your crit rate is short. Secondary: shield, not a magic book - the doc says a book is bad and worth keeping only at epic 6% M.ATT until you can craft a shield. Deimos Sage Shield is the target (20 star cap); its recipe drops from Normal Cygnus and is crafted with Smithing (100% success at Smithing level 10). In GMS Interactive the VIP Magician Shield is an alternative at a 15 star cap. WSE potential: on GMS Heroic the class doc's ideal weapon/secondary/emblem split is 9 lines of %M.ATT, 0 boss, 0 IED, based on top prime line only, and it warns against optimizing WSE before you are on permanent gear (Genesis Staff, Mitra's Rage emblem, Deimos Sage Shield). Cooldown reduction is the class-specific gearing lever: F/P runs many short cooldowns, so a cooldown reduction hat is wanted. Both the -2 sec and -1 sec skill-cooldown lines are prime lines; in Heroic black or bright cubes have the best odds of reaching more than -2s. The doc ranks hat outcomes: -4s with %INT > -4s > -3s with %INT > -2s with 15-18% INT > -3s > -2s with 9% INT, and says -2s with %INT is enough to liberate on, and anything above -2s with 6% stat is fine for a boss mule. Mercedes' legion block (2/3/4/5/6% cooldown reduction at level 60/100/140/200/250+) applies before equipment cooldown reduction and stops working at 1 second remaining. The Wings of Fate threads combination Izuna + Tengu + Yorozu at 70+ closeness gives -1s cooldown, but the doc says it is not worth breaking a 5-set Absolab or Arcane. Stat shortfalls to plan around: base critical rate is about 40% and base ignore DEF about 20%, both low, so crit rate and IED need deliberate sourcing from legion grid, legion artifact, links and hyper stats. IED targets are roughly 93% for 300% PDR bosses and 97% for 380% PDR bosses. Legion artifact priority given by the doc: Damage, Boss Damage, IED, then Critical Rate, Critical Damage, All Stats, then M.ATT and Buff Duration. Legion grid priority: Critical Damage > Boss/IED > INT > Critical Rate > M.ATT > Buff Duration. Legion block priority: Mercedes first for cooldown reduction, then Mo Xuan / Shade / Hayato for crit damage, then Kanna / Demon Avenger / Erel / Sia, then Wild Hunter, then Night Lord / Marksman. Skill rings: the doc says Continuous ring suits F/P better than Ring of Restraint because the class plays off cooldown rather than aligning a burst, and that F/P benefits less from Ring of Restraint 4 and Weapon Jump INT than most classes; Heroic preference is Continuous first, Ring of Restraint second for the final origin burst. Sources: class doc (2026-06-19) for all of the above; Grandis Library confirms the weapon and secondary types and the base stat figures.",
+  "commonMistakes": [
+    {
+      "mistake": "Playing hide-and-burst instead of maintaining uptime",
+      "why": "The class doc is explicit that F/P's damage is spread across a rotation, not frontloaded, and that playing defensively at range costs a large share of its output. It has an i-frame (Ethereal Form), an origin i-frame, Sol Hecate: Charon and telecasting specifically so it can stay close.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Dying to damage reflect",
+      "why": "The class doc names Teleport Mastery's toggle as the usual culprit, along with attacking with other offensive skills. Ifrit, Inferno Aura and Creeping Toxin puddles before they explode do not trigger damage reflect. The doc recommends macroing Teleport Mastery together with Ignite so both can be switched off in one input.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Over-leveling Erda Nova and then whiffing the bind",
+      "why": "Bosses resist re-binding for 90 seconds after a bind ends. The doc says level 27 is enough for full bind uptime, and that a level 30 Erda Nova plus any cooldown reduction will come off cooldown before the boss can be bound again.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Chasing the fifth and sixth boost nodes early",
+      "why": "The class doc puts the fifth boost node at roughly 0.5% final damage and calls the sixth useless. The first four are where the damage and the 6th job mastery unlocks live.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Using the Immortal Flame ascent skill inside a burst window",
+      "why": "Ascent damage ignores rings, hat, burst buffs, conditional passives, link skills, short consumables and Infinity, so buffing it is wasted. The doc says to use it off-burst to push boss segments.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Detonating the Flame Haze mist with Mist Eruption before Poison Nova is ready",
+      "why": "Mist Eruption detonating both a Poison Mist and Poison Nova together is the class's largest damage window. The doc also warns that at attack speed 10 you need a filler skill after DoT Punisher, or the Poison Nova detonation whiffs because Poison Nova needs about 1 second before it can be exploded.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Using Megiddo Flame's locked front-loaded mode",
+      "why": "The class doc reports that the locked version's later explosions are currently bugged and cannot proc Meteor or Ignite, and recommends leaving the skill unlocked until it is fixed. This is a patch-current bug note and may go stale.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Picking F/P as a cheap boss mule",
+      "why": "The class doc calls it resource-intensive: six boost nodes eventually wanted, many V skill nodes, low base crit and IED, cooldown reduction potential needed, and HEXA value spread thinly across tens of thousands of fragments rather than frontloaded. It says classes whose cooldowns reset on boss entry make better mules.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso"
+      ]
+    },
+    {
+      "mistake": "Following a guide written before the Spring 2026 balance patch",
+      "why": "Infinity is now a flat 91% final damage passive rather than a ramping active, and the Unreliable Memory node was replaced by Arcane Overdrive. Guides that build around Infinity uptime, buff duration, or Unreliable Memory as a second Infinity are describing the old class.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+        "https://www.youtube.com/watch?v=PV7-tcdgmuM"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+      "what": "\"Fire Poison Archmage Guide and FAQ\", maintained by Jay MS with named contributors from the Explorer Mage Discord. Written explicitly from a GMS Heroic standpoint. By far the deepest and most current source: class mechanics, skill cycle, node priorities, cooldown reduction, links and legion, legion artifact, inner ability, attack speed, crit rate, skill rings, WSE, training. Its 6th job order and boost node visuals are infographic images that could not be read as text. Linked from both the MapleStory Wiki class-guides index and the Grandis Library class page.",
+      "dated": "2026-06-19 (changelog entry; prior entry 2026-04-27)",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+      "what": "Grandis Library class overview. Independent for class properties, link skill wording, legion effect, base stat totals from skills, and the underlying boost node compositions. NOT independent for the boost node build recommendation, inner ability recommendation or hyper skill passive build - the page credits all three to the class doc above.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] as stated in the page footer",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Arch_Mage_(Fire,_Poison)",
+      "what": "MapleStory Wiki class page. Used to confirm the class is Available in GMS (its regional availability table lists KMS, JMS, CMS, GMS, MSEA and TMS all as Available), and to confirm faction, job group, main and secondary stat, weapon types, link skill name and legion effect.",
+      "dated": "not stated on the page; page revision 522815, retrieved 2026-09-11",
+      "independent": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=PV7-tcdgmuM",
+      "what": "\"[Maplestory] Arch Mage (Fire/Poison) Burst Guide & Bossing Showcase\". The description lists a full 19-step burst input order. Corroborates the shape of the burst sequence (toggles and summon up first, then Erda Nova bind, Angelic Buster link, Flame Haze into Poison Nova into DoT Punisher into Mist Eruption into Elemental Fury) independently of the class doc. Now partly stale: it still lists Infinity and Unreliable Memory as active burst skills, which the Spring 2026 balance patch removed.",
+      "dated": "2025-02-07",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build",
+      "what": "DigitalTQ skill build guide. Used only to corroborate hyper skill selections and the general role of Flame Sweep, Mist Eruption, DoT Punisher, Poison Nova and Poison Chain. Its V matrix trio recommendations predate both the Destiny revamp reshuffle and HEXA and should not be followed.",
+      "dated": "published 2024-02-19; body states last updated 2022-09-20 for Destiny v.233",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/fire-poison-archmage-best-skill-build-and-guide/",
+      "what": "The Digital Crowns skill build guide. Used only to corroborate hyper skill selections and the point that 5th job skill nodes matter more than boost nodes early. Pre-HEXA; its trios are out of date.",
+      "dated": "2022-07-27",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-fire-poison-archmage-skill-build-guide/",
+      "what": "AyumiLove skill build guide. Confirms the legion effect and the Attack Speed +1 inner ability line. Badly stale otherwise - it still uses the pre-Destiny skill name Paralyze and recommends Buff Duration +50% on inner ability, which the class doc says no longer matters.",
+      "dated": "page states 2013-06-18; partially updated for V matrix at an unstated later date - could not be reliably dated",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Guide:Class_Guides",
+      "what": "MapleStory Wiki's index of community class Google Docs. Used to locate the Arch Mage (Fire, Poison) class doc and to establish that the wiki treats it as the class's maintained community guide.",
+      "dated": "not stated; retrieved 2026-09-11",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "V Matrix boost node trios",
+      "positionA": "Current: six boost nodes, with nodes 1-4 covering Flame Sweep; Flame Haze + Mist Eruption; Ignite + Ifrit + Inferno Aura; Creeping Toxin + Meteor Shower + Megiddo Flame. Sources: class doc (2026-06-19) and Grandis Library (v.269), though Grandis credits the class doc.",
+      "positionB": "Older: trios of Ignite / Mist Eruption / Flame Sweep, then Inferno Aura / Flame Haze / Meteor Shower, then Megiddo Flame / Ifrit / Teleport Mastery (The Digital Crowns, 2022-07-27), or Ignite / Mist Eruption / Flame Sweep plus Meteor Shower / Flame Haze / Teleport Mastery (DigitalTQ, updated 2022), or Paralyze / Flame Haze / Mist Eruption plus Inferno Aura / Megiddo Flame / Meteor Shower (AyumiLove, undated update using the pre-Destiny skill name).",
+      "resolution": "Not resolved by preference. Recorded because the older groupings predate both the Destiny revamp and the 6th job mastery cores, and mastery cores now dictate which skills must share nodes. The recency rule in this project's brief favours the current position, but only one genuinely independent source states it.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+        "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+        "https://thedigitalcrowns.com/fire-poison-archmage-best-skill-build-and-guide/",
+        "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build",
+        "https://ayumilove.net/maplestory-fire-poison-archmage-skill-build-guide/"
+      ]
+    },
+    {
+      "topic": "Inner ability third line - buff duration",
+      "positionA": "Buff duration is no longer important to F/P; it only extends the Angelic Buster link. Source: class doc (2026-06-19), following the Spring 2026 balance patch that turned Infinity into a passive.",
+      "positionB": "Attack Speed +1 with Buff Duration +50% is the recommended inner ability. Source: AyumiLove (undated update, pre-revamp).",
+      "resolution": "Not resolved by preference, but the mechanical reason for the change is documented: Infinity was a ramping buff that needed uptime and is now a flat passive.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+        "https://ayumilove.net/maplestory-fire-poison-archmage-skill-build-guide/"
+      ]
+    },
+    {
+      "topic": "Mist Eruption - Reinforce as a hyper passive",
+      "positionA": "Included in the hyper passive build. Sources: Grandis Library (crediting the class doc) and The Digital Crowns.",
+      "positionB": "Omitted in favour of Mist Eruption - Cooldown Cutter and Guardbreak alongside the two Flame Sweep passives. Source: DigitalTQ.",
+      "resolution": "Not resolved. Both older guides predate HEXA, and the class doc notes hyper bonuses now also feed the matching mastery upgrades, which may change the calculus.",
+      "sources": [
+        "https://grandislibrary.com/explorers/arch-mage-fire-poison",
+        "https://thedigitalcrowns.com/fire-poison-archmage-best-skill-build-and-guide/",
+        "https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build"
+      ]
+    },
+    {
+      "topic": "Infinity and Unreliable Memory",
+      "positionA": "Infinity is a passive granting 91% final damage; the Unreliable Memory node was replaced by Arcane Overdrive, a decaying 30 second buff on a 2 minute cooldown. Source: class doc (2026-06-19), attributing the change to the Spring 2026 balance patch.",
+      "positionB": "Infinity and Unreliable Memory are active burst skills, with Unreliable Memory described as effectively a second Infinity. Source: YouTube burst guide (2025-02-07).",
+      "resolution": "Recorded as a recency conflict rather than a disagreement - the 2025 video was accurate when published and was superseded by a balance patch.",
+      "sources": [
+        "https://docs.google.com/document/d/1LkW-vMTSQDwJFe2B2SmVeKBeWRXlIK4l58M2IBtkPso",
+        "https://www.youtube.com/watch?v=PV7-tcdgmuM"
+      ]
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "conflicts[2] (\"Mist Eruption - Reinforce as a hyper passive\") describes a disagreement that does not exist in the cited source. positionB reads: \"Omitted in favour of Mist Eruption - Cooldown Cutter and Guardbreak alongside the two Flame Sweep passives. Source: DigitalTQ.\" I fetched https://www.digitaltq.com/maplestory-fire-poison-archmage-skill-build — it recommends Flame Sweep - Reinforce, Flame Sweep - Extra Strike, Mist Eruption - Cooldown Cutter, Mist Eruption - Guardbreak AND Mist Eruption - Reinforce. It does not omit Reinforce. The whole conflict entry should be deleted, and the consequent downgrade in hyperSkills.passives (\"moderate - in the current Grandis Library build and one older guide; a second older guide omits it\") is wrong on its own terms: all three cited sources include the skill.",
+      "STALE: Poison Chain is placed in a CURRENT V-skill-node priority order with no currency flag, and the two sources disagree about it. The class doc treats it as a live rotation skill, but Grandis Library (v.269) does not list Poison Chain in any job tier — its 5th job list is Mana Overload, Maple World Goddess's Blessing, Ethereal Form, Elemental Fury, DoT Punisher, Poison Nova, Arcane Overdrive. Either the skill was folded away (Elemental Fury occupying its slot post-Destiny) or the Grandis page is incomplete. This is an unrecorded conflict on a skill the file tells users to sink node levels into. Worth a direct confirmation before shipping.",
+      "STALE: A real conflict involving stale advice is unrecorded. hyperSkills.skipped tells users to skip Poison Mist passives on the class doc's word alone, marked \"single-source\". But thedigitalcrowns (2022-07-27), which the file cites elsewhere, explicitly recommends Poison Mist - Reinforce AND Poison Mist - Cripple. The doc is very likely right and the 2022 page stale — but the brief says record both positions rather than silently drop one, and this one was dropped.",
+      "STALE: Three of the seven \"independent\" sources are 2022-or-older SEO skill-build pages (digitaltq last updated 2022-09-20; thedigitalcrowns 2022-07-27; ayumilove page-dated 2013-06-18 and undateable after that). All three predate HEXA entirely — I confirmed neither digitaltq nor thedigitalcrowns mentions 6th job or HEXA anywhere. The file correctly quarantines their V matrix trios, but still leans on them for its only non-doc hyper skill corroboration, and hyper skill choice is precisely what the class doc says now feeds the 6th job mastery upgrades. Pre-HEXA corroboration of a build that HEXA re-weighted is thin support dressed as \"strong\".",
+      "STALE: Minor dating imprecision: hyperSkills.notes says older guides use the pre-revamp name Paralyze. Among the cited set only AyumiLove does — both digitaltq and thedigitalcrowns use \"Flame Sweep\". The note is conditional so it isn't false, but the file's characterisation of thedigitalcrowns as straightforwardly pre-Destiny is loose.",
+      "STALE: The brief explicitly asked how the V MATRIX build shifts between Lv 200 and Lv 260, and the file's vMatrix.notes says no source spells it out. That disclosure is honest and correct — but the requirement is still unmet, and the parent should know this guide ships without it rather than assume it was covered."
+    ],
+    "clearedOnInspection": [
+      "NO fabricated skill, node or core names. I checked every name in the file against a source independent of the class doc where one existed. Confirmed on Grandis Library: Arcane Overdrive listed under BOTH 3rd job (+13% crit damage) and 5th job (+21% FD, -7% every 10s) — the 5th-job listing matches the file exactly; Infinity +91% FD; Infernal Venom (6th job, 10s bind, 360s cd, iframe); Immortal Flame (6th job); Elemental Fury, Ethereal Form, DoT Punisher, Poison Nova, Mana Overload, Maple World Goddess's Blessing, Fervent Drain, Flame Sweep, Mist Eruption, Flame Haze, Ignite, Ifrit, Inferno Aura, Creeping Toxin, Megiddo Flame, Meteor Shower, Poison Mist, Explosion, Teleport Mastery, Poison Breath, Flame Orb, Epic Adventure. Confirmed present in the class doc: Unreliable Memory (as the replaced node), Sol Hecate with Styx/Charon/Phlegethon, Sol Janus, Deimos Sage Shield, the Spring 2026 balance patch.",
+      "NO invented priority orders. The V-skill node order is verbatim sourced — the doc reads \"Rotation Damage: Boost Nodes > DoT Punisher > Poison Nova > Chain = Fury (AO should be even or slightly higher)\", and the file's expansion of Chain/Fury/AO is correct. Numeric spot-checks against the doc all returned CONFIRMED with matching figures: Erda Nova lv27 and the 90s re-bind lockout; Mana Overload 1% FD only at 10/20/30; 5th boost node ~0.5% FD and 6th useless; WSE 9/0/0; the six-step cooldown-hat ranking in exact order; 3 maxed ascents ≈ 2.25 origins; enhancement core 11/25/40/60; Arcane Overdrive 21% FD decaying 7% per stage over 30s on 2min cd; Infinity as a passive 91% FD buff; base 40% crit and 20% IED; Mercedes 2/3/4/5/6% at lv60/100/140/200/250+; Sol Janus \"no bossing function\"; the Megiddo Flame locked-mode proc bug.",
+      "The two null fields are CORRECTLY null and should not be filled. I verified directly: the doc's 6th job order exists only as a Raziel infographic image (text export confirms \"Guide order is based on sol erda fragment limitations\" plus an image credit, no readable sequence), and the doc contains no hyper stat priority list in text. Leaving `hexa.order` and `hyperStats.priority` empty was the right call under the brief."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "6 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

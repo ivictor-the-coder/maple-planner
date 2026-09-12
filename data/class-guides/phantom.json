@@ -1,0 +1,783 @@
+{
+  "slug": "phantom",
+  "className": "Phantom",
+  "branch": "Hero (Explorer Thief job group)",
+  "primaryStat": "LUK",
+  "secondaryStat": "DEX",
+  "weapon": "Cane",
+  "secondaryWeapon": "Card",
+  "archetype": "Cooldown-driven bossing thief that steals and re-uses Explorer skills. Its damage comes from cycling short-cooldown skills (above all Tempest) as often as possible, so cooldown reduction and cooldown-skip are treated as damage stats rather than utility. The class doc presents it as a class that clears bosses at low investment and is therefore favoured as a Legion champion / boss mule, at the cost of needing a hyper-skill swap roughly every minute to hold peak damage.",
+  "linkSkill": {
+    "name": "Phantom Instinct",
+    "effect": "Passive. Lv.1 Critical Rate +10%. Lv.3 Critical Rate +20% and Damage +5%.",
+    "levels": 3,
+    "sources": [
+      "https://maplestorywiki.net/w/Phantom/Skills"
+    ]
+  },
+  "legionEffect": "%Mesos Obtained +1/2/3/4/5%. Note this is an economy bonus, not a damage bonus, unlike most Thief-branch legion effects.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Ace in the Hole (skill node)",
+        "why": "Listed first in the class doc's Skill Node Priority, described there as the strongest overall damage contributor among Phantom's V skills.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Rift Break (skill node)",
+        "why": "Second in the class doc's Skill Node Priority; classed as a sustained-DPM skill rather than a burst skill.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Luck of the Draw (skill node)",
+        "why": "Third in the class doc's Skill Node Priority; a burst skill. The doc records a breakpoint: at node level 25 it gains an extra second of usable duration, and this is affected by Matrix Point levels.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Phantom's Mark (skill node)",
+        "why": "Fourth in the class doc's Skill Node Priority; doubles as an iframe and a DPM skill.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Last Resort (skill node)",
+        "why": "Fifth in the class doc's Skill Node Priority; the primary burst buff used in boss fights.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Maple World Goddess's Blessing (skill node)",
+        "why": "Sixth in the class doc's Skill Node Priority; the secondary burst buff in boss fights.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Freud's Wisdom (skill node)",
+        "why": "Seventh in the class doc's Skill Node Priority; buff plus iframe.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "boostNodeGroups": {
+      "note": "These are the post-v.269 in-game boost node groupings as published by Grandis Library, with Grandis' PRIMARY / SECONDARY / OTHER tiering. Grandis credits the tiering to the Phantom class doc, so the tiering is a restatement of that doc and not a second opinion. Grandis also exposes a 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence the groupings changed at v.269 - any node list dated before v.269 describes different groups.",
+      "primary": [
+        {
+          "node": "Node 1: Tempest",
+          "why": "Grandis marks this tier as the node to build first, and flags it as the one tied to unlocking the HEXA mastery. Tempest is Phantom's core bossing attack and the skill the whole cooldown-reduction gearing plan is built around.",
+          "consensus": "weak-single-lineage",
+          "sources": [
+            "https://grandislibrary.com/heroes/phantom"
+          ]
+        }
+      ],
+      "secondary": [
+        {
+          "node": "Node 2: Mille Aiguilles, Blason, Double Entendre",
+          "why": "Grandis' SECONDARY (frequently used) tier. Mille Aiguilles is the main 4th-job mobbing/training attack.",
+          "consensus": "weak-single-lineage",
+          "sources": [
+            "https://grandislibrary.com/heroes/phantom"
+          ]
+        },
+        {
+          "node": "Node 3: Carte Blanche",
+          "why": "Grandis' SECONDARY tier. Carte Blanche is the passive card-generation proc that feeds the deck.",
+          "consensus": "weak-single-lineage",
+          "sources": [
+            "https://grandislibrary.com/heroes/phantom"
+          ]
+        }
+      ],
+      "other": [
+        {
+          "node": "Node 4: Rose Carte Finale, Penombre",
+          "why": "Grandis' OTHER tier.",
+          "consensus": "weak-single-lineage",
+          "sources": [
+            "https://grandislibrary.com/heroes/phantom"
+          ]
+        },
+        {
+          "node": "Node 5: Rapier Wit, Calling Card, Mille Cartes",
+          "why": "Grandis' OTHER tier.",
+          "consensus": "weak-single-lineage",
+          "sources": [
+            "https://grandislibrary.com/heroes/phantom"
+          ]
+        },
+        {
+          "node": "Node 6: Impeccable Memory I-IV",
+          "why": "Grandis' OTHER tier. This is the node that scales Phantom's stolen-skill slots.",
+          "consensus": "weak-single-lineage",
+          "sources": [
+            "https://grandislibrary.com/heroes/phantom"
+          ]
+        }
+      ]
+    },
+    "trios": [
+      {
+        "trio": "Mille Aiguilles / Carte Blanc / Tempest",
+        "use": "bossing",
+        "consensus": "stale-single-source",
+        "note": "From mastermysty's cross-class trio table, an author outside the class-doc lineage. Dated 2024-11-21, which is BEFORE the v.269 boost node regrouping, so this trio composition may no longer be constructible. Retained as an independent historical datapoint, not as current advice.",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "trio": "Rose Carte Finale / Impeccable Memory II / Impeccable Memory III",
+        "use": "mobbing",
+        "consensus": "stale-single-source",
+        "note": "Same source and same pre-v.269 caveat as above.",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "trio": "Penombre / Impeccable Memory I / Impeccable Memory IV",
+        "use": "additional",
+        "consensus": "stale-single-source",
+        "note": "Same source and same pre-v.269 caveat as above.",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "triNodeSetupNotes": [
+      {
+        "claim": "The class doc's worked example is a 4-node setup: one node carrying the main damage dealer, and one carrying Rose Finale, which serves both the 6th-job mastery and mobbing.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "claim": "Impeccable Memory boost nodes raise stolen-skill damage only; they do not scale the effects of stolen buff skills.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "claim": "Impeccable Memory II is called optional and explicitly not recommended, used only for a cardinal burst setup.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "claim": "Impeccable Memory III is optional; its stated use is extra mobbing coverage when the main mobbing skill cannot one-shot without the extra 20% final damage.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "claim": "Impeccable Memory IV is optional past level 260 and is not treated as necessary.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "claim": "Blason is optional and used only to apply the boss mark; Penombre is optional and used only for mobility.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "specialAndDecentNodes": [
+      {
+        "node": "Fatal Strike",
+        "why": "Named by the class doc as the ideal special node for Phantom.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Decent Combat Orders",
+        "why": "Class doc: +1 matrix enhancement, giving +1 abnormal status resistance.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Rope Lift",
+        "why": "Class doc: +5 matrix enhancement, for All Stat.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Blink",
+        "why": "Class doc: +5 matrix enhancement, for Attack.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "node": "Erda Fountain",
+        "why": "Class doc: +5 matrix enhancement, for mobbing. The doc offers boosting Erda Will as an alternative.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "The class doc's V-matrix section is largely delivered as images with short text captions, so only the captions and the ordered Skill Node Priority list could be extracted as text; the exact node-level targets shown in its example matrix images are not recoverable without a human or OCR pass. Separately, the doc flags Venom Burst as currently negligible (stated as roughly 0.01% damage) but expects it to be worth about 3 final damage after the next balance patch - a forward-looking claim from a 2025 revision that must be re-checked against the live v.271 build before being surfaced to a user."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Rose Carte Finale VI (mastery) to level 1",
+        "why": "Ranked first by final damage gained per Sol Erda Fragment in the class doc's efficiency table (0.1877% FD per fragment) - roughly 1.6x the next entry. The first level of each mastery node is disproportionately efficient.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Mille Aiguilles VI (mastery) to level 1",
+        "why": "Second by FD per fragment (0.1205%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Carte Noir VI (mastery) to level 1",
+        "why": "Third by FD per fragment (0.1042%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Tempest VI (mastery) to level 1",
+        "why": "Fourth by FD per fragment (0.0218%). Note the sharp cliff here - the first three mastery unlocks are each worth about five times as much per fragment as this one, so the opening three are the genuinely urgent purchases.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Rose Carte Finale VI to level 2",
+        "why": "Fifth by FD per fragment (0.0188%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Ace in the Hole (HEXA enhancement) to level 1",
+        "why": "Sixth by FD per fragment (0.0175%). First enhancement node to enter the order, matching its rank at the top of the 5th-job skill node priority.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Luck of the Draw (HEXA enhancement) to level 1",
+        "why": "Seventh by FD per fragment (0.0169%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Tempest VI to level 2",
+        "why": "Eighth by FD per fragment (0.0164%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Rose Carte Finale VI to level 3",
+        "why": "Ninth by FD per fragment (0.0152%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Tempest VI to level 3, then Rose Carte Finale VI to level 4",
+        "why": "Tenth and eleventh, tied at 0.0136% FD per fragment.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Phantom's Mark (HEXA enhancement) to level 1",
+        "why": "Twelfth by FD per fragment (0.0125%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Mille Aiguilles VI to level 2, Tempest VI to level 4",
+        "why": "Thirteenth and fourteenth, tied at 0.0121% FD per fragment.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Rose Carte Finale VI to levels 5-6, then Tempest VI to level 5",
+        "why": "Fifteenth and sixteenth (0.0111%, 0.0104%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Rift Break (HEXA enhancement) to level 1",
+        "why": "Seventeenth by FD per fragment (0.0103%). Rift Break is the last of the four enhancement nodes to enter the order despite ranking second in the 5th-job skill node priority.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Carte Noir VI to level 2, Mille Aiguilles VI to level 3, Tempest VI to level 6, Rose Carte Finale VI to level 7",
+        "why": "Eighteenth through twenty-first (0.0101% down to 0.0093%).",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "step": "Defying Fate (origin skill) to level 2",
+        "why": "Twenty-second by FD per fragment (0.0088%). The origin skill does NOT lead the Heroic order - on the class doc's model it only becomes competitive after roughly twenty other purchases. This is the single most counter-intuitive result in the table and is the opposite of the generic 'build your origin skill first' advice that circulates on aggregator sites.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "orderMethodology": "The class doc publishes a 93-row table titled 'Skill Upgrade Order', dated 09-29-2025 in its own heading and credited to aCyr for compiling it. It is modelled against Hard Limbo phase 1. It has TWO separate columns because the binding resource differs by server type: 'fd % per fragment (heroic)' and 'fd % per energy (interactive)'. The Heroic column is the one a GMS Heroic planner should use. Both columns are sorted strictly descending by efficiency, so the row order IS the recommended purchase order.",
+    "interactiveOrderDiffers": {
+      "claim": "The Interactive (Sol Erda energy) order diverges from the Heroic (fragment) order from the fifth purchase onward. Interactive opens Rose Carte Finale VI 1, Mille Aiguilles VI 1, Carte Noir VI 1, Tempest VI 1, Ace in the Hole 1, Luck of the Draw 1, Defying Fate 2-4, Rose Carte Finale VI 2-7, Tempest VI 2-7, Phantom's Mark 1, Rift Break 1. Most notably Defying Fate 2-4 appears seventh on Interactive but twenty-second on Heroic.",
+      "why": "Heroic and Interactive are gated by different currencies, so the cost denominator differs and the optimal order differs with it. A Heroic planner must not present the Interactive column.",
+      "consensus": "single-source-current",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    },
+    "hexaStats": {
+      "firstThree": [
+        {
+          "stat": "ATT",
+          "placement": "Place on whichever position yields the most ATT, which the class doc explicitly warns is not necessarily the highest-level slot.",
+          "sources": [
+            "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+          ]
+        },
+        {
+          "stat": "Critical Damage",
+          "placement": "Second-highest level slot, after ATT is placed.",
+          "sources": [
+            "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+          ]
+        },
+        {
+          "stat": "LUK",
+          "placement": "Third-highest level slot.",
+          "sources": [
+            "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+          ]
+        }
+      ],
+      "laterSlots": {
+        "stats": [
+          "Boss Damage",
+          "Ignore Defense",
+          "Damage"
+        ],
+        "why": "The class doc reserves these for HEXA Stats 4 through 6 once those slots unlock, on the reasoning that the first set should be stats that raise both mobbing and bossing damage.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      "consensus": "single-source-current",
+      "notes": "The class doc states plainly that Phantom wants the same HEXA Stats as any other class - there is no Phantom-specific HEXA Stat quirk. It refers readers to a calculator for min-maxing rather than publishing per-character numbers."
+    },
+    "notes": "Phantom's HEXA node set, as it appears in the class doc's efficiency table: origin skill Defying Fate; four mastery nodes (Rose Carte Finale VI, Mille Aiguilles VI, Carte Noir VI, Tempest VI); four enhancement/boost nodes on the 5th-job skills Ace in the Hole, Luck of the Draw, Phantom's Mark and Rift Break. The doc carries an 'Ideal Hexa Matrix Setup Example' image and notes alongside it that the last two boost nodes are down to personal preference. GAP: the doc contains no mention of Sol Janus or Sol Hecate and no Ascent section, so it gives no guidance on those; a planner should leave those fields empty for Phantom rather than infer them. The doc's shorthand in the table ('Finale', 'Mille', 'Noire') has been expanded to full skill names here."
+  },
+  "hyperStats": {
+    "priority": null,
+    "phantomSpecificGuidance": [
+      {
+        "claim": "Phantom should aim to LOWER its Hyper Stat Critical Rate level, sourcing the crit it gives up from the Legion Grid and Legion Artifact instead, freeing those hyper stat points for other lines.",
+        "why": "Phantom assembles 100% critical rate in GMS with Hyper Stat Critical Rate at only level 8, because the class supplies an unusual amount of crit from its own kit and its own link. Every point spent past the cap is wasted.",
+        "consensus": "single-source-current",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "NO hyper stat priority order could be sourced for Phantom. The class doc has no hyper stat allocation section - it mentions hyper stats only inside its critical-rate accounting table and in the one piece of advice recorded above. Grandis Library publishes no hyper stat data for any class. An empty field is the correct answer here; do not substitute a generic cross-class list."
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "skill": "Tempest - Reinforce",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      },
+      {
+        "skill": "Tempest - Cooldown Cutter",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      },
+      {
+        "skill": "Mille Aiguilles - Reinforce",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      },
+      {
+        "skill": "Mille Aiguilles - Guardbreak",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      },
+      {
+        "skill": "Impeccable Memory - Persist OR Impeccable Memory - Enhance (choose one; see selectionRule)",
+        "consensus": "contested",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      }
+    ],
+    "selectionRule": [
+      {
+        "pick": "Impeccable Memory - Persist",
+        "when": "You have not yet reached 50% Buff Duration for Final Cut. The class doc adds that endgame players may prefer it for Roll of the Dice while training.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "pick": "Impeccable Memory - Enhance",
+        "when": "You do not have an active Alliance, or you play in a low-population world, and you actively rotate between three 4th-job stolen skills.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "pick": "Impeccable Memory - Reinforce",
+        "when": "The class doc describes this as an ordinary 15% damage passive and suggests taking it only if it changes your mobbing clear rate. Grandis lists it as a co-equal third option; the class doc does not include it in its own recommended block. This is the one place the two disagree.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      }
+    ],
+    "notes": "Hyper skill names validated against the wiki's Passive Skill Boost list, which confirms Tempest - Reinforce (Damage +20%, Lv.140), Tempest - Cooldown Cutter (Cooldown -20%, Lv.150) and Mille Aiguilles - Reinforce (Damage +20%, Lv.140) exist under those exact names. The class doc separately flags that Phantom's optimal play involves swapping hyper skills roughly once a minute, which it lists as a class drawback rather than a build choice.",
+    "activesSourced": false
+  },
+  "innerAbility": {
+    "firstLine": [
+      {
+        "line": "Chance to Skip Cooldown +20%",
+        "why": "The class doc calls this the popular and viable first line and names the skills it affects: Tempest, Final Cut, Heal and Terms and Conditions. Phantom's damage is cooldown-gated, so skipping a Tempest cooldown is a direct damage gain rather than utility.",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      },
+      {
+        "line": "Boss Damage +20%",
+        "why": "Offered as the consistency alternative: a flat, guaranteed gain instead of a chance-based Tempest reset.",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      },
+      {
+        "line": "Mesos Obtained +20% / Item Drop Rate +20%",
+        "why": "The farming line. The class doc ties it specifically to meso farming and to farming Sol Erda and Sol Erda Fragments.",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+          "https://grandislibrary.com/heroes/phantom"
+        ]
+      }
+    ],
+    "secondThirdLines": [
+      {
+        "line": "Chance to Skip Cooldown +10%",
+        "why": "Class doc treats this as a safe pick for the same Tempest-reset reason as the first line.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "line": "Damage to monsters inflicted with Abnormal Status +8%",
+        "why": "Class doc rates this as equivalent to 8% Boss Damage in practice.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%",
+        "why": "Class doc offers this if Boss Damage was not taken on the first line.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "line": "Buff Duration +38%",
+        "why": "Extends Final Cut and Terms and Conditions. The class doc adds a threshold rule: once Final Cut can be held at 100% uptime, further buff duration converts it into a spare iframe rather than more damage.",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "exampleSetups": [
+      {
+        "setup": "Chance to Skip Cooldown +20% / Boss Damage +10% / Damage to monsters with Abnormal Status +8%",
+        "label": "listed by the class doc as the current best-in-slot bossing setup",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "setup": "Boss Damage +20% / Damage to monsters with Abnormal Status +8% / Chance to Skip Cooldown +10%",
+        "label": "bossing alternative",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "setup": "Mesos Obtained +20% / Item Drop Rate +15% / Damage to Normal Monsters or +21 Attack",
+        "label": "farming",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "setup": "Chance to Skip Cooldown +20% / Boss Damage +10% / Buff Duration +38%",
+        "label": "bossing variant favouring Final Cut uptime",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      },
+      {
+        "setup": "Boss Damage +20% / Chance to Skip Cooldown +10% / Buff Duration +38%",
+        "label": "bossing variant favouring Final Cut uptime",
+        "sources": [
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Mesos Obtained / Item Drop Rate +20%, then +15%, then Damage to Normal Monsters +8%",
+        "consensus": "corroborated-within-lineage",
+        "sources": [
+          "https://grandislibrary.com/heroes/phantom",
+          "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+        ]
+      }
+    ],
+    "attackSpeedLine": {
+      "claim": "Attack speed is called generally unnecessary for Phantom bossing; the class doc says only windup and cast animations benefit. Phantom reaches attack speed 7 from its own passives.",
+      "consensus": "single-source-current",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+        "https://grandislibrary.com/heroes/phantom"
+      ]
+    },
+    "notes": "Both the class doc and Grandis agree on the shape here, but Grandis credits its Inner Ability section to the class doc, so this is one source stated twice, not two independent confirmations."
+  },
+  "gearingNotes": "Phantom's gearing is unusual in three ways, all of them well sourced.\n\n1. CRITICAL RATE IS SELF-SUPPLIED AND CAPS EARLY. The class doc publishes a full accounting of how a GMS Phantom reaches exactly 100% crit: 5% base, 35% from the Piercing Vision passive, 20% from its own Phantom Link at Lv.3, 10% from Lynn Link Lv.3, 10% from Decent Sharp Eyes, 4% from the Night Lord Lv.200 legion member bonus, 4% from the Marksman Lv.200 legion member bonus, 1% from an Ocean or Holy badge, and 11% from Hyper Stats at level 8. The wiki independently confirms the two largest in-class contributors - Piercing Vision at max gives Critical Rate +35% and Final Damage +30%, and Phantom Instinct at Lv.3 gives Critical Rate +20% plus Damage +5%. The practical consequence is the doc's own advice: push crit onto the Legion Grid and Legion Artifact so you can DROP hyper stat crit levels and spend those points elsewhere. Any generic 'max crit rate hyper stat' advice is actively wrong for this class.\n\n2. COOLDOWN REDUCTION IS A DAMAGE STAT, AND A CD HAT IS THE RECOMMENDED HAT. The class doc recommends a cooldown-reduction hat paired with the Lv.200 Mercedes legion member bonus, and publishes a conversion table of cooldown to equivalent final damage (estimated, by the doc's own note, via Maple Scouter): -5s CD is about 6.0% FD; -4s CD plus one line of LUK% is also about 6.0% FD; -4s CD alone about 5.1% FD; -3s CD plus one line LUK% about 4.8% FD; -2s CD plus two lines LUK% about 4.2% FD; -3s CD alone about 3.9% FD; -2s CD plus one line LUK% about 3.4% FD; three lines of LUK% about 2.8% FD; -2s CD alone about 2.5% FD. The doc also tabulates the resulting cooldowns with a Lv.250 Mercedes: Tempest with the Cooldown Cutter hyper passive falls from 13.536s at base to 9.268s at -5s CD; Ace in the Hole from 14.1s to 9.55s; Rift Break, Phantom's Mark and Rose Finale from 28.2s to 23.2s. Without the Mercedes bonus, Tempest's base cooldown is 18s (14.4s with the hyper).\n\n3. IGNORE DEFENSE IS UNUSUALLY HIGH FROM THE KIT. The class doc puts Phantom's innate combined IED at about 44.8%, from Priere D'Aria's passive 30% (+1% with Decent Combat Orders) plus Tempest's 20% one-minute debuff; Grandis' own skill-derived table independently lists Ignore DEF +44%, and the wiki confirms the two components (Priere D'Aria Lv.30: Damage +45%, Ignore Defense 30%; Tempest Lv.30: Enemy DEF Ignored 20% for 60s). A Phantom therefore needs less IED from gear and potential than a class starting from zero.\n\nOTHER GEARING FACTS. Attack speed from the class's own passives is 7 (Grandis), and the class doc considers attack speed largely wasted on Phantom for bossing. Phantom has no Final Attack skill, which the class doc calls out explicitly because it means the Legion Artifact 'Final Attack Skill Damage %' line is worth nothing to this class. Tempest's attacks are always critical hits (wiki), which is part of why crit rate saturates so easily. The class's legion effect is %Mesos Obtained rather than a damage stat. Recommended familiar badges per the class doc: Ocean (+1% Damage, +1% Crit Rate, easily obtained), Apocalypse, Lion, Holy, Labyrinth and Showa.\n\nSTOLEN SKILLS ARE A REAL PROGRESSION AXIS. Phantom equips stolen Explorer skills into Impeccable Memory slots I through IV plus a Hyper tier, managed with Skill Swipe and Loadout. The wiki records the hard mechanical constraints: passive effects of stolen skills do not work, a skill may only go into a slot of equal or higher rank, a skill cannot be used immediately after being assigned, Bishop's Heal has its cooldown increased when stolen, and the stolen skill's level is capped by the Impeccable Memory slot's level. The class doc's boost-node captions add that Impeccable Memory boost nodes raise stolen-skill DAMAGE only and do nothing for stolen buff effects. Final Cut (a stolen skill) is the buff the doc's buff-duration advice is built around. A planner that models Phantom without a stolen-skill loadout slot is missing a system unique to the class.",
+  "commonMistakes": [
+    {
+      "mistake": "Reading the class doc's Legion Artifact priority list as if it were the HEXA Stat priority.",
+      "detail": "The doc lists Legion Artifact stats as Damage, Boss Damage, Crit Damage, All Stat, ATT/MATT, Cooldown Skip, Item Drop Rate, EXP, IED, Critical Chance, Buff Duration, Meso. Its HEXA Stat guidance is a different and shorter list: ATT, then Critical Damage, then LUK. These are two different systems in two different sections and have been conflated in at least one secondary summary of this doc.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Maxing the Critical Rate hyper stat.",
+      "detail": "Phantom reaches 100% crit with the Critical Rate hyper stat at only level 8. The class doc's advice runs the other way - reduce that hyper stat level by taking crit from the Legion Grid and Legion Artifact instead.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Using a boost node trio list published before v.269.",
+      "detail": "Grandis Library's Phantom page carries a 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence Phantom's boost node groupings changed at that patch. mastermysty's widely-linked cross-class trio table is dated 2024-11-21 and therefore describes the old groupings.",
+      "sources": [
+        "https://grandislibrary.com/heroes/phantom",
+        "https://mystyjl.github.io/reference/NodeGuide.html"
+      ]
+    },
+    {
+      "mistake": "Placing the ATT HEXA Stat on the highest-level slot by reflex.",
+      "detail": "The class doc specifically warns that the slot giving the most ATT is not necessarily the highest-level slot, and says to place ATT by actual ATT yield first, then Critical Damage on the next-highest level, then LUK.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Applying the Interactive HEXA order on a Heroic character.",
+      "detail": "The class doc's upgrade table is split into a fragment-limited Heroic column and an energy-limited Interactive column, and they diverge from the fifth purchase. Defying Fate levels 2-4 sit seventh on Interactive but twenty-second on Heroic.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Rolling attack speed on Inner Ability.",
+      "detail": "Phantom is already at attack speed 7 from its own passives, and the class doc says attack speed only helps windup and cast animations, making it generally unnecessary for bossing.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+        "https://grandislibrary.com/heroes/phantom"
+      ]
+    },
+    {
+      "mistake": "Chasing buff duration past Final Cut's 100% uptime expecting more damage.",
+      "detail": "The class doc's own threshold note is that beyond full Final Cut uptime, extra buff duration buys you a held iframe, not extra damage.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic",
+      "what": "The Phantom class doc, maintained out of the Phantom Discord. Credited contributors: 쏘쏘 (in-depth Phantom analysis and videos), Zelgenubi (feedback on the doc), aCyr (skill priority data), DelusionDash (additional resources), XiaNiTian / SingAlongWithTsing (Legion and familiar badge sections), Fermo (burst video rotation), Subs (culvert analysis and rotation). Primary source for: inner ability, hyper skill passives, 5th-job skill node priority, tri-node captions, special/decent nodes, the 93-row HEXA skill upgrade order split Heroic vs Interactive, HEXA stat placement, crit rate accounting, IED accounting, the CD-hat-to-final-damage conversion table, familiar badges and the legion artifact priority. Retrieved in full as text via the /export?format=txt endpoint; the doc renders to canvas so ordinary browser text extraction returns nothing.",
+      "dated": "2025-11-24 (latest changelog entry). The HEXA upgrade order carries its own date of 2025-09-29, described in the changelog as the post-2-minute-boss-timer revision. NOTE the doc's own header is internally inconsistent: it reads 'LAST UPDATED: 06-19-2025' with 'Update WIP: 6/11/2026' while the changelog runs to 2025-11-24.",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/heroes/phantom",
+      "what": "Grandis Library's Phantom page. Boost node groupings with PRIMARY / SECONDARY / OTHER tiering, hyper skill passive build, recommended inner ability split bossing/training, class properties, and a skills-derived base stat table (attack speed 7, Crit Rate +60%, Damage +50%, Final Damage +70.3%, Ignore DEF +44%). Also lists 6th-job infographics for Main / Legion Champion and for Mule configurations - these are images and were not readable here, but they are the most promising unextracted Phantom HEXA artifact.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
+      "independent": false,
+      "dependencyNote": "Its Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc' (plus skill icons/animations by Ikasuu and 5th-job animations by KyoWantsCute). Its judgement fields are therefore a restatement of the Phantom class doc above. Where this page and the class doc agree, that is ONE source agreeing with itself. Its base-stat table, sourced from maplestory.io, is independent data."
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio reference. The only consolidated all-class trio table outside the Grandis/class-doc lineage, and the only genuinely independent judgement source reachable for Phantom. Gives Phantom bossing trio Mille Aiguilles / Carte Blanc / Tempest, mobbing trio Rose Carte Finale / Impeccable Memory II / Impeccable Memory III, and an additional trio Penombre / Impeccable Memory I / Impeccable Memory IV.",
+      "dated": "2024-11-21 - PREDATES the v.269 boost node regrouping and the 2025-01-01 preference cutoff. Corroboration and historical record only; must not be presented as current.",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Phantom/Skills",
+      "what": "Name and mechanics validation. Confirms exact spellings and values used here: Phantom Instinct (Lv.3 Crit Rate +20%, Damage +5%), Piercing Vision (Lv.14 Crit Rate +35%, Final Damage +30%), Tempest (Lv.30 Enemy DEF Ignored 20% for 60s, cooldown 18s, attacks are always critical hits), Priere D'Aria (Lv.30 Damage +45%, Ignore Defense 30%), Carte Noir, Carte Blanche, Mille Aiguilles, Penombre, Blason, Rapier Wit, Calling Card, Mille Cartes, Double Entendre, Impeccable Memory I-IV, Skill Swipe, Loadout, Judgment Draw, and the hyper passives Tempest - Reinforce, Tempest - Cooldown Cutter, Tempest - Extra Target, Mille Aiguilles - Reinforce, Mille Aiguilles - Extra Target. Carries no judgement of any kind.",
+      "dated": "living wiki; page history could not be reached",
+      "independent": true,
+      "accessNote": "Returns HTTP 403 to plain fetching. Read through the browser pane. The browser pane was intermittently unreliable in this session - it repeatedly reported navigating to this URL while executing against a stale grandislibrary.com origin. Only readings where the returned URL and title matched the request are reported here; the 4th-job-and-below skill list and hyper passive list were verified this way. The V Skills, HEXA Skills, Mastery Skills and HEXA Enhancements sections of this page could NOT be reached before the pane failed, so the 5th- and 6th-job skill names in this file are validated against the class doc and Grandis only, not against the wiki."
+    },
+    {
+      "url": "https://discord.gg/225H7sw",
+      "what": "Phantom class Discord. Upstream of the class doc and the place where the doc's mid-revision state would be resolved. Not machine-readable.",
+      "dated": "live",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "weak",
+  "consensusAssessment": "Three sources independent of one another were reached - the class doc, mastermysty's node table, and maplestorywiki. But they are not three independent JUDGEMENT sources, and the file should be presented accordingly.\n\nMECHANICAL FACTS (skill names, crit and IED contributions, cooldowns, attack speed, link and legion effects) are strong: independently confirmed across the class doc, the wiki and Grandis' API-derived stat table.\n\nJUDGEMENT (HEXA investment order, 5th-job node priority, inner ability, hyper skill passives, HEXA stat placement) rests on ONE current source, the Phantom class doc. Grandis Library restates that same doc by its own admission and is not a second vote. mastermysty is genuinely independent but covers boost node trios only and is dated 2024-11-21, before the v.269 regrouping, so it cannot corroborate anything current.\n\nThe HEXA order in particular - the most valuable content in this file - is single-source. It is unusually well-founded for a single source (an explicit efficiency model, a stated boss benchmark, a named compiler, its own date, and a Heroic/Interactive split), but a planner should surface it as one class-community model rather than as settled consensus.\n\nNo hyper stat priority exists for Phantom in any reachable source, and that field is correctly empty.",
+  "conflicts": [
+    {
+      "topic": "Boost node trio composition",
+      "positionA": "mastermysty (2024-11-21): bossing trio Mille Aiguilles / Carte Blanc / Tempest; mobbing trio Rose Carte Finale / Impeccable Memory II / Impeccable Memory III; additional trio Penombre / Impeccable Memory I / Impeccable Memory IV.",
+      "positionB": "Grandis Library (v.269, restating the class doc): Node 1 Tempest alone; Node 2 Mille Aiguilles + Blason + Double Entendre; Node 3 Carte Blanche; Node 4 Rose Carte Finale + Penombre; Node 5 Rapier Wit + Calling Card + Mille Cartes; Node 6 Impeccable Memory I-IV.",
+      "status": "Flagged contested, with a likely explanation rather than a resolution: Grandis exposes a 'View Pre-V.269 Boost Nodes' toggle, so the in-game groupings changed at v.269 and mastermysty's table predates that change. This is consistent with staleness rather than genuine disagreement, but it was NOT verified against a v.269 patch note, so both positions are recorded.",
+      "sources": [
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://grandislibrary.com/heroes/phantom"
+      ]
+    },
+    {
+      "topic": "The third hyper skill passive pick",
+      "positionA": "Grandis Library lists three co-equal options: Impeccable Memory - Reinforce, Persist, or Enhance.",
+      "positionB": "The class doc's own recommended block lists only Persist OR Enhance, with conditions for each, and describes Reinforce separately as an ordinary 15% damage passive worth taking only if it changes your mobbing clear rate.",
+      "status": "Contested. Notable because Grandis credits this very section to the class doc, so the two should agree and do not - most likely Grandis flattened the doc's conditional guidance into a flat list of options.",
+      "sources": [
+        "https://grandislibrary.com/heroes/phantom",
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    },
+    {
+      "topic": "The class doc's own effective date",
+      "positionA": "The doc header states LAST UPDATED 06-19-2025 with 'Update WIP: 6/11/2026'.",
+      "positionB": "The doc's changelog table runs to 11-24-2025, and the HEXA upgrade order section carries its own heading date of 09-29-2025.",
+      "status": "Internally inconsistent. This file treats the doc as current to 2025-11-24 and the HEXA order as current to 2025-09-29, because dated changelog entries are better evidence than a header line. Either way the doc predates v.271 and has not been confirmed against it.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    },
+    {
+      "topic": "Whether the origin skill is built early",
+      "positionA": "The generic cross-class advice circulating on aggregator sites is to activate mastery nodes, then boost nodes, then HEXA stat, with the origin skill treated as an early cornerstone.",
+      "positionB": "The Phantom class doc's Heroic efficiency model places Defying Fate level 2 twenty-second in the purchase order, behind four mastery unlocks, many mastery levels and three of the four enhancement nodes.",
+      "status": "Recorded, not resolved. Only the class doc's position is sourced to a Phantom-specific model; the generic position was not verified from any source that analysed Phantom. A planner should show the class doc's order and should not blend it with generic advice.",
+      "sources": [
+        "https://docs.google.com/document/d/1rrl6haeeYpeYaCuDhqbK_qL_IMBbRPbF60D-hq0vgSg/mobilebasic"
+      ]
+    }
+  ],
+  "gaps": [
+    "No hyper stat priority order exists for Phantom in any reachable source. The class doc has no hyper stat section; Grandis publishes none for any class. Field left null deliberately.",
+    "The class doc's 'Stolen Skill Library' section is effectively empty as text - it consists of images and carries its own note that Pathfinder is missing. No recommended stolen-skill loadout for training or bossing could be extracted, despite this being Phantom's most class-unique decision. This needs a vision pass over the doc or a read of the Phantom Discord.",
+    "Grandis Library's Phantom 6th-job infographics (Main / Legion Champion, and Mule) are images and were not read. For other classes these carry per-play-pattern HEXA investment order, so they may contain a second view of the HEXA order specific to boss-mule Phantoms.",
+    "The class doc contains no mention of Sol Janus, Sol Hecate or Ascent, so it offers no guidance on HEXA skill cores beyond the origin/mastery/enhancement set. Left empty rather than inferred.",
+    "The V-matrix example matrices and the 'Ideal Hexa Matrix Setup Example' are images; exact target node levels were not extractable.",
+    "The wiki's V Skills / HEXA Skills / Mastery Skills / HEXA Enhancements sections were not reached before the browser pane failed, so 5th- and 6th-job skill names here are not wiki-validated.",
+    "reddit.com is blocked in this environment, so r/Maplestory Phantom threads were not examined at all. The Phantom Discord is not machine-readable. Both are named good-source-types and are unexamined.",
+    "The WebSearch budget for this session was already exhausted before this class was researched (200/200), and both DuckDuckGo HTML endpoints returned CAPTCHA challenges, so no discovery search could be run for Phantom. Any Phantom guide that exists outside the URLs already known to this project was not findable here. mapledocs.info was checked directly and has no Phantom page (404).",
+    "Nothing was verified against v.271 itself. Every judgement source here is v.269-era or older."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "sourcePatchCoverage": "Best judgement source is current to roughly v.269 (class doc changelog 2025-11-24; HEXA order 2025-09-29). Grandis is stamped v.269. The independent node source is 2024-11-21. No source consulted was confirmed against v.271.",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "THE BOOST NODE TIERING IS MISATTRIBUTED TO GRANDIS. I re-fetched grandislibrary.com/heroes/phantom and read the tier labels directly. Grandis says: Node 1 PRIMARY, Node 2 PRIMARY, Node 3 SECONDARY, Node 4 SECONDARY, Node 5 OTHER, Node 6 OTHER. The file puts Node 2 and Node 3 under 'secondary' and Nodes 4, 5 and 6 under 'other', and states the wrong tier inside each 'why' as a direct attribution — 'Node 2: ... Grandis' SECONDARY (frequently used) tier' and 'Node 4: Rose Carte Finale, Penombre — Grandis' OTHER tier'. This is a priority order no source states. It is actionable damage: it demotes Node 2 (Mille Aiguilles + Blason + Double Entendre, the main training node) out of build-first tier, and drops Rose Carte Finale to the bottom tier when the doc's own efficiency table makes Rose Finale VI 1 the single best HEXA purchase in the game for this class (0.1877%/fragment, rank 1 of 93).",
+      "Link skill numbers are unverified and partly contradicted. The file states 'Lv.1 Critical Rate +10%. Lv.3 Critical Rate +20% and Damage +5%', sourced only to maplestorywiki.net/w/Phantom/Skills. That host returns HTTP 403 to fetching, and the researcher's own accessNote says the browser pane was serving stale content from a different origin during this read. Grandis states 'Phantom Instinct' gives '+5% Damage and +15-20% Crit Rate' — i.e. no level in the range is +10%. The Lv.1 figure has no support in any source I could reach."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "2 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

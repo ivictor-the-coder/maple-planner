@@ -1,0 +1,551 @@
+{
+  "slug": "ark",
+  "className": "Ark",
+  "exists": true,
+  "branch": "Flora",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Knuckle",
+  "secondaryWeapon": "Abyssal Path",
+  "archetype": "Melee STR pirate built around a form swap. Normal attacks build Spectra in the base Flora form; spending it enters Specter State, where the Charge Drive line upgrades into stronger versions. Damage output is tied to keeping Specter State up and aligning cooldowns with it.",
+  "linkSkill": {
+    "name": "Solus",
+    "effect": "Percent damage that accumulates in stacks while the character stays in a combat state, then falls off when combat lapses.",
+    "levels": {
+      "2": "+2% damage per stack, up to +11% total",
+      "3": "+3% damage per stack, up to +16% total"
+    },
+    "sources": [
+      "https://grandislibrary.com/flora/ark",
+      "https://grandislibrary.com/content/link-skills"
+    ],
+    "consensus": "moderate",
+    "note": "Name agreed by all sources. Numbers disagree: see conflicts."
+  },
+  "legionEffect": {
+    "effect": "Flat STR, scaling with the character's level tier: +10 / +20 / +40 / +80 / +100.",
+    "consensus": "strong",
+    "sources": [
+      "https://grandislibrary.com/flora/ark",
+      "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+    ]
+  },
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Abyssal Charge Drive + Unbridled Chaos",
+        "why": "Listed in the primary boost-node group on the only source current to GMS v.269. That source defines primary groups as frequently used skills whose boost node also unlocks a 6th job HEXA Mastery.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark"
+        ]
+      },
+      {
+        "node": "Gust Charge Drive + Insatiable Hunger",
+        "why": "Second primary boost-node group on the same v.269-current source.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark"
+        ]
+      },
+      {
+        "node": "Scarlet Charge Drive + Grievous Wound",
+        "why": "Third primary boost-node group on the v.269-current source. Scarlet Charge Drive also carries a critical rate buff, which changes how much critical rate needs to be bought elsewhere.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      },
+      {
+        "node": "Basic Charge Drive + Creeping Terror + Blissful Restraint + Endless Agony",
+        "why": "Marked secondary (not primary) on the v.269-current source. Older guides put Basic Charge Drive in the first trio instead; see conflicts.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/"
+        ]
+      },
+      {
+        "node": "Ominous Nightmare / Ominous Dream + Impending Death + Vengeful Hate",
+        "why": "Categorised as other (lowest tier) on the v.269-current source, but as first-trio material in the 2021 and 2024 guides. Contested; see conflicts.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/"
+        ]
+      },
+      {
+        "node": "Unstoppable Impulse + Tenacious Instinct",
+        "why": "Categorised as other on the v.269-current source; appears in the second trio of the 2021 guide.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": 1,
+        "nodes": [
+          "Basic Charge Drive",
+          "Impending Death",
+          "Ominous Nightmare"
+        ],
+        "why": "Named as the first trio in a 2021 guide; the same three skills head the boost list in a 2024 guide (under the alternate translations Plain Charge Drive, Approaching Death, Unforgettable Dream).",
+        "consensus": "moderate",
+        "dated": "2021-12-05 and 2024-09-16, both pre-dating the current patch",
+        "sources": [
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/"
+        ]
+      },
+      {
+        "trio": 2,
+        "nodes": [
+          "Unstoppable Impulse",
+          "Gust Charge Drive",
+          "Abyssal Charge Drive"
+        ],
+        "why": "Named as the second trio in the 2021 guide; all three also appear in the 2024 guide's list of skills to boost.",
+        "consensus": "moderate",
+        "dated": "2021-12-05 and 2024-09-16",
+        "sources": [
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/"
+        ]
+      },
+      {
+        "trio": 3,
+        "nodes": [
+          "Creeping Terror",
+          "Scarlet Charge Drive",
+          null
+        ],
+        "why": "Third trio in the 2021 guide, with the third slot left flexible. Only one source; treat as unverified.",
+        "consensus": "weak",
+        "dated": "2021-12-05",
+        "sources": [
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      }
+    ],
+    "notes": "Recency warning. The only source current to a 2026 patch (GMS v.269) groups nodes by importance rather than into trios, and its ranking disagrees with the 2021/2024 trio lists: it treats the enhanced-form drives (Abyssal, Gust, Scarlet) as primary and puts Basic Charge Drive one tier lower, with Ominous Nightmare and Impending Death lower still. No source consulted stated how the ordering shifts between Lv 200 and Lv 260, so that question is left unanswered rather than guessed.",
+    "utilityNodes": {
+      "nodes": [
+        "Decent Holy Symbol",
+        "Decent Sharp Eyes",
+        "Decent Speed Infusion",
+        "Erda Nova",
+        "Rope Lift",
+        "Weapon Aura",
+        "True Arachnid Reflection"
+      ],
+      "why": "Listed as the class-agnostic 5th job picks alongside Ark's own nodes.",
+      "consensus": "weak",
+      "sources": [
+        "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+      ]
+    }
+  },
+  "hexa": {
+    "originSkill": {
+      "name": "Primordial Abyss",
+      "alsoTranslatedAs": "Awakened Abyss",
+      "effect": "Draws additional Specter power through the enhanced body and arm. Succeeding with a Basic Charge Drive combo generates spectral energy, which is then spent to produce abyssal blades; the energy pool caps at 300. Also functions as a bind and an invincibility window.",
+      "consensus": "moderate",
+      "sources": [
+        "https://grandislibrary.com/flora/ark",
+        "https://www.digitaltq.com/maplestory-6th-job-guide"
+      ]
+    },
+    "order": [
+      {
+        "step": "Activate the Origin skill (Primordial Abyss)",
+        "why": "The Origin skill unlocks at the 6th job advancement without a Sol Erda cost, so it is free to turn on before anything else.",
+        "consensus": "moderate",
+        "note": "Class-agnostic advice, not Ark-specific.",
+        "sources": [
+          "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+        ]
+      },
+      {
+        "step": "Activate the HEXA Mastery node(s) next",
+        "why": "Activating nodes is cheaper per point of damage than levelling any single node, so unlocking the Mastery node comes before pouring Sol Erda into levels.",
+        "consensus": "moderate",
+        "note": "Class-agnostic advice, not Ark-specific.",
+        "sources": [
+          "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+        ]
+      },
+      {
+        "step": "Activate Boost nodes after the Mastery node",
+        "why": "Same reasoning: activate everything before levelling anything.",
+        "consensus": "moderate",
+        "note": "Class-agnostic advice, not Ark-specific.",
+        "sources": [
+          "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+        ]
+      },
+      {
+        "step": "Defer HEXA Stat until it out-earns further HEXA Skill levels",
+        "why": "Stated as the crossover condition for switching investment from skill levels to HEXA Stat.",
+        "consensus": "weak",
+        "note": "Class-agnostic advice, not Ark-specific.",
+        "sources": [
+          "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+        ]
+      }
+    ],
+    "masteryCores": null,
+    "commonCores": null,
+    "notes": "No Ark-specific HEXA investment order was found in any source consulted, and no source listed Ark's Mastery core names or its Ascent skill core. The v.269-current class page states only that a boost node counted as primary is one that unlocks a 6th job HEXA Mastery and belongs to a frequently used skill, which implies (but does not state) that the Abyssal, Gust and Scarlet Charge Drive lines carry the Masteries. The one HEXA guide located explicitly defers class-by-class ordering to the class Discord infographics, which were not reachable. These fields are left empty deliberately; inventing a core order would misdirect Sol Erda spending for months.",
+    "ascentSkill": null
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "stat": "Ignore Enemy Defense",
+        "why": "Named first for bossing.",
+        "consensus": "weak",
+        "dated": "2021-12-05",
+        "sources": [
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      },
+      {
+        "stat": "Boss Damage",
+        "why": "Named alongside IED as the bossing priority.",
+        "consensus": "weak",
+        "dated": "2021-12-05",
+        "sources": [
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      },
+      {
+        "stat": "Critical Rate (only up to roughly 80%)",
+        "why": "Scarlet Charge Drive supplies 20% critical rate, so buying past about 80% from other sources is wasted.",
+        "consensus": "weak",
+        "dated": "2021-12-05",
+        "sources": [
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      }
+    ],
+    "notes": "Single-source and pre-HEXA. No post-2025 Ark hyper stat ordering was found, and no source gave level-by-level targets, so the usual Critical Damage / Damage / ATT ordering is deliberately not recorded here. The Scarlet Charge Drive critical rate claim should be re-checked in game before acting on it, since skill values have been revised since 2021."
+  },
+  "hyperSkills": {
+    "passive": [
+      {
+        "name": "Reinforced Battle Arts",
+        "consensus": "strong",
+        "why": "Recommended by every source consulted.",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+        ]
+      },
+      {
+        "name": "Boss Rush Arts",
+        "consensus": "strong",
+        "why": "Recommended by every source consulted.",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+        ]
+      },
+      {
+        "name": "Enhanced Specter Healing (also written Enhanced Spectra Healing)",
+        "consensus": "strong",
+        "why": "Recommended by every source consulted; one source prefers it over the Specter State enhancement for steadier Spectra recovery.",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      },
+      {
+        "name": "Enhanced Specter State",
+        "consensus": "weak",
+        "why": "Third passive on the v.269-current source; the 2021/2024 guides pick Guardbreak Arts and the triple-dash Tenacious Instinct enhancement instead. See conflicts.",
+        "sources": [
+          "https://grandislibrary.com/flora/ark"
+        ]
+      },
+      {
+        "name": "Euphoric Restraint or Swift Creeping Terror",
+        "consensus": "weak",
+        "why": "Offered as the flexible final passive on the v.269-current source.",
+        "sources": [
+          "https://grandislibrary.com/flora/ark"
+        ]
+      },
+      {
+        "name": "Guardbreak Arts",
+        "consensus": "moderate",
+        "why": "Picked by the 2021 and 2024 guides; absent from the v.269-current source's recommended build.",
+        "dated": "2021-12-05, 2024-06-12, 2024-09-16",
+        "sources": [
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-ark-skill-build-guide",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      },
+      {
+        "name": "Incredibly Tenacious Instinct",
+        "consensus": "moderate",
+        "why": "Picked by the 2021 and 2024 guides for the third dash charge; absent from the v.269-current source's build.",
+        "dated": "2021-12-05, 2024-09-16",
+        "sources": [
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      }
+    ],
+    "active": [
+      {
+        "name": "Charge Spell Amplifier",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+        ]
+      },
+      {
+        "name": "Endless Agony",
+        "consensus": "moderate",
+        "sources": [
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-ark-skill-build-guide",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      },
+      {
+        "name": "Divine Wrath",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+          "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+        ]
+      }
+    ],
+    "notes": "Skill names appear as both Specter and Spectra across sources; they refer to the same skills. The passive set is contested between the current class page and the older guides."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Passive Skills +1",
+        "slot": "prime",
+        "why": "Raises the level cap on passives, which is why it is taken as the prime line.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+          "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+        ]
+      },
+      {
+        "line": "Boss Damage +10%",
+        "slot": "second",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      },
+      {
+        "line": "Buff Duration +38%, or Damage against enemies with an abnormal status +8%",
+        "slot": "third",
+        "why": "The abnormal-status line pairs with sources of status effects such as the Magician link skill.",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark",
+          "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+        ]
+      }
+    ],
+    "culvert": [
+      {
+        "line": "Passive Skills +1 / Boss Damage +10% / Cooldown Skip +10%",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Meso and Drop Rate lines, or Damage to Normal Monsters +8%",
+        "consensus": "weak",
+        "sources": [
+          "https://grandislibrary.com/flora/ark"
+        ]
+      }
+    ],
+    "notes": "One 2024 source instead recommends ATT +30 with Boss Damage +20%, which contradicts the lines above; see conflicts."
+  },
+  "gearingNotes": "Ark is a STR main / DEX secondary pirate using a Knuckle with the Abyssal Path secondary, so it competes for the same STR gear as other STR pirates. Potential guidance found: one line of Boss Damage, one line of IED, and attack on the remaining lines for weapon, secondary and emblem, with the caveat that in Reboot attack lines tend to be worth more than boss damage, and that IED is also supplied by legion and link skills so it can be topped up outside of potential. That guidance is from a 2021 source and single-sourced. No source consulted gave Ark-specific set goals, arcane or sacred force targets, or anything that makes Ark's gearing differ from a generic STR pirate, so nothing further is recorded.",
+  "commonMistakes": [
+    {
+      "mistake": "Following a pre-HEXA boost node order as though it were current",
+      "detail": "The 2021 and 2024 guides lead with Basic Charge Drive, Impending Death and Ominous Nightmare, while the page current to GMS v.269 ranks the enhanced-form drives (Abyssal, Gust, Scarlet) highest and pushes those three down one or two tiers. Boost node crafting is expensive to redo.",
+      "consensus": "moderate",
+      "sources": [
+        "https://grandislibrary.com/flora/ark",
+        "https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+        "https://ayumilove.net/maplestory-ark-skill-build-guide/"
+      ]
+    },
+    {
+      "mistake": "Buying critical rate up to 100% from hyper stats",
+      "detail": "Scarlet Charge Drive is reported to supply 20% critical rate, so roughly 80% from other sources is the target. Single-sourced and dated 2021; verify in game.",
+      "consensus": "weak",
+      "sources": [
+        "https://thedigitalcrowns.com/ark-class-guide-maplestory/"
+      ]
+    },
+    {
+      "mistake": "Letting Specter State lapse or misaligning cooldowns with it",
+      "detail": "Ark's damage skills upgrade while in Specter State, so the class rewards keeping the form up and firing cooldowns inside it.",
+      "consensus": "moderate",
+      "sources": [
+        "https://grandislibrary.com/flora/ark",
+        "https://www.digitaltq.com/maplestory-ark-skill-build-guide"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://grandislibrary.com/flora/ark",
+      "what": "Class overview: stats, weapons, legion, link skill values, boost node groups with primary/secondary/other ranking, hyper skill build, inner ability by content type, 6th job skill names.",
+      "dated": "Page states GMS Ver. 269 (Ride the Lightning Update); no calendar date shown. Newest source used.",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/content/link-skills",
+      "what": "Confirms Solus as Ark's link skill and that it is a damage link.",
+      "dated": "GMS Ver. 269",
+      "independent": false,
+      "note": "Same publisher as the Grandis Ark page; not a second independent voice."
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+      "what": "Skill build, hyper skill picks, V matrix skills to boost, weapon and stat, link skill, inner ability.",
+      "dated": "2024-09-16",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-ark-skill-build-guide",
+      "what": "Hyper skill picks, 5th job node list including generic nodes, weapon/stat/link/legion, Specter State management.",
+      "dated": "2024-06-12",
+      "independent": true,
+      "note": "Treated as one voice together with the two thedigitalcrowns.com pages below; the content overlaps closely enough that they should not be counted separately."
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-6th-job-guide",
+      "what": "Names Ark's Origin skill (Primordial Abyss / Awakened Abyss) and its spectral energy mechanic.",
+      "dated": "2024-08-23",
+      "independent": false,
+      "note": "Same publisher family as the digitaltq Ark guide."
+    },
+    {
+      "url": "https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+      "what": "Boost node trios, hyper skill build, hyper stat priority, critical rate note, inner ability, potential line guidance.",
+      "dated": "2021-12-05",
+      "independent": false,
+      "note": "Pre-HEXA. Same publisher family as digitaltq.com."
+    },
+    {
+      "url": "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+      "what": "General HEXA investment order (Origin free, then Mastery node, then Boost nodes, HEXA Stat later). Contains no Ark-specific content and points readers to class Discords for per-class ordering.",
+      "dated": "2025-01-31",
+      "independent": false,
+      "note": "Same publisher family as the other two."
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "topic": "Boost node ranking",
+      "positionA": "Abyssal, Gust and Scarlet Charge Drive nodes are primary; Basic Charge Drive is secondary; Ominous Nightmare, Impending Death, Unstoppable Impulse and Tenacious Instinct are lowest tier.",
+      "sourceA": "https://grandislibrary.com/flora/ark (GMS v.269, newest source)",
+      "positionB": "First trio is Basic Charge Drive, Impending Death and Ominous Nightmare; Abyssal and Gust Charge Drive sit in the second trio; Scarlet Charge Drive in the third.",
+      "sourceB": "https://thedigitalcrowns.com/ark-class-guide-maplestory/ (2021-12-05), partially echoed by https://ayumilove.net/maplestory-ark-skill-build-guide/ (2024-09-16)",
+      "unresolved": true,
+      "note": "Both positions recorded as found. The disagreement lines up with the pre-HEXA / post-HEXA split, but no source states that as the cause, so it is not asserted here."
+    },
+    {
+      "topic": "Hyper skill passives",
+      "positionA": "Reinforced Battle Arts, Boss Rush Arts, Enhanced Specter Healing, Enhanced Specter State, plus Euphoric Restraint or Swift Creeping Terror.",
+      "sourceA": "https://grandislibrary.com/flora/ark",
+      "positionB": "Reinforced Battle Arts, Guardbreak Arts, Boss Rush Arts, Incredibly Tenacious Instinct, Enhanced Spectra Healing.",
+      "sourceB": "https://ayumilove.net/maplestory-ark-skill-build-guide/ and https://thedigitalcrowns.com/ark-class-guide-maplestory/",
+      "unresolved": true
+    },
+    {
+      "topic": "Inner ability lines",
+      "positionA": "Passive Skills +1 prime, Boss Damage +10%, then Buff Duration +38% or abnormal-status damage +8%.",
+      "sourceA": "https://grandislibrary.com/flora/ark",
+      "positionB": "ATT +30 with Boss Damage +20%.",
+      "sourceB": "https://ayumilove.net/maplestory-ark-skill-build-guide/ (2024-09-16)",
+      "unresolved": true
+    },
+    {
+      "topic": "Solus link skill values",
+      "positionA": "Lv 2 gives +2% per stack to a +11% maximum; Lv 3 gives +3% per stack to a +16% maximum.",
+      "sourceA": "https://grandislibrary.com/flora/ark",
+      "positionB": "+13% damage in combat state.",
+      "sourceB": "https://www.digitaltq.com/maplestory-ark-skill-build-guide",
+      "positionC": "+1% or +2% per stack, up to 6 stacks.",
+      "sourceC": "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+      "unresolved": true
+    },
+    {
+      "topic": "Secondary weapon name",
+      "positionA": "Abyssal Path",
+      "sourceA": "https://grandislibrary.com/flora/ark and https://www.digitaltq.com/maplestory-ark-skill-build-guide",
+      "positionB": "Abyssal Arm",
+      "sourceB": "https://ayumilove.net/maplestory-ark-skill-build-guide/",
+      "unresolved": true,
+      "note": "Two of three sources say Abyssal Path, so that is used in the secondaryWeapon field."
+    }
+  ],
+  "coverageGaps": [
+    "No Ark-specific HEXA investment order located; hexa.order holds class-agnostic advice only.",
+    "Ark's HEXA Mastery core names, Ascent skill core, and common core ordering are unknown and left null.",
+    "No sourced statement on how V matrix priority shifts between Lv 200 and Lv 260.",
+    "Hyper stat ordering rests on a single 2021 source.",
+    "No Ark-specific gearing advice beyond generic potential-line guidance was found.",
+    "Only one source consulted is current to a 2026 patch; the rest are 2021 to 2025."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "hexa.originSkill.effect states Primordial Abyss 'Also functions as a bind and an invincibility window'. The cited DigitalTQ 6th job entry gives the 300 spectral energy cap and 'invincible during casting' but says nothing about a bind. The bind is unsourced.",
+      "hexa.originSkill cites https://grandislibrary.com/flora/ark as a source. That page contains no 6th Job / HEXA section and no Origin skill name. Only the DigitalTQ 6th job guide supports this.",
+      "sources[0].what claims the Grandis Ark page provides '6th job skill names'. It does not - it has no 6th job content.",
+      "vMatrix.priority[2].why attributes the Scarlet Charge Drive critical rate buff partly to Grandis, which carries no Scarlet Charge Drive description. The only origin is The Digital Crowns (2021): '100% critical rate is important but you only need 80% because using Scarlet Charge Drive gives you 20%.'",
+      "innerAbility.bossing[2] (Buff Duration +38% / abnormal-status +8%) cites thedigitalcrowns.com. That page recommends 'Passive Skills +1 (Prime line), Boss Damage (2nd line), Cooldown Skip (3rd line)' - it supports the culvert entry instead, which is credited to Grandis alone.",
+      "STALE: Correctly disclosed, not a defect: trios[] (all three) come from a 2021-12-05 pre-HEXA page, with ayumilove 2024 only partially echoing the skill names. The file labels this clearly.",
+      "STALE: Correctly disclosed: the whole of hyperStats.priority rests on one 2021-12-05 pre-HEXA source, including the 80% critical rate target. Flagged as weak with a verify-in-game caveat.",
+      "STALE: Correctly disclosed: gearingNotes potential-line advice is single-sourced to the 2021 page.",
+      "STALE: Genuine staleness problem in framing: the file treats GMS Ver. 269 as current when the target is v.271, so even its 'current' tier is one to two patches behind and is not labelled as such.",
+      "STALE: hexa.order is entirely class-agnostic advice from a single 2025-01-31 page that does not mention Ark at all; the file discloses this, and the page does defer per-class ordering to class Discord infographics as claimed. Verified accurate.",
+      "STALE: Good calls, left correctly empty: masteryCores, commonCores and ascentSkill are null rather than guessed. No source consulted contains them."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "11 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

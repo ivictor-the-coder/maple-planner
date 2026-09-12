@@ -1,0 +1,411 @@
+{
+  "slug": "demon-slayer",
+  "className": "Demon Slayer",
+  "branch": "Resistance",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "One-Handed Blunt Weapon or One-Handed Axe (the two are identical in damage; the choice is cosmetic only)",
+  "secondaryWeapon": "Demon Aegis",
+  "archetype": "Melee STR warrior that spends a per-character resource pool called Demon Force (DF) instead of MP. Burst is built around the Demon Awakening window, during which Demon Lash becomes empowered and is spammed off a limited stack pool, with Demon Impact used when lash stacks or the ring window run out. Outside of Awakening the class cycles Demon Chain and the empowered version of Cerberus Chomp off cooldown. High survivability, naturally high IED, and an unusually low-effort farming pattern built on Chaos Lock teleporting. Community source describes it as a strong beginner class.",
+  "linkSkill": {
+    "name": "Fury Unleashed",
+    "effect": "Boss Damage on the linked character. The Demon Slayer's own version of the skill additionally grants Fury Absorption; only the Boss Damage portion is listed for the Link Skill form.",
+    "levels": "Lv1 = Boss Damage +10%, Lv2 = +15%, Lv3 = +20%. Confirmed identically by maplestorywiki.net/w/Fury_Unleashed and by Grandis Library's Demon Slayer page."
+  },
+  "legionEffect": "Abnormal Status Resistance +1 / +2 / +3 / +4 / +5, scaling with legion rank.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Skill node priority order: 1. Demon Awakening, 2. Demon Bane, 3. Orthrus, 4. Spirit of Rage, 5. Weapon Aura, 6. Otherworld's Goddess' Blessing, 7. Mastema",
+        "why": "This is the ordering the class doc publishes for levelling V skill nodes. Demon Awakening heads the list because the burst window is built entirely around it, and Demon Bane is the second burst component used inside that window.",
+        "consensus": "weak - stated by one source lane (the Demon Slayer Discord FAQ). No independent source publishes a competing or confirming V skill node order.",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      },
+      {
+        "node": "Boost node trio 1: Demon Lash + Demon Impact + Cerberus Chomp",
+        "why": "Groups the two skills that carry the burst and the off-burst rotation (Demon Lash during Awakening, Demon Impact outside it) with Cerberus Chomp, whose empowered version is used off cooldown after Awakening ends.",
+        "consensus": "moderate - the identical trio is published by two independent authors: the Demon Slayer Discord FAQ (2026-07-01) and mastermysty's cross-class node reference (2024-11-21). Grandis Library restates the class Discord and is not a third vote.",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Boost node trio 2: Infernal Concussion + Demon Cry + Dark Metamorphosis",
+        "why": "Covers the mobbing skill plus the two skills whose uptime the class depends on: Demon Cry applies the boss debuff that keeps the Insult to Injury passive active, and Dark Metamorphosis is a major damage buff.",
+        "consensus": "moderate - same two independent authors publish the identical trio.",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Native boost node groupings (which skills share a node), as catalogued by Grandis Library: Node 1 = Demon Impact + Grim Scythe (PRIMARY); Node 2 = Demon Lash + Infernal Concussion + Vortex of Doom (PRIMARY); Node 3 = Dark Metamorphosis + Demon Cry (PRIMARY); Node 4 = Cerberus Chomp + Binding Darkness (SECONDARY); Node 5 = Judgment + Raven Storm + Carrion Breath (SECONDARY); Node 6 = Chaos Lock + Dark Thrust + Soul Eater (OTHER)",
+        "why": "Grandis Library's tiering states that Primary and Secondary nodes are the ones worth upgrading, and that the Primary nodes are the ones which gate 6th job HEXA Mastery skills.",
+        "consensus": "weak - single source, and that source credits the Demon Slayer Discord for its boost node build, so it is the same lane as the class FAQ rather than an independent confirmation.",
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Demon Lash, Demon Impact, Cerberus Chomp",
+        "role": "Not split by bossing/mobbing in either source; both sources present it as trio 1.",
+        "consensus": "moderate - two independent sources",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "trio": "Infernal Concussion, Demon Cry, Dark Metamorphosis",
+        "role": "Not split by bossing/mobbing in either source; both sources present it as trio 2.",
+        "consensus": "moderate - two independent sources",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "notes": "Two different things are recorded above and should not be confused. The 'trios' are the crafted boost node combinations the community recommends building. The 'native boost node groupings' are the fixed families the game itself uses to decide which skills a given boost node can boost; that list comes from Grandis Library and is useful for knowing which node unlocks which HEXA Mastery, not for choosing what to craft. Grandis Library is stamped GMS Ver. 269 and also exposes a 'View Pre-V.269 Boost Nodes' toggle, which is direct evidence that node groupings changed at v269; the mastermysty reference predates that (data stated as 2024-05-14, page 2024-11-21) yet still lists the same two trios, which is why the trios are rated moderate rather than weak. No source found gives an explicit boost-node-vs-skill-node levelling sequence for Demon Slayer."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "1. Unlock the four highest-value nodes first, in this order: mastery core labelled M4, HEXA Demon Lash, mastery core labelled M3, HEXA Demon Impact. Then unlock Sol Hecate.",
+        "why": "These are the five largest single-level final damage gains in the class doc's model, by a wide margin: the first level of each is worth roughly 9.9, 8.8, 6.5, 3.7 and 4.84 final damage respectively, against roughly 0.2-0.4 for almost every level that follows.",
+        "consensus": "weak - single source lane. The ordering comes from one spreadsheet published by the Demon Slayer Discord FAQ. No independent source publishes a Demon Slayer HEXA order.",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://docs.google.com/spreadsheets/d/1KaEO5XGVb52DnixSHZZ8hcvhRte1eIJYD6kQsDubQpA/edit"
+        ]
+      },
+      {
+        "step": "2. Unlock the enhancement cores in this order as they become affordable: Demon Awakening (around step 7 of the model), Demon Bane (step 12), Orthrus (step 22), the core the sheet labels 'Snake' (step 35), then Amethystine Incursion, the Ascent skill (step 44).",
+        "why": "Same model. Each unlock is worth well under 2 final damage but still outranks most individual level-ups at the point it appears.",
+        "consensus": "weak - single source lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://docs.google.com/spreadsheets/d/1KaEO5XGVb52DnixSHZZ8hcvhRte1eIJYD6kQsDubQpA/edit"
+        ]
+      },
+      {
+        "step": "3. Push to the level 10 breakpoints in this order: HEXA Demon Impact, Demon Awakening, HEXA Demon Lash, M4, Demon Bane, M3, Orthrus, Nightmare (Origin), Sol Hecate, 'Snake', Amethystine Incursion.",
+        "why": "HEXA nodes have cost/benefit breakpoints at levels 10, 20 and 30, and the model's step ordering sequences those crossings this way.",
+        "consensus": "weak - single source lane",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1KaEO5XGVb52DnixSHZZ8hcvhRte1eIJYD6kQsDubQpA/edit"
+        ]
+      },
+      {
+        "step": "4. Push to the level 20 breakpoints in this order: HEXA Demon Impact, HEXA Demon Lash, Demon Awakening, M4, Demon Bane, M3, Nightmare (Origin), Sol Hecate, Orthrus, 'Snake', Amethystine Incursion.",
+        "why": "Same model, second breakpoint band.",
+        "consensus": "weak - single source lane",
+        "sources": [
+          "https://docs.google.com/spreadsheets/d/1KaEO5XGVb52DnixSHZZ8hcvhRte1eIJYD6kQsDubQpA/edit"
+        ]
+      },
+      {
+        "step": "5. Take nodes to level 30 in this order: HEXA Demon Impact, Demon Awakening, Nightmare (Origin), HEXA Demon Lash, Sol Hecate, M4, Demon Bane, Orthrus, M3, 'Snake', Amethystine Incursion last.",
+        "why": "Same model. Amethystine Incursion (Ascent) is the last node maxed in this ordering, and the class doc notes that if your boss runs are faster than the 30 minute reference fight, Ascent's value rises sharply - which would pull it forward.",
+        "consensus": "weak - single source lane; the source itself flags the ordering as sensitive to fight length",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://docs.google.com/spreadsheets/d/1KaEO5XGVb52DnixSHZZ8hcvhRte1eIJYD6kQsDubQpA/edit"
+        ]
+      },
+      {
+        "step": "HEXA Stat: newer characters should put points into all HEXA Stat nodes once the first Demon Awakening step is done. For more progressed characters the class doc declines to give a fixed rule and tells the reader to compare against the final damage figures in the spreadsheet instead.",
+        "why": "Stated directly by the class doc.",
+        "consensus": "weak - single source lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      },
+      {
+        "step": "Sol Hecate binding: bind Sol Hecate Styx to the Angelic Buster link skill, and keep a separate keybind for Styx so it can be cast manually when the AB link cooldown is skipped or when it needs recasting mid-burst. Bind Phlegethon to an early skill in the burst sequence such as Demon Awakening; Demon Bane also works and is the better choice on a 17-burst run.",
+        "why": "Stated directly by the class doc.",
+        "consensus": "weak - single source lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      },
+      {
+        "step": "HEXA reset for Sol Hecate: a small gain at best. The class doc's own observation is that the best way to free up resources is to drop M3 and M4 to 29, sacrifice however many Ascent levels you are willing to give up, and only then drain Spirit of Rage - and this only applies if those nodes were already maxed.",
+        "why": "Demon Slayer has no genuinely weak HEXA skills to strip, so a reset recovers little.",
+        "consensus": "weak - single source lane, and the source presents it as a personal observation rather than a tested result",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      }
+    ],
+    "notes": "IMPORTANT LIMITATION ON THE ORDER ABOVE. The spreadsheet the class doc publishes uses shorthand labels and does not expand all of them. 'Lash' and 'Impact' map cleanly to the HEXA Demon Lash and HEXA Demon Impact mastery cores, 'Hecate' to Sol Hecate, 'Nightmare' to the Origin skill and 'Ascent' to Amethystine Incursion (both confirmed by maplestorywiki.net, which labels Nightmare as Origin and Amethystine Incursion as Ascent). 'M3' and 'M4' are structurally the third and fourth HEXA Mastery cores, but the source never says which skills they are; maplestorywiki lists Demon Slayer's mastery skills as HEXA Demon Impact, HEXA Demon Impact: Demon Chain, HEXA Demon Lash, HEXA Infernal Concussion, HEXA Demon Cry, HEXA Dark Metamorphosis and HEXA Cerberus Chomp, so M3 and M4 are two of the four that are not Demon Impact or Demon Lash. This has deliberately been left unresolved rather than guessed. 'Snake' is likewise unexpanded; maplestorywiki lists exactly four HEXA Enhancement cores for Demon Slayer (Demon Awakening, Spirit of Rage, Orthrus, Demon Bane), and the spreadsheet separately tracks Awakening, Bane and Orthrus, so by elimination 'Snake' is the Spirit of Rage enhancement core - that is an inference from the node count, not something any source states. MODEL ASSUMPTIONS: the class doc states the ordering is derived from a 16-burst, 30-minute boss fight and that faster runs raise Ascent's value substantially. Grandis Library's Demon Slayer page has no HEXA section at all, so there is no second published Demon Slayer HEXA ordering to compare against."
+  },
+  "hyperStats": {
+    "priority": [
+      {
+        "stat": "Demon Force",
+        "detail": "Around 5 points is the figure the class doc gives. Demon Slayer starts from a base of 10 DF and the rest of the pool comes from the secondary weapon, so hyper stat points are a supplementary source rather than the main one.",
+        "consensus": "weak - single source lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      },
+      {
+        "stat": "Critical Rate",
+        "detail": "Hyper stats are named as one of the sources a Demon Slayer must combine with links and legion to reach 100% critical rate naturally. The class doc does not say how many points to spend, only that the 100% target must be met.",
+        "consensus": "weak - single source lane for the hyper stat framing; the underlying reason (three skills do not auto-crit) is stated by the same source",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      }
+    ],
+    "notes": "NO COMPLETE HYPER STAT ORDERING WAS FOUND FOR DEMON SLAYER IN ANY SOURCE. The class doc gives only the two entries above. Grandis Library carries no hyper stat section for any class. mastermysty's reference is boost nodes only. This field is deliberately incomplete rather than filled in from a generic cross-class list. Note also that hyper stat allocation is a per-character calculation in current community practice rather than a fixed list, which is part of why no Demon Slayer source publishes one."
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "skill": "Demon Impact - Reinforce, Extra Strike, and Reduce Fury",
+        "consensus": "weak - two sources agree but both credit the Demon Slayer Discord, so this is one source lane agreeing with itself",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      },
+      {
+        "skill": "Dark Metamorphosis - Reinforce",
+        "consensus": "weak - same single lane, two restatements",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      },
+      {
+        "skill": "Demon Lash - Reinforce",
+        "consensus": "weak - same single lane, two restatements",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      }
+    ],
+    "actives": null,
+    "notes": "No source found recommends a hyper skill ACTIVE loadout for Demon Slayer, so that field is null. Cerberus Chomp is a hyper skill active (Grandis Library classifies it as a Hyper Skill in its boost node table) and the class doc's bossing rotation uses its empowered form off cooldown after Demon Awakening ends, so it is clearly taken in practice - but neither source presents an explicit active-skill selection list, so no ordering is asserted here. The three passives above are exactly the list both sources publish; note that the passive selection matches the crafted boost node trios, since Demon Impact, Demon Lash and Dark Metamorphosis are all in them."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Boss Damage +20% (top line, Legendary)",
+        "consensus": "weak - both sources trace to the Demon Slayer Discord, so one lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      },
+      {
+        "line": "Damage to monsters inflicted with an Abnormal Status +8%",
+        "why": "Demon Slayer keeps a debuff on the boss at essentially all times (Demon Cry and Demon Chain apply it), so this line is close to permanently live.",
+        "consensus": "weak - both sources trace to the Demon Slayer Discord, so one lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      },
+      {
+        "line": "Third line is CONTESTED - see the conflicts array. The class doc gives Attack +21 or Buff Duration +38%, chosen by legion progression; Grandis Library lists Chance to Skip Cooldown +10% or Buff Duration +38%.",
+        "why": "The class doc's stated rule is that Buff Duration is the better line at lower legion, where roughly 110% buff duration cannot otherwise be reached, and that Attack +21 overtakes it once legion is high enough. It names the SHINE link skill as what makes high buff duration reachable without spending the inner ability line on it.",
+        "consensus": "contested within a single source lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/",
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Meso Obtained or Item Drop Rate +20%",
+        "consensus": "weak - single source (Grandis Library, which credits the Demon Slayer Discord)",
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      },
+      {
+        "line": "Meso Obtained or Item Drop Rate +15%",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      },
+      {
+        "line": "Damage to Normal Monsters +8%",
+        "consensus": "weak - single source",
+        "sources": [
+          "https://grandislibrary.com/resistance/demon-slayer"
+        ]
+      }
+    ],
+    "avoid": [
+      {
+        "line": "+1 Attack Speed",
+        "why": "Demon Slayer already reaches Attack Speed +8 (AS2) natively with a Fast weapon, so the attack speed inner ability line is wasted. The remaining gap to the Attack Speed +10 cap is covered by a Monster Park green potion plus Decent Speed Infusion.",
+        "consensus": "weak - single source lane, but stated explicitly and unambiguously",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      },
+      {
+        "line": "Chance to Skip Cooldown - situationally harmful while TP farming",
+        "why": "The class doc's farming section says cooldown skip on inner ability or artifacts can cause a double Chaos Lock, which burns extra Demon Force and can drain the pool; it recommends speccing out of cooldown skip if DF runs out while farming. This does not apply to bossing, where the class doc treats cooldown reduction as valuable.",
+        "consensus": "weak - single source lane",
+        "sources": [
+          "https://mafhcow.github.io/demon-slayer-faq/"
+        ]
+      }
+    ],
+    "notes": "Both published inner ability lists come from the same origin (the Demon Slayer Discord), so the apparent agreement between the class doc and Grandis Library is one source restating itself, not two votes. The third line is the one place the two restatements diverge; that divergence is recorded in the conflicts array rather than resolved."
+  },
+  "gearingNotes": "DEMON FORCE CHANGES SECONDARY WEAPON SELECTION. Demon Slayer spends Demon Force (DF) rather than MP. The base pool is 10 and almost all of it comes from the Demon Aegis secondary: Force Shield of Extremes gives +110 DF, Princess No's Accursed Shield +173 DF, and Ruin Force Shield +100 DF. Ruin Force Shield is stated as best in slot despite having the smallest DF pool, because it grants 10% final damage at the cost of taking 15% more damage; it drops from Damien and can be pitied with Dawn Whisper Cores. Princess No's Accursed Shield is named as a good early-game option for its DF and stats. Around 5 hyper stat points into DF supplement the pool.\n\nCRITICAL RATE MUST REACH 100% FROM GEAR, LINKS, LEGION AND HYPER STATS. Dark Metamorphosis, Cerberus Chomp and Demonic Plume do not auto-crit, so Demon Slayer cannot lean on the usual assumption that crit rate above the class's passive floor is wasted. This is the single biggest class-specific gearing difference and it changes link, legion and hyper stat allocation.\n\nATTACK SPEED. AS +8 (AS2) is reached natively with a Fast weapon, so the +1 attack speed inner ability line is not needed. A Monster Park green potion plus Decent Speed Infusion takes the character to the AS +10 cap, which the class doc values at roughly 6% final damage.\n\nWEAPON CHOICE IS COSMETIC. One-handed axe and one-handed blunt weapon are equivalent in damage.\n\nWSE POTENTIALS. Target zero IED lines long term; either nine attack lines, or eight attack lines plus one boss line. The class doc expects nine attack lines to become strictly optimal once the Astra secondary arrives.\n\nCOOLDOWN HAT IS USED. Cooldown reduction holds solid value down to -4, after which it becomes diminishing on Cerberus Chomp and Demon Chain. The class doc's testing places -4 at roughly 3 final damage and -2 at roughly 1 final damage, and publishes this Reboot endgame hat ranking: (1) -4 plus a stat line, (2) 39 STR, (3) -2 plus 26 STR, (4) 36 STR, (5) -2 plus 23 STR or plain -4, (6) 33 STR, (7) -2 plus 20 STR, (8) -3 plus any stat line. A cooldown hat also prevents a party-play desync risk when the buff sequence is used after the Origin skill.\n\nIED. The class doc describes Demon Slayer's IED as naturally high, which is consistent with the advice to avoid IED lines on WSE.\n\nLINK SKILLS. The class doc gives a drop order for when links must be cut: Ark, then Demon Avenger, then Xenon, then Thief. It names Luminous and Lynn links as good flex options for characters with a less developed legion, and says survival links can be flexed out if needed. The full recommended link set is published only as an image and has not been transcribed here.",
+  "commonMistakes": [
+    {
+      "mistake": "Letting the boss debuff lapse",
+      "detail": "Demon Cry and Demon Chain apply a debuff that lowers the boss's PDR and accuracy. The accuracy component is what triggers the Insult to Injury passive, worth 15% final damage, so the debuff needs to be up continuously. In the culvert rotation the class doc even uses Erda bind on the first stage that does not instantly die, purely so the debuff can be applied during Demon Bane.",
+      "sources": [
+        "https://mafhcow.github.io/demon-slayer-faq/"
+      ]
+    },
+    {
+      "mistake": "Not auto-buffing Dark Metamorphosis",
+      "detail": "The class doc recommends putting Dark Metamorphosis on auto-buff specifically because forgetting to refresh it is a severe damage loss.",
+      "sources": [
+        "https://mafhcow.github.io/demon-slayer-faq/"
+      ]
+    },
+    {
+      "mistake": "Rolling +1 attack speed on inner ability",
+      "detail": "Unnecessary; the class already reaches AS2 with a Fast weapon.",
+      "sources": [
+        "https://mafhcow.github.io/demon-slayer-faq/"
+      ]
+    },
+    {
+      "mistake": "Assuming crit rate above the class passive floor is wasted",
+      "detail": "Three Demon Slayer skills do not auto-crit, so the 100% natural crit rate target is real for this class.",
+      "sources": [
+        "https://mafhcow.github.io/demon-slayer-faq/"
+      ]
+    },
+    {
+      "mistake": "Carrying cooldown skip into TP farming",
+      "detail": "Cooldown skip can cause a double Chaos Lock, which consumes extra Demon Force and is one of the named causes of running out of DF while farming.",
+      "sources": [
+        "https://mafhcow.github.io/demon-slayer-faq/"
+      ]
+    },
+    {
+      "mistake": "Still farming with Infernal Concussion after v269",
+      "detail": "The class doc says HEXA Infernal Concussion became awkward to turn off as of v269 and now recommends TP farming with Demon Lash instead. It flags the tradeoffs: Demon Lash farming may not full clear without Sol Janus at 30, will fail to full clear during boosters (swap back to Infernal Concussion then), and carries a higher damage requirement.",
+      "sources": [
+        "https://mafhcow.github.io/demon-slayer-faq/"
+      ]
+    },
+    {
+      "mistake": "Using regular Cerberus Chomp after Demon Awakening ends",
+      "detail": "The class doc specifies the empowered version, not the regular one, in the post-Awakening loop alongside Demon Chain.",
+      "sources": [
+        "https://mafhcow.github.io/demon-slayer-faq/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://mafhcow.github.io/demon-slayer-faq/",
+      "what": "Demon Slayer FAQ, self-described as compiled from the Demon Slayer Discord. The primary judgement source for this class and the origin of nearly every priority claim in this file: Demon Force mechanics and secondary weapon DF values, the 100% crit rate requirement and why, attack speed, hyper skill passives, V matrix skill node priority and both boost node trios, HEXA investment order (via its linked spreadsheet and an infographic), Sol Hecate binding, HEXA reset guidance, inner ability lines, WSE potential targets, cooldown hat ranking, bossing and culvert rotations, and TP farming. Note it is a JavaScript-rendered page; the readable content lives as markdown in the GitHub repository at https://github.com/mafhcow/demon-slayer-faq under content/.",
+      "dated": "2026-07-01, stamped patch v269",
+      "independent": true
+    },
+    {
+      "url": "https://docs.google.com/spreadsheets/d/1KaEO5XGVb52DnixSHZZ8hcvhRte1eIJYD6kQsDubQpA/edit",
+      "what": "The HEXA investment model the class doc links. A 156-step ordered list of (node, from level, to level, final damage gained), derived from a 16-burst 30-minute boss fight. This is where the entire HEXA order in this file comes from. Uses unexpanded shorthand labels M3, M4 and Snake. Exportable as CSV.",
+      "dated": "no date published on the sheet; linked from the 2026-07-01 revision of the class doc",
+      "independent": false
+    },
+    {
+      "url": "https://grandislibrary.com/resistance/demon-slayer",
+      "what": "Grandis Library Demon Slayer page. Source for the native boost node groupings with PRIMARY/SECONDARY/OTHER tiering, the hyper skill passive build, recommended inner ability split bossing vs training, base stats, weapon multiplier (1.2x), and the class's V skill list. Has NO HEXA section. Its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Demon Slayer Discord', which is why it is marked not independent - it restates the same Discord the class FAQ comes from.",
+      "dated": "site-wide stamp GMS Ver. 269 [Ride the Lightning Update], two patches behind the v.271 target",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio reference. Independently lists Demon Slayer's two recommended trios as (Demon Lash, Demon Impact, Cerberus Chomp) and (Infernal Concussion, Demon Cry, Dark Metamorphosis) - identical to the class doc. Does not split bossing from mobbing for Demon Slayer and gives no ordering within a trio. This is the only genuinely independent judgement source located for this class.",
+      "dated": "page states 2024-11-21; the author notes the underlying data was last updated 2024-05-14",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Demon_Slayer/Skills",
+      "what": "Name-validation table. Confirms exact skill names with no judgement attached: Nightmare is labelled the Origin skill and Amethystine Incursion the Ascent skill; class-specific HEXA skills are Nightmare, Amethystine Incursion and Demonic Plume; mastery skills are HEXA Demon Impact, HEXA Demon Impact: Demon Chain, HEXA Demon Lash, HEXA Infernal Concussion, HEXA Demon Cry, HEXA Dark Metamorphosis and HEXA Cerberus Chomp; HEXA Enhancement cores are Demon Awakening, Spirit of Rage, Orthrus and Demon Bane; shared HEXA skills are Sol Janus and Sol Hecate. Returns HTTP 403 to a plain fetch but serves fine with a normal browser user agent.",
+      "dated": "page last edited 2026-08-11",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Demon_Slayer",
+      "what": "Source for the legion member effect (Abnormal Status Resistance +1/2/3/4/5) and for confirming Fury Unleashed as the link skill.",
+      "dated": "page last edited 2026-03-23",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Fury_Unleashed",
+      "what": "Source for the link skill values: Boss Damage +10% / +15% / +20% at levels 1 / 2 / 3. Also shows the Demon Slayer's own version additionally grants Fury Absorption +10.",
+      "dated": "living wiki page; not separately date-checked",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/XpJA3u8Scd",
+      "what": "Demon Slayer class Discord. The upstream of both the class FAQ and Grandis Library's judgement fields. Not machine-readable; listed for provenance and as the place to verify anything that changed after v269.",
+      "dated": "live",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "topic": "Third inner ability line for bossing",
+      "positionA": "Attack +21, or Buff Duration +38% at lower legion. The class doc's rule is that buff duration wins while roughly 110% buff duration is otherwise unreachable, and that Attack +21 overtakes it once legion is developed enough (it names the SHINE link skill as what makes high buff duration reachable without the inner ability line).",
+      "sourceA": "https://mafhcow.github.io/demon-slayer-faq/ (2026-07-01, v269)",
+      "positionB": "Chance to Skip Cooldown +10%, or Buff Duration +38%.",
+      "sourceB": "https://grandislibrary.com/resistance/demon-slayer (GMS Ver. 269)",
+      "note": "NOT an independent disagreement. Both pages credit the Demon Slayer Discord, so this is one source lane contradicting itself - most likely one of the two restatements is stale. Both options are recorded rather than picked. The two agree on Buff Duration +38% as one valid choice; they differ on the alternative (Attack +21 versus Chance to Skip Cooldown +10%). Note separately that the class doc's farming section advises speccing OUT of cooldown skip when Demon Force runs dry while TP farming, which is an argument against the Grandis line for a character that also farms."
+    },
+    {
+      "topic": "Boost node trio currency",
+      "positionA": "The two trios are current as of the 2026-07-01 class doc revision.",
+      "sourceA": "https://mafhcow.github.io/demon-slayer-faq/",
+      "positionB": "The same two trios were already published in 2024, from data the author dates to 2024-05-14.",
+      "sourceB": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "note": "Not a contradiction - they agree. Recorded because Grandis Library exposes a 'View Pre-V.269 Boost Nodes' toggle, which shows that node groupings did change at v269 for at least some classes. The fact that the 2024 trios still match the 2026 class doc is evidence Demon Slayer's trios were not disturbed, but it has not been positively confirmed against a v.271 source."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "evidenceNotes": "THREE INDEPENDENT SOURCES WERE REACHED, BUT ONLY TWO CARRY JUDGEMENT. The independent lanes are (1) the Demon Slayer Discord's FAQ, (2) mastermysty's node reference, and (3) maplestorywiki.net. Lane 3 carries facts only - skill names, link skill values, legion effect - and no priorities at all. Lane 2 covers boost node trios and nothing else. That means EVERY HEXA, hyper stat, hyper skill and inner ability claim in this file rests on a single source lane, and Grandis Library does not count as a second opinion on any of them because it credits the same Discord. Claims are marked accordingly. Reddit could not be reached from the research environment (blocked for both fetching and the browser), the web search budget for the session was already exhausted, and NamuWiki's Demon Slayer page is JavaScript-rendered and returned no readable content, so the KMS-side cross-check that might have formed a genuine third judgement lane was not performed. A follow-up pass with reddit access and a working search budget should target: a 2025-2026 r/Maplestory Demon Slayer thread, the Demon Slayer Discord's own pinned infographics, and a v.271-dated confirmation of the boost node trios. The class doc is stamped v269 and the target is v.271, so anything touching v270 or v271 balance changes is unverified.",
+  "written": false,
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "'MASTEMA' IS NOT A NODE OR SKILL NAME. It is listed as V skill node priority #7. No Demon Slayer or shared V skill is named Mastema. Per maplestorywiki, Mastema is the summoned ally inside the shared V skill DEFENDER OF THE DEMON: 'Summons loyal Mastema to fight by your side', Master Level 30, and she casts Mastema's Claw and Mastema's Mark. The FAQ uses 'Mastema' as shorthand (its culvert sequence also lists it as a castable) and the file copied it verbatim. Not invented by the researcher - but the file explicitly claims maplestorywiki was used as a name-validation lane, and this name was never run through it. A user searching their V matrix for 'Mastema' finds nothing.",
+      "'OTHERWORLD'S GODDESS' BLESSING' (V node priority #6) does not exist as written. The wiki name is OTHERWORLD GODDESS'S BLESSING. Again copied straight from the FAQ without validation.",
+      "THE RESOURCE IS CALLED FURY, NOT 'DEMON FORCE'. The file uses 'Demon Force (DF)' about ten times, including as the archetype definition and as the headline of its biggest gearing claim ('DEMON FORCE CHANGES SECONDARY WEAPON SELECTION'). 'Demon Force' appears ZERO times on maplestorywiki.net/w/Demon_Slayer/Skills (which uses Fury 476 times - Fury Unleashed, Max Fury, Focused Fury, Reduce Fury) and ZERO times on Grandis Library, which says plainly: 'Demon Slayers do not use MP and instead use Fury.' The FAQ itself is internally inconsistent - its heading reads 'What is Demon Force (DF)' and the very next line reads 'Demon Slayers start with a base of 10 Demon Fury (DF)'. The file picked the wrong expansion and propagated it throughout.",
+      "THE MASTERY-SKILL LIST IS WRONG IN BOTH DIRECTIONS, which breaks the M3/M4 reasoning. maplestorywiki's 'Mastery Skills' section contains EIGHT tables (ids 31141000, 31141001, 31141002, 31141008, 31141012, 31141009, 31141013, 31140016) = HEXA Demon Impact, HEXA Demon Impact: Demon Chain, HEXA Demon Lash, HEXA Infernal Concussion, HEXA Demon Cry, HEXA Dark Metamorphosis, HEXA Cerberus Chomp, and DEMONIC PLUME. The file lists seven and omits Demonic Plume. Conversely the file says 'class-specific HEXA skills are Nightmare, Amethystine Incursion and Demonic Plume', but the wiki's 'Class-Specific HEXA Skills' section holds only TWO tables (31141500 Nightmare, 31141504 Amethystine Incursion). Net effect: M3 and M4 are two of SIX candidates, not two of four.",
+      "EVERY OTHER NAME CHECKS OUT against maplestorywiki.net/w/Demon_Slayer/Skills, which I fetched with a browser user agent and parsed by section id. Confirmed real: Grim Scythe, Vortex of Doom, Binding Darkness, Judgment (Demon Slayer), Raven Storm, Carrion Breath, Chaos Lock, Dark Thrust, Soul Eater, Insult to Injury, Demonic Plume, Weapon Aura, Nightmare, Amethystine Incursion, Sol Janus, Sol Hecate (Styx/Charon/Phlegethon/Pactum), Demon Awakening, Spirit of Rage, Orthrus, Demon Bane. Cerberus Chomp is confirmed a Hyper Skill by Grandis's own alt text 'Cerberus Chomp (Hyper Skill)'. Fury Unleashed 10/15/20% boss damage confirmed on maplestorywiki.net/w/Fury_Unleashed (all three levels present). Legion effect confirmed verbatim on Grandis: 'Increases Abnormal Status Resistance (+1/2/3/4/5)'. The 'Snake = Spirit of Rage' inference holds: the wiki lists exactly four HEXA Enhancement cores (ids 500004104-107 = Demon Awakening, Spirit of Rage, Orthrus, Demon Bane), the sheet's eleven labels are Lash/M4/Nightmare/Impact/Ascent/Hecate/M3/Snake/Orthrus/Bane/Awakening, and the FAQ's reset advice names 'Spirit of Rage' in prose where the sheet writes 'Snake'. Correctly flagged as inference."
+    ],
+    "clearedOnInspection": [
+      "NO FABRICATED PRIORITY ORDERS. I exported the HEXA spreadsheet (docs.google.com/.../export?format=csv) and machine-checked every ordering claim. All exact: 156 data rows as stated; step 1 unlock order M4/Lash/M3/Impact/Hecate with FD 9.9/8.8/6.5/3.7/4.84; step 2 unlock step numbers Awakening=7, Bane=12, Orthrus=22, Snake=35, Ascent=44 (I counted rows - all four correct); level-10 crossing order Impact, Awakening, Lash, M4, Bane, M3, Orthrus, Nightmare, Hecate, Snake, Ascent; level-20 order Impact, Lash, Awakening, M4, Bane, M3, Nightmare, Hecate, Orthrus, Snake, Ascent; level-30 order Impact, Awakening, Nightmare, Lash, Hecate, M4, Bane, Orthrus, M3, Snake, Ascent. Every one matches the file character for character. I also pulled the FAQ's raw markdown from github.com/mafhcow/demon-slayer-faq/content/{basics,bossing,farming,gear,skills}.md: the V skill node list, both trios, the three hyper passives, the three IA lines, the eight-entry cooldown hat ranking, the three shield DF values (110/173/100), and the link drop order (Ark, DA, Xenon, Thief) are all faithful and properly paraphrased, not copied."
+    ],
+    "shipReady": false
+  },
+  "blockedReason": "5 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

@@ -1,0 +1,717 @@
+{
+  "slug": "pathfinder",
+  "className": "Pathfinder",
+  "branch": "Explorer (Archer)",
+  "primaryStat": "DEX",
+  "secondaryStat": "STR",
+  "weapon": "Ancient Bow",
+  "secondaryWeapon": "Relic",
+  "archetype": "Explorer bow class whose entire damage engine runs off a two-skill alternation. Cardinal Burst and Cardinal Deluge are cast back to back (via the in-game macro system or the class's own Auto Mode toggle), and that alternation does three jobs at once: it charges the Relic Gauge that every other skill spends, it procs the Bountiful Burst / Bountiful Deluge passives, and it refunds cooldown on the pre-5th-job Ancient Force and Enchant Force skills. Off-burst play is that alternation plus two low-cooldown weave skills. Burst is short and summon-heavy - three summons plus one gauge-consuming nuke inside roughly fifteen seconds - which makes a bind effectively mandatory so the summons connect. Because the main attack is a fixed two-cast macro rather than a keydown or a fast-spam skill, the class scales poorly with attack speed, and because the weave skills are cooldown-gated, it scales unusually well with cooldown reduction and cooldown-skip instead. Only nine skills are boostable, which makes its V Matrix cheap relative to most classes.",
+  "linkSkill": {
+    "name": "Adventurer's Curiosity",
+    "effect": "Passive, shared by all three Explorer Archers and stackable up to three times (once per unique Explorer Archer raised to Master Level on the world). At Master Level 9: Monster Collection registration chance +50%, Critical Rate +15%, Damage +6% (the damage component unlocks at Lv. 7). The wiki notes the Critical Rate bonus applies multiplicatively rather than additively. Grandis Library lists only the Monster Collection and Critical Rate components and omits the +6% Damage - see conflicts.",
+    "levels": "Master Level 9. Lv. 1 gives Monster Collection +10% / Critical Rate +3%; Lv. 7 adds the Damage component; Lv. 9 reaches +50% / +15% / +6%.",
+    "consensus": "moderate",
+    "sources": [
+      "https://maplestorywiki.net/w/Pathfinder/Skills",
+      "https://grandislibrary.com/explorers/pathfinder"
+    ]
+  },
+  "legionEffect": {
+    "effect": "Flat DEX: +10 / +20 / +40 / +80 / +100 by rank.",
+    "consensus": "strong",
+    "sources": [
+      "https://grandislibrary.com/explorers/pathfinder",
+      "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+    ]
+  },
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Cardinal Burst (paired with Bountiful Burst)",
+        "why": "Half of the macro, so it is multiplying a share of essentially all damage the character deals, bossing and training alike. All three independent lanes place it in the top-priority group, and it is the skill behind the first Mastery core, so its boost node has to reach level 40 (before matrix points) before that Mastery core can be activated at all.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "node": "Cardinal Deluge (paired with Bountiful Deluge)",
+        "why": "The other half of the macro, and the same argument applies. The KMS wiki labels this node group the primary one; the GMS class doc and mastermysty both list it alongside Cardinal Burst in the top trio. Required to level 40 to unlock the second Mastery core.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "node": "Glyph of Impalement",
+        "why": "The highest-priority of the two off-burst weave skills - the class doc ranks it first in the damage-per-minute skill priority because it has no cast time and can be fired during other skills' animations. It is also the gauge regulator outside burst. Present in the top trio in all three independent lanes, and it is a required boost for the third Mastery core.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "node": "Combo Assault",
+        "why": "Second off-burst weave skill. The class doc ranks it joint-first with Glyph in practice (Glyph is only technically ahead because it has no cast time). Its Mastery upgrade is described as a large damage increase that pulls Combo Assault from a mobbing skill into the bossing rotation and cuts its cooldown, so its boost node has to be built to reach that. Required boost for the fourth Mastery core.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "node": "Cardinal Torrent",
+        "why": "Required boost for the third Mastery core, per both the GMS class doc and the KMS wiki's 'essential reinforcing core' grouping. Note the skill itself is primarily a teleport - the reason to boost it is that the Mastery core cannot otherwise be opened.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Ancient Astra",
+        "why": "Required boost for the third Mastery core. Same reasoning as Cardinal Torrent - Ancient Astra is used as a damage-reduction utility rather than a damage skill, but the Mastery core gate means it must be boosted anyway.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Shadow Raven",
+        "why": "Required boost for the fourth Mastery core. Confirmed as part of the essential group by both the GMS class doc and the KMS wiki.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "node": "Swarm Shot (optional)",
+        "why": "Boostable and useful for mobbing, but explicitly NOT required for any Mastery core. Both the GMS class doc and the KMS wiki class it as an optional / discretionary boost taken after the seven required skills.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      {
+        "node": "Triple Impact (optional)",
+        "why": "Also boostable and also not required for any Mastery core. The class doc notes it sees more bossing use than Swarm Shot but purely as a utility/mobility tool rather than as damage, which is why it is still optional to boost.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "label": "Bossing / high priority trio",
+        "skills": ["Cardinal Burst", "Cardinal Deluge", "Glyph of Impalement"],
+        "why": "The two macro halves plus the top weave skill. This is the one trio a boss mule needs; the class doc says a basic boss mule only requires one set of boost nodes.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "label": "Second trio (historically labelled 'mobbing')",
+        "skills": ["Cardinal Torrent", "Combo Assault", "Swarm Shot"],
+        "why": "Same three skills in all sources, listed in different orders. IMPORTANT: the class doc states that the 'mobbing' label is no longer accurate post-Mastery-3/4 - Combo Assault became a bossing skill once its Mastery core landed, and Cardinal Torrent is now boosted for the Mastery gate. The doc keeps the label only for continuity. Treat this grouping as legacy.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "label": "Third / tertiary trio",
+        "skills": ["Ancient Astra", "Shadow Raven", "Triple Impact"],
+        "why": "Same three skills in the class doc, mastermysty and Grandis Library, listed in different orders. Two of the three (Astra, Raven) are Mastery-core prerequisites, so this trio stopped being genuinely optional once 6th job arrived.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "label": "Five-node min-max setup (class doc's own alternative)",
+        "skills": [
+          "Cardinal Burst / Cardinal Deluge / Glyph of Impalement",
+          "Cardinal Deluge / Cardinal Burst / Glyph of Impalement",
+          "Cardinal Torrent / Combo Assault / Ancient Astra",
+          "Shadow Raven / Combo Assault / Ancient Astra",
+          "Swarm Shot / Cardinal Torrent / Shadow Raven"
+        ],
+        "why": "Because only seven skills are needed for the Mastery cores, the class doc gives a five-node arrangement that covers all seven to cap instead of the six nodes needed to cover all nine. This frees a matrix slot. The doc presents it as optional min-maxing, not the default. Note the doc's own copy of this list contains a typo ('Ancient Anstra') in the fourth line; the intended skill is Ancient Astra.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+        ]
+      }
+    ],
+    "notes": "Nine boostable skills total, needing six node slots to cover all nine, or five slots if you skip Swarm Shot and Triple Impact. The class doc treats the small boostable pool as a selling point of the class and recommends boosting all nine if you intend to reach 6th job. Mechanics restated by the doc for newcomers: each skill gains boost levels equal to the node's level (max +25 from node level, +5 from matrix slot enhancement, cap 60), so each skill must sit on at least two nodes to reach 60; and two nodes cannot be equipped together if they share the same first-line skill, though the same skill in a non-first position is fine. Node LEVELING priority is a separate question from node composition: the doc says boost nodes generally max themselves from opened nodestones, and directs node shards and green EXP nodestones at the class V skills instead, in this order - Raven Tempest, then Nova Blast / Relic Unbound, then Vicious Shot, then Maple World Goddess's Blessing / Erda Nova, then Obsidian Barrier, Guided Arrow, Blink, Rope Lift, Will of Erda, Fury of the Wild. (Two of those skill names may be stale - see conflicts on the Tempest rework.) The doc also publishes a level-by-level slot unlock order from 200 to 260, but then says that order matters much less now that starting matrix slots were raised from 7 to 12 with a 30-slot maximum, and less again since free-EXP changes made reaching 260 fast; its own current advice is to slot the bossing trio and the four class V skills and sort the rest out at 260.",
+    "notesSources": [
+      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+    ]
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Mastery core 4 first - Combo Assault VI / Shadow Raven VI / Manifest Curse",
+        "why": "The class doc states that the first five entries of its HEXA leveling chart run Mastery 4, Mastery 1, Mastery 2, Mastery 3, Mastery 3. Mastery 4 leading is consistent with the doc's own description of the Combo Assault upgrade as the single largest Mastery jump - it raises Combo Assault's skill damage from 7930% to 30132% at Lv. 30 and cuts its cooldown to 15s, which promotes it from a mobbing skill to a core bossing rotation skill. SINGLE SOURCE, and the underlying chart is an image sourced from MapleScouter that could not be read here, so only these first five entries are sourced - the rest of the order is not.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+        ]
+      },
+      {
+        "step": "Mastery core 1 - Cardinal Burst VI / Bountiful Burst VI",
+        "why": "Second entry in the class doc's chart order. Upgrades one half of the macro; the doc records a roughly 27% larger hitbox on Cardinal Burst VI and a higher Bountiful Burst proc rate (up to 50%).",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+        ]
+      },
+      {
+        "step": "Mastery core 2 - Cardinal Deluge VI / Bountiful Deluge VI",
+        "why": "Third entry in the class doc's chart order. The other macro half.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+        ]
+      },
+      {
+        "step": "Mastery core 3 - Glyph of Impalement VI / Cardinal Torrent VI / Ancient Astra VI (fourth and fifth entries both go here)",
+        "why": "The class doc's stated first-five sequence ends with Mastery 3 twice, meaning two consecutive investment steps land on this core. Glyph of Impalement VI is the payload: every fifth cast becomes an enhanced version, Ancient Impact, and at Lv. 30 the doc gives 10740% for Glyph and 16110% for Ancient Impact. (The KMS wiki says every fourth cast rather than every fifth - see conflicts.)",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+        ]
+      }
+    ],
+    "nodeGroups": {
+      "skillCore": {
+        "origin": "Forsaken Relic",
+        "ascent": "Piercing Relic",
+        "note": "Both names validated against the GMS wiki skill table. The class doc describes Forsaken Relic only (a 10s Absolute Bind, a ~6s invulnerable cutscene, a 30s Relic Liberation buff giving up to 15% final damage to Ancient and Enchant Force skills, and a triggered Ancient Wrath effect). The class doc does NOT cover Piercing Relic at all - that is a real gap in the doc, not an omission here. The KMS wiki lists a THIRD skill core beyond those two; whether GMS has it at v.271 was not confirmed.",
+        "sources": [
+          "https://maplestorywiki.net/w/Pathfinder/Skills",
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      "mastery": {
+        "1": ["Cardinal Burst VI", "Bountiful Burst VI"],
+        "2": ["Cardinal Deluge VI", "Bountiful Deluge VI"],
+        "3": ["Glyph of Impalement VI", "Cardinal Torrent VI", "Ancient Astra VI"],
+        "4": ["Combo Assault VI", "Shadow Raven VI", "Manifest Curse"],
+        "unlockRule": "A Mastery core can only be activated once the boost node level of its associated skills totals at least 40, counted WITHOUT matrix slot enhancement points. That is the practical link between the V Matrix section and this one.",
+        "consensus": "strong",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+          "https://maplestorywiki.net/w/Pathfinder/Skills"
+        ]
+      },
+      "enhancement": {
+        "nodes": ["Nova Blast Boost", "Ancient Tempest / Primal Tempest Boost", "Obsidian Barrier Boost", "Relic Unbound Boost"],
+        "note": "Four enhancement nodes. Three of them (Nova Blast, Tempest, Relic Unbound) are pure final-damage with no added effect; only Obsidian Barrier gains functionality - the class doc records its duration rising to 20s and its damage reduction rising to 55%. Enhancement nodes require the corresponding V skill to be maxed and equipped. The class doc gives the final-damage curve as 11% at Lv. 1, 25% at 10, 40% at 20, 60% at 30 - the standard breakpoint pattern.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Pathfinder/Skills",
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+        ]
+      },
+      "common": {
+        "nodes": ["Sol Janus (Dawn / Dusk)", "Sol Hecate (Styx, Phlegethon)"],
+        "note": "The class doc states flatly that Sol Janus has no bossing function - it is a farming and EXP node - and leaves the investment level to the player, while the doc's current owner is quoted arguing for maxing it early on the grounds that faster levelling compounds into earlier boss progression and therefore more gear. For Sol Hecate the doc gives two concrete binding recommendations: bind Styx to Awakened Relic activation (and also keep it on its own key so it can be fired earlier), and bind Phlegethon to any 2-minute skill, preferring one already in the skill sequence such as Obsidian Barrier because the boss is most likely to be bound at that moment.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://maplestorywiki.net/w/Pathfinder/Skills"
+        ]
+      }
+    },
+    "hexaStat": {
+      "heroic": "ATT > DEX > Boss Damage / Critical Damage. The class doc says to prioritise by whichever line rolls the highest HEXA stat value rather than by a fixed order, and notes that Boss Damage and Critical Damage are close in practice, with Boss Damage slightly ahead for characters without full Eternal gear and boss familiars.",
+      "interactive": "Critical Damage > ATT > Boss Damage > main stat. The class doc's stated reason is that Interactive/Regular players have far more stat and ATT available from bonus potentials, which makes Boss Damage and Critical Damage the scarcer stats there. This is NOT the Heroic recommendation - do not apply it to a Reboot character.",
+      "sequencing": "The class doc says to take HEXA Stat 1 to level 20 before worrying about optimising it, because level 20 is what unlocks HEXA Stat 2 (and the same pattern for HEXA Stat 3); reconfiguring a HEXA Stat setup later costs 100 million mesos. It frames full HEXA Stat optimisation as endgame work comparable to a Legion champion project, to be returned to after 6th job is otherwise finished. It also suggests saving main-stat HEXA Stat rolls for Sunny Sunday rate-up perks.",
+      "whyItIsClassSpecific": "Vicious Shot converts critical rate into critical damage, which the class doc says materially diminishes the marginal value of additional critical damage from other sources - that is the specific reason Critical Damage does not simply sit at the top of the Heroic HEXA Stat order the way it does for many classes.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    "notes": "HONEST LIMIT: this is the weakest-sourced section in this file, and that reflects the state of the public record rather than a shortfall of searching. The only public source that gives a Pathfinder HEXA investment order is the class doc, its order lives in an image rather than in text, and the doc itself credits that image to MapleScouter - a KMS-balance calculator - rather than to independent Pathfinder analysis. So even the one source is a restatement of an upstream tool. Only the first five chart entries are stated in readable text and are recorded above; everything after that is unsourced and has deliberately been left out. Three further facts the doc does give: the order it publishes is built for Sol-Erda-Fragment-limited servers, which is the Heroic case; it is optimised for full rotation damage, so a player who cares more about burst damage distribution on specific bosses is told to deviate toward Forsaken Relic and the Tempest skill; and HEXA Stat 1 and 2 are already folded into that same chart rather than being a separate project. The doc also asserts that heavy fragment investment pays off unusually well for this class because several of its HEXA cores scale above-average or super-linearly - that claim is single-source and unquantified.",
+    "notesSources": [
+      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+    ]
+  },
+  "hyperStats": {
+    "priority": null,
+    "bossingImportantStats": [
+      "Boss Damage",
+      "Damage",
+      "Ignore Defense",
+      "Critical Damage",
+      "Critical Rate (the class doc suggests typically stopping around level 8-10)",
+      "Attack Power",
+      "DEX",
+      "STR"
+    ],
+    "mobbingImportantStats": [
+      "EXP (max it if you do not need more damage)",
+      "Normal Monster Damage",
+      "Damage",
+      "Critical Damage",
+      "Arcane Force (only to reach a threshold)",
+      "Attack Power",
+      "DEX",
+      "STR"
+    ],
+    "notes": "The class doc deliberately refuses to publish a ranked hyper stat order, on the stated grounds that the correct allocation varies with a character's own equipment and level, and it directs players to MapleScouter (or an equivalent optimiser) instead. That refusal is itself the finding and should be surfaced to users rather than replaced with a manufactured list - it matches what the wider community does, where MathBro's Hyper Stat Optimizer is the operative answer. The only general rule the doc gives is to bring every stat in the relevant list above to level 10 before pushing any single stat higher. The 'priority' field is null on purpose: no source consulted publishes a defensible fixed ranking for Pathfinder.",
+    "consensus": "weak",
+    "sources": [
+      "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+    ]
+  },
+  "hyperSkills": {
+    "alwaysTake": {
+      "passives": [
+        "Cardinal Force - Extra Strike",
+        "Cardinal Force - Bountiful Enhance",
+        "Ancient Force - Boss Rush"
+      ],
+      "why": "The class doc names these three as unconditional picks; the remaining two of the five slots are conditional. Grandis Library's flat five-pick list includes all three of these, so the two sources agree on the fixed portion - but Grandis credits its hyper passive build to the Class Doc, so this is one source agreeing with itself, not two.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://grandislibrary.com/explorers/pathfinder"
+      ]
+    },
+    "conditionalLastTwo": {
+      "rule": "The final two passive picks depend on the character's IED and cooldown-reduction hat, per a table in the class doc.",
+      "cases": [
+        {
+          "condition": "IED below 98.2% AND cooldown hat of -2s or less",
+          "take": ["Cardinal Force - Reinforce", "Ancient Force - Guardbreak"]
+        },
+        {
+          "condition": "IED below 98.2% AND cooldown hat of -3s or more",
+          "take": ["Ancient Force - Guardbreak", "Ancient Force - Enchant Enhance"]
+        },
+        {
+          "condition": "IED above 98.2% (any cooldown hat)",
+          "take": ["Cardinal Force - Reinforce", "Ancient Force - Enchant Enhance"]
+        }
+      ],
+      "note": "Grandis Library publishes only the first of these three cases as a flat five-pick list (Reinforce, Bountiful Enhance, Extra Strike, Boss Rush, Guardbreak), with no mention that the last two are conditional. If MaplePlanner presents a static five-pick list it will be silently wrong for two of the three cases. The class doc also records that both Ancient Force - Boss Rush and Ancient Force - Guardbreak apply to Enchant Force skills as well as Ancient Force skills, which is why those two are weighted so highly.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://grandislibrary.com/explorers/pathfinder"
+      ]
+    },
+    "actives": {
+      "skills": ["Ancient Astra", "Awakened Relic"],
+      "note": "The class doc lists both as required keybinds - Ancient Astra as the iframe / 60% damage reduction tool, Awakened Relic as a burst skill that instantly fills the Relic Gauge and speeds Cardinal Torrent recharge. Epic Adventure is listed by the KMS wiki as the third hyper active; the GMS doc does not discuss it.",
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ]
+    }
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Chance to skip cooldowns +20% (top line, Legendary)",
+        "why": "Two independent lanes agree and give the same mechanical reason, which is unusual and makes this the best-evidenced Inner Ability claim for the class. Pathfinder's off-burst damage is two cooldown-gated weave skills (Glyph of Impalement, Combo Assault) plus the macro, and both weave skills already have their cooldowns refunded by macro casts - so a cooldown skip converts almost directly into extra weave casts. The KMS wiki adds that this line was mediocre BEFORE 6th job and only became a priority pick after it, because the Mastery upgrades made Glyph proc its enhanced Ancient Impact version on a cast counter and added Manifest Curse's gauge-consumption stacking, both of which scale with cast frequency. The KMS wiki recommends taking it at Legendary rather than Unique grade because Unique resets poorly.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "line": "Critical Rate +20% (Unique line)",
+        "why": "Both independent lanes flag this as worth more to Pathfinder than to a typical class, for the same reason: Vicious Shot converts total critical rate - including the portion above 100% - into critical damage, so this line keeps paying after the crit cap. The class doc says to roll for this line FIRST among the Unique lines because it is the hardest to land. The KMS wiki puts a figure on it (roughly equivalent to 10% critical damage) and argues that because it is worth less than a 20% ATT line it belongs on the second or third slot rather than the top line - which is consistent with the doc placing cooldown skip on top.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "line": "Boss Damage +10% (Unique line), with +8% damage to enemies afflicted by an abnormal status as an accepted settle",
+        "why": "The class doc's second Unique line, and it explicitly says Abnormal Status Damage is an acceptable settle instead of Boss Damage. The KMS wiki independently argues the abnormal-status line is actually the better of the two on the lower slots for this class specifically, because Pathfinder applies its own Ancient Curse debuff constantly through the macro (and the Explorer Mage link skill also supplies a status), so the condition is effectively always met - and because the top-line version of that stat only reaches 10% while the lower-line version reaches 8%, the lower lines are proportionally more efficient. The KMS wiki does caveat that if cooldown skip occupies the top line, the abnormal-status line is somewhat less efficient.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Mesos Obtained +20%",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "line": "Item Drop Rate +15%",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      },
+      {
+        "line": "+8% damage to normal monsters (the class doc calls this line optional)",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+          "https://grandislibrary.com/explorers/pathfinder"
+        ]
+      }
+    ],
+    "rollingStrategy": {
+      "heroic": "The class doc gives a Heroic-specific sequence: use Miracle Circulators to reach Unique Critical Rate first (Interactive players can consider raw rolling for it, ideally during a 50%-off Inner Ability event); lock that line and roll for Unique Boss Damage, settling for Abnormal Status Damage if needed; once both Unique lines are present, use Chaos or Black Circulators from seasonal event shops to max their values, ideally before touching the top line; then lock both Unique lines and roll the top line last, because the top line is comparatively cheap to obtain and re-obtain.",
+      "alternative": "The doc offers a second approach - settle one preset on something workable and roll a different preset freely for perfect lines, which avoids bricking a usable setup at the cost of an extra preset and probably more total Honor.",
+      "newPlayers": "The doc is explicit that new and mid-game players should settle for any usable line, even just a Legendary Boss Damage or cooldown-skip top line, and should not chase the Unique lines early; it frames finishing Inner Ability as a long project.",
+      "practicalNotes": [
+        "Keep 20% Item Drop Rate on some preset for boss reward room drops.",
+        "Only roll during 50% Honor cost events.",
+        "Use seasonal event shops for Circulators and Honor Medals.",
+        "The class doc notes that a heavy farmer is usually better served by Legendary Mesos Obtained plus a third preset carrying only 20% Item Drop Rate, while a light farmer or low-Honor player should just take a single Legendary Item Drop Rate line.",
+        "The KMS wiki adds a line the GMS doc does not: buff duration (up to 38% on a lower line) is worth considering for a low-Honor character because it extends the Angelic Buster link skill."
+      ],
+      "consensus": "weak",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+      ]
+    },
+    "notes": "Note the shape of this class's Inner Ability: a cooldown-skip top line plus a cooldown-reduction hat is an unusually expensive combination, and the class doc lists that requirement in its own cons section as a funding barrier - it says a Pathfinder Legion champion in particular needs both. One aggregator disagrees on the top line; see conflicts."
+  },
+  "gearingNotes": "CRITICAL RATE DOES NOT STOP MATTERING AT 100%. Vicious Shot converts up to 50% of the character's total critical rate - explicitly including the portion above 100% - into critical damage for 30 seconds. Two independent lanes (the GMS class doc and the KMS wiki) state this and both draw the same two conclusions from it: keep buying critical rate past the cap, and discount other sources of percentage critical damage, because the class doc says Vicious Shot dilutes the value of critical damage from glove potential and pitched set bonuses relative to a non-Archer class. This is the single most important class-specific gearing fact for Pathfinder and it propagates into hyper stats, Inner Ability, Legion and HEXA Stat. COOLDOWN IS THIS CLASS'S SCALING STAT. The class doc's cooldown-reduction section was rewritten after the GMS March 2026 balance patch and now says a -4s hat or better is best-in-slot; on Reboot take anything -4s or better because the server only has bright cubes, while GMS Regular sees the largest gain from a -6s to -8s hat. Combined with the cooldown-skip Inner Ability line, this is what the doc means when it lists 'uncommon (higher funding) setup required' as a con. ATTACK SPEED DOES ALMOST NOTHING. The class doc states plainly that additional attack speed is mostly useless, because the macro is a fixed two-cast unit rather than a keydown or a spammable single cast. Do not recommend the attack speed Inner Ability line or attack-speed gearing for this class. WSE: for GMS Heroic the class doc's ideal weapon/secondary/emblem potential split is 9 ATT lines / 0 Boss / 0 IED, with 8/1/0 close behind, and it notes IED falls off sharply in value by mid-to-late game. It advises only chasing optimal lines on permanent equipment - Genesis Ancient Bow, Princess No's Immortal Relic, Mitra's Rage - once the rest of the gear is largely finished. Best-in-slot secondary is Princess No's Immortal Relic, but the doc says it is only marginally better than a level 100 secondary, so non-main characters can settle. RINGS: the doc ranks Ring of Restraint and Continuous Ring as similar on paper with RoR easier to use in practice, ahead of Whisper of the Source, ahead of a 22-star stat ring; for Heroic it recommends RoR outright with a WJ for swapping. LEGION GRID: the doc's bossing weighting is Critical Damage > Boss Damage / IED > Critical Rate > DEX > ATT, with the note that ATT is worth much less per block (1 ATT per block versus 5 DEX per block). The KMS wiki independently lists the same block families - Shade/Hayato/Mo Xuan for critical damage, Marksman/Night Lord for critical rate, Mercedes for cooldown reduction, Kanna/Demon Avenger for boss damage, the DEX archers for main stat - and singles out critical rate as especially important for Archers precisely because of the Vicious Shot conversion. ERDA NOVA MATTERS MORE THAN USUAL: because most of the burst damage comes from three limited-range summons, the class doc says a bind is needed to guarantee the burst lands, and tells boss-mule builders to take Erda Nova to level 20 or higher for any boss they cannot kill in one burst. It also records the interaction that bosses cannot be rebound for 90 seconds after a bind ends, so a level 25 Erda Nova's 120s cooldown aligns with the burst, and a Mercedes legion block enables a level 30 Erda Nova at 100s to come up before the boss's internal rebind timer expires.",
+  "gearingNotesSources": [
+    "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+    "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+    "https://maplestorywiki.net/w/Pathfinder/Skills"
+  ],
+  "commonMistakes": [
+    {
+      "mistake": "Treating Critical Rate as capped at 100% and redirecting points elsewhere",
+      "why": "Vicious Shot converts total critical rate, including the excess above 100%, into critical damage. Overflow critical rate is still damage on this class.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+      ]
+    },
+    {
+      "mistake": "Chasing attack speed",
+      "why": "The class doc states that additional attack speed is mostly useless because of how the two-cast macro works, and lists minimal attack speed scaling as a class con.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Manually alternating Cardinal Burst and Cardinal Deluge on two keys instead of using the macro or Auto Mode",
+      "why": "The class doc says the macro reaches the theoretical maximum output and manual alternation cannot beat it, and its current recommendation is actually Auto Mode (right-click Cardinal Burst to lock it) rather than the macro, because Auto Mode gets similar results with less precise inputs.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Bursting without a bind and losing summon damage",
+      "why": "Three of the four burst components are summons with limited range. The class doc treats Erda Nova as necessary to guarantee full burst damage and gives explicit bind timing depending on whether the Origin skill is used.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Firing Nova Blast without a full Relic Gauge",
+      "why": "Nova Blast's damage scales with the gauge consumed; the class doc says a full 1000/1000 gauge gives +100% final damage and 100% IED, and instructs pausing briefly before casting so the gauge fills.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Assuming Cardinal Burst charges the Relic Gauge whenever it damages something",
+      "why": "The class doc records that Cardinal Burst must hit an enemy directly; the area-of-effect explosion at maximum range does not charge the gauge. This is the usual cause of unexpectedly running dry on gauge.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Rolling Inner Ability outside a 50% Honor cost event, or min-maxing the Unique lines too early",
+      "why": "The class doc gives both as direct instructions - roll only during 50% events, and settle for any usable line in early and mid game rather than chasing Unique Critical Rate.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Copying a five-pick hyper passive list from an aggregator",
+      "why": "Only three of the five Pathfinder hyper passives are unconditional. The other two depend on the character's IED relative to a 98.2% threshold and on the cooldown hat. A static list is wrong for two of the three documented cases.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Leaving Curse Enchant Force unset while bossing",
+      "why": "The class doc says to lock the Burst (left) mode for bossing so Enchant Force skills stop following the emblem, and to lock Deluge (up) for mobbing to get the largest Combo Assault, or Torrent (right) for the turret form of Relic Unbound.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "mistake": "Building all nine boost nodes before checking which seven the Mastery cores actually gate",
+      "why": "Only seven skills feed Mastery cores. Swarm Shot and Triple Impact do not. The class doc and the KMS wiki agree on this, and the doc gives a five-node arrangement that covers the seven required skills for players who want the matrix slot back. That said, the doc's own default advice is still to boost everything if reaching 6th job, because it is cheap on this class.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC"
+      ]
+    }
+  ],
+  "skillNameReference": {
+    "validatedAgainst": "https://maplestorywiki.net/w/Pathfinder/Skills (page last edited 2026-09-09, the v.271 patch date)",
+    "originSkill": "Forsaken Relic",
+    "ascentSkill": "Piercing Relic",
+    "classSpecificVSkills": [
+      "Nova Blast",
+      "Storm Rider",
+      "Ancient Tempest",
+      "Primal Tempest",
+      "Obsidian Barrier (Deluge / Burst / Torrent)",
+      "Relic Unbound (Deluge / Burst / Torrent)"
+    ],
+    "masterySkills": [
+      "HEXA Cardinal Burst",
+      "HEXA Bountiful Burst",
+      "HEXA Cardinal Deluge",
+      "HEXA Bountiful Deluge",
+      "HEXA Glyph of Impalement",
+      "Ancient Impact",
+      "HEXA Cardinal Torrent",
+      "HEXA Ancient Astra",
+      "HEXA Combo Assault",
+      "HEXA Shadow Raven",
+      "Manifest Curse"
+    ],
+    "enhancementNodes": [
+      "Nova Blast Boost",
+      "Ancient Tempest/Primal Tempest Boost",
+      "Obsidian Barrier Boost",
+      "Relic Unbound Boost"
+    ],
+    "commonNodes": ["Sol Janus", "Sol Janus: Dawn", "Sol Janus: Dusk", "Sol Hecate"],
+    "boostableSkills": [
+      "Cardinal Burst",
+      "Cardinal Deluge",
+      "Glyph of Impalement",
+      "Cardinal Torrent",
+      "Combo Assault",
+      "Ancient Astra",
+      "Shadow Raven",
+      "Swarm Shot",
+      "Triple Impact"
+    ],
+    "namingWarnings": [
+      "The in-game wiki string for the Mastery skills is the 'HEXA <skill>' form; the class doc and community write them as '<skill> VI'. Same skills.",
+      "Mastery core 4's third component is 'Manifest Curse' in GMS. The class doc uses 'Relic Materialize' in its HEXA order section (which is the KMS string) and 'Manifest Curse' in its skill breakdown. Emit Manifest Curse.",
+      "The class doc writes the hyper passive as 'Cardinal Force - Bountiful Enhance'; the KMS wiki's translated string is 'Cardinal Force - Additional Enhancement'. Same passive.",
+      "MSEA localisation differs substantially (Cardinal Discharge, Cardinal Blast, Cardinal Transition, Split Mistel, Edge of Resonance, Relic Evolution, Ultimate Blast). The class doc carries its own GMS-to-MSEA mapping table. Do not mix regional strings."
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+      "what": "The Pathfinder class doc - a web-published Google Doc owned by the Pathfinder Mains Discord. Document currently owned by Naicha with additional maintenance by Ari; started by Jay MS, original formatting by Aerinaie, with named contributors Vincent (IGN Pathfinder), CloudAeris, Ovi-1 kan-ovi, Elysviel, Harry and RandomOnset. It is the only source that covers every field this file needs: boost node composition and leveling, node slot order by level, HEXA mastery/enhancement/common breakdown, HEXA leveling order, HEXA Stat by server type, hyper skill passives with a conditional rule, hyper stat guidance, Inner Ability with a full rolling strategy, WSE, cooldown hat, legion grid and artifact, burst rotation and mechanics. Read in full this session through a browser - note that a plain fetcher returns only base64 image data for this URL and the earlier survey concluded it was unreadable; it is readable, the browser renders the text layer.",
+      "dated": "Header reads 'Updated as of 1/8/26' but the changelog's most recent entry is 2026-03-30 - the header is stale relative to the body. Post-dates the GMS March 2026 balance patch, which it discusses; predates v.271 by roughly five months.",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/explorers/pathfinder",
+      "what": "Grandis Library Pathfinder page. Class properties, link skill, legion effect, boost node groupings bucketed Primary/Secondary/Other, a flat five-pick hyper passive build, recommended Inner Ability split bossing/training, and an explanation of the Relic Gauge. Read directly this session. Its credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Class Doc', so for exactly those three fields it restates the class doc above and must not be counted as a second opinion. It IS usable as an independent check on class properties, link skill and legion effect, which come from its own data pipeline.",
+      "dated": "GMS Ver. 269 [Ride the Lightning Update] - two patches behind the v.271 target",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio reference. Lists Pathfinder's three trios explicitly, with no bossing/mobbing split. Independently authored, outside the class doc lineage. Read directly this session; its Pathfinder trios match the class doc's trio composition exactly, differing only in the order the three skills are written.",
+      "dated": "Page states last update 2024-11-21, with underlying testing data from 2024-05-14 - post-6th-job but predating the Mastery 3/4 rollout that the class doc says changed how these trios should be read",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+      "what": "NamuWiki's Pathfinder class page (Korean community wiki, machine-translated). Carries a genuine judgement section - Legion block recommendations with reasons, and a detailed Inner Ability section that argues line by line, including the specific claim that the cooldown-skip line only became a priority after 6th job and why. This is the only source found that corroborates the class doc's Inner Ability reasoning from outside the GMS class-doc lineage. Read directly this session. Caveat: KMS balance and KMS gear assumptions, no Reboot fragment economy.",
+      "dated": "Last modified 2026-08-25",
+      "independent": true
+    },
+    {
+      "url": "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+      "what": "NamuWiki's Pathfinder skill page. Independently confirms the four Mastery core groupings and, critically, confirms which boost nodes are 'essential' versus 'optional' - it marks Swarm Shot and Triple Impact as discretionary and the other seven as required, matching the GMS class doc. Also documents that Raven Tempest / Evolve Tempest have been REMOVED and replaced, and lists a third skill core beyond Forsaken Relic and Piercing Relic. Same source family as the page above; count the two NamuWiki pages as one source.",
+      "dated": "Last modified 2026-09-03",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Pathfinder/Skills",
+      "what": "GMS-facing skill table. Used here strictly as a name-validation allowlist and for link skill numbers - it carries no judgement, no priority order and no recommendation. Confirms the Origin and Ascent skill names, all Mastery and Enhancement node names, and resolved the Manifest Curse versus Relic Materialize naming question. Returns HTTP 403 to a plain fetcher; read through a browser.",
+      "dated": "Page last edited 2026-09-09 - the v.271 patch date, making it the most current source in this set",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/U9jWz8Kunw",
+      "what": "Pathfinder Mains Discord, linked from the class doc's own Additional Resources section. This is where the doc is maintained and where its maintainers (xlaicha, ari.ty) take corrections, so it is upstream of the class doc rather than a second source. Not machine-readable. Anything that changed after 2026-03-30 - in particular the Tempest rework flagged in conflicts - would land here first.",
+      "dated": "live",
+      "independent": false
+    },
+    {
+      "url": "https://gameslikefinder.com/article/maplestory-best-inner-ability/",
+      "what": "Cross-class Inner Ability aggregator by Samuel Franklin. Recorded ONLY because it dissents on Pathfinder's top line and the brief requires conflicts to be logged rather than quietly dropped. It gives no Pathfinder-specific reasoning, cites no class source, and links a generic inner ability simulator; its recommendation looks like a class-agnostic default. Treat as low reliability and do not let it outweigh the two lanes that agree against it.",
+      "dated": "2026-08-14",
+      "independent": true
+    },
+    {
+      "url": "https://maplescouter.com/",
+      "what": "Korean-built character power calculator. Not read directly for this class, but named here because the class doc credits its HEXA leveling order chart to MapleScouter and defers both hyper stat allocation and late HEXA Stat optimisation to it. This means the one available Pathfinder HEXA order is downstream of this tool, not independent analysis - relevant to how much confidence the app should express.",
+      "dated": "not verified",
+      "independent": false
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "The Tempest skill appears to have been reworked and renamed, and the class doc has not caught up",
+      "positions": [
+        "Class doc (changelog to 2026-03-30) and Grandis Library (GMS v269): the 5th job skill is Raven Tempest, it can only be used while Shadow Raven or Fury of the Wild is summoned, and Fury of the Wild is what enables the faster, shorter Evolved Tempest.",
+        "maplestorywiki.net (page edited 2026-09-09) and NamuWiki (2026-09-03): the skills are Storm Rider (a toggle that selects the storm's nature), Ancient Tempest and Primal Tempest, with no Raven summon requirement stated. NamuWiki lists 'Raven Tempest / Evolve Tempest' under a 'skills that have been removed' heading, and the corresponding enhancement node is named 'Ancient Tempest/Primal Tempest Boost' on both wikis."
+      ],
+      "note": "UNRESOLVED and potentially significant. If the rework is live in GMS v.271 then the class doc's burst rotation advice - summon the Raven first, keep Fury of the Wild up for Evolved Tempest - is stale, and its node leveling list (which names both Raven Tempest and Fury of the Wild) uses skill names that no longer exist. No patch note confirming or denying this could be found from this environment, and neither wiki page's history was checked. Do NOT display Raven Tempest or Fury of the Wild as current v.271 names without someone confirming in the Pathfinder Mains Discord. Everything else in this file is unaffected, because no priority claim here depends on the Tempest naming.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://maplestorywiki.net/w/Pathfinder/Skills",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)/%EC%8A%A4%ED%82%AC",
+        "https://grandislibrary.com/explorers/pathfinder"
+      ]
+    },
+    {
+      "topic": "How often Glyph of Impalement VI procs its enhanced Ancient Impact version",
+      "positions": [
+        "Class doc: every 5th cast of Glyph becomes Ancient Impact.",
+        "NamuWiki: Edge of Resonance VI (the KMS name for Glyph of Impalement VI) is strengthened with Ancient Impact every 4 casts."
+      ],
+      "note": "Could be a straight regional balance difference or could be an error in one of them. It matters for the cooldown-skip argument, since the value of extra Glyph casts depends on how many casts it takes to reach the enhanced version. Not resolved here; the wiki skill table did not state a cast count in the portion read. Flagged contested.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)"
+      ]
+    },
+    {
+      "topic": "Inner Ability top line",
+      "positions": [
+        "Class doc and Grandis Library: 20% chance to skip cooldowns.",
+        "NamuWiki: agrees cooldown skip is a must-priority pick post-6th-job and recommends taking it at Legendary grade, while separately noting Boss Damage 20% is a generically good top line.",
+        "gameslikefinder.com: 20% Boss Damage top line, with abnormal-status damage and critical rate on the lower lines, and no cooldown skip anywhere."
+      ],
+      "note": "Recorded rather than resolved, per the brief. But the asymmetry is worth stating plainly: the two dissenting-from-gameslikefinder sources are a maintained class-owned document and a Korean wiki that independently arrives at the same mechanical reasoning, while gameslikefinder is a cross-class aggregator with no Pathfinder-specific argument and no cited class source. Its recommendation is also indistinguishable from the generic default it gives many classes.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub",
+        "https://grandislibrary.com/explorers/pathfinder",
+        "https://en.namu.wiki/w/%ED%8C%A8%EC%8A%A4%ED%8C%8C%EC%9D%B8%EB%8D%94(%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC)",
+        "https://gameslikefinder.com/article/maplestory-best-inner-ability/"
+      ]
+    },
+    {
+      "topic": "Hyper skill passive build presented as fixed versus conditional",
+      "positions": [
+        "Grandis Library: a flat list of five - Cardinal Force Reinforce, Cardinal Force Bountiful Enhance, Cardinal Force Extra Strike, Ancient Force Boss Rush, Ancient Force Guardbreak.",
+        "Class doc: only three are unconditional, and the last two switch between Cardinal Force Reinforce, Ancient Force Guardbreak and Ancient Force Enchant Enhance depending on the character's IED (against a 98.2% threshold) and cooldown hat."
+      ],
+      "note": "Not a genuine disagreement so much as a loss of information in the restatement - Grandis' five happen to be the class doc's answer for one of its three cases (IED below 98.2% with a -2s-or-less hat). Since Grandis credits the class doc for this field, the doc's conditional table is the better version of the same claim. Recorded because an aggregator-shaped flat list is what most tools will show.",
+      "sources": [
+        "https://grandislibrary.com/explorers/pathfinder",
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "topic": "Link skill effect at Master Level 9",
+      "positions": [
+        "Grandis Library: Monster Collection chance +50%, Critical Rate +15%.",
+        "maplestorywiki.net: the same two plus Damage +6%, unlocked at Lv. 7, and a note that the Critical Rate bonus is multiplicative rather than additive."
+      ],
+      "note": "The wiki's version is more complete and more current (edited on the v.271 patch date). Most likely Grandis' page predates the damage component being added to the Explorer Archer link. Use the wiki's numbers.",
+      "sources": [
+        "https://grandislibrary.com/explorers/pathfinder",
+        "https://maplestorywiki.net/w/Pathfinder/Skills"
+      ]
+    },
+    {
+      "topic": "The class doc's own stated date",
+      "positions": [
+        "Document header: 'Updated as of 1/8/26'.",
+        "Document changelog: most recent entry dated 3/30/26, covering the GMS March 2026 balance patch, the Destiny Kaling update and revised cooldown hat / cooldown skip commentary."
+      ],
+      "note": "The body is newer than the header. Any pipeline that dates this source from the header line will under-rate it by roughly three months. Use 2026-03-30.",
+      "sources": [
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    },
+    {
+      "topic": "Whether the second boost node trio is a 'mobbing' trio",
+      "positions": [
+        "mastermysty (2024-11-21) and Grandis Library: present Cardinal Torrent / Combo Assault / Swarm Shot as a distinct grouping, with Grandis bucketing Combo Assault and Shadow Raven as Secondary and Swarm Shot and Triple Impact as Other.",
+        "Class doc: keeps the same grouping but states in writing that the 'mobbing' label is no longer accurate, because Combo Assault's Mastery upgrade moved it into the bossing rotation and Cardinal Torrent and Ancient Astra are now boosted to satisfy Mastery core gates rather than for their own damage."
+      ],
+      "note": "This is a real evolution rather than a disagreement about facts - the older sources are describing a pre-Mastery-3/4 world. The composition of all three trios is identical across all sources, so node composition is strongly agreed; only the rationale and the labels have moved.",
+      "sources": [
+        "https://mystyjl.github.io/reference/NodeGuide.html",
+        "https://grandislibrary.com/explorers/pathfinder",
+        "https://docs.google.com/document/d/e/2PACX-1vQAthq_f1FtuK1M6PRNsV1j9MMKJHK1LW7eMVhq4hAUfPYS0okmhJZ_oEsKHBJoYgpzkioA_uiBmrtA/pub"
+      ]
+    }
+  ],
+  "gaps": [
+    "HEXA investment order beyond the first five steps. The class doc's chart is an image; only its first five entries appear in the document's text layer. Reading the rest needs a vision pass over that image, which is the single highest-value follow-up for this class.",
+    "Piercing Relic (the Ascent skill). Named by both wikis, discussed by neither the class doc nor Grandis Library. No public source says where it belongs in the investment order.",
+    "The third skill core listed on the KMS wiki. Whether GMS has it at v.271 was not established.",
+    "A ranked hyper stat order. None exists publicly for this class and the class doc declines to invent one, pointing at MapleScouter. Left null deliberately.",
+    "Reddit. r/Maplestory is unreachable from this environment for both fetching and the browser, so no reddit-side Pathfinder discussion was examined.",
+    "The Pathfinder Mains Discord. Not machine-readable. It is the only place that would confirm whether the Tempest rework flagged in conflicts is live in GMS v.271, and whether the class doc has been updated since 2026-03-30.",
+    "MapleGains (maplegains.com), a GMS-data HEXA optimiser found during this pass, was checked and does NOT support Pathfinder - its class list at time of checking was Battle Mage, Buccaneer, Cannon Master, Corsair, Mercedes, Mihile. Worth re-checking later; it would be a genuinely independent HEXA-order lane if Pathfinder is added.",
+    "The web search budget for this session was exhausted before this class was researched; discovery was done through the browser against DuckDuckGo's HTML endpoint instead. A fresh session with search budget might surface a YouTube guide or a dated forum thread that was missed."
+  ],
+  "researchNotes": "Correction to the earlier source survey, worth propagating: the Pathfinder class doc was previously written off as unreadable because its body is base64-embedded images. That is true of the raw HTML, but the published Google Doc still carries a full text layer, and loading the /pub URL in a real browser and reading document.body.innerText returns the entire guide - roughly 100,000 characters including the changelog and credits. Every doc-sourced claim in this file was read that way, not inferred from images. The same trick is worth trying on any other class doc previously marked image-only.",
+  "written": true,
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271"
+}

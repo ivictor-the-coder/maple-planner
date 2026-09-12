@@ -1,0 +1,605 @@
+{
+  "slug": "cadena",
+  "className": "Cadena",
+  "branch": "Nova Thief",
+  "primaryStat": "LUK",
+  "secondaryStat": "DEX and STR",
+  "weapon": "Chain",
+  "secondaryWeapon": "Warp Forge",
+  "archetype": "Melee-range burst-combo bossing thief. Damage comes from stacking Muscle Memory by cycling eight different summoned-weapon skills, each cancelled into by Chain Arts: Thrash. Very high APM and the highest execution floor of any GMS class; identical gear on two players produces very different output.",
+  "linkSkill": {
+    "name": "Unfair Advantage",
+    "effect": "Passive. +9% damage against enemies of a lower level than you, and +9% damage against enemies suffering an Abnormal Status. Both conditions can apply at once.",
+    "levels": 3
+  },
+  "legionEffect": "Flat LUK: +10 / +20 / +40 / +80 / +100 at ranks B/A/S/SS/SSS.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Veteran Shadowdealer boost node (group: Veteran Shadowdealer, Muscle Memory)",
+        "why": "Ranked first in the class doc's boost-node order. Veteran Shadowdealer doubles the Muscle Memory effect for its duration and Muscle Memory is the class's whole damage engine, so this node scales everything.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "node": "Summon Spiked Bat boost node (group: Summon Spiked Bat, Summon Scimitar, Summon Shuriken, Summon Claw)",
+        "why": "Second in the class doc's order. Summon Spiked Bat is the spam skill during burst windows and the doc's burst rotation leans on it heavily; it is also the source of the 3rd HEXA mastery pick.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "node": "Chain Arts: Thrash boost node (group: Chain Arts: Thrash, Chain Arts: Crush, Chain Arts: Beatdown)",
+        "why": "Third in the class doc's order. Thrash is pressed before every other skill in every combo, so its node has near-100% relevance; the node also carries Crush and Beatdown.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "node": "Summon Shotgun boost node (group: Summon Shotgun, Summon Brick, Summon Daggers, Summon Decoy Bomb)",
+        "why": "Fourth in the class doc's order. These four are the remaining combo weapons and appear throughout the doc's practice combos.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "node": "Chain Arts: Reign of Chains boost node and Chain Yank boost node",
+        "why": "The class doc states these two barely matter and should be done only after every other node.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "node": "Job / common skill nodes, in order: Chain Arts: Maelstrom, Apocalypse Cannon, Chain Arts: Void Strike, Muscle Memory Finale, Last Resort, Grandis Goddess's Blessing, Venom Burst, Blink, True Arachnid Reflection, Solar Crest, Erda Nova, Might of the Nova",
+        "why": "Order given verbatim as a sequence in the class doc; it front-loads the three highest-uptime 5th job attacks before utility and shared nodes.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "node": "Decent skill nodes, in order: Decent Combat Orders, Decent Sharp Eyes, Decent Speed Infusion, Decent Advanced Blessing",
+        "why": "Class doc order. It notes Decent Combat Orders should be maxed first but can also be slotted last because it is bossing-only.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "node": "While levelling/farming: Decent Holy Symbol and Erda Fountain first",
+        "why": "Class doc explicitly reorders for a farming character.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "node": "Boost Node / Enhancement Core 1",
+        "skills": [
+          "Chain Arts: Thrash",
+          "Chain Arts: Crush",
+          "Chain Arts: Beatdown"
+        ],
+        "note": "Exactly three skills - this group forms one perfect node with no wasted slot.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "node": "Boost Node / Enhancement Core 2",
+        "skills": [
+          "Summon Spiked Bat",
+          "Summon Scimitar",
+          "Summon Shuriken",
+          "Summon Claw"
+        ],
+        "note": "Four skills in the group, so a node takes any three of them; Grandis Library marks this group Primary.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "node": "Boost Node / Enhancement Core 3",
+        "skills": [
+          "Veteran Shadowdealer",
+          "Muscle Memory"
+        ],
+        "note": "Only two skills are in this group.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "node": "Boost Node / Enhancement Core 4",
+        "skills": [
+          "Summon Shotgun",
+          "Summon Brick",
+          "Summon Daggers",
+          "Summon Decoy Bomb"
+        ],
+        "note": "Four skills in the group, so a node takes any three of them.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "node": "Boost Node / Enhancement Core 5",
+        "skills": [
+          "Chain Arts: Reign of Chains"
+        ],
+        "note": "Single-skill group.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "node": "Boost Node / Enhancement Core 6",
+        "skills": [
+          "Chain Yank"
+        ],
+        "note": "Single-skill group.",
+        "consensus": "strong",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      }
+    ],
+    "notes": "Boost node cap is level 60. A class 5th job skill must be at level 25 before its boost node can be activated. Chain Arts: Thrash Boost gives +1 max target at node level 20 and +20% ignore DEF at level 40; Veteran Shadowdealer Boost gives +5% crit rate at node level 40; all other Cadena boost nodes give +2% Final Damage per level with the level 20 / 40 bonuses listed on the wiki. Quality-of-life: right-click Chain Arts: Void Strike in the skill window to turn off its greyscale overlay, which reduces frame drops. All ordering in 'priority' above traces to one community lineage (the Cadena Discord's Cadena 101 doc) - Grandis Library credits that same doc for its boost-node build, so it is NOT independent corroboration.",
+    "sourceIndependenceWarning": "Grandis Library, mapledocs.info and the Cadena 101 Google Doc are ONE source for build judgement. Grandis Library's credits line names the class doc as the origin of its Inner Ability, hyper passive and boost node builds, and mapledocs.info is a website rendering of the same doc maintained by a member of the same Discord."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Mastery core slot 3 = HEXA Summon Spiked Bat; mastery core slot 4 = HEXA Veteran Shadowdealer",
+        "why": "Stated directly in the class doc as 'M3 = Summon Spiked Bat, M4 = Veteran Shadowdealer'.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "step": "Bind Sol Hecate to HEXA Chain Arts: Beatdown",
+        "why": "Class doc recommendation. Sol Hecate is the shared 6th job skill whose components can be linked to fire alongside another skill; Beatdown is the natural carrier because it grants a full Muscle Memory stack and is on a short cooldown after the Cooldown Cutter hyper.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "step": "Start HEXA Stat 1 around HEXA Chain Arts: Thrash mastery level 5-9",
+        "why": "Class doc guideline for when HEXA Stat starts beating further skill investment.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "step": "Start HEXA Stat 2 around HEXA Summon Spiked Bat mastery level 19",
+        "why": "Class doc guideline.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "step": "Start HEXA Stat 3 around HEXA Summon Spiked Bat mastery level 25",
+        "why": "Class doc guideline.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      },
+      {
+        "step": "First HEXA Stat core: main stat Attack, sub stats LUK and Boss Damage%. Take the highest rolled values in the order Attack > LUK > Boss Damage. In very late Heroic endgame, swap Boss Damage for Crit Damage.",
+        "why": "Class doc guideline, offered explicitly as a rough default rather than an optimum; the doc points min-maxers at Scouter's boss-setting optimisation instead.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+        ]
+      }
+    ],
+    "skillCores": {
+      "origin": "Chain Arts: Grand Arsenal",
+      "ascent": "Brutal Rampage",
+      "sources": [
+        "https://maplestorywiki.net/w/Cadena/Skills"
+      ]
+    },
+    "masteryCoresAvailable": [
+      "HEXA Chain Arts: Thrash",
+      "HEXA Muscle Memory",
+      "HEXA Summon Scimitar",
+      "HEXA Summon Claw",
+      "HEXA Summon Shuriken",
+      "HEXA Summon Spiked Bat",
+      "HEXA Chain Arts: Crush",
+      "HEXA Summon Shotgun",
+      "HEXA Summon Daggers",
+      "HEXA Summon Decoy Bomb",
+      "HEXA Summon Brick",
+      "HEXA Chain Arts: Beatdown",
+      "HEXA Veteran Shadowdealer"
+    ],
+    "enhancementCoresAvailable": [
+      "Chain Arts: Void Strike Boost",
+      "Apocalypse Cannon Boost",
+      "Chain Arts: Maelstrom Boost",
+      "Muscle Memory Finale Boost"
+    ],
+    "notes": "GAP: the class doc presents its full 6th job skill levelling order and its common-core order as images, so the exact ordered list beyond 'M3 = Summon Spiked Bat, M4 = Veteran Shadowdealer' could not be read as text and is deliberately left out rather than guessed. Mastery slots 1 and 2 are not stated in the doc's text; the HEXA Stat thresholds are keyed off HEXA Chain Arts: Thrash and HEXA Summon Spiked Bat mastery levels, which implies Thrash is an early mastery pick, but the doc never says so in words and it is not recorded here as a claim. Useful mechanical facts from the wiki: HEXA mastery skills inherit hyper skill passives and boost node enhancements from the base skill; HEXA Chain Arts: Thrash raises the Final Damage granted to the skill used immediately after Thrash's first hit to +25%; Chain Arts: Grand Arsenal casts at max Muscle Memory stacks, is invincible through the animation, has a 360 second cooldown, and does NOT receive Chain Arts: Thrash's Final Damage bonus. Enhancement cores require the matching 5th job skill maxed and equipped."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "NOT FOUND. No Cadena-specific hyper stat priority appears in any source checked. The Cadena 101 class doc, mapledocs.info and the Grandis Library class page all omit hyper stats entirely. Left empty rather than filled in from generic class-agnostic advice."
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "name": "Chain-less Arts - Reinforce",
+        "levelRequirement": 140,
+        "effect": "+20% damage on all attacks made with summoned weapons (does not apply to Chain Arts skills).",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/nova/cadena",
+          "https://www.mapledocs.info/classes/cadena",
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.digitaltq.com/maplestory-cadena-skill-build-guide"
+        ]
+      },
+      {
+        "name": "Chain-less Arts - Boss Rush",
+        "levelRequirement": 180,
+        "effect": "+20% boss damage on all attacks made with summoned weapons (does not apply to Chain Arts skills).",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/nova/cadena",
+          "https://www.mapledocs.info/classes/cadena",
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.digitaltq.com/maplestory-cadena-skill-build-guide"
+        ]
+      },
+      {
+        "name": "Chain Arts: Thrash - Reinforce",
+        "levelRequirement": 140,
+        "effect": "+20% damage on Chain Arts: Thrash.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/nova/cadena",
+          "https://www.mapledocs.info/classes/cadena",
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.digitaltq.com/maplestory-cadena-skill-build-guide"
+        ]
+      },
+      {
+        "name": "Chain Arts: Thrash - Linked Attack Reinforce",
+        "levelRequirement": 180,
+        "effect": "+5% Final Damage on the skill used immediately after Thrash's first hit (Thrash itself excluded). This bonus is additive with the base Thrash Final Damage bonus, which is why it is taken over Thrash - Spread on a bossing build.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/nova/cadena",
+          "https://www.mapledocs.info/classes/cadena",
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.digitaltq.com/maplestory-cadena-skill-build-guide"
+        ]
+      },
+      {
+        "name": "Chain Arts: Beatdown - Cooldown Cutter",
+        "levelRequirement": 190,
+        "effect": "-50% cooldown on Chain Arts: Beatdown.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/nova/cadena",
+          "https://www.mapledocs.info/classes/cadena",
+          "https://maplestorywiki.net/w/Cadena/Skills",
+          "https://www.digitaltq.com/maplestory-cadena-skill-build-guide"
+        ]
+      }
+    ],
+    "passivesNotTaken": [
+      "Chain-less Arts - Critical Chance (Lv.150, +20% crit rate on summoned-weapon attacks)",
+      "Chain Arts: Thrash - Spread (Lv.165, +2 max targets on Thrash)",
+      "Chain Arts: Beatdown - Reinforce (Lv.150, +20% damage on Beatdown)",
+      "Chain Arts: Beatdown - Shockwave Reinforce (Lv.165, +20% damage on Beatdown's shockwaves)"
+    ],
+    "actives": [
+      {
+        "name": "Veteran Shadowdealer",
+        "levelRequirement": 140,
+        "effect": "20 second buff that doubles the effect of Muscle Memory and adds a bonus explosion on landing; 120 second cooldown, not affected by cooldown resets.",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills"
+        ]
+      },
+      {
+        "name": "Chain Arts: Crush",
+        "levelRequirement": 160,
+        "effect": "Chains fall from above; sets Muscle Memory to max stacks for 15 seconds on hit. 30 second cooldown.",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills"
+        ]
+      },
+      {
+        "name": "Shadowdealer's Elixir",
+        "levelRequirement": 190,
+        "effect": "60 second buff: +10% damage, +10% crit rate. 120 second cooldown.",
+        "sources": [
+          "https://maplestorywiki.net/w/Cadena/Skills"
+        ]
+      }
+    ],
+    "notes": "The three actives are the whole of Cadena's active hyper list; no source ranks them against each other because all three are normally taken. DigitalTQ (Feb 2024) lists the same five passives as the current class doc, which is real independent corroboration on the passive build across a two-year gap."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "20% chance to skip skill cooldown",
+        "rank": 1,
+        "why": "Both sources call this mandatory. Cadena's rotation is a chain of short-cooldown weapon summons, so every skip is an extra combo input; the class doc's burst rotation is written around spamming Summon Spiked Bat and Summon Shuriken while cooldown skips are firing.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://www.grandislibrary.com/nova/cadena",
+          "https://www.digitaltq.com/maplestory-cadena-skill-build-guide"
+        ]
+      },
+      {
+        "line": "+8% damage to monsters afflicted with an Abnormal Status",
+        "rank": 2,
+        "why": "Cadena self-applies several debuffs (bleed from all attacks, Confusion, the Terrified IED debuff from Summon Daggers, slow from Chain Arts: Thrash and Chain Arts: Maelstrom), so this line is close to always live.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "line": "+10% boss damage",
+        "rank": 3,
+        "why": "Listed third on the bossing preset by both pages.",
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      }
+    ],
+    "farming": [
+      {
+        "line": "+20% meso obtained",
+        "rank": 1,
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "line": "+15% item drop rate",
+        "rank": 2,
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      },
+      {
+        "line": "+8% damage to normal monsters",
+        "rank": 3,
+        "consensus": "weak-single-lineage",
+        "sources": [
+          "https://www.mapledocs.info/classes/cadena",
+          "https://www.grandislibrary.com/nova/cadena"
+        ]
+      }
+    ],
+    "notes": "The class doc marks this preset as updated for the post-Angelic-Buster-rework Inner Ability preset system. Grandis Library credits the same class doc for its Inner Ability recommendation, so those two are one source; DigitalTQ independently names the cooldown-skip line as the one to chase but is dated February 2024."
+  },
+  "gearingNotes": "All gearing advice below comes from the Cadena 101 class doc (Cadena Discord, last updated 2025-09-21) and its mapledocs.info rendering, and is specific to GMS Heroic/Reboot unless noted. No independent second source was found for any of it - treat as single-lineage.\n\nWSE (weapon / secondary / emblem) potential: the doc's headline answer for Heroic is 9 lines of ATT% / 0 boss / 0 IED, with Princess No as the best secondary. Concretely: 3-line ATT weapon, 3-line ATT emblem, and a secondary that is either 3-line ATT or 21% ATT + 30% boss. The doc says 9/0/0, 8/1/0 and 7/2/0 sit close together, with boss damage favoured during the Chain Arts: Grand Arsenal burst. CONFLICT WITHIN THE SAME DOC: an appended calculation by the doc's contributor Rocky argues 8 ATT% / 1 boss / 0 IED is BIS, matching what KMS recommends, and the doc itself labels that math unverified.\n\nFlames, Heroic endgame targets: ATK weight 3, all-stat% weight 10-11 depending on how many all-stat lines, secondary stat weight 0.1.\n\nCooldown-reduction hat: the doc's raw ranking is -8s > -7s > -6s > -5s > -4s with 9% stat > -4s > -3s with 9% stat > -3s > -2s with 18% stat > -2s > 30% stat, and it notes that on a stationary target -4s is the practical winner. But its actual recommendation for most Heroic players is -2s plus stat lines, and it advises against chasing a -4s hat before Eternal gear unless Cadena is your main. A cooldown hat does not make you animation-cancel faster, so the value you get from it is capped by your hands.\n\nOz rings: since ring swapping was removed, slot both Ring of Restraint 4 and Continuous Ring 4. You need at least one level 4 ring to equip a second, so a Weapon Jump Ring 4 can act as the enabler early. Upgrade order is Ring of Restraint 4-to-5, then Continuous Ring 4-to-5, then Ring of Restraint 5-to-6, then Continuous Ring 5-to-6. The doc's alternate (bind-first) burst opener is gated behind Ring of Restraint 5.\n\nLegion board fill order: Crit Damage > Boss Damage > Ignore DEF > enough crit rate to reach 100% > LUK > ATT > buff duration until exactly 100% > DEX > STR. Meso, drop and EXP go in on a farming character.\n\nLegion artifact priority: cooldown skip > boss damage > damage > IED > crit damage > all stat > attack > buff duration.\n\nAttack speed: the doc reports no conclusive evidence between 0, 1 and 2 attack speed for Cadena. Attack speed does not change animation-cancel windows as much as it does for other classes; it mainly shifts combo timing and speeds a few specific animations. One contributor's 3-minute dummy test found similar skill usage at 0 and 1 attack speed, with slightly more Veteran Shadowdealer and Muscle Memory procs on average with Decent Speed Infusion, and the doc's author says 0 attack speed simply felt smoother. Use what feels better.\n\nCheap Shot II is unusually valuable on Cadena: it gives +2 crit rate and +11 crit damage per unique debuff on the boss. Cadena can hold 6 debuffs solo (7 while bound, or permanently 7 in a party where someone else debuffs). The doc's author estimates 7 stacks is worth roughly 20% Final Damage at their endgame values and 6 stacks roughly 17%.",
+  "commonMistakes": [
+    {
+      "mistake": "Leaving Chain Arts: Thrash on the default attack key instead of its own keybind.",
+      "why": "With Thrash on its own key you can pop and recast Summon Shuriken in one press, and crouching will stand you up into a Thrash instead of a crouch attack.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Using Chain Arts: Pursuit to cancel Summon Brick.",
+      "why": "Pursuit cancels Brick's damage as well as its animation. Cancel Brick with Summon Claw instead.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Only ever using a given weapon skill inside one memorised combo chain.",
+      "why": "The doc calls this a bad habit; you need every skill available to every chain so you can adapt to cooldowns and boss movement.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Letting Chain Arts: Maelstrom lapse.",
+      "why": "It needs refreshing every 15 seconds.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Leaving Summon Shuriken out when it is no longer touching the boss.",
+      "why": "Shuriken's value is contact uptime. If it can bounce off a wall back into the boss, leave it; otherwise detonate it as it leaves the hitbox and recast. Jumping before casting increases contact time.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Comboing normally during Grandis Goddess's Blessing instead of spamming the reset targets.",
+      "why": "Spam Summon Spiked Bat and Summon Shuriken while Blessing is up to burn its cooldown skips on the highest-value skills; keep spamming Spiked Bat alone even without Muscle Memory procs until the skips are consumed.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Rushing a -4 second cooldown hat as a Heroic player before Eternal gear.",
+      "why": "The doc recommends -2s plus stat lines for most players and says the extra cooldown only converts into damage if your hands can already keep every skill on cooldown.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Expecting to be competent on Cadena within a week.",
+      "why": "The doc and mapledocs both stress hours of Mu Lung dummy practice; Cadena's output is gated by execution more than by gear.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    },
+    {
+      "mistake": "Forgetting to set Chain Arts: Beatdown to not bind, and to lock Sol Hecate's stage, before a Culvert or burst run.",
+      "why": "The Grand Arsenal bind overrides the Beatdown bind, so the two cannot be stacked; the doc's rotations start by right-clicking to configure these.",
+      "sources": [
+        "https://www.mapledocs.info/classes/cadena",
+        "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.grandislibrary.com/nova/cadena",
+      "what": "Class overview: primary/secondary stat, weapons, legion bonus, link skill, weapon multiplier and attack speed, aggregated base stats from passives, boost node groupings, hyper passive build, Inner Ability presets, Muscle Memory mechanic, Dark Sight avoidable-attack table.",
+      "dated": "GMS Ver. 269 (Ride the Lightning update); page carries no calendar date",
+      "independent": "Partly. Independent for class properties, base-stat aggregation and the Dark Sight table. NOT independent for Inner Ability, hyper passive build or boost node build - the page's own credits line names the Cadena class doc as the source of those three."
+    },
+    {
+      "url": "https://docs.google.com/document/d/1mpmXgE5pWITvp3OHlV0LTmekFiXoZr4Zdb8X_Kv2i14",
+      "what": "'Cadena 101 guide' - the maintained Cadena Discord class doc. Inner Ability presets, hyper skill build, V matrix boost/job/decent node order, 6th job and HEXA Stat guidance, legion and legion artifact priority, Oz ring order, WSE, flames, cooldown hat, attack speed testing, Cheap Shot II analysis, full combo list, burst and Culvert rotations, training maps.",
+      "dated": "2025-09-21 (stated 'Last Update: 9/21/2025')",
+      "independent": "Yes - this is the origin source for most build judgement in this file. Note that several sections (the boost node icon rows, the 6th job levelling order, the common core order, the skill sequences) are images and could not be read as text."
+    },
+    {
+      "url": "https://www.mapledocs.info/classes/cadena",
+      "what": "Website rendering of the same Cadena 101 content, with the node and skill sequences encoded as readable text rather than images - this is where the exact boost node and job/common node ordering was recovered.",
+      "dated": "2026-07-28 (stated 'Last updated')",
+      "independent": "No. Built by Rocky, a contributor to the same Cadena Discord doc, and linked from that doc as the class website. Counts as the same source as the Google Doc."
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Cadena/Skills",
+      "what": "Complete skill data: 1st-4th job skills, all hyper skill passives and actives with level requirements and exact effects, 5th job V skills, V enhancement core groupings (which skills share a boost node), 6th job HEXA skill/mastery/enhancement core lists, Origin and Ascent skill names and values.",
+      "dated": "Continuously edited wiki; no per-page date captured. Content reflects current GMS naming including the Ascent skill Brutal Rampage, which reached live servers in 2025.",
+      "independent": "Yes - community wiki, independent of the class Discord."
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-cadena-skill-build-guide",
+      "what": "Third-party written Cadena guide. Corroborates the five hyper skill passives and the cooldown-skip Inner Ability line, and lists the class-specific 5th job nodes.",
+      "dated": "2024-02-19 (article publication date); the article itself references patch v.190 content",
+      "independent": "Yes, but STALE. Predates the current HEXA node landscape and offers no HEXA guidance. Used here only as cross-era corroboration of the hyper passive build and the Inner Ability first line."
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Best WSE potential distribution in Heroic",
+      "positionA": "9 lines ATT% / 0 boss / 0 IED is BIS (3-line ATT weapon, 3-line ATT emblem, 3-line ATT or 21% ATT + 30% boss secondary).",
+      "positionASource": "https://www.mapledocs.info/classes/cadena",
+      "positionB": "8 ATT% / 1 boss / 0 IED is BIS, matching the KMS recommendation.",
+      "positionBSource": "https://www.mapledocs.info/classes/cadena (appended calculation credited to Rocky)",
+      "note": "Both positions sit inside the same document. The doc explicitly labels the 8/1/0 math as unverified and rudimentary, and separately says 9/0/0, 8/1/0 and 7/2/0 are close to each other with boss damage favoured during the Grand Arsenal burst. Not resolved here."
+    },
+    {
+      "topic": "Attack speed (0 vs 1 vs 2)",
+      "positionA": "Play at 0 attack speed (Decent Speed Infusion plus another source) as soon as possible.",
+      "positionASource": "https://www.mapledocs.info/classes/cadena",
+      "positionB": "A contributor's 3-minute dummy test found skill usage at 0 and 1 attack speed very similar; the doc concludes there is no conclusive evidence either way and to use whichever feels better.",
+      "positionBSource": "https://www.mapledocs.info/classes/cadena (test credited to ChickenCdena)",
+      "note": "Unsettled within the community's own source."
+    },
+    {
+      "topic": "Cooldown hat target",
+      "positionA": "Raw ranking puts -8s best and -4s as the practical winner on a stationary target.",
+      "positionASource": "https://www.mapledocs.info/classes/cadena",
+      "positionB": "Most Heroic players should aim for -2s plus stat lines and not chase -4s before Eternal gear.",
+      "positionBSource": "https://www.mapledocs.info/classes/cadena",
+      "note": "Not a factual conflict so much as theoretical ranking versus practical recommendation, but the two are easy to confuse and are recorded separately."
+    },
+    {
+      "topic": "Skill naming across sources",
+      "positionA": "Current GMS names: Chain Arts: Thrash, Chain Arts: Beatdown, Chain-less Arts hypers, Veteran Shadowdealer, Muscle Memory.",
+      "positionASource": "https://maplestorywiki.net/w/Cadena/Skills",
+      "positionB": "Older guides use the pre-rename GMS names: Chain Arts: Stroke, Chain Arts: Takedown, Non-Chain Arts hypers, Professionalism, Weapon Variety.",
+      "positionBSource": "https://www.digitaltq.com/maplestory-cadena-skill-build-guide",
+      "note": "Not a disagreement about the game, but it will look like one to a user reading older guides. This file uses current GMS names throughout."
+    }
+  ],
+  "evidenceWarnings": [
+    "Three of the five sources (Grandis Library's build sections, the Cadena 101 Google Doc, and mapledocs.info) trace to ONE origin: the Cadena Discord class doc. Every V matrix ordering, HEXA guidance and gearing figure in this file rests on that single lineage. It is well maintained and current, but it is one source, not three.",
+    "The only genuinely independent guide-style corroboration is DigitalTQ, dated 2024-02-19, which predates the current HEXA landscape entirely and cannot corroborate any 6th job claim.",
+    "No source consulted is stamped v.271. The newest are mapledocs.info (2026-07-28) and the Google Doc (2025-09-21); Grandis Library is stamped GMS v.269. Nothing in them was written against v.271 specifically, so v.271 balance changes, if any, are not reflected.",
+    "The class doc's 6th job skill levelling order, common core order, boost node icon rows and burst skill sequences are images. They could not be read as text and were NOT guessed at. The hexa.order list is therefore incomplete by design.",
+    "No Cadena-specific hyper stat priority exists in any source checked; hyperStats is deliberately empty.",
+    "Two further sites that surfaced during research - maplerhouse.com and maple.gg - were deliberately excluded from the sources list. Both state their data comes from the Nexon Open API, whose terms this project treats as off limits. Mapler House's Cadena page carries no guide content anyway ('No guide yet' in every build module)."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "conflicts[0] positionB and the 'CONFLICT WITHIN THE SAME DOC' sentence in gearingNotes: '8 ATT% / 1 boss / 0 IED is BIS, matching the KMS recommendation', 'appended calculation credited to Rocky'. The mapledocs callout is titled 'Why 9/0/0 (napkin math)' and ARGUES FOR 9/0/0. The string 'KMS' appears ZERO times on the page. 'Rocky' appears exactly twice, both as the Cernium training map 'Rocky Overlook 1'. The conflict does not exist and the attribution appears to be a grep collision with a map name.",
+      "sources[] entry for mapledocs.info: 'Built by Rocky, a contributor to the same Cadena Discord doc.' No Rocky byline exists on the page; same map-name collision. The lineage conclusion (mapledocs = the class doc) is correct and independently verified, but the named human attribution is invented.",
+      "conflicts[3] 'Skill naming across sources' attributes pre-rename GMS names (Chain Arts: Stroke, Chain Arts: Takedown, Non-Chain Arts hypers, Professionalism, Weapon Variety) to DigitalTQ. Fetched the page: ZERO occurrences of any of those five. It uses current names throughout - Chain Arts: Thrash (26x), Muscle Memory (21x), Chain Arts: Beatdown (7x), Chain-less Arts, Veteran Shadowdealer. The entire conflict is fabricated and misattributed.",
+      "gearingNotes Oz ring block: 'since ring swapping was removed, slot both Ring of Restraint 4 and Continuous Ring 4'; 'You need at least one level 4 ring to equip a second, so a Weapon Jump Ring 4 can act as the enabler early'; 'Upgrade order is Ring of Restraint 4-to-5, then Continuous Ring 4-to-5, then Ring of Restraint 5-to-6, then Continuous Ring 5-to-6.' None of this is on mapledocs. The page says 'In general the best ring is Ring of Restraint (RoR), swapping to Weapon Jump (WJ) for mini bursts'; its General order ordered-list contains only levels 4 and 3 (RoR 4 / WJ 4, RoR 4, Cont 4, RoR 3, Cont 3); and the Culvert rotation says 'ring swap still seems best for Heroic/Reboot'. The 'swapping was removed' premise is contradicted by the cited source, and the 4-to-5-to-6 upgrade order is an invented priority order. (RoR 5 and 6 are real - Grindstone of Life / Grindstone of Faith per maplestorywiki - so the levels exist; the ordering claim does not.)",
+      "commonMistakes: 'Forgetting to set Chain Arts: Beatdown to not bind, and to lock Sol Hecate's stage'. Wrong skill. Rendering the mapledocs Culvert row with icon names inlined gives: 'Right-click {Last Resort} to stage 1 (or just press down + Last Resort), and right-click {Hexa Chain Arts Beatdown} so it does not bind'. The Beatdown half is verified correct; the stage-lock names Sol Hecate where the source says Last Resort. The stated rationale 'The Grand Arsenal bind overrides the Beatdown bind' is also not on the page.",
+      "vMatrix.notes: 'A class 5th job skill must be at level 25 before its boost node can be activated.' Garbled. Per maplestorywiki's V Matrix page: a JOB node must be Level 25 to unlock its corresponding HEXA boost/enhancement core, and a BOOST node must be Level 40 to unlock its corresponding HEXA mastery core. Wrong gate applied to the wrong node type.",
+      "vMatrix.notes: 'Chain Arts: Thrash Boost gives +1 max target at node level 20 and +20% ignore DEF at level 40; Veteran Shadowdealer Boost gives +5% crit rate at node level 40; all other Cadena boost nodes give +2% Final Damage per level.' Per the wiki's V Enhancement table: 13 of the 15 Cadena boosts give Max Targets +1 at Lv.20 (not Thrash alone); ALL 15 give Ignored Enemy Defense +20% at Lv.40; and Chain Arts: Crush Boost AND Veteran Shadowdealer Boost give Critical Rate +5% at Lv.20, not Lv.40. Misattributed as class-specific and the crit tier is misplaced.",
+      "hexa.notes: 'Enhancement cores require the matching 5th job skill maxed and equipped.' The requirement is the V job node at Level 25 (not maxed at 30), plus character Lv.260 per the wiki's HEXA Enhancement entries.",
+      "STALE: DigitalTQ is mis-dated in sources[]: recorded as 'dated: 2024-02-19 (article publication date)'. The page's own schema gives datePublished 2021-03-18 and dateModified 2024-02-19, and the visible byline reads '18/03/2021 - First update'. It is a 2021 article with a 2024 touch, not a 2024 publication. The 'two-year gap' corroboration framing in hyperSkills.notes rests on this mislabel; the real gap is ~4.5 years and a dateModified stamp does not evidence which content was refreshed.",
+      "STALE: DigitalTQ still reports Unfair Advantage as '+6% damage' where the current value is +9% (wiki formula 3*x at master level 3). The file correctly uses 9% from the wiki, but does not note that its sole independent corroborator is demonstrably out of date on a fact it does report.",
+      "STALE: Grandis Library (GMS Ver. 269) contains NO 6th job / HEXA skill names at all - verified. It therefore cannot corroborate any HEXA claim in the file. The file lists it as a source for the boost-node trios (legitimate - those groupings I verified independently on maplestorywiki) but does not state that it is silent on HEXA.",
+      "STALE: No source is stamped v.271 - the file states this correctly and prominently. Newest verified: mapledocs 'Last updated: July 28, 2026' (confirmed in page text), Google Doc 2025-09-21, Grandis v.269.",
+      "STALE: On the specific charge of pre-HEXA advice presented as current: the file is CLEAN. Every HEXA claim present (M3 = Summon Spiked Bat, M4 = Veteran Shadowdealer, Sol Hecate bound to HEXA Chain Arts: Beatdown, HEXA Stat thresholds at mastery 5-9 / 19 / 25, first stat core Attack + LUK + Boss dmg with late-game swap to Crit Dmg) was verified verbatim against the 2026-07-28 mapledocs render. The file also correctly leaves the image-only sections out rather than guessing, and correctly leaves hyperStats empty - mapledocs' own table of contents has no hyper stat section."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "13 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

@@ -1,0 +1,456 @@
+{
+  "slug": "kaiser",
+  "className": "Kaiser",
+  "branch": "Nova",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Two-Handed Sword",
+  "secondaryWeapon": "Dragon Essence",
+  "archetype": "Melee STR warrior built around a Morph Gauge and a Final Form transformation. Gauge-driven sustained DPM rather than a burst class: consistent chip damage, very strong mobility via its transformed teleport, good self-survivability, and effectively no party utility. Damage output depends on weaving and resetting cooldowns to keep the gauge and Final Form up.",
+  "linkSkill": {
+    "name": "Iron Will",
+    "effect": "Grants Max HP and, on Kaiser itself, additional damage that scales with Morph Gauge Stage. The wiki entry states that only the Max HP portion carries over when the skill is taken as a Link Skill on another character. See conflicts - sources disagree on whether the damage component transfers.",
+    "levels": "maplestorywiki.net (edited 2026-08-11): Lv1 = Max HP +5%, damage +2% per Morph Gauge Stage; Lv3 = Max HP +15%, damage +4% per Morph Gauge Stage. Grandis Library lists the Lv3 link as up to +12% damage at full gauge (and Lv2 up to +9%) in its Kaiser base-stat table."
+  },
+  "legionEffect": "STR +10 / +20 / +40 / +80 / +100, scaling with the character's legion rank.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Tier 1 - Boost Node 1 (Gigas Wave + Draco Surge / Dragon Slash)",
+        "why": "Feeds the primary bossing skill and the bread-and-butter DPM skill at once, and must reach level 40 to unlock the HEXA Gigas Wave mastery in 6th job.",
+        "consensus": "weak - single maintained source for the tier ordering; the node's contents are independently confirmed by Grandis Library",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      },
+      {
+        "node": "Tier 1 - Draco Surge (5th job skill)",
+        "why": "Main DPM skill on a 5 second cooldown; carries +100% crit rate and +50% IED on its own hits and is further scaled by Boost Node 1.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 1 - Dragonflare (5th job skill)",
+        "why": "Core burst component; also contributes off-burst through the automatically spawning fire orbs when the flare is not active.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 1 - Boost Node 3 (Inferno Breath)",
+        "why": "Gates the HEXA Inferno Breath mastery, which requires the Inferno Breath boost node at level 40 or higher.",
+        "consensus": "weak - single maintained source for ordering; node contents confirmed by Grandis Library",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      },
+      {
+        "node": "Tier 2 - Boost Node 2 (Blade Burst / Tempest Blades)",
+        "why": "Gates the HEXA Blade Burst and HEXA Tempest Blades masteries, both of which require this node at level 40 or higher.",
+        "consensus": "weak - single maintained source for ordering; node contents confirmed by Grandis Library",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      },
+      {
+        "node": "Tier 2 - Nova Guardians",
+        "why": "High-uptime summon: three Kaisers attack for 45 seconds on a 120 second cooldown, can be resummoned every 10 seconds, and teleport to targets on their own. Near-free damage once cast in most boss fights.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 2 - Weapon Aura",
+        "why": "Provides final damage and IED with essentially full uptime.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 2 - Grandis Goddess's Blessing",
+        "why": "Large damage% plus cooldown-skip chance; the cooldown skip matters more once 6th job skills are in the rotation.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 2 - Decent Holy Symbol",
+        "why": "EXP and drop rate while grinding.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 3 - Bladefall",
+        "why": "30 second cooldown skill whose explosion resets Gigas Wave, allowing three extra consecutive Gigas Wave casts (four in a row total). Matters for both burst and off-burst damage.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 3 - Boost Node 4 (Stone Dragon / Wing Beat / Pressure Chain)",
+        "why": "Gates the HEXA Wing Beat and HEXA Stone Dragon masteries, both of which require this node at level 40 or higher.",
+        "consensus": "weak - single maintained source for ordering; node contents confirmed by Grandis Library",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      },
+      {
+        "node": "Tier 3 - Erda Nova",
+        "why": "Kaiser has no bind skill of its own before the 6th job Origin skill, so Erda Nova is the bind.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 3 - Might of the Nova",
+        "why": "Levelling the V skill itself gives little, but HEXA Might of the Nova requires the Might of the Nova skill node at level 25 or higher, so it has to be raised eventually.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 4 - True Arachnid Reflection, Solar Crest, Blink, Impenetrable Skin, Decent Holy Fountain, Erda Shower / Erda Fountain",
+        "why": "Not essential to max but still worthwhile. True Arachnid Reflection and Solar Crest add bossing damage and can sit in the Skill Sequence; Blink, Impenetrable Skin and Decent Holy Fountain are movement and survivability tools for harder bosses; Erda Shower is a decent mobbing summon. True Arachnid Reflection and Solar Crest unlock from Hard Will and Hard Seren respectively.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Tier 5 - Rope Lift, Decent Speed Infusion, Decent Sharp Eyes, Decent Combat Orders, Decent Advanced Blessing, Will of Erda",
+        "why": "Lowest priority. Leave at level 1 until you are minmaxing for their passive all-stat, apart from situational use.",
+        "consensus": "weak - single maintained source",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "node": "Boost Node 1",
+        "skills": [
+          "Gigas Wave",
+          "Draco Surge",
+          "Dragon Slash"
+        ],
+        "rating": "Primary - unlocks a 6th job HEXA mastery",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kaiser",
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Boost Node 2",
+        "skills": [
+          "Blade Burst",
+          "Tempest Blades"
+        ],
+        "rating": "Primary - unlocks a 6th job HEXA mastery",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kaiser",
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Boost Node 3",
+        "skills": [
+          "Inferno Breath"
+        ],
+        "rating": "Primary - unlocks a 6th job HEXA mastery",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kaiser",
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Boost Node 4",
+        "skills": [
+          "Stone Dragon",
+          "Wing Beat",
+          "Pressure Chain"
+        ],
+        "rating": "Primary - unlocks a 6th job HEXA mastery",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kaiser",
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+        ]
+      },
+      {
+        "node": "Boost Node 5",
+        "skills": [
+          "Flame Surge",
+          "Impact Wave",
+          "Piercing Blaze"
+        ],
+        "rating": "Other - lowest priority, unlocks no HEXA mastery",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      },
+      {
+        "node": "Boost Node 6",
+        "skills": [
+          "Dragon Barrage",
+          "Ancestral Prominence"
+        ],
+        "rating": "Other - lowest priority, unlocks no HEXA mastery",
+        "sources": [
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      }
+    ],
+    "notes": "The V Matrix system itself was reworked and the class guide's V Matrix section was rewritten for it on 2026-06-17, so any Kaiser node advice written before mid-2026 describes a different system. Two pieces of process advice from the class guide: level skills within a tier at roughly the same rate instead of maxing them one at a time (unless you are swimming in nodestones), and try to have everything in Tiers 1-3 maxed before you unlock 6th job. Grandis Library's boost node page has a separate 'Pre-V.269 Boost Nodes' view, confirming the groupings changed at v.269. Source: https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/ and https://www.grandislibrary.com/nova/kaiser"
+  },
+  "hexa": {
+    "order": null,
+    "notes": "NOT RECORDED ON PURPOSE. The Heroic Kaiser guide does publish a 'HEXA Matrix Priority' section, but it exists only as an embedded infographic image with no text equivalent, and no other current source gives a Kaiser-specific HEXA investment order. Inventing one would be worse than leaving it blank. What IS sourced: (1) Mastery nodes are gated by V Matrix boost node levels - HEXA Gigas Wave needs Boost Node 1 at 40+, HEXA Blade Burst and HEXA Tempest Blades need Boost Node 2 at 40+, HEXA Inferno Breath needs Boost Node 3 at 40+, HEXA Wing Beat and HEXA Stone Dragon need Boost Node 4 at 40+, and HEXA Might of the Nova needs the Might of the Nova skill node at 25+. HEXA Blade Burst, HEXA Tempest Blades, HEXA Wing Beat and HEXA Stone Dragon share mastery node slots with each other, so you cannot run all of them. (2) Rotation share: the Origin skill Nova Triumphant is roughly 4% of a full rotation and the common node skill Sol Hecate roughly 7%. (3) Nova Triumphant gains +20% IED at level 10, +20% boss damage at level 20 and +30% IED plus +30% boss damage at level 30 (total +50% IED, +50% boss). (4) The Ascent skill Pyroclastic Instinct gains +10% IED and +10% boss at level 10, the same again at level 20, and +20% IED at level 30 (total +40% IED, +20% boss); it stacks with the passive IED for 100% IED. (5) Sol Hecate gains +20% IED and +20% boss at level 10 and again at level 20 (total +40%/+40%), with Charon unlocking at 20 and Phlegethon at 30. (6) Sol Janus is the explicit exception to any priority: the guide says how far you level it depends entirely on how much you grind, at any point in your HEXA progression, and suggests only unlocking it at level 1 initially. Below level 10 the Dusk form is generally better; at 10+ the Dawn rings become stronger. Source: https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/ (updated 2026-09-09). Note on patch currency: that update entry discusses the 9/9 patch directly, stating that Nova Triumphant's per-line damage was reduced but its damage inside the transformation window is unchanged or slightly higher because of a new +20% final damage condition, and explicitly calls this not a nerf."
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "No Kaiser-specific hyper stat priority could be sourced. The Heroic Kaiser guide has no hyper stat section, Grandis Library does not list one, and the only Kaiser pages that discuss 'hyper stats' (AyumiLove, DigitalTQ) are talking about AP distribution, not the hyper stat window, and are from 2024. One genuinely Kaiser-specific and current fact that bears on the decision: the guide enumerates Kaiser's critical rate sources as base 5%, Attacker Mode III 20%, Catalyze 20%, Expert Sword Mastery 20%, Decent Sharp Eyes 10%, Focus Spirit Lv3 10%, Night Lord legion 4-5%, Marksman legion 4-5%, and legion artifact 20% - summing to well over 100% before any hyper stat is spent. Grandis Library independently lists Kaiser's permanent crit rate from skills alone as +65%. Treat 'Kaiser therefore does not need Crit Rate hyper stat' as a reasonable inference from those numbers, not as a sourced recommendation. Sources: https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/ and https://www.grandislibrary.com/nova/kaiser"
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "pick": "Gigas Wave - Reinforce",
+        "effect": "+20% damage; also applies to the HEXA version of the skill",
+        "consensus": "moderate - two pages agree, but Grandis Library credits its hyper passive build to the Heroic Kaiser guide, so this is effectively one maintained source, corroborated in part by two older independent guides",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser",
+          "https://ayumilove.net/maplestory-kaiser-skill-build-guide/"
+        ]
+      },
+      {
+        "pick": "Gigas Wave - Bonus Attack",
+        "effect": "+1 hit, and +2 total hits on the HEXA version",
+        "consensus": "moderate - same caveat as above",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser",
+          "https://ayumilove.net/maplestory-kaiser-skill-build-guide/"
+        ]
+      },
+      {
+        "pick": "Inferno Breath - Reinforce",
+        "effect": "+20% damage",
+        "consensus": "weak - one maintained source, echoed by Grandis Library which credits it",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      },
+      {
+        "pick": "Inferno Breath - Boss Rush",
+        "effect": "+10% boss damage",
+        "consensus": "weak - one maintained source, echoed by Grandis Library which credits it",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser"
+        ]
+      },
+      {
+        "pick": "Wing Beat - Reinforce",
+        "effect": "+20% damage",
+        "consensus": "moderate - current guide and Grandis Library agree; older independent guides also list Wing Beat Reinforce among their picks",
+        "sources": [
+          "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+          "https://www.grandislibrary.com/nova/kaiser",
+          "https://ayumilove.net/maplestory-kaiser-skill-build-guide/"
+        ]
+      }
+    ],
+    "actives": null,
+    "notes": "No current source gives a ranked pick order for the active hyper skills. Kaiser's Majesty is documented in detail and is the one active with real rotation weight: it halves the cooldown of all 4th job and lower skills for 30 seconds (with two excluded skills), and the reduction applies both to skills cast during its window and to cooldowns already ticking when it is pressed. The guide's stated purpose for it is to squeeze in extra casts of two short-cooldown skills during burst and to guarantee uptime on a third. The -50% is applied after other cooldown reduction such as a cooldown hat and Mercedes legion. Source: https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+  },
+  "innerAbility": {
+    "bossing": [
+      "Chance to Skip Cooldown +20% (legendary line)",
+      "Boss Damage +10%",
+      "Buff Duration +38%"
+    ],
+    "training": [
+      "Meso Obtained / Item Drop Rate +20%",
+      "Meso Obtained / Item Drop Rate +15%",
+      "Buff Duration +38%"
+    ],
+    "consensus": "weak - published on Grandis Library, which credits the Heroic Kaiser guide for its inner ability build; the guide's own inner ability section is an infographic image. Effectively one source.",
+    "notes": "Attack Speed +1 is explicitly NO LONGER recommended as of the current guide: Kaiser reaches attack speed level 9 without it (two-handed swords start at 4, then Blaze On +2, Sword Mastery +1, Decent Speed Infusion +1, Extreme Green Potion +1), and the guide states there is zero practical difference between attack speed levels 9 and 10 in the current build. This directly contradicts older guides that list Attack Speed +1 as the top Kaiser line - see conflicts. Buff duration is worth chasing generally: the guide values 40% buff duration at roughly 3% final damage over a full rotation, with other buff duration coming from Mechanic legion (20-25%), the Guiding Stars link (19%), traits (10%), legion artifact (20%) and the legion board (up to 40%).",
+    "sources": [
+      "https://www.grandislibrary.com/nova/kaiser",
+      "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+    ]
+  },
+  "gearingNotes": "Two-handed sword relative power, weakest to strongest, per the current class guide: Sweetwater Two-Handed Sword, Fafnir Penitent Tears, AbsoLab Broad Saber, Ryude's Sword, Liberated Kaiserium, Arcane Umbra Two-Handed Sword, Genesis Two-Handed Sword, Destiny Two-Handed Sword. That is a strength ranking, not an upgrade path - the recommended actual progression is Fafnir into AbsoLab into Arcane Umbra into Genesis into Destiny. An early Kaiserium is only worth using if you do not expect to reach Arcanes soon. Secondary: buy the Evolving Secondary Weapon Selection Box from the secondary weapon vendor and take the Evolving Nova Truth Essence (+10 all stats, +2 attack); its potential transfers into the Astra Nova Essence once you unlock stage 1. Astra Nova Essence is the true BiS, enhanced in three stages for +10/15/20 all stats and +7 attack, star-forceable to 15/20/30 stars. Oz rings, valued at endgame gear levels as of 2026-09-09: Ring of Restraint 4 gives roughly 27.7% final damage during its 15 second window on a 120 second cooldown, working out to roughly 7.9% final damage overall; Continuous Ring 4 gives roughly 7.4% final damage at full uptime. Both can be equipped and used at once. Grindstone upgrading favours Ring of Restraint at both level 5 and level 6. Cooldown hat ranking: 33% STR is worst, then 36% STR tied with a plain -4s cooldown line, then -4s cooldown plus all stat or STR, then -5s or -6s cooldown (described as unrealistic on Heroic servers). The guide advises against actively chasing a cooldown hat early - keep a 3-line STR% CRA hat and revisit it when Eternals start appearing. WSE target is 3-line attack% on weapon, secondary and emblem, but the guide's advice is to keep the first acceptable roll because minmaxing WSE is very expensive relative to other upgrades. Legion board ordering: critical damage, then boss damage, then buff duration and IED, then STR, then attack. On pitched swapping, the guide's position is that you can swap a decently flamed 22-star 3-line Gollux belt and earring for a Dreamy Belt and Commanding Force Earrings once you have both completed, and recommends moving to a transposed Sweetwater Pendant or a Daybreak Pendant when you leave Gollux - with the caveat that the maths assumes the older 22-star starforce meta and is muddier under current starforce, so check against a scouter. Source: https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/ (updated 2026-09-09).",
+  "commonMistakes": [
+    {
+      "mistake": "Locking Dragonflare in the V Matrix.",
+      "why": "A locked Dragonflare stops the automatic fire orbs from spawning, which the guide puts at roughly 2-3% final damage. It says outright not to lock this skill.",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    },
+    {
+      "mistake": "Pressing the Dragonflare key again during burst.",
+      "why": "A second press deactivates the flare, cancelling the buff window you just opened.",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    },
+    {
+      "mistake": "Maxing V Matrix nodes one at a time.",
+      "why": "The guide recommends raising everything inside a tier at roughly an even rate, and only maxing individually if you have surplus nodestones.",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    },
+    {
+      "mistake": "Casting Wing Beat too early in the rotation.",
+      "why": "Wing Beat should be held until higher-value skills such as Gigas Wave and Inferno Breath / Tempest Blades are on cooldown; used out of order it displaces stronger casts.",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    },
+    {
+      "mistake": "Re-casting Tempest Blades before Dragon Blow has triggered.",
+      "why": "Two Tempest Blades casts are needed to arm Dragon Blow; casting again before it fires wastes the cast. The mark itself does not expire, so there is no rush.",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    },
+    {
+      "mistake": "Stacking Nova Guardians and Dragonflare on the same timing while mobbing.",
+      "why": "Both are large-area, long-duration sources of mobbing damage; the guide recommends staggering them to keep mobbing coverage continuous.",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    },
+    {
+      "mistake": "Squeezing in an extra cast of a cooldown-skipped DPM skill in the ~30 seconds before your next burst.",
+      "why": "If a skill's cooldown gets skipped late in the cycle, taking the free fourth cast risks the skill not being available when the burst window opens, which breaks the whole burst timing. (The guide names the specific skill via an icon that could not be read from the text version, so it is left unnamed here rather than guessed.)",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    },
+    {
+      "mistake": "Treating Kaiser as a burst class.",
+      "why": "The guide lists relatively low burst and one of the lowest culvert scores in the game as Kaiser's drawbacks; its value is sustained damage and uptime, not burst windows.",
+      "consensus": "weak - one maintained source",
+      "sources": [
+        "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/",
+      "what": "Official Heroic Kaiser Guide 2026, maintained by Ryuuku, Xaltrex, Qweoritu and Zyndu of the Heroic Kaiser Discord. The single most current and detailed source: V Matrix tier ordering, 5th and 6th job skill mechanics and numbers, hyper passives, sword and secondary progression, Oz rings, cooldown hat, legion ordering, burst rotation. Explicitly written for GMS NA Heroic servers. Its HEXA priority, inner ability and hyper stat sections are infographic images and could not be read.",
+      "dated": "2026-09-09 (update log entry covering the 9/9 patch; prior entry 2026-06-17 for the V Matrix rework and Erel Light link)",
+      "independent": true
+    },
+    {
+      "url": "https://www.grandislibrary.com/nova/kaiser",
+      "what": "Grandis Library Kaiser class overview: class properties, weapon multiplier, skill-derived base stats, boost node compositions and priority tiers, skill build path, Morph Gauge command inputs, inner ability, hyper passive build. NOT independent for the build recommendations - the page's own credits line attributes its inner ability, hyper passive build, boost node build and infographic to the Heroic Kaiser Guide. Independent for the class data and stat tables.",
+      "dated": "Page states GMS Ver. 269 (Ride the Lightning Update); no explicit calendar date",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Kaiser",
+      "what": "Class data page: faction Nova, warrior, main stat STR, secondary DEX, two-handed sword, Dragon Essence secondary, Iron Will link skill, legion effect STR +10/20/40/80/100. Used to confirm the class exists and its basic properties.",
+      "dated": "2026-03-18 (page last edited)",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Kaiser/Skills",
+      "what": "Full skill list: confirms Iron Will's per-level values and link-skill caveat, confirms Dragonflare exists as a 5th job skill, and confirms the 6th job skill node 1 Origin skill is Nova Triumphant and skill node 2 Ascent skill is Pyroclastic Instinct. Same wiki as the entry above, so counted as the same independent source.",
+      "dated": "2026-08-11 (page last edited)",
+      "independent": false
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-kaiser-skill-build-guide/",
+      "what": "Independent Kaiser build guide. Used mainly as a cross-check and as a record of outdated advice: it recommends Attack Speed +1 inner ability, lists a pre-rework V Matrix trio set, and gives Iron Will as +10/15/20% Max HP. Predates the 2026 V Matrix rework.",
+      "dated": "2024-10-16",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-kaiser-skill-build-guide",
+      "what": "Independent Kaiser build guide. Also used as a cross-check and outdated-advice record: Attack Speed +1 inner ability, pre-rework node groupings, Iron Will as +15% Max HP. Predates the 2026 V Matrix rework.",
+      "dated": "2024-02-19",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Iron Will link skill - does the damage component transfer?",
+      "positionA": "maplestorywiki.net states Iron Will grants Max HP +5% (Lv1) to +15% (Lv3) plus damage per Morph Gauge Stage of +2% (Lv1) to +4% (Lv3), and says explicitly that only the HP increase applies when the skill is used as a Link Skill. Source: https://maplestorywiki.net/w/Kaiser/Skills (edited 2026-08-11)",
+      "positionB": "Grandis Library's Kaiser base-stat table lists the Lv3 link skill under Damage, at +3%/+4% per Morph Gauge Stage for a maximum of +9% at Lv2 and +12% at Lv3 - i.e. treating the damage as active on the Kaiser itself. Source: https://www.grandislibrary.com/nova/kaiser",
+      "positionC": "Older independent guides give only a flat HP figure and disagree on the number: AyumiLove (2024-10-16) says +10/15/20% Max HP, DigitalTQ (2024-02-19) says +15% Max HP.",
+      "notResolved": "Both current sources agree on +15% Max HP at Lv3. Whether the Morph Gauge damage rider applies to a non-Kaiser holder of the link is unresolved here; the wiki's wording says it does not, Grandis Library's table implies it does at least for the Kaiser. The 2024 HP numbers differ from the 2026 ones and should be treated as stale."
+    },
+    {
+      "topic": "Attack Speed +1 as an inner ability line",
+      "positionA": "Official Heroic Kaiser Guide (2026-09-09): attack speed is no longer recommended on inner ability, because Kaiser reaches attack speed level 9 from Blaze On, Sword Mastery, Decent Speed Infusion and Extreme Green Potion, and there is no practical difference between levels 9 and 10 in the current build.",
+      "positionB": "AyumiLove (2024-10-16) and DigitalTQ (2024-02-19) both list Attack Speed +1 as Kaiser's top inner ability line.",
+      "notResolved": "Recorded rather than resolved, though the recency gap is large and the 2026 position gives a mechanical reason. Anyone rerolling inner ability today should weigh the 2026 source more heavily."
+    },
+    {
+      "topic": "V Matrix boost node groupings",
+      "positionA": "Current groupings (Grandis Library at v.269 and later, and the class guide): Node 1 Gigas Wave + Draco Surge / Dragon Slash; Node 2 Blade Burst / Tempest Blades; Node 3 Inferno Breath; Node 4 Stone Dragon / Wing Beat / Pressure Chain; Node 5 Flame Surge / Impact Wave / Piercing Blaze; Node 6 Dragon Barrage / Ancestral Prominence.",
+      "positionB": "2024 guides describe different trios, e.g. Blade Burst / Gigas Wave / Tempest Blades and Wing Beat / Inferno Breath, and reference a 'Dragon Blaze' node.",
+      "notResolved": "Not a genuine disagreement so much as a system change: the class guide's update log records a V Matrix rework on 2026-06-17 and Grandis Library keeps a separate 'Pre-V.269 Boost Nodes' view. The 2024 groupings should be treated as obsolete, not as a competing opinion."
+    },
+    {
+      "topic": "Independence of the current-patch build advice",
+      "positionA": "There are three or more independent sources for Kaiser's class facts (Heroic Kaiser Guide, maplestorywiki.net, AyumiLove, DigitalTQ, plus Grandis Library for stat tables).",
+      "positionB": "For the judgement layer - V Matrix levelling order, hyper passive build, inner ability - there is effectively ONE current source. Grandis Library's credits line attributes exactly those sections to the Heroic Kaiser Guide, so the apparent agreement between the two is not independent corroboration. The only other Kaiser-specific build opinions found are from 2024 and predate the V Matrix rework.",
+      "notResolved": "Stated rather than resolved. This is why consensusLevel is 'moderate' and most individual claims are marked 'weak'."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "FABRICATED SOURCE DATE. sources[0].dated reads '2026-09-09 (update log entry covering the 9/9 patch; prior entry 2026-06-17 for the V Matrix rework and Erel Light link)'. I fetched the guide three times (docs.google.com/document/d/12iH3vqAQCelM7QC2Kgm4qYQE4nUttGEKh2_r5k7R5Vw/mobilebasic) and asked directly for its update history. It has a SINGLE dated entry, 'Updated: 2026-09-09'. There is no multi-entry change log, no 2026-06-17 entry, and no mention of a V Matrix rework anywhere in it. 'Erel Light' does appear in the document, but in an entirely different context - as part of the link-skill line 'Guiding Stars (Sia Astelle/Erel Light)'. This reads like a real detail relocated into an invented changelog entry. It is load-bearing: vMatrix.notes uses the 2026-06-17 date to date-stamp the whole rework argument.",
+      "MISATTRIBUTED NODE RATINGS - the file puts words in Grandis Library's mouth and inverts its actual advice. vMatrix.trios rates Boost Node 3 (Inferno Breath) and Boost Node 4 (Stone Dragon/Wing Beat/Pressure Chain) as 'Primary - unlocks a 6th job HEXA mastery', citing grandislibrary.com/nova/kaiser. Grandis Library's Boost Node Legend actually rates: PRIMARY = Nodes 1 and 2 only; SECONDARY = Node 3, defined as nodes that 'don't unlock a 6th Job HEXA Mastery but are still used'; OTHER = Nodes 4, 5 and 6, 'do not need to be upgraded or has least priority'. So the file (a) asserts a rating the cited source does not give, (b) for Node 3 asserts the exact opposite of what that source says about HEXA mastery unlocking, and (c) rates Node 4 'Primary' where the source rates it lowest priority. The file's node-5/node-6 'Other' ratings are correct.",
+      "UNRECORDED CONFLICT arising from the above. The Heroic Kaiser Guide states 'Requirement: Inferno Breath Boost Node Level 40+' for HEXA Inferno Breath, and requirements on Wing Beat/Pressure Chain and Stone Dragon/Pressure Chain for HEXA Wing Beat and HEXA Stone Dragon. Grandis Library says Node 3 unlocks no HEXA mastery and Node 4 is lowest priority. That is a genuine head-on disagreement between the two cited sources about whether Nodes 3 and 4 gate HEXA masteries, and the file's conflicts[] array does not record it - it silently resolves in favour of the guide while citing Grandis Library as agreeing.",
+      "UNVERIFIED IN SOURCE (not proven invented, flagged because I could not find it): (a) 'the common node skill Sol Hecate roughly 7%' of rotation - the guide does state '~4% of our full rotation' for Nova Triumphant, which I confirmed, but no Sol Hecate percentage appears; (b) 'HEXA Might of the Nova requires the Might of the Nova skill node at level 25 or higher' - six boost-node 40+ requirements are stated in the guide, none for Might of the Nova; (c) the entire cooldown hat ranking in gearingNotes (33% STR worst, then 36% STR tied with -4s, then -4s + all stat/STR, then -5s/-6s) - the guide mentions '-4s CD hat' only as a technical aside under Kaiser's Majesty and carries no hat ranking in what I could retrieve. IMPORTANT CAVEAT: the fetch of the doc is truncated (it cuts off mid-sentence inside the Sol Hecate section), so any of these three could live in the unretrieved tail. They should be re-verified against the full document before publication, not assumed good.",
+      "MINOR / UNCONFIRMED: conflicts[2] positionB says the 2024 guides 'reference a Dragon Blaze node'. Neither AyumiLove nor DigitalTQ mentions a Dragon Blaze node in what I retrieved. AyumiLove's trios are Gigas Wave/Wingbeat/Tempest Blades and Infernal Breath/Stone Dragon/Blade Burst; DigitalTQ's are Blade Burst/Gigas Wave/Tempest Blades and Wing Beat/Inferno Breath/[Free]. The file's characterisation of DigitalTQ is accurate; the Dragon Blaze detail is unsourced.",
+      "STALE: Grandis Library is stamped 'GMS Ver. 269 [Ride the Lightning Update]' while the file's patchVersion is v.271. The file records this in its sources array but then leans on that page as a current-patch authority for node ratings and trios in vMatrix.trios. Two patches of drift on a page that is already derivative for build advice.",
+      "STALE: hyperSkills uses AyumiLove (2024-10-16) as corroboration for a post-rework hyper passive build. Hyper passives track skill identity, so this is less dangerous than stale node advice, but a 2024 page cannot corroborate a 2026 build - and its actual pick list differs (Wing Beat Pummel and Extra Attack instead of the Inferno Breath picks). Using it to lift a rating from 'weak' to 'moderate' is staleness laundering.",
+      "STALE: NOT STALE - handled well: the file explicitly quarantines the 2024 AyumiLove and DigitalTQ advice as obsolete rather than presenting it as current, correctly flags the Attack Speed +1 line as superseded, and correctly frames the 2024 node trios as a system change rather than a live disagreement. No pre-HEXA advice is presented as current anywhere in the file.",
+      "STALE: COULD NOT VERIFY: maplestorywiki.net returned HTTP 403 on both /w/Kaiser and /w/Kaiser/Skills across repeated attempts, so the two wiki-sourced entries - Iron Will's Lv1 +5%/Lv3 +15% plus per-Morph-Gauge damage, the 'only Max HP carries over as a Link Skill' caveat, and the stated page edit dates of 2026-08-11 and 2026-03-18 - remain unverified by me. Not an accusation, a gap. Also note the file already counts the two wiki pages as one source, which is correct.",
+      "STALE: WEB SEARCH BUDGET WAS EXHAUSTED for this session (200/200 used before I started), and DuckDuckGo served a CAPTCHA which I did not attempt. All verification above is from direct fetches of the cited URLs plus a Bing fetch that returned nothing usable. I therefore could NOT search for a fourth or fifth independent Kaiser source (Reddit guide threads, YouTube descriptions, Discord compilations) to test whether the single-source problem is real or just unexplored. Treat 'only one current source exists' as unrefuted rather than proven."
+    ],
+    "clearedOnInspection": [
+      "NOT FABRICATED - checks that passed: every V Matrix tier listing in the file matches the guide exactly (Tier 1 = Node 1/Draco Surge/Dragonflare/Node 3; Tier 2 = Node 2/Nova Guardians/Weapon Aura/Grandis Goddess's Blessing/Decent Holy Symbol; Tier 3 = Bladefall/Node 4/Erda Nova/Might of the Nova; Tier 4 and Tier 5 likewise). All six boost node compositions match Grandis Library exactly. Draco Surge 5s cooldown with +100% crit rate and +50% IED, the crit-rate source list, Nova Triumphant's 10/20/30 bonuses, Pyroclastic Instinct's 10/20/30 bonuses, Bladefall resetting Gigas Wave for 3 consecutive uses, the Oz ring figures (~27.7%/~7.9% and ~7.4%), the sword progression Fafnir to AbsoLab to Arcane Umbra to Genesis to Destiny, and Grandis Library's +65% permanent crit rate and Lv3 link value of +12% - all confirmed. The decision to leave hexa.order and hyperStats.priority null is correct: I independently confirmed the guide's HEXA priority is image-only and that it has NO hyper stat section at all."
+    ],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "10 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

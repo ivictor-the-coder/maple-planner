@@ -1,0 +1,401 @@
+{
+  "slug": "thunder-breaker",
+  "className": "Thunder Breaker",
+  "branch": "Cygnus Knights",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "Knuckle",
+  "secondaryWeapon": "Jewel",
+  "archetype": "Melee STR pirate built on a skill-linking system: attacks chain into one another with no end-lag as long as you alternate inputs, and the core damage loop is alternating two main attacks. Sustained DPM class with very high mobility and strong boss uptime tools rather than one large burst window, though 6th job added a stronger 2 minute burst, an over-shield and an Origin skill. Party utility is limited to an attack speed buff.",
+  "linkSkill": {
+    "name": "Cygnus Blessing",
+    "effect": "Shared Cygnus Knights link skill. Grants flat Attack Power and Magic ATT plus Abnormal Status Resistance and All Elemental Resistance. Stacks up to 5 times, once per unique Cygnus Knights job character on the world.",
+    "levels": "maplestorywiki.net Thunder_Breaker/Skills: Lv1 = ATT and MATT +7, Abnormal Status Resistance +1, All Elemental Resistance +1%; max level = ATT and MATT +35, Abnormal Status Resistance +22, All Elemental Resistance +22%. Grandis Library states the same max values and adds that Mihile is excluded from the 5-character stack."
+  },
+  "legionEffect": "STR +10 / +20 / +40 / +80 / +100, scaling with legion rank.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "All Common Nodes first (Decent Holy Symbol optional, taken only if EXP and drop rate are wanted)",
+        "why": "The class doc puts unlocking the common node pool ahead of any boost node when nodestones are scarce.",
+        "consensus": "weak - single source family (class doc; Grandis Library restates the same Discord)",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      },
+      {
+        "node": "Annihilate Boost, Thunderbolt Boost and Gale/Typhoon Boost - levelled equally",
+        "why": "Annihilate and Thunderbolt are the two skills of the main DPM loop and Gale/Typhoon is the low-cooldown attack woven into both the loop and the burst. The class doc states these three should be raised together rather than one before another.",
+        "consensus": "moderate - the trio contents are independently corroborated by mastermysty's cross-class node table (2024-11-21), which lists Thunderbolt / Annihilate / Gale as the Thunder Breaker primary trio, and by maplestorywiki's V Enhancement table, which confirms these are three separate boost cores that can share one trio",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://mystyjl.github.io/reference/NodeGuide.html",
+          "https://maplestorywiki.net/w/Thunder_Breaker/Skills"
+        ]
+      },
+      {
+        "node": "Lightning Cascade (5th job skill node)",
+        "why": "Listed as the next priority after the three main boost nodes in the class doc's node-starved ordering. It is also the opener of the doc's 2 minute burst sequence.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      },
+      {
+        "node": "Lightning Spear Multistrike (5th job skill node)",
+        "why": "Next in the class doc's ordering; it is the large burst attack in the 2 minute sequence.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      },
+      {
+        "node": "Shark Torpedo (5th job skill node)",
+        "why": "Next in the class doc's ordering; a low-cooldown attack used off cooldown during normal DPM.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      },
+      {
+        "node": "Lightning God Spear Strike (5th job skill node)",
+        "why": "Next in the class doc's ordering; a short-cooldown DPM skill that procs after a number of link attacks.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      },
+      {
+        "node": "Tidal Crash / Sea Wave / Shark Sweep Boost node",
+        "why": "The last boost node the class doc ranks. maplestorywiki confirms these three boosts share one enhancement core, so they form a natural trio.",
+        "consensus": "weak for the ranking (single source family); the grouping itself is game data confirmed by maplestorywiki and Grandis Library",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://maplestorywiki.net/w/Thunder_Breaker/Skills",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker"
+        ]
+      },
+      {
+        "node": "Erda Nova to at least level 25, then Overdrive, Empress/Transcendent Cygnus's Blessing, Loaded Dice, Phalanx Charge, Blink, Rope Lift, Decent Holy Fountain, and any Decent skill carrying passive all stat",
+        "why": "The class doc's tail-end ordering for common and utility nodes. Level 25 Erda Nova is called out specifically because it is the breakpoint for a 120 second cooldown bind.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": "Annihilate Boost + Thunderbolt Boost + Gale Boost",
+        "role": "Primary / bossing",
+        "consensus": "moderate - named by the class doc (2026) and independently by mastermysty's node table (2024-11-21)",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      },
+      {
+        "trio": "Ascension Boost + Deep Rising Boost + Tidal Crash Boost",
+        "role": "Secondary, per mastermysty only",
+        "consensus": "weak and contested - this secondary trio appears only in mastermysty's 2024 table. The 2026 class doc instead ranks the Tidal Crash / Sea Wave / Shark Sweep node as the last boost node worth building, and Grandis Library classifies Ascension and Thunder as OTHER tier. See conflicts.",
+        "sources": [
+          "https://mystyjl.github.io/reference/NodeGuide.html"
+        ]
+      }
+    ],
+    "notes": "Boost node groupings as published by maplestorywiki (game data, no judgement attached), which Grandis Library reproduces: Core 1 = Annihilate Boost; Core 2 = Thunderbolt Boost; Core 3 = Gale Boost and Deep Rising Boost; Core 4 = Tidal Crash Boost, Sea Wave Boost, Shark Sweep Boost; Core 5 = Thunder Boost and Ascension Boost; Core 6 = Flash Boost and Lightning Punch Boost. Grandis Library tiers these as PRIMARY (Annihilate; Thunderbolt), SECONDARY (Gale/Typhoon/Deep Rising; Tidal Crash/Sea Wave/Shark Sweep) and OTHER (Ascension/Thunder; Flash/Lightning Punch), and says Primary and Secondary are the ones worth upgrading. Boost node level cap is 60. maplestorywiki lists final damage per level by skill: Lightning Punch and Flash boosts highest at 7% per level, Shark Sweep / Tidal Crash / Sea Wave at 5%, Ascension / Thunder at 3%, and Gale / Annihilate / Thunderbolt / Deep Rising lowest at 2% but with extra effects at levels 20 and 40 (max targets, ignore DEF, critical rate). Sources: https://maplestorywiki.net/w/Thunder_Breaker/Skills and https://grandislibrary.com/cygnus-knights/thunder-breaker"
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "No public text ordering exists. The Thunder Breaker Discord publishes the 6th job investment order only as infographics, in two variants - a Fragment Efficient version and an Energy Efficient version - both dated 2026-09-04 by Grandis Library and credited to the Thunder Breaker Discord. The class doc reproduces the same thing as a single HEXA Matrix Leveling Guide image, updated to include HEXA Phalanx Charge.",
+        "why": "Recorded as a gap rather than filled in. The images are icon-only with no skill names printed, so naming a step-by-step order from them would be guesswork.",
+        "consensus": "strong that these are the community's artifacts (both the class doc and Grandis Library point at them); no readable text order exists anywhere",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/thunder-breaker/thunder-breaker-6th-job-fragments.png",
+          "https://grandislibrary.com/class-infographic/thunder-breaker/thunder-breaker-6th-job-energy.png",
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      },
+      {
+        "step": "Shape of the published sequence: it is incremental, not one-node-at-a-time. The Fragment Efficient chart runs roughly 130 upgrade steps and opens by taking several different nodes to level 1 before any node is pushed to level 2, then continues raising nodes a level or two at a time; level 30 targets appear only in the final rows.",
+        "why": "Read directly off the infographic's level badges, which are legible without identifying which icon is which skill.",
+        "consensus": "weak - one artifact, read visually; the individual node identities are deliberately NOT recorded here",
+        "sources": [
+          "https://grandislibrary.com/class-infographic/thunder-breaker/thunder-breaker-6th-job-fragments.png"
+        ]
+      },
+      {
+        "step": "Separate Fragment Efficient and Energy Efficient routes exist; follow whichever resource is the bottleneck.",
+        "why": "The two charts are published side by side as alternatives, which is the same Heroic-relevant distinction other class docs draw between fragment-gated and Sol Erda-gated progress.",
+        "consensus": "weak - single source family (Thunder Breaker Discord via Grandis Library)",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker"
+        ]
+      },
+      {
+        "step": "Do not spend on rerolling HEXA Stat main stats for a higher roll until the whole HEXA Matrix is maxed and fragments are in genuine surplus.",
+        "why": "Stated as a spending rule in the class doc's HEXA Stat section.",
+        "consensus": "weak - single source family",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      },
+      {
+        "step": "HEXA Stat line value order for Thunder Breaker: ATT, then flat STR, then Critical Damage, then Boss Damage, then Damage, then Ignore DEF. With only three HEXA Stat nodes available in v.271, a player is working with ATT, flat STR and Critical Damage only.",
+        "why": "Given as an explicit ranking in the class doc, with the note that the node count limits how many of the listed stats are reachable.",
+        "consensus": "weak - single source family, but it is a concrete class-specific ranking and no source contradicts it",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+        ]
+      }
+    ],
+    "notes": "Node inventory validated against maplestorywiki so nothing here is invented. Skill Nodes: Core 1 (Origin) = Thunder Wall Sea Wave; Core 2 (Ascent) = Annihilating Rush. Mastery Nodes: Core 1 = HEXA Annihilate (also raises Thunder Bolt); Core 2 = HEXA Thunderbolt; Core 3 = HEXA Typhoon and HEXA Deep Rising; Core 4 = HEXA Sea Wave (also raises Deep Reinforcement). HEXA Enhancement (boost) nodes: Lightning Cascade Boost, Shark Torpedo Boost, Lightning God Spear Strike Boost, Lightning Spear Multistrike Boost - all level requirement 260, master level 30, final damage rising linearly with jumps at levels 10, 20 and 30. HEXA Phalanx Charge was added in v.271 and is not yet on the maplestorywiki skills page that was read; the class doc records it as a level 30 skill and quotes MapleScouter figures of roughly +0.42% final damage at level 1, +1.18% at 10, +2.00% at 20 and +2.86% at 30. HEXA Stat node unlocks per the class doc: node I at Lv 260 for 5 Sol Erda and 10 fragments, node II at Lv 265 for 10 Sol Erda and 200 fragments, node III at Lv 270 for 15 Sol Erda and 350 fragments; resets cost 10m, 20m and 35m mesos respectively. The doc also flags a KMS change (v.1.2.417 MapleStory Overdrive, 2026-07-31) adding a third HEXA skill core, Sea Emperor Smash, worth roughly 2.5-3% final damage at level 30 - not in GMS as of v.271, so any HEXA order will shift when it arrives. Sources: https://maplestorywiki.net/w/Thunder_Breaker/Skills and https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+    "noteOnCharacterLevel154": "At Lv 154 none of this is reachable yet - 5th job and the V Matrix begin at 200, 6th job and the HEXA Matrix at 260. The actionable items at this level are the hyper skill passives (from Lv 140) and hyper stats."
+  },
+  "hyperStats": {
+    "priority": null,
+    "notes": "NOT SOURCED. The Thunder Breaker class doc has no hyper stat section at all, and Grandis Library publishes no hyper stat allocation for any class. No independent Thunder Breaker hyper stat ranking was found in this pass. Two sourced facts bear on it: Thunder Breaker gains +40% critical rate and +30% critical damage from its own passives and 0% boss damage from passives (Grandis Library base-stats-from-skills table), and the class doc says a Thunder Breaker short on critical rate early should use the Xenon link and may swap in Lynn or Phantom links as needed. The doc's Legion Grid ranking - critical rate as needed, then boss damage, critical damage, ignore DEF, STR, attack power, buff duration (only when running the Angelic Buster link), DEX - is a LEGION recommendation, not a hyper stat one, and must not be relabelled as hyper stats. The community's operative answer to hyper stat priority is MathBro's per-character optimizer at https://brendonmay.github.io/hyperCalculator/, not a fixed list. Sources: https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic and https://grandislibrary.com/cygnus-knights/thunder-breaker"
+  },
+  "hyperSkills": {
+    "passives": [
+      {
+        "skill": "Gale - Reinforce",
+        "consensus": "weak - class doc and Grandis Library agree, but Grandis credits the same Thunder Breaker Discord, so this is one source family. Name validated against maplestorywiki.",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+          "https://maplestorywiki.net/w/Thunder_Breaker/Skills"
+        ]
+      },
+      {
+        "skill": "Gale - Extra Strike",
+        "consensus": "weak - one source family; name validated against maplestorywiki",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+          "https://maplestorywiki.net/w/Thunder_Breaker/Skills"
+        ]
+      },
+      {
+        "skill": "Thunderbolt - Extra Strike",
+        "consensus": "weak - one source family; name validated against maplestorywiki",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+          "https://maplestorywiki.net/w/Thunder_Breaker/Skills"
+        ]
+      },
+      {
+        "skill": "Annihilate - Reinforce",
+        "consensus": "weak - one source family; name validated against maplestorywiki",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+          "https://maplestorywiki.net/w/Thunder_Breaker/Skills"
+        ]
+      },
+      {
+        "skill": "Annihilate - Boss Rush",
+        "consensus": "weak - one source family; name validated against maplestorywiki",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+          "https://maplestorywiki.net/w/Thunder_Breaker/Skills"
+        ]
+      }
+    ],
+    "actives": null,
+    "actives_note": "No source read gives a recommended hyper ACTIVE loadout for Thunder Breaker; neither the class doc nor Grandis Library lists one. Left empty deliberately.",
+    "notes": "The full hyper passive pool per maplestorywiki is Gale - Reinforce / Spread / Extra Strike, Thunderbolt - Reinforce / Spread / Extra Strike and Annihilate - Reinforce / Guardbreak / Boss Rush; the five recommended above are chosen from those nine. Two class hyper skills sit outside the passive pool and matter because the doc's rotation is built on them: Primal Bolt (Lv 140) removes the Gale/Typhoon cooldown for its duration, raises Lightning Elemental's ignore DEF from 45% to 50%, and shortens the cooldowns of Sea Wave, Shark Torpedo and Lightning God Spear Strike while linking; Deep Rising (Lv 160) is a 45 second cooldown invincibility of a few seconds that can be linked into and out of. Sources: https://maplestorywiki.net/w/Thunder_Breaker/Skills and https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "First line: Passive Skills +1",
+        "consensus": "weak - one source family. Grandis Library presents the top line as either Boss Damage +20% or Passive Skills +1, while the class doc lists only Passive Skills +1. Both trace to the Thunder Breaker Discord.",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker"
+        ]
+      },
+      {
+        "line": "Second line: Boss Damage +10%",
+        "consensus": "weak - one source family. Grandis pairs this second line with Buff Duration +38% as the alternative.",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker"
+        ]
+      },
+      {
+        "line": "Third line: +8% damage against enemies afflicted with an abnormal status",
+        "consensus": "weak - one source family, but the doc and Grandis state it identically",
+        "sources": [
+          "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "First and second lines: Mesos Obtained or Item Drop Rate (+20%, then +15%)",
+        "consensus": "weak - Grandis Library only; the class doc gives no separate training preset",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker"
+        ]
+      },
+      {
+        "line": "Third line: +8% damage to normal monsters",
+        "consensus": "weak - Grandis Library only",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/thunder-breaker"
+        ]
+      }
+    ],
+    "notes": "Attack speed is not listed as an inner ability target for this class by any source read. Grandis Library's base-stat table shows Thunder Breaker reaching attack speed 8 on its own at Lightning Elemental stage 5, with Speed Infusion adding +2 more without breaking the soft cap - which would explain why no source recommends the attack speed line, but no source says so explicitly, so this is flagged as an inference rather than sourced advice. Source: https://grandislibrary.com/cygnus-knights/thunder-breaker"
+  },
+  "gearingNotes": "What the class supplies itself, which is what determines where gear, legion and hyper stat points should go (Grandis Library base-stats-from-skills table): weapon multiplier 1.7x; attack speed 8 at Lightning Elemental stage 5 plus +2 from Speed Infusion that does not break the soft cap; weapon mastery 90%; STR +60 and +1 per 2 levels plus 15% of assigned AP; attack +14% and +170 flat (up to +210); critical rate +40%; critical damage +30%; damage +40% base rising to +122% with conditional sources; BOSS DAMAGE +0% from passives; final damage about +49% base rising to +89% conditionally; ignore DEF +45%, up to 50% while Primal Bolt is active. Consequences drawn from those numbers plus the class doc: (1) critical rate is the stat a Thunder Breaker is most likely to be short of early, and the doc's answer is the Xenon link, swapping in Lynn or Phantom links until gear and legion cover it; (2) with zero boss damage from passives, boss damage must come from gear, legion, inner ability and hyper stats; (3) the doc's Legion Grid order is critical rate as needed, then boss damage, critical damage, ignore DEF, STR, attack power, buff duration (only when running the Angelic Buster link), DEX; its Legion Artifact order is critical rate / boss damage / damage, then ignore DEF / all stats / critical damage, then attack power / buff duration / cooldown skip, with EXP / drop rate / meso obtained as the training alternative; (4) cooldown-reduction hat: the doc says most Thunder Breakers run a -2 second, 2-line-stat hat while some prefer 3 lines of stat, that cooldown reduction affects Gale/Typhoon, Shark Torpedo, Lightning God Spear Strike and all burst buffs including the skill ring, and that a casual player should keep whichever they roll first; (5) ring choice: as a sustained-DPM class Continuous Ring is better in the abstract, but Ring of Restraint wins on bosses where 100% uptime is impossible such as Kalos or Kaling - the doc notes this becomes moot in a future patch allowing a passive and an active ring together. Sources: https://grandislibrary.com/cygnus-knights/thunder-breaker and https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+  "commonMistakes": [
+    {
+      "mistake": "Using the in-game macro to combo. It does not work with Thunder Breaker's linking system.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Pressing the same attack twice in a row instead of linking two different skills. Repeating one skill incurs heavy end-lag between casts.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Casting Gale/Typhoon or Shark Torpedo below 5 Lightning Elemental stacks. The doc says to fire both only at max stacks.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Linking Lightning Spear Multistrike into other skills or holding the key down. Its 12 casts are pressed back to back on their own.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Wasting Lightning Brands. A brand applied by HEXA Annihilate is consumed by the next non-Annihilate attack, so Gale/Typhoon and Shark Torpedo should be woven in directly after an Annihilate.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Never upgrading Empress Cygnus's Blessing. Talking to Neinheart in Moonbridge after the questline upgrades it to the Transcendent version, which adds damage reduction for the buff's duration.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Burning fragments rerolling HEXA Stat main stats before the HEXA Matrix is finished.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    },
+    {
+      "mistake": "Mashing harder or faster expecting more attacks. The doc states it does not produce more damage and covers keybinding and wrist-strain mitigation instead.",
+      "sources": [
+        "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+      "what": "Guide to Thunder Breaker by C0nfeddie, the Thunder Breaker Discord's maintained class doc (indexed elsewhere as Guide to Breaking Thunder). The only public source carrying Thunder Breaker judgement on hyper passives, inner ability, V matrix node order and HEXA stat priority. Header reads v270 but the body is current to v.271: it carries a v.271 changelog including the new HEXA Phalanx Charge and a bug note dated 2026-09-09. Has NO hyper stat section and no gear/stat-target section; its HEXA leveling order is an image, not text.",
+      "dated": "2026-09-09 or later (header stamp v270; v.271 changelog and a 2026-09-09 bug note present)",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+      "what": "Grandis Library Thunder Breaker page. Boost node tiering (Primary/Secondary/Other), hyper skill passive build, recommended inner ability split bossing/training, link skill values, and a base-stats-from-skills table that is the best single source for what the class supplies itself. Hosts the two dated 6th job infographics. Credits block reads 'Inner Ability + Hyper Passive Build + Boost Nodes Build: Thunder Breaker Discord', so on those three fields it restates the same Discord as the class doc.",
+      "dated": "Site stamp GMS Ver. 269 [Ride the Lightning Update], two patches behind v.271; the infographics carry their own date of 2026-09-04",
+      "independent": false
+    },
+    {
+      "url": "https://grandislibrary.com/class-infographic/thunder-breaker/thunder-breaker-6th-job-fragments.png",
+      "what": "Thunder Breaker 6th Job General Leveling Guide, Fragment Efficient version, credited by Grandis Library to the Thunder Breaker Discord. Icon-only sequence of roughly 130 upgrade steps with target levels. The energy-efficient sibling is at https://grandislibrary.com/class-infographic/thunder-breaker/thunder-breaker-6th-job-energy.png",
+      "dated": "2026-09-04 (date recorded by Grandis Library alongside the image)",
+      "independent": false
+    },
+    {
+      "url": "https://mystyjl.github.io/reference/NodeGuide.html",
+      "what": "mastermysty's cross-class boost node trio table. Lists Thunder Breaker's primary trio as Thunderbolt / Annihilate / Gale and a secondary trio of Ascension / Deep Rising / Tidal Crash. Authored outside the class Discord lineage, so it is the only genuinely independent judgement source found for Thunder Breaker node choice - but it is stale.",
+      "dated": "2024-11-21 page stamp; the author notes the underlying data is from 2024-05-14, so it predates the v269 boost node regrouping",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Thunder_Breaker/Skills",
+      "what": "Skill and node reference used here as a name-validation and game-data table: exact boost node core groupings and their final damage per level, the HEXA skill cores (Origin = Thunder Wall Sea Wave, Ascent = Annihilating Rush), the four mastery cores, the four HEXA enhancement cores, the full hyper passive pool, and the Cygnus Blessing link skill values. Carries no priority judgement. Returns 403 without a browser user agent. Does not yet list HEXA Phalanx Charge.",
+      "dated": "living wiki; the Thunder Breaker class page footer states last edited 2026-03-18",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Thunder_Breaker",
+      "what": "Class page. Source for the legion member effect (STR +10/20/40/80/100), the link skill name, primary stat STR, secondary stat DEX, and the knuckle and jewel weapons.",
+      "dated": "last edited 2026-03-18 per the page footer",
+      "independent": true
+    },
+    {
+      "url": "https://discord.gg/ewyWwFQ",
+      "what": "Thunder Breaker class Discord. Upstream of the class doc, the infographics and Grandis Library's judgement fields. Not machine-readable; listed for provenance and because anything newer than 2026-09-04 will land here first.",
+      "dated": "live",
+      "independent": false
+    },
+    {
+      "url": "https://brendonmay.github.io/hyperCalculator/",
+      "what": "MathBro's hyper stat optimizer - the community's operative answer to hyper stat allocation, computed per character rather than published as a class list. Recorded because no Thunder Breaker hyper stat ranking exists in any source read.",
+      "dated": "actively maintained; exact last update not confirmed",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "weak",
+  "conflicts": [
+    {
+      "topic": "Secondary boost node trio",
+      "positionA": "mastermysty's table lists a secondary trio of Ascension / Deep Rising / Tidal Crash.",
+      "sourceA": "https://mystyjl.github.io/reference/NodeGuide.html (2024-11-21)",
+      "positionB": "The 2026 class doc's node ordering ends at the Tidal Crash / Sea Wave / Shark Sweep node and never mentions an Ascension-based trio; Grandis Library tiers Ascension and Thunder as OTHER, its lowest tier.",
+      "sourceB": "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic and https://grandislibrary.com/cygnus-knights/thunder-breaker (GMS v269)",
+      "status": "contested, not resolved. Note the age gap: mastermysty's data predates the v269 boost node regrouping, and Grandis Library still exposes a View Pre-V.269 Boost Nodes toggle, which is evidence groupings did change."
+    },
+    {
+      "topic": "Rank of the Gale/Typhoon boost node",
+      "positionA": "The class doc says to level Annihilate, Thunderbolt and Gale/Typhoon boost nodes equally, i.e. Gale is co-first.",
+      "sourceA": "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+      "positionB": "Grandis Library tiers the Gale / Typhoon / Deep Rising node as SECONDARY while Annihilate and Thunderbolt are PRIMARY.",
+      "sourceB": "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+      "status": "contested but shallow - both trace to the same Thunder Breaker Discord, and Grandis' tiering describes which skills sit in which node rather than a levelling sequence, so the two may not actually disagree. Recorded rather than resolved."
+    },
+    {
+      "topic": "Top inner ability line",
+      "positionA": "Class doc lists Passive Skills +1 as the first line.",
+      "sourceA": "https://docs.google.com/document/d/149bORdBFd99UJSFbza52zv5AJw4VfB4kvqC5p4K-97g/mobilebasic",
+      "positionB": "Grandis Library presents Boss Damage +20% as an option alongside Passive Skills +1.",
+      "sourceB": "https://grandislibrary.com/cygnus-knights/thunder-breaker",
+      "status": "minor divergence inside one source family; both listed, neither preferred here."
+    }
+  ],
+  "evidenceNote": "HONEST SOURCING VERDICT: three independent sources were reached, but only two of them carry judgement, and one of those two is nearly two years old. The judgement lanes are (1) the Thunder Breaker Discord family - the C0nfeddie class doc, that Discord's 2026-09-04 infographics, and Grandis Library, which credits the Discord by name and therefore does NOT count as a second opinion - and (2) mastermysty's 2024-11-21 node table. The third independent source, maplestorywiki, is facts only and is used here to validate every node and skill name so nothing in this file is invented. Reddit could not be read in this environment and NamuWiki's Striker page was blocked by Cloudflare, so the KMS cross-check is missing; the web search budget was exhausted and DuckDuckGo began serving a CAPTCHA, so no YouTube-creator pass was possible. Everything marked weak should be surfaced to users as single-source. The two biggest gaps: no hyper stat ranking exists for this class anywhere public, and the HEXA investment order exists only as an image.",
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "The Xenon link claim is an inversion of the source. The class doc says 'If you're early in the game and lacking crit rate, feel free to swap out Xenon link for Lynn/Phantom link as needed' - Xenon is removed, Lynn/Phantom supply crit rate. The file states the reverse in hyperStats.notes ('should use the Xenon link and may swap in Lynn or Phantom links') and gearingNotes item 1 ('the doc's answer is the Xenon link'). Independently wrong too: Xenon's link is all-stat %, not critical rate. No source states what the file states.",
+      "vMatrix.notes assigns the Tidal Crash / Sea Wave / Shark Sweep node to Grandis Library's SECONDARY tier. Grandis tiers it OTHER; only Gale/Typhoon/Deep Rising is SECONDARY. The file also quotes Grandis' rule that Primary and Secondary are the ones worth upgrading - so corrected, Grandis says this node is NOT worth building while the class doc ranks it 8th. A real conflict was converted into agreement and left out of conflicts[]. The file's own conflicts[0] contradicts its notes field on this point.",
+      "The 2026-09-04 infographic date is asserted four times (hexa.order step 1, sources[] entries, evidenceNote) as metadata 'recorded by Grandis Library alongside the image'. Two separate fetches of the Grandis page report no dates anywhere on the page beyond the GMS Ver. 269 stamp, and the PNG carries no printed date. Unsupported, and load-bearing: it is the only basis for treating the Discord's 6th job advice as current and for the 'metadata tension' conflict entry."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "3 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

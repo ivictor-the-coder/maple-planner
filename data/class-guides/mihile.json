@@ -1,0 +1,311 @@
+{
+  "slug": "mihile",
+  "className": "Mihile",
+  "branch": "Cygnus Knights",
+  "primaryStat": "STR",
+  "secondaryStat": "DEX",
+  "weapon": "One-Handed Sword",
+  "secondaryWeapon": "Soul Shield",
+  "archetype": "STR melee warrior. Low-APM parry bruiser built around Royal Guard, a 6s-cooldown parry that nullifies an incoming hit, fires an automatic counterattack and grants a 4s i-frame; it can animation-cancel any other skill. One main attack covers both mobbing and bossing, switched by the Roiling Soul toggle. Damage output is split roughly evenly between a ~20s burst and ~100s of off-burst DPM on a 2-minute cycle. Best-in-class survivability and party protection; bottom-tier raw damage at endgame. Male-only at character creation.",
+  "linkSkill": {
+    "name": "Knight's Watch",
+    "effect": "Two different effects. As a LINK SKILL granted to other characters (GMS v270 wiki data): Status Resistance +100 for 10/15/20 sec at Lv1/2/3, 120s cooldown - no damage component, which is why the community doc lists Mihile as a low-value link mule. On Mihile itself: an active barrier that blocks 3/6/9 enemy blows over 10/20/30 sec while granting Damage +15%/+20%/+25% and -10%/-20%/-30% against %Max-HP attacks, 120s cooldown; at Lv3 it also grants a permanent passive Damage +3%. The class doc treats the self-buff as a burst button to be keybound into the burst sequence.",
+    "levels": 3
+  },
+  "legionEffect": "Max HP +250/500/1000/2000/2500 (flat HP, no damage stat; of little use to most characters)",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Boost Node 1 - Radiant Cross",
+        "why": "Main bossing and mobbing attack. Tagged PRIMARY by Grandis Library, whose stated rule for PRIMARY is 'unlocks a 6th Job HEXA Mastery and is a frequently used skill'. The class doc ranks it the single most important boost target and suggests doubling filler nodes back into it.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/mihile",
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://maplestorywiki.net/w/Mihile/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 2 - Royal Guard",
+        "why": "PRIMARY tier. Royal Guard fires constantly (5-6s cooldown) so its boost applies all fight, and the node must reach Lv40 to unlock the HEXA Royal Guard mastery core, which the class doc makes the first HEXA unlock.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/mihile",
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://maplestorywiki.net/w/V_Matrix"
+        ]
+      },
+      {
+        "node": "Boost Node 3 - Charging Light + Install Shield",
+        "why": "PRIMARY tier. Covers the mobbing summon and an off-cooldown skill that also applies a party-wide +10% damage debuff. Both skills have HEXA mastery cores gated behind this node reaching Lv40.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/mihile",
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://maplestorywiki.net/w/Mihile/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 4 - Offensive Defense + Final Attack + Soul Majesty",
+        "why": "PRIMARY tier and the densest node - three skills, all with HEXA mastery cores. Offensive Defense is the shockwave that every Radiant Soul skill consumes; Soul Majesty drives the burst; Final Attack is passive damage on every hit.",
+        "consensus": "strong",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/mihile",
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://maplestorywiki.net/w/Mihile/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 5 - Radiant Driver + Shining Pierce",
+        "why": "SECONDARY tier: unlocks no HEXA mastery but the skills still see use. The class doc names Radiant Driver as the alternative filler boost for off-cooldown damage. Note Shining Pierce Boost carries the highest raw Final Damage per level of any Mihile boost node (7%/level vs 2%/level for Radiant Cross), but that figure is set inversely to how much of your damage the skill actually deals, so it does not by itself make the node a priority.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/mihile",
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://maplestorywiki.net/w/Mihile/Skills"
+        ]
+      },
+      {
+        "node": "Boost Node 6 - Four-Point Assault + Soul Release",
+        "why": "Tagged OTHER by Grandis Library - the lowest-priority node, not required. No HEXA mastery core is gated behind it.",
+        "consensus": "moderate",
+        "sources": [
+          "https://grandislibrary.com/cygnus-knights/mihile",
+          "https://maplestorywiki.net/w/Mihile/Skills"
+        ]
+      },
+      {
+        "node": "Job (skill) nodes: Shield of Light and Radiant Soul first, then Sword of Light and Light of Courage",
+        "why": "Class doc states Shield of Light and Radiant Soul are by far the most important 5th job skills. Sword of Light deals roughly as much as or more than Royal Guard. All four job nodes must reach Lv25 to unlock their corresponding HEXA enhancement cores.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://maplestorywiki.net/w/V_Matrix"
+        ]
+      },
+      {
+        "node": "Common nodes: Phalanx Charge, Weapon Aura, Transcendent Cygnus's Blessing, Erda Shower, Decent Speed Infusion, Decent Sharp Eyes, Decent Holy Symbol",
+        "why": "Class doc: Weapon Aura is worth up to 6% Final Damage and 16% IED, so it rates highly. Phalanx Charge deals damage comparable to Royal Guard. Decent Speed Infusion plus a Monster Park green potion reaches the GMS attack-speed cap of 10 from Mihile's base stage 5 / speed 8, worth roughly 10% total damage. No Decent skill needs levelling past Lv1 except Decent Holy Symbol. Once these plus the four job nodes and four primary boost nodes are equipped, remaining nodes are convenience or minor gains.",
+        "consensus": "moderate",
+        "sources": [
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://grandislibrary.com/cygnus-knights/mihile"
+        ]
+      }
+    ],
+    "trios": [],
+    "notes": "IMPORTANT - the trio system is gone. As of GMS v.269 each class receives a fixed set of 6 boost nodes (each covering 1-4 named skills) and 4 job nodes; boost nodes cap at Lv60 and job nodes at Lv30, and Nodestones now grant V Points rather than random trios. Any guide telling you to farm and stack matching trios, or to run 'two Lv25 boost nodes for Lv50', predates that change - including the V-Matrix section of the Mihile class doc itself, whose last full update (2026-04-07) is older than v.269. Two level gates matter for 6th job: a job node must be Lv25 to unlock its HEXA enhancement core, and a boost node must be Lv40 to unlock its HEXA mastery cores. Grandis Library's own tiering rule is exactly that gate - PRIMARY means the node unlocks a HEXA mastery, SECONDARY means it does not but the skills are still used, OTHER means skip. Mihile's eight HEXA mastery cores (HEXA Radiant Cross, HEXA Radiant Cross - Assault, HEXA Royal Guard, HEXA Install Shield, HEXA Charging Light, HEXA Offensive Defense, HEXA Final Attack, HEXA Soul Majesty) all sit behind nodes 1-4, which is why those four are the priority. Boost node Final Damage per level, from the wiki: Shining Pierce 7%; Four-Point Assault and Radiant Driver 5%; Soul Release 3%; Royal Guard, Offensive Defense, Install Shield, Soul Majesty, Radiant Cross, Charging Light and Final Attack 2%. Level 20 riders: Shining Pierce gets Max Targets +1, Charging Light gets Critical Rate +5%. Level 40 riders: Shining Pierce gets Ignored Enemy Defense +20%. Special node Fatal Strike I (+100% damage for 2s every 30s) pairs with Light Force Rei but costs 250 Node Shards per 7 days - the class doc says skip it while you are still building boss mules."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "HEXA Royal Guard (mastery core) to Lv1 first",
+        "why": "The class doc's HEXA levelling table opens with it, and the doc's Sol Janus note independently anchors to it ('unlock it after HEXA Royal Guard Lv1'). Royal Guard fires every 5-6s all fight, so its mastery has the highest uptime of any Mihile core.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I"
+        ]
+      },
+      {
+        "step": "Sol Janus (common core) to roughly Lv1-20, unlocked right after HEXA Royal Guard Lv1",
+        "why": "Class doc position, stated as playstyle-dependent rather than fixed; Sol Janus is an EXP/grinding core (up to +100% EXP at Lv30) and cannot be used on boss maps, so how far you push it depends on how much you grind.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+          "https://maplestorywiki.net/w/Mihile/Skills"
+        ]
+      },
+      {
+        "step": "HEXA Stat main-line priority: Attack > Critical Damage > main stat (STR)",
+        "why": "Stated outright in the class doc's HEXA stat guide. Each stat type can be taken once as a main line and twice as a secondary; with three cores maxed you want your highest-level main line on Attack and the highest available secondary lines on Attack as well. While progressing, compare levels directly - a Lv10 secondary can beat a Lv4 main.",
+        "consensus": "weak",
+        "sources": [
+          "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I"
+        ]
+      },
+      {
+        "step": "General cross-class order where no Mihile-specific step is known: mastery cores, then boost/enhancement cores, then common cores, and HEXA Stat only once skill levels get expensive",
+        "why": "Class-agnostic guidance, not Mihile-specific. It conflicts with the Mihile class doc, which interleaves HEXA Stat cores early in its own levelling table - see conflicts.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/"
+        ]
+      }
+    ],
+    "notes": "Mihile's HEXA cores, confirmed by name against the wiki (GMS v270): Skill Core 1 / Origin is Durendal (a Radiant Soul stab-and-shockwave that applies the Royal Guard buff at max stacks; it is also the class's bind, ~10s on a 360s cooldown, and is i-frame during cast). Skill Core 2 / Ascent is Knights Immortal (summons the Knights Immortal, inflicts Darkness, i-frame during cast). Mastery cores (8): HEXA Radiant Cross, HEXA Radiant Cross - Assault, HEXA Royal Guard, HEXA Install Shield, HEXA Charging Light, HEXA Offensive Defense, HEXA Final Attack, HEXA Soul Majesty. Enhancement cores (4, each gated behind its V job node at Lv25): Shield of Light Boost, Sword of Light Boost, Radiant Soul Boost, Light of Courage Boost. Shared cores: Sol Janus (Dawn/Dusk) and Sol Hecate (Charon, Pactum, Phlegethon, Styx). The class doc contains a complete 48-step levelling order covering every core and the three HEXA stat cores; the Google Docs text export scrambles that table's column order and it could not be transcribed reliably, so only the steps corroborated by the doc's prose are recorded above - read the full sequence directly from the doc. The doc also notes (2026-07-04) that no settled calculation exists for when to slot Sol Hecate into the order; the ordering circulating in the Mihile Discord came from a scouter calculation. Damage benchmark from the doc: roughly 118k HEXA stat total is estimated as the point where a Mihile can clear the hard Kaling solo mission - the doc is explicit that Mihile needs considerably more raw stat than most classes to clear the same content."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "No Mihile-specific hyper stat order was found in any source. Grandis Library has no hyper stat section on the Mihile page and its progression guide states there is no optimal build, pointing readers at damage calculators instead; the community class doc has no hyper stat section either. Two class facts that should shape your own allocation, both from the class doc: Mihile only needs about 80% critical rate while bossing (Royal Guard stacks plus a +20% crit rate bonus against enemies afflicted by blind, stun, Offensive Defense or Charging Light sit on top of a large passive base), so crit rate hyper stat is cheaper to satisfy than on most classes; and IED is worth roughly half as much to Mihile as to other classes because Radiant Soul already grants 100% IED for 20s+ during burst, which is about half of total damage. Left empty rather than guessed."
+  },
+  "hyperSkills": {
+    "passives": [
+      "Radiant Cross - Reinforce",
+      "Radiant Cross - Guardbreak",
+      "Radiant Cross - Extra Strike",
+      "Install Shield - Reinforce",
+      "Royal Guard - Guardbreak (bossing / boss mule setup)",
+      "Install Shield - Spread (training / main setup)"
+    ],
+    "actives": [
+      "Soul Majesty",
+      "Charging Light",
+      "Queen of Tomorrow"
+    ],
+    "consensus": "moderate",
+    "sources": [
+      "https://grandislibrary.com/cygnus-knights/mihile",
+      "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+      "https://maplestorywiki.net/w/Mihile/Skills"
+    ],
+    "notes": "The three Radiant Cross passives plus Install Shield - Reinforce are taken in every build. The fifth pick splits: Royal Guard - Guardbreak for bossing (both sources agree), Install Shield - Spread for training. The class doc writes that fifth training pick as 'Install Shield - Extra Target'; the GMS skill name on the wiki is 'Install Shield - Spread', and it is the same slot. Grandis Library credits its hyper passive build to the class doc, so those two are not independent sources for this field. All three hyper actives are taken: Soul Majesty (Damage +15% for 20s, resets Offensive Defense cooldown and drops it to 2s, adds a Light Wave shockwave, 120s cooldown), Charging Light (party-wide +10% damage for 60s on a 15s cooldown, also blinds), Queen of Tomorrow (Damage +10% for 60s, Cygnus Knights and Mihile only, 120s cooldown)."
+  },
+  "innerAbility": {
+    "bossing": [
+      "Boss Damage +20% (main line)",
+      "Damage to monsters with Abnormal Status +8%",
+      "Attack +21"
+    ],
+    "training": [
+      "Meso Obtained / Item Drop Rate +20% (main line)",
+      "Meso Obtained / Item Drop Rate +15%",
+      "Damage to Normal Monsters +8%"
+    ],
+    "thirdPreset": [
+      "Item Drop Rate +20% (for boss reward rooms) or Cooldown Reset +20%",
+      "Boss Damage +10%",
+      "Damage to monsters with Abnormal Status +8%"
+    ],
+    "consensus": "moderate",
+    "sources": [
+      "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+      "https://grandislibrary.com/cygnus-knights/mihile"
+    ],
+    "notes": "Third line on the bossing preset is the flexible one. Class doc: Buff Duration can replace Attack +21 and is better until your other buff duration sources add up to about 90-97%, at which point Attack +21 becomes best-in-slot; the doc advises staying under 100% total buff duration. It lists the common non-inner sources as Empathy 10%, Lv250 mech 25%, Artifact 20%, Legion board 40%, Sia link 10%. Cooldown Skip +10% is named as a comfort option because it affects Royal Guard. On GMS Interactive the farming preset can instead use the Frenzy line (+1 target count, 15% Meso, 15% Drop). Rolling advice for Heroic: use circulators early to land a legendary Meso, Boss Damage or Drop line; later roll the second line with circulators and the first and third with Honor EXP during 50% Sunny Sunday, since primary lines cost much less Honor EXP. Grandis Library credits its inner ability recommendation to the class doc, so those two are not independent here. Older guides disagree - see conflicts."
+  },
+  "gearingNotes": "All of the following is from the community class doc (2026-04-07) unless noted. SECONDARY WEAPON: Princess No (about two weeks of clears) or an Evolving Soul Shield (about 100M meso from the secondary vendor); the doc puts the difference at under 0.01% Final Damage either way depending on your potentials and flames. WSE POTENTIAL: 9/0/0 (nine attack% lines, no boss or IED lines) is the likely target for most players, because Mihile already carries very high Damage% in burst, party support, familiars and/or a Continuous ring. Weapon lines give 1% more attack than secondary lines; boss damage lines are identical on both, so if you run 8/1/0 (no boss familiars, or using RoR4) put the boss line on the secondary. Interactive servers favour more boss% because of bonus potential. IED: devalued on Mihile. Radiant Soul already grants 100% IED for 20s+ and roughly half of Mihile's two-minute damage is dealt inside that window, so an extra 1% visual IED is worth about half what it is worth on other classes - the doc calls rolling for IED, especially as a main line, near useless, and it is devalued further in boss parties. HAT: a -2s cooldown hat with two STR% lines is the target. With a Lv200 Mercedes legion block it cuts Royal Guard from 6s to 5.13s and raises potential i-frame uptime from about 66% to about 78%; at Lv250 Mercedes it becomes 5.076s and shortens the two-minute rotation to about 111s. It also helps Sword of Light (12s) and Charging Light (15s). -4s and -6s hats are fine if you happen to hit them but are not worth chasing - the lost STR% often costs more burst damage than the cooldown gains. OZ RINGS, in priority order: RoR4/5 plus WJ4/5 (or RT4 if no WJ4), then Cont4, then RoR3, then Cont3, then Cont2 or an event/18-star ring. Weapon Jump 4 exists to swap rings instantly for the 60s mini-burst; Risk Taker 4 works on bosses that permit it (Limbo, Baldrix). Because the 60s mini-burst is small, RoR4 is usually better worn permanently than Cont4 even with no WJ4 or RT4; Cont4 stays good for Culvert and Dojo. ATTACK SPEED: Mihile is stage 5 / speed 8 base (Grandis Library), and only needs Decent Speed Infusion plus a Monster Park green potion to reach the GMS cap of 10 - worth about 10% total damage. WEAPON MULTIPLIER 1.24x, weapon mastery 90% (Grandis Library). LINKS while bossing, in the doc's order: Knight's Watch (self, keybind it into the burst sequencer), Demon Slayer, Kinesis, Ark, Explorer Thief, Explorer Mage, Hayato, Cadena, Kanna, Angelic Buster, Xenon, Mo Xuan or Demon Avenger; swap Xenon's link for Luminous if your in-town IED is below about 96%. For grinding, drop Demon Slayer, Explorer Thief, Explorer Mage and Angelic Buster for Elven Blessing, Rune Persistence, Hoyoung, Lara and Combo Kill Blessing.",
+  "commonMistakes": [
+    "Dodging boss attacks instead of parrying them. The class doc is blunt that if you are not willing to stay in and Royal Guard, you are not playing the class's strengths - the 4s i-frame on a 5-6s cooldown is the entire point, and it is what lets Mihile hold near-permanent damage uptime.",
+    "Forgetting to toggle Roiling Soul on before bossing. The doc's bossing section leads with it.",
+    "Chasing IED on potentials or inner ability. Radiant Soul already gives 100% IED through the burst, so IED is worth roughly half as much to Mihile as to other classes.",
+    "Buying or rolling -4s/-6s cooldown hats over a -2s hat with two STR% lines. The extra cooldown rarely beats the lost STR% in real fights.",
+    "Stacking buff duration past 100% total. The doc advises staying under it and switching the third inner ability line to Attack +21 once you reach about 90-97% from other sources.",
+    "Levelling Decent skills past Lv1. Only Decent Holy Symbol needs more.",
+    "Entering a boss burst without blinding it first - the doc says land one main attack to apply blind before the entry burst, and to make sure the boss is bound inside your Install Shield.",
+    "Following pre-v.269 node advice. Boost node trios no longer exist; there are six fixed boost nodes and four job nodes, and the level gates that matter are job node Lv25 (unlocks a HEXA enhancement core) and boost node Lv40 (unlocks HEXA mastery cores).",
+    "Letting Royal Guard stacks fall off. Stacks last 20s, cap at 5, and drop by one per 20s without a successful guard; at 5 stacks you gain attack power and the guard activation window is at its tightest (240ms), so the doc says assume 0.24s timing and stay capped.",
+    "Expecting competitive damage at endgame. Mihile sits at the bottom of damage rankings; the doc estimates roughly 118k HEXA stat to clear the hard Kaling solo mission, well above what other classes need."
+  ],
+  "sources": [
+    {
+      "url": "https://docs.google.com/document/d/1PQKPlHGbvqT7dftm2-jk9i8SiBLRkaY5E0DpE0unK5I",
+      "what": "The Mihile class doc - community-maintained, written and kept by Arcah (Solis) from Nov 2022 to Nov 2025 and since held by the Mihile Discord admins (discord.gg/6SPVvZRWJM). Deepest source: inner ability presets and rolling strategy, link skill loadout, boost node ranking, a full 48-step HEXA levelling table, HEXA stat priority and assignment rules, WSE / hat / Oz ring / secondary weapon gearing, legion artifact, Royal Guard mechanics including per-stack guard windows, the list of unguardable boss attacks, burst and DPM rotations.",
+      "dated": "2026-04-07 (header, 'OPM Collab (Mar 2026)'); one section carries a later inline note dated 2026-07-04",
+      "independent": true
+    },
+    {
+      "url": "https://grandislibrary.com/cygnus-knights/mihile",
+      "what": "Class overview page: class properties, legion bonus, weapon multiplier 1.24x, attack speed stage 5 / speed 8, aggregate base stats from skills, the six boost node groupings with PRIMARY/SECONDARY/OTHER tiering and the stated tiering rule, hyper passive build, recommended inner ability, Radiant Soul mechanic explanation, skill build path. Marked not independent because the page itself credits the class doc for its inner ability, hyper passive and boost node builds.",
+      "dated": "GMS Ver. 269 (Ride the Lightning Update); no calendar date printed on the page",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Mihile/Skills",
+      "what": "Game data: exact skill names and values for all job levels, hyper passives and actives, the four V job nodes, the six boost node groupings with Final Damage per level and the Lv20/Lv40 riders, the two HEXA skill cores (Durendal as Origin, Knights Immortal as Ascent), eight HEXA mastery cores, four HEXA enhancement cores, and the shared Sol Janus / Sol Hecate cores.",
+      "dated": "Page labelled GMS v270; page render cached 2026-09-10",
+      "independent": true
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Mihile",
+      "what": "Class availability table confirming Mihile is Available in GMS (and KMS, JMS, CMS, MSEA, TMS), class properties, and the job advancement quest list including 5th job at Lv200 and 6th job 'Merged Dimension' at Lv260.",
+      "dated": "Undated page; same publisher as the skills page",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/V_Matrix",
+      "what": "V Matrix structure post-revamp: four job nodes (max Lv30, Lv25 unlocks the matching HEXA enhancement core), six boost nodes each covering 1-4 skills (max Lv60, Lv40 unlocks the matching HEXA mastery cores), Nodestones granting V Points rather than trios, and the standard Lv20/Lv40 boost node riders.",
+      "dated": "Undated page; patch history table runs through GMS 255 (2024-11-20); same publisher as above",
+      "independent": false
+    },
+    {
+      "url": "https://maplestorywiki.net/w/Knight's_Watch",
+      "what": "Current Knight's Watch values for both the Mihile self-buff and the link skill version granted to other characters.",
+      "dated": "Page labelled GMS v270; read 2026-09-11; same publisher as above",
+      "independent": false
+    },
+    {
+      "url": "https://thedigitalcrowns.com/6th-job-hexa-matrix-guide-maplestory/",
+      "what": "Class-agnostic HEXA Matrix investment order: origin skill free on 6th job completion, then mastery nodes, then boost nodes, then common nodes, with HEXA Stat left until skill levels get expensive; first HEXA stat core suggested as Attack main with Boss Damage and main stat secondaries.",
+      "dated": "2025-01-31",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-mihile-skill-build",
+      "what": "Older Mihile guide. Used only to corroborate class properties (STR, one-handed sword, shield) and to date the outdated trio-node and knockback-resistance link skill claims.",
+      "dated": "2024-04-01, page states patch v.237 Ignition",
+      "independent": true
+    },
+    {
+      "url": "https://ayumilove.net/maplestory-mihile-skill-build-guide/",
+      "what": "Older Mihile guide. Used only to corroborate class properties and V skill names, and as a dated example of superseded link skill and inner ability advice.",
+      "dated": "2023-04-15",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Knight's Watch link skill effect",
+      "positionA": "The link skill grants Status Resistance +100 for 10/15/20 sec on a 120s cooldown, with no damage or knockback component. Source: maplestorywiki.net Knight's Watch page, labelled GMS v270, read 2026-09-11. Corroborated indirectly by the class doc, which lists Mihile's link skill as near-useless to most classes.",
+      "positionB": "The link skill grants Knockback Resistance +100% for 90/110/130 sec. Sources: ayumilove.net (2023-04-15) and digitaltq.com (2024-04-01); thedigitalcrowns.com (2021-11-26) says the same.",
+      "assessment": "Position B is almost certainly superseded rather than wrong-at-the-time - all three sources predate 2025 and the skill has been reworked. Recorded rather than silently dropped because a planner built on the old text would mis-rank Mihile as a link mule."
+    },
+    {
+      "topic": "Whether V Matrix boost nodes come as farmable trios",
+      "positionA": "No. Each class receives 6 fixed boost nodes covering 1-4 named skills each, capping at Lv60, and Nodestones grant V Points. Sources: maplestorywiki.net V Matrix page; Grandis Library's Mihile page, which presents Node 1-6 as fixed sets and offers a separate 'View Pre-V.269 Boost Nodes' toggle.",
+      "positionB": "Yes - build two matching trios, 'two Lv25 boost nodes = Lv50', plus V Matrix slots for +10. Source: the Mihile class doc's V-Matrix section (doc last updated 2026-04-07, which predates GMS v.269).",
+      "assessment": "Position A reflects the current client. The class doc's V-Matrix section is stale even though the doc as a whole is recent and is the best source for everything else. Its skill-level ranking (Radiant Cross first, then Install Shield/Soul Majesty, then Royal Guard/Offensive Defense, then Charging Light, then Final Attack) still maps cleanly onto the current Node 1-4 primaries."
+    },
+    {
+      "topic": "Where HEXA Stat sits in the investment order",
+      "positionA": "Late - level your HEXA skills first, because HEXA Stat gives less Final Damage per Sol Erda until skill levels get expensive. Source: thedigitalcrowns.com HEXA Matrix guide, 2025-01-31, class-agnostic.",
+      "positionB": "Interleaved early - the Mihile class doc's own levelling table places a HEXA stat core at Lv20 as its second step, right after HEXA Royal Guard Lv1, with the other two stat cores interleaved later.",
+      "assessment": "Not resolved here. Position B is Mihile-specific and newer; position A is general and older but represents the broader community default. The doc separately gives its HEXA stat line priority as Attack > Critical Damage > main stat."
+    },
+    {
+      "topic": "Fifth hyper passive on a training build",
+      "positionA": "Install Shield - Spread. Sources: Grandis Library; maplestorywiki.net, which lists 'Install Shield - Spread' as the GMS skill name.",
+      "positionB": "'Install Shield - Extra Target' on the main setup. Source: the class doc.",
+      "assessment": "Almost certainly the same skill under an informal name rather than a real disagreement; the wiki name is the one that appears in game."
+    },
+    {
+      "topic": "Source independence between Grandis Library and the class doc",
+      "positionA": "Grandis Library's Mihile page credits the class doc by name for its inner ability, hyper passive build and boost node build.",
+      "positionB": "n/a - no counter-position; recorded as a caveat rather than a disagreement.",
+      "assessment": "Recorded so this file is not read as two independent confirmations. For those three fields Grandis Library and the class doc are one source. They are genuinely independent for game-data tables (base stats, weapon multiplier, attack speed, node groupings), which the wiki also confirms."
+    }
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "verificationNotes": "Mihile confirmed live and creatable in GMS: maplestorywiki.net's availability table lists GMS as Available, and Grandis Library maintains a current class page at GMS Ver. 269. Job advancement quests run Lv10/30/60/100, 5th job at Lv200, 6th job 'Merged Dimension' at Lv260. No source found was dated to v.271 itself; the newest Mihile-specific data read here is labelled GMS v270 (wiki) and GMS v.269 (Grandis Library), and the newest community judgement is the class doc's 2026-07-04 inline note. Hyper stats and the full HEXA step order were left empty or partial rather than guessed. Reddit could not be searched - r/Maplestory blocks the crawler - so no Reddit guide thread was consulted.",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "'HEXA Radiant Cross - Assault' - this core name appears nowhere I could reach. Grandis Library explicitly does not contain it (it lists only Radiant Cross - Reinforce, - Guardbreak, - Extra Strike), and the class doc names no mastery cores at all. Its sole cited support is maplestorywiki.net, which returns HTTP 403 to every fetch and cannot be verified. Highest fabrication risk in the file.",
+      "The eight-mastery-core list (HEXA Radiant Cross, HEXA Radiant Cross - Assault, HEXA Royal Guard, HEXA Install Shield, HEXA Charging Light, HEXA Offensive Defense, HEXA Final Attack, HEXA Soul Majesty) is unverifiable and internally contradicted. Grandis's stated rule is PRIMARY = unlocks a HEXA Mastery; Grandis does not tag the Charging Light / Install Shield / Offensive Defense / Final Attack / Soul Majesty nodes PRIMARY under any read, which implies those masteries do not exist. Eight is also anomalous against the usual per-class mastery count. This list is what justifies 'nodes 1-4 are the priority' - the single most consequential piece of advice in the file.",
+      "Tier labels misattributed to a named source. The file states Node 3 is 'PRIMARY tier', Node 4 is 'PRIMARY tier and the densest node', and Node 5 is 'SECONDARY tier', citing Grandis Library. I fetched that page four times: no read assigned PRIMARY to Node 3 or Node 4, and both reads that placed Node 5 called it OTHER. Only Node 1 (PRIMARY) and Node 6 (OTHER) survive verification. The page's tiering is read inconsistently by fetch tooling, which means it should have been recorded as unresolved, not stated as fact.",
+      "'Knights Immortal' as the Ascent / Skill Core 2 is uncorroborated - absent from Grandis Library and from the class doc, cited only to the unreachable wiki. Durendal as Origin IS confirmed on Grandis; Knights Immortal is not.",
+      "hexa.order step 4 attributes 'mastery cores, then boost/enhancement cores, then common cores' to thedigitalcrowns. That page's actual sequence is mastery node, then boost nodes, then HEXA Stat - it does not discuss common cores. The 'then common cores' clause is an addition not present in the cited source.",
+      "The conflicts block cites 'thedigitalcrowns.com (2021-11-26)' for the knockback-resistance link skill claim, but no such URL appears in the sources array. An undisclosed source is doing corroborating work.",
+      "STALE: thedigitalcrowns.com HEXA guide, confirmed 'Last Updated 01/31/2025'. It does not mention the Ascent / second skill core, Sol Janus, or Sol Hecate anywhere - it predates the current HEXA landscape entirely. The file presents it as the current cross-class investment order and as one side of a live conflict, without flagging that it pre-dates the Sol cores and the Ascent core the file itself documents.",
+      "STALE: maplestorywiki.net V_Matrix page - the file's own source note records its patch history running only through GMS 255 (2024-11-20), yet it is cited as authority for the post-v.269 node structure and the Lv25/Lv40 HEXA gates. The gates may well be right, but the page as described cannot be the evidence for a v.269 change.",
+      "STALE: Grandis Library is labelled GMS Ver. 269 and the class doc 2026-04-07 while the file header is v.271 (2026-09-09). The verificationNotes do disclose this honestly, but every judgement field is two patches behind and the per-field text does not carry that caveat.",
+      "STALE: The class doc's V-Matrix trio language is correctly identified as stale - I verified it does read '2x Radiant Cross' / '2x Install Shield/Soul Majesty' / '2x Royal Guard/Offensive Defence'. This one the researcher got right and handled well."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "10 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}

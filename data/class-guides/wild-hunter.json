@@ -1,0 +1,458 @@
+{
+  "slug": "wild-hunter",
+  "className": "Wild Hunter",
+  "branch": "Resistance (Archer)",
+  "primaryStat": "DEX",
+  "secondaryStat": "STR",
+  "weapon": "Crossbow",
+  "secondaryWeapon": "Arrowhead",
+  "archetype": "Mounted crossbow damage dealer. Fights from the back of a jaguar mount; core loop layers a keydown/charged main line (Wild Arrow Blast line, capped by Wild Arrow Blast: Apex at 4th job), short-cooldown jaguar Assist strikes, longer Command strikes, and a stacking enemy debuff (Another Bite) that later skills consume. Burst is gated behind Primal Bloom, a field/domain buff that collapses Assist and Command cooldowns for its duration. Fully remastered in GMS in March 2026 (v.267) - pre-2026 build advice for this class is stale by construction.",
+  "linkSkill": {
+    "name": "Spirit of Freedom",
+    "effect": "Grants a window of invincibility after being revived; approximately 12 seconds at full investment. It is the shared Resistance link, so its effect stacks across Resistance characters (up to 4 stacks per Grandis Library). It is a survivability link, not a damage link.",
+    "levels": "Master level 12 per Grandis Library; the per-level duration curve was not sourced.",
+    "sources": [
+      "https://www.grandislibrary.com/resistance/wild-hunter",
+      "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+    ],
+    "consensus": "moderate"
+  },
+  "legionEffect": "Legion (Union) board effect is a proc: a chance for an attack to deal increased damage. Scales from +4% at the lowest rank up to +20% damage at a 20% proc chance at the highest rank. Two independent guides state the same numbers.",
+  "vMatrix": {
+    "priority": [
+      {
+        "node": "Primal Bloom (5th job skill)",
+        "why": "Post-remaster burst window. Its duration and the Assist/Command cooldown compression it provides both scale with level, so it multiplies everything else in the rotation rather than adding a flat line of damage. Two sources put it first; one lists it among the four primaries without ordering.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://en.namu.wiki/w/HEXA%20%EB%A7%A4%ED%8A%B8%EB%A6%AD%EC%8A%A4",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+        ]
+      },
+      {
+        "node": "Command: Predator's Eye (5th job skill)",
+        "why": "Listed as a primary 5th job skill by every post-remaster source; targets the boss monster with the highest HP, which makes it a bossing-first pick. Its position relative to Wild Arrow Blast: Overdrive is disputed - see conflicts.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build",
+          "https://www.maplesea.com/updates/view/v251_Remaster/"
+        ]
+      },
+      {
+        "node": "Overbite (5th job skill)",
+        "why": "Triggers automatically and consumes the Another Bite debuff stacks on a boss, so it converts the class's own debuff bookkeeping into damage. Listed as a primary by all post-remaster sources.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build",
+          "https://orangemushroom.net/2025/11/01/kms-ver-1-2-408-wild-hunter-remaster-world-archive/"
+        ]
+      },
+      {
+        "node": "Wild Arrow Blast: Overdrive (5th job skill)",
+        "why": "Keydown upgrade to the main attacking line, with damage reduction while channeling. One English guide ranks it last of the four primaries; the Korean wiki ranks it second. Conflict recorded.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://en.namu.wiki/w/HEXA%20%EB%A7%A4%ED%8A%B8%EB%A6%AD%EC%8A%A4"
+        ]
+      }
+    ],
+    "trios": [
+      {
+        "trio": [
+          "Wild Arrow Blast: Apex",
+          "Final Attack",
+          "Trap Seed"
+        ],
+        "why": "Main-line boost trio. Wild Arrow Blast: Apex is the 4th job main attack and is the single highest-value boost target; Final Attack and Trap Seed ride along as filler that is still used constantly.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+        ]
+      },
+      {
+        "trio": [
+          "Assist: Rending Swipe",
+          "Command: Alpha Surge",
+          "Assist: Skull Bash"
+        ],
+        "why": "Mixes the two boost families that Grandis Library ranks primary (Command) and secondary (Assist) into one slot.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+        ]
+      },
+      {
+        "trio": [
+          "Command: Titan Pounce",
+          "Assist: Snapping Fangs",
+          "White Heat Rush"
+        ],
+        "why": "Second Command node plus the remaining Assist and the mobility/attack hybrid.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+        ]
+      },
+      {
+        "trio": [
+          "Wild Arrow Blast: Apex",
+          "Command: Alpha Surge",
+          "Command: Titan Pounce"
+        ],
+        "why": "Grandis Library does not publish trios; it publishes tiers. Its PRIMARY tier is Wild Arrow Blast: Apex plus the two Command skills. If you are building nodes yourself rather than copying a trio list, this is the tier to cover first.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      },
+      {
+        "trio": [
+          "Assist: Rending Swipe",
+          "Assist: Snapping Fangs",
+          "Assist: Skull Bash"
+        ],
+        "why": "Grandis Library SECONDARY tier - the three Assist strikes grouped together. A clean all-Assist trio is the natural build of this tier.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      }
+    ],
+    "notes": "Grandis Library tiers the boost targets rather than prescribing trios: PRIMARY = Wild Arrow Blast: Apex, Command: Alpha Surge, Command: Titan Pounce. SECONDARY = the three Assist skills, plus Trap Seed and Another Bite. LOW = White Heat Rush, Volt Snare, and the lower Wild Arrow Blast variants (Proto and the 2nd/3rd job forms) - those exist as node fodder, not as targets. Grandis Library adds one forward-looking rule that the other guides do not: prefer boost nodes that later unlock a 6th job HEXA Mastery core, because that investment carries into HEXA instead of being stranded. Skill naming differs by region and by source vintage: KMS patch-note translations call the main line 'Wild Vulcan' and the Assists 'Rend Claw / Fang Snap / Skull Bash', while GMS and MapleSEA use 'Wild Arrow Blast' and (in GMS community guides) 'Rending Swipe / Snapping Fangs / Skull Bash'. They are the same skills."
+  },
+  "hexa": {
+    "order": [
+      {
+        "step": "Origin skill (HEXA Skill core) first",
+        "why": "The Origin skill is the largest single damage addition available at 6th job and the standard first unlock for every class. Sources disagree on its GMS name - see conflicts.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://www.maplesea.com/updates/view/v251_Remaster/",
+          "https://orangemushroom.net/2025/11/01/kms-ver-1-2-408-wild-hunter-remaster-world-archive/"
+        ]
+      },
+      {
+        "step": "Gear Storm (Ascent skill)",
+        "why": "Summons a ballista for a bombardment attack; one guide notes it carries three charges per boss fight, making it burst-window damage rather than a filler.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://www.maplesea.com/updates/view/v251_Remaster/"
+        ]
+      },
+      {
+        "step": "HEXA Wild Arrow Blast: Apex (Mastery core)",
+        "why": "Mastery core on the main attacking skill. Mastery cores scale linearly and cost less Sol Erda than Enhancement cores, and this is the skill with the most uptime in the rotation.",
+        "consensus": "moderate",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      },
+      {
+        "step": "HEXA Assist Mastery core",
+        "why": "The Assist strikes fire constantly once Primal Bloom compresses their cooldowns, so their Mastery core has high effective uptime.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/"
+        ]
+      },
+      {
+        "step": "HEXA Command: Alpha Surge (Mastery core)",
+        "why": "Second Mastery core; Command skills are a PRIMARY boost tier for this class, so the Mastery follows the same logic.",
+        "consensus": "weak",
+        "sources": [
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      },
+      {
+        "step": "Boost/Enhancement nodes on the 5th job skills - Primal Bloom first",
+        "why": "The Korean wiki's Wild Hunter guidance is explicit: master Primal Bloom's enhancement before the others, because its duration and its Command-cooldown reduction both scale with level, then move to Wild Arrow Blast: Overdrive and Command: Predator's Eye. One English guide instead puts Command: Predator's Eye and Overbite boosts at this stage. Both positions recorded.",
+        "consensus": "weak",
+        "sources": [
+          "https://en.namu.wiki/w/HEXA%20%EB%A7%A4%ED%8A%B8%EB%A6%AD%EC%8A%A4",
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/"
+        ]
+      }
+    ],
+    "notes": "The 6th job kit as listed in the remaster notes: Origin skill, Gear Storm (Ascent), and VI versions of Wild Arrow Blast: Apex, the three Assists, Final Attack, Command: Alpha Surge, Command: Titan Pounce, Trap Seeder, and Another Bite. Common cores (Sol Janus and the other job-agnostic cores) are shared across all classes and no Wild-Hunter-specific ordering for them was found in any source - do not assume this class deviates from the general common-core advice. No source found gave a Sol Erda budget or a numeric final-damage comparison between the steps above, so treat this order as a sequence, not as a measured ranking."
+  },
+  "hyperStats": {
+    "priority": [],
+    "notes": "NOT SOURCED. No post-remaster (2026) source specific to Wild Hunter publishes a hyper stat priority. Grandis Library's Wild Hunter page carries no hyper stat section. The only Wild Hunter hyper stat discussion found was a Nexon forum thread that predates both HEXA and the 2026 remaster and is therefore unusable. Rather than copy a generic archer ordering and present it as Wild Hunter advice, this field is left empty. Worth noting only as context, not as a recommendation: Wild Hunter has no unusual stat quirk reported in any source that would push it away from a standard DEX-archer hyper stat spread."
+  },
+  "hyperSkills": {
+    "picks": [
+      {
+        "skill": "Wild Arrow Blast: Apex - Reinforce",
+        "why": "Damage on the main attacking skill. Named by both independent GMS sources.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build",
+          "https://www.maplesea.com/updates/view/v251_Remaster/"
+        ]
+      },
+      {
+        "skill": "Assist - Reinforce",
+        "why": "Damage on the Assist family, which has very high uptime.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+        ]
+      },
+      {
+        "skill": "Assist - Boss Rush (listed as 'Boss Killer' in MapleSEA notes)",
+        "why": "Boss damage on the same high-uptime family.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build",
+          "https://www.maplesea.com/updates/view/v251_Remaster/"
+        ]
+      },
+      {
+        "skill": "Another Bite - Reinforce",
+        "why": "Another Bite is the stacking debuff that Overbite and the Origin skill consume, so reinforcing it feeds the payoff skills.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+        ]
+      },
+      {
+        "skill": "Another Bite - Boss Rush / Boss Killer",
+        "why": "Boss-facing half of the same pair.",
+        "consensus": "moderate",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+        ]
+      }
+    ],
+    "freeActives": [
+      "Will of Liberty (GMS guides render this as 'For Liberty')",
+      "Volt Snare (MapleSEA notes render this as 'Bolt Snare') - a bind",
+      "Command: Titan Pounce"
+    ],
+    "notes": "The three level-150/170/200 hyper actives (Will of Liberty, Volt Snare, Command: Titan Pounce) do not compete with the passive points - you get all three. Volt Snare is the class's bind and matters for boss burst sequencing. The passive point budget does not cover every option, and the Ignore Guard and Extra Target variants that MapleSEA lists are the ones the guides skip in favour of Reinforce and Boss Rush. No source found published a point-by-point allocation at intermediate levels, only the final set."
+  },
+  "innerAbility": {
+    "bossing": [
+      {
+        "line": "Boss Damage +20% (first/legendary line)",
+        "why": "Named as the top priority by all three independent GMS guides. This is the strongest consensus in the entire document.",
+        "consensus": "strong",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter",
+          "https://www.digitaltq.com/maplestory-wild-hunter-skill-build",
+          "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/"
+        ]
+      },
+      {
+        "line": "Critical Rate +20%",
+        "why": "Second line target for bossing.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      },
+      {
+        "line": "Damage to monsters with an abnormal status +8%",
+        "why": "Third line target for bossing. Plausibly favoured for this class because Another Bite applies a debuff, but no source states that reasoning - the line is simply listed.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      }
+    ],
+    "training": [
+      {
+        "line": "Item/Meso Drop Rate +20%, then +15%",
+        "why": "Farming-oriented inner for a mule or a training character.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      },
+      {
+        "line": "Attack +21, or Damage to normal monsters +8%",
+        "why": "Third-line alternatives on a drop-rate inner.",
+        "consensus": "weak",
+        "sources": [
+          "https://www.grandislibrary.com/resistance/wild-hunter"
+        ]
+      }
+    ],
+    "notes": "Only one source (Grandis Library) publishes the full three-line sets; the other two only corroborate the Boss Damage +20% first line. Treat lines two and three as single-source."
+  },
+  "gearingNotes": "SINGLE SOURCE - treat as weak. One 2026 guide states: best-in-slot crossbow is the Genesis or Destiny Crossbow (Destiny being the stronger but slower acquisition); secondary is Princess No's Arrowhead; Titanium Arrow is the practical arrow choice on ease of acquisition. The same guide states two class-shaping points: Wild Hunter does not need to reach the attack speed cap, and it does want a cooldown-reduction hat. The cooldown-hat claim is consistent with the remastered kit's structure, where Primal Bloom, the Command skills and the Ascent skill are all cooldown-gated, but no second source was found confirming either point, so do not spend on a cooldown hat on this basis alone. No source found gave Heroic/Reboot-specific gearing deltas for this class, arcane/sacred force notes, or a set recommendation.",
+  "commonMistakes": [
+    {
+      "mistake": "Following a Wild Hunter guide written before March 2026.",
+      "why": "GMS remastered the class in v.267 on 2026-03-26 (KMS did so in ver. 1.2.408 on 2025-11-01). Skills were removed outright at beginner level, the entire main attacking line was rebuilt, and the 5th job skills, hyper skills and 6th job Origin skill are all new or renamed. A pre-remaster node or build list will name skills that no longer exist.",
+      "consensus": "strong",
+      "sources": [
+        "https://orangemushroom.net/2025/11/01/kms-ver-1-2-408-wild-hunter-remaster-world-archive/",
+        "https://www.maplesea.com/updates/view/v251_Remaster/",
+        "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+      ]
+    },
+    {
+      "mistake": "Matching skill names across regions without translating them.",
+      "why": "KMS patch-note translations use 'Wild Vulcan' where GMS and MapleSEA use 'Wild Arrow Blast', and 'Assist: Rend Claw / Fang Snap' where GMS guides use 'Assist: Rending Swipe / Snapping Fangs'. Players reading a Korean-sourced priority list can conclude a skill is missing from their matrix when it is simply named differently.",
+      "consensus": "moderate",
+      "sources": [
+        "https://orangemushroom.net/2025/11/01/kms-ver-1-2-408-wild-hunter-remaster-world-archive/",
+        "https://www.maplesea.com/updates/view/v251_Remaster/",
+        "https://www.grandislibrary.com/resistance/wild-hunter"
+      ]
+    },
+    {
+      "mistake": "Burning boost nodes that never feed a HEXA Mastery core.",
+      "why": "Grandis Library advises weighting boost node selection toward skills that later unlock a 6th job HEXA Mastery, so the investment carries forward rather than being stranded at 6th job. Single source, but it is the most reliable of the three.",
+      "consensus": "weak",
+      "sources": [
+        "https://www.grandislibrary.com/resistance/wild-hunter"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.grandislibrary.com/resistance/wild-hunter",
+      "what": "Class overview page. Tiered boost node lists (primary/secondary/low), hyper passive picks, inner ability lines for bossing and training, stats and weapons. The only source that gives the forward-looking 'prefer nodes that unlock a HEXA Mastery' rule. Carries no hyper stat section.",
+      "dated": "States GMS Ver. 269 [Ride the Lightning Update]; no calendar date printed on the page. v.269 postdates the March 2026 remaster.",
+      "independent": true
+    },
+    {
+      "url": "https://www.digitaltq.com/maplestory-wild-hunter-skill-build",
+      "what": "Post-remaster GMS build guide. Hyper skill list, four primary 5th job skills, three suggested boost trios, HEXA skill list, link/legion, inner ability first line.",
+      "dated": "2026-03-20, stated on page as the V267 remastered update.",
+      "independent": true
+    },
+    {
+      "url": "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/",
+      "what": "Post-remaster GMS build guide by James Chow. The only source found giving an explicit ordered HEXA investment sequence and any gearing detail (weapon, secondary, arrows, attack speed, cooldown hat).",
+      "dated": "2026-04-30, stated on page.",
+      "independent": "QUESTIONABLE - shares a naming pattern and guide format with digitaltq.com and may be the same operator. Counted as a separate source here but flagged; if the two are one publisher, the independent count for build-judgement claims drops by one."
+    },
+    {
+      "url": "https://orangemushroom.net/2025/11/01/kms-ver-1-2-408-wild-hunter-remaster-world-archive/",
+      "what": "Translation of the KMS Wild Hunter remaster patch notes. Full skill list by job, removed skills, 5th job skills, 6th job Origin and Ascent, VI mastery list. Mechanics, not judgement.",
+      "dated": "2025-11-01.",
+      "independent": true
+    },
+    {
+      "url": "https://www.maplesea.com/updates/view/v251_Remaster/",
+      "what": "Official MapleSEA remaster page. Same remaster content in official English localisation - the best available cross-check on English skill names (Wild Arrow Blast line, hyper skill names, 5th job, 6th job).",
+      "dated": "2026-06-03.",
+      "independent": "Partially - derives from the same Nexon Korea patch as Orange Mushroom's Blog. Independent as a localisation cross-check, not as a second opinion."
+    },
+    {
+      "url": "https://en.namu.wiki/w/HEXA%20%EB%A7%A4%ED%8A%B8%EB%A6%AD%EC%8A%A4",
+      "what": "Korean community wiki HEXA Matrix page with a per-class section. Source of the 'master Primal Bloom's enhancement first, then Overdrive, then Predator's Eye' ordering and the general 'Mastery cores are cheaper and rise linearly' rule.",
+      "dated": "UNDATED - the page returned HTTP 403 to direct fetch and its content was only reachable through a search engine excerpt, so neither a revision date nor the full surrounding context could be verified. Treat every claim attributed to it as provisional.",
+      "independent": true
+    },
+    {
+      "url": "https://www.nexon.com/maplestory/news/events/36785/wild-hunter-remaster",
+      "what": "Official GMS Wild Hunter Remaster announcement, dated in its own title as March 26. Used only to establish that the remaster shipped to GMS and that the class is live.",
+      "dated": "2026-03-26 (from the page title and the search index; the page body is a JavaScript shell and could not be read directly).",
+      "independent": true
+    }
+  ],
+  "consensusLevel": "moderate",
+  "conflicts": [
+    {
+      "topic": "Name of the 6th job Origin skill",
+      "positionA": "'Linked Impact' - the official MapleSEA remaster page and the KMS patch-note translation both use this.",
+      "sourcesA": [
+        "https://www.maplesea.com/updates/view/v251_Remaster/",
+        "https://orangemushroom.net/2025/11/01/kms-ver-1-2-408-wild-hunter-remaster-world-archive/"
+      ],
+      "positionB": "'Synchronous Hunt' - both GMS community guides use this.",
+      "sourcesB": [
+        "https://www.digitaltq.com/maplestory-wild-hunter-skill-build",
+        "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/"
+      ],
+      "note": "Most likely a GMS-versus-MapleSEA localisation split of the same skill rather than two skills, but this was not confirmed against a GMS client or official GMS skill page. Do not display one name as authoritative for GMS without verifying in-game."
+    },
+    {
+      "topic": "Order of the 5th job skills after Primal Bloom",
+      "positionA": "Primal Bloom, then Command: Predator's Eye, then Overbite, then Wild Arrow Blast: Overdrive.",
+      "sourcesA": [
+        "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/"
+      ],
+      "positionB": "Primal Bloom first, then Wild Arrow Blast: Overdrive, then Command: Predator's Eye.",
+      "sourcesB": [
+        "https://en.namu.wiki/w/HEXA%20%EB%A7%A4%ED%8A%B8%EB%A6%AD%EC%8A%A4"
+      ],
+      "note": "Both agree Primal Bloom is first. They disagree on second and third place. The Korean source may reflect KMS balance values that GMS has not received, and it is undated."
+    },
+    {
+      "topic": "What the Spirit of Freedom link skill does",
+      "positionA": "A post-revive invincibility window, roughly 12 seconds at full investment, stacking across Resistance characters.",
+      "sourcesA": [
+        "https://www.grandislibrary.com/resistance/wild-hunter",
+        "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+      ],
+      "positionB": "One guide describes the link as reaching '+20% damage' when fully levelled.",
+      "sourcesB": [
+        "https://thedigitalcrowns.com/wild-hunter-guide-and-skill-build-maplestory/"
+      ],
+      "note": "Position B appears to conflate the link skill with the Legion board effect, which genuinely is a proc scaling to +20% damage. Recorded rather than silently discarded, but position A has two independent sources including the most reliable one."
+    },
+    {
+      "topic": "Assist skill names",
+      "positionA": "'Assist: Rend Claw' and 'Assist: Fang Snap' (KMS translation and MapleSEA official).",
+      "sourcesA": [
+        "https://orangemushroom.net/2025/11/01/kms-ver-1-2-408-wild-hunter-remaster-world-archive/",
+        "https://www.maplesea.com/updates/view/v251_Remaster/"
+      ],
+      "positionB": "'Assist: Rending Swipe' and 'Assist: Snapping Fangs' (GMS community guides).",
+      "sourcesB": [
+        "https://www.grandislibrary.com/resistance/wild-hunter",
+        "https://www.digitaltq.com/maplestory-wild-hunter-skill-build"
+      ],
+      "note": "Same skills, different localisation. 'Assist: Skull Bash' is identical in both."
+    }
+  ],
+  "coverageGaps": [
+    "Hyper stat priority: no post-remaster Wild-Hunter-specific source found. Field left empty.",
+    "HEXA common core ordering (Sol Janus and friends): no class-specific source found.",
+    "Heroic/Reboot-specific gearing: nothing found. All gearing notes here are from a single general-GMS guide.",
+    "No Wild Hunter class Discord compilation, maintained community Google Doc, or Reddit guide thread surfaced for the post-remaster kit. If one exists it was not indexed by the searches run.",
+    "No numeric damage comparisons, DPM figures, or Sol Erda budgets were found for any recommendation in this document."
+  ],
+  "lastVerified": "2026-09-11",
+  "patchVersion": "v.271",
+  "contest": {
+    "ranAt": "2026-09-12",
+    "method": "An independent agent re-searched every claim in this file without seeing the researcher's reasoning, and was instructed to refute rather than confirm.",
+    "defects": [
+      "MISATTRIBUTED TIER LIST — the most consequential defect. vMatrix.notes states: 'Grandis Library tiers the boost targets: PRIMARY = Wild Arrow Blast: Apex, Command: Alpha Surge, Command: Titan Pounce. SECONDARY = the three Assist skills, plus Trap Seed and Another Bite. LOW = White Heat Rush, Volt Snare, and the lower Wild Arrow Blast variants.' The actual page reads: PRIMARY = Wild Arrow Blast: Apex (that skill ALONE). SECONDARY = the three Assist skills AND both Command skills. OTHER = Final Attack, Trap Seed, Another Bite, White Heat Rush, Volt Snare, and the Wild Arrow Blast variants. The Command skills were promoted a full tier, Trap Seed and Another Bite were promoted a full tier, and Final Attack was dropped from the listing. A reader following this spends nodes on the wrong tier.",
+      "FABRICATED TRIO — vMatrix.trios[3] ('Wild Arrow Blast: Apex, Command: Alpha Surge, Command: Titan Pounce', consensus 'moderate', sole source Grandis Library) is justified as 'Its PRIMARY tier is Wild Arrow Blast: Apex plus the two Command skills.' Grandis Library's PRIMARY tier is one skill. This trio is not on that page in any form, and its stated justification does not exist. It is the only trio in the file carrying a consensus above 'weak'.",
+      "REVERSED RATIONALE — vMatrix.trios[1] is justified as mixing 'the two boost families that Grandis Library ranks primary (Command) and secondary (Assist).' Grandis Library ranks BOTH families SECONDARY. The distinction the trio is built on does not exist in the cited source.",
+      "INVENTED GROUPING — vMatrix.trios[4] ('Grandis Library SECONDARY tier - the three Assist strikes grouped together. A clean all-Assist trio is the natural build of this tier') is marked consensus 'moderate'. Grandis Library publishes no trios (the file concedes this elsewhere) and its SECONDARY tier is five skills, not three. An all-Assist trio is the researcher's own construction presented as a source's tier.",
+      "MANUFACTURED CONFLICT — conflicts[2] asserts positionB: 'One guide describes the link as reaching +20% damage when fully levelled', sourced to thedigitalcrowns. That page states, in two separate places, 'Invincible for 12 seconds after being revived' for the link skill and '20% chance to deal increased damage when attacking (4/8/12/16/20%)' for the Legion board. The source agrees with positionA. The file invented a disagreement, then wrote a paragraph explaining away a conflation that the source never committed.",
+      "UNVERIFIABLE ATTRIBUTION — four claims rest solely on en.namu.wiki, which the researcher records as HTTP 403 and reachable only via a search-engine excerpt. I independently re-fetched it and also got 403. The claims are: (a) Primal Bloom ranked first in vMatrix (one of the 'two sources'); (b) Wild Arrow Blast: Overdrive ranked second; (c) hexa.order step 6, the explicit 'master Primal Bloom's enhancement before the others ... then Overdrive, then Predator's Eye' sequence; (d) conflicts[1] positionB in full. No human or tool in this chain has read that page. A search-result snippet is not a source, and quoting an ordering out of one is exactly the failure mode the brief warns about.",
+      "POSITIVE FINDING, for contrast — every skill and node name in the file is real and I verified each: Wild Arrow Blast: Apex/Overdrive/Proto/Ignite/Shatterline, Primal Bloom, Overbite, Command: Predator's Eye, Command: Alpha Surge, Command: Titan Pounce, Assist: Rending Swipe/Snapping Fangs/Skull Bash, Another Bite, Trap Seed(er), Final Attack, White Heat Rush, Volt Snare, Gear Storm, Synchronous Hunt. The KMS/GMS localisation split (Wild Vulcan vs Wild Arrow Blast; Rend Claw/Fang Snap vs Rending Swipe/Snapping Fangs) is real and correctly documented. The mechanics claims check out against the KMS notes: Primal Bloom does reduce Command cooldowns by 40% and fix Assist re-use to 1.5s; Overbite does fire on consuming 60 Another Bite stacks. The empty hyperStats field with its NOT SOURCED note is correct — Grandis Library genuinely has no Hyper Stat section. No node name is invented.",
+      "STALE: No pre-HEXA advice is presented as current — I looked for it specifically and found none. The remaster framing is sound and is the file's strongest structural decision.",
+      "STALE: Currency is overstated at the top level, though: patchVersion 'v.271' and lastVerified '2026-09-11' front a document whose best source (Grandis Library) self-identifies as 'GMS Ver. 269 [Ride the Lightning Update]', two patches behind. The file records v.269 in sources[] but the header implies the judgement was checked against v.271. Nothing here has been.",
+      "STALE: en.namu.wiki is undated (unreadable, so undatable) and is a Korean HEXA Matrix page. It supplies the ONLY 5th-job enhancement ordering in hexa.order. KMS ran the remaster in Nov 2025 and has had ~10 months of balance passes GMS has not received. The file flags this risk in one place, then uses the source for a build order anyway.",
+      "STALE: maplesea.com v251 (2026-06-03) is the newest source and is being used to name GMS skills. MapleSEA's remaster landed ~10 weeks after GMS's and carries its own localisation. It is the direct cause of the 'Linked Impact vs Synchronous Hunt' conflict, which does not exist in GMS. Newest is not most applicable here.",
+      "STALE: Genuinely non-independent pair, correctly caught by the file: maplesea and orangemushroom both derive from the same Nexon Korea ver. 1.2.408 patch document. That is one source, not two, for every mechanic claim citing both — which the file states plainly in sources[]. Credit where due."
+    ],
+    "clearedOnInspection": [],
+    "shipReady": false
+  },
+  "written": false,
+  "blockedReason": "12 claim(s) did not survive independent re-checking. See contest.defects. This file is research, not guidance, until they are resolved."
+}
