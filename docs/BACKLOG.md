@@ -223,7 +223,7 @@ Bow Master is also the right reference case: Archerroni is Lv 244 at ~5.26M
 combat power with a full gear set, so the model has something to be wrong
 against.
 
-## Crystal cap: ship 14, expose the toggle
+## Crystal cap: ship 12, offer 14 as an optional override
 
 12 is the only value with a primary source (KMS v1.2.393, July 2024) and is what
 Grandis Library says for GMS. 14 is what two current wikis say and traces to GMS
@@ -234,8 +234,18 @@ roster size needed to fill the 180 world cap moves from 13 characters to 15.
 At 31 characters this account is past that line either way, but for a 13 or 14
 character account the two values give opposite advice about running dailies.
 
-So: default 14, a toggle in an always-visible assumptions drawer, and every
-derived figure recomputes from it. Never hardcoded anywhere.
+REVISED by the account holder: **default 12, offer 14 as an optional override.**
+
+This is the more defensible way round. 12 is the only value carrying a primary
+source, so the default is the sourced number and the disputed one is the thing a
+player opts into - rather than shipping the unsourced figure and asking everyone
+to opt out of it. A tool that overstates your ceiling by 120M a week is worse
+than one that understates it, because the overstatement is what makes someone
+plan around income that never arrives.
+
+The toggle lives in an always-visible assumptions drawer with both source links
+and a one-line note on why it is disputed. Every derived figure recomputes from
+it immediately. Never hardcoded anywhere.
 
 Also: the widely repeated "~1.88B/week from the top 14 weeklies" does not
 reproduce - summing the source's own table gives ~1.41B, a 33% overstatement.
