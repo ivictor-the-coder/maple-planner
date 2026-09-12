@@ -251,3 +251,63 @@ Also: the widely repeated "~1.88B/week from the top 14 weeklies" does not
 reproduce - summing the source's own table gives ~1.41B, a 33% overstatement.
 The ceiling is computed from the boss table with a test asserting the displayed
 number equals the allocator's own sum.
+
+---
+
+# Scope: the guide covers endgame only
+
+Decided 2026-09-12 by the product owner, and binding on every future wave.
+
+> "as a maplestory gamer I want to be able to make sure I have the right hyper skills
+> selected and v matrix and beyond, the skills from job 1-4 is moot, it's the endgame
+> content that we're concerned about or mid game. Jobs 1-4 is early game as you can get
+> to 200 in less than a day"
+>
+> "1-200 is strictly doing quests anyways"
+
+## What is in scope
+
+- V matrix: which boost nodes, what order, which trios
+- HEXA / 6th job: investment order
+- Hyper skills: which passives and actives to select
+- Hyper stats: priority order
+- Inner ability: the lines worth chasing
+
+## What is out, and why it is out rather than merely deprioritised
+
+Skill builds for jobs 1 to 4, skill damage coefficients, job tiers, rotations.
+
+Levels 1 to 200 are quest-driven. There is no allocation decision to advise on, so a
+guide covering it answers a question nobody asks. That is a stronger reason than "low
+value" and it means the content should eventually be DELETED rather than carried - it
+adds defect surface and implies the tool cares about something it does not.
+
+This also retires a conclusion reached earlier in the day. The absence of machine-
+readable GMS skill coefficients was treated as fatal to a skill guide. It is not:
+telling someone a hyper skill box is ticked wrong needs no damage coefficient. The
+blocker was never the missing data, it was aiming at the wrong content.
+
+## What this does NOT rescue
+
+Narrowing scope does not rescue the mined data. Of 313 recorded defects, 250 land in
+the endgame sections and only 2 in jobs 1 to 4. The contested claims ARE the endgame
+claims. Four classes came through with endgame content and no defects: Demon Avenger
+(30 HEXA steps), Pathfinder, Night Walker, Hoyoung.
+
+## The product shape this implies
+
+Validation, not instruction. The owner's words are "make sure I have the RIGHT hyper
+skills selected" - they are checking a build, not learning one. So the app compares a
+player's actual build against sourced claims and reports the difference:
+
+  "3 independent sources put this node first; you do not have it"
+  "you have levelled this node and no source recommends it"
+
+It never says "you are wrong". That distinction is what makes weakly sourced data
+usable: a disagreement is information when it is labelled with its source count, and
+poison when it is presented as a verdict. It also means accuracy of the CONFIDENCE
+LABEL matters more than completeness of the content.
+
+It reuses the screenshot importer - a V matrix window and a hyper skill window are two
+more window types for a pipeline that already exists - which puts it naturally behind
+the paid convenience tier where the owner drew that line.
