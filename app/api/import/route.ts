@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { Tier } from "@/lib/rules";
+import { SLOTS, canStarForce, sfCap, type Item, type SlotDef, type Tier } from "@/lib/rules";
 
 // Reads a MapleStory item tooltip out of a screenshot using a vision model.
 //
@@ -7,6 +7,14 @@ import type { Tier } from "@/lib/rules";
 // the game world, and the cursor always occludes a line because you have to
 // hover an item to see its tooltip at all. A vision model handles both, and
 // handles a full uncropped screenshot.
+//
+// This is the paid feature, so the governing principle is: NOTHING the model
+// says is trusted on its own. Every field that can be checked against evidence
+// is checked — the item database supplies the required level, the level supplies
+// the star cap, the cap contradicts an impossible star count — and every field
+// ships with a confidence derived from that evidence, never from the model's
+// own self-report. A model that is confidently wrong about 15 stars on a 12-star
+// item sends a real person to grind for an upgrade they already have.
 //
 // Configure with OPENROUTER_API_KEY. OPENROUTER_MODELS optionally overrides the
 // fallback chain (comma separated, tried in order).
@@ -37,6 +45,26 @@ const DEFAULT_MODELS = [
   "z-ai/glm-5.3-flash",
   "deepseek/deepseek-v4.1-flash",
 ];
+
+/* ------------------------------------------------------------------ *
+ * Assumptions recorded against files owned by other builders
+ * ------------------------------------------------------------------ *
+ * - lib/rules.ts is imported for `sfCap`, `canStarForce`, `SLOTS`. The star
+ *   cap table there (Lv95→8, 108→10, 118→15, 129→20, 138→30, Superior→15)
+ *   matches the community reference and is deliberately NOT duplicated here;
+ *   one table, one place to fix. See maplestorywiki.net/w/Star_Force_Enhancement
+ *   and strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force.
+ * - lib/import/starPixels.ts (another builder) counts gold pixels in the browser
+ *   and posts the result here as `pixelStars`. This route treats it as an
+ *   optional input: if it never arrives, star confidence simply never reaches
+ *   "high". Nothing here breaks if that file does not exist yet.
+ * - components/ImportDialog.tsx destructures j.item.{p,f,star,lvl,pot,sup},
+ *   j.slotGuess, j.iconBox, j.stats, j.roster. Every one of those keys keeps its
+ *   name, type and meaning below. `conf`, `reasons`, `tooltipBox`, `db`,
+ *   `accuracy` and `flags` are ADDITIVE and ignored by the current dialog.
+ * - app/api/items/route.ts already maps the upstream subcategory to our slot id
+ *   and returns it as `slot`, so that mapping is consumed rather than copied.
+ * ------------------------------------------------------------------ */
 
 const PROMPT = `You are reading a screenshot of the game MapleStory.
 
@@ -75,11 +103,17 @@ Reply with ONLY a JSON object, no prose and no code fences:
   "noPotential": boolean,      // true if the tooltip reads "Potential : Can't Enhance" instead of a tier.
                                // Note an item can say "Star Force, Bonus Stats Can't Enhance" and STILL
                                // have a real "Potential : Legendary" with lines — read the two separately.
-  "iconBox": [number, number, number, number]
+  "iconBox": [number, number, number, number],
                                // bounding box of the item's ICON — the small square picture of the item
                                // inside the tooltip, usually top-left under the name. Give it as
                                // [x, y, width, height] normalised 0-1 relative to the whole image.
                                // Use [0,0,0,0] if you cannot locate it.
+  "tooltipBox": [number, number, number, number]
+                               // bounding box of the STAR ROW ONLY — the horizontal strip of star
+                               // graphics directly ABOVE the item name, at the very top of the tooltip.
+                               // Include every star in the row, gold and grey alike, and as little else
+                               // as possible: no name text, no icon. Same normalised [x, y, width, height]
+                               // form as iconBox. Use [0,0,0,0] if the item shows no star row at all.
 }
 
 If there is NO item tooltip visible, set "name" to "" — do not invent one.
@@ -88,7 +122,8 @@ SEPARATELY: the screenshot may also show the CHARACTER STAT window (headed
 "Character Info" / "STAT", showing Combat Power, DAMAGE RANGE, STR/DEX/INT/LUK,
 CRITICAL RATE, BOSS DAMAGE, IGNORE DEFENSE, ARCANE POWER, STAR FORCE and so on).
 If and only if that window is visible, add a "stats" key. Read the numbers exactly
-as displayed, stripping commas and % signs. Omit any field you cannot see.
+as displayed, stripping commas and % signs. Use null for any field you cannot see,
+and null for the whole "stats" key when no stat window is on screen.
 
   "stats": {
     "name": string,          // character name
@@ -106,8 +141,6 @@ as displayed, stripping commas and % signs. Omit any field you cannot see.
     "starForce": number      // the STAR FORCE total, not any single item's stars
   }
 
-Omit "stats" entirely when no stat window is on screen.
-
 SEPARATELY AGAIN: the screenshot may show the SWITCH CHARACTER window — a grid of
 character cards, each card showing "Lv.NNN" on top, the CLASS under it ("Bow
 Master", "Demon Avenger", "Dawn Warrior"), and the CHARACTER NAME on the bottom
@@ -121,36 +154,157 @@ then top to bottom:
 Class is the MIDDLE line and name is the BOTTOM line — do not swap them. Set
 "current" true only for the card badged CURRENT. Skip a card you cannot read
 rather than guessing at it. Also add "rosterPage": [n, total] from the page
-counter, so [1, 3] for "01 / 03".
-
-Omit "roster" entirely when no Switch Character window is on screen.
+counter, so [1, 3] for "01 / 03". Use null for "roster" and "rosterPage" when no
+Switch Character window is on screen.
 
 Output the JSON object and nothing else. Do not narrate what you see, do not
 think out loud, do not write "Let me analyze". The first character you emit must
 be { and the last must be }.`;
 
+/** The second pass. A 200x40 native-resolution crop asking one question beats a
+ *  2000px screenshot asking twenty — the model has no tooltip text to be
+ *  distracted by and no chance to conflate the player's level with the item's. */
+const STAR_PROMPT = `Count the filled gold stars in this row. Filled stars are \
+saturated yellow/orange; unearned stars are grey outlines. Reply \
+{"stars":N,"grey":M,"sure":true|false} and nothing else.`;
+
+/* ---------- request shaping ---------- */
+
+/** Structured output beats salvage. Strict mode (OpenAI's dialect, which
+ *  OpenRouter forwards) demands that every property appear in `required` and
+ *  that `additionalProperties` be false, so "optional" is expressed as a
+ *  nullable type instead — hence the null-tolerance in num() below. */
+const NUM_OR_NULL = { type: ["number", "null"] } as const;
+const STR_OR_NULL = { type: ["string", "null"] } as const;
+
+const STATS_SCHEMA = {
+  type: ["object", "null"],
+  additionalProperties: false,
+  required: [
+    "name", "class", "level", "combatPower", "mainStat", "attack", "critRate",
+    "critDamage", "bossDamage", "ignoreDefense", "maxHp", "arcanePower", "starForce",
+  ],
+  properties: {
+    name: STR_OR_NULL, class: STR_OR_NULL, level: NUM_OR_NULL,
+    combatPower: NUM_OR_NULL, mainStat: NUM_OR_NULL, attack: NUM_OR_NULL,
+    critRate: NUM_OR_NULL, critDamage: NUM_OR_NULL, bossDamage: NUM_OR_NULL,
+    ignoreDefense: NUM_OR_NULL, maxHp: NUM_OR_NULL, arcanePower: NUM_OR_NULL,
+    starForce: NUM_OR_NULL,
+  },
+} as const;
+
+const BOX_SCHEMA = { type: "array", items: { type: "number" } } as const;
+
+const TOOLTIP_SCHEMA = {
+  name: "maple_tooltip",
+  strict: true,
+  schema: {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "name", "level", "slot", "tier", "potential", "flame", "starforce",
+      "superior", "noStarForce", "noFlame", "noPotential", "iconBox",
+      "tooltipBox", "stats", "roster", "rosterPage",
+    ],
+    properties: {
+      name: { type: "string" },
+      level: { type: "number" },
+      slot: { type: "string" },
+      tier: { type: "string", enum: ["legendary", "unique", "epic", "rare", "none"] },
+      potential: { type: "array", items: { type: "string" } },
+      flame: { type: "array", items: { type: "string" } },
+      starforce: { type: "number" },
+      superior: { type: "boolean" },
+      noStarForce: { type: "boolean" },
+      noFlame: { type: "boolean" },
+      noPotential: { type: "boolean" },
+      iconBox: BOX_SCHEMA,
+      tooltipBox: BOX_SCHEMA,
+      stats: STATS_SCHEMA,
+      roster: {
+        type: ["array", "null"],
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["name", "class", "level", "current"],
+          properties: {
+            name: { type: "string" }, class: { type: "string" },
+            level: { type: "number" }, current: { type: "boolean" },
+          },
+        },
+      },
+      rosterPage: { type: ["array", "null"], items: { type: "number" } },
+    },
+  },
+} as const;
+
+const STARS_SCHEMA = {
+  name: "maple_star_row",
+  strict: true,
+  schema: {
+    type: "object",
+    additionalProperties: false,
+    required: ["stars", "grey", "sure"],
+    properties: {
+      stars: { type: "number" }, grey: { type: "number" }, sure: { type: "boolean" },
+    },
+  },
+} as const;
+
+/** json_schema first; a provider that 400s on it drops to json_object; one that
+ *  400s on that too runs bare. Each step is strictly weaker, never a dead end. */
+type FormatMode = "schema" | "object" | "none";
+const weaken = (m: FormatMode): FormatMode => (m === "schema" ? "object" : "none");
+
+/* ---------- types ---------- */
+
 interface VisionStats {
-  name?: string; class?: string; level?: number; combatPower?: number;
-  mainStat?: number; attack?: number; critRate?: number; critDamage?: number;
-  bossDamage?: number; ignoreDefense?: number; maxHp?: number;
-  arcanePower?: number; starForce?: number;
+  name?: string | null; class?: string | null; level?: number | null;
+  combatPower?: number | null; mainStat?: number | null; attack?: number | null;
+  critRate?: number | null; critDamage?: number | null; bossDamage?: number | null;
+  ignoreDefense?: number | null; maxHp?: number | null; arcanePower?: number | null;
+  starForce?: number | null;
 }
 
 interface VisionRosterEntry {
-  name?: string; class?: string; level?: number; current?: boolean;
+  name?: string | null; class?: string | null; level?: number | null; current?: boolean | null;
 }
 
 interface VisionItem {
   name?: string; level?: number; slot?: string; tier?: string;
   potential?: string[]; flame?: string[]; starforce?: number; superior?: boolean;
   noStarForce?: boolean; noFlame?: boolean; noPotential?: boolean;
-  iconBox?: number[]; stats?: VisionStats;
-  roster?: VisionRosterEntry[]; rosterPage?: number[];
+  iconBox?: number[]; tooltipBox?: number[]; stats?: VisionStats | null;
+  roster?: VisionRosterEntry[] | null; rosterPage?: number[] | null;
 }
 
+interface VisionStarRow {
+  stars?: number | null; grey?: number | null; sure?: boolean | null;
+}
+
+export type Conf = "high" | "med" | "low";
+
+/** Per-field confidence. Derived from evidence — a database match, a cap
+ *  contradiction, two independent star counts agreeing — and never from the
+ *  model telling us how sure it feels. */
+export interface ConfMap {
+  name: Conf; lvl: Conf; star: Conf; slot: Conf; pot: Conf; p: Conf; f: Conf;
+}
+
+export type ReasonMap = Partial<Record<keyof ConfMap, string>>;
+
 const num = (v: unknown, max: number): number | undefined => {
+  // Strict json_schema makes every optional field explicitly null, and
+  // Number(null) is 0 — which would quietly write a zeroed stat window over a
+  // real one. Reject null before it can become a number.
+  if (v === null || v === undefined || v === "") return undefined;
   const n = typeof v === "string" ? parseFloat(v.replace(/[,%\s]/g, "")) : Number(v);
   return Number.isFinite(n) && n >= 0 && n <= max ? n : undefined;
+};
+
+const str = (v: unknown): string | undefined => {
+  const s = typeof v === "string" ? v.trim() : "";
+  return s || undefined;
 };
 
 function tidyRoster(r: unknown) {
@@ -158,8 +312,8 @@ function tidyRoster(r: unknown) {
   const out: Array<{ name: string; cls: string; lvl: number; current: boolean }> = [];
   for (const e of r) {
     const x = (e ?? {}) as VisionRosterEntry;
-    const name = typeof x.name === "string" ? x.name.trim() : "";
-    const cls = typeof x.class === "string" ? x.class.trim() : "";
+    const name = str(x.name) ?? "";
+    const cls = str(x.class) ?? "";
     const lvl = num(x.level, 300);
     if (!name || lvl === undefined) continue;
     out.push({ name, cls, lvl, current: !!x.current });
@@ -167,11 +321,11 @@ function tidyRoster(r: unknown) {
   return out.length ? out : undefined;
 }
 
-function tidyStats(s: VisionStats | undefined) {
+function tidyStats(s: VisionStats | null | undefined) {
   if (!s || typeof s !== "object") return undefined;
   const out = {
-    name: typeof s.name === "string" ? s.name.trim() : undefined,
-    cls: typeof s.class === "string" ? s.class.trim() : undefined,
+    name: str(s.name),
+    cls: str(s.class),
     lvl: num(s.level, 300),
     cp: num(s.combatPower, 1e10),
     main: num(s.mainStat, 1e7),
@@ -196,16 +350,20 @@ const SLOT_ALIASES: Record<string, string> = {
 
 /** Models wrap JSON in prose or fences, and a chatty preamble can push the
  *  closing brace past the token limit. Dig the object out, and if it was cut
- *  off mid-object, close it and salvage what arrived. */
-function extractJson(text: string): VisionItem | null {
+ *  off mid-object, close it and salvage what arrived.
+ *
+ *  `salvaged` says whether we had to rebuild a truncated object. That is the
+ *  signal that json_schema was NOT honoured, which step 10 logs — a provider
+ *  silently ignoring the schema is invisible otherwise. */
+function extractJson<T>(text: string): { value: T | null; salvaged: boolean } {
   const cleaned = text.replace(/```(?:json)?/gi, "").trim();
   const start = cleaned.indexOf("{");
-  if (start === -1) return null;
+  if (start === -1) return { value: null, salvaged: false };
 
   // Some models emit more than one object — deepseek echoes {"type":"json_object"}
   // before the real answer. Walk every balanced object and take the one that
   // actually carries our payload, rather than slicing first-brace to last.
-  const candidates: VisionItem[] = [];
+  const candidates: Record<string, unknown>[] = [];
   let depth = 0, objStart = -1, inStr = false, esc = false;
   for (let i = start; i < cleaned.length; i++) {
     const c = cleaned[i];
@@ -220,16 +378,16 @@ function extractJson(text: string): VisionItem | null {
     if (c === "}") {
       depth--;
       if (depth === 0 && objStart !== -1) {
-        try { candidates.push(JSON.parse(cleaned.slice(objStart, i + 1)) as VisionItem); } catch { /* skip */ }
+        try { candidates.push(JSON.parse(cleaned.slice(objStart, i + 1))); } catch { /* skip */ }
         objStart = -1;
       }
     }
   }
   const useful = candidates.find(
-    (c) => c && (c.name !== undefined || c.stats !== undefined || c.roster !== undefined)
+    (c) => c && (c.name !== undefined || c.stats !== undefined || c.roster !== undefined || c.stars !== undefined)
   );
-  if (useful) return useful;
-  if (candidates.length === 1) return candidates[0];
+  if (useful) return { value: useful as unknown as T, salvaged: false };
+  if (candidates.length === 1) return { value: candidates[0] as unknown as T, salvaged: false };
 
   // Truncated: balance the braces/brackets and drop any half-written pair.
   let frag = cleaned.slice(start);
@@ -239,22 +397,401 @@ function extractJson(text: string): VisionItem | null {
   const brackets = (frag.match(/\[/g) ?? []).length - (frag.match(/\]/g) ?? []).length;
   frag += "]".repeat(Math.max(0, brackets)) + "}".repeat(Math.max(0, opens));
   try {
-    return JSON.parse(frag) as VisionItem;
+    return { value: JSON.parse(frag) as T, salvaged: true };
+  } catch {
+    return { value: null, salvaged: false };
+  }
+}
+
+/* ---------- line-shape validation (replaces the old tidy()) ---------- */
+
+// A potential or flame line is a tiny, rigid grammar. Anything else is the model
+// narrating, and narration used to be stored verbatim as a potential line and
+// handed to lib/rules.ts, which then advised on a sentence. Shape-check instead
+// of trusting, and report what was dropped so the field's confidence can fall.
+
+/** "DEX: +9%", "STR +20", "Attack Power : +12" — the overwhelming majority. */
+const SHAPE_STAT = /^[A-Za-z][A-Za-z .]*?\s*:?\s*[+\-]\s*\d+(?:\.\d+)?%?$/;
+/** "+9% DEX" — some locales and some models put the number first. */
+const SHAPE_LEADING_NUM = /^[+\-]\s*\d+(?:\.\d+)?%?\s+[A-Za-z][A-Za-z .]*$/;
+/** "Cooldown Reduction: -2 sec", "Damage: +1% per 10 character levels". */
+const SHAPE_UNIT_TAIL = /^[A-Za-z][A-Za-z .]*?\s*:?\s*[+\-]?\s*\d+(?:\.\d+)?%?\s+(?:sec(?:ond)?s?|per\s+\d+\s+[A-Za-z ]+)$/i;
+/** "Decent Sharp Eyes" and friends carry no number at all and are still real. */
+const SHAPE_DECENT = /^decent\s+[A-Za-z' ]{3,30}$/i;
+/** Families whose lines can be wordy but always contain a figure. Keeping this
+ *  list explicit is what stops "The tooltip shows 3 lines" from surviving. */
+const POT_FAMILY =
+  /^(?:boss damage|ignore (?:enemy )?def(?:ense)?|item drop rate|drop rate|mesos? obtained|meso|cooldown reduction|attack power|magic att(?:ack)?|all stats?|critical (?:rate|damage)|damage|max hp|max mp|str|dex|int|luk|hp|mp|def(?:ense)?|speed|jump|invincib)/i;
+/** Hard tells that the "line" is prose. Cheap, and it costs a real line nothing. */
+const NARRATION = /\b(?:i |let me|the (?:image|screenshot|tooltip|item)|appears|cannot|unable|looks like|seems|shows|there (?:is|are))\b/i;
+
+/** True when `s` is plausibly a real tooltip stat line rather than commentary. */
+function isStatLine(s: string): boolean {
+  const t = s.replace(/\s+/g, " ").trim();
+  // No real potential or flame line is this long; every narration is.
+  if (!t || t.length > 60) return false;
+  if (NARRATION.test(t)) return false;
+  if (SHAPE_STAT.test(t) || SHAPE_LEADING_NUM.test(t) || SHAPE_UNIT_TAIL.test(t) || SHAPE_DECENT.test(t)) return true;
+  return POT_FAMILY.test(t) && /\d/.test(t);
+}
+
+/** Keep only lines that pass the shape check, and say how many were rejected. */
+function keepStatLines(arr: unknown, max = 3): { lines: string[]; dropped: number } {
+  if (!Array.isArray(arr)) return { lines: [], dropped: 0 };
+  const seen = arr
+    .filter((x): x is string => typeof x === "string")
+    .map((s) => s.replace(/^[•*\-\s]+/, "").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  const lines: string[] = [];
+  let dropped = 0;
+  for (const l of seen) {
+    if (lines.length >= max) break;
+    if (isStatLine(l)) lines.push(l);
+    else dropped++;
+  }
+  return { lines, dropped };
+}
+
+/* ---------- server-side item database lookup ---------- */
+
+// lib/itemLookup.ts does this in the browser with a relative fetch, which is
+// unusable here — and by the time it runs, the response has already been sent
+// and the star count has already been accepted. Cross-validation has to happen
+// BEFORE we answer, so a server-side twin lives here. The matching rules are
+// deliberately identical so the two never disagree about which item this is.
+
+export interface DbHit {
+  itemId: number;
+  name: string;
+  /** Subcategory string from the upstream database, e.g. "Shield", "Ring". */
+  sub: string;
+  /** Our slot id, already mapped by app/api/items. Null for weapons. */
+  slot: string | null;
+  level: number;
+  superior: boolean;
+  bossDrop: boolean;
+  /** Edit distance between what the model read and what the database calls it. */
+  distance: number;
+}
+
+interface ItemsRouteHit {
+  itemId: number; name: string; slot: string | null; subcategory: string;
+  level: number; superior: boolean; bossDrop: boolean;
+}
+
+const norm = (s: string) =>
+  s.toLowerCase().replace(/[‘’']/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+
+/** Slot family, ignoring the trailing digit: ring1 and ring3 are both "ring". */
+const fam = (s: string | null | undefined) => (s ?? "").replace(/\d+$/, "");
+
+function distance(a: string, b: string): number {
+  if (a === b) return 0;
+  const m = a.length, n = b.length;
+  if (!m || !n) return Math.max(m, n);
+  let prev = Array.from({ length: n + 1 }, (_, i) => i);
+  for (let i = 1; i <= m; i++) {
+    const cur = [i];
+    for (let j = 1; j <= n; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+    prev = cur;
+  }
+  return prev[n];
+}
+
+async function lookupItem(origin: string, name: string, slot: string | null): Promise<DbHit | null> {
+  const clean = name.trim();
+  if (clean.length < 2) return null;
+
+  let hits: ItemsRouteHit[] = [];
+  try {
+    const r = await fetch(`${origin}/api/items?q=${encodeURIComponent(clean)}`, {
+      headers: { accept: "application/json" },
+    });
+    if (!r.ok) return null;
+    hits = ((await r.json())?.items ?? []) as ItemsRouteHit[];
+  } catch {
+    // The database being down must degrade the confidence of a field, never the
+    // availability of the import. Fall through to null.
+    return null;
+  }
+
+  const target = norm(clean);
+  const pool = slot ? hits.filter((h) => !h.slot || fam(h.slot) === fam(slot)) : hits;
+  let win: ItemsRouteHit | null = null;
+  let winD = Infinity;
+  for (const h of pool) {
+    const d = distance(target, norm(h.name));
+    if (d < winD) { winD = d; win = h; }
+  }
+  // A quarter of the name may differ. "iffas ring" -> "ifias ring" is 2 of 10;
+  // two unrelated rings are nowhere near that close.
+  if (!win || winD > Math.max(1, Math.floor(target.length * 0.25))) return null;
+  return {
+    itemId: win.itemId, name: win.name, sub: win.subcategory, slot: win.slot,
+    level: win.level, superior: win.superior, bossDrop: win.bossDrop, distance: winD,
+  };
+}
+
+/* ---------- star reconciliation ---------- */
+
+export interface StarInputs {
+  /** Deterministic pixel count from lib/import/starPixels.ts, if the client ran it. */
+  pixel?: number;
+  /** What the model said while reading the whole screenshot. */
+  model?: number;
+  /** What the model said when shown only the star row at native resolution. */
+  second?: number;
+  /** sfCap() for this item, after the database has supplied the real level. */
+  cap: number;
+  /** The tooltip declared "Star Force ... Can't Enhance", or the slot cannot star. */
+  cannotStar: boolean;
+}
+
+export interface StarVerdict { star: number; conf: Conf; reason?: string }
+
+/** The highest star force any GMS item can show, post Star Force reorganisation:
+ *  Lv.138+ gear goes to 30. Sourced from maplestorywiki.net/w/Star_Force_Enhancement
+ *  and strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force (95→8, 108→10,
+ *  118→15, 129→20, 138→30; Superior/Tyrant capped at 15). The per-level table
+ *  itself lives in lib/rules.ts sfCap() and is not duplicated here. */
+const MAX_STARS = 30;
+
+/**
+ * Three independent readings, none of them trusted alone.
+ *
+ * The pixel count is deterministic and wins ties on principle: it is the only
+ * input that cannot hallucinate. But its thresholds are calibrated against a
+ * fixture set, not extracted from the client, so a disagreement of more than one
+ * star is treated as "neither of you is reliable here" — we still return the
+ * pixel count, but at low confidence, which forces the UI to demand a human look
+ * rather than writing a number nobody verified.
+ */
+function reconcileStars(i: StarInputs): StarVerdict {
+  if (i.cannotStar) {
+    const claimed = Math.max(i.pixel ?? 0, i.model ?? 0, i.second ?? 0);
+    return claimed > 0
+      ? { star: 0, conf: "low", reason: `tooltip says this item takes no star force, but ${claimed} star${claimed === 1 ? "" : "s"} were read` }
+      : { star: 0, conf: "high", reason: undefined };
+  }
+
+  let star: number;
+  let conf: Conf;
+  let reason: string | undefined;
+
+  if (i.pixel !== undefined) {
+    const other = i.model ?? i.second;
+    if (other === undefined) {
+      star = i.pixel; conf = "med";
+      reason = `pixel count ${i.pixel}, no model read to corroborate it`;
+    } else if (other === i.pixel) {
+      star = i.pixel; conf = "high";
+    } else if (Math.abs(other - i.pixel) === 1) {
+      star = i.pixel; conf = "med";
+      reason = `pixel count ${i.pixel} vs model ${other}`;
+    } else {
+      star = i.pixel; conf = "low";
+      reason = `pixel count ${i.pixel} vs model ${other} — disagree by ${Math.abs(other - i.pixel)}`;
+    }
+  } else if (i.second !== undefined && i.model !== undefined) {
+    if (i.second === i.model) {
+      // Two reads by the same family of model are correlated, not independent.
+      // Agreement is evidence, but it is not the pixel count, so: med, not high.
+      star = i.second; conf = "med";
+    } else {
+      // The native-resolution crop of just the star row is the better look.
+      star = i.second; conf = "low";
+      reason = `star-row read ${i.second} vs full-screenshot read ${i.model}`;
+    }
+  } else if (i.second !== undefined) {
+    star = i.second; conf = "low";
+    reason = `single star-row read, ${i.second}, uncorroborated`;
+  } else {
+    star = i.model ?? 0; conf = "low";
+    reason = `single model read of the full screenshot, uncorroborated`;
+  }
+
+  star = Math.max(0, Math.round(star));
+
+  // Nothing in the game reads higher than the Lv.138+ ceiling, so a higher
+  // number is a misread rather than a value, and it says so.
+  if (star > MAX_STARS) {
+    reason = `${reason ? reason + "; " : ""}read ${star} stars; ${MAX_STARS} is the game maximum`;
+    star = i.cap > 0 ? i.cap : MAX_STARS;
+    conf = "low";
+  }
+
+  // A count above the item's own cap is not a value to be quietly trimmed — it
+  // is positive evidence that the read is wrong, and it is exactly what the old
+  // code hid by correcting the level afterwards.
+  if (i.cap > 0 && star > i.cap) {
+    reason = `${reason ? reason + "; " : ""}read ${star} stars but this item caps at ${i.cap}`;
+    star = i.cap;
+    conf = "low";
+  }
+  return { star, conf, reason };
+}
+
+/* ---------- OpenRouter call ---------- */
+
+interface Usage { prompt_tokens?: number; completion_tokens?: number }
+
+type CallResult =
+  | { kind: "ok"; text: string; finish: string; usage: Usage }
+  | { kind: "status"; status: number }
+  | { kind: "error"; why: string };
+
+const PER_CALL_TIMEOUT_MS = 20_000;
+/** json_schema → json_object → bare, plus one 429 backoff, plus the real call. */
+const MAX_ATTEMPTS = 5;
+
+async function callModel(
+  key: string,
+  model: string,
+  mode: FormatMode,
+  schema: typeof TOOLTIP_SCHEMA | typeof STARS_SCHEMA,
+  prompt: string,
+  image: string,
+  maxTokens: number
+): Promise<CallResult> {
+  // A free endpoint that hangs must not consume the whole request budget and
+  // leave the user staring at a spinner.
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), PER_CALL_TIMEOUT_MS);
+  try {
+    const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      signal: ctl.signal,
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+        "X-Title": "Maple Planner",
+      },
+      body: JSON.stringify({
+        model,
+        temperature: 0,
+        max_tokens: maxTokens,
+        // These models burn output tokens narrating before they emit the object,
+        // and reasoning tokens count against this budget. effort:"none" disables
+        // reasoning outright on providers that honour it
+        // (openrouter.ai/docs/use-cases/reasoning-tokens); the ones that ignore
+        // it still narrate, which is why the message.reasoning fallback below
+        // stays, and why the budget stays generous.
+        reasoning: { effort: "none" },
+        ...(mode === "schema"
+          ? {
+              response_format: { type: "json_schema", json_schema: schema },
+              // Only route to endpoints that actually implement the schema
+              // rather than silently dropping it and returning prose.
+              provider: { require_parameters: true },
+            }
+          : mode === "object"
+            ? { response_format: { type: "json_object" } }
+            : {}),
+        messages: [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: prompt },
+              { type: "image_url", image_url: { url: image } },
+            ],
+          },
+        ],
+      }),
+    });
+
+    if (!res.ok) return { kind: "status", status: res.status };
+
+    const json = (await res.json()) as {
+      choices?: Array<{ message?: { content?: string; reasoning?: string }; finish_reason?: string }>;
+      usage?: Usage;
+    };
+    const choice = json.choices?.[0];
+    // Reasoning models routinely return an empty content with the real answer
+    // sitting in "reasoning". extractJson walks whatever it is given, so handing
+    // it the reasoning text costs nothing and recovers the reply.
+    const text = choice?.message?.content?.trim() || choice?.message?.reasoning?.trim() || "";
+    return { kind: "ok", text, finish: choice?.finish_reason ?? "", usage: json.usage ?? {} };
+  } catch (e) {
+    return { kind: "error", why: (e as Error)?.name === "AbortError" ? `timed out after ${PER_CALL_TIMEOUT_MS / 1000}s` : "network error" };
+  } finally {
+    // Every exit — return, throw, abort — clears the timer. The previous shape
+    // leaked one per `continue` and one per early return.
+    clearTimeout(timer);
+  }
+}
+
+/* ---------- instrumentation ---------- */
+
+// This is the feature people are being charged for, so its behaviour is logged
+// per request rather than inferred from complaints: which model answered, what
+// it finished on, whether the structured-output contract was actually honoured,
+// what it cost in tokens and wall time, and how confident the answer was.
+interface LogLine {
+  rid: string;
+  mode: "tooltip" | "stars";
+  model?: string;
+  format?: FormatMode;
+  schemaHonoured?: boolean;
+  finish?: string;
+  tokIn?: number;
+  tokOut?: number;
+  ms: number;
+  conf?: ConfMap;
+  outcome: string;
+}
+
+const logImport = (l: LogLine) => console.log(`[import] ${JSON.stringify(l)}`);
+
+/**
+ * Rolling per-field accuracy from tools/import-eval.ts, injected as JSON at
+ * deploy time (e.g. IMPORT_EVAL_ACCURACY='{"star":0.94,"name":0.98}').
+ *
+ * UNVERIFIED BY CONSTRUCTION: this route does not know how good it is. It
+ * returns null when the harness has not published a number, and the UI must
+ * then say nothing rather than invent a figure. Selling a guess obliges us to
+ * publish how good the guess is; it does not entitle us to make one up.
+ */
+function evalAccuracy(): Record<string, number> | null {
+  const raw = process.env.IMPORT_EVAL_ACCURACY;
+  if (!raw) return null;
+  try {
+    const v = JSON.parse(raw) as unknown;
+    if (!v || typeof v !== "object" || Array.isArray(v)) return null;
+    const out: Record<string, number> = {};
+    for (const [k, n] of Object.entries(v as Record<string, unknown>)) {
+      if (typeof n === "number" && n >= 0 && n <= 1) out[k] = n;
+    }
+    return Object.keys(out).length ? out : null;
   } catch {
     return null;
   }
 }
 
-function tidy(arr: unknown, max = 3): string[] {
-  if (!Array.isArray(arr)) return [];
-  return arr
-    .filter((x): x is string => typeof x === "string")
-    .map((s) => s.replace(/^[•*\-\s]+/, "").trim())
-    .filter(Boolean)
-    .slice(0, max);
+/* ---------- the route ---------- */
+
+interface ImportBody {
+  image?: string;
+  /** "stars" runs the single-question second pass over a star-row crop. */
+  mode?: string;
+  /** Deterministic count from lib/import/starPixels.ts, when the client ran it. */
+  pixelStars?: number;
+  /** What the first pass said, so the second pass can be reconciled against it. */
+  modelStar?: number;
+  /** Item level and superiority, so the second pass can apply the same cap. */
+  lvl?: number;
+  sup?: number;
 }
 
+const box = (v: unknown): number[] | null =>
+  Array.isArray(v) && v.length === 4 && v.every((n) => Number.isFinite(Number(n)))
+    ? v.map(Number)
+    : null;
+
 export async function POST(req: Request) {
+  const startedAt = Date.now();
+  const rid = Math.random().toString(36).slice(2, 8);
   const key = process.env.OPENROUTER_API_KEY;
   if (!key) {
     return NextResponse.json(
@@ -263,13 +800,13 @@ export async function POST(req: Request) {
     );
   }
 
-  let image: string;
+  let body: ImportBody;
   try {
-    const body = (await req.json()) as { image?: string };
-    image = body.image ?? "";
+    body = (await req.json()) as ImportBody;
   } catch {
     return NextResponse.json({ error: "Bad request body." }, { status: 400 });
   }
+  const image = body.image ?? "";
   if (!image.startsWith("data:image/")) {
     return NextResponse.json({ error: "Expected a data:image/... URL." }, { status: 400 });
   }
@@ -278,87 +815,104 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "That image is too large — try a window capture." }, { status: 413 });
   }
 
-  const models = (process.env.OPENROUTER_MODELS?.split(",").map((s) => s.trim()).filter(Boolean)) ?? DEFAULT_MODELS;
+  const starsMode = body.mode === "stars";
+  const models = process.env.OPENROUTER_MODELS?.split(",").map((s) => s.trim()).filter(Boolean) ?? DEFAULT_MODELS;
+  const origin = new URL(req.url).origin;
 
   // Track *why* each model didn't answer. "No tooltip in the image" and "every
   // free endpoint is rate-limited" are completely different problems and must
   // not produce the same message.
   const outcomes: Array<{ model: string; why: string }> = [];
   let anyModelAnswered = false;
-  const startedAt = Date.now();
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   for (const model of models) {
-    // Not every model accepts response_format. If one rejects it we retry the
-    // same model without it rather than losing the model entirely.
-    let jsonMode = true;
-    // Up to three attempts: 429 backoff, and a no-json-mode retry.
-    for (let attempt = 0; attempt < 3; attempt++) {
-    // Hard per-model deadline. A free endpoint that hangs must not consume the
-    // whole request budget and leave the user staring at a spinner.
-    const ctl = new AbortController();
-    const timer = setTimeout(() => ctl.abort(), 20_000);
-    try {
-      const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        signal: ctl.signal,
-        headers: {
-          Authorization: `Bearer ${key}`,
-          "Content-Type": "application/json",
-          "X-Title": "Maple Planner",
-        },
-        body: JSON.stringify({
-          model,
-          temperature: 0,
-          // These models burn output tokens narrating before they emit the
-          // object, and reasoning tokens count against this budget, so 1600 was
-          // truncating GLM mid-sentence. The object itself is ~400 tokens.
-          max_tokens: 3000,
-          // Ask for guaranteed-parseable output where the model supports it.
-          ...(jsonMode ? { response_format: { type: "json_object" } } : {}),
-          messages: [
-            {
-              role: "user",
-              content: [
-                { type: "text", text: PROMPT },
-                { type: "image_url", image_url: { url: image } },
-              ],
-            },
-          ],
-        }),
-      });
+    let format: FormatMode = "schema";
+    // A json-mode downgrade used to consume attempt 0, which silently disabled
+    // the 429 backoff. The two concerns get their own state.
+    let retriedOn429 = false;
 
-      if (res.status === 400 && jsonMode) {
-        jsonMode = false; // this model rejects response_format — retry plain
-        continue;
+    // Two parameter downgrades plus one 429 backoff plus the call itself.
+    let attempt = 0;
+    for (; attempt < MAX_ATTEMPTS; attempt++) {
+      const r = await callModel(
+        key, model, format,
+        starsMode ? STARS_SCHEMA : TOOLTIP_SCHEMA,
+        starsMode ? STAR_PROMPT : PROMPT,
+        image,
+        // The star row answers in ~20 tokens. Only the full tooltip needs room.
+        starsMode ? 200 : 3000
+      );
+
+      if (r.kind === "error") {
+        outcomes.push({ model, why: r.why });
+        break;
       }
-      if (res.status === 429 && attempt === 0 && Date.now() - startedAt < 28_000) {
-        await sleep(2500);
-        continue; // same model, second attempt
-      }
-      if (!res.ok) {
-        outcomes.push({ model, why: `HTTP ${res.status}${res.status === 429 ? " (rate limited)" : ""}` });
+      if (r.kind === "status") {
+        // 400 is "I don't accept that parameter"; 404/422 is what OpenRouter
+        // returns when `require_parameters` leaves no endpoint standing —
+        // structurally the same problem, and the same answer: ask for less.
+        if ((r.status === 400 || r.status === 404 || r.status === 422) && format !== "none") {
+          format = weaken(format);
+          continue;
+        }
+        if (r.status === 429 && !retriedOn429 && Date.now() - startedAt < 28_000) {
+          retriedOn429 = true;
+          await sleep(2500);
+          continue;
+        }
+        outcomes.push({ model, why: `HTTP ${r.status}${r.status === 429 ? " (rate limited)" : ""}` });
         break;
       }
 
-      const json = (await res.json()) as {
-        choices?: Array<{
-          message?: { content?: string; reasoning?: string };
-          finish_reason?: string;
-        }>;
-      };
-      const choice = json.choices?.[0];
-      // Reasoning models routinely return an empty content with the real answer
-      // sitting in "reasoning". extractJson walks whatever it is given, so
-      // handing it the reasoning text costs nothing and recovers the reply.
-      const text = choice?.message?.content?.trim() || choice?.message?.reasoning?.trim() || "";
-      const truncated = choice?.finish_reason === "length";
       anyModelAnswered = true;
+      const truncated = r.finish === "length";
 
-      const parsed = extractJson(text);
+      /* ---------- second pass: one question, one answer ---------- */
+      if (starsMode) {
+        const { value } = extractJson<VisionStarRow>(r.text);
+        if (!value || num(value.stars, MAX_STARS) === undefined) {
+          outcomes.push({ model, why: `could not count the star row: "${r.text.replace(/\s+/g, " ").slice(0, 90)}"` });
+          break;
+        }
+        const second = num(value.stars, MAX_STARS);
+        const pixel = num(body.pixelStars, MAX_STARS);
+        const modelStar = num(body.modelStar, MAX_STARS);
+        // The crop carries no level text, so the cap has to come from the
+        // caller. Without it sfCap() would read 0 and every count would be
+        // clamped to nothing — so an absent lvl means "do not cap", not "cap 0".
+        const capProbe: Item = {
+          name: "", lvl: num(body.lvl, 300) ?? 0, star: 0, pot: "none",
+          sup: body.sup ? 1 : 0, p: [], f: [],
+        };
+        const rowVerdict = reconcileStars({
+          pixel, model: modelStar, second,
+          cap: body.lvl || body.sup ? sfCap(capProbe) : 0,
+          cannotStar: false,
+        });
+        logImport({
+          rid, mode: "stars", model, format, schemaHonoured: format === "schema",
+          finish: r.finish, tokIn: r.usage.prompt_tokens, tokOut: r.usage.completion_tokens,
+          ms: Date.now() - startedAt, outcome: `star=${rowVerdict.star} conf=${rowVerdict.conf}`,
+        });
+        return NextResponse.json({
+          model,
+          mode: "stars",
+          stars: rowVerdict.star,
+          grey: num(value.grey, MAX_STARS) ?? null,
+          sure: !!value.sure,
+          modelStars: second ?? null,
+          pixelStars: pixel ?? null,
+          conf: rowVerdict.conf,
+          reason: rowVerdict.reason ?? null,
+        });
+      }
+
+      /* ---------- first pass: the whole tooltip ---------- */
+      const { value: parsed, salvaged } = extractJson<VisionItem>(r.text);
       if (!parsed) {
         // Surface what it actually said — guessing at this cost several rounds.
-        const snip = text.replace(/\s+/g, " ").trim().slice(0, 160);
+        const snip = r.text.replace(/\s+/g, " ").trim().slice(0, 160);
         outcomes.push({
           model,
           why: truncated
@@ -369,49 +923,197 @@ export async function POST(req: Request) {
         });
         break;
       }
+
       const stats = tidyStats(parsed.stats);
       const roster = tidyRoster(parsed.roster);
-      if (!parsed.name && !stats && !roster) {
+      const rawName = str(parsed.name) ?? "";
+      if (!rawName && !stats && !roster) {
         outcomes.push({ model, why: "read the image but found no item tooltip, stat window or character list" });
         break;
       }
-      if (!parsed.name) {
+      if (!rawName) {
         // Stats and/or roster only — no item in this shot, which is fine.
-        return NextResponse.json({ model, item: null, slotGuess: null, iconBox: null, stats, roster });
+        logImport({
+          rid, mode: "tooltip", model, format, schemaHonoured: format === "schema" && !salvaged,
+          finish: r.finish, tokIn: r.usage.prompt_tokens, tokOut: r.usage.completion_tokens,
+          ms: Date.now() - startedAt, outcome: stats && roster ? "stats+roster" : stats ? "stats" : "roster",
+        });
+        return NextResponse.json({
+          model, item: null, slotGuess: null, iconBox: null, tooltipBox: null,
+          stats, roster, conf: null, reasons: null, db: null, flags: [],
+          accuracy: evalAccuracy(),
+        });
       }
 
+      /* ---- cross-validate against the database we already query ---- */
       const rawSlot = (parsed.slot ?? "").toLowerCase().trim();
-      const slot = SLOT_ALIASES[rawSlot] ?? (rawSlot || null);
-      const tier = TIERS.includes(parsed.tier as Tier) ? (parsed.tier as Tier) : "none";
-      const level = Number.isFinite(parsed.level) ? Math.max(0, Math.min(300, Number(parsed.level))) : 0;
-      const star = Number.isFinite(parsed.starforce) ? Math.max(0, Math.min(30, Number(parsed.starforce))) : 0;
+      const modelSlot = SLOT_ALIASES[rawSlot] ?? (rawSlot || null);
+      const db = await lookupItem(origin, rawName, modelSlot);
+
+      const reasons: ReasonMap = {};
+      const flags: string[] = [];
+
+      // (a) the database level is the item's required level. The model reading
+      // "Lv. 95" off a Lv. 110 item is what produced star counts above the cap —
+      // but correcting the level silently is what HID that bug, so the star
+      // read gets flagged below rather than rescued.
+      const modelLvl = Number.isFinite(parsed.level) ? Math.max(0, Math.min(300, Number(parsed.level))) : 0;
+      const lvl = db?.level || modelLvl;
+      let confLvl: Conf = "low";
+      if (db?.level) {
+        confLvl = "high";
+        if (modelLvl && modelLvl !== db.level) {
+          reasons.lvl = `model read Lv.${modelLvl}, database says Lv.${db.level}`;
+          flags.push("level");
+        }
+      } else if (modelLvl > 0) {
+        confLvl = "med";
+        reasons.lvl = "no database match, so the level is the model's read alone";
+      } else {
+        reasons.lvl = "no level could be read";
+      }
+
+      // (e) the database subcategory outranks the model's guess at the slot.
+      let slot = modelSlot;
+      let confSlot: Conf = "low";
+      if (db?.slot) {
+        if (!modelSlot || fam(db.slot) === fam(modelSlot)) {
+          confSlot = "high";
+          // Keep the model's numbered slot (ring3) when it agrees on the family.
+          slot = modelSlot && fam(modelSlot) === fam(db.slot) ? modelSlot : db.slot;
+        } else {
+          slot = db.slot;
+          confSlot = "low";
+          reasons.slot = `model said ${modelSlot}, database subcategory "${db.sub}" is ${db.slot}`;
+          flags.push("slot");
+        }
+      } else if (modelSlot) {
+        // Weapons have no subcategory mapping upstream, so "unconfirmed" here is
+        // the normal case for a weapon rather than a sign of a bad read.
+        confSlot = "med";
+      }
+
+      const name = db?.name ?? rawName;
+      const confName: Conf = !db ? "low" : db.distance === 0 ? "high" : "med";
+      if (!db) reasons.name = "no database match — check the spelling";
+      else if (db.distance > 0) reasons.name = `corrected from "${rawName}", edit distance ${db.distance}`;
+      if (confName !== "high") flags.push("name");
+
+      const tier: Tier = TIERS.includes(parsed.tier as Tier) ? (parsed.tier as Tier) : "none";
+      const sup: 0 | 1 = parsed.superior || db?.superior ? 1 : 0;
+
+      const pot = keepStatLines(parsed.potential);
+      const flame = keepStatLines(parsed.flame);
+      const noPot = !!parsed.noPotential;
+      const noFl = !!parsed.noFlame;
+
+      // "Potential : Can't Enhance" is itself a definite reading — there is
+      // nothing left to be unsure about. A missing tier line is not.
+      let confPot: Conf = "high";
+      if (!noPot && tier === "none") { confPot = "med"; reasons.pot = "no potential tier line was read"; }
+
+      let confP: Conf;
+      if (noPot) confP = "high";
+      else if (pot.dropped > 0) {
+        confP = "low";
+        reasons.p = `${pot.dropped} line${pot.dropped === 1 ? "" : "s"} did not look like a stat line and ${pot.dropped === 1 ? "was" : "were"} dropped`;
+      } else if (tier !== "none" && pot.lines.length === 0) {
+        confP = "low";
+        reasons.p = `tier reads ${tier} but no potential lines survived`;
+      } else confP = pot.lines.length ? "high" : "med";
+      if (confP === "low") flags.push("potential");
+
+      let confF: Conf;
+      if (noFl) confF = "high";
+      else if (flame.dropped > 0) {
+        confF = "low";
+        reasons.f = `${flame.dropped} line${flame.dropped === 1 ? "" : "s"} did not look like a stat line and ${flame.dropped === 1 ? "was" : "were"} dropped`;
+      } else {
+        // Never better than med: a tooltip showing no flame line is
+        // indistinguishable from one whose flame line the cursor was covering.
+        confF = "med";
+      }
+      if (confF === "low") flags.push("flame");
+
+      /* ---- (b)(c)(d) stars, against the cap the database just gave us ---- */
+      const capItem: Item = {
+        name, lvl, star: 0, pot: tier, sup, p: [], f: [], sub: db?.sub,
+        noSf: !!parsed.noStarForce,
+      };
+      const slotDef: SlotDef | undefined = slot ? SLOTS.find((s) => s.id === slot) : undefined;
+      // canStarForce needs a slot to answer; with no slot at all, fall back to
+      // the tooltip's own declaration rather than assuming either way.
+      const cannotStar = slotDef ? !canStarForce(slotDef, capItem) : !!parsed.noStarForce;
+      const verdict = reconcileStars({
+        pixel: num(body.pixelStars, MAX_STARS),
+        // Deliberately NOT pre-clamped to 30: an absurd read is evidence, and
+        // the reason string should quote what the model actually said.
+        model: Number.isFinite(parsed.starforce) ? Math.max(0, Math.min(99, Number(parsed.starforce))) : undefined,
+        // With no level and no superior marking there is no cap to test against,
+        // and sfCap()'s floor of 5 would wrongly trim a real 17-star item.
+        cap: lvl > 0 || sup ? sfCap(capItem) : 0,
+        cannotStar,
+      });
+      if (verdict.reason) reasons.star = verdict.reason;
+      // Say so when the cap check — the one piece of hard evidence we have about
+      // star force — could not run at all. Silence would read as corroboration.
+      if (!lvl && !sup && verdict.conf !== "high") {
+        reasons.star = `${reasons.star ? reasons.star + "; " : ""}no level, so the star cap could not be checked`;
+      }
+      if (verdict.conf !== "high") flags.push("star force");
+
+      const conf: ConfMap = {
+        name: confName, lvl: confLvl, star: verdict.conf, slot: confSlot,
+        pot: confPot, p: confP, f: confF,
+      };
+
+      logImport({
+        rid, mode: "tooltip", model, format, schemaHonoured: format === "schema" && !salvaged,
+        finish: r.finish, tokIn: r.usage.prompt_tokens, tokOut: r.usage.completion_tokens,
+        ms: Date.now() - startedAt, conf, outcome: `item "${name}"`,
+      });
 
       return NextResponse.json({
         model,
         item: {
-          name: String(parsed.name).trim(),
-          lvl: level,
-          star,
+          name,
+          lvl,
+          star: verdict.star,
           pot: tier,
-          sup: parsed.superior ? 1 : 0,
+          sup,
           noSf: !!parsed.noStarForce,
-          noFl: !!parsed.noFlame,
-          noPot: !!parsed.noPotential,
-          p: parsed.noPotential ? [] : tidy(parsed.potential),
-          f: parsed.noFlame ? [] : tidy(parsed.flame),
+          noFl,
+          noPot,
+          p: noPot ? [] : pot.lines,
+          f: noFl ? [] : flame.lines,
         },
         slotGuess: slot,
-        iconBox: Array.isArray(parsed.iconBox) && parsed.iconBox.length === 4 ? parsed.iconBox.map(Number) : null,
+        iconBox: box(parsed.iconBox),
+        // Additive: the star-row crop region, for the native-resolution second
+        // pass and for the pixel counter. Null when the model found no star row.
+        tooltipBox: box(parsed.tooltipBox),
         stats,
         roster,
+        // Additive: everything the UI needs to point at ONE field instead of
+        // asking the user to re-verify all eight.
+        conf,
+        reasons,
+        flags,
+        db: db
+          ? {
+              itemId: db.itemId, name: db.name, sub: db.sub, level: db.level,
+              superior: db.superior, bossDrop: db.bossDrop,
+              corrected: db.distance > 0, distance: db.distance,
+            }
+          : null,
+        accuracy: evalAccuracy(),
       });
-    } catch (e) {
-      outcomes.push({ model, why: (e as Error)?.name === "AbortError" ? "timed out after 20s" : "network error" });
-      clearTimeout(timer);
-      break;
     }
-    clearTimeout(timer);
-    break;
+    // Only reachable if every attempt asked for a retry and none succeeded —
+    // without this the model would vanish from `outcomes` and the user would be
+    // told "no models responded" with an empty parenthesis.
+    if (attempt >= MAX_ATTEMPTS) {
+      outcomes.push({ model, why: `gave up after ${MAX_ATTEMPTS} attempts (parameter downgrades and rate-limit backoff)` });
     }
   }
 
@@ -419,6 +1121,11 @@ export async function POST(req: Request) {
   const error = anyModelAnswered
     ? `A model read the image but found nothing it could use. Show an item tooltip, the Stat window, or the Switch Character list. (${detail})`
     : `No vision model responded — free endpoints are likely rate-limited right now. Wait a minute and retry. (${detail})`;
+
+  logImport({
+    rid, mode: starsMode ? "stars" : "tooltip", ms: Date.now() - startedAt,
+    outcome: `failed: ${detail || "no models configured"}`,
+  });
 
   return NextResponse.json({ error, outcomes }, { status: 503 });
 }
