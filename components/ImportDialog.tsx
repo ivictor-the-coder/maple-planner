@@ -1,5 +1,6 @@
 "use client";
 
+import { MAX_LINES } from "@/lib/portable";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { parseTooltip, type ParsedItem } from "@/lib/import/tooltip";
 import { SLOTS, TIER_LABEL, type Item } from "@/lib/rules";
@@ -232,7 +233,11 @@ export default function ImportDialog({
               lvl: db?.level || j.item.lvl,
               sup: j.item.sup || (db?.superior ? 1 : 0),
               p: [p[0] ?? "", p[1] ?? "", p[2] ?? ""],
-              f: [f[0] ?? "", f[1] ?? "", f[2] ?? ""],
+              // FOUR, not three. Bonus stats run up to MAX_LINES and both observed
+              // items carry exactly four; this literal silently dropped the fourth
+              // in the browser, after the API had read it correctly. Potential
+              // above stays at three, because potential really is three.
+              f: Array.from({ length: MAX_LINES }, (_, i) => f[i] ?? ""),
             },
             slotGuess: j.slotGuess ?? null,
             found: {
