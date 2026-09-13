@@ -442,6 +442,23 @@ export function transferHammerCeiling(lvl: number): number | null {
   return lvl + span;
 }
 
+/**
+ * Why LADDER has no `secondary` row. Kept as a named constant rather than a
+ * comment alone so that anyone re-adding the slot meets the reason first.
+ */
+export const SECONDARY_LADDER_RETRACTED = {
+  retractedAt: "2026-09-13",
+  was: ["Class secondary (Lv 0)", "Absolab-tier (Lv 160)", "Astra secondary (Lv 200)"],
+  why:
+    "Reported in game by the owner on a Blasted Feather: it cannot be upgraded to " +
+    "an Absolab-tier secondary. Corroborated inside this file - neither of the two " +
+    "upper rungs had a SOURCE entry, so the advice printed with no obtain route at " +
+    "all, which is what an invented rung looks like.",
+  restoreWhen:
+    "A per-class secondary table exists AND every rung in it has a SOURCE row. " +
+    "Secondaries are class-locked, so one shared ladder cannot be right for all.",
+} as const;
+
 /* ---------- gear ladders ---------- */
 type Rung = [string, number];
 export const LADDER: Record<string, Rung[]> = {
@@ -453,7 +470,22 @@ export const LADDER: Record<string, Rung[]> = {
   cape: [["Absolab", 160], ["Arcane Umbra", 200], ["Eternal", 250]],
   shoulder: [["Royal Black Metal", 120], ["Absolab", 160], ["Arcane Umbra", 200]],
   weapon: [["Fafnir / CRA", 150], ["Absolab", 160], ["Arcane Umbra", 200], ["Genesis (liberated)", 200]],
-  secondary: [["Class secondary", 0], ["Absolab-tier", 160], ["Astra secondary", 200]],
+  // NO LADDER FOR SECONDARY, deliberately, and this is a retraction.
+  //
+  // It read [["Class secondary", 0], ["Absolab-tier", 160], ["Astra secondary", 200]]
+  // and the owner caught it on a Blasted Feather: "cannot be absolab'd". They are
+  // right, and the tell was in the code the whole time - NEITHER "Absolab-tier"
+  // NOR "Astra secondary" has an entry in SOURCE, so the rec rendered with an
+  // empty string where every other rung prints where the item comes from. Three
+  // tier names, no provenance for any of them. They were invented to make the
+  // slot look complete.
+  //
+  // Secondary weapons are class-locked and their progression differs per class;
+  // nothing in this repo sources it. So the slot now says nothing about tiers
+  // rather than naming one that does not exist, which is the difference between
+  // a gap and a lie. Restore this ONLY with a per-class table and a SOURCE row
+  // for every rung in it.
+  //  secondary: intentionally absent - see SECONDARY_LADDER_RETRACTED.
   belt: [["Reinforced Gollux", 140], ["Superior Gollux", 150], ["Dreamy Belt", 160]],
   pendant1: [["Dominator Pendant", 140], ["Superior Gollux", 150], ["Source of Suffering", 160]],
   pendant2: [["Daybreak Pendant", 140], ["Superior Gollux", 150], ["Source of Suffering", 160]],
