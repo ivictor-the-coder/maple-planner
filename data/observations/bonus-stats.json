@@ -1,0 +1,112 @@
+{
+  "why": "Ground truth for the bonus-stat reader, captured from the game's own Enhance > Bonus Stats panel with Details on. The reader currently works from the item's aggregate stat block, where base, star force and bonus stats are already summed and only colour separates them; these records are what it must reproduce instead. Kept out of lib/ so the fixture and the parser are never edited by the same hand.",
+  "observedAt": "2026-09-13",
+  "source": "in-game Enhance > Bonus Stats panel, Details toggle on",
+  "items": [
+    {
+      "item": "Black Bean Mark",
+      "slot": "eye",
+      "level": 135,
+      "starForce": 12,
+      "potential": "legendary",
+      "panelTotal": 23,
+      "lines": [
+        {
+          "tier": 6,
+          "stats": [
+            "DEX",
+            "INT"
+          ],
+          "value": 24,
+          "unit": "flat"
+        },
+        {
+          "tier": 6,
+          "stats": [
+            "Attack Power"
+          ],
+          "value": 6,
+          "unit": "flat"
+        },
+        {
+          "tier": 5,
+          "stats": [
+            "DEX"
+          ],
+          "value": 35,
+          "unit": "flat"
+        },
+        {
+          "tier": 6,
+          "stats": [
+            "Max HP"
+          ],
+          "value": 2340,
+          "unit": "flat"
+        }
+      ],
+      "importerRecorded": [
+        "STR +31",
+        "DEX +59",
+        "INT +24"
+      ],
+      "whatWentWrong": "STR +31 is star force, not a bonus stat - it lands on every stat equally, which is why it appeared on STR, DEX, INT and LUK alike. DEX +59 is the two DEX lines summed (24 + 35), and a reset rerolls them apart. INT +24 is half of a combined DEX+INT line. ATT +6 and Max HP +2340 were dropped entirely."
+    },
+    {
+      "item": "Pink Holy Cup",
+      "slot": "pocket",
+      "level": 140,
+      "starForce": 0,
+      "potential": "none",
+      "cannotEnhance": [
+        "star force",
+        "potential"
+      ],
+      "lines": [
+        {
+          "tier": 4,
+          "stats": [
+            "STR",
+            "INT"
+          ],
+          "value": 16,
+          "unit": "flat"
+        },
+        {
+          "tier": 4,
+          "stats": [
+            "Attack Power"
+          ],
+          "value": 4,
+          "unit": "flat"
+        },
+        {
+          "tier": 5,
+          "stats": [
+            "DEX",
+            "LUK"
+          ],
+          "value": 20,
+          "unit": "flat"
+        },
+        {
+          "tier": 5,
+          "stats": [
+            "All Stats"
+          ],
+          "value": 5,
+          "unit": "percent"
+        }
+      ],
+      "importerRecorded": [],
+      "whatWentWrong": "Read NOTHING - the sheet records 'flame: none' against four real lines. Worse than the misread above, because the engine then recommended 'No flame. Roll one.' at 3,000,000 mesos on an item already carrying All Stats +5%, i.e. it advised destroying good bonus stats. TWO cases the reader must handle appear here and nowhere else: a line naming two stats (twice over), and a PERCENT line - All Stats +5% - which is not a flat value at all."
+    }
+  ],
+  "mustHold": [
+    "A line naming two stats stays ONE line naming two stats.",
+    "Two lines naming the same stat are never summed.",
+    "Attack Power, Max HP and All Stats % are bonus stat lines and must survive.",
+    "Star force is not a bonus stat and must never be recorded as one.",
+    "Reading nothing from an item that has lines is a failure, not an empty result."
+  ]
+}

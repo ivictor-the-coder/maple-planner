@@ -446,3 +446,198 @@ on the strength of a missing field. That now says the level is unknown instead.
 
 Harness: scratchpad/harness.js, 19 assertions, all passing, including the
 degradation contract in __selfTest().
+
+---
+
+# The app speaks a dialect the game does not
+
+**Reported by the owner, 2026-09-13.** They asked "where is the 3m flame reset?"
+and had to hunt for it, then found it themselves. The game calls it **Bonus
+Stats**, under **Enhance > Bonus Stats**. The app calls it a "flame" in
+seventeen strings a player can read, across five files, plus one type union that
+teaches every future reader the same wrong word — and it never names the menu.
+"Flame" is community jargon; the in-game UI never uses it. A player reading our
+advice cannot find the button.
+
+This is not a copy-polish task. It is the same class of defect as the retracted
+secondary ladder: the app states something confidently that a player cannot act
+on. There the failure was a fact that did not exist; here it is a name that does
+not exist. Both end with somebody in the game looking for the thing we told them
+about and not finding it.
+
+## The rule to apply
+
+**Lead with the word on the game's own UI. Keep the community word in
+parentheses on first use in a view, then drop it.** Not the reverse — a player
+who knows "flame" will recognise "Bonus Stats (flames)" instantly, but a player
+who only knows the game's UI gets nothing from "flame (bonus stats)" until the
+end of the phrase, and nothing at all from "flame" alone.
+
+Where a fix is a one-word swap, do the swap. Where the app could also say *where
+the button is*, say it: that is the half the owner actually needed.
+
+## Evidence: the game's own vocabulary, sourced
+
+First-party, read from nexon.com on 2026-09-13 (Item Enhancement guide,
+`/maple-guides/all/5897/item-enhancement`). The page is a JS app, so it must be
+read in a real browser — WebFetch returns an empty shell and will tell you the
+page has no content.
+
+| The game's word | First-party quote |
+| --- | --- |
+| **Enhance menu**, hotkey **[O]** | "All forms of Enhancement can be done via the Enhance menu (available via the [O] key by default)." |
+| **Bonus Stats** (the stat block) | "you can use a Rebirth Flame to reset an item's Bonus Stats" |
+| **Rebirth Flame** (the consumable) | section heading "Rebirth Flames" |
+| tooltip decomposition | "Base Stats + Bonus Stats + Enhancement Stats" |
+| **Star Force tab** | "open the Enhance Menu and click on the Star Force tab" |
+| **rarity** / **rank-up** (potential) | "a change to increase the rarity of the Potentials"; "There is a chance of double rank-up if used on Rare items." |
+| **Superior-rank equipment** | "You cannot use the Safeguard function to protect Superior-rank equipment." |
+| **Transfer** button | "clicking on the blue Transfer button on the bottom of the inventory screen" |
+
+And from the Set Items guide (`/maple-guides/all/1301/set-items`): the game says
+**Set Item Effect**, **N-piece Set Bonus**, **Boss Accessory Set**, **Lucky
+Items**.
+
+The **Bonus Stat panel's own labels** are already transcribed in this repo, in
+`lib/import/bonusStats.ts` under `BONUS_STAT_PANEL_PROMPT`, read off the owner's
+screenshots: the window is headed **"BONUS STAT"**, the list inside it is headed
+**"Bonus Stats"**, there is a **"Details"** toggle, and the bottom shows a
+**"Material Cost"** of **3,000,000 Mesos** with **"Mesos"** and **"Rebirth
+Flames"** tabs. That is the exact vocabulary the advice should use, and it is
+already in the building.
+
+> The distinction that makes the fix precise: **"Rebirth Flame" is the name of
+> the item. "Bonus Stats" is the name of the thing it changes.** So "flame" is
+> not merely unofficial — it is the wrong noun. "Reset the Bonus Stats" is
+> right; "roll a flame" names the consumable and calls the result by it.
+
+## A. Bonus Stats — every player-facing string
+
+Anchored on the string, not the line number: `lib/rules.ts`,
+`components/Planner.tsx` and `lib/import/tooltip.ts` were all being edited while
+this was written, so the numbers will have moved.
+
+| File | Current string | Proposed |
+| --- | --- | --- |
+| `lib/rules.ts` | `"No flame. Roll one."` | `"No Bonus Stats. Roll them."` |
+| `lib/rules.ts` | `Bonus stats reset for 3,000,000 mesos since v.271 — at Black Flame rates.` | `Enhance > Bonus Stats, 3,000,000 mesos a reset since v.271 — at Black Rebirth Flame rates.` This is the string the owner needed, and the one place the menu path costs nothing to add. |
+| `lib/rules.ts` | `${n} wasted flame line${s} — reset it.` | `${n} wasted Bonus Stat line${s} — reset it.` |
+| `lib/rules.ts` | `"Flame is working."` | `"Bonus Stats are working."` |
+| `lib/rules.ts` | `"This item cannot take flames."` | `"This item cannot take Bonus Stats."` |
+| `lib/rules.ts` | `"This slot cannot take flames."` | `"This slot cannot take Bonus Stats."` |
+| `lib/rules.ts` | `" This is boss-drop gear, so it is flame advantaged — tier 4 minimum and up to tier 7."` | `" This is boss-drop gear, so its Bonus Stats roll high — tier 4 minimum and up to tier 7."` — "flame advantaged" is jargon twice over. Keep "tier": the panel prints a digit badge per line, though whether the game calls that digit a tier is unverified. |
+| `lib/rules.ts` | `"...this page shows gear, stars, flames and potential advice..."` | `"...gear, stars, Bonus Stats and Potential advice..."` |
+| `lib/rules.ts` | `"Gear slots, star force, flames, potential tiers and set effects..."` | `"Gear slots, Star Force, Bonus Stats, Potential and set effects..."` |
+| `lib/cubes.ts` | `Reflame (${dead} dead line${s})` | `Reset Bonus Stats (${dead} dead line${s})` — "reflame" is jargon built on jargon. |
+| `lib/cubes.ts` | `"Roll a flame"` | `"Roll Bonus Stats"` |
+| `lib/cubes.ts` | `UpgradeKind = "cube" / "starforce" / "flame"` | rename the third member to `"bonusStats"`. Internal, but it reaches the UI as a discriminant and every reader learns the wrong word from it. |
+| `components/Planner.tsx` | `{key === "p" ? "Potential" : "Flame"}` | `"Bonus Stats"` |
+| `components/Planner.tsx` | `{k === "p" ? "Potential lines" : "Flame / bonus stats"}` | `"Bonus Stat lines"` — the current label hedges by printing both names, which teaches neither. |
+| `components/Planner.tsx` | `"...a 3M flame roll outranks a 1.5B tier-up..."` | `"...a 3M Bonus Stat reset outranks a 1.5B rank-up..."` |
+| `components/Planner.tsx` | `"flames, potential tiers, set effects, Legion"` | `"Bonus Stats, Potential, set effects, Legion"` |
+| `components/ImportDialog.tsx` | `{" — flame: "}` | `{" — bonus stats: "}` |
+| `app/layout.tsx` | `"...gear, potentials, flames and stats."` | `"...gear, Potential, Bonus Stats and stats."` — this is the meta description, i.e. the search-result snippet. |
+
+Already correct, and the precedent to copy: `components/Planner.tsx`'s
+"Can't enhance" checkboxes already read `["noFl", "Bonus stats"]`, and
+`lib/import/bonusStats.ts` is written in the game's vocabulary throughout. Two
+files in the same app already do this right.
+
+## B. The other mismatches, ranked by how lost a player gets
+
+1. **"Tier up: Rare → Epic."** (`lib/rules.ts`), plus `TIER_LABEL` and "potential
+   tiers" everywhere. Nexon's noun is **rarity** and its verb is **rank up**:
+   "a chance of double rank-up if used on Rare items". The app's word is "tier",
+   which the game does not use for Potential — and worse, the app ALSO uses
+   "tier" for gear ladder rungs ("Next tier: Dreamy Belt") and for Bonus Stat
+   line grades ("tier 4 minimum"). Three meanings, one word, none of them the
+   game's. Propose **"Rank up: Rare → Epic."**, and reserve "tier" for the Bonus
+   Stat digit badge alone.
+
+2. **"IED"** (`lib/rules.ts` advice text, `components/Planner.tsx` prose). The
+   app already prints **"Ignore DEF"** in `components/ImportDialog.tsx`'s
+   stat-window label list and in `lib/cubes.ts`'s line formatter, and **"Ignore
+   DEF %"** in the Planner's stat grid — those were written by reading the
+   game's stat window. So the app contradicts itself: five places, two words,
+   and the acronym is the one no game screen shows. Standardise on **Ignore
+   DEF**, with "(IED)" once on the stat grid, where the community word helps a
+   player match our advice against a guide.
+
+3. **"CRA"** (`lib/rules.ts` LADDER: `"CRA Root Abyss hat"`, `"CRA top"`,
+   `"CRA bottom"`, `"Fafnir / CRA"`). `lib/sets.ts` names the same set **"Chaos
+   Root Abyss"**, and Nexon's Boss Content page names the four bosses as **Chaos
+   Vellum / Chaos Pierre / Chaos Von Bon / Chaos Crimson Queen**. "CRA" is a
+   community acronym, and "CRA Root Abyss hat" is redundant on top of that: the
+   R and the A already stand for Root Abyss. Propose **"Chaos Root Abyss hat
+   (CRA)"** on first use, "Chaos Root Abyss" after.
+
+4. **"Absolab" vs "AbsoLab".** `lib/rules.ts` spells it one way, `lib/sets.ts`
+   the other, and the game spells it AbsoLab. One of the two files is wrong on
+   every render. Fix `lib/rules.ts` — but note `SOURCE` is keyed on this exact
+   string, so the key and both LADDER spellings must move together or the obtain
+   route silently disappears. That failure mode is already live on another rung;
+   see `data/sources/nexon/ladder-provenance.json`.
+
+5. **"Chosen Seren"** (`data/guide-graph.json`, node `bosses.cp`). Nexon's own
+   boss list says **"Normal/Hard/Extreme Seren"**. "Chosen Seren" is the
+   community name. Low harm — the boss is findable either way — but it is the
+   same error and it is one word.
+
+6. **"Reboot" in prose.** No action. `lib/farming.ts` already says **"Heroic"**
+   in every player-facing string and keeps "Reboot" only in comments and
+   citations, which is right: Nexon's own pages use both ("Heroic Worlds" in
+   rules text, "Reboot World General Store" inside an obtain route). Recorded so
+   the next sweep does not churn it.
+
+## C. The structural one: the app never says where the button is
+
+`grep -rniE "enhance ?>|Enhance menu|inventory" lib/ components/ app/` returns
+**one hit, and it is a comment**. In the entire product there is not a single
+in-game menu path. Every piece of advice ends at "do this" and never reaches
+"here". That is the thing the owner actually hit: they knew what to do and could
+not find where to do it.
+
+Four paths are first-party sourced and cover most of what the app recommends:
+
+- Bonus Stats → **Enhance menu ([O]) > Bonus Stats**
+- Potential / cubes → **Enhance menu ([O])**
+- Star force → **Enhance menu ([O]) > Star Force tab**
+- Transfer Hammer → **the blue Transfer button at the bottom of the inventory**,
+  not the Enhance menu — worth stating precisely because it is the one that
+  lives somewhere else
+
+Cheapest version: put the path in the `w` (detail) string of the rec that
+recommends the action, which is where the 3,000,000 meso figure already sits. No
+new UI, no new component.
+
+## D. Deliberately not changed, and why
+
+- **"Critical Damage" vs "Crit dmg %"** and **"Boss Monster Damage" vs "Boss dmg
+  %"**: the repo disagrees with itself (`lib/sets.ts` comments say "+30% Boss
+  Monster Damage"; `lib/rules.ts` fixtures use "Boss Damage +30%") and neither
+  wording is sourced. Nexon publishes no stat-window label list. **Settle it
+  with one reading of the in-game stat window**, then change both at once.
+  Guessing here would only move the inconsistency.
+- **"cube" as a verb** ("cube to Epic"). Cube is a real item name and the verb
+  is universally understood. Left alone.
+- **"dead line"**: the app's own analytic term for a line that does nothing for
+  your main stat. It is not competing with a game word, so it is out of scope.
+- Whether the in-game Potential UI literally prints "Rank Up" on the animation:
+  believed, not verified. The proposal in B1 rests only on Nexon's published
+  wording ("rarity", "double rank-up"), which is enough on its own.
+
+## E. Adjacent: the gear ladder provenance audit
+
+A separate pass audited all **66 rungs across all 24 gear ladders**. The full
+per-rung table is in **`data/sources/nexon/ladder-provenance.json`**. Headline:
+28 of 66 rungs have no `SOURCE` row, **13 slots render the secondary-bug
+signature — an empty obtain route — today**, and the whole `LADDER` table is a
+hand-copy of one `data/guide-graph.json` node whose own source field reads
+*"UNVERIFIED — community gear progression; no citable source states this
+slot-by-slot ladder."* The retracted secondary came from that same node's
+Secondary row: it was not a uniquely bad rung, it was the rung somebody checked.
+
+One rung is actively contradicted by the repo's own in-game transcription:
+**Papulatus Mark is listed on both the face ladder and the eye ladder**, and
+unlike the secondary it HAS a `SOURCE` row, so it prints a confident obtain
+route and a confident Transfer Hammer instruction for a slot it cannot occupy.

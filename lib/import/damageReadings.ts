@@ -148,6 +148,50 @@ export function readDamageReadings(raw: RawDamageReadings | null | undefined): D
  * seven-figure number, and confusing them is the single most likely way this
  * field goes wrong.
  */
+/**
+ * BONUS STATS READ WRONG, observed 2026-09-13 on the owner's Black Bean Mark.
+ *
+ * The game's Bonus Stat panel - Enhance > Bonus Stats, which is where the
+ * 3,000,000 meso reset lives - listed FOUR lines:
+ *
+ *     DEX, INT     +24
+ *     Attack Power  +6
+ *     DEX          +35
+ *     Max HP     +2340
+ *
+ * The importer recorded THREE, and every one of them was wrong:
+ *
+ *     STR +31   not a bonus stat at all. The item tooltip reads STR +38 (7 +31),
+ *               and that +31 is STAR FORCE, which lands on every stat equally -
+ *               that is why it appeared on STR, DEX, INT and LUK alike.
+ *     DEX +59   two separate lines summed. 24 + 35 = 59. The panel lists them
+ *               apart because a reset rerolls them apart.
+ *     INT +24   half of a combined "DEX, INT +24" line, recorded as if INT alone.
+ *
+ * And it dropped ATT +6 and Max HP +2340 entirely. ATT is the most valuable flame
+ * line there is, so losing it biases every flame recommendation this app makes.
+ *
+ * ROOT CAUSE, and it is structural rather than a parsing slip: the reader works
+ * from the item's AGGREGATE stat block, where base, star force and bonus stats are
+ * already added together and only the colour of the number tells them apart. From
+ * that block it is not possible to separate star force from flames, to recover a
+ * combined two-stat line, or to see a line whose stat the block does not list. The
+ * Bonus Stat panel states all four unambiguously. Read that instead.
+ */
+export const OBSERVED_BONUS_STAT_PANEL = {
+  observedAt: "2026-09-13",
+  item: "Black Bean Mark, Lv 135, eye accessory, 12 stars, Legendary",
+  source: "in-game Enhance > Bonus Stats panel, Details on",
+  lines: [
+    { stats: ["DEX", "INT"], value: 24 },
+    { stats: ["Attack Power"], value: 6 },
+    { stats: ["DEX"], value: 35 },
+    { stats: ["Max HP"], value: 2340 },
+  ],
+  misread: ["STR +31", "DEX +59", "INT +24"],
+  resetCostMesos: 3_000_000,
+} as const;
+
 export const STAT_WINDOW_DAMAGE_PROMPT = `    "damagePct": number,     // the line labelled exactly "DAMAGE" — a percent with two decimals.
                              // "DAMAGE 73.00%" is 73. This is NOT "DAMAGE RANGE", which is a
                              // separate seven-figure number in the same window. null if unsure.
