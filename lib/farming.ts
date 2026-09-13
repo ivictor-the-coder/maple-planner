@@ -1718,7 +1718,16 @@ export function classifyLine(txt: string, main: MainStat): ClassifiedLine {
     return { kind: "attFlat", value: attFlat(text), text };
   }
   if (JUNK_RE.test(t) || FLAT_DEF_RE.test(t)) return { kind: "junk", value: 0, text };
-  if (OFF_STATS[main].some((o) => new RegExp(`\\b${o}\\b`).test(t))) return { kind: "offStat", value: pctOf(t), text };
+  // Only an OFF-STAT-ONLY row is off-stat. "DEX, INT +24" is one row granting
+  // +24 to each, so on a DEX character it is a main-stat row that also happens
+  // to name INT. Testing for an off stat FIRST classified it as offStat worth 0,
+  // and itemContribution() then read 35 flat DEX off an item carrying 59.
+  //
+  // The old, broken reader hid this by summing the two DEX rows into one
+  // "DEX +59" - the right number by accident. Fixing the reader is what exposed
+  // it, which is the usual way a second bug surfaces.
+  if (!new RegExp(`\\b${main}\\b`).test(t) && OFF_STATS[main].some((o) => new RegExp(`\\b${o}\\b`).test(t)))
+    return { kind: "offStat", value: pctOf(t), text };
   if (DMG_PCT_RE.test(t)) return { kind: "dmgPct", value: pctOf(t), text };
   {
     const p = statPct(text, main);
