@@ -732,6 +732,49 @@ export default function Planner() {
   const shown = slot || showAll ? recs : recs.slice(0, TOP_N);
   const label = STAT_LABEL[ch.main];
 
+  /* ---------- the page jumps when the pointer crosses the gear grid ----------
+   *
+   * MEASURED on the live site with a real 25-item sheet, parked at the bottom:
+   *
+   *     at rest      advice 2064px   document 4639   scrollY 3729
+   *     hover item   advice  547px   document 3121   scrollY 2211   <- 1518px jump
+   *     leave        advice 2064px   document 4639   scrollY 3729   <- jumps back
+   *
+   * `slot` is driven by HOVER and swaps this column wholesale between the ranked
+   * list and one item's panel. The grid row is sized by its tallest column, and
+   * on a real sheet that is this one - so collapsing it shortens the DOCUMENT,
+   * the browser clamps scrollY to the new maximum, and the page lurches. Leave
+   * the item and it lurches back. Every item panel is a different height (547,
+   * 832, 999, 931, 769, 562, 1112...), so every item throws the page a different
+   * distance, which is what makes it read as jitter rather than one jump.
+   *
+   * A NOTE ON HOW THIS WAS NEARLY MISSED. The first version of this fix was
+   * reverted after a test showed the document height never moving. That test was
+   * worthless for two reasons at once: it ran at scrollY 0, where there is no
+   * clamp to observe, and it ran on the example character, whose LEFT column
+   * (2218px) is taller than its advice column (1603px) so the row height really
+   * was pinned by something else. Both conditions have to be wrong together to
+   * hide this, and they were.
+   *
+   * FLOOR THE COLUMN at the tallest it has been. The document can then only grow,
+   * never shrink, so there is never a clamp. Measured only while the full list is
+   * showing: an item panel must never raise the floor, or one long panel would
+   * pad the page for the rest of the session.
+   *
+   * This is a floor, not a verdict on the design. Hover hijacking the primary
+   * column is still worth questioning - the item panel may belong ABOVE the list
+   * rather than instead of it - but that is a change to make deliberately, and
+   * the page should stop fighting the wheel today either way.
+   */
+  const adviceRef = useRef<HTMLElement | null>(null);
+  const [adviceFloor, setAdviceFloor] = useState(0);
+  useEffect(() => {
+    if (slot) return;
+    const h = adviceRef.current?.offsetHeight ?? 0;
+    // Monotonic, so this settles after one extra render rather than oscillating.
+    if (h > adviceFloor) setAdviceFloor(h);
+  }, [slot, adviceFloor, shown]);
+
   const confsPresent = useMemo(() => {
     const s = new Set<Conf>();
     // Only counts when the panel actually prints a number.
@@ -909,7 +952,13 @@ export default function Planner() {
           1280x800 screen and four screens down on a phone — the research on top
           of the answer. The ranked list now leads; the working (ranking note,
           badge legend, hyper stat verdicts) follows it, one click away. */}
-      <section className="card advice" id="advice" aria-labelledby="advice-h">
+      <section
+        className="card advice"
+        id="advice"
+        aria-labelledby="advice-h"
+        ref={adviceRef}
+        style={adviceFloor ? { minHeight: adviceFloor } : undefined}
+      >
         <h2 id="advice-h">
           {slot ? slot.n : "Best next upgrades"}
           <span className="h2-for">{ch.name}</span>
