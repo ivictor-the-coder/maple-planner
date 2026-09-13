@@ -40,6 +40,9 @@
  * The vocabulary
  * ------------------------------------------------------------------ */
 
+import { MAX_LINES } from "@/lib/portable";
+
+
 /**
  * The canonical spelling of every stat this file will name in a wire line.
  *
@@ -157,12 +160,36 @@ export const BONUS_STAT_FLAT_SANITY_MAX = 1_000_000;
 /** Same idea for a percent row: above 100% is not a bonus stat, it is a misread. */
 export const BONUS_STAT_PCT_SANITY_MAX = 100;
 
-/** Most rows a panel reading will accept. A guard against a model that starts
- *  listing the whole tooltip, not a claim about how many bonus stats an item
- *  can hold — the observed item had four and no maximum has been sourced. */
-export const BONUS_STAT_MAX_LINES = 8;
+/**
+ * Most rows a panel reading will accept.
+ *
+ * THIS USED TO BE 8 WHILE lib/portable.ts KEPT 4, which is a data-loss bug
+ * waiting for its first five-row item: the reader would accept all five, the
+ * share-link and save codec would keep four, and nothing would say so. Bound to
+ * MAX_LINES now so the two cannot drift apart again — if the save format ever
+ * widens, this widens with it.
+ *
+ * PROVENANCE OF THE NUMBER ITSELF, which is weaker than it looks and is why it
+ * is not called `sourced`:
+ *   - Two items read directly off the game's Bonus Stat panel, both with
+ *     exactly four rows (see data/observations/bonus-stats.json).
+ *   - The owner, who plays: "I think it's up to 4".
+ *   - Nexon's guides describe Bonus Stats as a category and state no maximum
+ *     anywhere. Four independent guide pages were read; none gives a count.
+ * Two observations and a player's recollection are good evidence and are not a
+ * source. UP TO four: one, two and three-row panels are perfectly valid and
+ * must never be treated as a failed read.
+ *
+ * WHAT HAPPENS AT THE BOUNDARY, and it is deliberate. Rows past this cap land
+ * in `dropped`, which lowers the reading's confidence and is reported. So a
+ * five-row panel does not silently lose a row — it arrives flagged, which is
+ * the correct response to evidence that either the model misread or this
+ * constant is wrong. Either way somebody is told.
+ */
+export const BONUS_STAT_MAX_LINES: number = MAX_LINES;
 
-/** Most stats one row will accept. The observed combined row named two. */
+/** Most stats one row will accept. The observed combined rows named two —
+ *  "DEX, INT +24" and "STR, INT +16". Four is slack, not a claim. */
 const MAX_STATS_PER_LINE = 4;
 
 /** Hard tells that a "row" is the model talking rather than reading. Same list

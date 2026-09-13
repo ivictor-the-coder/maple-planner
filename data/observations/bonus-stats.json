@@ -108,5 +108,18 @@
     "Attack Power, Max HP and All Stats % are bonus stat lines and must survive.",
     "Star force is not a bonus stat and must never be recorded as one.",
     "Reading nothing from an item that has lines is a failure, not an empty result."
-  ]
+  ],
+  "lineCount": {
+    "claim": "An item holds UP TO 4 bonus stat rows.",
+    "confidence": "unverified",
+    "why": "Two in-game panels read directly, both with exactly four rows, plus the owner (who plays) saying \"I think it's up to 4\". That is good evidence and it is not a source: Nexon describes Bonus Stats as a category across four guide pages and states no maximum on any of them.",
+    "evidence": [
+      "Black Bean Mark: 4 rows",
+      "Pink Holy Cup: 4 rows",
+      "owner, 2026-09-13: \"I think it's up to 4\""
+    ],
+    "boundTo": "lib/import/bonusStats.ts BONUS_STAT_MAX_LINES is now lib/portable.ts MAX_LINES, so the reader and the save format cannot disagree. They previously read 8 and 4, which would have silently eaten a row off the first five-row item.",
+    "falsifiedBy": "Any item whose Enhance > Bonus Stats panel shows five rows. Rows past the cap land in `dropped`, which lowers the reading confidence and is reported, so such an item arrives flagged rather than quietly truncated.",
+    "note": "UP TO four. One, two and three-row panels are valid and must never be treated as a failed read."
+  }
 }
