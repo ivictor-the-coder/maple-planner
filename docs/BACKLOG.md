@@ -311,3 +311,56 @@ LABEL matters more than completeness of the content.
 It reuses the screenshot importer - a V matrix window and a hyper skill window are two
 more window types for a pipeline that already exists - which puts it naturally behind
 the paid convenience tier where the owner drew that line.
+
+---
+
+# Decision: Neon is the datastore
+
+Chosen 2026-09-12. One provisioning step covers two features that both need
+persistence: the demo quota ledger, and accounts later.
+
+## Why it was needed at all
+
+The demo gate cannot be enforced without it. Vercel functions are stateless, so
+an in-memory counter resets on every cold start and a browser-side counter is
+trivially bypassed - and every bypass spends real OpenRouter vision tokens.
+/api/import is the only route in the app with a marginal cost, so an unenforced
+gate is not a cosmetic problem, it is a bill.
+
+## Why Neon rather than the alternatives
+
+Carried over from docs/RESEARCH-MESO-ACCOUNTS.md, verified 2026-09-11:
+- Usage-based with NO monthly minimum, which suits bursty traffic - the app
+  costs nothing while idle, which is most of the time for a niche tool.
+- Vercel Postgres no longer exists; it migrated to Neon through the Vercel
+  Marketplace, so that comparison branch is gone.
+- NOT Supabase: free projects pause after one week of inactivity, which is a
+  real operational hazard and effectively forces $25/mo before it is needed.
+- NOT Clerk: auth only, so a database is still needed on top; most expensive at
+  scale and the hardest to leave.
+
+## Connection shape, which matters on serverless
+
+Use the POOLED connection string, not the direct one. Serverless functions open
+a connection per invocation, and a direct Postgres connection limit is reached
+quickly under any real traffic. Neon's pooler exists for exactly this.
+
+## Owner-only steps
+
+Nothing below can be done from the code side.
+
+1. Create a Neon project.
+2. Copy its POOLED connection string.
+3. Add it to Vercel as an environment variable for all environments.
+4. Say when it is set; the adapter seam is already being built to drop into.
+
+The connection string is a credential. It gets entered in Vercel's dashboard by
+the account holder, the same way OPENROUTER_API_KEY was - it should not be
+pasted into a chat, a commit, or a file in this repo.
+
+## What it unblocks
+
+- The demo quota becomes durably enforced rather than advisory.
+- /api/interest signups survive a deploy instead of vanishing.
+- Accounts, when they land, have somewhere to persist a profile - which is the
+  stated motivation for accounts in the first place.
