@@ -17,9 +17,16 @@ import { importQuota } from "@/lib/entitlementStore";
  * that drift apart is worse than one counter that is absent.
  *
  * THE SECOND ANSWER: `ledger`. Every response carries the store's own account of
- * itself — backend, durable, survivesColdStart, enforcing, warning. On this
- * deployment today that reads `enforcing: false`, because counts live in one
- * serverless instance's memory and a cold start hands the visitor a fresh demo.
+ * itself — backend, durable, survivesColdStart, enforcing, warning. What it reads
+ * depends on the backend chooseEntitlementBackend() selected at startup: with
+ * DATABASE_URL set it is `neon-postgres` and `enforcing: true`; without one it
+ * falls back to the volatile in-memory store and reads `enforcing: false`,
+ * because those counts live in a single serverless instance's memory and a cold
+ * start hands the visitor a fresh demo.
+ *
+ * This paragraph asserted the false half of that unconditionally until the Neon
+ * store landed, which is the same defect inverted: a comment claiming the gate is
+ * open while the code has closed it teaches the next reader to distrust the flag.
  * That fact ships in the JSON rather than living in a lib/ comment, so an
  * honest deployment cannot silently claim to be gated when it is not, and so
  * anyone can check without reading the source. See the OWNER PREREQUISITES at

@@ -160,7 +160,7 @@ async function report() {
     `select table_name, column_name, data_type, is_nullable
        from information_schema.columns
       where table_schema = 'public'
-        and table_name in ('user','session','account','verification','profile','profile_history')
+        and table_name in ('user','session','account','verification','profile','profile_history','entitlement_ledger')
       order by table_name, ordinal_position`
   );
   let current = "";

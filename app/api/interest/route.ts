@@ -417,10 +417,13 @@ export async function POST(req: Request) {
       endpoint answers 503 on every submission and the demo gate does not count
       anything across instances.
 
-   2. The demo gate itself is still NOT enforced in production until a durable
-      EntitlementStoreAdapter is registered — see registerEntitlementStore() in
-      lib/entitlementStore.ts. Until then GET /api/import/quota reports
-      `ledger.enforcing: false`, which is the honest answer and not a bug.
+   2. The demo gate IS enforced once a database is configured. This said the
+      opposite — "still NOT enforced until a durable EntitlementStoreAdapter is
+      registered" — and it was true when written and stale the moment the Neon
+      store landed: chooseEntitlementBackend() now selects it from DATABASE_URL
+      with no registerEntitlementStore() call at all, and health() reports
+      `ledger.enforcing: true`. With no DATABASE_URL the volatile store is chosen
+      and the flag reads false, which remains the honest answer and not a bug.
 
    3. Optional, later: move CREATE_TABLE/CREATE_INDEX above into a numbered file
       in db/migrations and delete ensureTable(). The DDL is idempotent, so the

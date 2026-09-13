@@ -8,22 +8,34 @@
  * no memory of what anyone has already spent. This file is the memory, and it
  * is the only place in the entitlement layer allowed to fail.
  *
- * THERE IS NO DATASTORE. No DATABASE_URL, no KV, no Redis, no .env. That is not
- * something to pretend away, so it is stated three times over: in the name of
- * the class below, in its doc comment, and in `health()`, which rides along in
- * every response the API sends — allow and deny alike. A reader who never opens
- * this file still learns it from the JSON.
+ * THERE ARE TWO DATASTORES, AND ONLY ONE OF THEM GATES ANYTHING.
  *
- * WHAT THAT MEANS ON VERCEL, PLAINLY. Counts live in one Node process's Map. A
- * serverless function is cold-started, recycled and scaled horizontally at the
- * platform's discretion, and none of those instances share a Map. So on Vercel
- * today the demo is NOT enforced: a visitor who waits for a cold start, or who
- * simply lands on a different instance, starts again at zero used. The gate is
- * correct, complete, and tested — it is not yet load-bearing, and it cannot be
- * until getEntitlementStore() returns something durable.
+ *   neon-postgres    NeonEntitlementStore in lib/entitlementNeonStore.ts, on
+ *                    the "entitlement_ledger" table from
+ *                    db/migrations/0002_entitlement_ledger.sql. Durable, shared
+ *                    between serverless instances, compare-and-swap on every
+ *                    write. This is the gate.
+ *   memory-volatile  a Map in one Node process, named after its defect. Right
+ *                    for `next dev` and tests; not a gate anywhere else.
+ *
+ * WHICH ONE YOU GET: the database when DATABASE_URL is configured, the Map
+ * otherwise — chooseEntitlementBackend() below is the whole rule, and the
+ * fallback is LOUD. A deployment that quietly stops enforcing is the exact
+ * failure this design exists to prevent, so the fallback logs a banner at error
+ * level when it happens anywhere that looks like production, and `health()`
+ * rides along in every response the API sends — allow and deny alike — saying
+ * which backend answered and whether it is really enforcing. A reader who never
+ * opens this file still learns it from the JSON.
+ *
+ * WHAT THE MAP MEANS ON VERCEL, PLAINLY. A serverless function is cold-started,
+ * recycled and scaled horizontally at the platform's discretion, and none of
+ * those instances share a Map. So on the volatile store the demo is NOT
+ * enforced: a visitor who waits for a cold start, or who simply lands on a
+ * different instance, starts again at zero used. It counts correctly and
+ * forgets completely.
  *
  * THE SEAM. Routes never name an implementation; they call getEntitlementStore()
- * or, better, guardImport(). A Neon or KV implementation is a class that
+ * or, better, guardImport(). A third implementation (KV, Redis) is a class that
  * implements EntitlementStoreAdapter plus one registerEntitlementStore() call at
  * process start — no route changes, no import changes, one line moved.
  *
@@ -63,6 +75,7 @@ import {
   type Settlement,
   type Subject,
 } from "./entitlement";
+import { NeonEntitlementStore } from "./entitlementNeonStore";
 
 /* ========================================================================== *
  * 1. WHAT A STORE MUST SAY ABOUT ITSELF
@@ -73,6 +86,14 @@ import {
  * returned to the API on every path so that "the demo is not actually gated in
  * production" is a fact in the response body, not a discovery someone makes six
  * weeks later while reading lib/.
+ *
+ * IT DESCRIBES THE STORE AT THE INSTANT health() IS CALLED, and for a store
+ * that can fail that is a different answer before and after a ledger call. So
+ * the rule for every caller, and the reason guardImport() below reads health()
+ * at each of its exits rather than once at the top: ask AFTER the ledger calls
+ * whose outcome the response reports, never before them. Health read first and
+ * attached to a response built later is a claim about calls that had not
+ * happened yet.
  */
 export interface LedgerHealth {
   /** Short machine id of the implementation, e.g. "memory-volatile". */
@@ -218,14 +239,16 @@ let instance: EntitlementStoreAdapter | null = null;
 
 /**
  * Point the whole app at a different ledger. This is the entire cost of moving
- * to Neon or KV — no route, no component and nothing in lib/entitlement.ts
- * changes.
+ * to KV, Redis, or a test double — no route, no component and nothing in
+ * lib/entitlement.ts changes.
  *
- *   // lib/entitlementStore.neon.ts
- *   export class NeonEntitlementStore implements EntitlementStoreAdapter { ... }
+ *   registerEntitlementStore(() => new MyStore());
  *
- *   // instrumentation.ts, or the top of the route module
- *   registerEntitlementStore(() => new NeonEntitlementStore(process.env.DATABASE_URL!));
+ * Neon needs no such call: chooseEntitlementBackend() already selects it
+ * whenever DATABASE_URL is configured, so the durable gate is the default
+ * rather than something a deployment has to remember to switch on. Registering
+ * OVERRIDES that selection, which is what tests want and what a deployment
+ * almost never does.
  *
  * Register before the first getEntitlementStore() call; registering afterwards
  * replaces the cached instance, which is fine at startup and a bug mid-request.
@@ -236,16 +259,111 @@ export function registerEntitlementStore(factory: StoreFactory): void {
 }
 
 /**
- * The store for this process. Falls back to the volatile in-memory one, which
- * says so in its name and in every response it touches — a silent fallback to a
- * store that does not gate would be the worst possible default.
+ * Which backend this environment gets, and why — separated from
+ * getEntitlementStore() so a deploy check, a health endpoint or a test can ask
+ * the question without constructing anything or caching an answer.
+ *
+ * The rule is one line: a configured DATABASE_URL means the durable ledger.
+ * There is no opt-in flag, because an enforcement mechanism that has to be
+ * remembered is an enforcement mechanism that gets forgotten.
+ */
+export interface EntitlementBackendChoice {
+  backend: "neon-postgres" | "memory-volatile";
+  durable: boolean;
+  reason: string;
+  /** True when falling back to the Map somewhere that looks like a real
+   *  deployment — the case that gets shouted about. */
+  unexpected: boolean;
+}
+
+/** Vercel sets VERCEL=1 on every deployment, including previews. Together with
+ *  NODE_ENV this is how the fallback tells "a laptop with no env file" (fine,
+ *  expected) from "a deployment that has silently stopped enforcing" (not). */
+function looksDeployed(env: NodeJS.ProcessEnv): boolean {
+  return Boolean(env.VERCEL) || env.NODE_ENV === "production";
+}
+
+export function chooseEntitlementBackend(
+  env: NodeJS.ProcessEnv = process.env,
+): EntitlementBackendChoice {
+  const url = env.DATABASE_URL;
+  if (url && url.trim() !== "") {
+    return {
+      backend: "neon-postgres",
+      durable: true,
+      reason: "DATABASE_URL is set, so import counts go to the entitlement_ledger table.",
+      unexpected: false,
+    };
+  }
+  return {
+    backend: "memory-volatile",
+    durable: false,
+    reason:
+      "DATABASE_URL is not set, so there is nowhere durable to count imports and the ledger " +
+      "falls back to a per-process Map.",
+    unexpected: looksDeployed(env),
+  };
+}
+
+/** The banner the fallback prints. Exported so a deploy check and a health
+ *  endpoint can say the same words this file logs. */
+export const ENTITLEMENT_FALLBACK_WARNING =
+  "NO DURABLE ENTITLEMENT LEDGER — THE IMPORT DEMO IS NOT BEING ENFORCED. DATABASE_URL is not " +
+  "set, so import counts fall back to a per-process Map that a cold start, a redeploy or a " +
+  "second serverless instance wipes. Set DATABASE_URL to the Neon POOLED connection string and " +
+  "apply db/migrations/0002_entitlement_ledger.sql (node db/migrate.mjs); no code change is " +
+  "needed, the store is selected automatically.";
+
+let announcedFallback = false;
+
+function announceFallback(choice: EntitlementBackendChoice): void {
+  if (announcedFallback) return;
+  announcedFallback = true;
+  const line = `[entitlement] ${ENTITLEMENT_FALLBACK_WARNING} (demo = ${DEMO_IMPORTS} imports per visitor)`;
+  // Error level, not warn, when this happens on something that looks like a
+  // deployment: on a laptop it is expected and a warning is enough, but in
+  // production it means real vision-API spend has no ceiling, and that belongs
+  // wherever the errors go rather than in a stream nobody reads.
+  if (choice.unexpected) console.error(line);
+  else console.warn(line);
+}
+
+/**
+ * The store for this process: the durable Neon ledger when a database is
+ * configured, the volatile Map otherwise.
+ *
+ * The fallback is never silent. It logs the banner above, and the store it
+ * returns says so in its name and in the `ledger` block of every API response
+ * it touches — because a deployment that quietly stops enforcing is the failure
+ * this whole design exists to prevent.
  */
 export function getEntitlementStore(): EntitlementStoreAdapter {
-  if (!instance) {
-    instance = registered
-      ? registered()
-      : new VolatileMemoryEntitlementStore_NOT_A_PRODUCTION_GATE();
+  if (instance) return instance;
+  if (registered) {
+    instance = registered();
+    return instance;
   }
+
+  const choice = chooseEntitlementBackend();
+  if (choice.backend === "neon-postgres") {
+    // Construction does not connect — getSql() in lib/db.ts is lazy — so this
+    // cannot throw for a missing or malformed URL. The catch is for the
+    // genuinely unexpected, and it degrades to the volatile store rather than
+    // taking the whole app down with it; the store it degrades to is the one
+    // that shouts about itself.
+    try {
+      instance = new NeonEntitlementStore();
+      return instance;
+    } catch (err) {
+      console.error(
+        "[entitlement] could not construct the durable ledger; falling back to the volatile one",
+        err,
+      );
+    }
+  }
+
+  announceFallback(choice);
+  instance = new VolatileMemoryEntitlementStore_NOT_A_PRODUCTION_GATE();
   return instance;
 }
 
@@ -260,6 +378,15 @@ export function resetEntitlementStore(): void {
  * check or an admin banner — never to decide whether to run the gate. The gate
  * runs regardless: an unenforced gate still shapes the UI, still exercises the
  * code path, and still catches the 11th import of a warm instance.
+ *
+ * TWO THINGS THIS IS NOT. Nothing in this repository calls it today — it is an
+ * offer to a deploy check or an admin banner that has not been written, not a
+ * thing the app does. And on the durable store it is a snapshot of ledger calls
+ * ALREADY MADE: asked on a fresh instance that has not touched the ledger yet
+ * it answers true from the optimistic default, which is why guardImport() and
+ * importQuota() read health() after their own ledger calls instead of calling
+ * this. Treat a true from here as "no failure has been observed on this
+ * instance", not as "the database answered just now".
  */
 export function isDemoEnforced(store: EntitlementStoreAdapter = getEntitlementStore()): boolean {
   return store.health().enforcing;
@@ -354,13 +481,25 @@ function asDeny(deny: Deny, ledger: LedgerHealth): ImportGuardDeny {
  * openrouter.ai — the point of the gate is that the expensive part never starts.
  * Everything before commitSpend is free; commitSpend is the last thing that
  * happens before money can be spent.
+ *
+ * WHY health() IS NOT READ ONCE AT THE TOP. It used to be, and that made the
+ * body of an outage 503 say `enforcing: true, warning: null` — the response
+ * asserting the gate was measuring this visitor was the same response saying
+ * nothing could be measured. A store learns it is degraded BY the call that
+ * fails, so health read before the ledger is touched is the health of a store
+ * that has not touched the ledger yet: on a fresh instance that is the
+ * optimistic default. It was never "only the first request", either — on Vercel
+ * every cold start, scale-out and redeploy produces another fresh instance
+ * whose first answer is that one, so how many of an outage's 503s carried the
+ * false flag was set by how often the platform made new instances, which is
+ * nothing this code can bound. Every health() below is therefore read AFTER the
+ * calls it is describing. Do not hoist it back into a local.
  */
 export async function guardImport(
   req: RequestLike,
   opts: GuardImportOptions = {},
 ): Promise<ImportGuard> {
   const store = opts.store ?? getEntitlementStore();
-  const ledgerHealth = store.health();
   const now = opts.now ?? Date.now();
   const batchSize = opts.batchSize ?? 1;
   const plan: PlanState = opts.plan ?? "anonymous";
@@ -377,21 +516,25 @@ export async function guardImport(
   } catch (err) {
     // DENY. Not "assume they have spent nothing" — see the file header.
     console.error("[entitlement] ledger read failed; refusing the import", err);
-    return asDeny(storeUnavailableDeny(), ledgerHealth);
+    // health() AFTER the failure: the failure is what makes it false.
+    return asDeny(storeUnavailableDeny(), store.health());
   }
 
   const ctx: ImportContext = { subject, plan, periodStart, ledger, batchSize, inFlight, configured };
   const decision = decideImport(ctx, now);
-  if (!decision.allow) return asDeny(decision, ledgerHealth);
+  // The reads above succeeded, so this health() is backed by two ledger calls
+  // this request actually made — which is also how a store that failed earlier
+  // and has since recovered stops reporting the old outage.
+  if (!decision.allow) return asDeny(decision, store.health());
 
   try {
     await store.commitSpend(subject, decision.charge);
   } catch (err) {
     // A race the advisory read could not see — the store's atomic check is the
     // authority, and it speaks the same vocabulary, so this is one code path.
-    if (err instanceof EntitlementDenied) return asDeny(err.deny, ledgerHealth);
+    if (err instanceof EntitlementDenied) return asDeny(err.deny, store.health());
     console.error("[entitlement] commitSpend failed; refusing the import", err);
-    return asDeny(storeUnavailableDeny(), ledgerHealth);
+    return asDeny(storeUnavailableDeny(), store.health());
   }
 
   let settled = false;
@@ -422,7 +565,10 @@ export async function guardImport(
     remaining: decision.remaining,
     limit: decision.limit,
     resetsAt: decision.resetsAt,
-    ledger: ledgerHealth,
+    // Read last, after commitSpend: the allow is being reported by a store that
+    // has just written this visitor's spend, so `enforcing` here is a statement
+    // about calls that happened, not about calls that might.
+    ledger: store.health(),
     settle,
   };
 }
@@ -449,13 +595,16 @@ export interface ImportQuotaReport {
  *
  * Fails closed in its own way: a ledger it cannot read produces no counter at
  * all. "10 left" from a ledger nobody could read is worse than no number.
+ *
+ * health() is read after the ledger calls here for the same reason as in
+ * guardImport: a `quota: null` carrying `enforcing: true` would claim the gate
+ * was measuring the visitor it had just failed to measure.
  */
 export async function importQuota(
   req: RequestLike,
   opts: Omit<GuardImportOptions, "batchSize"> = {},
 ): Promise<ImportQuotaReport> {
   const store = opts.store ?? getEntitlementStore();
-  const ledgerHealth = store.health();
   const now = opts.now ?? Date.now();
   const plan: PlanState = opts.plan ?? "anonymous";
   const periodStart = opts.periodStart ?? null;
@@ -476,16 +625,19 @@ export async function importQuota(
     };
     return {
       quota: quotaSummary(ctx, now),
-      ledger: ledgerHealth,
+      ledger: store.health(),
       interestPath: INTEREST_FORM_PATH,
     };
   } catch (err) {
     console.error("[entitlement] quota read failed", err);
     const deny = storeUnavailableDeny();
+    const ledgerHealth = store.health();
     return {
       quota: null,
       ledger: ledgerHealth,
       interestPath: INTEREST_FORM_PATH,
+      // One read, used twice, so the two copies in this body cannot disagree
+      // with each other about the same instant.
       error: { ...denyBody(deny), ledger: ledgerHealth },
     };
   }
