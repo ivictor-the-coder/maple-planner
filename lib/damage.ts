@@ -477,6 +477,39 @@ export const OBSERVED_WEAPON_MASTERY_BOWMASTER = 0.85;
  * missing two INPUTS that the game prints and Character.stats had nowhere to
  * put. See DAMAGE_PCT and FINAL_DAMAGE_PCT on Stats.
  */
+/**
+ * DELTA VALIDATION, 2026-09-12. Three stat windows from one character in three
+ * loadouts, differing only by drop-gear accessories:
+ *
+ *   drop gear, 50% drop   DEX 21,454 STR 2,731 ATT 1,574   game 6,764,085
+ *   one piece swapped     DEX 21,937 STR 2,820 ATT 1,571   game 6,905,280
+ *   both swapped, 10%     DEX 22,293 STR 2,911 ATT 1,567   game 7,002,916
+ *
+ * Every one reproduces at ratio 0.99998, and the SWAP is priced exactly: the
+ * model says +3.53%, the game says +3.53%.
+ *
+ * That second fact is the one that matters. Reproducing a static number shows
+ * the formula is right; pricing a CHANGE correctly is what the product actually
+ * does - every recommendation in the app is a predicted delta. This is the first
+ * evidence that those deltas are trustworthy rather than merely plausible.
+ *
+ * Note what the swap does to Combat Power: it rises 190,446 while Max HP FALLS
+ * 5,583. CP sums survivability and damage into one number and is therefore not
+ * an optimisation target; damage range is.
+ */
+export const DELTA_VALIDATION = {
+  observedAt: "2026-09-12",
+  character: "Archerroni, Bow Master, Lv 245, GMS Heroic, unbuffed",
+  loadouts: [
+    { label: "drop gear", dex: 21_454, str: 2_731, att: 1_574, dropPct: 50, gameRange: 6_764_085, cp: 5_794_498, maxHp: 46_119 },
+    { label: "one swapped", dex: 21_937, str: 2_820, att: 1_571, dropPct: 30, gameRange: 6_905_280, cp: 5_910_812, maxHp: 40_492 },
+    { label: "both swapped", dex: 22_293, str: 2_911, att: 1_567, dropPct: 10, gameRange: 7_002_916, cp: 5_984_944, maxHp: 40_536 },
+  ],
+  worstRatio: 0.99998,
+  swapPredicted: 3.53,
+  swapActual: 3.53,
+} as const;
+
 export const DAMAGE_RANGE_VALIDATION = {
   observedAt: "2026-09-12",
   character: "Archerroni, Bow Master, Lv 245, GMS Heroic, unbuffed",

@@ -222,18 +222,35 @@ export const BUILTIN_SETS: SetDefinition[] = [
     name: "Boss Accessory",
     // Slot-gated exact names. These are low-level boss drops with no shared
     // prefix, so unlike the other sets there is nothing to pattern-match on -
-    // each piece is named. The list is the weakest part of this table: sources
-    // disagree on which nine items count. See `notes`.
+    // each piece is named.
+    //
+    // TRANSCRIBED FROM THE GAME, 2026-09-12. The in-game Set Effect panel lists
+    // every qualifying item for the set, equipped ones in white and unequipped
+    // alternates greyed out. That panel is a better source than any wiki, and it
+    // corrected two real defects in this list:
+    //
+    //   1. There are TWO pendant slots, not one. The old list had a single
+    //      pendant piece matching only "Dominator Pendant", so a player wearing
+    //      Chaos Horntail Necklace AND Mechanator Pendant - both named by the
+    //      game as set members - had BOTH counted as zero.
+    //   2. Several alternates were missing entirely: Will o' the Wisps,
+    //      Noble Ifia's Ring, Guardian Angel Ring, Horntail Necklace,
+    //      Enraged Zakum Belt, Stone of Eternal Life.
+    //
+    // Undercounting is not a safe direction to be wrong in here: it makes the
+    // planner value a set piece too cheaply and recommend replacing it.
     pieces: [
       { id: "boss-face", slot: "face", itemNamePattern: "condensed\\s+power\\s+crystal" },
-      { id: "boss-eye", slot: "eye", itemNamePattern: "black\\s+bean\\s+mark|aquatic\\s+letter\\s+eye" },
-      { id: "boss-earring", slot: "earring", itemNamePattern: "dea\\s+sidus\\s+earring" },
-      { id: "boss-ring", slot: "ring", itemNamePattern: "silver\\s+blossom\\s+ring" },
-      { id: "boss-pendant", slot: "pendant", itemNamePattern: "dominator\\s+pendant" },
-      { id: "boss-belt", slot: "belt", itemNamePattern: "golden\\s+clover\\s+belt" },
+      { id: "boss-eye", slot: "eye", itemNamePattern: "black\\s+bean\\s+mark|aquatic\\s+letter\\s+eye|papulatus\\s+mark" },
+      { id: "boss-earring", slot: "earring", itemNamePattern: "dea\\s+sidus\\s+earring|will\\s+o'?\\s*the\\s+wisps" },
+      { id: "boss-ring", slot: "ring", itemNamePattern: "silver\\s+blossom\\s+ring|noble\\s+ifia'?s\\s+ring|guardian\\s+angel\\s+ring" },
+      // Two distinct pendant slots. The game lists both and counts both.
+      { id: "boss-pendant-1", slot: "pendant", itemNamePattern: "chaos\\s+horntail\\s+necklace|dominator\\s+pendant" },
+      { id: "boss-pendant-2", slot: "pendant", itemNamePattern: "mechanator\\s+pendant|(?<!chaos\\s)horntail\\s+necklace" },
+      { id: "boss-belt", slot: "belt", itemNamePattern: "golden\\s+clover\\s+belt|enraged\\s+zakum\\s+belt" },
       { id: "boss-shoulder", slot: "shoulder", itemNamePattern: "royal\\s+black\\s+metal" },
       { id: "boss-badge", slot: "badge", itemNamePattern: "crystal\\s+ventus\\s+badge" },
-      { id: "boss-pocket", slot: "pocket", itemNamePattern: "pink\\s+(holy\\s+cup|light\\s+grail)" },
+      { id: "boss-pocket", slot: "pocket", itemNamePattern: "pink\\s+(holy\\s+cup|light\\s+grail)|stone\\s+of\\s+eternal\\s+life" },
     ],
     tiers: [
       { count: 3, effects: { allStat: 10, hpPct: 10, att: 5 } },
@@ -245,8 +262,15 @@ export const BUILTIN_SETS: SetDefinition[] = [
     lastVerified: VERIFIED_ON,
     patchVersion: PATCH,
     verified: false,
-    notes: "PIECE LIST INCOMPLETE AND UNVERIFIED. Sources name between six and ten "
-      + "qualifying items and do not agree. An item not in this list resolves to "
+    notes: "Piece list transcribed from the in-game Set Effect panel on 2026-09-12, "
+      + "which is authoritative in a way the wikis were not - it names every "
+      + "qualifying item including unequipped alternates. STILL MARKED UNVERIFIED "
+      + "for one reason: that panel read 9/9 while listing TEN equipped items, so "
+      + "either the set caps its count below the number of slots it accepts, or "
+      + "one listed item does not contribute. Until that is settled the COUNT may "
+      + "be one high, which would over-credit a tier. Settle it by unequipping one "
+      + "piece and reading whether the panel drops to 9/9 or 8/9. "
+      + "Previously: an item not in this list resolves to "
       + "set: undefined and is excluded from the count rather than assumed in, so "
       + "the count under-reports rather than over-promises — but a 7pc player may "
       + "read as 5pc here. Confirm against the in-game Set Effect panel.",
