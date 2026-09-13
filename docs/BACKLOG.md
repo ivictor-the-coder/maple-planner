@@ -364,3 +364,52 @@ pasted into a chat, a commit, or a file in this repo.
 - /api/interest signups survive a deploy instead of vanishing.
 - Accounts, when they land, have somewhere to persist a profile - which is the
   stated motivation for accounts in the first place.
+
+---
+
+# Bug: the gear ladder never fires for gear that is below it
+
+Found by the owner, 2026-09-12, looking at Pensalir Sentinel Gloves (Lv 140) on a
+Lv 245 character: "Shouldn't these equips have a suggested next upgrade? What do
+i even replace this with?"
+
+## The defect
+
+lib/rules.ts around line 1877:
+
+    let idx = -1;
+    lad.forEach((rung, i) => { if (it.lvl >= rung[1]) idx = i; });
+    if (idx > -1 && idx < lad.length - 1) { ... }
+
+LADDER.gloves is [["Absolab",160],["Arcane Umbra",200],["Eternal",250]].
+A Lv 140 item clears none of those thresholds, so idx stays -1 and the guard
+rejects it. Gear BELOW the first rung gets no upgrade advice at all.
+
+The logic is inverted: it only tells you the next tier once you are already on a
+tier. The further behind the gear, the less likely the app mentions replacing it.
+
+## Why it is worse than a missing line
+
+On the same panel the app recommended 12 -> 17 stars at 518,000,000 mesos. Star
+force does not move between items except by Transfer Hammer, which spans roughly
+ten levels upward - 140 to 160 is outside it. So the app priced an investment
+that dies with the item, while omitting that the item is four tiers stale. Each
+recommendation is locally sensible; together they are backwards.
+
+## The fix
+
+1. idx === -1 means the item is BELOW the first rung. Recommend that rung, at
+   high priority, because it is the largest upgrade available for the slot.
+2. When an item is below the first rung, star force and potential advice for it
+   must be DEMOTED and must say that the investment is lost on replacement.
+   Ordering by damage-per-meso cannot see this on its own: it prices the tap
+   correctly and has no concept of the item being temporary.
+3. Verify the Transfer Hammer level span before the copy asserts it. The ten-level
+   figure is from memory and is exactly the kind of number this project keeps
+   catching itself on.
+
+## Not fixed yet, and why
+
+lib/rules.ts is owned by the running multi-character wave and has uncommitted
+edits. Two writers on one file is what produced the 24% crit-damage error.
+Apply once that wave lands.
