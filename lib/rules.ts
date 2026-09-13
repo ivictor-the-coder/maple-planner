@@ -63,10 +63,19 @@ import type { RosterChar } from "./legion";
 // printed-percent -> fraction adapter, so the app has exactly one crit term, one
 // damage term and one defence term.
 import {
+  CLASS_CONSTANTS,
+  DAMAGE_RANGE_VALIDATION,
   DEFAULT_PDR,
+  classConstantsFor,
+  classKey,
   damageBreakdown,
   fractionalInputsFromCharacter,
 } from "./damage";
+// The class roster is the authority on which stat a class scales on. An account
+// creates characters out of roster entries that carry only a class NAME, so the
+// main stat has to come from somewhere, and restating a 53-row table here is
+// exactly the duplication that once put two disagreeing models in this app.
+import { findClass } from "./classes";
 import type { FarmObjective } from "./farming";
 // Set membership has to reach the superior-gear advice below, or the app tells a
 // player to break a set to escape a 15-star cap. lib/sets.ts already models this
@@ -122,6 +131,13 @@ export interface Item {
   noPot?: boolean;
 }
 
+/** The nine figures the character sheet has carried since v1, every one of them
+ *  required and every one of them a number. Deliberately still exactly nine:
+ *  lib/portable.ts enumerates `keyof Stats` as the share-link wire format
+ *  (STAT_KEYS, portable.ts:234) and indexes into it expecting a number, so a
+ *  tenth OPTIONAL key here is a type error in a file this change does not own,
+ *  and a tenth REQUIRED key is a wire-format break. The two new readings live in
+ *  DamageReadings below and reach the character through CharacterStats. */
 export interface Stats {
   main: number;
   att: number;
@@ -134,15 +150,74 @@ export interface Stats {
   starforce: number;
 }
 
+/**
+ * The two figures the stat window prints that the model had nowhere to store.
+ *
+ * Both are OPTIONAL and absence is meaningful: it means "this character has no
+ * reading", which is a different claim from "this character reads zero" and is
+ * the difference between an honest default and an invented measurement. Every
+ * reader in this file goes through `?? DEFAULT_DAMAGE_PCT` / `??
+ * DEFAULT_FINAL_DAMAGE_PCT` and names the assumption where a player can see it.
+ *
+ * A character decoded from a SHARE LINK arrives without either field, because
+ * the wire format predates them (see Stats above). That is correct behaviour,
+ * not a gap: a share link carries what the sender recorded, and the sender's
+ * codec never carried these.
+ */
+export interface DamageReadings {
+  /**
+   * PRINTED PERCENT. The stat window's "DAMAGE" line: 73 means 73%.
+   *
+   * The model had nowhere to put this and assumed zero — see ASSUMED_DAMAGE_PCT,
+   * which is still the default and still biases every boss-damage rec HIGH. The
+   * game does print it (this file used to say it does not; the live character
+   * reads 73.00%, see DAMAGE_RANGE_VALIDATION), so the honest fix is a field,
+   * not a better guess.
+   */
+  damagePct?: number;
+  /**
+   * PRINTED PERCENT, read exactly as the stat window prints it.
+   *
+   * "FINAL DAMAGE 115.79%" means a MULTIPLIER OF 2.1579, not 1.1579 —
+   * DAMAGE_RANGE_VALIDATION.finalDamageReading is the authority and misreading
+   * it halves every range. Store 115.79 here; the adapter converts.
+   *
+   * Absent means DEFAULT_FINAL_DAMAGE_PCT, which is 0 and which is a pure
+   * common factor — see that constant for the direction of the bias.
+   */
+  finalDamagePct?: number;
+}
+
+/** What a Character's `stats` actually is: the nine printed figures plus the two
+ *  optional readings. Anything that only needs the nine keeps taking `Stats`. */
+export type CharacterStats = Stats & DamageReadings;
+
+/** Stable identity for a character inside an Account. Opaque: never parsed,
+ *  never derived from the name, so a rename cannot break a reference. */
+export type CharacterId = string;
+
 export interface Character {
+  /** Stable identity — see CharacterId. Optional so that every Character
+   *  literal that predates accounts still typechecks; `Account` always fills it
+   *  in, and `activeCharacter()` never hands out one without it. */
+  id?: CharacterId;
   name: string;
   cls: string;
   main: MainStat;
   lvl: number;
   cp: number;
-  stats: Stats;
+  stats: CharacterStats;
   items: Record<string, Item>;
-  /** Every character on the account, read from the Switch Character window. */
+  /**
+   * Every character on the account, read from the Switch Character window.
+   *
+   * @deprecated The ACCOUNT owns the roster now — it is account-wide data that
+   * happened to be stored on whichever character was active. `Account.roster`
+   * is the authority and `setRoster()` is the only writer. This field survives
+   * as a read-side projection: `activeCharacter()` fills it from the account so
+   * that UI written against `ch.roster` keeps rendering, and the legacy
+   * character `Store` hoists it back on save. New code must not write it.
+   */
   roster?: RosterChar[];
 }
 
@@ -401,8 +476,15 @@ export interface DmgEnv {
   /** Printed Damage % — the generic bucket Boss Damage % is ADDED INTO, not
    *  multiplied against. Defaults to ASSUMED_DAMAGE_PCT, which is 0 and which
    *  biases every boss-damage rec HIGH. A caller that knows the real figure
-   *  passes it here and the bias is gone. See ASSUMED_DAMAGE_PCT. */
+   *  passes it here and the bias is gone. dmgEnvFor() now reads it off
+   *  `Stats.damagePct` when the character has one. See ASSUMED_DAMAGE_PCT. */
   dmgPct?: number;
+  /** Printed Final Damage % — 115.79 means the multiplier 2.1579, NOT 1.1579
+   *  (DAMAGE_RANGE_VALIDATION.finalDamageReading). Defaults to
+   *  DEFAULT_FINAL_DAMAGE_PCT. It multiplies BOTH states of every comparison,
+   *  so it is a common factor that cancels exactly out of relGain(): it moves
+   *  the absolute index and cannot change a ranking. */
+  finalDmgPct?: number;
   /** Class name, passed straight to damage.ts's class table. It resolves the
    *  weapon multiplier, which is a COMMON FACTOR: it moves the absolute index
    *  and cancels exactly out of every relGain() ratio. Carried so the index is
@@ -482,10 +564,129 @@ export const ASSUMED_DAMAGE_PCT = 0;
  */
 export const DAMAGE_PCT_BIAS_PROBE = 40;
 
+/**
+ * What `Stats.damagePct` falls back to when a character has no reading.
+ *
+ * It is ASSUMED_DAMAGE_PCT and it is the same assumption with the same bias:
+ * zero is a LOWER BOUND, so every boss-damage figure computed from it is the
+ * MOST the move could be worth. The difference is that the assumption is now
+ * escapable — a character that records its printed DAMAGE % gets an unbiased
+ * number, and the live Bow Master proves the real figure is 73, not 0
+ * (DAMAGE_RANGE_VALIDATION.inputs.damagePct === 0.73, i.e. 73%).
+ */
+export const DEFAULT_DAMAGE_PCT = ASSUMED_DAMAGE_PCT;
+
+/**
+ * What `Stats.finalDamagePct` falls back to when a character has no reading.
+ *
+ * ZERO, and the bias is stated rather than hoped away: every real character has
+ * Final Damage from passives and buffs, so zero understates the ABSOLUTE damage
+ * index — on the validated Bow Master by a factor of 2.1579, which is most of
+ * the 3.9x shortfall DAMAGE_RANGE_GAP chased.
+ *
+ * WHICH DIRECTION IT BIASES A REC: none. Final Damage multiplies the whole
+ * chain, so it multiplies the before-state and the after-state identically and
+ * divides straight out of relGain(). Unlike ASSUMED_DAMAGE_PCT — which shares an
+ * ADDITIVE bucket with Boss Damage % and therefore moves that rec — this
+ * constant cannot change any number this engine prints. It exists so the
+ * absolute index can be right when the player supplies the reading.
+ *
+ * READ THE PRINTED PERCENT LITERALLY: 115.79 is stored as 115.79 and means
+ * x2.1579. Listed as false in SOURCED because 0 is an assumption, not a
+ * measurement.
+ */
+export const DEFAULT_FINAL_DAMAGE_PCT = 0;
+
+/** The Damage % and Final Damage % actually read off the game on
+ *  DAMAGE_RANGE_VALIDATION.observedAt, as PRINTED PERCENTS ready for `Stats`.
+ *  Imported and converted, never retyped: damage.ts stores them as fractions
+ *  (0.73 and 1.1579) and is the authority on both the values and on what the
+ *  Final Damage line means. */
+const printedPct = (fraction: number) => Math.round(fraction * 1e6) / 1e4;
+export const VALIDATED_DAMAGE_PCT = printedPct(DAMAGE_RANGE_VALIDATION.inputs.damagePct);
+export const VALIDATED_FINAL_DAMAGE_PCT = printedPct(DAMAGE_RANGE_VALIDATION.inputs.finalDamagePct);
+
+/* ---------- which classes the damage model is allowed to speak about ---------- */
+
+/**
+ * The classes lib/damage.ts has a verified row for, by display name.
+ *
+ * Read off CLASS_CONSTANTS rather than listed here, so this cannot drift from
+ * the model: the day a second class is measured and added there, it appears
+ * here and the UI unblocks it with no edit to this file. Today it is exactly
+ * ["Bow Master"], validated to ratio 1.0000 on
+ * DAMAGE_RANGE_VALIDATION.observedAt.
+ *
+ * lib/classes.ts has a weaponMultiplier for all 53 classes and that is NOT the
+ * same thing: the model needs a weapon constant, a mastery, a crit-damage base
+ * and a final-damage stack, and one of four is not a model.
+ */
+export const VERIFIED_DAMAGE_CLASSES: readonly string[] =
+  Object.values(CLASS_CONSTANTS).map((c) => c.cls);
+
+/** Is the damage model verified for this class? True only for a class with a
+ *  row in damage.CLASS_CONSTANTS. Accepts a Character or a raw class string. */
+export function isDamageModelVerified(who: Character | string): boolean {
+  const cls = typeof who === "string" ? who : who.cls;
+  return classConstantsFor(cls) !== undefined;
+}
+
+export interface DamageModelStatus {
+  /** True when every damage figure on the page is allowed to exist. */
+  verified: boolean;
+  /** The class as the character spells it. */
+  cls: string;
+  /** classKey(cls) — the join key shared by damage.ts and classes.ts. */
+  key: string;
+  /** The classes that ARE modelled, for "Bow Master is the only one" copy. */
+  verifiedClasses: readonly string[];
+  /** One sentence a UI can render verbatim. Never a number, never a hedge. */
+  why: string;
+}
+
+/**
+ * THE question the UI has to ask before it renders a damage figure.
+ *
+ * A non-verified class keeps everything that does not depend on the damage
+ * model — slots, potential tiers, flames, star force caps and costs, set
+ * effects, the class reference — and loses every number that does. That is not
+ * a degradation to apologise for: a plausible figure for an unmeasured class is
+ * precisely the failure this project has spent its life removing.
+ */
+export function damageModelStatus(who: Character | string): DamageModelStatus {
+  const cls = typeof who === "string" ? who : who.cls;
+  const verified = isDamageModelVerified(cls);
+  const list = VERIFIED_DAMAGE_CLASSES.join(", ");
+  return {
+    verified,
+    cls,
+    key: classKey(cls),
+    verifiedClasses: VERIFIED_DAMAGE_CLASSES,
+    why: verified
+      ? `The damage model is validated for ${cls} — measured against the game on ${DAMAGE_RANGE_VALIDATION.observedAt} to ratio ${DAMAGE_RANGE_VALIDATION.ratio.toFixed(4)}.`
+      : `Damage is not modelled for ${cls} yet. The model has been measured against the game for ${list} only, so this page shows gear, stars, flames and potential advice but no damage figures. A number here would be a guess.`,
+  };
+}
+
 function dmgIndex(s: Stats, env: DmgEnv): number | null {
   const fin = (n: number) => typeof n === "number" && Number.isFinite(n);
   if (!s || !fin(s.main) || !fin(s.att) || !fin(s.crit) || !fin(s.critdmg) || !fin(s.boss) || !fin(s.ied)) return null;
   if (s.main <= 0 || s.att <= 0) return null;
+
+  // THE HONESTY GATE, and it is deliberately upstream of everything else.
+  //
+  // fractionalInputsFromCharacter() degrades an unknown class to the legacy bow
+  // multiplier and raises an `unknown-class` warning. That is right for a page
+  // with a warning channel; a Rec has none, so a number computed that way would
+  // reach a player stripped of the one sentence that made it honest. The whole
+  // pricing layer is already built to vanish rather than guess — price() drops
+  // dmg/cost/eff/conf together when this returns null — so an unverified class
+  // takes exactly that path and the rules layer carries on in words.
+  //
+  // Note the weapon multiplier is a COMMON FACTOR and cancels out of every
+  // relGain() ratio, so a ratio computed on the fallback would usually be about
+  // right. "Usually about right, unfalsifiable" is the thing being refused.
+  if (!isDamageModelVerified(env.cls ?? "")) return null;
 
   // THE adapter, not a second copy of it. `Stats` holds printed percents and the
   // model wants fractions; fractionalInputsFromCharacter() is the one function
@@ -504,7 +705,11 @@ function dmgIndex(s: Stats, env: DmgEnv): number | null {
     {
       pdr: env.enemyDef,
       secondaryStat: env.secondary ?? 0,
-      dmgPctPrinted: env.dmgPct ?? ASSUMED_DAMAGE_PCT,
+      dmgPctPrinted: env.dmgPct ?? DEFAULT_DAMAGE_PCT,
+      // Passed as a PRINTED percent; the adapter converts. Supplying it also
+      // suppresses the adapter's class-buff guess, which is what we want: a
+      // measured reading beats a stacked ceiling.
+      finalDmgPctPrinted: env.finalDmgPct ?? DEFAULT_FINAL_DAMAGE_PCT,
     },
   );
   const b = damageBreakdown(a.inputs, a.opts);
@@ -583,11 +788,20 @@ export function dmgEnvFor(ch: Character): DmgEnv {
     enemyDef: ENEMY_DEF_ARCANE,
     secondary: 0,
     pctStat: gearStatPct(ch),
-    // Character carries no damage-% field, so this is the assumption, named.
-    dmgPct: ASSUMED_DAMAGE_PCT,
+    // The character sheet can now carry both readings. When it does not, these
+    // are the named assumptions — DEFAULT_DAMAGE_PCT biases boss-damage recs
+    // high, DEFAULT_FINAL_DAMAGE_PCT biases nothing. See both constants.
+    dmgPct: ch.stats.damagePct ?? DEFAULT_DAMAGE_PCT,
+    finalDmgPct: ch.stats.finalDamagePct ?? DEFAULT_FINAL_DAMAGE_PCT,
     cls: ch.cls,
     charLevel: ch.lvl,
   };
+}
+
+/** True when this character supplies its own printed Damage %, i.e. when the
+ *  boss-damage rec is a real figure rather than an upper bound. */
+export function hasDamagePctReading(ch: Character): boolean {
+  return typeof ch.stats.damagePct === "number" && Number.isFinite(ch.stats.damagePct);
 }
 
 const withMain = (s: Stats, d: number): Stats => ({ ...s, main: s.main + d });
@@ -859,6 +1073,18 @@ export const SOURCED: Record<string, boolean> = {
   // big the bias is; it prices nothing.
   ASSUMED_DAMAGE_PCT: false,
   DAMAGE_PCT_BIAS_PROBE: false,
+  // The fallbacks for the two new Stats readings. Both are assumptions and both
+  // say which way they lean: DEFAULT_DAMAGE_PCT biases boss-damage recs high,
+  // DEFAULT_FINAL_DAMAGE_PCT biases no rec at all because it is a common factor.
+  // A character that records the printed readings stops using either.
+  DEFAULT_DAMAGE_PCT: false,
+  DEFAULT_FINAL_DAMAGE_PCT: false,
+  // These two ARE measurements: read off the game on
+  // DAMAGE_RANGE_VALIDATION.observedAt and imported from lib/damage.ts, which
+  // is the authority on both the values and on what "FINAL DAMAGE 115.79%"
+  // means (multiplier 2.1579, not 1.1579).
+  VALIDATED_DAMAGE_PCT: true,
+  VALIDATED_FINAL_DAMAGE_PCT: true,
   // No longer used for pricing — see the @deprecated block on the function. The
   // curve that replaced it, starforce.costPerAttempt, is better (per-star
   // divisors, correct level rounding) but is still single-sourced, so it is
@@ -1815,6 +2041,18 @@ function buildCharAdvice(ch: Character): Rec[] {
     return r;
   };
 
+  // SAY SO, rather than letting a page full of numberless recs read as a bug.
+  // Every damage figure has been withheld for this character (see the gate in
+  // dmgIndex), and a player is owed the reason in one sentence before they go
+  // looking for the missing percentages.
+  const model = damageModelStatus(ch);
+  if (!model.verified)
+    add(2, "mid", `Damage is not modelled for ${model.cls} yet.`,
+      `${model.why} Gear slots, star force, flames, potential tiers and set effects are class-independent and all still apply — it is only the damage percentages that are missing, and they are missing on purpose.`);
+  else if (!hasDamagePctReading(ch))
+    add(3, "ok", "Your printed DAMAGE % is not recorded.",
+      `The stat window prints it — the reference Bow Master reads ${VALIDATED_DAMAGE_PCT}% — and without it every Boss Damage figure on this page is an upper bound, because Boss Damage and Damage share one additive bucket. Nothing else on the page moves with it.`);
+
   if (st.crit >= 100)
     add(1, "hi", `Crit rate is capped at ${st.crit}%.`,
       "Every point of crit rate hyper stat and every crit rate line is dead. Move it all to crit damage.");
@@ -1851,10 +2089,18 @@ function buildCharAdvice(ch: Character): Rec[] {
     // 'placeholder' is this file's word for exactly that. The probe puts a
     // second, smaller number in the player's hands rather than asserting a bias
     // they cannot see.
+    //
+    // A character that RECORDS its Damage % escapes all of that: the bucket is
+    // then the real one, the figure is no longer an upper bound, and it gets
+    // the 'modelled' badge the crit and stat rows get. Which of the two
+    // sentences below a player reads is therefore a fact about their own sheet.
     const probe = relGain(st, withBoss(st, delta), { ...env, dmgPct: DAMAGE_PCT_BIAS_PROBE });
-    priceDamageOnly(r, relGain(st, withBoss(st, delta), env), "placeholder",
+    const known = hasDamagePctReading(ch);
+    priceDamageOnly(r, relGain(st, withBoss(st, delta), env), known ? "modelled" : "placeholder",
       "Hyper stat points and familiars cost no mesos; the weapon, secondary and emblem lines are cubes, which do",
-      `That is the whole ${st.boss}% → ${BOSS_TARGET}% move, and it assumes ${ASSUMED_DAMAGE_PCT}% Damage% — the game never prints that stat, so the character sheet cannot record it. Boss Damage is added into the same bucket as Damage%, so your real Damage% makes this number SMALLER, never bigger${probe === null ? "" : `: at +${DAMAGE_PCT_BIAS_PROBE}% Damage% the same move is worth ${fmtDmg(probe)}`}.`);
+      known
+        ? `That is the whole ${st.boss}% → ${BOSS_TARGET}% move at your recorded ${st.damagePct}% Damage%. Boss Damage is added into the same bucket as Damage%, so this figure is computed against your real bucket rather than against an assumed empty one.`
+        : `That is the whole ${st.boss}% → ${BOSS_TARGET}% move, and it assumes ${DEFAULT_DAMAGE_PCT}% Damage% — your character sheet has no reading for that stat. Boss Damage is added into the same bucket as Damage%, so your real Damage% makes this number SMALLER, never bigger${probe === null ? "" : `: at +${DAMAGE_PCT_BIAS_PROBE}% Damage% the same move is worth ${fmtDmg(probe)}`}. Record your printed DAMAGE % and this figure becomes exact.`);
   }
   if (st.hp && st.hp < 60000)
     add(2, "mid", `HP ${st.hp.toLocaleString()} is thin for Lucid/Will.`,
@@ -1962,10 +2208,441 @@ export function __selfTest(): { ok: boolean; failures: string[] } {
   return { ok: failures.length === 0, failures };
 }
 
+/* ==================================================================== */
+/* the account: many characters, one active                              */
+/* ==================================================================== */
+/*
+ * The planner held exactly ONE character while the roster read 31 off the
+ * Switch Character screenshots and could only look at them. This is the join.
+ *
+ * TWO THINGS DECIDE THE SHAPE, and both are constraints rather than taste:
+ *
+ *   1. IDENTITY SURVIVES A RENAME. Characters are keyed by an opaque
+ *      CharacterId that is generated once and never derived from the name, so
+ *      renaming "Archerroni" changes one string in one record and every
+ *      reference still resolves. Keying by name would have been smaller and
+ *      would have silently orphaned a character the first time someone used a
+ *      name change coupon.
+ *
+ *   2. THE ROSTER HAS TO BE ABLE TO POINT AT A CHARACTER. A roster entry is
+ *      three fields read off a screenshot; a Character is 25 slots of gear. The
+ *      link lives in `rosterLinks`, keyed by rosterKey(name) — the SAME
+ *      normalisation legion.mergeRoster() matches on, because two
+ *      normalisations across two files is a silent join failure. The roster
+ *      stays the screenshot's truth and the link is the app's.
+ *
+ * The roster is ACCOUNT data. It lived on Character only because there was one
+ * Character; `Account.roster` is now the authority and Character.roster is a
+ * deprecated read-side projection kept so existing UI keeps rendering.
+ */
+
+export const ACCOUNT_SCHEMA_VERSION = 2 as const;
+
+export interface Account {
+  /** Schema version of the PERSISTED shape. 1 was a bare Character at
+   *  LEGACY_CHARACTER_KEY and was never stamped, which is why migrateToAccount()
+   *  sniffs rather than reads a version. */
+  v: typeof ACCOUNT_SCHEMA_VERSION;
+  /** Keyed by CharacterId. Insertion order is display order. */
+  characters: Record<CharacterId, Character>;
+  /** The character the planner is editing. Always a key of `characters` — every
+   *  constructor and mutator in this file repairs it rather than allowing a
+   *  dangling id. */
+  activeId: CharacterId;
+  /** Every character on the account, read from the Switch Character window.
+   *  Account-wide: it describes the account, not whoever happens to be active. */
+  roster?: RosterChar[];
+  /** rosterKey(roster name) -> CharacterId. A roster entry with no link is a
+   *  character that exists in game and has no gear recorded here yet. */
+  rosterLinks?: Record<string, CharacterId>;
+}
+
+/** localStorage key for the pre-account single character. NEVER deleted by the
+ *  migration — see lib/storage.ts. */
+export const LEGACY_CHARACTER_KEY = "maple-planner:character";
+/** localStorage key for the Account. */
+export const ACCOUNT_KEY = "maple-planner:account";
+
+/** Stable id for the demo character, so reloading the demo cannot fork it into
+ *  a second entry on the account. */
+export const EXAMPLE_CHARACTER_ID = "demo-archerroni";
+
+/** Opaque, collision-resistant, and not derived from anything the player can
+ *  edit. crypto.randomUUID where it exists; a time+random id otherwise, which
+ *  is enough for a per-browser account of a few dozen characters. */
+export function newCharacterId(): CharacterId {
+  const c: Crypto | undefined = (globalThis as { crypto?: Crypto }).crypto;
+  if (c && typeof c.randomUUID === "function") return c.randomUUID();
+  return `c_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+/** THE roster join key. Identical to legion.mergeRoster()'s matching — lowercase
+ *  and trim, nothing cleverer, because the roster is matched on the one field a
+ *  screenshot spells consistently. */
+export function rosterKey(name: string): string {
+  return (name || "").toLowerCase().trim();
+}
+
+/** Which MainStat a class scales on, resolved through lib/classes.ts rather than
+ *  restated. Returns null when the class roster has no row, or when neither of
+ *  its stats is one of the four the planner models. */
+export function mainStatFromClass(cls: string): MainStat | null {
+  const rec = findClass(cls);
+  if (!rec) return null;
+  const ok = (s: string): MainStat | null => {
+    const k = (s || "").toLowerCase();
+    return k === "dex" || k === "str" || k === "int" || k === "luk" ? (k as MainStat) : null;
+  };
+  // Fall back to the SECONDARY stat for the classes whose primary is HP — Demon
+  // Avenger scales on HP, which `MainStat` has no member for, and STR is what
+  // its gear actually rolls.
+  return ok(rec.primaryStat) ?? ok(rec.secondaryStat);
+}
+
+/* ---------- reading an account ---------- */
+
+export function characterIds(a: Account): CharacterId[] {
+  return Object.keys(a.characters);
+}
+
+/** Every character, each carrying its own id. Insertion order. */
+export function listCharacters(a: Account): Character[] {
+  return characterIds(a).map((id) => ({ ...a.characters[id], id }));
+}
+
+/**
+ * The character the planner is editing.
+ *
+ * Two things are guaranteed that the raw record does not guarantee: `id` is
+ * filled in, and `roster` is projected down from the account so that UI written
+ * against the old single-character shape keeps rendering. The projection is
+ * READ-ONLY — `withActiveCharacter()` strips the field again, and `setRoster()`
+ * is the only writer of the real one.
+ */
+export function activeCharacter(a: Account): Character {
+  const ch = a.characters[a.activeId];
+  if (!ch) {
+    // A dangling activeId means a corrupted or hand-edited store. Repair to the
+    // first character rather than crashing the planner, and fall back to a blank
+    // sheet for a genuinely empty account.
+    const first = characterIds(a)[0];
+    return first ? { ...a.characters[first], id: first, roster: a.roster } : emptyCharacter();
+  }
+  return { ...ch, id: a.activeId, roster: a.roster };
+}
+
+export function characterById(a: Account, id: CharacterId): Character | null {
+  const ch = a.characters[id];
+  return ch ? { ...ch, id } : null;
+}
+
+/* ---------- writing an account ---------- */
+
+/** Store `ch` back under the active id. `roster` is stripped: the account owns
+ *  it (see setRoster). Everything else on the character is replaced wholesale. */
+export function withActiveCharacter(a: Account, ch: Character): Account {
+  const id = ch.id && a.characters[ch.id] ? ch.id : a.activeId;
+  const { roster: _dropped, ...rest } = ch;
+  void _dropped;
+  return { ...a, activeId: id, characters: { ...a.characters, [id]: { ...rest, id } } };
+}
+
+/** Point the planner at another character. A no-op for an unknown id, so a
+ *  stale link in the UI cannot blank the planner. */
+export function selectCharacter(a: Account, id: CharacterId): Account {
+  return a.characters[id] ? { ...a, activeId: id } : a;
+}
+
+/** Add a character. Returns the id so the caller can select it. Never reuses an
+ *  id that is already taken. */
+export function addCharacter(
+  a: Account,
+  ch: Character,
+  opts: { makeActive?: boolean } = {},
+): { account: Account; id: CharacterId } {
+  const id = ch.id && !a.characters[ch.id] ? ch.id : newCharacterId();
+  const { roster: _dropped, ...rest } = ch;
+  void _dropped;
+  const account: Account = {
+    ...a,
+    characters: { ...a.characters, [id]: { ...rest, id } },
+    activeId: opts.makeActive === false ? a.activeId : id,
+  };
+  return { account, id };
+}
+
+/** Remove a character, move `activeId` somewhere real, and drop any roster link
+ *  that pointed at it — a link to a deleted character is the dangling reference
+ *  the id scheme exists to avoid. Removing the last character leaves a blank
+ *  sheet rather than an account with no active character. */
+export function removeCharacter(a: Account, id: CharacterId): Account {
+  if (!a.characters[id]) return a;
+  const characters = { ...a.characters };
+  delete characters[id];
+  const links = Object.fromEntries(
+    Object.entries(a.rosterLinks ?? {}).filter(([, v]) => v !== id),
+  );
+  const ids = Object.keys(characters);
+  if (!ids.length) {
+    const blank = emptyCharacter();
+    const blankId = blank.id ?? newCharacterId();
+    return { ...a, characters: { [blankId]: { ...blank, id: blankId } }, activeId: blankId, rosterLinks: links };
+  }
+  return {
+    ...a,
+    characters,
+    activeId: a.activeId === id ? ids[0] : a.activeId,
+    rosterLinks: links,
+  };
+}
+
+/** Rename without touching identity — the whole point of CharacterId. Roster
+ *  links are keyed by the SCREENSHOT's name and are deliberately untouched:
+ *  they describe what the Switch Character window says, not what the player
+ *  calls this sheet. */
+export function renameCharacter(a: Account, id: CharacterId, name: string): Account {
+  const ch = a.characters[id];
+  return ch ? { ...a, characters: { ...a.characters, [id]: { ...ch, name } } } : a;
+}
+
+/** THE roster writer. `undefined` clears it. */
+export function setRoster(a: Account, roster: RosterChar[] | undefined): Account {
+  const next: Account = { ...a, roster };
+  if (!roster) delete next.roster;
+  return next;
+}
+
+/* ---------- the roster -> character join ---------- */
+
+export function characterIdForRoster(a: Account, name: string): CharacterId | null {
+  const id = (a.rosterLinks ?? {})[rosterKey(name)];
+  return id && a.characters[id] ? id : null;
+}
+
+export function characterForRoster(a: Account, name: string): Character | null {
+  const id = characterIdForRoster(a, name);
+  return id ? characterById(a, id) : null;
+}
+
+export function linkRoster(a: Account, name: string, id: CharacterId): Account {
+  if (!a.characters[id]) return a;
+  return { ...a, rosterLinks: { ...(a.rosterLinks ?? {}), [rosterKey(name)]: id } };
+}
+
+export function unlinkRoster(a: Account, name: string): Account {
+  const links = { ...(a.rosterLinks ?? {}) };
+  delete links[rosterKey(name)];
+  return { ...a, rosterLinks: links };
+}
+
+/**
+ * A blank sheet seeded from a roster entry: the three fields the screenshot
+ * gives, the main stat resolved from the class roster, and NOTHING ELSE. No
+ * stats, no gear — the player is about to add those, and inventing a starting
+ * stat line would put fiction in the one place this app is careful.
+ *
+ * The class comes through verbatim, so a class lib/classes.ts does not know
+ * still produces a usable sheet. Only `main` has to be invented, and only when
+ * the class roster has no row for it: MainStat has no "unknown" member, so it
+ * lands on "str" and the player retypes it. mainStatFromClass() returns null in
+ * that case rather than hiding it, so a caller that wants to prompt can.
+ */
+export function characterFromRoster(entry: RosterChar): Character {
+  return {
+    id: newCharacterId(),
+    name: entry.name,
+    cls: entry.cls,
+    main: mainStatFromClass(entry.cls) ?? "str",
+    lvl: entry.lvl,
+    cp: 0,
+    stats: { main: 0, att: 0, crit: 0, critdmg: 0, boss: 0, ied: 0, hp: 0, arcane: 0, starforce: 0 },
+    items: {},
+  };
+}
+
+/**
+ * THE call behind "click a roster entry and start adding items to it".
+ *
+ * Idempotent: an entry that already has a character resolves to it, so clicking
+ * twice selects rather than forking. A brand-new entry gets a seeded sheet, a
+ * link, and focus. `created` tells the UI whether to say "opened" or "created".
+ */
+export function openRosterCharacter(
+  a: Account,
+  entry: RosterChar,
+): { account: Account; id: CharacterId; created: boolean } {
+  const existing = characterIdForRoster(a, entry.name);
+  if (existing) return { account: selectCharacter(a, existing), id: existing, created: false };
+
+  // A character the player already built by hand, before the roster knew about
+  // it, matches by name — otherwise the first roster import would duplicate the
+  // one character everyone has. Name is the only field both sides carry.
+  const byName = characterIds(a).find(
+    (id) => rosterKey(a.characters[id].name) === rosterKey(entry.name),
+  );
+  if (byName) {
+    return { account: selectCharacter(linkRoster(a, entry.name, byName), byName), id: byName, created: false };
+  }
+
+  const { account, id } = addCharacter(a, characterFromRoster(entry), { makeActive: true });
+  return { account: linkRoster(account, entry.name, id), id, created: true };
+}
+
+/* ---------- constructing and migrating ---------- */
+
+export function accountFromCharacter(ch: Character): Account {
+  const id = ch.id ?? newCharacterId();
+  const { roster, ...rest } = ch;
+  const account: Account = {
+    v: ACCOUNT_SCHEMA_VERSION,
+    characters: { [id]: { ...rest, id } },
+    activeId: id,
+  };
+  if (roster?.length) {
+    account.roster = roster;
+    // The one character we have is almost certainly on the roster, and linking
+    // it is what makes the migrated account immediately useful: the roster row
+    // the player recognises opens their real gear.
+    const hit = roster.find((r) => rosterKey(r.name) === rosterKey(ch.name));
+    if (hit) account.rosterLinks = { [rosterKey(hit.name)]: id };
+  }
+  return account;
+}
+
+export function emptyAccount(): Account {
+  return accountFromCharacter(emptyCharacter());
+}
+
+export function exampleAccount(): Account {
+  return accountFromCharacter(exampleCharacter());
+}
+
+function isRecord(v: unknown): v is Record<string, unknown> {
+  return typeof v === "object" && v !== null && !Array.isArray(v);
+}
+
+/** Structural sniff for a persisted Account. */
+export function isAccount(v: unknown): v is Account {
+  return isRecord(v) && isRecord(v.characters) && typeof v.activeId === "string";
+}
+
+/** Structural sniff for the pre-account single Character. */
+export function isLegacyCharacter(v: unknown): v is Character {
+  return isRecord(v) && isRecord(v.stats) && typeof v.name === "string" && "items" in v;
+}
+
+/**
+ * THE MIGRATION. Total, defensive, and lossless by construction.
+ *
+ * It accepts anything a persisted store can hand back — a v2 Account, the v1
+ * bare Character, garbage, null — and returns an Account or null. It never
+ * throws and it never drops gear: the legacy Character is carried into the new
+ * shape BY SPREAD, so every field, including ones this file has never heard of,
+ * survives. A field-by-field copy would have silently dropped the next field
+ * someone adds to Item.
+ *
+ * It also REPAIRS, because the store is a place a human can reach: a dangling
+ * activeId, a character whose `id` disagrees with its key, a roster link
+ * pointing at a deleted character, a missing version stamp.
+ */
+export function migrateToAccount(raw: unknown): Account | null {
+  if (raw == null) return null;
+
+  const parsed: unknown = typeof raw === "string" ? safeParse(raw) : raw;
+  if (parsed == null) return null;
+
+  if (isAccount(parsed)) return normalizeAccount(parsed);
+  if (isLegacyCharacter(parsed)) return normalizeAccount(accountFromCharacter(parsed as Character));
+  return null;
+}
+
+function safeParse(s: string): unknown {
+  try {
+    return JSON.parse(s);
+  } catch {
+    return null;
+  }
+}
+
+/** Idempotent repair pass. Running it on its own output must be a no-op, which
+ *  is what makes it safe to run on every load. */
+export function normalizeAccount(a: Account): Account {
+  const characters: Record<CharacterId, Character> = {};
+  for (const [key, ch] of Object.entries(a.characters ?? {})) {
+    if (!isRecord(ch)) continue;
+    // The KEY wins over the record's own id. One of them has to, and the key is
+    // what every reference in the account is written against.
+    characters[key] = { ...(ch as Character), id: key };
+  }
+
+  let ids = Object.keys(characters);
+  if (!ids.length) {
+    const blank = emptyCharacter();
+    const id = blank.id ?? newCharacterId();
+    characters[id] = { ...blank, id };
+    ids = [id];
+  }
+
+  const activeId = a.activeId && characters[a.activeId] ? a.activeId : ids[0];
+
+  const rosterLinks: Record<string, CharacterId> = {};
+  for (const [name, id] of Object.entries(a.rosterLinks ?? {})) {
+    if (typeof id === "string" && characters[id]) rosterLinks[rosterKey(name)] = id;
+  }
+
+  const out: Account = { v: ACCOUNT_SCHEMA_VERSION, characters, activeId };
+  if (a.roster?.length) out.roster = a.roster;
+  if (Object.keys(rosterLinks).length) out.rosterLinks = rosterLinks;
+  return out;
+}
+
+/** What a migration actually did, for a caller that wants to report it or
+ *  refuse to commit it. `characters` and `items` are counted on the OUTPUT, so
+ *  a caller can compare them against the input it still holds. */
+export interface MigrationReport {
+  from: "account" | "character" | "none";
+  characters: number;
+  /** Total gear pieces across every character. The number that must not drop. */
+  items: number;
+  activeName: string;
+  roster: number;
+  links: number;
+}
+
+export function describeMigration(raw: unknown, out: Account | null): MigrationReport {
+  const parsed: unknown = typeof raw === "string" ? safeParse(raw) : raw;
+  const from: MigrationReport["from"] = isAccount(parsed)
+    ? "account"
+    : isLegacyCharacter(parsed)
+      ? "character"
+      : "none";
+  if (!out) return { from, characters: 0, items: 0, activeName: "", roster: 0, links: 0 };
+  return {
+    from,
+    characters: characterIds(out).length,
+    items: countItems(out),
+    activeName: activeCharacter(out).name,
+    roster: out.roster?.length ?? 0,
+    links: Object.keys(out.rosterLinks ?? {}).length,
+  };
+}
+
+export function countItems(a: Account): number {
+  let n = 0;
+  for (const ch of Object.values(a.characters)) {
+    for (const it of Object.values(ch.items ?? {})) if (it) n++;
+  }
+  return n;
+}
+
 /* ---------- starting points ---------- */
 export function emptyCharacter(): Character {
   return {
+    id: newCharacterId(),
     name: "Unnamed", cls: "Bow Master", main: "dex", lvl: 200, cp: 0,
+    // damagePct and finalDamagePct are deliberately ABSENT rather than 0: absent
+    // means "no reading", which is true of a blank sheet, and the engine says so
+    // out loud. A literal 0 would claim a measurement of zero.
     stats: { main: 0, att: 0, crit: 0, critdmg: 0, boss: 0, ied: 0, hp: 0, arcane: 0, starforce: 0 },
     items: {},
   };
@@ -1988,8 +2665,17 @@ export function emptyCharacter(): Character {
  *  is the sort of drift that makes every downstream figure unfalsifiable. */
 export function exampleCharacter(): Character {
   return {
+    id: EXAMPLE_CHARACTER_ID,
     name: "Archerroni", cls: "Bow Master", main: "dex", lvl: 244, cp: 5260117,
-    stats: { main: 20689, att: 1471, crit: 98, critdmg: 41.5, boss: 159, ied: 92.9, hp: 45822, arcane: 1060, starforce: 188 },
+    // damagePct / finalDamagePct are the readings from DAMAGE_RANGE_VALIDATION
+    // — the same character on the same day, one level later (Lv 245 / DEX
+    // 20,790 / ATT 1,497 there, Lv 244 / 20,689 / 1,471 here). Neither figure
+    // moves with a level: Damage % is hyper stat, inner ability and links, and
+    // Final Damage % is passives. Carrying them onto this sheet is therefore
+    // the same reading rather than an extrapolation — and it is the reading
+    // that took the model from a 3.9x shortfall to ratio 1.0000.
+    stats: { main: 20689, att: 1471, crit: 98, critdmg: 41.5, boss: 159, ied: 92.9, hp: 45822, arcane: 1060, starforce: 188,
+      damagePct: VALIDATED_DAMAGE_PCT, finalDamagePct: VALIDATED_FINAL_DAMAGE_PCT },
     items: {
       hat: { name: "Arcane Umbra Archer Hat", lvl: 200, star: 17, pot: "legendary", sup: 0, bossDrop: true,
         p: ["DEX +12%", "DEX +9%", "All Stats +3%"], f: ["DEX +70", "All Stats +6%", "STR +40"] },

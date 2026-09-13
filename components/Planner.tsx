@@ -3,8 +3,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   CONFIDENCE_VOCABULARY, SLOTS, TIER_LABEL, STAT_LABEL, advise,
-  emptyCharacter, exampleCharacter, isDeadLine, planAdvice, sfCap,
-  type Character, type Conf, type Item, type Rec, type SlotDef, type Tier,
+  activeCharacter, addCharacter, characterIdForRoster, damageModelStatus,
+  emptyCharacter, exampleAccount, exampleCharacter, isDeadLine, listCharacters,
+  openRosterCharacter, planAdvice, removeCharacter, rosterKey, selectCharacter,
+  setRoster, sfCap, withActiveCharacter, EXAMPLE_CHARACTER_ID,
+  type Account, type Character, type CharacterStats, type Conf, type Item,
+  type Rec, type SlotDef, type Tier,
 } from "@/lib/rules";
 import {
   DEFAULT_PDR, REFERENCE_CHARACTER, WEAPON_MULTIPLIER, WEAPON_MULTIPLIER_CONF,
@@ -17,12 +21,12 @@ import {
   unverifiedReason, verificationState,
   type EvaluatedRule,
 } from "@/lib/classes";
-import { getStore } from "@/lib/storage";
+import { getAccountStore } from "@/lib/storage";
 import { resolveItem } from "@/lib/itemLookup";
-import { mergeRoster } from "@/lib/legion";
+import { mergeRoster, type RosterChar } from "@/lib/legion";
 import ImportDialog from "@/components/ImportDialog";
 import ItemSearch from "@/components/ItemSearch";
-import Roster from "@/components/Roster";
+import Roster, { type RosterSheet } from "@/components/Roster";
 import type { ItemHit } from "@/app/api/items/route";
 
 const PRI_LABEL = ["", "NOW", "SOON", "LATER", "DONE"];
@@ -160,7 +164,12 @@ function RecRow({ r, showSlot }: { r: Rec; showSlot?: boolean }) {
  * The number, its assumptions and its warnings all come from
  * fractionalInputsFromCharacter() — the ONE printed-percent -> fraction adapter.
  * Nothing here re-derives a constant; the legacy comparison reads
- * WEAPON_MULTIPLIER[weaponKey] out of the module rather than naming a figure. */
+ * WEAPON_MULTIPLIER[weaponKey] out of the module rather than naming a figure.
+ *
+ * THIS PANEL IS ONLY MOUNTED FOR A CLASS THE MODEL IS VERIFIED FOR. For anyone
+ * else the adapter falls back to the legacy bow multiplier and would print a
+ * seven-digit number that looks exactly as authoritative as the real one —
+ * UnmodelledDamage stands in its place and prints the reason instead. */
 type RangeView = ReturnType<typeof damageRangeFor>;
 
 function damageRangeFor(ch: Character) {
@@ -276,6 +285,28 @@ function DamageRange({ ch, d }: { ch: Character; d: RangeView }) {
   );
 }
 
+/* ---------- what stands where a number would be ----------
+ * rules.damageModelStatus() is the gate and its `why` is written to be rendered
+ * verbatim, so this panel prints that sentence and NOTHING ELSE. No "estimated",
+ * no greyed-out figure, no wide error bar: the model has one measured class, and
+ * a second number here would be indistinguishable from the first on sight. */
+function UnmodelledDamage({ why, verified }: { why: string; verified: readonly string[] }) {
+  return (
+    <div className="dr off">
+      <div className="dr-top">
+        <span className="l">Damage range</span>
+        <span className="conf-none">Not modelled</span>
+      </div>
+      <div className="v dash">—</div>
+      <p className="dr-note">{why}</p>
+      <p className="dr-note mut">
+        Measured so far: {verified.join(", ")}. Everything else on this page — gear, stars,
+        flames, potential tiers, set effects, Legion — is class-independent and still applies.
+      </p>
+    </div>
+  );
+}
+
 /* ---------- hyper stats: the per-character verdict ----------
  * A static guide ranks hyper stat lines for an imagined average player.
  * classes.hyperStatPriorities() evaluates each rule against THIS character's
@@ -362,12 +393,27 @@ function HyperStats({ ch }: { ch: Character }) {
   );
 }
 
+/** How many recorded items a sheet carries — the one honest measure of "is
+ *  there anything here yet", used by the account strip and the roster rows. */
+function gearCount(ch: Character): number {
+  return Object.values(ch.items ?? {}).filter((i) => i && i.name).length;
+}
+
 export default function Planner() {
-  const [ch, setCh] = useState<Character>(() => exampleCharacter());
+  /* ---------- an account, not a character ----------
+   * The planner edits ONE character at a time, but the thing it loads, saves
+   * and switches inside is the whole account. `ch` below is a derived view:
+   * activeCharacter() hands back the active sheet with its id filled in, and
+   * every edit goes home through withActiveCharacter(), which is THE save path
+   * for planner edits. Nothing here writes ch.roster — the account owns the
+   * roster and setRoster() is its only writer. */
+  const store = useMemo(() => getAccountStore(), []);
+  const [account, setAccount] = useState<Account>(() => exampleAccount());
   const [hover, setHover] = useState<string | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
   const [ready, setReady] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
   // Damage per meso is the right axis and the wrong answer to "what next?" when
   // the player has no budget: a 3M flame roll beats a 1.5B tier-up on the ratio
   // while being a fiftieth of the step. The engine has no budget input yet, so
@@ -375,26 +421,41 @@ export default function Planner() {
   // one and hide the other.
   const [sortBy, setSortBy] = useState<"eff" | "dmg">("eff");
   const [showAll, setShowAll] = useState(false);
-  const store = useMemo(() => getStore(), []);
+  const [showWorking, setShowWorking] = useState(false);
 
   useEffect(() => {
     let live = true;
     store.load().then((saved) => {
-      if (live && saved) setCh(saved);
+      if (live && saved) setAccount(saved);
       if (live) setReady(true);
     });
     return () => { live = false; };
   }, [store]);
 
+  const commit = useCallback((next: Account) => {
+    setAccount(next);
+    void store.save(next);
+  }, [store]);
+
+  const ch = useMemo(() => activeCharacter(account), [account]);
+  const chars = useMemo(() => listCharacters(account), [account]);
+  const roster = useMemo(() => account.roster ?? [], [account]);
+
+  /** THE save path for an edit to the sheet on screen. */
+  const update = useCallback((next: Character) => {
+    commit(withActiveCharacter(account, next));
+  }, [account, commit]);
+
   // Items saved before the database lookup existed carry a name but no
   // itemId, so the grid had no sprite to draw and fell back to rendering the
-  // name as text. Resolve them once in the background rather than making the
-  // user re-import gear that is already correct.
-  const backfilled = useRef(false);
+  // name as text. Resolve them once PER CHARACTER in the background rather than
+  // making the user re-import gear that is already correct.
+  const backfilled = useRef<Set<string>>(new Set());
   useEffect(() => {
-    if (!ready || backfilled.current) return;
+    const id = ch.id ?? "";
+    if (!ready || backfilled.current.has(id)) return;
     const missing = Object.entries(ch.items).filter(([, it]) => it?.name && !it.itemId);
-    backfilled.current = true;
+    backfilled.current.add(id);
     if (!missing.length) return;
 
     let live = true;
@@ -415,19 +476,73 @@ export default function Planner() {
         };
         changed = true;
       }
-      if (live && changed) {
-        const next = { ...ch, items };
-        setCh(next);
-        void store.save(next);
-      }
+      if (live && changed) update({ ...ch, items });
     })();
     return () => { live = false; };
-  }, [ready, ch, store]);
+  }, [ready, ch, update]);
 
-  const update = useCallback((next: Character) => {
-    setCh(next);
-    void store.save(next);
-  }, [store]);
+  // Switching sheets is otherwise invisible — the grid simply fills with
+  // someone else's gear, which is the silent mistake this whole wave is about.
+  // Every switch, import and removal says out loud WHO it happened to.
+  useEffect(() => {
+    if (!note) return;
+    const t = setTimeout(() => setNote(null), 7000);
+    return () => clearTimeout(t);
+  }, [note]);
+
+  /* ---------- selecting a character ---------- */
+
+  const select = useCallback((id: string) => {
+    if (id === ch.id) return;
+    const next = selectCharacter(account, id);
+    commit(next);
+    setHover(null);
+    setEditing(null);
+    setShowAll(false);
+    const who = next.characters[id];
+    if (who) setNote(`Now editing ${who.name} — ${who.cls} Lv. ${who.lvl}.`);
+  }, [account, ch.id, commit]);
+
+  /** THE product request: click a roster row, get that character's sheet.
+   *  openRosterCharacter() is idempotent — a second click selects rather than
+   *  forking, and an already-built character of the same name is adopted rather
+   *  than duplicated. `created` is what the wording below turns on. */
+  const openRoster = useCallback((entry: RosterChar) => {
+    const { account: next, id, created } = openRosterCharacter(account, entry);
+    commit(next);
+    setHover(null);
+    setEditing(null);
+    setShowAll(false);
+    const who = next.characters[id];
+    const n = who ? gearCount(who) : 0;
+    setNote(
+      created
+        ? `Started a sheet for ${entry.name} — ${entry.cls} Lv. ${entry.lvl}. Nothing is recorded yet: import screenshots, or click any equipment slot to add an item.`
+        : `Now editing ${entry.name} — ${n} item${n === 1 ? "" : "s"} recorded.`,
+    );
+  }, [account, commit]);
+
+  const addBlank = useCallback(() => {
+    commit(addCharacter(account, emptyCharacter(), { makeActive: true }).account);
+    setNote("New blank sheet. Name it, set the class and level, then add gear.");
+  }, [account, commit]);
+
+  const loadDemo = useCallback(() => {
+    commit(
+      account.characters[EXAMPLE_CHARACTER_ID]
+        ? selectCharacter(account, EXAMPLE_CHARACTER_ID)
+        : addCharacter(account, exampleCharacter(), { makeActive: true }).account,
+    );
+    setNote("Showing the demo Bow Master — the character the damage model was measured against.");
+  }, [account, commit]);
+
+  /* ---------- the damage model gate ----------
+   * Asked once, here; every damage figure on the page is downstream of it.
+   * rules.ts already refuses to price a Rec for an unverified class (dmg, cost,
+   * eff and conf all come back undefined), and this component refuses to mount
+   * the damage range panel for one. */
+  const model = useMemo(() => damageModelStatus(ch), [ch]);
+  const range = useMemo(() => (model.verified ? damageRangeFor(ch) : null), [ch, model.verified]);
 
   const slot = SLOTS.find((s) => s.id === hover) || null;
   // With no slot under the cursor the rail used to show charAdvice() — seven
@@ -447,24 +562,39 @@ export default function Planner() {
   const shown = slot || showAll ? recs : recs.slice(0, TOP_N);
   const label = STAT_LABEL[ch.main];
 
-  // One computation of the range, shared by the panel that prints it and the
-  // legend that has to know which confidence tiers this page actually uses.
-  const range = useMemo(() => damageRangeFor(ch), [ch]);
   const confsPresent = useMemo(() => {
     const s = new Set<Conf>();
     // Only counts when the panel actually prints a number.
-    if (range.range.max > 0) s.add(range.conf);
+    if (range && range.range.max > 0) s.add(range.conf);
     for (const r of shown) if (r.conf) s.add(r.conf);
     return s;
   }, [shown, range]);
 
-  const statGroups: Array<[string, Array<[string, keyof Character["stats"]]>]> = [
+  const items = gearCount(ch);
+  const blankSheet = items === 0 && !ch.stats.main && !ch.stats.att;
+
+  /* ---------- the roster -> sheet join, for rendering ---------- */
+  const sheets = useMemo(() => {
+    const m: Record<string, RosterSheet> = {};
+    for (const entry of roster) {
+      const id = characterIdForRoster(account, entry.name);
+      const who = id ? account.characters[id] : undefined;
+      if (id && who) m[rosterKey(entry.name)] = { id, items: gearCount(who) };
+    }
+    return m;
+  }, [account, roster]);
+  const activeRosterKey = useMemo(() => {
+    const hit = roster.find((e) => characterIdForRoster(account, e.name) === ch.id);
+    return hit ? rosterKey(hit.name) : null;
+  }, [account, roster, ch.id]);
+
+  const statGroups: Array<[string, Array<[string, keyof CharacterStats]>]> = [
     ["Offense", [[label, "main"], ["Attack", "att"], ["Crit rate %", "crit"], ["Crit dmg %", "critdmg"], ["Boss dmg %", "boss"], ["Ignore DEF %", "ied"]]],
     ["Survivability", [["Max HP", "hp"]]],
     ["Progression", [["Arcane Power", "arcane"], ["Star Force", "starforce"]]],
   ];
 
-  function statClass(k: keyof Character["stats"]) {
+  function statClass(k: keyof CharacterStats) {
     const st = ch.stats;
     if (k === "crit" && st.crit >= 100) return "stat ok";
     if (k === "critdmg" && st.critdmg && st.critdmg < 60) return "stat flag";
@@ -474,117 +604,65 @@ export default function Planner() {
     return "stat";
   }
 
+  /** PRINTED percents, written straight through — 73 means 73%. Clearing the
+   *  box DELETES the field rather than writing 0: absent means "no reading",
+   *  and a literal 0 would claim a measurement of zero. */
+  const setReading = (k: "damagePct" | "finalDamagePct", v: string) => {
+    const stats: CharacterStats = { ...ch.stats };
+    if (v.trim() === "") delete stats[k];
+    else stats[k] = parseFloat(v) || 0;
+    update({ ...ch, stats });
+  };
+
   const editItem = editing ? ch.items[editing] : undefined;
   const editSlot = SLOTS.find((s) => s.id === editing);
 
   return (
     <div className="wrap">
-      {/* character */}
-      <section className="card">
-        <h2>Character</h2>
-        <div className="body">
-          <input
-            className="nameInput"
-            value={ch.name}
-            aria-label="Character name"
-            onChange={(e) => update({ ...ch, name: e.target.value })}
-          />
-          <p style={{ fontSize: ".76rem", color: "var(--ink-3)", margin: "3px 0 11px" }}>
-            {ch.cls} · Lv. {ch.lvl}
-          </p>
-          <div className="cp">
-            <div className="l">Combat Power</div>
-            <div className="v">{ch.cp ? ch.cp.toLocaleString() : "—"}</div>
-          </div>
-          {/* Damage Range sits directly under Combat Power on purpose: CP is
-              Nexon's undocumented formula and we make no claim to reproduce it,
-              while Damage Range is a published formula we do compute — so the
-              two together are "their number, then the one you can check us on". */}
-          <DamageRange ch={ch} d={range} />
-          {statGroups.map(([group, rows]) => (
-            <div key={group}>
-              <div className="statgroup">{group}</div>
-              {rows.map(([lbl, key]) => (
-                <div className={statClass(key)} key={key}>
-                  <span className="k">{lbl}</span>
-                  <input
-                    type="number"
-                    value={ch.stats[key] || 0}
-                    aria-label={lbl}
-                    onChange={(e) =>
-                      update({ ...ch, stats: { ...ch.stats, [key]: parseFloat(e.target.value) || 0 } })
-                    }
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-          <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-            <button className="btn p" onClick={() => setImporting(true)}>Import screenshots</button>
-            <button className="btn" onClick={() => update(exampleCharacter())}>Example</button>
-            <button className="btn" onClick={() => update(emptyCharacter())}>Clear</button>
-          </div>
-          {ready && (
-            <p style={{ fontSize: ".68rem", color: "var(--ink-3)", marginTop: 8 }}>
-              Saved to this browser. Accounts coming.
-            </p>
-          )}
+      {/* ---------- who am I editing ----------
+          A strip, not a panel: it is the one control that changes what every
+          other card on this page is about, so it sits above all of them and
+          costs about forty pixels. */}
+      <div className="acct">
+        <span className="sub-h">Editing</span>
+        <div className="chips">
+          {chars.map((c) => {
+            const on = c.id === ch.id;
+            const n = gearCount(c);
+            return (
+              <button
+                key={c.id}
+                className={`chip${on ? " on" : ""}`}
+                aria-current={on ? "true" : undefined}
+                title={`${c.name} — ${c.cls} Lv. ${c.lvl} · ${n} item${n === 1 ? "" : "s"} recorded`}
+                onClick={() => select(c.id as string)}
+              >
+                <b>{c.name}</b>
+                <i>{c.cls} · Lv {c.lvl}</i>
+                <span className="mono">{n}</span>
+              </button>
+            );
+          })}
+          <button className="chip add" onClick={addBlank} title="Start a blank character sheet">
+            + New
+          </button>
         </div>
-      </section>
+        {roster.length > 0 && (
+          <a className="acct-jump" href="#roster">Roster ({roster.length}) &darr;</a>
+        )}
+      </div>
 
-      {/* equipment */}
-      <section className="card">
-        <h2>Equipment</h2>
-        <div className="eqwin">
-          <div className="grid-eq" onMouseLeave={() => setHover(null)}>
-            {SLOTS.map((s) => {
-              const it = ch.items[s.id];
-              const urgent = it ? advise(s, ch).some((r) => r.lv === "hi") : false;
-              return (
-                <button
-                  key={s.id}
-                  className={`slot${it ? "" : " empty"}`}
-                  style={{ gridColumn: s.c, gridRow: s.r }}
-                  title={it ? `${it.name} — click to edit` : `${s.n} — empty`}
-                  onMouseEnter={() => setHover(s.id)}
-                  onFocus={() => setHover(s.id)}
-                  onClick={() => setEditing(s.id)}
-                >
-                  {it && s.pot !== "no" && <span className={`slot-tier ${it.pot || "none"}`} />}
-                  {/* Database sprite first — it's pixel perfect. The screenshot
-                      crop is only a fallback for items the database can't match. */}
-                  {it?.itemId ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img className="slot-icon" src={`https://api.maplestory.net/item/${it.itemId}/icon`} alt={it.name} />
-                  ) : it?.icon ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img className="slot-icon" src={it.icon} alt={it.name} />
-                  ) : it ? (
-                    <span className="slot-abbr">{it.name}</span>
-                  ) : (
-                    <span className="slot-label">{s.n}</span>
-                  )}
-                  {it && s.sf && (
-                    <span className={`slot-star${(it.star || 0) === 0 ? " zero" : ""}`}>★{it.star || 0}</span>
-                  )}
-                  {urgent && <span className="slot-alert" />}
-                </button>
-              );
-            })}
-          </div>
-          <div className="eq-legend">
-            <span><i style={{ background: "var(--leg)" }} />Legendary</span>
-            <span><i style={{ background: "var(--uni)" }} />Unique</span>
-            <span><i style={{ background: "var(--epi)" }} />Epic</span>
-            <span><i style={{ background: "var(--rar)" }} />Rare</span>
-            <span><i style={{ background: "var(--bad)", borderRadius: "50%" }} />Needs attention</span>
-          </div>
-        </div>
-      </section>
-
-      {/* advice */}
-      <section className="card">
-        <h2>{slot ? slot.n : "Best next upgrades"}</h2>
+      {/* ---------- the answer, first ----------
+          This card used to sit third in the DOM and open with a 721px block of
+          hyper stat provenance, which put the first ranked move at y=1049 on a
+          1280x800 screen and four screens down on a phone — the research on top
+          of the answer. The ranked list now leads; the working (ranking note,
+          badge legend, hyper stat verdicts) follows it, one click away. */}
+      <section className="card advice">
+        <h2>
+          {slot ? slot.n : "Best next upgrades"}
+          <span className="h2-for">{ch.name}</span>
+        </h2>
         <div className="tip">
           {slot && (
             <>
@@ -632,12 +710,38 @@ export default function Planner() {
               <div className="sub-h">What to do next</div>
             </>
           )}
+
           {!slot && (
             <>
-              <HyperStats ch={ch} />
+              {/* The one sentence that has to be read before a missing
+                  percentage reads as a bug. damageModelStatus().why, verbatim. */}
+              {!model.verified && (
+                <p className="modelnote">
+                  <span className="conf-none">Not modelled</span>
+                  {model.why}
+                </p>
+              )}
+
+              {/* Landing on an empty sheet is the COMMON case — 31 characters
+                  came off the Switch Character screenshots and one has gear.
+                  A blank grid with no explanation reads as broken. */}
+              {blankSheet && (
+                <div className="startup">
+                  <b>Nothing is recorded for {ch.name} yet.</b>
+                  <p>
+                    {ch.cls} · Lv. {ch.lvl}. The ranked list fills in as soon as this sheet has
+                    gear and a stat line. Two ways in, and the screenshots are much faster:
+                  </p>
+                  <div className="startup-do">
+                    <button className="btn p" onClick={() => setImporting(true)}>Import screenshots</button>
+                    <button className="btn" onClick={() => setEditing("weapon")}>Add the weapon by hand</button>
+                  </div>
+                </div>
+              )}
+
               <div className="ranktools">
                 <span className="sub-h">
-                  {recs.length} move{recs.length === 1 ? "" : "s"}, account-wide
+                  {recs.length} move{recs.length === 1 ? "" : "s"} for {ch.name}
                 </span>
                 <div className="seg" role="group" aria-label="Sort recommendations">
                   <button
@@ -656,14 +760,9 @@ export default function Planner() {
                   </button>
                 </div>
               </div>
-              <p className="railnote">
-                {sortBy === "eff"
-                  ? "Ranked by damage per meso with no budget, so a 3M flame roll outranks a 1.5B tier-up on the ratio while being a fiftieth of the step. Flip to raw damage for size."
-                  : "Ranked by the size of the gain alone. Cost is ignored here — the top of this list can be the worst value on the page."}
-              </p>
-              <ConfLegend present={confsPresent} />
             </>
           )}
+
           {shown.length ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
               {shown.map((r, i) => <RecRow r={r} showSlot={!slot} key={i} />)}
@@ -671,61 +770,300 @@ export default function Planner() {
           ) : (
             <p className="hint">Fill in your stats to get advice.</p>
           )}
+
           {!slot && recs.length > TOP_N && (
             <button className="btn" style={{ alignSelf: "flex-start" }} onClick={() => setShowAll(!showAll)}>
               {showAll ? `Show top ${TOP_N}` : `Show all ${recs.length}`}
             </button>
           )}
+
+          {/* ---------- the working, underneath ----------
+              The sorting rationale, the confidence legend and the hyper stat
+              verdicts are all still here and all still true. They are what you
+              read once; the list is what you read every time, so the list gets
+              the top of the card. */}
+          {!slot && (
+            <div className="working">
+              <button
+                className="dr-more"
+                aria-expanded={showWorking}
+                onClick={() => setShowWorking((v) => !v)}
+              >
+                {showWorking ? "Hide" : "Show"} how this list is ranked, what the badges mean,
+                and the hyper stat verdicts
+              </button>
+              {showWorking && (
+                <div className="working-in">
+                  <p className="railnote">
+                    {sortBy === "eff"
+                      ? "Ranked by damage per meso with no budget, so a 3M flame roll outranks a 1.5B tier-up on the ratio while being a fiftieth of the step. Flip to raw damage for size."
+                      : "Ranked by the size of the gain alone. Cost is ignored here — the top of this list can be the worst value on the page."}
+                  </p>
+                  <ConfLegend present={confsPresent} />
+                  <HyperStats ch={ch} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
-      {ch.roster?.length ? (
+      {/* character */}
+      <section className="card who">
+        <h2>Character</h2>
+        <div className="body">
+          <input
+            className="nameInput"
+            value={ch.name}
+            aria-label="Character name"
+            onChange={(e) => update({ ...ch, name: e.target.value })}
+          />
+          {/* Class and level are editable now because a sheet seeded from a
+              roster row carries whatever the screenshot said, and a misread
+              class is the difference between advice and no advice. */}
+          <div className="wholine">
+            <input
+              className="clsInput"
+              value={ch.cls}
+              aria-label="Class"
+              onChange={(e) => update({ ...ch, cls: e.target.value })}
+            />
+            <span>Lv.</span>
+            <input
+              className="lvlInput"
+              type="number"
+              value={ch.lvl || 0}
+              aria-label="Level"
+              onChange={(e) => update({ ...ch, lvl: parseInt(e.target.value, 10) || 0 })}
+            />
+          </div>
+          <div className="cp">
+            <div className="l">Combat Power</div>
+            <div className="v">{ch.cp ? ch.cp.toLocaleString() : "—"}</div>
+          </div>
+          {/* Damage Range sits directly under Combat Power on purpose: CP is
+              Nexon's undocumented formula and we make no claim to reproduce it,
+              while Damage Range is a published formula we do compute — so the
+              two together are "their number, then the one you can check us on".
+              For a class the model has not been measured on, the panel is
+              replaced by the reason rather than filled from a fallback. */}
+          {range ? (
+            <DamageRange ch={ch} d={range} />
+          ) : (
+            <UnmodelledDamage why={model.why} verified={model.verifiedClasses} />
+          )}
+          {statGroups.map(([group, rows]) => (
+            <div key={group}>
+              <div className="statgroup">{group}</div>
+              {rows.map(([lbl, key]) => (
+                <div className={statClass(key)} key={key}>
+                  <span className="k">{lbl}</span>
+                  <input
+                    type="number"
+                    value={ch.stats[key] || 0}
+                    aria-label={lbl}
+                    onChange={(e) =>
+                      update({ ...ch, stats: { ...ch.stats, [key]: parseFloat(e.target.value) || 0 } })
+                    }
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+
+          {/* The two readings the stat window prints and the sheet had nowhere
+              to put. Only offered for a class the model can actually use them
+              on — anywhere else they would be data collected for nothing. */}
+          {model.verified && (
+            <div>
+              <div className="statgroup">Stat window readings</div>
+              {([
+                ["Damage %", "damagePct"],
+                ["Final damage %", "finalDamagePct"],
+              ] as Array<[string, "damagePct" | "finalDamagePct"]>).map(([lbl, key]) => (
+                <div className="stat" key={key}>
+                  <span className="k">{lbl}</span>
+                  <input
+                    type="number"
+                    step="0.01"
+                    placeholder="—"
+                    value={ch.stats[key] ?? ""}
+                    aria-label={lbl}
+                    onChange={(e) => setReading(key, e.target.value)}
+                  />
+                </div>
+              ))}
+              <p className="fineprint">
+                Typed exactly as the game prints them — 73 means 73%, and FINAL DAMAGE 115.79
+                means 115.79. Leave a box empty for &ldquo;not read&rdquo;; a zero would claim a
+                measurement of zero.
+              </p>
+            </div>
+          )}
+
+          <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
+            <button className="btn p" onClick={() => setImporting(true)}>Import screenshots</button>
+            <button className="btn" onClick={loadDemo}>Demo</button>
+            <button
+              className="btn"
+              title="Clear this character's gear and stats. The sheet, its name and its roster link stay."
+              onClick={() =>
+                update({ ...emptyCharacter(), id: ch.id, name: ch.name, cls: ch.cls, main: ch.main, lvl: ch.lvl })
+              }
+            >
+              Clear gear
+            </button>
+            {chars.length > 1 && (
+              <button
+                className="btn"
+                title={`Remove ${ch.name} from this account`}
+                onClick={() => {
+                  const gone = ch.name;
+                  commit(removeCharacter(account, ch.id as string));
+                  setNote(`Removed ${gone} from the account.`);
+                }}
+              >
+                Remove
+              </button>
+            )}
+          </div>
+          {ready && (
+            <p className="fineprint" style={{ marginTop: 8 }}>
+              {chars.length} character{chars.length === 1 ? "" : "s"} saved to this browser.
+              Accounts coming.
+            </p>
+          )}
+        </div>
+      </section>
+
+      {/* equipment */}
+      <section className="card eq">
+        <h2>
+          Equipment
+          <span className="h2-for">{ch.name} · {items} item{items === 1 ? "" : "s"}</span>
+        </h2>
+        <div className="eqwin">
+          {items === 0 && (
+            <p className="eq-empty">
+              No gear recorded for {ch.name}. Click any slot to enter an item, or{" "}
+              <button className="linkish" onClick={() => setImporting(true)}>import screenshots</button>.
+            </p>
+          )}
+          <div className="grid-eq" onMouseLeave={() => setHover(null)}>
+            {SLOTS.map((s) => {
+              const it = ch.items[s.id];
+              const urgent = it ? advise(s, ch).some((r) => r.lv === "hi") : false;
+              return (
+                <button
+                  key={s.id}
+                  className={`slot${it ? "" : " empty"}`}
+                  style={{ gridColumn: s.c, gridRow: s.r }}
+                  title={it ? `${it.name} — click to edit` : `${s.n} — empty, click to add`}
+                  onMouseEnter={() => setHover(s.id)}
+                  onFocus={() => setHover(s.id)}
+                  onClick={() => setEditing(s.id)}
+                >
+                  {it && s.pot !== "no" && <span className={`slot-tier ${it.pot || "none"}`} />}
+                  {/* Database sprite first — it's pixel perfect. The screenshot
+                      crop is only a fallback for items the database can't match. */}
+                  {it?.itemId ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-icon" src={`https://api.maplestory.net/item/${it.itemId}/icon`} alt={it.name} />
+                  ) : it?.icon ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-icon" src={it.icon} alt={it.name} />
+                  ) : it ? (
+                    <span className="slot-abbr">{it.name}</span>
+                  ) : (
+                    <span className="slot-label">{s.n}</span>
+                  )}
+                  {it && s.sf && (
+                    <span className={`slot-star${(it.star || 0) === 0 ? " zero" : ""}`}>★{it.star || 0}</span>
+                  )}
+                  {urgent && <span className="slot-alert" />}
+                </button>
+              );
+            })}
+          </div>
+          <div className="eq-legend">
+            <span><i style={{ background: "var(--leg)" }} />Legendary</span>
+            <span><i style={{ background: "var(--uni)" }} />Unique</span>
+            <span><i style={{ background: "var(--epi)" }} />Epic</span>
+            <span><i style={{ background: "var(--rar)" }} />Rare</span>
+            <span><i style={{ background: "var(--bad)", borderRadius: "50%" }} />Needs attention</span>
+          </div>
+        </div>
+      </section>
+
+      {roster.length > 0 && (
         <Roster
-          chars={ch.roster}
-          onClear={() => update({ ...ch, roster: undefined })}
+          chars={roster}
+          sheets={sheets}
+          activeKey={activeRosterKey}
+          onOpen={openRoster}
+          onClear={() => commit(setRoster(account, undefined))}
         />
-      ) : null}
+      )}
+
+      {note && (
+        <div className="toast" role="status">
+          <span>{note}</span>
+          <button aria-label="Dismiss" onClick={() => setNote(null)}>×</button>
+        </div>
+      )}
 
       {importing && (
         <ImportDialog
+          target={{ name: ch.name, cls: ch.cls, lvl: ch.lvl, items }}
           onClose={() => setImporting(false)}
-          onApply={(entries, patch, roster) => {
-            const items = { ...ch.items };
-            for (const e of entries) items[e.slot] = e.item;
+          onApply={(entries, patch, incoming) => {
+            const nextItems = { ...ch.items };
+            for (const e of entries) nextItems[e.slot] = e.item;
 
             // Only overwrite what the stat window actually yielded.
-            const next: Character = { ...ch, items };
+            const next: Character = { ...ch, items: nextItems };
             if (patch) {
               if (patch.name) next.name = patch.name;
               if (patch.cls) next.cls = patch.cls;
               if (patch.lvl) next.lvl = patch.lvl;
               if (patch.cp) next.cp = patch.cp;
-              const s = { ...ch.stats };
+              const s: CharacterStats = { ...ch.stats };
               (["main", "att", "crit", "critdmg", "boss", "ied", "hp", "arcane", "starforce"] as const)
                 .forEach((k) => { if (patch[k] !== undefined) s[k] = patch[k] as number; });
               next.stats = s;
             }
-            // Merge rather than replace: the Switch Character window is
-            // paginated, so uploading page 2 must not discard page 1.
-            if (roster?.length) next.roster = mergeRoster(ch.roster ?? [], roster);
 
-            update(next);
+            // The roster is ACCOUNT data, so it goes through setRoster() rather
+            // than onto the character. Merge rather than replace: the Switch
+            // Character window is paginated, so uploading page 2 must not
+            // discard page 1.
+            let acc = withActiveCharacter(account, next);
+            if (incoming?.length) acc = setRoster(acc, mergeRoster(roster, incoming));
+            commit(acc);
+
             setImporting(false);
             setHover(entries[entries.length - 1]?.slot ?? null);
+            const bits = [
+              entries.length ? `${entries.length} item${entries.length === 1 ? "" : "s"}` : null,
+              patch ? "the stat line" : null,
+              incoming?.length ? `${incoming.length} roster entries` : null,
+            ].filter(Boolean).join(" + ");
+            setNote(`Applied ${bits || "nothing"} to ${next.name}.`);
           }}
         />
       )}
 
       {editing && editSlot && (
         <ItemEditor
+          who={ch.name}
           slot={editSlot}
           item={editItem}
           onCancel={() => setEditing(null)}
           onSave={(next) => {
-            const items = { ...ch.items };
-            if (next) items[editing] = next;
-            else delete items[editing];
-            update({ ...ch, items });
+            const nextItems = { ...ch.items };
+            if (next) nextItems[editing] = next;
+            else delete nextItems[editing];
+            update({ ...ch, items: nextItems });
             setEditing(null);
           }}
         />
@@ -735,8 +1073,11 @@ export default function Planner() {
 }
 
 function ItemEditor({
-  slot, item, onSave, onCancel,
+  who, slot, item, onSave, onCancel,
 }: {
+  /** Named in the header and on the save button. An item editor with no owner
+   *  on it is how gear ends up on the wrong sheet. */
+  who: string;
   slot: SlotDef;
   item?: Item;
   onSave: (i: Item | null) => void;
@@ -763,7 +1104,10 @@ function ItemEditor({
     <div className="ed-back" onClick={(e) => { if (e.target === e.currentTarget) onCancel(); }}>
       <div className="ed-in">
         <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 15px", borderBottom: "1px solid var(--line)" }}>
-          <h3 style={{ fontSize: "1rem", marginRight: "auto" }}>{slot.n}</h3>
+          <h3 style={{ fontSize: "1rem", marginRight: "auto" }}>
+            {slot.n}
+            <span className="h3-for">on {who}</span>
+          </h3>
           <button className="btn" onClick={() => onSave(null)}>Empty slot</button>
         </div>
 
@@ -848,7 +1192,9 @@ function ItemEditor({
 
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", padding: "12px 15px", borderTop: "1px solid var(--line)" }}>
           <button className="btn" onClick={onCancel}>Cancel</button>
-          <button className="btn p" onClick={() => onSave(f.name.trim() ? f : null)}>Save</button>
+          <button className="btn p" onClick={() => onSave(f.name.trim() ? f : null)}>
+            Save to {who}
+          </button>
         </div>
       </div>
     </div>

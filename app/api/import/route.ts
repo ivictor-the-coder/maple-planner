@@ -1,7 +1,23 @@
 import { NextResponse } from "next/server";
 import { SLOTS, canStarForce, sfCap, type Item, type SlotDef, type Tier } from "@/lib/rules";
+import type { ImportFailure, ImportOutcome, OpenRouterUsage } from "@/lib/entitlement";
+import { guardImport } from "@/lib/entitlementStore";
 
 // Reads a MapleStory item tooltip out of a screenshot using a vision model.
+//
+// THIS IS THE ONLY ROUTE IN THE APP WITH A MARGINAL COST. Everything else the
+// planner does is static computation; this one spends real OpenRouter vision
+// tokens, and until this wave it spent them for any anonymous caller on the
+// internet. So POST() below now begins — before the body is read, before the
+// data URL is validated, and a long way before fetch("https://openrouter.ai") —
+// with guardImport(). Hiding the button in the UI is not gating; this is.
+//
+// The gate is a demo, not a paywall: DEMO_IMPORTS (10) screenshot imports per
+// visitor, which is one full batch and one character's worth of gear. When it
+// runs out the refusal carries `interest: true` and a path to a form that asks
+// whether someone would use a paid plan. It never asks for money — see
+// INTEREST_FORM_PATH in lib/entitlement.ts for why that distinction is a
+// deployment constraint rather than a preference.
 //
 // Local OCR (tesseract) could not do this: the tooltip is semi-transparent over
 // the game world, and the cursor always occludes a line because you have to
@@ -635,12 +651,19 @@ function reconcileStars(i: StarInputs): StarVerdict {
 
 /* ---------- OpenRouter call ---------- */
 
-interface Usage { prompt_tokens?: number; completion_tokens?: number }
+// The usage object OpenRouter returns beside `choices`. It used to be read for
+// the log line and thrown away; settle() now hands it to reconcileImportCost(),
+// which prefers the provider's own `cost` when it is present. That is the
+// measurement that eventually replaces IMPORT_UNIT_COST_USD_PLACEHOLDER, so the
+// shape is the entitlement layer's rather than a second local copy of it.
+type Usage = OpenRouterUsage;
 
 type CallResult =
   | { kind: "ok"; text: string; finish: string; usage: Usage }
   | { kind: "status"; status: number }
-  | { kind: "error"; why: string };
+  // `failure` is the same word the ledger settles on, decided where the cause is
+  // actually known rather than re-derived later from the prose in `why`.
+  | { kind: "error"; why: string; failure: Extract<ImportFailure, "timeout" | "network_error"> };
 
 const PER_CALL_TIMEOUT_MS = 20_000;
 /** json_schema → json_object → bare, plus one 429 backoff, plus the real call. */
@@ -714,7 +737,10 @@ async function callModel(
     const text = choice?.message?.content?.trim() || choice?.message?.reasoning?.trim() || "";
     return { kind: "ok", text, finish: choice?.finish_reason ?? "", usage: json.usage ?? {} };
   } catch (e) {
-    return { kind: "error", why: (e as Error)?.name === "AbortError" ? `timed out after ${PER_CALL_TIMEOUT_MS / 1000}s` : "network error" };
+    const aborted = (e as Error)?.name === "AbortError";
+    return aborted
+      ? { kind: "error", why: `timed out after ${PER_CALL_TIMEOUT_MS / 1000}s`, failure: "timeout" }
+      : { kind: "error", why: "network error", failure: "network_error" };
   } finally {
     // Every exit — return, throw, abort — clears the timer. The previous shape
     // leaked one per `continue` and one per early return.
@@ -789,30 +815,110 @@ const box = (v: unknown): number[] | null =>
     ? v.map(Number)
     : null;
 
+/**
+ * One trip through the vision chain, as a value rather than a Response.
+ *
+ * The route has ten exits — three of them successful, seven not — and every one
+ * of them owes the ledger a settle(). Returning the body and the outcome
+ * together instead of a Response means the settle happens in exactly one place
+ * (POST, below) and cannot be forgotten by the next person who adds an eleventh
+ * exit. A leaked concurrency slot is a visitor who cannot import again until
+ * the process restarts, which is not a failure anyone would connect to the edit
+ * that caused it.
+ */
+interface RunResult {
+  body: Record<string, unknown>;
+  /** Omitted means 200. */
+  status?: number;
+  outcome: ImportOutcome;
+}
+
+/**
+ * THE GATE. Nothing expensive happens above this line.
+ *
+ * guardImport() runs the whole fail-closed sequence — identity, ledger read,
+ * concurrency, the demo ceiling, then an atomic commitSpend — and it runs
+ * BEFORE req.json(), before the data URL is validated, and before any fetch to
+ * openrouter.ai. That ordering is the entire point: a refusal must cost nothing
+ * but a ledger read. Do not move a body parse or a validation above it "to
+ * return a better error first" — a malformed request from an exhausted visitor
+ * would then still be free to arrive a thousand times.
+ */
 export async function POST(req: Request) {
-  const startedAt = Date.now();
-  const rid = Math.random().toString(36).slice(2, 8);
   const key = process.env.OPENROUTER_API_KEY;
+  const guard = await guardImport(req, {
+    // The dialog posts one image per request; MAX_BATCH_FILES is the ceiling if
+    // that ever changes.
+    batchSize: 1,
+    // Folds the route's old bare 501 into the same vocabulary as every other
+    // refusal, so the dialog has one rendering path.
+    configured: Boolean(key),
+  });
+
+  if (!guard.allow) {
+    // Verbatim. The body already carries `error` as a finished sentence, which
+    // is the field ImportDialog reads today, plus reason/interest/interestPath
+    // for a better rendering when someone gets to it.
+    return NextResponse.json(guard.body, { status: guard.status, headers: guard.headers });
+  }
+
   if (!key) {
+    // Unreachable: `configured: false` denies with not_configured above. Kept so
+    // the compiler sees a string below, and so an edit that loosens `configured`
+    // still settles instead of leaking the slot it just reserved.
+    await guard.settle({ ok: false, failure: "not_configured" });
     return NextResponse.json(
-      { error: "Screenshot import isn't configured — OPENROUTER_API_KEY is not set." },
+      { error: "Screenshot import isn't configured — OPENROUTER_API_KEY is not set.", reason: "not_configured" },
       { status: 501 }
     );
   }
+
+  try {
+    const run = await runImport(req, key);
+    // EVERY exit path, including the ones that return an error body: settle
+    // releases the concurrency slot as well as refunding the unit.
+    await guard.settle(run.outcome);
+    return NextResponse.json(
+      run.outcome.ok
+        ? {
+            ...run.body,
+            // Additive. The keys ImportDialog already reads are untouched.
+            entitlement: { remaining: guard.remaining, limit: guard.limit, ledger: guard.ledger },
+          }
+        : run.body,
+      { status: run.status ?? 200 }
+    );
+  } catch (err) {
+    // Something outside the modelled failures — settle is idempotent, so this is
+    // safe even if runImport already settled on its way out.
+    await guard.settle({ ok: false, failure: "network_error" });
+    throw err;
+  }
+}
+
+async function runImport(req: Request, key: string): Promise<RunResult> {
+  const startedAt = Date.now();
+  const rid = Math.random().toString(36).slice(2, 8);
 
   let body: ImportBody;
   try {
     body = (await req.json()) as ImportBody;
   } catch {
-    return NextResponse.json({ error: "Bad request body." }, { status: 400 });
+    // A malformed request spent no vision tokens, so the unit comes back:
+    // settleImport() refunds an outcome with no named failure.
+    return { body: { error: "Bad request body." }, status: 400, outcome: { ok: false } };
   }
   const image = body.image ?? "";
   if (!image.startsWith("data:image/")) {
-    return NextResponse.json({ error: "Expected a data:image/... URL." }, { status: 400 });
+    return { body: { error: "Expected a data:image/... URL." }, status: 400, outcome: { ok: false } };
   }
   // ~6MB of base64 is plenty for a full-screen grab and keeps us inside limits
   if (image.length > 8_000_000) {
-    return NextResponse.json({ error: "That image is too large — try a window capture." }, { status: 413 });
+    return {
+      body: { error: "That image is too large — try a window capture." },
+      status: 413,
+      outcome: { ok: false },
+    };
   }
 
   const starsMode = body.mode === "stars";
@@ -824,6 +930,12 @@ export async function POST(req: Request) {
   // not produce the same message.
   const outcomes: Array<{ model: string; why: string }> = [];
   let anyModelAnswered = false;
+  // What the ledger is told when the chain runs out. Set beside every
+  // outcomes.push() so the two cannot drift: `why` is prose for the user,
+  // `lastFailure` is the word that decides whether the unit comes back.
+  // Defaults to model_http_error for the "no models configured" case, which is
+  // our problem and not the visitor's.
+  let lastFailure: ImportFailure = "model_http_error";
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   for (const model of models) {
@@ -846,6 +958,7 @@ export async function POST(req: Request) {
 
       if (r.kind === "error") {
         outcomes.push({ model, why: r.why });
+        lastFailure = r.failure; // the 20s abort, or a fetch rejection
         break;
       }
       if (r.kind === "status") {
@@ -862,6 +975,7 @@ export async function POST(req: Request) {
           continue;
         }
         outcomes.push({ model, why: `HTTP ${r.status}${r.status === 429 ? " (rate limited)" : ""}` });
+        lastFailure = "model_http_error"; // 429 / 403 / 404 from a model
         break;
       }
 
@@ -873,6 +987,7 @@ export async function POST(req: Request) {
         const { value } = extractJson<VisionStarRow>(r.text);
         if (!value || num(value.stars, MAX_STARS) === undefined) {
           outcomes.push({ model, why: `could not count the star row: "${r.text.replace(/\s+/g, " ").slice(0, 90)}"` });
+          lastFailure = "unparseable";
           break;
         }
         const second = num(value.stars, MAX_STARS);
@@ -895,17 +1010,20 @@ export async function POST(req: Request) {
           finish: r.finish, tokIn: r.usage.prompt_tokens, tokOut: r.usage.completion_tokens,
           ms: Date.now() - startedAt, outcome: `star=${rowVerdict.star} conf=${rowVerdict.conf}`,
         });
-        return NextResponse.json({
-          model,
-          mode: "stars",
-          stars: rowVerdict.star,
-          grey: num(value.grey, MAX_STARS) ?? null,
-          sure: !!value.sure,
-          modelStars: second ?? null,
-          pixelStars: pixel ?? null,
-          conf: rowVerdict.conf,
-          reason: rowVerdict.reason ?? null,
-        });
+        return {
+          body: {
+            model,
+            mode: "stars",
+            stars: rowVerdict.star,
+            grey: num(value.grey, MAX_STARS) ?? null,
+            sure: !!value.sure,
+            modelStars: second ?? null,
+            pixelStars: pixel ?? null,
+            conf: rowVerdict.conf,
+            reason: rowVerdict.reason ?? null,
+          },
+          outcome: { ok: true, model, usage: r.usage },
+        };
       }
 
       /* ---------- first pass: the whole tooltip ---------- */
@@ -921,6 +1039,7 @@ export async function POST(req: Request) {
               ? `replied but not with JSON: "${snip}"`
               : "returned an empty message",
         });
+        lastFailure = "unparseable";
         break;
       }
 
@@ -929,6 +1048,10 @@ export async function POST(req: Request) {
       const rawName = str(parsed.name) ?? "";
       if (!rawName && !stats && !roster) {
         outcomes.push({ model, why: "read the image but found no item tooltip, stat window or character list" });
+        // NOT refunded (REFUND_ON_NO_CONTENT is false): the model read the image
+        // and the vision tokens were really spent. The visitor sent a screenshot
+        // with nothing in it, which is a different thing from us failing.
+        lastFailure = "no_content";
         break;
       }
       if (!rawName) {
@@ -938,11 +1061,14 @@ export async function POST(req: Request) {
           finish: r.finish, tokIn: r.usage.prompt_tokens, tokOut: r.usage.completion_tokens,
           ms: Date.now() - startedAt, outcome: stats && roster ? "stats+roster" : stats ? "stats" : "roster",
         });
-        return NextResponse.json({
-          model, item: null, slotGuess: null, iconBox: null, tooltipBox: null,
-          stats, roster, conf: null, reasons: null, db: null, flags: [],
-          accuracy: evalAccuracy(),
-        });
+        return {
+          body: {
+            model, item: null, slotGuess: null, iconBox: null, tooltipBox: null,
+            stats, roster, conf: null, reasons: null, db: null, flags: [],
+            accuracy: evalAccuracy(),
+          },
+          outcome: { ok: true, model, usage: r.usage },
+        };
       }
 
       /* ---- cross-validate against the database we already query ---- */
@@ -1073,47 +1199,52 @@ export async function POST(req: Request) {
         ms: Date.now() - startedAt, conf, outcome: `item "${name}"`,
       });
 
-      return NextResponse.json({
-        model,
-        item: {
-          name,
-          lvl,
-          star: verdict.star,
-          pot: tier,
-          sup,
-          noSf: !!parsed.noStarForce,
-          noFl,
-          noPot,
-          p: noPot ? [] : pot.lines,
-          f: noFl ? [] : flame.lines,
+      return {
+        body: {
+          model,
+          item: {
+            name,
+            lvl,
+            star: verdict.star,
+            pot: tier,
+            sup,
+            noSf: !!parsed.noStarForce,
+            noFl,
+            noPot,
+            p: noPot ? [] : pot.lines,
+            f: noFl ? [] : flame.lines,
+          },
+          slotGuess: slot,
+          iconBox: box(parsed.iconBox),
+          // Additive: the star-row crop region, for the native-resolution second
+          // pass and for the pixel counter. Null when the model found no star row.
+          tooltipBox: box(parsed.tooltipBox),
+          stats,
+          roster,
+          // Additive: everything the UI needs to point at ONE field instead of
+          // asking the user to re-verify all eight.
+          conf,
+          reasons,
+          flags,
+          db: db
+            ? {
+                itemId: db.itemId, name: db.name, sub: db.sub, level: db.level,
+                superior: db.superior, bossDrop: db.bossDrop,
+                corrected: db.distance > 0, distance: db.distance,
+              }
+            : null,
+          accuracy: evalAccuracy(),
         },
-        slotGuess: slot,
-        iconBox: box(parsed.iconBox),
-        // Additive: the star-row crop region, for the native-resolution second
-        // pass and for the pixel counter. Null when the model found no star row.
-        tooltipBox: box(parsed.tooltipBox),
-        stats,
-        roster,
-        // Additive: everything the UI needs to point at ONE field instead of
-        // asking the user to re-verify all eight.
-        conf,
-        reasons,
-        flags,
-        db: db
-          ? {
-              itemId: db.itemId, name: db.name, sub: db.sub, level: db.level,
-              superior: db.superior, bossDrop: db.bossDrop,
-              corrected: db.distance > 0, distance: db.distance,
-            }
-          : null,
-        accuracy: evalAccuracy(),
-      });
+        outcome: { ok: true, model, usage: r.usage },
+      };
     }
     // Only reachable if every attempt asked for a retry and none succeeded —
     // without this the model would vanish from `outcomes` and the user would be
     // told "no models responded" with an empty parenthesis.
     if (attempt >= MAX_ATTEMPTS) {
       outcomes.push({ model, why: `gave up after ${MAX_ATTEMPTS} attempts (parameter downgrades and rate-limit backoff)` });
+      // Every attempt ended in a status we retried — that is an HTTP failure.
+      lastFailure = "model_http_error";
     }
   }
 
@@ -1127,5 +1258,14 @@ export async function POST(req: Request) {
     outcome: `failed: ${detail || "no models configured"}`,
   });
 
-  return NextResponse.json({ error, outcomes }, { status: 503 });
+  // `lastFailure` is what decides whether the unit comes back. "no_content" —
+  // a model read the image and found nothing in it — keeps it, because the
+  // vision tokens were really spent. Every other ending here (timeout, HTTP,
+  // network, unparseable) is our failure and is refunded in full: a visitor
+  // must not lose demo to somebody else's rate limit.
+  return {
+    body: { error, outcomes },
+    status: 503,
+    outcome: { ok: false, failure: lastFailure },
+  };
 }

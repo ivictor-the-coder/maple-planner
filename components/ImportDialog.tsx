@@ -94,10 +94,27 @@ function toDataUrl(img: HTMLImageElement, max = 2000): string {
   return c.toDataURL("image/jpeg", 0.92);
 }
 
+/** The character everything in this dialog is about to be written onto.
+ *  Required, not optional: importing a full gear set onto the wrong character
+ *  is silent, painful and only noticed later, so the destination is named in
+ *  the header, in the apply button, and again whenever the stat window
+ *  disagrees with it. */
+export interface ImportTarget {
+  name: string;
+  cls: string;
+  lvl: number;
+  /** Items already recorded on that sheet — "12 items will be overwritten in
+   *  those slots" is a materially different decision from "this sheet is
+   *  empty". */
+  items: number;
+}
+
 export default function ImportDialog({
+  target,
   onApply,
   onClose,
 }: {
+  target: ImportTarget;
   onApply: (entries: Array<{ slot: string; item: Item }>, stats?: StatsPatch, roster?: RosterChar[]) => void;
   onClose: () => void;
 }) {
@@ -287,18 +304,45 @@ export default function ImportDialog({
     chosen.map((e) => e.slot).filter((s, i, a) => a.indexOf(s) !== i)
   );
 
+  /* A stat window carries the character's own name. When it disagrees with the
+   * sheet being written to, that is the wrong-character import happening right
+   * now, and it is the only moment anyone can still stop it. Compared the way
+   * the roster joins names — lowercase and trimmed. */
+  const norm = (s: string) => s.toLowerCase().trim();
+  const mismatch =
+    useStats && stats?.name && norm(stats.name) !== norm(target.name) ? stats.name : null;
+
   return (
     <div className="ed-back" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="ed-in" style={{ maxWidth: 720 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 15px", borderBottom: "1px solid var(--line)" }}>
           <h3 style={{ fontSize: "1rem", marginRight: "auto" }}>
-            Import from screenshots {entries.length > 0 && <span className="mono" style={{ color: "var(--ink-3)", fontSize: ".72rem" }}>{entries.length}/{MAX_FILES}</span>}
+            Import into {target.name}
+            {entries.length > 0 && <span className="mono" style={{ color: "var(--ink-3)", fontSize: ".72rem", marginLeft: 8 }}>{entries.length}/{MAX_FILES}</span>}
           </h3>
           <button className={`btn${tab === "shot" ? " p" : ""}`} onClick={() => setTab("shot")}>Screenshots</button>
           <button className={`btn${tab === "text" ? " p" : ""}`} onClick={() => setTab("text")}>Paste text</button>
         </div>
 
         <div style={{ padding: "14px 15px", display: "flex", flexDirection: "column", gap: 13, maxHeight: "64vh", overflowY: "auto" }}>
+          {/* THE destination, stated before anything is read. */}
+          <div className="imp-target">
+            <span className="sub-h">Writing to</span>
+            <b>{target.name}</b>
+            <i>{target.cls} · Lv. {target.lvl}</i>
+            <span className="mono">
+              {target.items === 0
+                ? "no gear recorded yet"
+                : `${target.items} item${target.items === 1 ? "" : "s"} recorded — matching slots are replaced`}
+            </span>
+          </div>
+          {mismatch && (
+            <p className="imp-warn">
+              The stat window in these screenshots says <b>{mismatch}</b>, but this import is going
+              onto <b>{target.name}</b>. If that is the wrong sheet, cancel, switch character, and
+              import again — or untick the stats below to keep the gear and drop the name.
+            </p>
+          )}
           {tab === "shot" && (
             <div
               onDragOver={(e) => e.preventDefault()}
@@ -352,7 +396,7 @@ export default function ImportDialog({
               }}>
                 <label style={{ display: "flex", alignItems: "center", gap: 9, fontSize: ".85rem", fontWeight: 600 }}>
                   <input type="checkbox" checked={useStats} onChange={(e) => setUseStats(e.target.checked)} />
-                  Update the character panel with these
+                  Update {target.name}&rsquo;s stat panel with these
                 </label>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(140px,1fr))", gap: "3px 14px" }}>
                   {STAT_LABELS.filter(([k]) => stats[k] !== undefined && stats[k] !== "").map(([k, label]) => (
@@ -376,10 +420,12 @@ export default function ImportDialog({
               }}>
                 <label style={{ display: "flex", alignItems: "center", gap: 9, fontSize: ".85rem", fontWeight: 600 }}>
                   <input type="checkbox" checked={useRoster} onChange={(e) => setUseRoster(e.target.checked)} />
-                  Build the Legion roster from these
+                  Build the account-wide Legion roster from these
                 </label>
                 <p style={{ margin: 0, fontSize: ".74rem", color: "var(--ink-3)" }}>
-                  The Switch Character window is paginated — add a shot of each page and they merge.
+                  The roster belongs to the account, not to {target.name} — every character on it
+                  becomes clickable in the Legion panel. The Switch Character window is paginated,
+                  so add a shot of each page and they merge.
                 </p>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(180px,1fr))", gap: "3px 14px" }}>
                   {roster.map((c) => (
@@ -499,7 +545,7 @@ export default function ImportDialog({
                 chosen.length ? `${chosen.length} item${chosen.length > 1 ? "s" : ""}` : null,
                 stats && useStats ? "stats" : null,
                 roster.length > 0 && useRoster ? `${roster.length} characters` : null,
-              ].filter(Boolean).join(" + ")}
+              ].filter(Boolean).join(" + ")} to {target.name}
             </button>
           )}
         </div>
