@@ -62,6 +62,21 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 }
 .navlink:hover { color: var(--ink); background: rgba(255,255,255,.05); }
 
+/* In-page jump targets clear the sticky masthead. Without this the browser
+ * scrolls the target's top edge to y=0, which is BEHIND .mast — the stat-window
+ * readings landed with their first input under the header, i.e. the link worked
+ * and looked like it had not. 66px is the masthead's measured 53.7 plus
+ * breathing room, not a guess at its height.
+ *
+ * `:target` is what makes the claim true rather than aspirational. Naming ids
+ * covered only the two this page knew about, and the guide page has eight
+ * anchors of its own behind the same masthead — seven of which still landed
+ * underneath it. :target matches whatever the fragment actually points at, so
+ * a new anchor is covered the day it is added instead of the day someone
+ * notices. The two ids stay alongside it as a belt-and-braces for the initial
+ * load, where a browser may compute scroll-margin before :target applies. */
+:target, #stat-readings, #roster { scroll-margin-top: 66px; }
+
 /* ---------- layout ----------
  * DOM order is: account strip, ADVICE, character, equipment, roster — the
  * ranked recommendations come first in the markup, because they are the product

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { SLOTS, canStarForce, sfCap, type Item, type SlotDef, type Tier } from "@/lib/rules";
 import type { ImportFailure, ImportOutcome, OpenRouterUsage } from "@/lib/entitlement";
 import { guardImport } from "@/lib/entitlementStore";
+import { STAT_WINDOW_DAMAGE_PROMPT } from "@/lib/import/damageReadings";
+import { num, str, tidyStatWindow, type VisionStats } from "@/lib/import/visionFields";
 
 // Reads a MapleStory item tooltip out of a screenshot using a vision model.
 //
@@ -78,6 +80,11 @@ const DEFAULT_MODELS = [
  *   j.slotGuess, j.iconBox, j.stats, j.roster. Every one of those keys keeps its
  *   name, type and meaning below. `conf`, `reasons`, `tooltipBox`, `db`,
  *   `accuracy` and `flags` are ADDITIVE and ignored by the current dialog.
+ * - `stats.damagePct` and `stats.finalDamagePct` are likewise ADDITIVE: the
+ *   dialog's StatsPatch and the planner's apply step each enumerate their own
+ *   key list, so both fields are carried to the edge of this route and dropped
+ *   there until those two files list them. Nothing here breaks meanwhile —
+ *   they simply never arrive, which is the same as not being read.
  * - app/api/items/route.ts already maps the upstream subcategory to our slot id
  *   and returns it as `slot`, so that mapping is consumed rather than copied.
  * ------------------------------------------------------------------ */
@@ -154,7 +161,8 @@ and null for the whole "stats" key when no stat window is on screen.
     "ignoreDefense": number, // IGNORE DEFENSE %
     "maxHp": number,
     "arcanePower": number,
-    "starForce": number      // the STAR FORCE total, not any single item's stars
+    "starForce": number,     // the STAR FORCE total, not any single item's stars
+${STAT_WINDOW_DAMAGE_PROMPT}
   }
 
 SEPARATELY AGAIN: the screenshot may show the SWITCH CHARACTER window — a grid of
@@ -199,6 +207,11 @@ const STATS_SCHEMA = {
   required: [
     "name", "class", "level", "combatPower", "mainStat", "attack", "critRate",
     "critDamage", "bossDamage", "ignoreDefense", "maxHp", "arcanePower", "starForce",
+    // The two stat-window damage readings. `required` is not optionality —
+    // strict mode demands every property be listed, and NUM_OR_NULL is how a
+    // field the model could not read says so. See lib/import/damageReadings.ts
+    // for why null has to survive all the way to the character sheet.
+    "damagePct", "finalDamagePct",
   ],
   properties: {
     name: STR_OR_NULL, class: STR_OR_NULL, level: NUM_OR_NULL,
@@ -206,6 +219,12 @@ const STATS_SCHEMA = {
     critRate: NUM_OR_NULL, critDamage: NUM_OR_NULL, bossDamage: NUM_OR_NULL,
     ignoreDefense: NUM_OR_NULL, maxHp: NUM_OR_NULL, arcanePower: NUM_OR_NULL,
     starForce: NUM_OR_NULL,
+    // Declared as numbers because that is what a schema-honouring provider
+    // should send. The parser still accepts "115.79%" as a string: widening the
+    // schema to invite one would buy nothing, while the `object` and `none`
+    // rungs of the format ladder (weaken(), below) deliver whatever the model
+    // felt like typing and are the reason the parser is defensive at all.
+    damagePct: NUM_OR_NULL, finalDamagePct: NUM_OR_NULL,
   },
 } as const;
 
@@ -274,14 +293,6 @@ const weaken = (m: FormatMode): FormatMode => (m === "schema" ? "object" : "none
 
 /* ---------- types ---------- */
 
-interface VisionStats {
-  name?: string | null; class?: string | null; level?: number | null;
-  combatPower?: number | null; mainStat?: number | null; attack?: number | null;
-  critRate?: number | null; critDamage?: number | null; bossDamage?: number | null;
-  ignoreDefense?: number | null; maxHp?: number | null; arcanePower?: number | null;
-  starForce?: number | null;
-}
-
 interface VisionRosterEntry {
   name?: string | null; class?: string | null; level?: number | null; current?: boolean | null;
 }
@@ -309,20 +320,6 @@ export interface ConfMap {
 
 export type ReasonMap = Partial<Record<keyof ConfMap, string>>;
 
-const num = (v: unknown, max: number): number | undefined => {
-  // Strict json_schema makes every optional field explicitly null, and
-  // Number(null) is 0 — which would quietly write a zeroed stat window over a
-  // real one. Reject null before it can become a number.
-  if (v === null || v === undefined || v === "") return undefined;
-  const n = typeof v === "string" ? parseFloat(v.replace(/[,%\s]/g, "")) : Number(v);
-  return Number.isFinite(n) && n >= 0 && n <= max ? n : undefined;
-};
-
-const str = (v: unknown): string | undefined => {
-  const s = typeof v === "string" ? v.trim() : "";
-  return s || undefined;
-};
-
 function tidyRoster(r: unknown) {
   if (!Array.isArray(r)) return undefined;
   const out: Array<{ name: string; cls: string; lvl: number; current: boolean }> = [];
@@ -335,26 +332,6 @@ function tidyRoster(r: unknown) {
     out.push({ name, cls, lvl, current: !!x.current });
   }
   return out.length ? out : undefined;
-}
-
-function tidyStats(s: VisionStats | null | undefined) {
-  if (!s || typeof s !== "object") return undefined;
-  const out = {
-    name: str(s.name),
-    cls: str(s.class),
-    lvl: num(s.level, 300),
-    cp: num(s.combatPower, 1e10),
-    main: num(s.mainStat, 1e7),
-    att: num(s.attack, 1e6),
-    crit: num(s.critRate, 100),
-    critdmg: num(s.critDamage, 1000),
-    boss: num(s.bossDamage, 2000),
-    ied: num(s.ignoreDefense, 100),
-    hp: num(s.maxHp, 1e8),
-    arcane: num(s.arcanePower, 1320),
-    starforce: num(s.starForce, 1000),
-  };
-  return Object.values(out).some((v) => v !== undefined && v !== "") ? out : undefined;
 }
 
 const TIERS: Tier[] = ["none", "rare", "epic", "unique", "legendary"];
@@ -1043,7 +1020,7 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
         break;
       }
 
-      const stats = tidyStats(parsed.stats);
+      const stats = tidyStatWindow(parsed.stats);
       const roster = tidyRoster(parsed.roster);
       const rawName = str(parsed.name) ?? "";
       if (!rawName && !stats && !roster) {

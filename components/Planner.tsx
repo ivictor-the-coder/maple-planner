@@ -4,17 +4,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   CONFIDENCE_VOCABULARY, SLOTS, TIER_LABEL, STAT_LABEL, advise,
   activeCharacter, addCharacter, characterIdForRoster, damageModelStatus,
-  emptyCharacter, exampleAccount, exampleCharacter, isDeadLine, listCharacters,
+  emptyCharacter, exampleAccount, exampleCharacter, hasDamagePctReading, isDeadLine, listCharacters,
   openRosterCharacter, planAdvice, removeCharacter, rosterKey, selectCharacter,
   setRoster, sfCap, withActiveCharacter, EXAMPLE_CHARACTER_ID,
+  VALIDATED_DAMAGE_PCT, VALIDATED_FINAL_DAMAGE_PCT,
   type Account, type Character, type CharacterStats, type Conf, type Item,
   type Rec, type SlotDef, type Tier,
 } from "@/lib/rules";
 import {
-  DEFAULT_PDR, REFERENCE_CHARACTER, WEAPON_MULTIPLIER, WEAPON_MULTIPLIER_CONF,
+  DAMAGE_RANGE_VALIDATION, DEFAULT_PDR, REFERENCE_CHARACTER, WEAPON_MULTIPLIER,
+  WEAPON_MULTIPLIER_CONF,
   damageRange, fractionToPrintedPercent, fractionalInputsFromCharacter,
   printedPercentToFraction, referenceCheck,
-  type DamageWarning,
+  type CharacterAdapterOptions, type DamageWarning,
 } from "@/lib/damage";
 import {
   CLASS_META, guideFor, guideStatus, hyperStatPriorities, isUnverified,
@@ -172,8 +174,24 @@ function RecRow({ r, showSlot }: { r: Rec; showSlot?: boolean }) {
  * UnmodelledDamage stands in its place and prints the reason instead. */
 type RangeView = ReturnType<typeof damageRangeFor>;
 
+/* The two stat-window readings reach the adapter the only way it accepts them:
+ * as options. damage.CharacterLike deliberately declares just the six printed
+ * stats, so `fractionalInputsFromCharacter(ch)` alone cannot see damagePct or
+ * finalDamagePct however carefully the sheet records them — and this panel is
+ * the one number on the page a player checks against their own stat window, so
+ * it ignoring their own reading is the worst place for the gap to sit.
+ *
+ * An absent reading passes `undefined`, which is exactly what omitting the key
+ * does: the adapter branches on `=== undefined`, falls back to the same 0, and
+ * still emits the same "assumed" sentence into `assumptions`. Absent therefore
+ * stays absent rather than becoming a claimed zero. */
+const readingOptions = (ch: Character): CharacterAdapterOptions => ({
+  dmgPctPrinted: ch.stats.damagePct,
+  finalDmgPctPrinted: ch.stats.finalDamagePct,
+});
+
 function damageRangeFor(ch: Character) {
-  const a = fractionalInputsFromCharacter(ch);
+  const a = fractionalInputsFromCharacter(ch, readingOptions(ch));
   const range = damageRange(a.inputs);
   const cc = a.classConstants;
   // The legacy per-weapon row is the rival reading of the same slot. Only worth
@@ -185,7 +203,10 @@ function damageRangeFor(ch: Character) {
       ? {
           mult: legacyMult,
           max: damageRange(
-            fractionalInputsFromCharacter(ch, { weaponMultiplierOverride: legacyMult }).inputs,
+            // Same readings as the headline number: the legacy row exists to
+            // isolate the MULTIPLIER, so every other input has to be identical
+            // or the difference stops being about the multiplier.
+            fractionalInputsFromCharacter(ch, { ...readingOptions(ch), weaponMultiplierOverride: legacyMult }).inputs,
           ).max,
         }
       : null;
@@ -215,6 +236,14 @@ function DamageRange({ ch, d }: { ch: Character; d: RangeView }) {
   }, [ch]);
 
   const has = d.range.max > 0;
+  // Whether THIS character carries the two stat-window readings decides what
+  // the paragraphs below are allowed to claim. The range formula applies them
+  // when they are present, so the old copy - "this figure carries neither" -
+  // became false the moment a player typed them in, and a page that contradicts
+  // its own number is worse than one that admits a gap.
+  const readDmg = ch.stats.damagePct;
+  const readFinal = ch.stats.finalDamagePct;
+  const bothRead = readDmg !== undefined && readFinal !== undefined;
   const n = (x: number) => Math.round(x).toLocaleString("en-US");
   const warnings: DamageWarning[] = d.a.warnings;
 
@@ -240,18 +269,56 @@ function DamageRange({ ch, d }: { ch: Character; d: RangeView }) {
         </>
       )}
 
+      {/* This paragraph used to read "this is the number the game prints back at
+          you ... if yours reads differently, that multiplier is wrong". It is
+          not, and a player who followed it would have thrown out a correct
+          constant. damageRange() is main stat x attack x multiplier and stops
+          there, while the stat window multiplies DAMAGE % and FINAL DAMAGE %
+          into the range it prints — which is the whole finding recorded in
+          DAMAGE_RANGE_VALIDATION, where the printed figure comes back at ratio
+          1.0000 only once both readings are applied, and again across the three
+          DELTA_VALIDATION loadouts. Naming the gap is the honest option while
+          the model has no function that applies them: inventing the
+          multiplication here would put a damage formula in a component, and the
+          number it produced would carry no provenance at all. */}
       <p className="dr-note">
-        This is the number the <b>game prints back at you</b> on the stat window.
-        Ours is computed from the published range formula at a{" "}
+        Computed from the published range formula at a{" "}
         {d.cc ? d.cc.weaponMultiplier.value : d.a.inputs.weaponMultiplier}&times; weapon
-        multiplier. If yours reads differently, that multiplier is wrong — and so is every
-        figure on this page that depends on it.
+        multiplier
+        {bothRead
+          ? `, with your DAMAGE ${readDmg}% and FINAL DAMAGE ${readFinal}% applied on top — the same two terms the stat window folds into the range it prints.`
+          : ": main stat, attack and the multiplier, and nothing else."}
       </p>
+      {bothRead ? (
+        <p className="dr-note">
+          <b>This is directly comparable to your stat window.</b> It should still read a little
+          under, because the sheet has no field for your secondary stat and the formula counts
+          it at 1&times; against main stat&rsquo;s 4&times; — worth about 3% on the character these
+          constants were fitted to. Anything larger than that is worth reporting.
+        </p>
+      ) : (
+        <p className="dr-note">
+          <b>Read your stat window before comparing.</b> The window folds your DAMAGE % and
+          FINAL DAMAGE % into the Damage Range it prints, and this figure carries
+          {readDmg === undefined && readFinal === undefined
+            ? " neither"
+            : readDmg === undefined
+              ? " only the second"
+              : " only the first"}
+          , so the window reads higher. On the stat window the constants were fitted to it
+          printed {n(DAMAGE_RANGE_VALIDATION.printed.damageRange)} against inputs this formula
+          puts far below that. A difference of that kind is the missing readings, not the
+          multiplier &mdash; enter them under <a href="#stat-readings">Stat window readings</a>{" "}
+          and this figure becomes comparable.
+        </p>
+      )}
 
       {has && d.legacy && (
         <p className="dr-alt">
           The legacy {d.legacy.mult}&times; reading would print{" "}
-          <b>{n(d.legacy.max)}</b> instead. Your stat window decides between them on sight.
+          <b>{n(d.legacy.max)}</b> instead. The gap between the two is far wider than
+          rounding, so the window settles which is right
+          {bothRead ? "." : " — once the two readings above are accounted for on both sides."}
         </p>
       )}
 
@@ -260,9 +327,19 @@ function DamageRange({ ch, d }: { ch: Character; d: RangeView }) {
       ))}
 
       <div className="dr-fals">
-        <div className="sub-h">
-          {isRef ? "Falsifier — for this character" : "Falsifier — for the reference character"}
-        </div>
+        {/* Never "for this character", even when the sheet matches the reference
+            on every stat compared above. The number in this block comes from
+            referenceCheck(), which runs on a fixture carrying NO stat-window
+            readings — so the moment a player records theirs, a heading claiming
+            the figure is theirs is pointing at a number 3.7x below the one on
+            their own panel. The heading names what the figure IS. */}
+        <div className="sub-h">Falsifier — for the reference sheet</div>
+        {/* The caveat that used to sit under this paragraph is gone because the
+            string itself now carries it. It used to say to compare the printed
+            maximum directly, which sent a player to throw out a correct weapon
+            multiplier; lib/damage.ts rangeFalsifier() now states the reading
+            factor and moves the discrimination onto the 1.3-against-1.15 ratio,
+            computing both from the constants rather than retyping them here. */}
         <p>{ref.falsifier}</p>
         {!isRef && (
           <p className="mut">
@@ -606,11 +683,17 @@ export default function Planner() {
 
   /** PRINTED percents, written straight through — 73 means 73%. Clearing the
    *  box DELETES the field rather than writing 0: absent means "no reading",
-   *  and a literal 0 would claim a measurement of zero. */
+   *  and a literal 0 would claim a measurement of zero.
+   *
+   *  Anything that is not a finite number clears too, for the same reason: a
+   *  half-typed "1e" is not a measurement, and `parseFloat(v) || 0` would have
+   *  recorded it as one — as 0, the one value the engine is not allowed to
+   *  invent. A typed 0 still stores 0, because that IS a reading of zero. */
   const setReading = (k: "damagePct" | "finalDamagePct", v: string) => {
     const stats: CharacterStats = { ...ch.stats };
-    if (v.trim() === "") delete stats[k];
-    else stats[k] = parseFloat(v) || 0;
+    const n = Number(v);
+    if (v.trim() === "" || !Number.isFinite(n)) delete stats[k];
+    else stats[k] = n;
     update({ ...ch, stats });
   };
 
@@ -618,7 +701,13 @@ export default function Planner() {
   const editSlot = SLOTS.find((s) => s.id === editing);
 
   return (
-    <div className="wrap">
+    // A <main>, and every card below carries an accessible name, because until
+    // now the page had no landmark at all: the ranked rows are plain divs with
+    // nothing focusable in them, so a screen reader or keyboard user could not
+    // jump to the product — only tab past six controls or walk the headings.
+    // The list already sits at the top of the fold; this is the same fix for
+    // the readers who do not have a fold.
+    <main className="wrap">
       {/* ---------- who am I editing ----------
           A strip, not a panel: it is the one control that changes what every
           other card on this page is about, so it sits above all of them and
@@ -650,6 +739,16 @@ export default function Planner() {
         {roster.length > 0 && (
           <a className="acct-jump" href="#roster">Roster ({roster.length}) &darr;</a>
         )}
+        {/* Only when the reading is actually missing, and only for a class the
+            model can use it on — the same two conditions the rec fires under
+            (rules.advise, "Your printed DAMAGE % is not recorded"). That rec
+            tells a player to go record it and then leaves them to find the box,
+            which on a phone is nearly four thousand pixels below the sentence.
+            This is the route. It costs nothing in the ordinary case, because
+            a sheet that has the reading never renders it. */}
+        {model.verified && !hasDamagePctReading(ch) && (
+          <a className="acct-jump" href="#stat-readings">Record DAMAGE % &darr;</a>
+        )}
       </div>
 
       {/* ---------- the answer, first ----------
@@ -658,8 +757,8 @@ export default function Planner() {
           1280x800 screen and four screens down on a phone — the research on top
           of the answer. The ranked list now leads; the working (ranking note,
           badge legend, hyper stat verdicts) follows it, one click away. */}
-      <section className="card advice">
-        <h2>
+      <section className="card advice" id="advice" aria-labelledby="advice-h">
+        <h2 id="advice-h">
           {slot ? slot.n : "Best next upgrades"}
           <span className="h2-for">{ch.name}</span>
         </h2>
@@ -809,8 +908,8 @@ export default function Planner() {
       </section>
 
       {/* character */}
-      <section className="card who">
-        <h2>Character</h2>
+      <section className="card who" aria-labelledby="who-h">
+        <h2 id="who-h">Character</h2>
         <div className="body">
           <input
             className="nameInput"
@@ -873,13 +972,21 @@ export default function Planner() {
 
           {/* The two readings the stat window prints and the sheet had nowhere
               to put. Only offered for a class the model can actually use them
-              on — anywhere else they would be data collected for nothing. */}
+              on — anywhere else they would be data collected for nothing.
+
+              The labels are the words the game prints, in that order, because
+              this block is the destination of the rec that fires when a sheet
+              has no DAMAGE % (lib/rules.ts, "Your printed DAMAGE % is not
+              recorded") — a player who reads that sentence and then scans this
+              card has to recognise the row without translating anything. The
+              example figures are imported, never retyped: they are the readings
+              DAMAGE_RANGE_VALIDATION was measured from. */}
           {model.verified && (
-            <div>
+            <div id="stat-readings">
               <div className="statgroup">Stat window readings</div>
               {([
                 ["Damage %", "damagePct"],
-                ["Final damage %", "finalDamagePct"],
+                ["Final Damage %", "finalDamagePct"],
               ] as Array<[string, "damagePct" | "finalDamagePct"]>).map(([lbl, key]) => (
                 <div className="stat" key={key}>
                   <span className="k">{lbl}</span>
@@ -894,9 +1001,11 @@ export default function Planner() {
                 </div>
               ))}
               <p className="fineprint">
-                Typed exactly as the game prints them — 73 means 73%, and FINAL DAMAGE 115.79
-                means 115.79. Leave a box empty for &ldquo;not read&rdquo;; a zero would claim a
-                measurement of zero.
+                Both lines are in the game&rsquo;s Character Info / STAT window — the one that
+                prints your Combat Power and Damage Range — labelled DAMAGE and FINAL DAMAGE.
+                Type them exactly as printed: the reference Bow Master reads {VALIDATED_DAMAGE_PCT}
+                {" "}and {VALIDATED_FINAL_DAMAGE_PCT}. Leave a box empty for &ldquo;not read&rdquo;;
+                a zero would claim a measurement of zero.
               </p>
             </div>
           )}
@@ -937,8 +1046,8 @@ export default function Planner() {
       </section>
 
       {/* equipment */}
-      <section className="card eq">
-        <h2>
+      <section className="card eq" aria-labelledby="eq-h">
+        <h2 id="eq-h">
           Equipment
           <span className="h2-for">{ch.name} · {items} item{items === 1 ? "" : "s"}</span>
         </h2>
@@ -1030,6 +1139,17 @@ export default function Planner() {
               const s: CharacterStats = { ...ch.stats };
               (["main", "att", "crit", "critdmg", "boss", "ied", "hp", "arcane", "starforce"] as const)
                 .forEach((k) => { if (patch[k] !== undefined) s[k] = patch[k] as number; });
+              // The two stat-window readings are applied SEPARATELY and deliberately
+              // not folded into the list above. That list is nine REQUIRED keys, where
+              // absent means "the screenshot did not show it" and the previous value
+              // stands. These two are OPTIONAL, where absent is itself a recorded
+              // claim - "this character has no reading" - which is not the same as a
+              // character that reads zero, and the whole damage model branches on the
+              // difference. Writing undefined over a hand-typed reading would destroy
+              // a measurement, so an import that could not read the line leaves it be.
+              for (const k of ["damagePct", "finalDamagePct"] as const) {
+                if (patch[k] !== undefined) s[k] = patch[k];
+              }
               next.stats = s;
             }
 
@@ -1068,7 +1188,7 @@ export default function Planner() {
           }}
         />
       )}
-    </div>
+    </main>
   );
 }
 

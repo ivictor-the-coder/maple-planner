@@ -27,6 +27,12 @@ export interface StatsPatch {
   name?: string; cls?: string; lvl?: number; cp?: number;
   main?: number; att?: number; crit?: number; critdmg?: number;
   boss?: number; ied?: number; hp?: number; arcane?: number; starforce?: number;
+  /** The stat window's DAMAGE line, as printed: 73 for "73.00%". */
+  damagePct?: number;
+  /** The stat window's FINAL DAMAGE line, as printed: 115.79 for "115.79%",
+   *  which means a multiplier of 2.1579. The engine converts; do not
+   *  pre-convert here or it gets halved. */
+  finalDamagePct?: number;
 }
 
 const STAT_LABELS: Array<[keyof StatsPatch, string]> = [
@@ -34,6 +40,11 @@ const STAT_LABELS: Array<[keyof StatsPatch, string]> = [
   ["main", "Main stat"], ["att", "Attack"], ["crit", "Crit rate"], ["critdmg", "Crit damage"],
   ["boss", "Boss damage"], ["ied", "Ignore DEF"], ["hp", "Max HP"],
   ["arcane", "Arcane Power"], ["starforce", "Star Force"],
+  // Without these two rows the readings are applied to the character without
+  // ever appearing in the confirmation the player approves. This list is the
+  // only renderer of what an import is about to change, and a measurement that
+  // lands silently is the one thing this app is not allowed to do.
+  ["damagePct", "Damage %"], ["finalDamagePct", "Final Damage %"],
 ];
 
 /** Slots that come in interchangeable sets: ring1..ring4, pendant1..pendant2.
