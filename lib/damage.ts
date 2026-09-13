@@ -1170,6 +1170,13 @@ export interface CharacterLike {
      * misreading which halves every range.
      */
     readonly finalDamagePct?: number;
+    /**
+     * PRINTED. Flat secondary stat — STR for a Bow Master. Counts at 1x
+     * against main stat's 4x in the range formula, which is small per point
+     * and not small in total: the reference character's 2,609 is 3.0% of
+     * their printed range. OPTIONAL, and absent is not zero.
+     */
+    readonly secondary?: number;
   };
 }
 
@@ -1225,10 +1232,12 @@ export interface CharacterAdaptation {
  * DEFAULTS, and what each one assumes — all of them also come back in
  * `assumptions` so the UI can say them out loud:
  *
- *   secondaryStat  0.  `Character` has no STR field. A Bow Master's STR
- *                  contributes at 1x against DEX's 4x, so a realistic ~1,500
- *                  STR is worth about 1.8% of range. UNDERSTATES the index by
- *                  that much; cancels in every marginal except main stat's.
+ *   secondaryStat  0 ONLY WHEN THE CHARACTER HAS NO READING. This entry used
+ *                  to say `Character` has no STR field; it has one now, on
+ *                  CharacterLike.stats.secondary. When it is absent the index
+ *                  is UNDERSTATED by the secondary stat's 1x contribution —
+ *                  2,609 STR on the reference character, 3.0% of its printed
+ *                  range — and it cancels in every marginal except main stat's.
  *   attPct         0.  NOT a degradation — GMS prints total ATT in the stat
  *                  window, already multiplied. Anything else double-counts.
  *   dmgPct         0 ONLY WHEN THE CHARACTER HAS NO READING. This entry used to
@@ -1282,10 +1291,18 @@ export function fractionalInputsFromCharacter(
     );
   }
 
-  const secondaryStat = options.secondaryStat ?? 0;
-  if (options.secondaryStat === undefined) {
+  // Same precedence as the two damage readings: an explicit option is a
+  // what-if, the character's own figure is a measurement, and the default is
+  // an admission. `??` and not `||`, so a class that genuinely reads 0 keeps it.
+  const secondaryRead = options.secondaryStat ?? ch.stats.secondary;
+  const secondaryStat = secondaryRead ?? 0;
+  if (secondaryRead === undefined) {
     assumptions.push(
-      "Secondary stat assumed 0 — the character sheet does not record it. A Bow Master's STR adds at 1x against DEX's 4x, so a realistic value would raise range by roughly 1-2%.",
+      "Secondary stat assumed 0 because this character has no reading for it. It adds at 1x against main stat's 4x — on the reference character that is 2,609 STR, worth 3.0% of the printed Damage Range, and with the two damage readings applied it is the whole remaining gap between this figure and the stat window.",
+    );
+  } else if (options.secondaryStat === undefined) {
+    assumptions.push(
+      `Secondary stat ${secondaryRead.toLocaleString("en-US")} read from this character's stat window.`,
     );
   }
 

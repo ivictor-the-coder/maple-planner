@@ -1,0 +1,528 @@
+{
+  "key": "activities",
+  "researchedAt": "2026-09-13",
+  "sourceClass": "first-party (NEXON America, official GMS documentation)",
+  "method": "Claude Browser tools; full page text plus DOM table extraction (document.querySelectorAll('table')) on every page. All quotes are verbatim.",
+  "pagesRead": [
+    "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/36479/maple-rewards",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/5898/runes",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/5899/burning-fields",
+    "https://www.nexon.com/maplestory/game/maple-guides/all",
+    "https://www.nexon.com/maplestory/game/classes-and-jobs",
+    "https://www.nexon.com/maplestory/game/classes-and-jobs/32575/Warrior",
+    "https://www.nexon.com/maplestory/game/classes-and-jobs/27326/Magician",
+    "https://www.nexon.com/maplestory/game/classes-and-jobs/26322/Pirate",
+    "https://www.nexon.com/maplestory/game/classes-and-jobs/16924/Magician",
+    "https://www.nexon.com/maplestory/game/classes-and-jobs/41164/Warrior"
+  ],
+  "promptInjectionCheck": "No text on any page addressed the agent or attempted to direct its behaviour. The only imperative language was in-game instruction to players (e.g. 'press the [Space bar]'). Nothing was acted on as an instruction.",
+
+  "headline": [
+    "THE CRYSTAL SALE CAPS ARE NOW FIRST-PARTY SOURCED. The boss-content guide states 14 per character and 180 per world, exactly matching the owner's in-game reading and killing the 60 figure outright.",
+    "THE PER-CHARACTER CAP'S 'WEEKLY TYPE ONLY' QUALIFIER IS NOT IN THE GUIDE. Nexon says '14 Crystals ... per character' with no cadence qualifier. The repo's load-bearing claim that only the weekly crystal type counts is UNSOURCED by the strongest source available, and the guide's plain wording reads against it.",
+    "THURSDAY 00:00 UTC RESET IS NOW SOURCED, TWICE (boss-content and MVP pages). It can be promoted out of UNVERIFIED in both lib/meso.ts and lib/symbols.ts.",
+    "CRYSTAL PRICE DEPENDS ON PARTY SIZE. The repo's BossIncomeRow.crystalMesos is a single scalar with no party dimension.",
+    "MVP STAR FORCE DISCOUNTS CONFIRMED EXACTLY (3/5/10%, under 17 stars), and the guide's own Interactive-only tagging on three neighbouring perks is strong evidence the discount DOES apply in Heroic.",
+    "REN IS A WARRIOR (Anima, STR). The repo has no ren.json at all.",
+    "NEXON HAS NO 'BLADE MASTER' CLASS. The official Thief roster lists 'Dual Blade' only, so blade-master.json has no first-party referent."
+  ],
+
+  "reconciliations": [
+    {
+      "constant": "OBSERVED_CRYSTAL_CAPS.perCharacterWeeklyType = 14 (lib/meso.ts)",
+      "verdict": "confirmed",
+      "repoValue": "14 per character per week",
+      "guideValue": "14 per character per week",
+      "quote": "Up to 14 Crystals can be sold per character (or up to 180 Crystals sold per world) per week, resetting every Thursday at 12:00 AM (UTC).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "Promotes OBSERVED_CRYSTAL_CAPS from a single in-game observation to a first-party documented figure. SOURCED_SINCE can cite Nexon rather than only the Crystal Collector panel."
+    },
+    {
+      "constant": "CRYSTAL_SALE_LIMIT.crystalsPerReset = 180 (lib/meso.ts)",
+      "verdict": "confirmed",
+      "repoValue": "180, account-per-world",
+      "guideValue": "180 per world per week",
+      "quote": "Up to 14 Crystals can be sold per character (or up to 180 Crystals sold per world) per week, resetting every Thursday at 12:00 AM (UTC).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "The word 'world' in Nexon's own sentence independently confirms CRYSTAL_SALE_LIMIT.scope = 'account-per-world'."
+    },
+    {
+      "constant": "CAP_SCENARIOS - the 60-crystal figure (lib/meso.ts)",
+      "verdict": "contradicted",
+      "repoValue": "60 (both the 'shared across the world' and 'per character' scenarios), sourced to 2017/2021 forum posts and already flagged UNVERIFIED",
+      "guideValue": "180 per world, 14 per character. 60 appears nowhere on the page.",
+      "quote": "Up to 14 Crystals can be sold per character (or up to 180 Crystals sold per world) per week, resetting every Thursday at 12:00 AM (UTC).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "CAP_SCENARIOS is now contradicted by first-party documentation, not merely superseded by an observation. Both 60-based scenarios are dead; so is the 60 x roster upper bound."
+    },
+    {
+      "constant": "PER_CHARACTER_CRYSTAL_CAP.appliesToCadences = ['weekly'] (lib/meso.ts)",
+      "verdict": "absent",
+      "repoValue": "The 14/character cap consumes WEEKLY-type crystals only; daily and monthly crystals do not count against it. Explicitly called load-bearing for the whole daily-versus-weekly bossing conclusion.",
+      "guideValue": "The guide states the 14 cap with NO cadence qualifier whatsoever, and applies the same bare word 'Crystals' to both the 14 and the 180.",
+      "quote": "Up to 14 Crystals can be sold per character (or up to 180 Crystals sold per world) per week, resetting every Thursday at 12:00 AM (UTC).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "THIS IS THE MOST IMPORTANT GAP IN THE FILE. Nexon's strongest statement of the rule does not carry the qualifier the repo's daily-bossing conclusion rests on. The guide does not contradict the in-game panel label outright - it simply never distinguishes crystal types - but a plain reading of 'Up to 14 Crystals ... per character' is a flat cap over all crystals. The repo's evidence for the qualifier remains the panel's own row label, which is a legitimate primary observation, but it is now the ONLY evidence and it is not corroborated by the guide. Recommend: keep the behaviour, demote the provenance, and register it in UNVERIFIED as 'per-character cap counts weekly-type crystals only - in-game panel label only; Nexon's boss-content guide states the cap without any cadence qualifier'."
+    },
+    {
+      "constant": "CRYSTAL_SALE_LIMIT.resetsAt = 'Thursday 00:00 UTC' (lib/meso.ts), and the matching WEEKLY_RESET_DAY_UTC_UNVERIFIED in lib/symbols.ts",
+      "verdict": "confirmed",
+      "repoValue": "Thursday 00:00 UTC, explicitly registered in UNVERIFIED as 'from the product brief, not from a Nexon page'",
+      "guideValue": "Thursday 12:00 AM UTC",
+      "quote": "Up to 14 Crystals can be sold per character (or up to 180 Crystals sold per world) per week, resetting every Thursday at 12:00 AM (UTC).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "Independently confirmed a second time on the MVP page: 'Weekly perks reset every Thursday at 12:00 AM UTC.' (https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service). The UNVERIFIED entry for resetsAt can now be removed in BOTH lib/meso.ts and lib/symbols.ts. The MVP page also sources the daily reset: 'Daily perks reset each day at 12:00 AM UTC according to the daily reset schedule.'"
+    },
+    {
+      "constant": "Crystals are sold to a Collector NPC for mesos (the premise of the whole meso model, lib/meso.ts header)",
+      "verdict": "confirmed",
+      "repoValue": "Boss crystals are sold for mesos; the app's entire meso model is built on it",
+      "guideValue": "Same, and names the NPC location",
+      "quote": "If you eliminate a boss, you will earn an Intense Power Crystal. You can sell these crystals to the Collector at the Free Market Entrance map in exchange for mesos.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "Also confirms crystalsPerClear defaulting to 1: 'you will earn an Intense Power Crystal' (singular) per boss eliminated."
+    },
+    {
+      "constant": "LADDER: Lotus and Damien -> Absolab (lib/rules.ts SOURCE)",
+      "verdict": "absent",
+      "repoValue": "Absolab: 'Lotus coins (all but hat/shoulder) and Damien Stigma Coins (weapon/shoulder)'",
+      "guideValue": "The boss-content guide contains no drop table, no gear names, and no boss-to-equipment mapping of any kind.",
+      "quote": "You can also open the Maple Guide with hotkey [F1] and select the \"Boss Content\" tab to see recommendations for bosses appropriate to various level ranges, as well as what can be looted from those bosses.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source this. The guide explicitly defers the loot table to the in-game F1 Maple Guide UI rather than publishing it on the web. Lotus and Damien ARE confirmed to exist as weekly bosses (see the Practice Mode finding), but nothing ties them to Absolab."
+    },
+    {
+      "constant": "LADDER: Lucid and Will -> Arcane Umbra (lib/rules.ts SOURCE)",
+      "verdict": "absent",
+      "repoValue": "Arcane Umbra: 'Lucid / Will drops, or craft with Arcane River Droplets'",
+      "guideValue": "No drop table on the page.",
+      "quote": "You can also open the Maple Guide with hotkey [F1] and select the \"Boss Content\" tab to see recommendations for bosses appropriate to various level ranges, as well as what can be looted from those bosses.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source this. Lucid and Will are both confirmed weekly bosses; the gear link is not stated."
+    },
+    {
+      "constant": "LADDER: Kalos -> Eternal (lib/rules.ts SOURCE)",
+      "verdict": "absent",
+      "repoValue": "Eternal: 'Kalos the Guardian (~85M CP)'",
+      "guideValue": "Kalos the Guardian is confirmed to exist as a weekly boss with four difficulties, but no gear and no CP figure are given.",
+      "quote": "Easy/Normal/Chaos/Extreme Kalos the Guardian",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source the Eternal drop or the ~85M CP figure. Worth noting the difficulty ladder Nexon lists is Easy/Normal/Chaos/Extreme - there is NO Hard Kalos - which is a useful check on any boss table row that invents one."
+    },
+    {
+      "constant": "LADDER: Verus Hilla -> Source of Suffering (lib/rules.ts SOURCE)",
+      "verdict": "absent",
+      "repoValue": "Source of Suffering: 'Verus Hilla'",
+      "guideValue": "Verus Hilla confirmed as a weekly boss (Normal/Hard). No gear mapping.",
+      "quote": "Normal/Hard Verus Hilla",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source the gear link."
+    },
+    {
+      "constant": "LADDER: Darknell -> Commanding Force Earring (lib/rules.ts SOURCE)",
+      "verdict": "absent",
+      "repoValue": "Commanding Force Earring: 'Darknell'",
+      "guideValue": "Darknell confirmed as a weekly boss (Normal/Hard). No gear mapping.",
+      "quote": "Normal/Hard Darknell",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source the gear link."
+    },
+    {
+      "constant": "LADDER: Hell Gollux -> Superior Gollux (lib/rules.ts SOURCE)",
+      "verdict": "absent",
+      "repoValue": "Superior Gollux: 'Belt + Earrings from Hell Gollux; Ring + Pendant from Lucia's shop'",
+      "guideValue": "Gollux is not mentioned anywhere on the boss-content page, in any difficulty, and does not appear in the Practice Mode roster.",
+      "quote": "Only the bosses that can be cleared weekly can be faced in Practice Mode.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source this, and Gollux's total absence means its cadence cannot even be inferred from the Practice Mode roster the way Lotus/Damien/Lucid/Will/Verus Hilla/Darknell/Kalos can. Gollux remains entirely unsourced first-party."
+    },
+    {
+      "constant": "LADDER: Guardian Angel Ring -> 'Guardian Angel Slime (weekly)' (lib/rules.ts SOURCE)",
+      "verdict": "confirmed",
+      "repoValue": "Guardian Angel Slime, weekly cadence",
+      "guideValue": "Guardian Angel Slime is in the Practice Mode roster, and Practice Mode is weekly-bosses-only - so the WEEKLY half of the claim is sourced. The ring itself is not.",
+      "quote": "Normal/Chaos Guardian Angel Slime",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "Partial: cadence confirmed by inference from 'Only the bosses that can be cleared weekly can be faced in Practice Mode.' The ring drop is absent. Difficulties are Normal/Chaos - no Hard."
+    },
+    {
+      "constant": "Boss entry level requirements (assigned extraction target)",
+      "verdict": "absent",
+      "repoValue": "n/a - requested extraction",
+      "guideValue": "The guide gives no level requirement for any boss. It refers the player to the in-game UI instead.",
+      "quote": "There may be quests to complete or items to possess in order to unlock the boss content, so make sure to check the details on the boss UI before proceeding.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source boss entry levels. Note the guide frames unlocks as quest/item prerequisites rather than level gates."
+    },
+    {
+      "constant": "Crystal meso values per boss (BossIncomeRow.crystalMesos - 'load-bearing' per the brief)",
+      "verdict": "absent",
+      "repoValue": "Per-boss meso figure, currently supplied by an external data/boss-income.json",
+      "guideValue": "The guide states only that price varies by boss type and party size. It publishes no figures at all.",
+      "quote": "The price that the Collector will pay for each Intense Power Crystal is set based on the type of defeated boss, and the number of party members that were involved.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "note": "I could not source a single crystal price. Nexon documents the pricing MODEL but not the table. See newFacts for the party-size dimension, which the repo does not model."
+    },
+    {
+      "constant": "SF_COST.mvpMultiplier = { none: 1, silver: 0.97, gold: 0.95, diamond: 0.9 } (lib/starforce.ts)",
+      "verdict": "confirmed",
+      "repoValue": "Silver 3% off, Gold 5% off, Diamond 10% off",
+      "guideValue": "Silver 3%, Gold 5%, Diamond 10% - identical",
+      "quote": "Bronze: N/A\nSilver: 3% discount\nGold: 5% discount\nDiamond: 10% discount\nRed: 10% discount\nBlack: 10% discount",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "note": "Exact match on all three modelled tiers. The repo's MvpTier union is missing 'red' and 'black', which Nexon lists at 10% - same multiplier as diamond, so adding them is a labelling fix, not a maths change. Bronze is explicitly N/A, matching the repo's absence of a bronze tier."
+    },
+    {
+      "constant": "SF_COST.mvpMaxStar = 17 (lib/starforce.ts)",
+      "verdict": "confirmed",
+      "repoValue": "MVP discount applies to stars below 17 only",
+      "guideValue": "up to 17 stars",
+      "quote": "Receive discounts when performing Star Force enhancements up to 17 stars. Superior-ranked items are excluded from this discount.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "note": "Confirms the star ceiling. The second sentence is a NEW exclusion the repo does not model - see newFacts."
+    },
+    {
+      "constant": "MVP_IN_HEROIC_PROVENANCE = 'community-single' and UNVERIFIED['mvp-discount-in-heroic'] (lib/starforce.ts)",
+      "verdict": "confirmed",
+      "repoValue": "'Whether MVP star force discounts apply in Heroic' - unverified, because MVP is NX-spend based",
+      "guideValue": "MVP rank itself is explicitly world-independent, and the guide tags three OTHER perks 'Interactive Worlds only' while leaving the Enhancement Booster untagged.",
+      "quote": "MVP ranks are based on the amount of NX spent within MapleStory (regardless of World) within the past three months, and can go up or down depending on your spending habits.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "note": "Answers the Heroic question as directly as a guide can without naming Heroic. Two independent legs: (1) rank is earned 'regardless of World', so a Heroic player has an MVP rank at all; (2) the page demonstrably knows how to say 'Interactive Worlds only' - it says it TWICE for Auction House perks and once more for Spell Trace Fever Time - and does NOT say it for the Star Force discount. The absence of the tag on the Enhancement Booster, on a page that tags its neighbours, is meaningful evidence rather than mere silence. Recommend promoting MVP_IN_HEROIC_PROVENANCE from 'community-single' to first-party-inferred and dropping 'mvp-discount-in-heroic' from the UNVERIFIED list, with the reasoning recorded."
+    },
+    {
+      "constant": "farming.ts: 'Rune of Riches was REMOVED in GMS v.251 (12 June 2024) - there is no meso rune any more.'",
+      "verdict": "contradicted",
+      "repoValue": "Rune of Riches no longer exists in GMS",
+      "guideValue": "The current live Runes guide still names Rune of Riches in its removable/non-removable list, but gives it no entry in Rune Types and never describes its effect.",
+      "quote": "Runes that cannot be removed: Base +100% EXP effect, Rune of Darkness, Rune of Destruction, Rune of Recovery, Rune of Riches, Rune of Swiftness, and Rune of Thunder.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5898/runes",
+      "note": "Read carefully before acting on this. The page is internally inconsistent: it claims 'There are a total of 11 Rune types' but documents only nine (Blessing, Contact, Darkness, Destruction, Ignition, Might, Purification, Skill, Thunder), while Recovery, Riches and Swiftness appear ONLY in that one removability sentence with no Rune Types section and no stated effect. That pattern is exactly what a partially-updated page looks like after a removal, so this is most likely a stale sentence rather than a live contradiction - it is NOT evidence that a meso rune still exists. But the repo's flat claim that Rune of Riches is gone is not supported by the current first-party page either, and no page I read gives any rune a meso or drop effect. Treat as: repo behaviour (no meso rune) is right; repo's certainty is overstated."
+    },
+    {
+      "constant": "Runes as a farming input (lib/farming.ts rune modelling)",
+      "verdict": "confirmed",
+      "repoValue": "An un-activated Rune multiplicatively reduces EXP and item rates until activated; runes are an EXP/hunting modifier",
+      "guideValue": "Runes are an EXP and combat buff. No rune on the page grants mesos or drop rate.",
+      "quote": "When you use a Rune, you'll earn +100% EXP for 180 seconds as a base, and various other effects will also be applied based on the type of Rune you've used.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5898/runes",
+      "note": "The +100%/180s base figure is now first-party. The guide does NOT describe the un-activated-rune EXP/drop penalty at all - that specific mechanic is absent from Nexon's documentation, so the repo's note on it stays unsourced."
+    },
+    {
+      "constant": "Runes in Heroic world",
+      "verdict": "absent",
+      "repoValue": "n/a - requested",
+      "guideValue": "The Runes guide never mentions worlds, Heroic, Reboot or Interactive anywhere.",
+      "quote": "Runes are regularly formed on fields where players hunt, and when they spawn, a message appears in the center of the screen to inform the players.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5898/runes",
+      "note": "I could not source a Heroic answer. The guide draws no world distinction, which - on a site that tags Interactive-only perks explicitly elsewhere (see MVP) - is weak evidence that runes are universal. Do not state it as sourced."
+    },
+    {
+      "constant": "Burning Fields as a meso or drop source",
+      "verdict": "contradicted",
+      "repoValue": "n/a in lib/meso.ts - burning fields are not modelled as income (grep found no reference in lib/*.ts)",
+      "guideValue": "Burning Fields grant EXP ONLY. Every stage in the table is 'Bonus EXP'; no meso, drop or item effect is stated anywhere on the page.",
+      "quote": "A Burning Field has multiple Stages of EXP buffs, up to Stage 10. The longer the map is left untouched by players, the higher the Stage value level of the Burning Field, and the more EXP players can earn.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5899/burning-fields",
+      "note": "Listed as 'contradicted' in the useful direction: it contradicts any future temptation to price Burning Fields as meso income. The farming model should treat them as an EXP-only modifier and should NOT let them raise mesos/hour. The repo is currently silent on them, which is correct but undocumented."
+    },
+    {
+      "constant": "Maple Rewards as a meso or drop source",
+      "verdict": "contradicted",
+      "repoValue": "n/a - not modelled anywhere in lib/*.ts",
+      "guideValue": "Reward Points are a Cash Shop currency, not mesos. They are earned from bossing but can only be spent on NX items.",
+      "quote": "Reward Points earned this way are exclusive to the Cash Shop.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/36479/maple-rewards",
+      "note": "Answers the assigned question definitively: Maple Rewards is NOT a meso source and NOT a drop source, so the farming model is right to ignore it for income. It IS a real per-boss reward stream with hard caps the repo does not model (see newFacts). The guide draws no Heroic/Interactive distinction on Reward Points at all."
+    },
+    {
+      "constant": "MVP as a meso or drop source, and whether MVP grades apply in Heroic",
+      "verdict": "confirmed",
+      "repoValue": "Modelled only as a star force cost multiplier (lib/starforce.ts); not as income",
+      "guideValue": "MVP grants no mesos and no drop rate. It DOES apply in Heroic (rank is world-independent), but three specific perks are Interactive-only and all gift items are untradeable in Heroic.",
+      "quote": "All items are untradeable in Heroic Worlds. Tradeability in Interactive Worlds is listed below.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "note": "The repo is right not to treat MVP as income. But MVP is a bigger deal for this character than a star force multiplier alone - see newFacts for the cube perk, the Superior exclusion, the stat-bearing titles/medals, and the Sol Erda grant."
+    }
+  ],
+
+  "heroicDistinctions": [
+    {
+      "topic": "MVP gift tradeability",
+      "quote": "All items are untradeable in Heroic Worlds. Tradeability in Interactive Worlds is listed below.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "soWhat": "Every 'Tradeable within world' label in the MVP weekly and monthly gift tables is FALSE for this player. Most importantly the Sol Erda grants (Gold 1, Diamond 3, Red 5, Black 10 per month) are 'Tradeable within world' on Interactive and untradeable here - so they cannot be moved to the main character. Any advice built on shuffling MVP items between characters is wrong for Heroic."
+    },
+    {
+      "topic": "MVP Auction House slots",
+      "quote": "All MVP members receive 20 additional Purchase and Listing slots, allowing you to buy and sell more items at a time (Interactive Worlds only).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "soWhat": "Does not exist for this player. Heroic has no Auction House."
+    },
+    {
+      "topic": "MVP Auction House fee discount",
+      "quote": "MVP members rank Silver and above also receive a 3% discount applied to Auction House sale transaction fees (Interactive Worlds only).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "soWhat": "Does not exist for this player. Note this is a different 3% from the Silver Star Force 3% - do not let them be confused in the code."
+    },
+    {
+      "topic": "MVP Spell Trace Fever Time",
+      "quote": "At MVP rank Gold and above, Spell Trace Fever Time will always be enabled in Interactive Worlds, granting you a permanent increase to your equipment upgrade success rate.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "soWhat": "Interactive-only. A Gold+ Heroic player gets NO scrolling success bonus from MVP. If any scroll/spell-trace success model in the repo ever adds an MVP term, it must be gated off for Heroic."
+    },
+    {
+      "topic": "MVP rank eligibility itself",
+      "quote": "MVP ranks are based on the amount of NX spent within MapleStory (regardless of World) within the past three months, and can go up or down depending on your spending habits.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "soWhat": "THE ANSWER TO THE ASSIGNED QUESTION: MVP grades DO apply in Heroic. Rank is account-level and world-independent. It is the individual PERKS that split, and the guide splits them explicitly, one by one. The Star Force discount is NOT split."
+    },
+    {
+      "topic": "Star Force discount - NOT tagged Interactive-only",
+      "quote": "Receive discounts when performing Star Force enhancements up to 17 stars. Superior-ranked items are excluded from this discount.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "soWhat": "On a page that tags three neighbouring perks 'Interactive Worlds only', this one is untagged. That asymmetry is the strongest first-party evidence available that the MVP Star Force discount applies in Heroic."
+    },
+    {
+      "topic": "Boss content, Runes, Burning Fields, Maple Rewards",
+      "quote": "Up to 14 Crystals can be sold per character (or up to 180 Crystals sold per world) per week, resetting every Thursday at 12:00 AM (UTC).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "soWhat": "None of these four pages draws any Heroic/Interactive distinction anywhere. Given that the MVP page demonstrates Nexon tags such splits explicitly when they exist, the absence of a tag on the crystal caps is weak positive evidence that 14/180 apply in Heroic as written - which is also what the owner read off the live Heroic client. The two agree."
+    }
+  ],
+
+  "newFacts": [
+    {
+      "fact": "Intense Power Crystal price scales with PARTY SIZE, not just boss identity.",
+      "quote": "The price that the Collector will pay for each Intense Power Crystal is set based on the type of defeated boss, and the number of party members that were involved.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "whyItMatters": "BossIncomeRow.crystalMesos is a single scalar. The repo already carries cpSolo/cpParty for CLEAR difficulty but has no party dimension on PRICE. A solo Heroic player and a 6-man party get different mesos for the same crystal, so every meso total the app prints is implicitly a solo-or-party figure that is never labelled. At minimum this needs a documented assumption (the figures are solo); ideally crystalMesos gains a party dimension or a stated partySize the row was priced at. No numbers are given, so the direction of the effect cannot even be inferred from this page."
+    },
+    {
+      "fact": "Practice Mode exists only for weekly-clearable bosses, which makes the Practice Mode roster a first-party WEEKLY BOSS LIST.",
+      "quote": "Only the bosses that can be cleared weekly can be faced in Practice Mode.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "whyItMatters": "This is the only first-party cadence evidence on the page and it is usable. Every boss in the Practice Mode table is weekly (the implication runs one way only - a boss absent from the table is not thereby daily). Confirmed weekly, with Nexon's own difficulty spellings: Chaos Zakum, Chaos Papulatus, Chaos Pink Bean, Chaos Von Bon, Chaos Crimson Queen, Chaos Vellum, Hard Hilla, Chaos Pierre, Hard Magnus, Easy/Normal Cygnus, Normal/Hard/Extreme Lotus, Normal/Hard Damien, Normal/Hard Will, Normal/Chaos Gloom, Easy/Normal/Hard Lucid, Normal/Hard Verus Hilla, Normal/Hard Darknell, Princess No, Akechi Mitsuhide, Normal/Chaos Guardian Angel Slime, Hard/Extreme Black Mage, Normal/Hard/Extreme Seren, Easy/Normal/Chaos/Extreme Kalos the Guardian, Easy/Normal/Hard/Extreme Kaling, Normal/Hard Limbo, Normal/Hard Baldrix. Use this to validate the cadence and difficulty columns of data/boss-income.json. Note Gollux appears nowhere."
+    },
+    {
+      "fact": "Practice Mode is uncapped and reward-free, so it can never be an income row.",
+      "quote": "In Practice Mode, you cannot clear quests related to the corresponding boss, earn any EXP or rewards, or add to your Monster Collection.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
+      "whyItMatters": "Guards against a plausible modelling error. Practice clears are unlimited ('You can enter Practice Mode an unlimited number of times per day, regardless of the boss monster type') and ignore entry limits ('You can enter Practice Mode regardless of the boss entry limits for Normal Mode, or the boss clear limits for Normal/Hard/Chaos Modes'), which makes them look like free income until you read that they yield nothing. They are a learning tool with zero meso value."
+    },
+    {
+      "fact": "MVP Star Force discounts explicitly EXCLUDE Superior-ranked items.",
+      "quote": "Receive discounts when performing Star Force enhancements up to 17 stars. Superior-ranked items are excluded from this discount.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "lib/starforce.ts applies mvpMultiplier on any item below 17 stars with no item-rank check. Superior items are exactly the Superior Gollux belt/earring/ring/pendant that sit on four rungs of the repo's own LADDER, so this is not a corner case for this app - it is the mid-game accessory path. Any star force cost the app quotes for a Superior Gollux piece under an MVP tier is currently too cheap by 3-10%."
+    },
+    {
+      "fact": "MVP Gold and above adds a third 'after' option when cubing, at the cost of one extra cube per use.",
+      "quote": "Gold and above MVP members also get to choose from three 'after' options of Potential, Bonus Potential, or Bonus Stats when using Cubes. Note that each additional option also uses an additional Cube.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "lib/cubes.ts has no MVP term at all (grep: zero matches). This changes cube EV in both directions - more choices per roll raises the chance of hitting a target line, but each extra option costs an extra cube - so it cannot be waved off as a pure buff. Two stated constraints: 'You must have Cubes in your inventory to use this perk' and 'Glowing Cubes cannot be used for this perk.'"
+    },
+    {
+      "fact": "MVP titles and medals carry real combat stats, including IED and Boss Damage.",
+      "quote": "MVP Diamond: Title. Untradeable. ATT/Magic ATT +10, All Stats +10, Max HP/MP +500, Ignore Defense +6%.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "The repo's LADDER has a medal slot whose only rung is ['Best available', 0]. Nexon publishes the exact stats: The Bronze +1 ATT/+1 All Stats, Silver +2/+2, Gold +3/+3, Diamond +5 ATT/+5 All Stats/+250 HP, and The Red and The Black both '+7 ATT, All Stats +7, Max HP/MP +350, Boss Damage +5%'. Titles run in parallel: Red and Black titles both give 'ATT/Magic ATT +10, All Stats +10, Max HP/MP +500, Ignore Defense +8%'. These are untradeable in Heroic but they are self-obtained, so they are directly usable rungs for the medal slot and a title slot the repo does not model at all. Monthly, and they expire: 'All items expire at 12:00 AM UTC on the 1st of the following month.'"
+    },
+    {
+      "fact": "MVP Red and Black ranks grant large daily/weekly content passes, including symbol quest passes.",
+      "quote": "Daily Quest Symbol Express Pass: 1x per region per day",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "Directly touches lib/symbols.ts and any daily-rotation planner. The full Red/Black set is: Maple Tour Express Pass 7x per day, Monster Park Express Pass 7x per day, Monster Park Extreme Express Pass 1x per week, Daily Quest Symbol Express Pass 1x per region per day, Weekly Quest Symbol Express Pass 1x per region per week, Tenebris Daily Quest Pass 1x per region per day, Epic Dungeon Express Pass 1x per week, Legion Weekly Quest Pass 2x per week. A symbol plan that assumes the player must physically run daily symbol quests is wrong for a Red/Black MVP. None of these are tagged Interactive-only."
+    },
+    {
+      "fact": "MVP rank thresholds are published: Bronze 150,000 NX through Black 3,000,000 NX over three months.",
+      "quote": "Bronze\t150,000 NX",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "Full table: Bronze 150,000 / Silver 300,000 / Gold 600,000 / Diamond 900,000 / Red 1,500,000 / Black 3,000,000 NX spent within 3 months. lib/starforce.ts has an MvpTier input but nothing tells the user which tier they are. These thresholds let the UI ask a answerable question. Also: a rank DROP is delayed - 'If your spending habits change, reducing your rank, it won't take effect until the 1st of the following month.'"
+    },
+    {
+      "fact": "Maple Rewards has hard daily and monthly caps and a 7-day expiry on unbanked points.",
+      "quote": "Earn up to 5,000 Reward Points per account each day through gameplay.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/36479/maple-rewards",
+      "whyItMatters": "Not meso income, but a bossing reward the repo models nowhere. Caps: 5,000 RP/account/day and 50,000 RP/account/month from gameplay, 200,000 RP/account/month by any means. Two decay rules bite a casual player: 'Reward Points earned through gameplay will automatically expire if you fail to \"bank\" them in the Cash Shop within 7 days of earning' and 'Reward Points earned through gameplay can be \"banked\" up to 20 times per account before completing a transaction in the Cash Shop.' Sources are bossing-aligned: 'Earn Reward Points when you hunt bosses or Elite monsters, participate in Monster Park, through special events, and more.' Spend cap: 'Reward Points can only be used to cover 30% of a Cash item's full price.'"
+    },
+    {
+      "fact": "Burning Fields are EXP-only, require Lv.100+ monsters, decay as you hunt, and exclude boss maps.",
+      "quote": "These areas have monsters Lv. 100 and above, and a special EXP-granting Burning Field buff will be applied.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5899/burning-fields",
+      "whyItMatters": "Stage 1-10 maps linearly to 10%-100% Bonus EXP (verified cell by cell in the DOM table). Two constraints a farming model would otherwise miss: the buff decays while you use it - 'If you consistently hunt on a Burning Field, the Stage level will go down as time passes, granting smaller EXP buffs. After it reaches Stage 1, it turns back into a normal hunting map' - so a Stage 10 map is not a stable rate; and 'Some zones or maps cannot become Burning Fields, such as those for party quests or boss content.' Zero meso relevance."
+    },
+    {
+      "fact": "Rune mechanics carry hard timing constraints the repo does not model.",
+      "quote": "A 15-minute cooldown is applied immediately after using the Rune, preventing you from benefitting from another Rune for that time.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5898/runes",
+      "whyItMatters": "Caps rune uptime at 180s of EXP buff per 15 minutes = 20% maximum uptime, which bounds any rune-based EXP multiplier in lib/farming.ts. Other stated constraints: a 10-second arrow-key window with a 3-second failure penalty; 'If your character is 10 or more levels lower than the monsters in the current field, you cannot use Runes in that field'; 'Some fields do not generate Runes'; 'A Rune can only be activated by one person at a time'; and 'Rune buff effects will only apply to the character who has liberated the Rune, and will not apply to party members.'"
+    },
+    {
+      "fact": "Rune of Destruction gives +100% damage for 180 seconds.",
+      "quote": "Deals consistent damage of 5% of max HP per second to up to 15 monsters for 12 seconds, and increases damage by 100% for 180 seconds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5898/runes",
+      "whyItMatters": "The only rune that touches the damage model rather than EXP. A +100% damage window subject to the 15-minute cooldown is a real farming-clear-speed term. Rune of Blessing is the EXP outlier at 200%: 'Summons an Ancient Rune in the center of the screen, periodically attacking nearby monsters, and grants a 200% EXP buff', appearing on a cycle - 'Once you have used four regular Runes, there is a chance that the Rune of Blessing will appear next! After it appears, the cycle resets.'"
+    },
+    {
+      "fact": "Evan's link skill extends rune EXP duration - a first-party link-skill effect.",
+      "quote": "Evan's Link Skill can be used to extend the duration of the Liberated Rune Power +100% EXP bonus.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5898/runes",
+      "whyItMatters": "One of the only link-skill effects Nexon documents anywhere on the site (the class pages themselves list no link skills at all). Useful as a first-party check on data/class-guides/evan.json."
+    },
+    {
+      "fact": "REN is a Warrior with STR as main stat and Anima origin. The repo has no ren.json.",
+      "quote": "A wanderer on a journey to uphold the wishes of a dear friend. They are a practitioner of the Plum Blossom Sword, Imugi Spirit Sword, and powerful Rising Azure Dragon skills.",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/32575/Warrior",
+      "whyItMatters": "Fills the repo's outright gap. Nexon's Basic Stats panel reads Origin: Anima, Movement: Jumping, Main Stat: STR (Strength). Job group: Warrior (she appears in the Warrior job advancement tree). Signature skills by tier: Serene Breeze (Lv.10 movement, 'Allows you to double jump. Press the up key at the same time to move upward.'), Final Plum Blossom Sword: Thousand Blossom Flurry (Lv.200 / 5th job), Rising Azure Dragon: Divided Heavens (Lv.260 / 6th job, 'the perfect fusion of your inner strength with Saya's bequeathed power grants your sword the might of the Azure Dragon'). Headline mechanic per Nexon: three named sword arts - Plum Blossom Sword, Imugi Spirit Sword, Rising Azure Dragon. WEAPON TYPE AND LINK SKILL ARE NOT STATED - see couldNotSource."
+    },
+    {
+      "fact": "Nexon's official class roster contains no 'Blade Master'. The Thief line is 'Dual Blade'.",
+      "quote": "These mysterious blademasters face an internal power struggle that threatens the future of their secretive organization, with a greater threat looming on the horizon. The Dual Blade uses a pair of bladed weapons to unleash devastating attacks.",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/1307/Thief",
+      "whyItMatters": "Directly addresses the brief's note that blade-master.json duplicates dual-blade.json. The full official Thief roster is Night Lord, Shadower, Dual Blade, Night Walker, Xenon, Phantom, Cadena, Khali, Hoyoung - nine classes, no Blade Master. 'blademasters' appears only as a lowercase common noun inside the Dual Blade blurb. blade-master.json has no first-party referent and should be deleted or made an alias of dual-blade, not maintained as a class."
+    },
+    {
+      "fact": "Xenon is officially a Thief/Pirate hybrid with three main stats, and is listed twice in the roster.",
+      "quote": "Xenon is a hybrid class that can use both Thief and Pirate skills, swapping between them by deploying the Modal Shift system, as the situation merits. Xenon is a special character who can progress in different directions based on three main stats.",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/26322/Pirate",
+      "whyItMatters": "First-party confirmation of the Xenon-style hybrid the brief asks about as a category. Nexon lists Xenon under BOTH job groups with two distinct page ids (Thief /1332/Thief and Pirate /12981/Pirate), which is the site's own way of encoding the hybrid. Useful as a sanity check on xenon.json's three-stat handling."
+    },
+    {
+      "fact": "Erel Light's weapon is named on the site: Gram, a spear.",
+      "quote": "Leader of the Argent Guard, the sworn protectors of Helia. Wielding Gram, a spear infused with light, Erel Light calls upon Shining Sentinels and the Sentinel Captain to turn back the encroaching darkness.",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/41164/Warrior",
+      "whyItMatters": "erel-light.json already says weapon 'Gram' - now first-party confirmed, AND the guide adds the weapon CLASS (spear), which the repo's entry does not state. This is the only class on the whole site where Nexon names the weapon; every other class page omits weapon entirely."
+    },
+    {
+      "fact": "Nexon's full official class roster is 50 classes across five job groups, and omits several the repo carries.",
+      "quote": "Xenon is a hybrid class that can use both Thief and Pirate skills, swapping between them by deploying the Modal Shift system, as the situation merits.",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs",
+      "whyItMatters": "The filtered grid shows 12 Warrior / 12 Magician / 7 Bowman / 9 Thief / 10 Pirate, but the per-class Job Advancement Tree is a superset: the Warrior tree additionally lists Ren, Zero and Hayato, and the Magician tree additionally lists Sia Astelle. So the grid is NOT the roster - read the tree. Beast Tamer appears in neither, while the repo carries beast-tamer.json. Zero is officially a Warrior: 'Zero starts at Lv. 100 and is recommended for advanced players.'"
+    }
+  ],
+
+  "classGuides": {
+    "note": "Nexon's class pages publish exactly four fields plus a prose blurb and one sample skill per tier: Origin, Movement, Main Stat, and the job group the page sits under. WEAPON TYPE AND LINK SKILL ARE PUBLISHED FOR NO CLASS (Erel Light's spear is named incidentally in prose, the sole exception). Do not expect to source either from this site.",
+    "ren": {
+      "repoStatus": "MISSING - data/class-guides has no ren.json",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/32575/Warrior",
+      "jobGroup": "Warrior",
+      "origin": "Anima",
+      "primaryStat": "STR",
+      "primaryStatQuote": "Main Stat\nSTR (Strength)",
+      "movement": "Jumping",
+      "hybrid": "No. Straight Warrior; not a Xenon-style multi-stat hybrid.",
+      "weapon": "NOT STATED by Nexon",
+      "linkSkill": "NOT STATED by Nexon",
+      "headlineMechanic": "Three named sword arts. Quote: \"A wanderer on a journey to uphold the wishes of a dear friend. They are a practitioner of the Plum Blossom Sword, Imugi Spirit Sword, and powerful Rising Azure Dragon skills.\"",
+      "skills": {
+        "movementLv10": "Serene Breeze - \"Allows you to double jump. Press the up key at the same time to move upward.\"",
+        "fifthJobLv200": "Final Plum Blossom Sword: Thousand Blossom Flurry - \"Summons a plum blossom tree that spreads dancing petals across the battlefield, each as sharp as your peerless sword.\"",
+        "sixthJobLv260": "Rising Azure Dragon: Divided Heavens - \"Lets loose the power of the heavens, as the perfect fusion of your inner strength with Saya's bequeathed power grants your sword the might of the Azure Dragon.\""
+      }
+    },
+    "siaAstelle": {
+      "repoStatus": "sia-astelle.json exists; primaryStat INT and branch 'Shine' both CONFIRMED",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/27326/Magician",
+      "jobGroup": "Magician",
+      "origin": "SHINE",
+      "primaryStat": "INT",
+      "primaryStatQuote": "Main Stat\nINT (Intelligence)",
+      "movement": "Teleportation",
+      "hybrid": "No. Straight Magician.",
+      "weapon": "NOT STATED by Nexon (repo says 'Celestial Light' - unsourced here)",
+      "linkSkill": "NOT STATED by Nexon (repo says 'Guiding Stars' - unsourced here)",
+      "headlineMechanic": "Stellagram marking/fusion. Quote: \"A Magician who protects the Order of the Stars on Oort. Sia calls upon the power of starlight, recording and fusing 5 Marking Skills in her Stellagram to summon powerful constellations to her side.\"",
+      "repoAgreement": "The repo's archetype - 'casting \"Marking\" skills records symbols, and a matching set auto-fires the corresponding \"Constellation\" skill' - matches Nexon's description closely, and Nexon's '5 Marking Skills' is a specific count the repo does not state.",
+      "skills": {
+        "sixthJobLv260": "SHINE Ray - \"Weaves starlight with the power of the Guide of the Stars and records Ray on the Stellagram.\""
+      }
+    },
+    "moXuan": {
+      "repoStatus": "mo-xuan.json exists; primaryStat DEX and branch 'Jianghu (Pirate job group)' both CONFIRMED",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/26322/Pirate",
+      "jobGroup": "Pirate",
+      "origin": "Jianghu",
+      "primaryStat": "DEX",
+      "primaryStatQuote": "Main Stat\nDEX (Dexterity)",
+      "movement": "Jumping",
+      "hybrid": "No. Straight Pirate.",
+      "weapon": "NOT STATED by Nexon (repo says 'Martial Brace' - unsourced here)",
+      "linkSkill": "NOT STATED by Nexon",
+      "headlineMechanic": "Xuanshan School forms infused with Wu Shen's spirit; punch/kick flurries. Quote: \"Mo Xuan is the reincarnation of Wu Shen, the legendary Divine Fist. When tragedy strikes their home, Mo Xuan must rebuild their school, discover the truth behind the incident, and make things right. By infusing Wu Shen's divine spirit into the Xuanshan School's forms, Mo Xuan can unleash powerful flurries of punches and kicks.\"",
+      "repoAgreement": "The repo's Tian (punch) / Di (kick) Xuanshan Arts model is consistent with Nexon's 'flurries of punches and kicks' and 'Xuanshan School's forms', though Nexon does not name the Tian/Di split or [Form Link].",
+      "skills": {
+        "movementLv10": "Secret Art: Air Weaving - \"Solidifies the air beneath your feet with qi, allowing you to leap great distances.\"",
+        "fifthJobLv200": "Soul Art: The Conquered Self - \"Breaks the twin shackles of ego and pride to transform you into the perfect instrument of balance.\"",
+        "sixthJobLv260": "Soul Art: Jianghu Dragon - \"Leaps High into the air before descending upon an enemy with the unbound fury of a dragon, shattering the very earth in an explosion of divine power.\""
+      }
+    },
+    "lynn": {
+      "repoStatus": "lynn.json exists; primaryStat INT and branch 'Jianghu' both CONFIRMED",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/16924/Magician",
+      "jobGroup": "Magician",
+      "origin": "Jianghu",
+      "primaryStat": "INT",
+      "primaryStatQuote": "Main Stat\nINT (Intelligence)",
+      "movement": "Jumping",
+      "hybrid": "No. Straight Magician.",
+      "weapon": "NOT STATED by Nexon (repo says 'Memorial Staff' - unsourced here)",
+      "linkSkill": "NOT STATED by Nexon (repo names a 'Spirit Gui...' link skill - unsourced here)",
+      "headlineMechanic": "Three named Spirit Guides. Quote: \"As the reborn Forest Child, Lynn is the inheritor of a sacred duty to protect the Eternal Forest. She is aided in her mission by her three Spirit Guides: Pan the bear, Penni the bird, and Paeon the wolf, who each bring their own skill set to battle. Use the power of the forest to defeat your enemies and bolster your allies!\"",
+      "repoAgreement": "Nexon's 'bolster your allies' corroborates the repo's claim that Lynn doubles as a party support. Nexon names the three guides individually, which the repo's summary does not.",
+      "skills": {
+        "movementLv10": "Light Steps - \"Allows you to double jump. The higher the skill level, the farther the jump.\"",
+        "fifthJobLv200": "Beak Strike - \"Calls forth Penni's full potential to greatly enhance Peck, causing it to become AoE and deal more damage. Unaffected by attack reflection.\"",
+        "sixthJobLv260": "Source Flow - \"Draws power from nature's source in the Samsara Spring. By following the flow, the Forest Child and all Spirit Guides become enlightened.\""
+      }
+    },
+    "erelLight": {
+      "repoStatus": "erel-light.json exists; primaryStat STR, branch 'Shine (SHINE) - Warrior job group', and weapon 'Gram' all CONFIRMED",
+      "url": "https://www.nexon.com/maplestory/game/classes-and-jobs/41164/Warrior",
+      "jobGroup": "Warrior",
+      "origin": "SHINE",
+      "primaryStat": "STR",
+      "primaryStatQuote": "Main Stat\nSTR (Strength)",
+      "movement": "Jumping",
+      "weapon": "Spear, named Gram - the only class on the site whose weapon Nexon states",
+      "linkSkill": "NOT STATED by Nexon",
+      "headlineMechanic": "Sentinel summons. Quote: \"Leader of the Argent Guard, the sworn protectors of Helia. Wielding Gram, a spear infused with light, Erel Light calls upon Shining Sentinels and the Sentinel Captain to turn back the encroaching darkness.\"",
+      "repoAgreement": "Confirms the repo's 'persistent Shining Sentinel / Sentinel Captain summon layer' verbatim in substance. Read as a bonus - this class was not on the assigned list but shares the SHINE origin with Sia Astelle.",
+      "skills": {
+        "movementLv10": "Radiant Leap - \"Use in mid-jump to jump even further.\""
+      }
+    },
+    "officialRoster": {
+      "warrior": ["Erel Light", "Hero", "Paladin", "Dark Knight", "Dawn Warrior", "Mihile", "Blaster", "Demon Slayer", "Demon Avenger", "Aran", "Kaiser", "Adele", "Ren", "Zero", "Hayato"],
+      "magician": ["Arch Mage (Fire/Poison)", "Arch Mage (Ice/Lightning)", "Bishop", "Blaze Wizard", "Battle Mage", "Evan", "Luminous", "Illium", "Lara", "Kinesis", "Kanna", "Lynn", "Sia Astelle"],
+      "bowman": ["Bow Master", "Marksman", "Pathfinder", "Wind Archer", "Wild Hunter", "Mercedes", "Kain"],
+      "thief": ["Night Lord", "Shadower", "Dual Blade", "Night Walker", "Xenon", "Phantom", "Cadena", "Khali", "Hoyoung"],
+      "pirate": ["Buccaneer", "Corsair", "Cannoneer", "Thunder Breaker", "Mechanic", "Xenon", "Shade", "Angelic Buster", "Ark", "Mo Xuan"],
+      "notes": [
+        "Ren, Zero and Hayato appear only in the Warrior job-advancement TREE, not the filtered grid. Sia Astelle likewise appears only in the Magician tree.",
+        "Xenon is listed under both Thief and Pirate with separate page ids - the site's encoding of the hybrid.",
+        "No Blade Master. No Beast Tamer. No Jett.",
+        "Archerroni's class, Bow Master, is officially 'BOWMAN EXPLORER BOW MASTER' at /maplestory/game/classes-and-jobs/1297/Bowman."
+      ]
+    }
+  },
+
+  "couldNotSource": [
+    "Which boss drops which gear tier - the ENTIRE LADDER->SOURCE mapping. The boss-content guide publishes no drop table and defers loot to the in-game F1 Maple Guide UI. Lotus/Damien/Absolab, Lucid/Will/Arcane Umbra, Kalos/Eternal, Verus Hilla/Source of Suffering, Darknell/Commanding Force Earring and Hell Gollux/Superior Gollux are all unsourced by this page.",
+    "Boss entry level requirements. Not published; the guide points to the boss UI and frames unlocks as quest/item prerequisites rather than levels.",
+    "Crystal meso values for any boss. Nexon documents the pricing model (boss type x party size) but publishes no figures.",
+    "Whether the 14-per-character cap counts only WEEKLY-type crystals. The guide states the cap with no cadence qualifier at all. This is the repo's load-bearing daily-vs-weekly assumption and it now rests solely on the in-game panel's row label.",
+    "Whether the 180 world cap spans all three crystal types. Same sentence, same silence - the repo already flags this as STILL NOT SOURCED and it remains so.",
+    "Gollux in any form. The word does not appear on the boss-content page, so even its cadence cannot be inferred.",
+    "Whether Runes exist or differ in Heroic worlds. The Runes guide never mentions worlds at all.",
+    "Whether Burning Fields exist or differ in Heroic worlds. Same - no world distinction anywhere on the page.",
+    "Rune of Riches' effect. Named once in the removability list, given no Rune Types entry and no stated effect. Rune of Recovery and Rune of Swiftness are in the same position - the page claims 11 rune types but documents nine.",
+    "Weapon type for Ren, Sia Astelle, Mo Xuan and Lynn. Nexon's class pages publish Origin, Movement and Main Stat only. Erel Light's spear is the lone exception and it appears in prose, not the stats panel.",
+    "Link skills for every class. Nexon's class pages list none. The only link-skill fact on the entire site is Evan's rune-duration extension, found on the Runes page.",
+    "A 'Beginner's Guide to Lynn' page. No such page exists in the Maple Guides index (26 guides, fully expanded past VIEW MORE) or anywhere I could reach. Lynn's only official page is her class page.",
+    "Any class page for Beast Tamer. Absent from Nexon's roster entirely while the repo carries beast-tamer.json."
+  ]
+}

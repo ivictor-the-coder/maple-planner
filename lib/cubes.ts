@@ -37,6 +37,23 @@ import {
   type SlotDef,
   type Tier,
 } from "./rules";
+// The symbol model lives in lib/symbols.ts and is IMPORTED, never re-derived here.
+// This file used to carry its own two-constant copy of it — a 100-per-level slope with
+// no base — and that copy was wrong in the one direction that flatters %stat lines. See
+// symbolFlatStat below. Importing also means a future correction to the grant reaches
+// the damage model instead of the two drifting apart.
+import {
+  ARCANE_AREAS,
+  ARCANE_FORCE_BASE_PER_SYMBOL,
+  ARCANE_FORCE_PER_LEVEL,
+  ARCANE_GRANT_DEFAULT,
+  arcaneFlatMainStatFromLevels,
+  arcaneFlatMainStatFromPower,
+  arcanePower,
+  arcaneStatTotal,
+  hasArcaneLevels,
+  type ArcaneLevels,
+} from "./symbols";
 
 /* ==========================================================================
  * SECTION 1 — RATES. Constants only. Nothing in here computes anything.
@@ -466,24 +483,50 @@ export const BOSS_DEFENSE_PCT: Sourced<Record<string, number>> = {
 };
 
 /** Arcane symbols give FLAT main stat that is never multiplied by your %stat. At Arcane
- *  Power 1060 that is thousands of points of undilutable stat, which is precisely why a
- *  %stat line is worth less than its face value — charAdvice already says so at
- *  rules.ts:388. A cube model that skipped this would mis-rank every armour slot. */
+ *  Power 1,070 that is 10,700 points of undilutable stat — over half the observed
+ *  character's 20,790 DEX — which is precisely why a %stat line is worth less than its
+ *  face value; charAdvice already says so at rules.ts:388. A cube model that skipped
+ *  this would mis-rank every armour slot.
+ *
+ *  SLOPE ONLY. A symbol's grant is `base + perLevel * level`, not `perLevel * level`.
+ *  Multiplying a level count by this constant alone drops SYMBOL_STAT_BASE_PER_SYMBOL
+ *  for every equipped symbol, which is the defect this pair of constants used to cause.
+ *  Read them through symbolFlatStat(); do not multiply by them at a call site. */
 export const SYMBOL_STAT_PER_LEVEL: Sourced<number> = {
-  value: 100,
-  source: "lib/rules.ts charAdvice (+100 main stat per Arcane symbol level)",
+  value: ARCANE_GRANT_DEFAULT.perLevel,
+  source: "lib/symbols.ts ARCANE_GRANT_DEFAULT.perLevel, itself from guide-graph symbols.arcane.cost (Lv 1 = 300 main stat, Lv 20 = 2,200)",
   verifiedOn: CHECKED,
   patch: GMS_PATCH,
   placeholder: false,
-  note: "Xenon and Demon Avenger scale differently; this is the ordinary-class number.",
+  note: "Xenon and Demon Avenger scale differently; this is the ordinary-class number, and arcaneGrantFor() is what picks between them.",
 };
 
-export const ARCANE_POWER_PER_LEVEL: Sourced<{ perLevel: number; base: number }> = {
-  value: { perLevel: 10, base: 120 },
-  source: "lib/rules.ts charAdvice (symbol level = (arcanePower - 120) / 10)",
+/** The other half of the grant, and the half whose absence made symbolFlatStat report
+ *  9,500 where the model says 10,700. 300 at Lv 1 minus the 100/level slope. */
+export const SYMBOL_STAT_BASE_PER_SYMBOL: Sourced<number> = {
+  value: ARCANE_GRANT_DEFAULT.base,
+  source: "lib/symbols.ts ARCANE_GRANT_DEFAULT.base, itself from guide-graph symbols.arcane.cost (Lv 1 = 300 main stat)",
   verifiedOn: CHECKED,
   patch: GMS_PATCH,
   placeholder: false,
+  note: "An UNEQUIPPED symbol grants nothing; this base arrives with the symbol at level 1 and is why a level count alone cannot price symbol stat.",
+};
+
+/** Provenance record for the two force numbers charAdvice prints. `base` is six
+ *  symbols' 20 collected into one figure, which is only the right shape when all six
+ *  are equipped — symbolFlatStat() therefore works from the per-symbol constants in
+ *  lib/symbols.ts rather than inverting through this one. Kept exported because the
+ *  registry and the UI name it. */
+export const ARCANE_POWER_PER_LEVEL: Sourced<{ perLevel: number; base: number }> = {
+  value: {
+    perLevel: ARCANE_FORCE_PER_LEVEL,
+    base: ARCANE_FORCE_BASE_PER_SYMBOL * ARCANE_AREAS.length,
+  },
+  source: "lib/symbols.ts ARCANE_FORCE_PER_LEVEL / ARCANE_FORCE_BASE_PER_SYMBOL (a symbol at level L contributes 20 + 10L Arcane Force)",
+  verifiedOn: CHECKED,
+  patch: GMS_PATCH,
+  placeholder: false,
+  note: "The 120 is 6 x 20 and assumes all six symbols are equipped. arcaneLevelSumFromPower() documents the same assumption.",
 };
 
 export const FLAME_RESET_COST: Sourced<number> = {
@@ -1030,12 +1073,69 @@ export interface DamageInputs {
   readonly bossDefensePct: number;
 }
 
-/** Arcane Power -> flat main stat, inverted with the repo's own constants so the number
- *  here and the number charAdvice shows the player cannot drift apart. */
-export function symbolFlatStat(arcanePower: number): number {
-  const { perLevel, base } = ARCANE_POWER_PER_LEVEL.value;
-  const levels = Math.max(0, Math.round((arcanePower - base) / perLevel));
-  return levels * SYMBOL_STAT_PER_LEVEL.value;
+/* ---------- flat symbol stat: the number %stat lines are NOT allowed to multiply ----
+ *
+ * THE DEFECT THIS REPLACES, because it is easy to reintroduce. The old body was
+ *
+ *     const levels = Math.round((arcanePower - 120) / 10);
+ *     return levels * 100;
+ *
+ * which inverts Arcane Power to a LEVEL COUNT and multiplies by the slope. A symbol's
+ * grant is `base + perLevel * level` (lib/symbols.ts ARCANE_GRANT_DEFAULT: 200 + 100L,
+ * i.e. 300 at Lv 1 and 2,200 at Lv 20), so that drops one 200-point base per equipped
+ * symbol: 1,200 missing on a full set. At the observed character's Arcane Power 1,070 it
+ * reported 9,500 against a true 10,700.
+ *
+ * THE DIRECTION IS THE POINT. symbolFlat is subtracted from the displayed main stat to
+ * find the base a %stat line actually multiplies. Understating it OVERSTATES that base —
+ * 11,290 instead of 10,090 on this character, 11.89% too high — so every %DEX and
+ * %All Stat line in the cube ranking was inflated by that much. The owner's question was
+ * why a pendant and face accessory full of %stat gained them only 3.53%; a model that
+ * oversells %stat lines answers it wrong.
+ */
+
+/**
+ * Flat main stat from Arcane symbols, from an Arcane Power reading alone.
+ *
+ * WHAT IS ASSUMED, AND WHAT IT COSTS. A total does not invert to a spread, so this has
+ * to assume a symbol COUNT — it assumes the most symbols the reading can support, up to
+ * six, the same all-six assumption arcaneLevelSumFromPower() documents. For every class
+ * whose grant is proportional to force that assumption costs exactly nothing, and the
+ * observed character is one of them: ARCANE_GRANT_DEFAULT is 200 + 100L against a force
+ * of 20 + 10L, both a factor of 10, so
+ *
+ *     count * 200 + levels * 100  =  10 * (count * 20 + levels * 10)  =  10 * force
+ *
+ * whatever the count and whatever the spread. A player missing Esfera reads 1,050
+ * instead of 1,070 and gets 10,500 — correct, not five-sixths of a guess. The assumption
+ * only bites for Xenon, whose grant (86 + 39L) is NOT proportional to force: there, each
+ * symbol the player is short of `impliedSymbolCount` over-counts 86 flat all-stat.
+ *
+ * Prefer symbolFlatStatFromLevels() wherever the per-area levels exist. Sacred symbol
+ * stat is NOT included here — Sacred levels cannot be recovered from Arcane Power at
+ * all, and lib/symbols.ts flags the Sacred slope as unsourced. For a Lv 260+ character
+ * that omission understates symbolFlat, i.e. it errs in the same direction as the bug
+ * above; the observed character is Lv 245 and has none.
+ */
+export function symbolFlatStat(arcanePowerReading: number, cls = ""): number {
+  return arcaneFlatMainStatFromPower(arcanePowerReading, cls);
+}
+
+/** Exact. Per-area levels, no inversion, no assumption about how many are equipped.
+ *  This is the path to use whenever Character.symbols is populated. */
+export function symbolFlatStatFromLevels(levels: ArcaneLevels, cls = ""): number {
+  return arcaneFlatMainStatFromLevels(levels, cls);
+}
+
+/** The one a caller holding a whole Character should use: exact when the character
+ *  carries per-area symbol levels, the Arcane-Power inversion when it does not.
+ *  hasArcaneLevels() guards the exact path so that an all-zero SymbolState — the shape
+ *  emptySymbolState() returns before the player has entered anything — falls back to the
+ *  stat-window reading instead of reporting zero symbol stat on a 1,070-power sheet. */
+export function symbolFlatStatFor(ch: Character): number {
+  return ch.symbols && hasArcaneLevels(ch.symbols)
+    ? symbolFlatStatFromLevels(ch.symbols.arcane, ch.cls)
+    : symbolFlatStat(ch.stats.arcane, ch.cls);
 }
 
 /** IED does not add, it stacks: each line removes a share of the defence that is left. */
@@ -1052,7 +1152,7 @@ export const stackIed = (currentPct: number, addedPct: number): number =>
  * knows and tells the player:
  *   - crit rate above 100 is dead weight (rules.ts:368), so it is clamped;
  *   - symbol stat is flat and unmultiplied (rules.ts:388), so it is held out of the
- *     %stat term. At Arcane Power 1060 that is roughly half this character's main stat
+ *     %stat term. At Arcane Power 1,070 that is 10,700 of this character's 20,790 DEX
  *     sitting outside the multiplier, which is why a 13% DEX line is worth far less
  *     here than a naive model would claim.
  */
@@ -1118,7 +1218,9 @@ export function deriveDamageInputs(ch: Character, o: DeriveOptions = {}): Damage
   }
   return {
     mainTotal: ch.stats.main,
-    symbolFlat: symbolFlatStat(ch.stats.arcane),
+    // Exact per-area levels when the character carries them, the Arcane Power
+    // inversion only as the fallback. See symbolFlatStatFor.
+    symbolFlat: symbolFlatStatFor(ch),
     statPctApplied,
     att: ch.stats.att,
     attPctApplied,
@@ -1532,6 +1634,7 @@ export const CONSTANT_REGISTRY: Readonly<Record<string, Sourced<unknown>>> = {
   LINE_POOLS,
   BOSS_DEFENSE_PCT,
   SYMBOL_STAT_PER_LEVEL,
+  SYMBOL_STAT_BASE_PER_SYMBOL,
   ARCANE_POWER_PER_LEVEL,
   FLAME_RESET_COST,
   FLAME_RESET_EXPECTED_GAIN,
@@ -1676,6 +1779,28 @@ export function selfCheck(monteCarloRuns = 200_000): CheckResult[] {
     ok: g.p90 === geometricQuantile(0.03, 0.9),
     detail: `${g.p90} vs ${geometricQuantile(0.03, 0.9)}`,
   });
+
+  // (e) symbol flat stat, from a power reading, against the exact per-level model in
+  // lib/symbols.ts. This is the check the 9,500-vs-10,700 defect would have failed, and
+  // the incomplete-set row is the one that proves the all-six assumption is free here:
+  // the grant is proportional to force, so a five-symbol player is priced exactly too.
+  const SPREADS: ReadonlyArray<readonly [string, ArcaneLevels]> = [
+    ["observed character, 95 levels over six", { vj: 20, chuchu: 20, lach: 20, arcana: 20, morass: 10, esfera: 5 }],
+    ["same 95 levels, different spread", { vj: 20, chuchu: 20, lach: 20, arcana: 15, morass: 15, esfera: 5 }],
+    ["five equipped, no Esfera", { vj: 20, chuchu: 20, lach: 20, arcana: 20, morass: 15, esfera: 0 }],
+    ["one symbol, level 1", { vj: 1, chuchu: 0, lach: 0, arcana: 0, morass: 0, esfera: 0 }],
+    ["nothing equipped", { vj: 0, chuchu: 0, lach: 0, arcana: 0, morass: 0, esfera: 0 }],
+  ];
+  for (const [name, levels] of SPREADS) {
+    const power = arcanePower(levels);
+    const exact = arcaneStatTotal(levels, ARCANE_GRANT_DEFAULT);
+    const fromPower = symbolFlatStat(power);
+    out.push({
+      name: `symbol flat stat: ${name}`,
+      ok: exact === fromPower,
+      detail: `exact ${exact} vs Arcane Power ${power} -> ${fromPower}`,
+    });
+  }
 
   return out;
 }

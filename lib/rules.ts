@@ -95,6 +95,12 @@ import {
   type Provenance,
   type UnverifiedConstant,
 } from "./starforce";
+import {
+  arcaneFlatMainStatFromLevels,
+  arcaneFlatMainStatFromPower,
+  hasArcaneLevels,
+  type SymbolState,
+} from "./symbols";
 import guideGraphRaw from "@/data/guide-graph.json";
 
 export type MainStat = "dex" | "str" | "int" | "luk";
@@ -186,9 +192,29 @@ export interface DamageReadings {
    * common factor — see that constant for the direction of the bias.
    */
   finalDamagePct?: number;
+  /**
+   * PRINTED. Flat SECONDARY stat, as the stat window shows it: STR for a Bow
+   * Master, DEX for a Night Lord, and so on.
+   *
+   * It joins the readings rather than Stats for the same reason the other two
+   * did — lib/portable.ts enumerates keyof Stats as the share-link wire format,
+   * so a tenth required key changes the codec for every link ever shared.
+   *
+   * WHY IT EARNS A FIELD. The range formula counts it at 1x against main
+   * stat's 4x, which sounds ignorable and is not: the reference character's
+   * 2,609 STR is 3.0% of their printed Damage Range, and with DAMAGE % and
+   * FINAL DAMAGE % now applied this is the entire remaining gap between what
+   * the app prints and what the game prints. A model that reproduces the stat
+   * window to 3% and stops has given up the last thing that made it checkable.
+   *
+   * Absent means the sheet has no value, which the adapter reports out loud.
+   * It does NOT mean zero — a class whose secondary stat genuinely contributes
+   * nothing still reads a number in its window.
+   */
+  secondary?: number;
 }
 
-/** What a Character's `stats` actually is: the nine printed figures plus the two
+/** What a Character's `stats` actually is: the nine printed figures plus the
  *  optional readings. Anything that only needs the nine keeps taking `Stats`. */
 export type CharacterStats = Stats & DamageReadings;
 
@@ -208,6 +234,21 @@ export interface Character {
   cp: number;
   stats: CharacterStats;
   items: Record<string, Item>;
+  /**
+   * Per-area symbol LEVELS, not a derived total.
+   *
+   * Deliberately NOT a tenth key on Stats: lib/portable.ts enumerates
+   * keyof Stats as the share-link wire format, so anything added there
+   * changes the codec. `stats.arcane` stays as the stat-window reading and
+   * becomes a checksum against these rather than a substitute for them.
+   *
+   * A total does not invert to a spread. Arcane Power 1,070 is 95 levels
+   * across six symbols, and thousands of distributions sum to 95 with
+   * different answers to "level which one next" - which is the whole
+   * question the symbols model exists to answer. Optional, and absent means
+   * absent: the advice says to enter them rather than guessing a split.
+   */
+  symbols?: SymbolState;
   /**
    * Every character on the account, read from the Switch Character window.
    *
@@ -346,6 +387,60 @@ export const SLOTS: SlotDef[] = [
   { id: "heart", n: "Heart", c: 5, r: 5, pot: "stat", sf: false, fl: false },
   { id: "android", n: "Android", c: 5, r: 6, pot: "no", sf: false, fl: false },
 ];
+
+/**
+ * TRANSFER HAMMER, sourced from Nexon's own Item Enhancement guide on
+ * 2026-09-13, after this repo spent the whole project refusing to state it:
+ *
+ *   "The Level Requirement of the receiving item must be 1-10 levels higher
+ *    than the Level Requirement of the extracted item, or 1-20 levels if the
+ *    extracting item is Lv. 119 or below."
+ *   "You can transfer stats of a Lv. 110 item to an item with a level as high
+ *    as Lv. 130, but not to a Lv. 140 item."
+ *
+ * The remembered figure was a flat ten levels. It is ten ABOVE Lv 119 and
+ * twenty at or below it, and the worked example is what makes that concrete.
+ *
+ * WHAT CARRIES, and this is the part that was actively wrong in the advice:
+ *   "...transfer the stat bonuses from Star Force Enhancement, Potentials,
+ *    Bonus Potentials and Soul Weapon enhancements from a lower-level item to
+ *    a higher-level item."
+ * POTENTIAL TRANSFERS. This file told players the opposite - "potential does
+ * not transfer, so do not over-cube what you will replace" - which is advice
+ * to leave a cheap upgrade on the table. Bonus Stats (flames) are the
+ * conspicuous omission from that list and are believed lost, but the guide
+ * does not say so outright, so the copy says believed, not lost.
+ */
+export const TRANSFER_HAMMER = {
+  /** Max level gap when the item being extracted FROM is Lv 120 or above. */
+  spanAboveLv119: 10,
+  /** Max level gap when the item being extracted FROM is Lv 119 or below. */
+  spanAtOrBelowLv119: 20,
+  lowLevelThreshold: 119,
+  carries: ["Star Force", "Potential", "Bonus Potential", "Soul Weapon"] as const,
+  source: "Nexon Maple Guides, Item Enhancement, read 2026-09-13",
+  url: "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+} as const;
+
+/** Whether the investment in an item can follow it up to the next rung, and in
+ *  one sentence, why or why not. Empty when there is nothing to say. */
+function nextTierTransferNote(fromLvl: number, toLvl: number, toName: string): string {
+  const ceil = transferHammerCeiling(fromLvl);
+  if (ceil === null || !(toLvl > 0)) return "";
+  return ceil >= toLvl
+    ? ` — a Transfer Hammer reaches Lv. ${ceil} from Lv. ${fromLvl}, so star force and potential can move onto ${toName} at Lv. ${toLvl}. Bonus stats are believed not to carry.`
+    : ` — a Transfer Hammer only reaches Lv. ${ceil} from Lv. ${fromLvl}, short of ${toName} at Lv. ${toLvl}, so do not over-cube what you will replace.`;
+}
+
+/** The highest required level a Transfer Hammer can reach FROM `lvl`. */
+export function transferHammerCeiling(lvl: number): number | null {
+  if (!(lvl > 0)) return null;
+  const span =
+    lvl <= TRANSFER_HAMMER.lowLevelThreshold
+      ? TRANSFER_HAMMER.spanAtOrBelowLv119
+      : TRANSFER_HAMMER.spanAboveLv119;
+  return lvl + span;
+}
 
 /* ---------- gear ladders ---------- */
 type Rung = [string, number];
@@ -758,12 +853,34 @@ function readArcaneStatPerForce(): number {
   return stat && force ? stat / force : 10;
 }
 
-/** Symbol stat is FLAT and is not multiplied by %stat, which is the whole
- *  reason %lines are worth less than they look on a character with low symbols.
- *  Sacred symbols (Lv 260+) are not tracked in Stats; for a character above 260
- *  this understates flat stat and therefore overstates every %stat rec here. */
+/**
+ * Symbol stat is FLAT and is not multiplied by %stat, which is the whole reason a
+ * %line is worth less than it looks on a character carrying a lot of it. This is
+ * the number the owner's question turned on: roughly half their displayed DEX comes
+ * from symbols and no %DEX line touches any of it.
+ *
+ * TWO THINGS THIS USED TO GET WRONG, both now delegated to lib/symbols.ts:
+ *
+ *   1. It read only ch.stats.arcane, the stat-window total. lib/cubes.ts had
+ *      already moved to per-area levels, so a player who entered their six symbol
+ *      levels but never typed Arcane Power got 10,700 in the cube ranking and 0
+ *      here — one app disagreeing with itself about one character.
+ *   2. It was class-blind. `arcane * 10` is right for an ordinary class and wrong
+ *      for both exceptions. A Demon Avenger's symbols pay HP rather than STR, so
+ *      its flat symbol stat is ZERO and all of its displayed STR really does sit
+ *      inside the %stat multiplier; subtracting 10,700 from it understated the
+ *      base and undersold every %stat line being ranked. Xenon is on a different
+ *      slope again.
+ *
+ * Sacred symbols are still not counted — that slope is unsourced (four lookups
+ * failed) and lib/symbols.ts says so. For a Lv 260+ character that understates
+ * flat stat and therefore OVERSTATES every %stat rec here, the same direction as
+ * the bug above. The observed character is Lv 245 and has none.
+ */
 export function symbolFlatStat(ch: Character): number {
-  return Math.max(0, ch.stats.arcane || 0) * ARCANE_MAIN_STAT_PER_FORCE;
+  return ch.symbols && hasArcaneLevels(ch.symbols)
+    ? arcaneFlatMainStatFromLevels(ch.symbols.arcane, ch.cls)
+    : arcaneFlatMainStatFromPower(ch.stats.arcane, ch.cls);
 }
 
 /** %main-stat visible on gear (potential + flames). This is a LOWER bound on
@@ -1965,14 +2082,27 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
           rec.pri = 3;
           rec.lv = "ok";
         }
-        rec.w = `${rec.w} Worth less than it looks: this item is below ${nm}, and potential and flames are lost when you replace it.`.trim();
+        // Names only what is actually lost. This used to say "potential and
+        // flames are lost", and Nexon's own guide says Potential and Bonus
+        // Potential are exactly what a Transfer Hammer CARRIES - see
+        // TRANSFER_HAMMER. Telling a player their cubes die with the item,
+        // when the game hands them a way to move those cubes onto the
+        // replacement, talks them out of a cheap upgrade.
+        const ceil = transferHammerCeiling(it.lvl);
+        const reach =
+          ceil !== null && lv > 0 && ceil >= lv
+            ? ` Star force and potential can follow it: a Transfer Hammer reaches Lv. ${ceil} from Lv. ${it.lvl}, and ${nm} sits at Lv. ${lv}.`
+            : ceil !== null && lv > 0
+              ? ` A Transfer Hammer only reaches Lv. ${ceil} from Lv. ${it.lvl}, short of ${nm} at Lv. ${lv}, so this investment does not follow.`
+              : "";
+        rec.w = `${rec.w} Worth less than it looks: this item is below ${nm}.${reach} Bonus stats are believed not to carry either way.`.trim();
       }
     } else if (idx < lad.length - 1) {
       const [nm, lv] = lad[idx + 1];
       // Not priced: the stat delta between two gear tiers is a pair of item
       // stat blocks, and neither is in this repo.
       add(3, "ok", `Next tier: ${nm}${lv ? ` (Lv. ${lv})` : ""}.`,
-        `${SOURCE[nm] || ""} — potential does not transfer, so do not over-cube what you will replace.`);
+        `${SOURCE[nm] || ""}${nextTierTransferNote(it.lvl, lv, nm)}`);
     }
   }
 

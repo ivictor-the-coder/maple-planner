@@ -23,6 +23,14 @@ import {
   unverifiedReason, verificationState,
   type EvaluatedRule,
 } from "@/lib/classes";
+import {
+  ARCANE_AREAS, ARCANE_FORCE_MAX, ARCANE_LEVEL_CAP, AREA_NAME, NO_ARCANE_LEVELS_WHY,
+  arcaneLevelSumFromPower, arcanePower, emptySymbolState, validateArcanePower,
+  type ArcaneArea, type ArcaneLevels,
+} from "@/lib/symbols";
+import {
+  arcaneLevelsFromPatch, completeArcaneLevels, countArcaneLevels, parseTypedLevel,
+} from "@/lib/import/symbolLevels";
 import { getAccountStore } from "@/lib/storage";
 import { resolveItem } from "@/lib/itemLookup";
 import { mergeRoster, type RosterChar } from "@/lib/legion";
@@ -476,6 +484,44 @@ function gearCount(ch: Character): number {
   return Object.values(ch.items ?? {}).filter((i) => i && i.name).length;
 }
 
+/* ---------- the six Arcane symbol boxes ----------
+ *
+ * WHY THE BOXES ARE TEXT AND THE SHEET IS NUMBERS. `SymbolState.arcane` is a
+ * `Record<ArcaneArea, number>`: every area holds a number and there is no room
+ * in it for "this box is empty". 0 is not that room either — 0 is the claim "I
+ * have not unlocked this symbol", and lib/symbols.ts branches on it (the area
+ * drops out of rankArcaneNextLevel() and picks up "You do not have this symbol
+ * yet" in planArcane()). So the half-filled state lives here as text, and the
+ * sheet only ever receives a complete, entirely-entered set of six. Five real
+ * levels plus an invented zero is a spread nobody has, dated and ranked with
+ * exactly the confidence of a true one.
+ *
+ * Written out area by area rather than built from ARCANE_AREAS so the compiler
+ * checks all six are present; a Record built by reduce() needs a cast to claim
+ * the same thing, and the cast is what would let a missing area through. */
+function symbolBoxesFrom(ch: Character): Record<ArcaneArea, string> {
+  const a = ch.symbols?.arcane;
+  return {
+    vj: a ? String(a.vj) : "",
+    chuchu: a ? String(a.chuchu) : "",
+    lach: a ? String(a.lach) : "",
+    arcana: a ? String(a.arcana) : "",
+    morass: a ? String(a.morass) : "",
+    esfera: a ? String(a.esfera) : "",
+  };
+}
+
+/** The levels a set of boxes actually states. A box that is empty, or holds
+ *  something that is not a level, is ABSENT here — never NaN, never 0. */
+function levelsFromBoxes(boxes: Record<ArcaneArea, string>): Partial<ArcaneLevels> {
+  const out: Partial<ArcaneLevels> = {};
+  for (const area of ARCANE_AREAS) {
+    const n = parseTypedLevel(boxes[area]);
+    if (n !== undefined) out[area] = n;
+  }
+  return out;
+}
+
 export default function Planner() {
   /* ---------- an account, not a character ----------
    * The planner edits ONE character at a time, but the thing it loads, saves
@@ -499,6 +545,12 @@ export default function Planner() {
   const [sortBy, setSortBy] = useState<"eff" | "dmg">("eff");
   const [showAll, setShowAll] = useState(false);
   const [showWorking, setShowWorking] = useState(false);
+  /* What is TYPED in the six symbol boxes, which is not the same thing as what
+   * the sheet has recorded — see symbolBoxesFrom(). null means "nothing typed
+   * since this sheet was last loaded", and the boxes render from the character.
+   * Every path that changes which character is on screen, or writes symbols
+   * from an import, sets it back to null so the boxes follow the sheet. */
+  const [symDraft, setSymDraft] = useState<Record<ArcaneArea, string> | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -576,6 +628,8 @@ export default function Planner() {
     setHover(null);
     setEditing(null);
     setShowAll(false);
+    // The symbol boxes follow the sheet, not the last thing typed into them.
+    setSymDraft(null);
     const who = next.characters[id];
     if (who) setNote(`Now editing ${who.name} — ${who.cls} Lv. ${who.lvl}.`);
   }, [account, ch.id, commit]);
@@ -590,6 +644,8 @@ export default function Planner() {
     setHover(null);
     setEditing(null);
     setShowAll(false);
+    // The symbol boxes follow the sheet, not the last thing typed into them.
+    setSymDraft(null);
     const who = next.characters[id];
     const n = who ? gearCount(who) : 0;
     setNote(
@@ -601,6 +657,7 @@ export default function Planner() {
 
   const addBlank = useCallback(() => {
     commit(addCharacter(account, emptyCharacter(), { makeActive: true }).account);
+    setSymDraft(null);
     setNote("New blank sheet. Name it, set the class and level, then add gear.");
   }, [account, commit]);
 
@@ -610,6 +667,7 @@ export default function Planner() {
         ? selectCharacter(account, EXAMPLE_CHARACTER_ID)
         : addCharacter(account, exampleCharacter(), { makeActive: true }).account,
     );
+    setSymDraft(null);
     setNote("Showing the demo Bow Master — the character the damage model was measured against.");
   }, [account, commit]);
 
@@ -697,6 +755,60 @@ export default function Planner() {
     update({ ...ch, stats });
   };
 
+  /* ---------- the six Arcane symbol levels ---------- */
+
+  const symBoxes = symDraft ?? symbolBoxesFrom(ch);
+  const typedCount = countArcaneLevels(levelsFromBoxes(symBoxes));
+  /** Boxes holding something that is not a level — the difference between "not
+   *  filled in" and "filled in with something this cannot use". */
+  const badBoxes = ARCANE_AREAS.filter(
+    (a) => symBoxes[a].trim() !== "" && parseTypedLevel(symBoxes[a]) === undefined,
+  ).length;
+
+  /**
+   * One box. Never sends NaN, and never sends a zero it was not given: an empty
+   * box, a box holding something that is not a number, and a box holding a
+   * level above ARCANE_LEVEL_CAP all record NOTHING for that area — and while
+   * any of the six records nothing, the sheet carries no `symbols` at all,
+   * because a `SymbolState` is a claim about all six.
+   *
+   * A typed 0 is kept, and it is the one number here that means something the
+   * player could not otherwise say: "I have not unlocked this symbol".
+   */
+  const setSymbolLevel = (area: ArcaneArea, raw: string) => {
+    const next: Record<ArcaneArea, string> = { ...symBoxes, [area]: raw };
+    setSymDraft(next);
+    const complete = completeArcaneLevels(levelsFromBoxes(next));
+    if (complete) {
+      // Sacred and Grand Sacred come from emptySymbolState() and stay at zero:
+      // this UI collects Arcane only, and there is no input anywhere in the app
+      // for the other two tiers yet.
+      update({ ...ch, symbols: { ...(ch.symbols ?? emptySymbolState()), arcane: complete } });
+    } else if (ch.symbols) {
+      // Clearing one box RETRACTS the whole claim rather than zeroing that one
+      // area, because zero is a different statement about the account.
+      const cleared: Character = { ...ch };
+      delete cleared.symbols;
+      update(cleared);
+    }
+  };
+
+  /**
+   * The two things the player typed, checked against each other.
+   *
+   * Only runs when both halves exist. `stats.arcane` is a required key that
+   * defaults to 0, so 0 there means "not entered" rather than "reads zero" —
+   * the stat window cannot print 0 Arcane Power for a character that has any
+   * symbol at all, and a character with none has no levels to check.
+   */
+  const arcaneReported = ch.stats.arcane;
+  const symChecksum = useMemo(
+    () => (ch.symbols && arcaneReported > 0
+      ? validateArcanePower(ch.symbols.arcane, arcaneReported)
+      : null),
+    [ch.symbols, arcaneReported],
+  );
+
   const editItem = editing ? ch.items[editing] : undefined;
   const editSlot = SLOTS.find((s) => s.id === editing);
 
@@ -748,6 +860,11 @@ export default function Planner() {
             a sheet that has the reading never renders it. */}
         {model.verified && !hasDamagePctReading(ch) && (
           <a className="acct-jump" href="#stat-readings">Record DAMAGE % &darr;</a>
+        )}
+        {/* The same route, for the input this wave exists to collect. It
+            disappears the moment all six levels are on the sheet. */}
+        {!ch.symbols && (
+          <a className="acct-jump" href="#symbol-levels">Enter symbol levels &darr;</a>
         )}
       </div>
 
@@ -970,6 +1087,108 @@ export default function Planner() {
             </div>
           ))}
 
+          {/* ---------- the six Arcane symbol levels ----------
+              Directly under the stat groups, which is directly under the Arcane
+              Power box these six are checked against: the checksum is only
+              meaningful as a comparison between two adjacent things, and a
+              player who is told the two disagree has to be able to see both
+              without scrolling.
+
+              Labelled by AREA_NAME — the names the game prints on the Symbol
+              tab — and never by the internal keys, because "vj" and "lach" are
+              this repo's shorthand, not the player's. */}
+          <div id="symbol-levels">
+            <div className="statgroup">Arcane symbol levels</div>
+            {ARCANE_AREAS.map((area) => {
+              const raw = symBoxes[area];
+              const bad = raw.trim() !== "" && parseTypedLevel(raw) === undefined;
+              return (
+                <div className={`stat${bad ? " flag" : ""}`} key={area}>
+                  <span className="k">{AREA_NAME[area]}</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={ARCANE_LEVEL_CAP}
+                    step={1}
+                    placeholder="—"
+                    value={raw}
+                    aria-label={`${AREA_NAME[area]} symbol level`}
+                    aria-invalid={bad || undefined}
+                    onChange={(e) => setSymbolLevel(area, e.target.value)}
+                  />
+                </div>
+              );
+            })}
+
+            {ch.symbols ? (
+              <div className="linebox" style={{ marginTop: 8 }}>
+                <div className="line">
+                  <span className="t">Arcane Force from these levels</span>
+                  <span className="mono">
+                    {arcanePower(ch.symbols.arcane).toLocaleString()} / {ARCANE_FORCE_MAX.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <p className="fineprint">
+                {typedCount} of {ARCANE_AREAS.length} entered. Nothing is recorded until all six
+                are in: an empty box means &ldquo;not told&rdquo;, and the model has nowhere to
+                put that — it would have to store a 0, which is the different claim
+                &ldquo;I have not unlocked this symbol&rdquo;. If that IS the claim, type 0.
+                {/* Named, because a box the row styling has flagged still LOOKS
+                    filled, and "5 of 6 entered" beside six non-empty boxes reads
+                    as a bug rather than as a rejection. */}
+                {badBoxes > 0 && (
+                  <>
+                    {" "}
+                    {badBoxes === 1 ? "One box holds" : `${badBoxes} boxes hold`} something that is
+                    not a whole level from 0 to {ARCANE_LEVEL_CAP}, so{" "}
+                    {badBoxes === 1 ? "it counts" : "they count"} as not entered.
+                  </>
+                )}
+              </p>
+            )}
+
+            {/* THE CHECKSUM. Two things the player typed, compared. A silent
+                disagreement between them is the bug this block exists to
+                refuse — every meso figure and every date the symbols model can
+                produce is computed from the levels, not from Arcane Power, so a
+                mismatch invalidates all of it. */}
+            {symChecksum && (
+              <p className={`fineprint${symChecksum.ok ? "" : " dr-warn"}`}>
+                {symChecksum.message}
+                {!symChecksum.ok && (
+                  <>
+                    {" "}
+                    This page cannot tell you which of the two is wrong — it only knows they
+                    disagree. Re-count the Symbol tab first: six levels are quicker to check
+                    than one total, and if they turn out right, the ARCANE POWER box above is
+                    the misread one.
+                  </>
+                )}
+              </p>
+            )}
+            {!ch.symbols && arcaneReported > 0 && (
+              <p className="fineprint">
+                {NO_ARCANE_LEVELS_WHY}{" "}
+                Your {arcaneReported.toLocaleString()} reads as{" "}
+                {arcaneLevelSumFromPower(arcaneReported)} total levels and stops there.
+              </p>
+            )}
+            {ch.symbols && arcaneReported === 0 && (
+              <p className="fineprint">
+                Enter ARCANE POWER under Progression above and these six levels get checked
+                against it. Until then nothing is cross-checking what was typed here.
+              </p>
+            )}
+            <p className="fineprint">
+              From the game&rsquo;s Symbol window, one level per Arcane River area, 0 to{" "}
+              {ARCANE_LEVEL_CAP}. Symbol stat is FLAT: no %DEX or %All Stat line on your gear
+              multiplies it, which is why a better pendant moves your range less than it looks
+              like it should while these are low. Sacred symbols are not entered here.
+            </p>
+          </div>
+
           {/* The two readings the stat window prints and the sheet had nowhere
               to put. Only offered for a class the model can actually use them
               on — anywhere else they would be data collected for nothing.
@@ -1016,9 +1235,13 @@ export default function Planner() {
             <button
               className="btn"
               title="Clear this character's gear and stats. The sheet, its name and its roster link stay."
-              onClick={() =>
-                update({ ...emptyCharacter(), id: ch.id, name: ch.name, cls: ch.cls, main: ch.main, lvl: ch.lvl })
-              }
+              onClick={() => {
+                // emptyCharacter() carries no `symbols`, so this clears the six
+                // levels with everything else; the boxes have to be told to stop
+                // showing what was typed into them.
+                setSymDraft(null);
+                update({ ...emptyCharacter(), id: ch.id, name: ch.name, cls: ch.cls, main: ch.main, lvl: ch.lvl });
+              }}
             >
               Clear gear
             </button>
@@ -1129,6 +1352,13 @@ export default function Planner() {
             const nextItems = { ...ch.items };
             for (const e of entries) nextItems[e.slot] = e.item;
 
+            // How many symbol levels the screenshots yielded, and whether they
+            // added up to a complete six. Both are reported in the toast: the
+            // import dialog's own confirmation table does not list these rows
+            // yet, so this is where an applied symbol level says so out loud.
+            let symbolsRead = 0;
+            let symbolsApplied = false;
+
             // Only overwrite what the stat window actually yielded.
             const next: Character = { ...ch, items: nextItems };
             if (patch) {
@@ -1151,6 +1381,25 @@ export default function Planner() {
                 if (patch[k] !== undefined) s[k] = patch[k];
               }
               next.stats = s;
+
+              // The six Arcane symbol levels ride in the same patch — see
+              // lib/import/symbolLevels.ts for why they are flat keys inside
+              // `stats` rather than a shape of their own. ImportDialog's
+              // StatsPatch does not declare them, so they are read by name and
+              // re-validated here rather than trusted for having arrived.
+              //
+              // A PARTIAL read is merged onto levels already on the sheet and
+              // written only if the result is complete. It is never completed
+              // with zeroes: four real levels and two invented ones is a spread
+              // the player does not have, and the model would rank and date it
+              // with exactly the confidence of a true one.
+              const read = arcaneLevelsFromPatch(patch);
+              symbolsRead = countArcaneLevels(read);
+              const merged = symbolsRead ? completeArcaneLevels(read, ch.symbols?.arcane) : undefined;
+              if (merged) {
+                next.symbols = { ...(ch.symbols ?? emptySymbolState()), arcane: merged };
+                symbolsApplied = true;
+              }
             }
 
             // The roster is ACCOUNT data, so it goes through setRoster() rather
@@ -1162,13 +1411,22 @@ export default function Planner() {
             commit(acc);
 
             setImporting(false);
+            setSymDraft(null);
             setHover(entries[entries.length - 1]?.slot ?? null);
             const bits = [
               entries.length ? `${entries.length} item${entries.length === 1 ? "" : "s"}` : null,
               patch ? "the stat line" : null,
+              symbolsApplied ? `${symbolsRead} Arcane symbol level${symbolsRead === 1 ? "" : "s"}` : null,
               incoming?.length ? `${incoming.length} roster entries` : null,
             ].filter(Boolean).join(" + ");
-            setNote(`Applied ${bits || "nothing"} to ${next.name}.`);
+            setNote(
+              `Applied ${bits || "nothing"} to ${next.name}.`
+              + (symbolsRead && !symbolsApplied
+                ? ` Read ${symbolsRead} of ${ARCANE_AREAS.length} symbol levels — not recorded,`
+                  + " because the rest would have had to be invented. Type them in under"
+                  + " Arcane symbol levels."
+                : ""),
+            );
           }}
         />
       )}

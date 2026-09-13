@@ -11,6 +11,7 @@
 // and the stat-window field list are the same code, moved verbatim.
 
 import { readDamageReadings } from "./damageReadings";
+import { readArcaneLevelPatch, type ArcaneLevelPatch } from "./symbolLevels";
 
 /** What the model is allowed to say about the CHARACTER STAT window. */
 export interface VisionStats {
@@ -76,6 +77,40 @@ export function tidyStatWindow(s: VisionStats | null | undefined) {
   return Object.values(out).some((v) => v !== undefined && v !== "") ? out : undefined;
 }
 
+/** Everything tidyStatWindow() can produce, with every field optional — the
+ *  shape, named, so the two-window version below can be annotated rather than
+ *  inferred through a spread of a possibly-undefined value. */
+export type StatWindowPatch = NonNullable<ReturnType<typeof tidyStatWindow>>;
+
+/** The stat window's fields plus the Symbol window's six levels, flattened into
+ *  the one patch object the import dialog carries. */
+export type CharacterWindowsPatch = Partial<StatWindowPatch> & ArcaneLevelPatch;
+
+/**
+ * Both character windows, merged into the single patch the import dialog knows
+ * how to carry.
+ *
+ * SEPARATE FROM tidyStatWindow() ON PURPOSE, rather than a seventh argument to
+ * it: the Symbol window is a DIFFERENT window and can be screenshotted on its
+ * own. Folding the levels into tidyStatWindow would make "was a stat window
+ * visible?" answer yes for a screenshot that never showed one — and that
+ * question is exactly what the route uses to decide whether the image had
+ * anything in it at all.
+ *
+ * Returns undefined only when NEITHER window yielded anything, which is how the
+ * route still tells "no character windows in this shot" from "a window I read
+ * badly".
+ */
+export function tidyCharacterWindows(
+  s: VisionStats | null | undefined,
+  rawSymbols: unknown,
+): CharacterWindowsPatch | undefined {
+  const stats = tidyStatWindow(s);
+  const levels = readArcaneLevelPatch(rawSymbols);
+  if (!stats && Object.keys(levels).length === 0) return undefined;
+  return { ...stats, ...levels };
+}
+
 export function __selfTest(): { ok: boolean; failures: string[] } {
   const failures: string[] = [];
   const has = (o: object, k: string) => Object.prototype.hasOwnProperty.call(o, k);
@@ -130,6 +165,42 @@ export function __selfTest(): { ok: boolean; failures: string[] } {
   if (tidyStatWindow({}) !== undefined) failures.push("empty window did not return undefined");
   if (tidyStatWindow({ damagePct: 0, finalDamagePct: 0 }) !== undefined)
     failures.push("a window of zeroed readings was treated as a stat window");
+
+  /* ---- the two windows together ---- */
+
+  // A Symbol window on its own is a complete import. Before this existed the
+  // route answered "found no item tooltip, stat window or character list" and
+  // charged the visitor for a screenshot it had in fact read.
+  const symOnly = tidyCharacterWindows(null, {
+    vj: 20, chuchu: 20, lach: 20, arcana: 20, morass: 20, esfera: 15,
+  });
+  if (!symOnly) failures.push("symbols only: returned undefined");
+  else {
+    if (symOnly.symVj !== 20 || symOnly.symEsfera !== 15)
+      failures.push(`symbols only: ${JSON.stringify(symOnly)}`);
+    if (has(symOnly, "main")) failures.push("symbols only: invented a stat-window key");
+  }
+
+  // Both windows in one shot: neither displaces the other.
+  const both2 = tidyCharacterWindows(
+    { mainStat: 20790, arcanePower: 1070 },
+    { vj: 20, esfera: null },
+  );
+  if (!both2) failures.push("both windows: returned undefined");
+  else {
+    if (both2.main !== 20790 || both2.arcane !== 1070 || both2.symVj !== 20)
+      failures.push(`both windows: ${JSON.stringify(both2)}`);
+    if (has(both2, "symEsfera")) failures.push("both windows: a level survived a null");
+  }
+
+  // Neither window is still neither — a "symbols" key full of nulls must not
+  // make an empty screenshot look like a reading.
+  if (tidyCharacterWindows(null, null) !== undefined)
+    failures.push("neither window did not return undefined");
+  if (tidyCharacterWindows(null, { vj: null, chuchu: null }) !== undefined)
+    failures.push("a symbols object of nulls was treated as a window");
+  if (tidyCharacterWindows(null, { vj: 0 }) !== undefined)
+    failures.push("a model-side 0 was treated as a symbol level");
 
   return { ok: failures.length === 0, failures };
 }

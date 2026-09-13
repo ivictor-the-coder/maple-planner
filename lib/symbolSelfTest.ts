@@ -58,6 +58,26 @@ export function __symbolSelfTest(): { ok: boolean; failures: string[] } {
     if (!cond) failures.push(detail ? `${label}: ${detail}` : label);
   };
 
+  // Declared up here rather than beside section 12 because the unreadable-level
+  // block in section 9b needs it too, and a `const` used above its declaration
+  // is a TDZ crash, not a compile error.
+  const PRI = [1, 2, 3, 4];
+  const LV = ["hi", "mid", "ok"];
+  const CONF = ["sourced", "modelled", "placeholder"];
+  const checkRecs = (label: string, recs: S.SymbolRec[]): void => {
+    const keys = new Set<string>();
+    for (const r of recs) {
+      ok(`${label}: pri in 1..4`, PRI.includes(r.pri), `pri ${r.pri} on "${r.t}"`);
+      ok(`${label}: lv in the Rec vocabulary`, LV.includes(r.lv), `lv ${r.lv}`);
+      ok(`${label}: conf in the confidence vocabulary`, r.conf === undefined || CONF.includes(r.conf), `conf ${r.conf}`);
+      ok(`${label}: t is a sentence`, r.t.trim().length > 0);
+      ok(`${label}: w is a sentence`, r.w.trim().length > 0);
+      ok(`${label}: a priced rec carries a cost`, r.cost === undefined || r.cost > 0, `cost ${r.cost}`);
+      ok(`${label}: key "${r.key}" is unique`, !keys.has(r.key));
+      keys.add(r.key);
+    }
+  };
+
   /* ---- 1. the registry is exactly the marked exports, checked not promised */
 
   for (const f of S.checkUnverifiedRegistry(S)) failures.push(`registry: ${f}`);
@@ -84,6 +104,67 @@ export function __symbolSelfTest(): { ok: boolean; failures: string[] } {
   // looks like disclosure and is not.
   for (const u of S.UNVERIFIED_SYMBOL_CONSTANTS) {
     ok(`registry entry ${u.name} has a reason`, u.why.trim().length > 20, `why is "${u.why}"`);
+  }
+  for (const p of S.SYMBOL_CONSTANT_PROVENANCE) {
+    ok(`provenance row ${p.name} cites something`, p.source.trim().length > 20, `source is "${p.source}"`);
+    ok(`provenance row ${p.name} uses the repo vocabulary`, p.conf === "sourced" || p.conf === "modelled", p.conf);
+  }
+
+  /* ---- 1b. THE COVERAGE PASS, and the defect it was written for -----------
+   *
+   * The symmetry controls above can only see constants that already carry the
+   * marker. The bug that actually shipped was the opposite: GRAND_SACRED_DAILY
+   * as a bare `= 15` with no marker and no row, which is absent from BOTH sets
+   * a symmetry check compares, so the sets still matched and it passed. These
+   * controls re-introduce that exact defect and require a failure.            */
+  {
+    const bare = { ...S, GRAND_SACRED_DAILY: 15 };
+    ok(
+      "coverage: a bare unsourced number is caught",
+      S.checkUnverifiedRegistry(bare).some((f) => f.includes("GRAND_SACRED_DAILY")),
+      "this is the precise constant that was invisible to the old check — if this passes "
+        + "silently the guard is back to proving nothing",
+    );
+    const bareRecord = { ...S, NEW_MESO_K: { alpha: 1, beta: 2 } };
+    ok(
+      "coverage: a bare record of numbers is caught",
+      S.checkUnverifiedRegistry(bareRecord).some((f) => f.includes("NEW_MESO_K")),
+    );
+    // A record with ONE registered field must not count as fully covered:
+    // GRAND_SACRED_MESO_K.geardock was registered while .tallahart was not, and
+    // a root-name match would have hidden the 39.8 exactly that way.
+    const halfCovered = {
+      ...S,
+      GRAND_SACRED_MESO_K: { tallahart: 39.8, geardock: 39.8, newarea: 1 },
+    };
+    ok(
+      "coverage: an uncovered FIELD of a covered record is caught",
+      S.checkUnverifiedRegistry(halfCovered).some((f) => f.includes("newarea")),
+      "per-field coverage is what stops one registered field vouching for its siblings",
+    );
+    ok(
+      "coverage: the module as it stands passes both passes",
+      S.checkUnverifiedRegistry(S).length === 0,
+      S.checkUnverifiedRegistry(S).join(" | "),
+    );
+    // The other half of a useful check: it must stay quiet about things that do
+    // not carry game figures. A check that flags prose and area lists gets
+    // muted by the next reader, and then catches nothing at all.
+    ok(
+      "coverage: prose, area lists and boolean flags owe no citation",
+      !S.checkUnverifiedRegistry(S).some((f) =>
+        /AREA_NAME|RANK_BASIS_WHY|ARCANE_AREAS|NO_ARCANE_LEVELS_WHY|_VERIFIED\b/.test(f)),
+      "only game figures owe provenance",
+    );
+  }
+  // The marker debt is a list, not a tolerance. If it empties, this assertion is
+  // what tells the next reader the exception can be deleted.
+  for (const name of S.UNMARKED_SCALAR_DEBT) {
+    ok(
+      `marker debt "${name}" is registered as unverified`,
+      S.UNVERIFIED_SYMBOL_CONSTANTS.some((u) => u.name === name),
+      "an unsourced export whose name does not say so must at least have a registry row",
+    );
   }
 
   /* ---- 2. the Arcane growth table, against the published one --------------- */
@@ -337,6 +418,124 @@ export function __symbolSelfTest(): { ok: boolean; failures: string[] } {
     eq("a maxed account is at ARCANE_FORCE_MAX", plan.forceNow, S.ARCANE_FORCE_MAX);
   }
 
+  /* ---- 9b. AN UNREADABLE LEVEL IS UNKNOWN, NOT ZERO AND NOT FINISHED ------
+   *
+   * The decision these assertions pin down, so a later edit cannot quietly
+   * choose differently: a non-finite or non-integer level means NOBODY KNOWS
+   * this level. It is not 0 (which reads as "unowned, 2,679 symbols to go") and
+   * it is not maxed (which reads as "finished today"). The old code produced
+   * the second: Math.max(0, Math.min(CAP, NaN)) is NaN, arcaneSymbolsBetween
+   * returned 0 because its loop guard is false on entry, daysToEarn(0) is 0,
+   * and the area was reported FINISHED under a headline reading "NaN symbol
+   * levels left (+NaN main stat). Arcane Force NaN of 1320."                 */
+  {
+    const blank: S.ArcaneLevels = { vj: NaN, chuchu: 16, lach: 16, arcana: 16, morass: 16, esfera: 15 };
+    const plan = S.planArcane(blank, OBSERVED.cls, TODAY);
+
+    ok("an unreadable level is named, not absorbed", plan.unreadableAreas.join() === "vj", plan.unreadableAreas.join());
+    eq("an unreadable area gets no projection row", plan.areas.length, 5);
+    ok("no unreadable area sneaks into the rows", !plan.areas.some((a) => a.area === "vj"));
+    ok("the headline never prints NaN", !/NaN/.test(plan.headline), plan.headline);
+    ok(
+      "an unread area means the ACCOUNT has no finish date",
+      plan.maxedOn === null && plan.daysToMax === Infinity,
+      `daysToMax ${plan.daysToMax}, maxedOn ${String(plan.maxedOn)}`,
+    );
+    ok("and the headline does not quote one", !/Maxed on/.test(plan.headline), plan.headline);
+    ok(
+      "the totals stay finite lower bounds rather than going NaN",
+      Number.isFinite(plan.levelsRemaining) && Number.isFinite(plan.statRemaining)
+        && Number.isFinite(plan.symbolsRemaining) && Number.isFinite(plan.mesosRemaining),
+      `levels ${plan.levelsRemaining}, stat ${plan.statRemaining}`,
+    );
+    ok("the headline says the figures are floors", /at least/.test(plan.headline), plan.headline);
+
+    // The ranking is the module's whole reason to exist, and it was the worst
+    // hit: every comparison against NaN is false, so the unreadable row kept
+    // its array position and came out RANKED FIRST.
+    const ranked = S.rankArcaneNextLevel(blank, OBSERVED.cls, income, "time");
+    ok("an unreadable level is not ranked at all", ranked.every((r) => r.area !== "vj"), ranked.map((r) => r.area).join(","));
+    ok("and certainly not ranked #1", ranked[0]?.area !== "vj", ranked[0]?.line ?? "no rows");
+    ok("no ranked line prints NaN", ranked.every((r) => !/NaN/.test(r.line)), ranked[0]?.line ?? "no rows");
+
+    // Every shape a blank form field actually arrives in.
+    for (const [label, raw] of [["NaN", NaN], ["Infinity", Infinity], ["a fraction", 16.5]] as const) {
+      eq(`readSymbolLevel refuses ${label}`, S.readSymbolLevel(raw, S.ARCANE_LEVEL_CAP), null);
+      ok(`isUnreadableLevel agrees about ${label}`, S.isUnreadableLevel(raw));
+    }
+    eq("readSymbolLevel clamps a finite over-cap level", S.readSymbolLevel(999, S.ARCANE_LEVEL_CAP), S.ARCANE_LEVEL_CAP);
+    eq("readSymbolLevel clamps a negative level to 0", S.readSymbolLevel(-5, S.ARCANE_LEVEL_CAP), 0);
+    eq("readSymbolLevel passes a real level through", S.readSymbolLevel(16, S.ARCANE_LEVEL_CAP), 16);
+
+    eq("daysToEarn(NaN) is Infinity, not zero days", S.daysToEarn(NaN, TODAY, income), Infinity);
+    const ck = S.validateArcanePower(blank, OBSERVED.arcanePower);
+    ok(
+      "the checksum blames the blank field, not the stat window",
+      ck.ok === false && ck.likelyLevelsOff === 0 && /blank|whole number/.test(ck.message),
+      ck.message,
+    );
+
+    // Sacred takes the same treatment, or the bug just moves one tier down.
+    const sac = S.planSacred({ cernium: NaN, arcus: 5, odium: 5, shangrila: 5, arteria: 5, carcion: 5 }, OBSERVED.cls, 275, TODAY);
+    ok("planSacred names its unreadable areas too", sac.unreadableAreas.join() === "cernium", sac.unreadableAreas.join());
+    ok("planSacred quotes no date either", sac.maxedOn === null && !/maxed on/i.test(sac.headline), sac.headline);
+    ok("planSacred marks its force as a floor", /at least/.test(sac.headline), sac.headline);
+    ok(
+      "an unreadable Sacred level is not ranked",
+      S.rankSacredNextLevel({ cernium: NaN, arcus: 5, odium: 5, shangrila: 5, arteria: 5, carcion: 5 }, OBSERVED.cls)
+        .every((r) => r.area !== "cernium"),
+    );
+
+    // And the player is told, rather than left to notice the missing date.
+    const state = S.emptySymbolState();
+    state.arcane = blank;
+    const advice = S.symbolAdvice(state, { cls: OBSERVED.cls, playerLevel: OBSERVED.playerLevel, today: TODAY, reportedArcanePower: OBSERVED.arcanePower });
+    checkRecs("unreadable levels", advice.recs);
+    ok(
+      "an unreadable level produces a pri-1 rec saying so",
+      advice.recs.some((r) => r.key === "symbols/unreadable-levels" && r.pri === 1),
+      advice.recs.map((r) => r.key).join(" "),
+    );
+    ok("no rec anywhere prints NaN", advice.recs.every((r) => !/NaN/.test(r.t + r.w)));
+    ok(
+      "the checksum rec does not also fire and blame the stat window",
+      !advice.recs.some((r) => r.key === "symbols/checksum"),
+      "two recs for one cause, one of them pointing at the wrong culprit",
+    );
+  }
+
+  /* ---- 9c. AN OUT-OF-RANGE LEVEL IS CLAMPED, AND THE CLAMP IS REPORTED ----
+   *
+   * forceNow used to be computed from the RAW levels while every per-area field
+   * beside it used the clamped one, so a level of 999 printed "Arcane Force
+   * 11110 of 1320" — more than the game's maximum, in a headline.             */
+  {
+    const over: S.ArcaneLevels = { vj: 999, chuchu: 20, lach: 20, arcana: 20, morass: 20, esfera: 20 };
+    const plan = S.planArcane(over, OBSERVED.cls, TODAY);
+    ok("forceNow can never exceed forceMax", plan.forceNow <= plan.forceMax, `${plan.forceNow} of ${plan.forceMax}`);
+    eq("forceNow agrees with the clamped per-area levels", plan.forceNow, S.ARCANE_FORCE_MAX);
+    ok("the clamp is reported rather than silent", plan.clampedAreas.join() === "vj", plan.clampedAreas.join());
+    eq("arcanePower is capped at its own maximum", S.arcanePower(over), S.ARCANE_FORCE_MAX);
+    eq(
+      "sacredPower is capped too",
+      S.sacredPower({ cernium: 99, arcus: 99, odium: 99, shangrila: 99, arteria: 99, carcion: 99 }),
+      S.SACRED_FORCE_MAX,
+    );
+    eq("a negative level contributes no force", S.arcanePower({ vj: -5, chuchu: 0, lach: 0, arcana: 0, morass: 0, esfera: 0 }), 0);
+    // No GRAND_SACRED_FORCE_MAX was sourced, so this asserts the bound that the
+    // file's own constants imply rather than inventing a published maximum.
+    eq(
+      "grandSacredPower clamps per level",
+      S.grandSacredPower({ tallahart: 99, geardock: 99 }),
+      S.GRAND_SACRED_AREAS.length * S.GRAND_SACRED_LEVEL_CAP * S.SACRED_FORCE_PER_LEVEL,
+    );
+    ok(
+      "the player is told a level was clamped",
+      S.symbolAdvice({ ...S.emptySymbolState(), arcane: over }, { cls: OBSERVED.cls, playerLevel: OBSERVED.playerLevel, today: TODAY })
+        .recs.some((r) => r.key === "symbols/clamped-levels"),
+    );
+  }
+
   /* ---- 10. the ranking, and the reason it cannot run off Arcane Power ----- */
 
   {
@@ -437,23 +636,6 @@ export function __symbolSelfTest(): { ok: boolean; failures: string[] } {
   }
 
   /* ---- 12. the entry point, in the shape rules.ts's Rec needs ------------- */
-
-  const PRI = [1, 2, 3, 4];
-  const LV = ["hi", "mid", "ok"];
-  const CONF = ["sourced", "modelled", "placeholder"];
-  const checkRecs = (label: string, recs: S.SymbolRec[]): void => {
-    const keys = new Set<string>();
-    for (const r of recs) {
-      ok(`${label}: pri in 1..4`, PRI.includes(r.pri), `pri ${r.pri} on "${r.t}"`);
-      ok(`${label}: lv in the Rec vocabulary`, LV.includes(r.lv), `lv ${r.lv}`);
-      ok(`${label}: conf in the confidence vocabulary`, r.conf === undefined || CONF.includes(r.conf), `conf ${r.conf}`);
-      ok(`${label}: t is a sentence`, r.t.trim().length > 0);
-      ok(`${label}: w is a sentence`, r.w.trim().length > 0);
-      ok(`${label}: a priced rec carries a cost`, r.cost === undefined || r.cost > 0, `cost ${r.cost}`);
-      ok(`${label}: key "${r.key}" is unique`, !keys.has(r.key));
-      keys.add(r.key);
-    }
-  };
 
   {
     const advice = S.symbolAdvice(S.emptySymbolState(), {

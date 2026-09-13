@@ -33,6 +33,10 @@ export interface StatsPatch {
    *  which means a multiplier of 2.1579. The engine converts; do not
    *  pre-convert here or it gets halved. */
   finalDamagePct?: number;
+  /** Flat SECONDARY stat — STR for a Bow Master, DEX for a Night Lord. The
+   *  stat window prints all four; which one is secondary depends on the class,
+   *  and the vision layer is what decides, not this interface. */
+  secondary?: number;
 }
 
 const STAT_LABELS: Array<[keyof StatsPatch, string]> = [
@@ -45,6 +49,7 @@ const STAT_LABELS: Array<[keyof StatsPatch, string]> = [
   // only renderer of what an import is about to change, and a measurement that
   // lands silently is the one thing this app is not allowed to do.
   ["damagePct", "Damage %"], ["finalDamagePct", "Final Damage %"],
+  ["secondary", "Secondary stat"],
 ];
 
 /** Slots that come in interchangeable sets: ring1..ring4, pendant1..pendant2.

@@ -3,7 +3,9 @@ import { SLOTS, canStarForce, sfCap, type Item, type SlotDef, type Tier } from "
 import type { ImportFailure, ImportOutcome, OpenRouterUsage } from "@/lib/entitlement";
 import { guardImport } from "@/lib/entitlementStore";
 import { STAT_WINDOW_DAMAGE_PROMPT } from "@/lib/import/damageReadings";
-import { num, str, tidyStatWindow, type VisionStats } from "@/lib/import/visionFields";
+import { SYMBOL_TAB_PROMPT, type RawArcaneSymbols } from "@/lib/import/symbolLevels";
+import { ARCANE_AREAS } from "@/lib/symbols";
+import { num, str, tidyCharacterWindows, type VisionStats } from "@/lib/import/visionFields";
 
 // Reads a MapleStory item tooltip out of a screenshot using a vision model.
 //
@@ -85,6 +87,15 @@ const DEFAULT_MODELS = [
  *   key list, so both fields are carried to the edge of this route and dropped
  *   there until those two files list them. Nothing here breaks meanwhile —
  *   they simply never arrive, which is the same as not being read.
+ * - `stats.symVj` … `stats.symEsfera` (the Symbol window's six Arcane levels)
+ *   ride in the same patch for the same reason, and the same caveat applies in
+ *   one direction only: components/ImportDialog.tsx merges the patch with a
+ *   shallow spread and passes it through untouched, so the levels DO reach
+ *   components/Planner.tsx, which validates them again before writing. What
+ *   that dialog does NOT yet do is list them in the "Character stats found"
+ *   table a player approves the import from — its STAT_LABELS array is the only
+ *   renderer of that table and it is not this change's file to edit. Until that
+ *   row is added, the Planner's own apply toast is what names them.
  * - app/api/items/route.ts already maps the upstream subcategory to our slot id
  *   and returns it as `slot`, so that mapping is consumed rather than copied.
  * ------------------------------------------------------------------ */
@@ -181,6 +192,8 @@ rather than guessing at it. Also add "rosterPage": [n, total] from the page
 counter, so [1, 3] for "01 / 03". Use null for "roster" and "rosterPage" when no
 Switch Character window is on screen.
 
+${SYMBOL_TAB_PROMPT}
+
 Output the JSON object and nothing else. Do not narrate what you see, do not
 think out loud, do not write "Let me analyze". The first character you emit must
 be { and the last must be }.`;
@@ -228,6 +241,23 @@ const STATS_SCHEMA = {
   },
 } as const;
 
+/**
+ * The Symbol window. Built from ARCANE_AREAS rather than six literals so the
+ * keys the model is asked for cannot drift from the keys readArcaneLevelPatch()
+ * looks up — a schema naming a seventh area, or missing one, would fail
+ * silently as "the model didn't read that one".
+ *
+ * Same strict-mode shape as STATS_SCHEMA: every property listed in `required`,
+ * `additionalProperties` false, and optionality expressed as a nullable type.
+ * Null is how a symbol the model could not read says so.
+ */
+const SYMBOLS_SCHEMA = {
+  type: ["object", "null"],
+  additionalProperties: false,
+  required: ARCANE_AREAS.map((a) => a),
+  properties: Object.fromEntries(ARCANE_AREAS.map((a) => [a, NUM_OR_NULL])),
+};
+
 const BOX_SCHEMA = { type: "array", items: { type: "number" } } as const;
 
 const TOOLTIP_SCHEMA = {
@@ -239,7 +269,7 @@ const TOOLTIP_SCHEMA = {
     required: [
       "name", "level", "slot", "tier", "potential", "flame", "starforce",
       "superior", "noStarForce", "noFlame", "noPotential", "iconBox",
-      "tooltipBox", "stats", "roster", "rosterPage",
+      "tooltipBox", "stats", "roster", "rosterPage", "symbols",
     ],
     properties: {
       name: { type: "string" },
@@ -269,6 +299,7 @@ const TOOLTIP_SCHEMA = {
         },
       },
       rosterPage: { type: ["array", "null"], items: { type: "number" } },
+      symbols: SYMBOLS_SCHEMA,
     },
   },
 } as const;
@@ -303,6 +334,11 @@ interface VisionItem {
   noStarForce?: boolean; noFlame?: boolean; noPotential?: boolean;
   iconBox?: number[]; tooltipBox?: number[]; stats?: VisionStats | null;
   roster?: VisionRosterEntry[] | null; rosterPage?: number[] | null;
+  /** The Symbol window's six Arcane levels. Every value is `unknown` because
+   *  the `object` and `none` rungs of the format ladder deliver whatever the
+   *  model felt like typing, and readArcaneLevelPatch() is what decides which
+   *  of those is a level. */
+  symbols?: RawArcaneSymbols | null;
 }
 
 interface VisionStarRow {
@@ -1020,11 +1056,15 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
         break;
       }
 
-      const stats = tidyStatWindow(parsed.stats);
+      // The stat window and the Symbol window share one patch object: they are
+      // two windows but one destination (the character sheet), and the import
+      // dialog carries exactly one such object. A shot of the Symbol window
+      // alone therefore counts as a successful read — see tidyCharacterWindows.
+      const stats = tidyCharacterWindows(parsed.stats, parsed.symbols);
       const roster = tidyRoster(parsed.roster);
       const rawName = str(parsed.name) ?? "";
       if (!rawName && !stats && !roster) {
-        outcomes.push({ model, why: "read the image but found no item tooltip, stat window or character list" });
+        outcomes.push({ model, why: "read the image but found no item tooltip, stat window, symbol window or character list" });
         // NOT refunded (REFUND_ON_NO_CONTENT is false): the model read the image
         // and the vision tokens were really spent. The visitor sent a screenshot
         // with nothing in it, which is a different thing from us failing.
@@ -1227,7 +1267,7 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
 
   const detail = outcomes.map((o) => `${o.model} — ${o.why}`).join("; ");
   const error = anyModelAnswered
-    ? `A model read the image but found nothing it could use. Show an item tooltip, the Stat window, or the Switch Character list. (${detail})`
+    ? `A model read the image but found nothing it could use. Show an item tooltip, the Stat window, the Symbol window, or the Switch Character list. (${detail})`
     : `No vision model responded — free endpoints are likely rate-limited right now. Wait a minute and retry. (${detail})`;
 
   logImport({

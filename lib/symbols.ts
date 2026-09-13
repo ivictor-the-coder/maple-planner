@@ -20,9 +20,26 @@
 // PROVENANCE. Every constant below is either verified against a cited source,
 // or carries `_UNVERIFIED` (or `_UNRECONCILED`) in its name AND an entry in
 // UNVERIFIED_SYMBOL_CONSTANTS at the bottom. Nothing is buried in an
-// expression. That sentence is not a promise: checkUnverifiedRegistry()
-// enumerates this module's own exports and fails if the two sets differ by so
-// much as one name. __symbolSelfTest() in lib/symbolSelfTest.ts runs it.
+// expression. checkUnverifiedRegistry() enforces that in two passes, and
+// __symbolSelfTest() in lib/symbolSelfTest.ts runs it:
+//
+//   1. SYMMETRY. The marked exports and the registry's `markedExport` rows must
+//      be the same set, differing by not one name in either direction.
+//   2. COVERAGE. Every export carrying a game figure — a number, or a record
+//      whose values are all numbers — must appear in exactly one of the two
+//      ledgers: UNVERIFIED_SYMBOL_CONSTANTS or SYMBOL_CONSTANT_PROVENANCE.
+//
+// Pass 2 exists because pass 1 alone could not see the bug it was written for.
+// GRAND_SACRED_DAILY was once a bare `= 15` with no marker and no row, and a
+// symmetry check is blind to that by construction: an unregistered constant is
+// absent from both sets, so the sets still match. Adding a bare constant now
+// fails COVERAGE, which is the whole point.
+//
+// WHAT PASS 2 STILL CANNOT DO, said plainly so the next reader keeps looking:
+// it checks that a provenance claim EXISTS, never that the claim is TRUE. A row
+// reading `conf: "sourced"` against a URL nobody opened passes. The check makes
+// silence impossible; it does not make lying impossible. Only reading the cited
+// page does that.
 
 /* ------------------------------------------------------------------ areas */
 
@@ -112,6 +129,49 @@ export const GRAND_SACRED_UNLOCK_VERIFIED: Record<GrandSacredArea, boolean> = {
 export const ARCANE_LEVEL_CAP = 20;
 export const SACRED_LEVEL_CAP = 11;
 export const GRAND_SACRED_LEVEL_CAP = 11;
+
+/* --------------------------------------------------- reading a level ------
+ *
+ * THE ONE PLACE A RAW LEVEL BECOMES A LEVEL THIS MODULE WILL USE.
+ *
+ * NON-FINITE IS NOT ZERO, AND THAT DISTINCTION IS THE WHOLE FUNCTION.
+ * `Math.max(0, Math.min(cap, NaN))` is NaN, and NaN then walks through every
+ * guard in this file untouched, because every comparison against it is false:
+ *   - `if (level < 1 || level >= CAP) return 0` returns neither, so cost
+ *     formulas run on NaN and produce NaN;
+ *   - `for (let l = from; l < to; l++)` is false on entry, so
+ *     arcaneSymbolsBetween(NaN, 20) returns 0 — "no symbols left";
+ *   - daysToEarn(0) is 0, so maxedOn becomes today and the area reports
+ *     FINISHED;
+ *   - and in finishRanking's comparator every `a - b` is NaN, so the row keeps
+ *     its array position and a half-typed form field is ranked #1: "level this
+ *     symbol next", chosen because nobody could read it.
+ * An empty or half-typed input is a level NOBODY KNOWS. It is not 0 and it is
+ * not maxed, so this returns null and every caller has to say "unknown" out
+ * loud instead of inheriting a number by accident.
+ *
+ * A FINITE OUT-OF-RANGE LEVEL IS CLAMPED, NOT REFUSED. The game has no level
+ * 999 and no level -3, the cap is the real ceiling, and clamping is already
+ * what every per-area field in planArcane does — defect 3 was that forceNow
+ * alone did not. Clamping is REPORTED (ArcanePlan.clampedAreas) rather than
+ * applied silently, because a 999 in the input is a typo the player should see
+ * named rather than have quietly rounded down for them.
+ *
+ * A NON-INTEGER IS UNREADABLE, not floored. There is no level 16.5, and
+ * choosing 16 over 17 is a guess about which way the input went wrong. Refusing
+ * fails loudly at the one place that can explain itself; flooring would hand
+ * back a confident number derived from an impossible one.
+ */
+export function readSymbolLevel(raw: number, cap: number): number | null {
+  if (!Number.isInteger(raw)) return null;
+  return Math.max(0, Math.min(cap, raw));
+}
+
+/** True when readSymbolLevel would refuse this input. The negative form exists
+ *  because callers overwhelmingly want to list the bad areas, not the good. */
+export function isUnreadableLevel(raw: number): boolean {
+  return !Number.isInteger(raw);
+}
 
 export interface Gate {
   unlocked: boolean;
@@ -344,8 +404,24 @@ export const ARCANE_FORCE_BASE_PER_SYMBOL = 20;
 export const ARCANE_FORCE_PER_LEVEL = 10;
 export const ARCANE_FORCE_MAX = 1320;
 
+/**
+ * Force is CAPPED AT THE LEVEL, not at the total, and the difference matters.
+ * Capping the sum with `Math.min(ARCANE_FORCE_MAX, ...)` would look equivalent
+ * and would hide a disagreement: if someone raised ARCANE_LEVEL_CAP to 21 and
+ * left ARCANE_FORCE_MAX at 1320, a total-level clamp silently pins the answer
+ * to the stale constant. Clamping per level makes 1320 EMERGENT — six symbols
+ * at cap — so the two constants must agree, and __symbolSelfTest asserts
+ * exactly that agreement (arcaneForceOf(20) * 6 === ARCANE_FORCE_MAX).
+ *
+ * An UNREADABLE level contributes 0 here, the same as an unequipped one, and
+ * that collapse is safe in this direction only: force is a floor, so "at least
+ * this much" stays true. It is NOT safe for symbols-remaining, where the same
+ * NaN-to-0 collapse turns "unknown" into "finished" — which is why planArcane
+ * refuses rather than reusing this leniency. Same input, opposite obligations.
+ */
 export function arcaneForceOf(level: number): number {
-  return level <= 0 ? 0 : ARCANE_FORCE_BASE_PER_SYMBOL + ARCANE_FORCE_PER_LEVEL * level;
+  const L = readSymbolLevel(level, ARCANE_LEVEL_CAP);
+  return L === null || L <= 0 ? 0 : ARCANE_FORCE_BASE_PER_SYMBOL + ARCANE_FORCE_PER_LEVEL * L;
 }
 
 /** The real derivation. Replaces storing `arcane` as a number. */
@@ -367,11 +443,25 @@ export const SACRED_FORCE_PER_LEVEL = 10;
 export const SACRED_FORCE_MAX = 660;
 export const SACRED_FORCE_CAP_PER_BRIEF_UNRECONCILED = 250;
 
+/** `Math.max(0, ...)` alone floored the bottom and left the top open: a level of
+ *  99 read as 990 Sacred Power against a sourced maximum of 660. Clamped per
+ *  level for the reason given on arcaneForceOf, which makes 660 emergent
+ *  (6 areas x 11 levels x 10) rather than an imposed ceiling. */
 export function sacredPower(levels: SacredLevels): number {
-  return SACRED_AREAS.reduce((s, a) => s + SACRED_FORCE_PER_LEVEL * Math.max(0, levels[a]), 0);
+  return SACRED_AREAS.reduce(
+    (s, a) => s + SACRED_FORCE_PER_LEVEL * (readSymbolLevel(levels[a], SACRED_LEVEL_CAP) ?? 0),
+    0,
+  );
 }
+/** No GRAND_SACRED_FORCE_MAX is asserted here: none was sourced, and inventing
+ *  one to cap against is the move this repo bans. The per-level clamp bounds it
+ *  at 2 x 11 x 10 = 220 from constants that ARE in this file, and nothing
+ *  claims that figure is the game's published maximum. */
 export function grandSacredPower(levels: GrandSacredLevels): number {
-  return GRAND_SACRED_AREAS.reduce((s, a) => s + SACRED_FORCE_PER_LEVEL * Math.max(0, levels[a]), 0);
+  return GRAND_SACRED_AREAS.reduce(
+    (s, a) => s + SACRED_FORCE_PER_LEVEL * (readSymbolLevel(levels[a], GRAND_SACRED_LEVEL_CAP) ?? 0),
+    0,
+  );
 }
 /** What the game's "Authentic Force" line shows: Sacred plus Grand Sacred. */
 export function authenticForce(s: SymbolState): number {
@@ -501,6 +591,24 @@ export interface ArcaneChecksum {
 }
 
 export function validateArcanePower(levels: ArcaneLevels, reported: number): ArcaneChecksum {
+  // An unreadable level makes `derived` a floor, not a total, so a mismatch
+  // cannot be attributed to a misread symbol count — it is already explained.
+  // Saying "your levels add up to 850 but the window reads 1,070" here would
+  // blame the stat window for a level this module could not read.
+  const unreadable = ARCANE_AREAS.filter((a) => isUnreadableLevel(levels[a]));
+  if (unreadable.length > 0) {
+    return {
+      ok: false,
+      derived: arcanePower(levels),
+      reported,
+      delta: 0,
+      likelyLevelsOff: 0,
+      message:
+        `${unreadable.length} symbol level${unreadable.length === 1 ? " is" : "s are"} blank or `
+        + `not a whole number (${unreadable.map((a) => AREA_NAME[a]).join(", ")}), so your levels `
+        + "cannot be checked against the stat window yet.",
+    };
+  }
   const derived = arcanePower(levels);
   const delta = derived - reported;
   const likelyLevelsOff =
@@ -658,6 +766,12 @@ const SIM_DAY_LIMIT = 20_000;
  * actually cares about.
  */
 export function daysToEarn(needed: number, today: Date, opt: IncomeOptions): number {
+  // `needed <= 0` is false for NaN, and the loop guard `have < needed` is false
+  // on entry, so an unguarded NaN fell straight through to `return day` with
+  // day still 0 — zero days, i.e. finished today. Infinity is the value every
+  // caller in this file already renders as "no date can be quoted", which is
+  // the honest reading of a requirement nobody could compute.
+  if (!Number.isFinite(needed)) return Infinity;
   if (needed <= 0) return 0;
   const missed = Math.min(7, Math.max(0, Math.floor(opt.missedDaysPerWeek)));
   const perWeek = opt.dailyPerArea * (7 - missed) + opt.weeklyPerArea;
@@ -734,6 +848,18 @@ export interface ArcanePlan {
   maxedOn: Date | null;
   /** Days the finish date slips if one full day of dailies is skipped each week. */
   slipPerMissedDay: number;
+  /**
+   * Areas whose level could not be read — see readSymbolLevel. Empty in the
+   * normal case. NON-EMPTY CHANGES WHAT EVERY TOTAL ON THIS OBJECT MEANS:
+   * `areas` carries no row for an unreadable area, so levelsRemaining,
+   * symbolsRemaining, mesosRemaining and statRemaining become LOWER BOUNDS, and
+   * daysToMax is Infinity with maxedOn null because the unread area could be
+   * the slowest one. A UI must render these areas as "—", never as 0.
+   */
+  unreadableAreas: ArcaneArea[];
+  /** Areas whose level was a whole number outside 0..cap and was clamped to it.
+   *  Surfaced so a typo'd 999 is named rather than silently rounded down. */
+  clampedAreas: ArcaneArea[];
   headline: string;
   slipLine: string;
 }
@@ -746,8 +872,21 @@ export function planArcane(
 ): ArcanePlan {
   const grant = arcaneGrantFor(cls);
 
-  const areas: AreaProjection[] = ARCANE_AREAS.map((area) => {
-    const level = Math.max(0, Math.min(ARCANE_LEVEL_CAP, levels[area]));
+  // Read every level ONCE, up front, and keep the readable ones. An unreadable
+  // area gets no row: a row in `areas` is a projection, and there is no
+  // projection for a level nobody could read. Giving it a row with a sentinel
+  // level is precisely how a sentinel ends up rendered as a fact — a blank
+  // field became level 0, level 0 became "0 symbols remaining", and the area
+  // was reported finished today.
+  const unreadableAreas = ARCANE_AREAS.filter((a) => isUnreadableLevel(levels[a]));
+  const clampedAreas = ARCANE_AREAS.filter(
+    (a) => !isUnreadableLevel(levels[a]) && levels[a] !== readSymbolLevel(levels[a], ARCANE_LEVEL_CAP),
+  );
+  const readable = ARCANE_AREAS.filter((a) => !isUnreadableLevel(levels[a]));
+
+  const areas: AreaProjection[] = readable.map((area) => {
+    // Non-null by construction: `readable` is exactly the areas that parse.
+    const level = readSymbolLevel(levels[area], ARCANE_LEVEL_CAP) as number;
     const unlocked = level >= 1;
     const from = Math.max(1, level);
     const symbolsRemaining = arcaneSymbolsBetween(from, ARCANE_LEVEL_CAP);
@@ -770,10 +909,20 @@ export function planArcane(
     };
   });
 
-  const daysToMax = areas.reduce((m, a) => Math.max(m, a.daysToMax), 0);
+  // An unread area could be the slowest one, so the ACCOUNT has no finish date
+  // even though five of its six rows do. Infinity is what this file already
+  // means by "no date can be quoted", and maxedOn below turns it into null.
+  const daysToMax = unreadableAreas.length > 0
+    ? Infinity
+    : areas.reduce((m, a) => Math.max(m, a.daysToMax), 0);
   const levelsRemaining = areas.reduce((s, a) => s + a.levelsRemaining, 0);
   const statRemaining = areas.reduce((s, a) => s + a.statRemaining, 0);
   const slowest = areas.reduce((m, a) => Math.max(m, a.symbolsRemaining), 0);
+  // Defect 3 was that this line read the RAW levels while every per-area field
+  // beside it read the clamped one, so a level of 999 printed 11,110 Arcane
+  // Force against a maximum of 1,320. The clamp now lives inside arcaneForceOf,
+  // which is what both this and the rows above go through — one clamp in one
+  // place, rather than a second copy here that can drift from the first.
   const forceNow = arcanePower(levels);
 
   const slipped = daysToEarn(slowest, today, {
@@ -800,18 +949,34 @@ export function planArcane(
     daysToMax,
     maxedOn: done,
     slipPerMissedDay,
+    unreadableAreas,
+    clampedAreas,
     headline:
-      levelsRemaining === 0
-        ? `Arcane Force ${forceNow} — all six symbols maxed.`
-        : `${levelsRemaining} symbol levels left (+${statRemaining.toLocaleString()} ${word}). `
-          + `Arcane Force ${forceNow} of ${ARCANE_FORCE_MAX}. `
-          + (done
-            ? `Maxed on ${formatDate(done)} at current dailies.`
-            : "No finish date — income model returned zero.")
-          + (locked
-            ? ` ${locked} of the six symbols are not unlocked yet, so that date starts `
-              + "counting once you have them."
-            : ""),
+      // The unreadable branch comes FIRST and is not merged into the one below,
+      // because every phrase in that one is a claim this case cannot support:
+      // "N levels left" is a lower bound, "Arcane Force N" is a floor, and
+      // "maxed on DATE" is unknowable. The old code had no such branch, so a
+      // blank field rendered "NaN symbol levels left (+NaN main stat). Arcane
+      // Force NaN of 1320." and then quoted a confident completion date.
+      unreadableAreas.length > 0
+        ? `${unreadableAreas.map((a) => AREA_NAME[a]).join(", ")} `
+          + `${unreadableAreas.length === 1 ? "has no level entered" : "have no levels entered"}, `
+          + "so there is no finish date yet. The other "
+          + `${areas.length} symbol${areas.length === 1 ? "" : "s"} need at least `
+          + `${levelsRemaining} more level${levelsRemaining === 1 ? "" : "s"} `
+          + `(+${statRemaining.toLocaleString()} ${word}), and Arcane Force is at least `
+          + `${forceNow} of ${ARCANE_FORCE_MAX}.`
+        : levelsRemaining === 0
+          ? `Arcane Force ${forceNow} — all six symbols maxed.`
+          : `${levelsRemaining} symbol levels left (+${statRemaining.toLocaleString()} ${word}). `
+            + `Arcane Force ${forceNow} of ${ARCANE_FORCE_MAX}. `
+            + (done
+              ? `Maxed on ${formatDate(done)} at current dailies.`
+              : "No finish date — income model returned zero.")
+            + (locked
+              ? ` ${locked} of the six symbols are not unlocked yet, so that date starts `
+                + "counting once you have them."
+              : ""),
     slipLine:
       slipPerMissedDay > 0
         ? `Skip one day a week and that date moves to `
@@ -918,7 +1083,15 @@ export function rankArcaneNextLevel(
   const perDay = symbolsPerDay(opt);
 
   const rows = ARCANE_AREAS.map((area): Omit<SymbolUpgradeRank, "rank" | "line"> | null => {
-    const from = Math.max(0, Math.min(ARCANE_LEVEL_CAP, levels[area]));
+    const from = readSymbolLevel(levels[area], ARCANE_LEVEL_CAP);
+    // An unreadable level has no "next level" anyone can name, so it is not a
+    // recommendation. The old clamp let NaN through — `NaN < 1` and
+    // `NaN >= CAP` are both false — and because every subtraction in
+    // finishRanking's comparator was then NaN, the row held its array position
+    // and came out RANKED FIRST: "Vanishing Journey NaN → NaN · — · NaN
+    // symbols". The single answer this module exists to produce, chosen because
+    // nobody could read the input.
+    if (from === null) return null;
     // Level 0 means the symbol is not unlocked; unlocking is a quest, not a
     // purchase, so it does not belong in a cost-efficiency ranking.
     if (from < 1 || from >= ARCANE_LEVEL_CAP) return null;
@@ -959,7 +1132,9 @@ export function rankSacredNextLevel(
   const grant = sacredGrantFor(cls);
 
   const rows = SACRED_AREAS.map((area): Omit<SymbolUpgradeRank, "rank" | "line"> | null => {
-    const from = Math.max(0, Math.min(SACRED_LEVEL_CAP, levels[area]));
+    // Same refusal as rankArcaneNextLevel, same reason — see the note there.
+    const from = readSymbolLevel(levels[area], SACRED_LEVEL_CAP);
+    if (from === null) return null;
     if (from < 1 || from >= SACRED_LEVEL_CAP) return null;
     const mesos = sacredMesoForLevel(area, from);
     const symbols = sacredSymbolsForLevel(from);
@@ -1045,6 +1220,11 @@ export interface SacredPlan {
   statVerified: boolean;
   daysToMax: number;
   maxedOn: Date | null;
+  /** As ArcanePlan.unreadableAreas: non-empty makes `areas` short and daysToMax
+   *  Infinity, because the unread area could be the slowest. */
+  unreadableAreas: SacredArea[];
+  /** As ArcanePlan.clampedAreas. */
+  clampedAreas: SacredArea[];
   headline: string;
   caveat: string;
 }
@@ -1058,6 +1238,10 @@ export function planSacred(
   const gate = sacredGate(playerLevel);
   const grant = sacredGrantFor(cls);
   const forceNow = sacredPower(levels);
+  const unreadableAreas = SACRED_AREAS.filter((a) => isUnreadableLevel(levels[a]));
+  const clampedAreas = SACRED_AREAS.filter(
+    (a) => !isUnreadableLevel(levels[a]) && levels[a] !== readSymbolLevel(levels[a], SACRED_LEVEL_CAP),
+  );
 
   // This string used to say the opposite of the constants it describes: "Sacred
   // income ... is NOT confirmed against the v.271 patch notes — only the Arcane
@@ -1086,13 +1270,18 @@ export function planSacred(
       statVerified: false,
       daysToMax: Infinity,
       maxedOn: null,
+      unreadableAreas,
+      clampedAreas,
       headline: gate.headline,
       caveat,
     };
   }
 
-  const areas: SacredAreaProjection[] = SACRED_AREAS.map((area) => {
-    const level = Math.max(0, Math.min(SACRED_LEVEL_CAP, levels[area]));
+  const areas: SacredAreaProjection[] = SACRED_AREAS.filter(
+    (a) => !isUnreadableLevel(levels[a]),
+  ).map((area) => {
+    // Non-null by construction: the filter above is exactly the levels that parse.
+    const level = readSymbolLevel(levels[area], SACRED_LEVEL_CAP) as number;
     const from = Math.max(1, level);
     const symbolsRemaining = sacredSymbolsBetween(from, SACRED_LEVEL_CAP);
     const days = daysToEarn(symbolsRemaining, today, sacredIncomeFor(area));
@@ -1109,7 +1298,9 @@ export function planSacred(
     };
   });
 
-  const daysToMax = areas.reduce((m, a) => Math.max(m, a.daysToMax), 0);
+  const daysToMax = unreadableAreas.length > 0
+    ? Infinity
+    : areas.reduce((m, a) => Math.max(m, a.daysToMax), 0);
   const maxedOn = Number.isFinite(daysToMax) ? addDays(today, daysToMax) : null;
   const statRemaining = grant
     ? areas.reduce(
@@ -1128,9 +1319,18 @@ export function planSacred(
     statVerified: grant ? grant.verified : false,
     daysToMax,
     maxedOn,
+    unreadableAreas,
+    clampedAreas,
     headline:
-      `Sacred Power ${forceNow} of ${SACRED_FORCE_MAX}`
-      + (maxedOn ? ` — maxed on ${formatDate(maxedOn)} at current dailies.` : "."),
+      // "at least" rather than a bare figure whenever a level went unread: an
+      // unread symbol contributes 0 to forceNow, so the number is a floor.
+      `Sacred Power ${unreadableAreas.length > 0 ? "at least " : ""}${forceNow} of ${SACRED_FORCE_MAX}`
+      + (unreadableAreas.length > 0
+        ? ` — no finish date: ${unreadableAreas.map((a) => AREA_NAME[a]).join(", ")} `
+          + `${unreadableAreas.length === 1 ? "has no level" : "have no levels"} entered.`
+        : maxedOn
+          ? ` — maxed on ${formatDate(maxedOn)} at current dailies.`
+          : "."),
     caveat,
   };
 }
@@ -1235,8 +1435,45 @@ export function symbolAdvice(state: SymbolState, opt: SymbolAdviceOptions): Symb
     });
   }
 
+  // 1b. Levels that could not be read. Ranked with the checksum rather than
+  //     with the plan, because it is the same kind of fact: an input problem
+  //     that caps what everything below it is allowed to claim. Without this
+  //     rec the refusal is invisible — the plan simply stops quoting a date and
+  //     never says why.
+  const unread = [...arcane.unreadableAreas, ...sacred.unreadableAreas];
+  if (unread.length > 0 && hasArcaneLevels(state)) {
+    recs.push({
+      key: "symbols/unreadable-levels",
+      pri: 1,
+      lv: "hi",
+      t: `${unread.map((a) => AREA_NAME[a]).join(", ")} `
+        + `${unread.length === 1 ? "has no symbol level" : "have no symbol levels"} entered.`,
+      w: "A blank or part-typed level is not a level of 0 and not a maxed symbol — it is a "
+        + "level nobody knows, so these areas are left out of the totals and no completion "
+        + "date is quoted. Every figure on this page is therefore a floor: the real numbers "
+        + "can only be larger. Enter the missing levels from your Symbol tab and the dates "
+        + "come back.",
+    });
+  }
+
+  if (arcane.clampedAreas.length > 0) {
+    recs.push({
+      key: "symbols/clamped-levels",
+      pri: 2,
+      lv: "mid",
+      t: `${arcane.clampedAreas.map((a) => AREA_NAME[a]).join(", ")} read above the level cap `
+        + `and ${arcane.clampedAreas.length === 1 ? "was" : "were"} treated as ${ARCANE_LEVEL_CAP}.`,
+      w: `Arcane symbols stop at level ${ARCANE_LEVEL_CAP}, so anything higher is a typo. The `
+        + "planner used the cap rather than the number entered — check the Symbol tab if that "
+        + "is not what you meant.",
+    });
+  }
+
   // 2. A checksum failure invalidates every number below it, so it outranks them.
-  if (checksum && !checksum.ok && hasArcaneLevels(state)) {
+  //    Suppressed when a level was unreadable: the checksum cannot fail for any
+  //    other reason in that case, and its `w` blames the stat window for
+  //    disagreeing with levels this module never managed to read.
+  if (checksum && !checksum.ok && hasArcaneLevels(state) && unread.length === 0) {
     recs.push({
       key: "symbols/checksum",
       pri: 1,
@@ -1413,6 +1650,185 @@ export const UNVERIFIED_SYMBOL_CONSTANTS: UnverifiedConstant[] = [
     markedExport: false,
     why: "No source for what Sacred symbols grant these two classes. Deliberately not modelled rather than guessed.",
   },
+
+  /* The three found by the COVERAGE pass when it was first written — plain
+   * constants that carried no marker, no row, and therefore no provenance at
+   * all, which is the exact class the symmetry pass could not see. Each was
+   * searched for across lib/, data/guide-graph.json and docs/ before being
+   * listed here; none of the three has a citation anywhere in the repo.
+   *
+   * THEIR NAMES DO NOT CARRY THE MARKER, and that is a known, recorded debt
+   * rather than an oversight: renaming an export while another agent is
+   * importing this module breaks their build mid-flight. The rename is the
+   * follow-up. Until then the row is the disclosure, and UNMARKED_SCALAR_DEBT
+   * below names them so the gap cannot be mistaken for completeness. */
+  {
+    name: "ARCANE_UNLOCK_LEVEL",
+    value: ARCANE_UNLOCK_LEVEL,
+    markedExport: false,
+    why: "Lv. 200 for Arcane River is stated in this file's own docblock and nowhere else in the repo — no wiki page, no patch note, no guide-graph row. It is almost certainly right and it has still never been checked, which is what \"unverified\" means. It feeds expectedArcaneForce() only.",
+  },
+  {
+    name: "GRAND_SACRED_LEVEL_CAP",
+    value: GRAND_SACRED_LEVEL_CAP,
+    markedExport: false,
+    why: "11 is copied from SACRED_LEVEL_CAP on the assumption that Grand Sacred symbols cap where Sacred ones do. No source was found for the Grand Sacred cap specifically. It bounds grandSacredMesoForLevel() and grandSacredPower().",
+  },
+  {
+    name: "GRAND_SACRED_MESO_K.tallahart",
+    value: GRAND_SACRED_MESO_K.tallahart,
+    markedExport: false,
+    why: "The docblock says Tallahart's 39.8 \"could be sourced\" but names no page, and 39.8 appears nowhere else in the repo. The self-test's Tallahart assertion recomputes the formula from this constant, so it corroborates nothing. Its sibling geardock was caught and registered; this half was not.",
+  },
+];
+
+/**
+ * The unsourced exports whose NAMES do not yet say so, kept as an explicit list
+ * rather than as a tolerance buried in the checker. Exported so a reader can
+ * see the size of the debt, and so the day it reaches zero is visible.
+ *
+ * checkUnverifiedRegistry() requires every name here to have a registry row and
+ * to actually exist. It deliberately does NOT let anything else through: a new
+ * unsourced constant cannot quietly join this list without an author typing its
+ * name into it, which is the point at which they have to think about renaming
+ * it instead.
+ */
+export const UNMARKED_SCALAR_DEBT: readonly string[] = [
+  "ARCANE_UNLOCK_LEVEL",
+  "GRAND_SACRED_LEVEL_CAP",
+];
+
+/* ------------------------------------------------- the provenance ledger */
+
+/** Only the two confident words. Anything a reader must still check belongs in
+ *  UNVERIFIED_SYMBOL_CONSTANTS, and anything standing in for a real figure is a
+ *  placeholder, which is also that list's job — see grandSacredMesoForLevel. */
+export type SymbolProvenance = "sourced" | "modelled";
+
+export interface SourcedConstant {
+  /** An exported identifier, or `EXPORT.field` for one field of a record. */
+  name: string;
+  value: number | string;
+  conf: SymbolProvenance;
+  /** Where it was read. A URL, a guide-graph node id, or the formula and its inputs. */
+  source: string;
+}
+
+/**
+ * The other half of the coverage pass: every figure-carrying export that is NOT
+ * in the unverified list has to say here where it came from.
+ *
+ * This ledger is the answer to "an unsourced plain constant is invisible to the
+ * check". It cannot be: a number export with no row in either list now fails.
+ *
+ * What it does NOT do, restated where someone adding a row will read it: no
+ * runtime check can tell a real citation from a plausible-looking one. Writing
+ * `conf: "sourced"` against a URL you did not open produces a passing build and
+ * a lie. The row is a signature, not a proof.
+ */
+export const SYMBOL_CONSTANT_PROVENANCE: SourcedConstant[] = [
+  {
+    name: "SACRED_UNLOCK_LEVEL",
+    value: SACRED_UNLOCK_LEVEL,
+    conf: "sourced",
+    source: "MapleStory Wiki, Sacred Symbol: given to players at Level 260 and above. Re-checked 2026-09-13 after the previous citation turned out to point at a guide-graph node whose own source field reads \"UNVERIFIED\".",
+  },
+  {
+    name: "GRAND_SACRED_UNLOCK_LEVEL.tallahart",
+    value: GRAND_SACRED_UNLOCK_LEVEL.tallahart,
+    conf: "sourced",
+    source: "MapleStory Wiki, Grand Sacred Symbol: given at Level 290 and above, with Tallahart named as the first. The geardock field is NOT sourced — see UNVERIFIED_SYMBOL_CONSTANTS.",
+  },
+  {
+    name: "ARCANE_LEVEL_CAP",
+    value: ARCANE_LEVEL_CAP,
+    conf: "sourced",
+    source: "guide-graph node symbols.arcane.cost (digitaltq.com/maplestory-arcane-symbols) runs levels 1..20 and stops. __symbolSelfTest asserts the node has exactly 20 rows.",
+  },
+  {
+    name: "SACRED_LEVEL_CAP",
+    value: SACRED_LEVEL_CAP,
+    conf: "sourced",
+    source: "MapleStory Wiki, Sacred Symbol: one symbol at max is +110 Authentic Force at 10 per level, i.e. 11 levels. The published per-level symbol table also ends at the 10 -> 11 step.",
+  },
+  {
+    name: "ARCANE_MESO_K",
+    value: "vj 8, chuchu 10, lach 12, arcana 14, morass 16, esfera 18",
+    conf: "sourced",
+    source: "One maplestorywiki.net/w/Arcane_Symbol:_<area> page per area, all six checked individually rather than interpolated between the ends. Twenty published cells from digitaltq.com/maplestory-arcane-symbols matched the formula on 2026-09-13; two are asserted in __symbolSelfTest.",
+  },
+  {
+    name: "SACRED_MESO_K",
+    value: "cernium 13.2, arcus 15.0, odium 16.8, shangrila 18.6, arteria 20.4, carcion 22.2",
+    conf: "sourced",
+    source: "maplestorywiki.net / maplewiki Sacred Symbol pages, every rung confirmed on its own page rather than inferred from the 1.8 step.",
+  },
+  {
+    name: "ARCANE_FORCE_BASE_PER_SYMBOL",
+    value: ARCANE_FORCE_BASE_PER_SYMBOL,
+    conf: "sourced",
+    source: "guide-graph symbols.arcane.cost force column: 30 at level 1, 120 at 10, 220 at 20, i.e. 20 + 10L. __symbolSelfTest checks arcaneForceOf against that column at L = 1, 10, 20.",
+  },
+  {
+    name: "ARCANE_FORCE_PER_LEVEL",
+    value: ARCANE_FORCE_PER_LEVEL,
+    conf: "sourced",
+    source: "The same force column and the same three assertions as ARCANE_FORCE_BASE_PER_SYMBOL.",
+  },
+  {
+    name: "ARCANE_FORCE_MAX",
+    value: ARCANE_FORCE_MAX,
+    conf: "sourced",
+    source: "guide-graph symbols.arcane.cost notes: \"All six maxed = 13,200 main stat and 1,320 Arcane Force.\" __symbolSelfTest asserts arcaneForceOf(20) * 6 equals it, so the constant and the per-level formula cannot drift apart.",
+  },
+  {
+    name: "SACRED_FORCE_PER_LEVEL",
+    value: SACRED_FORCE_PER_LEVEL,
+    conf: "sourced",
+    source: "MapleStory Wiki, Sacred Symbol: one symbol at max is +110 Authentic Force over 11 levels.",
+  },
+  {
+    name: "SACRED_FORCE_MAX",
+    value: SACRED_FORCE_MAX,
+    conf: "sourced",
+    source: "MapleStory Wiki: after Carcion was added the maximum Authentic Force became 660. __symbolSelfTest asserts 10 * 11 * 6 equals it. The brief's contradictory 250 is carried as SACRED_FORCE_CAP_PER_BRIEF_UNRECONCILED rather than reconciled away.",
+  },
+  {
+    name: "ARCANE_DAILY_PER_AREA",
+    value: ARCANE_DAILY_PER_AREA,
+    conf: "sourced",
+    source: "GMS v.271 patch notes (nexon.com/maplestory/news/update/44597), read 2026-09-12: Arcane River daily rewards 20 -> 40 for all areas. Cross-checked against guide-graph symbols.income row 1 on every run.",
+  },
+  {
+    name: "ARCANE_WEEKLY_PER_AREA",
+    value: ARCANE_WEEKLY_PER_AREA,
+    conf: "sourced",
+    source: "Same v.271 notes: Arcane River weekly rewards 40 -> 80. Cross-checked against guide-graph symbols.income row 2.",
+  },
+  {
+    name: "ARCANE_WEEKLY_TOTAL_PER_AREA",
+    value: ARCANE_WEEKLY_TOTAL_PER_AREA,
+    conf: "modelled",
+    source: "ARCANE_DAILY_PER_AREA * 7 + ARCANE_WEEKLY_PER_AREA. Computed here rather than typed, and independently corroborated by guide-graph symbols.income row 3 (360), which __symbolSelfTest compares it against.",
+  },
+  {
+    name: "SACRED_DAILY_CERNIUM",
+    value: SACRED_DAILY_CERNIUM,
+    conf: "sourced",
+    source: "Same v.271 notes: Cernium daily 20 -> 30. A 1.5x rise, not the 2x the loose reading of the patch gives — __symbolSelfTest asserts the ratio is 1.5 so it cannot drift back.",
+  },
+  {
+    name: "SACRED_DAILY_OTHER",
+    value: SACRED_DAILY_OTHER,
+    conf: "sourced",
+    source: "Same v.271 notes: the five other Grandis areas 10 -> 15. Dailies only; the notes raise no Grandis weekly, which __symbolSelfTest asserts from the guide's per-week column.",
+  },
+  {
+    name: "ARCANE_GRANT_DEFAULT",
+    value: "300 main stat at level 1, +100/level",
+    conf: "sourced",
+    source: "guide-graph symbols.arcane.cost main-stat column: 300 at level 1, 1,200 at 10, 2,200 at 20. __symbolSelfTest checks statAtLevel against that column at all three.",
+  },
 ];
 
 /* --------------------------------------------- the check, not the promise */
@@ -1426,14 +1842,45 @@ function isStatGrant(v: unknown): v is StatGrant {
     && typeof o.perLevel === "number" && typeof o.verified === "boolean";
 }
 
+/** A figure-carrying export: a number, or a record whose values are ALL numbers
+ *  (ARCANE_MESO_K, GRAND_SACRED_UNLOCK_LEVEL). Records of booleans are
+ *  provenance flags, arrays are area lists and strings are prose — none of them
+ *  is a game figure, so none of them needs a citation. */
+function numberFields(v: unknown): string[] | null {
+  if (typeof v === "number") return [];
+  if (typeof v !== "object" || v === null || Array.isArray(v)) return null;
+  const entries = Object.entries(v as Record<string, unknown>);
+  if (entries.length === 0) return null;
+  return entries.every(([, x]) => typeof x === "number") ? entries.map(([k]) => k) : null;
+}
+
 /**
- * The file header claims every unsourced constant carries `_UNVERIFIED` and
- * appears in UNVERIFIED_SYMBOL_CONSTANTS. This is what turns that claim into a
- * fact: it takes this module's own namespace object, enumerates the exports
- * whose names carry the marker, and fails on any difference in either
- * direction. A constant marked but unlisted fails; a constant listed but not
- * marked fails; a StatGrant carrying `verified: false` under an unmarked name
- * fails.
+ * The file header's provenance claim, turned into a fact. Two passes.
+ *
+ * SYMMETRY. The exports whose names carry the marker and the registry rows
+ * flagged `markedExport` must be the same set, and a StatGrant with
+ * `verified: false` must be marked. A constant marked but unlisted fails; a
+ * constant listed but not marked fails.
+ *
+ * COVERAGE. Every figure-carrying export must be accounted for in exactly one
+ * of the two ledgers. THIS IS THE PASS THAT MATTERS, because symmetry alone
+ * could never catch the bug it was written for: GRAND_SACRED_DAILY was a bare
+ * `= 15` with no marker and no row, and an unregistered constant is absent from
+ * BOTH sets a symmetry check compares, so the sets still matched and it
+ * returned zero failures. Five more plain constants were sitting in the module
+ * in the same condition when this pass was added, and it found all five — three
+ * of them (ARCANE_UNLOCK_LEVEL, GRAND_SACRED_LEVEL_CAP,
+ * GRAND_SACRED_MESO_K.tallahart) turned out to have no citation anywhere in the
+ * repo and are now registered as unverified rather than assumed.
+ *
+ * For a RECORD, one whole-name row claims every field; otherwise every field
+ * needs its own `NAME.field` row. That is not pedantry: GRAND_SACRED_MESO_K's
+ * geardock field was registered and its tallahart field was not, and a
+ * root-name match would have called the record covered and hidden the 39.8.
+ *
+ * WHAT NEITHER PASS CAN DO. Both check that a claim EXISTS, never that it is
+ * TRUE. `conf: "sourced"` against a page nobody opened passes. This makes
+ * silence impossible, not dishonesty — keep reading the sources.
  *
  * It takes the namespace as an argument rather than importing itself, because a
  * module that imports itself is a circular import in a file three other modules
@@ -1488,5 +1935,145 @@ export function checkUnverifiedRegistry(moduleNamespace: object): string[] {
     }
   }
 
+  /* ---- pass 2: coverage ---- */
+
+  const registered = new Set(UNVERIFIED_SYMBOL_CONSTANTS.map((u) => u.name));
+  const sourced = new Set(SYMBOL_CONSTANT_PROVENANCE.map((s) => s.name));
+
+  for (const s of SYMBOL_CONSTANT_PROVENANCE) {
+    if (registered.has(s.name)) {
+      failures.push(
+        `${s.name} is in BOTH ledgers — it cannot be "${s.conf}" and unverified at once`,
+      );
+    }
+    if (s.source.trim().length <= 20) {
+      failures.push(`provenance row "${s.name}" has no real source: "${s.source}"`);
+    }
+    const root = s.name.split(/[.(]/)[0];
+    if (!(root in ns)) {
+      failures.push(`provenance row "${s.name}" names no export called "${root}"`);
+    }
+  }
+
+  const covered = (name: string): boolean => registered.has(name) || sourced.has(name);
+
+  for (const [name, value] of Object.entries(ns)) {
+    const fields = numberFields(value);
+    // A StatGrant is not a number-record (it carries `kind` and `verified`), but
+    // base and perLevel are game figures, so it owes a claim too. An unverified
+    // one already owes a registry row via the marker rule above.
+    const isFigure = fields !== null || isStatGrant(value);
+    if (!isFigure) continue;
+    if (covered(name)) continue;
+    if (fields !== null && fields.length > 0 && fields.every((f) => covered(`${name}.${f}`))) {
+      continue;
+    }
+    const missing = fields === null || fields.length === 0
+      ? ""
+      : ` (uncovered field${fields.filter((f) => !covered(`${name}.${f}`)).length === 1 ? "" : "s"}: `
+        + `${fields.filter((f) => !covered(`${name}.${f}`)).join(", ")})`;
+    failures.push(
+      `${name} carries a game figure but has no row in UNVERIFIED_SYMBOL_CONSTANTS or `
+      + `SYMBOL_CONSTANT_PROVENANCE${missing} — every number in this module owes a provenance claim`,
+    );
+  }
+
+  // The marker debt is allowed, but only for names written down on purpose.
+  for (const name of UNMARKED_SCALAR_DEBT) {
+    if (!(name in ns)) {
+      failures.push(`UNMARKED_SCALAR_DEBT lists "${name}", which is not an export`);
+    }
+    if (!registered.has(name)) {
+      failures.push(`UNMARKED_SCALAR_DEBT lists "${name}" but no registry row explains it`);
+    }
+    if (UNVERIFIED_NAME_MARKER.test(name)) {
+      failures.push(`${name} now carries the marker — remove it from UNMARKED_SCALAR_DEBT`);
+    }
+  }
+
   return failures;
+}
+
+/* ==========================================================================
+ * FLAT MAIN STAT FROM SYMBOLS — one model, so there is nothing to drift
+ *
+ * This lived in lib/cubes.ts as the only implementation, and then briefly in
+ * two places at once: cubes.ts moved to per-area levels while lib/rules.ts
+ * still read the Arcane Power total, so one character produced 10,700 flat
+ * symbol stat in the cube ranking and 0 in the recommendation engine at the
+ * same moment. Both feed the SAME question — how much of the displayed main
+ * stat is flat, and therefore untouched by a %stat line — so a disagreement
+ * there is the app contradicting itself about the thing the owner asked.
+ *
+ * It belongs here: this file owns the grant tables and deliberately imports
+ * nothing from rules.ts, so both callers reach it without a cycle.
+ * ========================================================================== */
+
+/** How many symbols a force reading can actually account for. A symbol you own is
+ *  at level 1 or better — level 1 arrives with the area's quest line, it is not
+ *  something you level into — so each owned symbol is worth at least 20 + 10 = 30
+ *  Force. A reading of 100 therefore cannot be six symbols, and pretending it is
+ *  would credit six bases to a player who has two. Capped at the six areas. */
+function impliedSymbolCount(arcaneForce: number): number {
+  const perOwnedSymbol = ARCANE_FORCE_BASE_PER_SYMBOL + ARCANE_FORCE_PER_LEVEL;
+  return Math.max(0, Math.min(ARCANE_AREAS.length, Math.floor(arcaneForce / perOwnedSymbol)));
+}
+
+/**
+ * Flat main stat from Arcane symbols, from an Arcane Power reading alone.
+ *
+ * WHAT IS ASSUMED, AND WHAT IT COSTS. A total does not invert to a spread, so this
+ * assumes a symbol COUNT — the most the reading can support, up to six, the same
+ * all-six assumption arcaneLevelSumFromPower() documents. For every class whose
+ * grant is proportional to force that costs exactly nothing, and the observed
+ * character is one of them: ARCANE_GRANT_DEFAULT is 200 + 100L against a force of
+ * 20 + 10L, both a factor of 10, so
+ *
+ *     count * 200 + levels * 100  =  10 * (count * 20 + levels * 10)  =  10 * force
+ *
+ * whatever the count and whatever the spread. A player missing Esfera reads 1,050
+ * instead of 1,070 and gets 10,500 — correct, not five-sixths of a guess.
+ *
+ * The assumption only bites for Xenon, whose grant is NOT proportional to force.
+ * There, each symbol short of impliedSymbolCount over-counts by 8 flat all-stat —
+ * MEASURED, and not the 86 an earlier comment claimed, because the inversion turns
+ * the missing symbol's 20 Force into 2 extra levels and hands most of it back.
+ *
+ * Prefer arcaneFlatMainStatFromLevels() wherever the per-area levels exist. Sacred
+ * stat is NOT included: Sacred levels cannot be recovered from Arcane Power at all,
+ * and this file's Sacred slope is still unsourced. For a Lv 260+ character that
+ * omission understates the flat total, which OVERSTATES what a %stat line is worth
+ * — the exact direction of the bug this consolidation exists to stop repeating.
+ */
+export function arcaneFlatMainStatFromPower(arcanePowerReading: number, cls = ""): number {
+  const grant = arcaneGrantFor(cls);
+  // Demon Avenger's symbols pay out HP, not STR, so its flat MAIN STAT from symbols
+  // is zero and every point of its displayed STR really does sit inside the %stat
+  // multiplier. Xenon's all-stat grant is flat points added to each stat, so it
+  // dilutes %stat exactly the way main stat does and is counted.
+  if (grant.kind === "hp") return 0;
+  const force = Math.max(0, Number.isFinite(arcanePowerReading) ? arcanePowerReading : 0);
+  const owned = impliedSymbolCount(force);
+  const levels = Math.max(
+    0,
+    Math.round((force - owned * ARCANE_FORCE_BASE_PER_SYMBOL) / ARCANE_FORCE_PER_LEVEL),
+  );
+  return owned * grant.base + levels * grant.perLevel;
+}
+
+/** Exact. Per-area levels, no inversion and no assumption about how many are
+ *  equipped. This is the path to use whenever per-area levels exist. */
+export function arcaneFlatMainStatFromLevels(levels: ArcaneLevels, cls = ""): number {
+  const grant = arcaneGrantFor(cls);
+  if (grant.kind === "hp") return 0;
+  return ARCANE_AREAS.reduce((sum, a) => {
+    // An UNREADABLE level contributes nothing rather than propagating. This total
+    // feeds a damage number: readSymbolLevel() returning null means the input was
+    // not an integer, crediting it would be inventing a level, and letting it
+    // through as NaN would poison the figure and every rec computed from it.
+    // Scoring 0 is defensible only as a second line of defence — the input
+    // boundary rejects such values before they can reach a Character at all.
+    const lv = readSymbolLevel(levels[a], ARCANE_LEVEL_CAP);
+    return lv === null ? sum : sum + statAtLevel(grant, lv);
+  }, 0);
 }
