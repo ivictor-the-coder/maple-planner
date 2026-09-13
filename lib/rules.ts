@@ -119,6 +119,24 @@ export interface Item {
   itemId?: number;
   /** Boss-drop gear is flame advantaged: tier 4 minimum, up to tier 7. */
   bossDrop?: boolean;
+  /**
+   * The importer could not READ this item's bonus stats — as distinct from
+   * reading them and finding none.
+   *
+   * Set when a screenshot showed the item tooltip but not the Enhance > Bonus
+   * Stats panel, where the rows are actually stated. The aggregate stat block
+   * on a tooltip sums base, star force and bonus stats and separates them only
+   * by COLOUR, so a reading taken from it is not a reading.
+   *
+   * WITHOUT THIS FIELD the engine saw an empty `f` and said "No flame. Roll
+   * one" — which on a Pink Holy Cup carrying All Stats +5% was advice to pay
+   * 3,000,000 mesos to destroy it. The importer has been emitting this signal
+   * on the wire since the panel reader landed; nothing consumed it, so an
+   * admission of ignorance arrived as a confident zero.
+   *
+   * `f: []` with this flag means UNKNOWN. `f: []` without it means NONE.
+   */
+  fUnknown?: true;
   /** Icon cropped out of an imported screenshot, as a data URL. Used when the
    *  item database has no match — an imported item still shows its real sprite. */
   icon?: string;
@@ -2093,7 +2111,14 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
     const advantaged = it.bossDrop
       ? " This is boss-drop gear, so it is flame advantaged — tier 4 minimum and up to tier 7. Worth more rerolls than ordinary gear."
       : "";
-    if (!fl.length) {
+    if (!fl.length && it.fUnknown) {
+      // NOT the same as having no bonus stats, and the difference is expensive.
+      // Telling a player to roll a flame on an item that already has four good
+      // lines costs them 3,000,000 mesos and the lines. Unpriced on purpose:
+      // there is no gain to model when the starting point is unknown.
+      add(3, "mid", "Bonus stats not read.",
+        "The screenshot showed the item tooltip but not the Bonus Stats panel, and a tooltip cannot tell bonus stats from star force — both land on the same line and only the colour differs. Open Enhance › Bonus Stats and re-import, or type the lines in. Until then this slot is not judged on flames either way.");
+    } else if (!fl.length) {
       const r = inv(add(2, "mid", "No flame. Roll one.",
         `Bonus stats reset for 3,000,000 mesos since v.271 — at Black Flame rates.${advantaged}`));
       priceFlame(r, it, ch, env);
