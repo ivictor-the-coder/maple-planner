@@ -1,7 +1,27 @@
 import { NextResponse } from "next/server";
 import { SLOTS, canStarForce, sfCap, type Item, type SlotDef, type Tier } from "@/lib/rules";
+import type { ImportFailure, ImportOutcome, OpenRouterUsage } from "@/lib/entitlement";
+import { guardImport } from "@/lib/entitlementStore";
+import { STAT_WINDOW_DAMAGE_PROMPT } from "@/lib/import/damageReadings";
+import { SYMBOL_TAB_PROMPT, type RawArcaneSymbols } from "@/lib/import/symbolLevels";
+import { ARCANE_AREAS } from "@/lib/symbols";
+import { num, str, tidyCharacterWindows, type VisionStats } from "@/lib/import/visionFields";
 
 // Reads a MapleStory item tooltip out of a screenshot using a vision model.
+//
+// THIS IS THE ONLY ROUTE IN THE APP WITH A MARGINAL COST. Everything else the
+// planner does is static computation; this one spends real OpenRouter vision
+// tokens, and until this wave it spent them for any anonymous caller on the
+// internet. So POST() below now begins — before the body is read, before the
+// data URL is validated, and a long way before fetch("https://openrouter.ai") —
+// with guardImport(). Hiding the button in the UI is not gating; this is.
+//
+// The gate is a demo, not a paywall: DEMO_IMPORTS (10) screenshot imports per
+// visitor, which is one full batch and one character's worth of gear. When it
+// runs out the refusal carries `interest: true` and a path to a form that asks
+// whether someone would use a paid plan. It never asks for money — see
+// INTEREST_FORM_PATH in lib/entitlement.ts for why that distinction is a
+// deployment constraint rather than a preference.
 //
 // Local OCR (tesseract) could not do this: the tooltip is semi-transparent over
 // the game world, and the cursor always occludes a line because you have to
@@ -62,6 +82,20 @@ const DEFAULT_MODELS = [
  *   j.slotGuess, j.iconBox, j.stats, j.roster. Every one of those keys keeps its
  *   name, type and meaning below. `conf`, `reasons`, `tooltipBox`, `db`,
  *   `accuracy` and `flags` are ADDITIVE and ignored by the current dialog.
+ * - `stats.damagePct` and `stats.finalDamagePct` are likewise ADDITIVE: the
+ *   dialog's StatsPatch and the planner's apply step each enumerate their own
+ *   key list, so both fields are carried to the edge of this route and dropped
+ *   there until those two files list them. Nothing here breaks meanwhile —
+ *   they simply never arrive, which is the same as not being read.
+ * - `stats.symVj` … `stats.symEsfera` (the Symbol window's six Arcane levels)
+ *   ride in the same patch for the same reason, and the same caveat applies in
+ *   one direction only: components/ImportDialog.tsx merges the patch with a
+ *   shallow spread and passes it through untouched, so the levels DO reach
+ *   components/Planner.tsx, which validates them again before writing. What
+ *   that dialog does NOT yet do is list them in the "Character stats found"
+ *   table a player approves the import from — its STAT_LABELS array is the only
+ *   renderer of that table and it is not this change's file to edit. Until that
+ *   row is added, the Planner's own apply toast is what names them.
  * - app/api/items/route.ts already maps the upstream subcategory to our slot id
  *   and returns it as `slot`, so that mapping is consumed rather than copied.
  * ------------------------------------------------------------------ */
@@ -138,7 +172,8 @@ and null for the whole "stats" key when no stat window is on screen.
     "ignoreDefense": number, // IGNORE DEFENSE %
     "maxHp": number,
     "arcanePower": number,
-    "starForce": number      // the STAR FORCE total, not any single item's stars
+    "starForce": number,     // the STAR FORCE total, not any single item's stars
+${STAT_WINDOW_DAMAGE_PROMPT}
   }
 
 SEPARATELY AGAIN: the screenshot may show the SWITCH CHARACTER window — a grid of
@@ -156,6 +191,8 @@ Class is the MIDDLE line and name is the BOTTOM line — do not swap them. Set
 rather than guessing at it. Also add "rosterPage": [n, total] from the page
 counter, so [1, 3] for "01 / 03". Use null for "roster" and "rosterPage" when no
 Switch Character window is on screen.
+
+${SYMBOL_TAB_PROMPT}
 
 Output the JSON object and nothing else. Do not narrate what you see, do not
 think out loud, do not write "Let me analyze". The first character you emit must
@@ -183,6 +220,11 @@ const STATS_SCHEMA = {
   required: [
     "name", "class", "level", "combatPower", "mainStat", "attack", "critRate",
     "critDamage", "bossDamage", "ignoreDefense", "maxHp", "arcanePower", "starForce",
+    // The two stat-window damage readings. `required` is not optionality —
+    // strict mode demands every property be listed, and NUM_OR_NULL is how a
+    // field the model could not read says so. See lib/import/damageReadings.ts
+    // for why null has to survive all the way to the character sheet.
+    "damagePct", "finalDamagePct",
   ],
   properties: {
     name: STR_OR_NULL, class: STR_OR_NULL, level: NUM_OR_NULL,
@@ -190,8 +232,31 @@ const STATS_SCHEMA = {
     critRate: NUM_OR_NULL, critDamage: NUM_OR_NULL, bossDamage: NUM_OR_NULL,
     ignoreDefense: NUM_OR_NULL, maxHp: NUM_OR_NULL, arcanePower: NUM_OR_NULL,
     starForce: NUM_OR_NULL,
+    // Declared as numbers because that is what a schema-honouring provider
+    // should send. The parser still accepts "115.79%" as a string: widening the
+    // schema to invite one would buy nothing, while the `object` and `none`
+    // rungs of the format ladder (weaken(), below) deliver whatever the model
+    // felt like typing and are the reason the parser is defensive at all.
+    damagePct: NUM_OR_NULL, finalDamagePct: NUM_OR_NULL,
   },
 } as const;
+
+/**
+ * The Symbol window. Built from ARCANE_AREAS rather than six literals so the
+ * keys the model is asked for cannot drift from the keys readArcaneLevelPatch()
+ * looks up — a schema naming a seventh area, or missing one, would fail
+ * silently as "the model didn't read that one".
+ *
+ * Same strict-mode shape as STATS_SCHEMA: every property listed in `required`,
+ * `additionalProperties` false, and optionality expressed as a nullable type.
+ * Null is how a symbol the model could not read says so.
+ */
+const SYMBOLS_SCHEMA = {
+  type: ["object", "null"],
+  additionalProperties: false,
+  required: ARCANE_AREAS.map((a) => a),
+  properties: Object.fromEntries(ARCANE_AREAS.map((a) => [a, NUM_OR_NULL])),
+};
 
 const BOX_SCHEMA = { type: "array", items: { type: "number" } } as const;
 
@@ -204,7 +269,7 @@ const TOOLTIP_SCHEMA = {
     required: [
       "name", "level", "slot", "tier", "potential", "flame", "starforce",
       "superior", "noStarForce", "noFlame", "noPotential", "iconBox",
-      "tooltipBox", "stats", "roster", "rosterPage",
+      "tooltipBox", "stats", "roster", "rosterPage", "symbols",
     ],
     properties: {
       name: { type: "string" },
@@ -234,6 +299,7 @@ const TOOLTIP_SCHEMA = {
         },
       },
       rosterPage: { type: ["array", "null"], items: { type: "number" } },
+      symbols: SYMBOLS_SCHEMA,
     },
   },
 } as const;
@@ -258,14 +324,6 @@ const weaken = (m: FormatMode): FormatMode => (m === "schema" ? "object" : "none
 
 /* ---------- types ---------- */
 
-interface VisionStats {
-  name?: string | null; class?: string | null; level?: number | null;
-  combatPower?: number | null; mainStat?: number | null; attack?: number | null;
-  critRate?: number | null; critDamage?: number | null; bossDamage?: number | null;
-  ignoreDefense?: number | null; maxHp?: number | null; arcanePower?: number | null;
-  starForce?: number | null;
-}
-
 interface VisionRosterEntry {
   name?: string | null; class?: string | null; level?: number | null; current?: boolean | null;
 }
@@ -276,6 +334,11 @@ interface VisionItem {
   noStarForce?: boolean; noFlame?: boolean; noPotential?: boolean;
   iconBox?: number[]; tooltipBox?: number[]; stats?: VisionStats | null;
   roster?: VisionRosterEntry[] | null; rosterPage?: number[] | null;
+  /** The Symbol window's six Arcane levels. Every value is `unknown` because
+   *  the `object` and `none` rungs of the format ladder deliver whatever the
+   *  model felt like typing, and readArcaneLevelPatch() is what decides which
+   *  of those is a level. */
+  symbols?: RawArcaneSymbols | null;
 }
 
 interface VisionStarRow {
@@ -293,20 +356,6 @@ export interface ConfMap {
 
 export type ReasonMap = Partial<Record<keyof ConfMap, string>>;
 
-const num = (v: unknown, max: number): number | undefined => {
-  // Strict json_schema makes every optional field explicitly null, and
-  // Number(null) is 0 — which would quietly write a zeroed stat window over a
-  // real one. Reject null before it can become a number.
-  if (v === null || v === undefined || v === "") return undefined;
-  const n = typeof v === "string" ? parseFloat(v.replace(/[,%\s]/g, "")) : Number(v);
-  return Number.isFinite(n) && n >= 0 && n <= max ? n : undefined;
-};
-
-const str = (v: unknown): string | undefined => {
-  const s = typeof v === "string" ? v.trim() : "";
-  return s || undefined;
-};
-
 function tidyRoster(r: unknown) {
   if (!Array.isArray(r)) return undefined;
   const out: Array<{ name: string; cls: string; lvl: number; current: boolean }> = [];
@@ -319,26 +368,6 @@ function tidyRoster(r: unknown) {
     out.push({ name, cls, lvl, current: !!x.current });
   }
   return out.length ? out : undefined;
-}
-
-function tidyStats(s: VisionStats | null | undefined) {
-  if (!s || typeof s !== "object") return undefined;
-  const out = {
-    name: str(s.name),
-    cls: str(s.class),
-    lvl: num(s.level, 300),
-    cp: num(s.combatPower, 1e10),
-    main: num(s.mainStat, 1e7),
-    att: num(s.attack, 1e6),
-    crit: num(s.critRate, 100),
-    critdmg: num(s.critDamage, 1000),
-    boss: num(s.bossDamage, 2000),
-    ied: num(s.ignoreDefense, 100),
-    hp: num(s.maxHp, 1e8),
-    arcane: num(s.arcanePower, 1320),
-    starforce: num(s.starForce, 1000),
-  };
-  return Object.values(out).some((v) => v !== undefined && v !== "") ? out : undefined;
 }
 
 const TIERS: Tier[] = ["none", "rare", "epic", "unique", "legendary"];
@@ -635,12 +664,19 @@ function reconcileStars(i: StarInputs): StarVerdict {
 
 /* ---------- OpenRouter call ---------- */
 
-interface Usage { prompt_tokens?: number; completion_tokens?: number }
+// The usage object OpenRouter returns beside `choices`. It used to be read for
+// the log line and thrown away; settle() now hands it to reconcileImportCost(),
+// which prefers the provider's own `cost` when it is present. That is the
+// measurement that eventually replaces IMPORT_UNIT_COST_USD_PLACEHOLDER, so the
+// shape is the entitlement layer's rather than a second local copy of it.
+type Usage = OpenRouterUsage;
 
 type CallResult =
   | { kind: "ok"; text: string; finish: string; usage: Usage }
   | { kind: "status"; status: number }
-  | { kind: "error"; why: string };
+  // `failure` is the same word the ledger settles on, decided where the cause is
+  // actually known rather than re-derived later from the prose in `why`.
+  | { kind: "error"; why: string; failure: Extract<ImportFailure, "timeout" | "network_error"> };
 
 const PER_CALL_TIMEOUT_MS = 20_000;
 /** json_schema → json_object → bare, plus one 429 backoff, plus the real call. */
@@ -714,7 +750,10 @@ async function callModel(
     const text = choice?.message?.content?.trim() || choice?.message?.reasoning?.trim() || "";
     return { kind: "ok", text, finish: choice?.finish_reason ?? "", usage: json.usage ?? {} };
   } catch (e) {
-    return { kind: "error", why: (e as Error)?.name === "AbortError" ? `timed out after ${PER_CALL_TIMEOUT_MS / 1000}s` : "network error" };
+    const aborted = (e as Error)?.name === "AbortError";
+    return aborted
+      ? { kind: "error", why: `timed out after ${PER_CALL_TIMEOUT_MS / 1000}s`, failure: "timeout" }
+      : { kind: "error", why: "network error", failure: "network_error" };
   } finally {
     // Every exit — return, throw, abort — clears the timer. The previous shape
     // leaked one per `continue` and one per early return.
@@ -789,30 +828,110 @@ const box = (v: unknown): number[] | null =>
     ? v.map(Number)
     : null;
 
+/**
+ * One trip through the vision chain, as a value rather than a Response.
+ *
+ * The route has ten exits — three of them successful, seven not — and every one
+ * of them owes the ledger a settle(). Returning the body and the outcome
+ * together instead of a Response means the settle happens in exactly one place
+ * (POST, below) and cannot be forgotten by the next person who adds an eleventh
+ * exit. A leaked concurrency slot is a visitor who cannot import again until
+ * the process restarts, which is not a failure anyone would connect to the edit
+ * that caused it.
+ */
+interface RunResult {
+  body: Record<string, unknown>;
+  /** Omitted means 200. */
+  status?: number;
+  outcome: ImportOutcome;
+}
+
+/**
+ * THE GATE. Nothing expensive happens above this line.
+ *
+ * guardImport() runs the whole fail-closed sequence — identity, ledger read,
+ * concurrency, the demo ceiling, then an atomic commitSpend — and it runs
+ * BEFORE req.json(), before the data URL is validated, and before any fetch to
+ * openrouter.ai. That ordering is the entire point: a refusal must cost nothing
+ * but a ledger read. Do not move a body parse or a validation above it "to
+ * return a better error first" — a malformed request from an exhausted visitor
+ * would then still be free to arrive a thousand times.
+ */
 export async function POST(req: Request) {
-  const startedAt = Date.now();
-  const rid = Math.random().toString(36).slice(2, 8);
   const key = process.env.OPENROUTER_API_KEY;
+  const guard = await guardImport(req, {
+    // The dialog posts one image per request; MAX_BATCH_FILES is the ceiling if
+    // that ever changes.
+    batchSize: 1,
+    // Folds the route's old bare 501 into the same vocabulary as every other
+    // refusal, so the dialog has one rendering path.
+    configured: Boolean(key),
+  });
+
+  if (!guard.allow) {
+    // Verbatim. The body already carries `error` as a finished sentence, which
+    // is the field ImportDialog reads today, plus reason/interest/interestPath
+    // for a better rendering when someone gets to it.
+    return NextResponse.json(guard.body, { status: guard.status, headers: guard.headers });
+  }
+
   if (!key) {
+    // Unreachable: `configured: false` denies with not_configured above. Kept so
+    // the compiler sees a string below, and so an edit that loosens `configured`
+    // still settles instead of leaking the slot it just reserved.
+    await guard.settle({ ok: false, failure: "not_configured" });
     return NextResponse.json(
-      { error: "Screenshot import isn't configured — OPENROUTER_API_KEY is not set." },
+      { error: "Screenshot import isn't configured — OPENROUTER_API_KEY is not set.", reason: "not_configured" },
       { status: 501 }
     );
   }
+
+  try {
+    const run = await runImport(req, key);
+    // EVERY exit path, including the ones that return an error body: settle
+    // releases the concurrency slot as well as refunding the unit.
+    await guard.settle(run.outcome);
+    return NextResponse.json(
+      run.outcome.ok
+        ? {
+            ...run.body,
+            // Additive. The keys ImportDialog already reads are untouched.
+            entitlement: { remaining: guard.remaining, limit: guard.limit, ledger: guard.ledger },
+          }
+        : run.body,
+      { status: run.status ?? 200 }
+    );
+  } catch (err) {
+    // Something outside the modelled failures — settle is idempotent, so this is
+    // safe even if runImport already settled on its way out.
+    await guard.settle({ ok: false, failure: "network_error" });
+    throw err;
+  }
+}
+
+async function runImport(req: Request, key: string): Promise<RunResult> {
+  const startedAt = Date.now();
+  const rid = Math.random().toString(36).slice(2, 8);
 
   let body: ImportBody;
   try {
     body = (await req.json()) as ImportBody;
   } catch {
-    return NextResponse.json({ error: "Bad request body." }, { status: 400 });
+    // A malformed request spent no vision tokens, so the unit comes back:
+    // settleImport() refunds an outcome with no named failure.
+    return { body: { error: "Bad request body." }, status: 400, outcome: { ok: false } };
   }
   const image = body.image ?? "";
   if (!image.startsWith("data:image/")) {
-    return NextResponse.json({ error: "Expected a data:image/... URL." }, { status: 400 });
+    return { body: { error: "Expected a data:image/... URL." }, status: 400, outcome: { ok: false } };
   }
   // ~6MB of base64 is plenty for a full-screen grab and keeps us inside limits
   if (image.length > 8_000_000) {
-    return NextResponse.json({ error: "That image is too large — try a window capture." }, { status: 413 });
+    return {
+      body: { error: "That image is too large — try a window capture." },
+      status: 413,
+      outcome: { ok: false },
+    };
   }
 
   const starsMode = body.mode === "stars";
@@ -824,6 +943,12 @@ export async function POST(req: Request) {
   // not produce the same message.
   const outcomes: Array<{ model: string; why: string }> = [];
   let anyModelAnswered = false;
+  // What the ledger is told when the chain runs out. Set beside every
+  // outcomes.push() so the two cannot drift: `why` is prose for the user,
+  // `lastFailure` is the word that decides whether the unit comes back.
+  // Defaults to model_http_error for the "no models configured" case, which is
+  // our problem and not the visitor's.
+  let lastFailure: ImportFailure = "model_http_error";
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   for (const model of models) {
@@ -846,6 +971,7 @@ export async function POST(req: Request) {
 
       if (r.kind === "error") {
         outcomes.push({ model, why: r.why });
+        lastFailure = r.failure; // the 20s abort, or a fetch rejection
         break;
       }
       if (r.kind === "status") {
@@ -862,6 +988,7 @@ export async function POST(req: Request) {
           continue;
         }
         outcomes.push({ model, why: `HTTP ${r.status}${r.status === 429 ? " (rate limited)" : ""}` });
+        lastFailure = "model_http_error"; // 429 / 403 / 404 from a model
         break;
       }
 
@@ -873,6 +1000,7 @@ export async function POST(req: Request) {
         const { value } = extractJson<VisionStarRow>(r.text);
         if (!value || num(value.stars, MAX_STARS) === undefined) {
           outcomes.push({ model, why: `could not count the star row: "${r.text.replace(/\s+/g, " ").slice(0, 90)}"` });
+          lastFailure = "unparseable";
           break;
         }
         const second = num(value.stars, MAX_STARS);
@@ -895,17 +1023,20 @@ export async function POST(req: Request) {
           finish: r.finish, tokIn: r.usage.prompt_tokens, tokOut: r.usage.completion_tokens,
           ms: Date.now() - startedAt, outcome: `star=${rowVerdict.star} conf=${rowVerdict.conf}`,
         });
-        return NextResponse.json({
-          model,
-          mode: "stars",
-          stars: rowVerdict.star,
-          grey: num(value.grey, MAX_STARS) ?? null,
-          sure: !!value.sure,
-          modelStars: second ?? null,
-          pixelStars: pixel ?? null,
-          conf: rowVerdict.conf,
-          reason: rowVerdict.reason ?? null,
-        });
+        return {
+          body: {
+            model,
+            mode: "stars",
+            stars: rowVerdict.star,
+            grey: num(value.grey, MAX_STARS) ?? null,
+            sure: !!value.sure,
+            modelStars: second ?? null,
+            pixelStars: pixel ?? null,
+            conf: rowVerdict.conf,
+            reason: rowVerdict.reason ?? null,
+          },
+          outcome: { ok: true, model, usage: r.usage },
+        };
       }
 
       /* ---------- first pass: the whole tooltip ---------- */
@@ -921,14 +1052,23 @@ export async function POST(req: Request) {
               ? `replied but not with JSON: "${snip}"`
               : "returned an empty message",
         });
+        lastFailure = "unparseable";
         break;
       }
 
-      const stats = tidyStats(parsed.stats);
+      // The stat window and the Symbol window share one patch object: they are
+      // two windows but one destination (the character sheet), and the import
+      // dialog carries exactly one such object. A shot of the Symbol window
+      // alone therefore counts as a successful read — see tidyCharacterWindows.
+      const stats = tidyCharacterWindows(parsed.stats, parsed.symbols);
       const roster = tidyRoster(parsed.roster);
       const rawName = str(parsed.name) ?? "";
       if (!rawName && !stats && !roster) {
-        outcomes.push({ model, why: "read the image but found no item tooltip, stat window or character list" });
+        outcomes.push({ model, why: "read the image but found no item tooltip, stat window, symbol window or character list" });
+        // NOT refunded (REFUND_ON_NO_CONTENT is false): the model read the image
+        // and the vision tokens were really spent. The visitor sent a screenshot
+        // with nothing in it, which is a different thing from us failing.
+        lastFailure = "no_content";
         break;
       }
       if (!rawName) {
@@ -938,11 +1078,14 @@ export async function POST(req: Request) {
           finish: r.finish, tokIn: r.usage.prompt_tokens, tokOut: r.usage.completion_tokens,
           ms: Date.now() - startedAt, outcome: stats && roster ? "stats+roster" : stats ? "stats" : "roster",
         });
-        return NextResponse.json({
-          model, item: null, slotGuess: null, iconBox: null, tooltipBox: null,
-          stats, roster, conf: null, reasons: null, db: null, flags: [],
-          accuracy: evalAccuracy(),
-        });
+        return {
+          body: {
+            model, item: null, slotGuess: null, iconBox: null, tooltipBox: null,
+            stats, roster, conf: null, reasons: null, db: null, flags: [],
+            accuracy: evalAccuracy(),
+          },
+          outcome: { ok: true, model, usage: r.usage },
+        };
       }
 
       /* ---- cross-validate against the database we already query ---- */
@@ -1073,53 +1216,58 @@ export async function POST(req: Request) {
         ms: Date.now() - startedAt, conf, outcome: `item "${name}"`,
       });
 
-      return NextResponse.json({
-        model,
-        item: {
-          name,
-          lvl,
-          star: verdict.star,
-          pot: tier,
-          sup,
-          noSf: !!parsed.noStarForce,
-          noFl,
-          noPot,
-          p: noPot ? [] : pot.lines,
-          f: noFl ? [] : flame.lines,
+      return {
+        body: {
+          model,
+          item: {
+            name,
+            lvl,
+            star: verdict.star,
+            pot: tier,
+            sup,
+            noSf: !!parsed.noStarForce,
+            noFl,
+            noPot,
+            p: noPot ? [] : pot.lines,
+            f: noFl ? [] : flame.lines,
+          },
+          slotGuess: slot,
+          iconBox: box(parsed.iconBox),
+          // Additive: the star-row crop region, for the native-resolution second
+          // pass and for the pixel counter. Null when the model found no star row.
+          tooltipBox: box(parsed.tooltipBox),
+          stats,
+          roster,
+          // Additive: everything the UI needs to point at ONE field instead of
+          // asking the user to re-verify all eight.
+          conf,
+          reasons,
+          flags,
+          db: db
+            ? {
+                itemId: db.itemId, name: db.name, sub: db.sub, level: db.level,
+                superior: db.superior, bossDrop: db.bossDrop,
+                corrected: db.distance > 0, distance: db.distance,
+              }
+            : null,
+          accuracy: evalAccuracy(),
         },
-        slotGuess: slot,
-        iconBox: box(parsed.iconBox),
-        // Additive: the star-row crop region, for the native-resolution second
-        // pass and for the pixel counter. Null when the model found no star row.
-        tooltipBox: box(parsed.tooltipBox),
-        stats,
-        roster,
-        // Additive: everything the UI needs to point at ONE field instead of
-        // asking the user to re-verify all eight.
-        conf,
-        reasons,
-        flags,
-        db: db
-          ? {
-              itemId: db.itemId, name: db.name, sub: db.sub, level: db.level,
-              superior: db.superior, bossDrop: db.bossDrop,
-              corrected: db.distance > 0, distance: db.distance,
-            }
-          : null,
-        accuracy: evalAccuracy(),
-      });
+        outcome: { ok: true, model, usage: r.usage },
+      };
     }
     // Only reachable if every attempt asked for a retry and none succeeded —
     // without this the model would vanish from `outcomes` and the user would be
     // told "no models responded" with an empty parenthesis.
     if (attempt >= MAX_ATTEMPTS) {
       outcomes.push({ model, why: `gave up after ${MAX_ATTEMPTS} attempts (parameter downgrades and rate-limit backoff)` });
+      // Every attempt ended in a status we retried — that is an HTTP failure.
+      lastFailure = "model_http_error";
     }
   }
 
   const detail = outcomes.map((o) => `${o.model} — ${o.why}`).join("; ");
   const error = anyModelAnswered
-    ? `A model read the image but found nothing it could use. Show an item tooltip, the Stat window, or the Switch Character list. (${detail})`
+    ? `A model read the image but found nothing it could use. Show an item tooltip, the Stat window, the Symbol window, or the Switch Character list. (${detail})`
     : `No vision model responded — free endpoints are likely rate-limited right now. Wait a minute and retry. (${detail})`;
 
   logImport({
@@ -1127,5 +1275,14 @@ export async function POST(req: Request) {
     outcome: `failed: ${detail || "no models configured"}`,
   });
 
-  return NextResponse.json({ error, outcomes }, { status: 503 });
+  // `lastFailure` is what decides whether the unit comes back. "no_content" —
+  // a model read the image and found nothing in it — keeps it, because the
+  // vision tokens were really spent. Every other ending here (timeout, HTTP,
+  // network, unparseable) is our failure and is refunded in full: a visitor
+  // must not lose demo to somebody else's rate limit.
+  return {
+    body: { error, outcomes },
+    status: 503,
+    outcome: { ok: false, failure: lastFailure },
+  };
 }

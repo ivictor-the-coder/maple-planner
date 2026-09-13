@@ -884,13 +884,42 @@ export function expectedDamageIndex(
  *
  * Damage Range is the one number in this whole model that the game prints back
  * at the player, on the stat window, with no opaque Nexon formula in between.
- * It is `weaponMultiplier * (4*main + secondary) * att/100`, with the minimum
- * being `max * mastery`.
- *
  * If `max` here does not match what the character's stat window shows, the
  * class constants are wrong and everything downstream is wrong with them. That
  * is a much better test than comparing an index to Combat Power, which is a
  * different, undocumented formula.
+ *
+ *   max = weaponMultiplier * (4*main + secondary) * (att/100) * (1 + attPct)
+ *         * (1 + dmgPct) * (1 + finalDmgPct)
+ *   min = max * mastery
+ *
+ * THE LAST TWO TERMS WERE MISSING, and this comment used to assert that the
+ * formula ended before them - "it is weaponMultiplier * (4*main + secondary) *
+ * att/100". That was wrong, and wrong in the direction that discredits correct
+ * constants: without them the function returned 0.2679 of what the game prints,
+ * and the falsifier below told the player that a 3.7x discrepancy meant the
+ * weapon multiplier was wrong. It meant this line was.
+ *
+ * Four independent observations settle it, all on the same character and none
+ * of them fitted to it:
+ *
+ *   DAMAGE_RANGE_VALIDATION   base 1,669,150 against printed 6,231,358 = 0.2679
+ *                             with both terms 6,231,218, ratio 1.0000
+ *   DELTA_VALIDATION x3       base/game = 0.2679 every time; with both terms,
+ *                             ratio 0.99998 every time
+ *
+ * One missing factor does not reproduce to five digits across four loadouts by
+ * luck. DAMAGE_RANGE_VALIDATION carries the transcription of the stat window.
+ *
+ * BOSS DAMAGE IS DELIBERATELY ABSENT. The stat window prints three ranges -
+ * Default, Normal Enemy and Boss - and this is the first of them. bossPct
+ * belongs to `damageTerm` in damageIndex(), not here; folding it in would
+ * reproduce the Boss row and print it under the Default label.
+ *
+ * When a character has no reading for dmgPct or finalDmgPct the adapter
+ * defaults them to 0 and SAYS SO in `assumptions`. The range then comes back
+ * low - correctly low, because it is reporting what it was given. A UI printing
+ * this number must show the assumptions beside it; absent is not zero.
  */
 export function damageRange(inputs: FractionalDamageInputs): { min: number; max: number } {
   const weapon = Number.isFinite(inputs.weaponMultiplier) && inputs.weaponMultiplier > 0
@@ -900,9 +929,30 @@ export function damageRange(inputs: FractionalDamageInputs): { min: number; max:
     weapon *
     (STAT_MULTIPLIER_MAIN * inputs.mainStat + inputs.secondaryStat) *
     (inputs.att / 100) *
-    (1 + inputs.attPct);
+    (1 + inputs.attPct) *
+    (1 + inputs.dmgPct) *
+    (1 + inputs.finalDmgPct);
   const m = Math.min(Math.max(inputs.mastery, 0), MASTERY_CAP);
   return { min: max * m, max };
+}
+
+/**
+ * Reproduce the printed range from the recorded stat window, and report by how
+ * much it misses. This exists so the claim above is CHECKED rather than
+ * described: a regression in damageRange() moves `ratio` off 1 and any caller
+ * can assert on it. It reads DAMAGE_RANGE_VALIDATION rather than repeating its
+ * numbers, so this file holds one transcription of the stat window, not two.
+ */
+export function damageRangeSelfCheck(): { computed: number; printed: number; ratio: number } {
+  const v = DAMAGE_RANGE_VALIDATION.inputs;
+  const computed =
+    v.weaponConstant *
+    (STAT_MULTIPLIER_MAIN * v.dex + v.str) *
+    (v.att / 100) *
+    (1 + v.damagePct) *
+    (1 + v.finalDamagePct);
+  const printed = DAMAGE_RANGE_VALIDATION.printed.damageRange;
+  return { computed, printed, ratio: computed / printed };
 }
 
 /* ============================================================================
@@ -1105,6 +1155,28 @@ export interface CharacterLike {
     readonly boss: number;
     /** PRINTED PERCENT, already stacked. 92.9 means 92.9%. */
     readonly ied: number;
+    /**
+     * PRINTED PERCENT from the stat window's DAMAGE line. 73 means 73%.
+     * OPTIONAL, and absence is meaningful: undefined is "this character has no
+     * reading", a different claim from a character that reads zero. Mirrors
+     * DamageReadings in lib/rules.ts; declared structurally here so this file
+     * stays importable by anything without taking a dependency on rules.ts.
+     */
+    readonly damagePct?: number;
+    /**
+     * PRINTED PERCENT from the stat window's FINAL DAMAGE line. 115.79 means
+     * 115.79%, i.e. a multiplier of 2.1579 - see
+     * DAMAGE_RANGE_VALIDATION.finalDamageReading, which is the authority, and
+     * misreading which halves every range.
+     */
+    readonly finalDamagePct?: number;
+    /**
+     * PRINTED. Flat secondary stat — STR for a Bow Master. Counts at 1x
+     * against main stat's 4x in the range formula, which is small per point
+     * and not small in total: the reference character's 2,609 is 3.0% of
+     * their printed range. OPTIONAL, and absent is not zero.
+     */
+    readonly secondary?: number;
   };
 }
 
@@ -1160,23 +1232,31 @@ export interface CharacterAdaptation {
  * DEFAULTS, and what each one assumes — all of them also come back in
  * `assumptions` so the UI can say them out loud:
  *
- *   secondaryStat  0.  `Character` has no STR field. A Bow Master's STR
- *                  contributes at 1x against DEX's 4x, so a realistic ~1,500
- *                  STR is worth about 1.8% of range. UNDERSTATES the index by
- *                  that much; cancels in every marginal except main stat's.
+ *   secondaryStat  0 ONLY WHEN THE CHARACTER HAS NO READING. This entry used
+ *                  to say `Character` has no STR field; it has one now, on
+ *                  CharacterLike.stats.secondary. When it is absent the index
+ *                  is UNDERSTATED by the secondary stat's 1x contribution —
+ *                  2,609 STR on the reference character, 3.0% of its printed
+ *                  range — and it cancels in every marginal except main stat's.
  *   attPct         0.  NOT a degradation — GMS prints total ATT in the stat
  *                  window, already multiplied. Anything else double-counts.
- *   dmgPct         0.  `Character` has no Damage% field and GMS does not print
- *                  one. Bow Master's own passives alone are +6% baseline
- *                  (BOW_MASTER.alreadyInStatWindow is explicit that boss% IS
- *                  printed but damage% is not). UNDERSTATES the index, and this
- *                  is the one default that also biases a comparison: because
- *                  boss% and damage% share one additive bucket, a zero damage%
- *                  makes the boss-damage marginal LOOK BETTER than it is.
- *   finalDmgPct    0.  Not printed anywhere in game. Bow Master's sourced
- *                  sources multiply to +83.8% with everything up. A pure common
- *                  factor: it changes the absolute index and no comparison at
- *                  all. Pass classBuffs:"all-buffs-up" to include it.
+ *   dmgPct         0 ONLY WHEN THE CHARACTER HAS NO READING. This entry used to
+ *                  say "GMS does not print one". It does: the stat window's
+ *                  DAMAGE line reads 73.00% on the reference character, and
+ *                  CharacterLike.stats.damagePct is where it is now read from.
+ *                  The default still biases a comparison, which is why it is
+ *                  reported in `assumptions` rather than quietly applied:
+ *                  because boss% and damage% share one additive bucket, a zero
+ *                  damage% makes the boss-damage marginal LOOK BETTER than it is.
+ *   finalDmgPct    0 ONLY WHEN THERE IS NO READING AND NO BUFF STACK IS ASKED
+ *                  FOR. This entry used to say "not printed anywhere in game",
+ *                  which was the more expensive half of the same mistake - the
+ *                  window prints FINAL DAMAGE 115.79%, meaning a multiplier of
+ *                  2.1579, and reading it as 1.1579 halves the range. It is a
+ *                  common factor for COMPARISONS but NOT for the printed range,
+ *                  which is exactly how damageRange() sat 3.7x low while every
+ *                  ranking it fed stayed correct. Pass classBuffs:"all-buffs-up"
+ *                  for the class's own stack instead of a reading.
  *   mastery        class value (0.85 for Bow Master), else RANGE_MASTERY_BASE.
  *                  Unused by damageIndex; used by damageRange.
  *   pdr            DEFAULT_PDR, 3.0 — the Arcane River standard.
@@ -1211,10 +1291,18 @@ export function fractionalInputsFromCharacter(
     );
   }
 
-  const secondaryStat = options.secondaryStat ?? 0;
-  if (options.secondaryStat === undefined) {
+  // Same precedence as the two damage readings: an explicit option is a
+  // what-if, the character's own figure is a measurement, and the default is
+  // an admission. `??` and not `||`, so a class that genuinely reads 0 keeps it.
+  const secondaryRead = options.secondaryStat ?? ch.stats.secondary;
+  const secondaryStat = secondaryRead ?? 0;
+  if (secondaryRead === undefined) {
     assumptions.push(
-      "Secondary stat assumed 0 — the character sheet does not record it. A Bow Master's STR adds at 1x against DEX's 4x, so a realistic value would raise range by roughly 1-2%.",
+      "Secondary stat assumed 0 because this character has no reading for it. It adds at 1x against main stat's 4x — on the reference character that is 2,609 STR, worth 3.0% of the printed Damage Range, and with the two damage readings applied it is the whole remaining gap between this figure and the stat window.",
+    );
+  } else if (options.secondaryStat === undefined) {
+    assumptions.push(
+      `Secondary stat ${secondaryRead.toLocaleString("en-US")} read from this character's stat window.`,
     );
   }
 
@@ -1225,19 +1313,38 @@ export function fractionalInputsFromCharacter(
     );
   }
 
-  const dmgPct = printedPercentToFraction(options.dmgPctPrinted ?? 0);
-  if (options.dmgPctPrinted === undefined) {
+  // PRECEDENCE: an explicit option beats the character's own reading, because
+  // the option is how a caller asks a what-if question. The reading beats the
+  // default, because it is a measurement and the default is an admission.
+  // `?? ` and not `||` throughout: a character that genuinely reads 0 keeps it.
+  const dmgPctRead = options.dmgPctPrinted ?? ch.stats.damagePct;
+  const dmgPct = printedPercentToFraction(dmgPctRead ?? 0);
+  if (dmgPctRead === undefined) {
     assumptions.push(
-      "Damage% assumed 0 — the game does not print it and the character sheet does not record it. The real value is positive, so the index is low AND the boss-damage row of the marginal table is optimistic (boss% and damage% share one additive bucket).",
+      "Damage% assumed 0 because this character has no reading for it. The stat window DOES print it — the reference character reads 73.00% — so this is a gap in the sheet, not in the game. Until it is filled the index is low AND the boss-damage row of the marginal table is optimistic, because boss% and damage% share one additive bucket.",
+    );
+  } else if (options.dmgPctPrinted === undefined) {
+    assumptions.push(
+      `Damage% +${dmgPctRead.toFixed(2)}% read from this character's stat window.`,
     );
   }
 
   const classBuffs: ClassBuffMode = options.classBuffs ?? "none";
   let finalDmgPct: number;
+  const finalDmgRead = options.finalDmgPctPrinted ?? ch.stats.finalDamagePct;
   if (options.finalDmgPctPrinted !== undefined) {
     finalDmgPct = printedPercentToFraction(options.finalDmgPctPrinted);
     assumptions.push(
       `Final Damage taken from the caller: +${options.finalDmgPctPrinted.toFixed(2)}%.`,
+    );
+  } else if (finalDmgRead !== undefined) {
+    // The character's OWN reading outranks the class buff stack, and by a long
+    // way: the stack is every buff up at once, which nobody sustains, while
+    // this is what the window actually said. Taking the stack over a real
+    // measurement would be preferring a ceiling to an observation.
+    finalDmgPct = printedPercentToFraction(finalDmgRead);
+    assumptions.push(
+      `Final Damage +${finalDmgRead.toFixed(2)}% read from this character's stat window, which is a multiplier of ${(1 + printedPercentToFraction(finalDmgRead)).toFixed(4)} — not ${printedPercentToFraction(finalDmgRead).toFixed(4)}, which is the misreading that halves every range. Whatever buffs were up when the screenshot was taken are baked into it.`,
     );
   } else if (classBuffs === "all-buffs-up" && cc) {
     finalDmgPct = stackFinalDamage(cc.finalDamageSources);
@@ -1247,7 +1354,7 @@ export function fractionalInputsFromCharacter(
   } else {
     finalDmgPct = 0;
     assumptions.push(
-      "Final Damage assumed 0 — it is not printed in game and not recorded on the sheet. A Bow Master's sourced skills multiply to roughly +84% with everything up. Purely a common factor: the index is low, every marginal is unaffected.",
+      "Final Damage assumed 0 because this character has no reading for it. The stat window DOES print it — the reference character reads 115.79%, a multiplier of 2.1579 — so this is a gap in the sheet, not in the game. It is a common factor for every COMPARISON on the page, so no ranking moves; it is not a common factor for the printed Damage Range, which reads low until the line is recorded.",
     );
   }
 
@@ -1428,6 +1535,43 @@ export interface ReferenceCheck {
 }
 
 /**
+ * What must be true in game for the class constants to be right - written so
+ * that following it cannot produce a false conclusion.
+ *
+ * The previous version said: read Damage Range off the stat window, and if the
+ * maximum is not near `maxRange`, the 1.3 weapon multiplier is wrong. Every
+ * part of that was checkable and the conclusion was still backwards, because
+ * `maxRange` is computed for a fixture with NO Damage% and NO Final Damage%
+ * reading while the window folds both in. The observed character's window reads
+ * 6,231,358 against a fixture figure near 1.58M, and a player doing as they were
+ * told would have discarded a constant this repo has since confirmed twice.
+ *
+ * So the discrimination moves to the RATIO, which is what the test was always
+ * really about: 1.3 against 1.15 is a 13% difference, both figures are missing
+ * exactly the same multipliers, and the ratio is therefore unaffected by the
+ * readings. The absolute check is delegated to damageRangeSelfCheck(), whose
+ * fixture does carry both lines and reproduces the printed range at 1.0000.
+ */
+function rangeFalsifier(max: number, legacyMax: number): string {
+  const n = (x: number) => Math.round(x).toLocaleString("en-US");
+  const self = damageRangeSelfCheck();
+  const v = DAMAGE_RANGE_VALIDATION.inputs;
+  const readingFactor = (1 + v.damagePct) * (1 + v.finalDamagePct);
+  return (
+    `This figure, ${n(max)}, is NOT what the stat window prints. It is computed for a ` +
+    `character sheet carrying no DAMAGE % and no FINAL DAMAGE % reading, and the window ` +
+    `folds both of those in on top - on the recorded stat window that is a factor of ` +
+    `${readingFactor.toFixed(2)}x. ` +
+    `A window reading several times higher than this is the expected result, not a broken constant. ` +
+    `THE TEST THAT DOES DISCRIMINATE is the ratio: the legacy 1.15 multiplier gives ${n(legacyMax)} ` +
+    `against ${BOW_MASTER.weaponMultiplier.value}'s ${n(max)}, a ${(((max / legacyMax) - 1) * 100).toFixed(1)}% ` +
+    `gap that no reading can hide, because both sides are missing the same factors. ` +
+    `For the absolute check see damageRangeSelfCheck(), whose fixture records both lines and ` +
+    `reproduces the printed ${n(self.printed)} at a ratio of ${self.ratio.toFixed(4)}.`
+  );
+}
+
+/**
  * Run the model on the reference character.
  *
  * WHAT THE NUMBERS MEAN, precisely, because this is the part it would be easy
@@ -1450,9 +1594,15 @@ export interface ReferenceCheck {
  *   between them on sight. `maxRangeLegacyMultiplier` is printed alongside so
  *   the comparison takes one glance.
  *
- * Anything the check CANNOT catch: Damage%, Final Damage% and secondary stat
- * are all defaulted (see `fractionalInputsFromCharacter`), and none of them
- * appear in the range formula, so a correct range does not validate them.
+ * Anything the check CANNOT catch: secondary stat is defaulted to 0 (see
+ * `fractionalInputsFromCharacter`), so a correct range does not validate it.
+ *
+ * Damage% and Final Damage% USED TO BE LISTED HERE, on the grounds that they
+ * do not appear in the range formula. They do - see damageRange(), where the
+ * omission was the bug - so a character CARRYING both readings has a range that
+ * validates them too, and a character carrying neither reads about 0.27 of its
+ * stat window. That is not a broken multiplier, and the falsifier must not be
+ * read as saying it is.
  */
 export function referenceCheck(): ReferenceCheck {
   const plain = fractionalInputsFromCharacter(REFERENCE_CHARACTER);
@@ -1477,12 +1627,6 @@ export function referenceCheck(): ReferenceCheck {
     indexOverCp: idx / REFERENCE_CHARACTER.cp,
     assumptions: plain.assumptions,
     warnings: [...plain.warnings, ...b.warnings],
-    falsifier:
-      `Open Archerroni's stat window and read Damage Range. If the maximum is not near ` +
-      `${Math.round(r.max).toLocaleString("en-US")}, the Bow Master weapon multiplier of ` +
-      `${BOW_MASTER.weaponMultiplier.value} is wrong. The legacy 1.15 reading would show ` +
-      `${Math.round(damageRange(legacy.inputs).max).toLocaleString("en-US")} instead. ` +
-      `Damage Range is unbuffed-stat-window truth, so this test does not depend on any ` +
-      `buff-uptime assumption in this file.`,
+    falsifier: rangeFalsifier(r.max, damageRange(legacy.inputs).max),
   };
 }

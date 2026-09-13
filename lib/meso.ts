@@ -75,17 +75,127 @@ import type { Character } from "./rules";
  *  Do NOT fill this in from memory. It needs a citation in `source` and a date in
  *  `lastVerified`, and tools/meso-check.ts exists to keep unverified numbers out
  *  of headline figures. */
+/* ---------------------------------------------------------------------------
+ * RESOLVED 2026-09-12 BY DIRECT OBSERVATION. Everything above this line is the
+ * history of not knowing; everything below is what the game said.
+ *
+ * The three things the Crystal Collector panel settled, in order of how much
+ * they move the numbers:
+ *
+ *  1. SCOPE. The total is ACCOUNT-PER-WORLD. That kills the "60 per character"
+ *     scenario outright, and it was the expensive one: on this 31-character
+ *     roster it put the weekly ceiling at 60 x 31 = 1,860 crystals. The truth
+ *     is 180. Every figure that came out of that scenario was ~10x too high.
+ *
+ *  2. SIZE. 180, not 60. So CAP_SCENARIOS is CONTRADICTED, not merely
+ *     unverified - both of its numeric arms are wrong, in both directions at
+ *     once (too small for the account cap, far too large for the roster one).
+ *
+ *  3. The per-character row is labelled WEEKLY and reads 4/14. The label is the
+ *     load-bearing part: daily and monthly crystals do NOT consume the
+ *     per-character allowance. That was previously inferred and is now read off
+ *     the game, which is what lets the daily rotation be priced as income ON TOP
+ *     of the weeklies instead of competing with them.
+ *
+ * STILL NOT SOURCED: whether the 180 counts all three crystal types (the panel
+ * qualifies the character row with "weekly" and leaves the world row bare, which
+ * is the reading taken here), and the reset time - see UNVERIFIED.
+ * ------------------------------------------------------------------------- */
+
+/** The account-wide, per-world weekly total, across ALL crystal types.
+ *
+ *  Derived from OBSERVED_CRYSTAL_CAPS rather than retyped, so the observation and
+ *  the constant the engine runs on cannot drift apart. */
 export const CRYSTAL_SALE_LIMIT = {
-  crystalsPerReset: null as number | null,
-  scope: "unknown" as "account-per-world" | "per-character" | "unknown",
-  /** GMS weekly content reset. Supplied by the product brief; independent of the
-   *  cap itself, which is why it is not null while the cap is. */
+  crystalsPerReset: OBSERVED_CRYSTAL_CAPS.worldPerWeek as number | null,
+  scope: "account-per-world" as "account-per-world" | "per-character" | "unknown",
+  /** GMS weekly content reset. Still supplied by the product brief, NOT by the
+   *  observation - the panel shows counts, not a reset clock. Registered in
+   *  UNVERIFIED rather than promoted along with the caps beside it. */
   resetsAt: "Thursday 00:00 UTC",
-  source: null as string | null,
-  lastVerified: null as string | null,
+  source: OBSERVED_CRYSTAL_CAPS.source as string | null,
+  lastVerified: OBSERVED_CRYSTAL_CAPS.observedAt as string | null,
 };
 
-/** The plausible worlds the cap could live in, used to produce a RANGE while
+/**
+ * The per-character sub-cap, and - the part that matters - the cadences it
+ * applies to.
+ *
+ * 14 crystals per character per week, counting the WEEKLY crystal type only.
+ *
+ * WHY THE CADENCE LIST IS NOT AN OPTIMISATION: modelling this as a flat
+ * 14-per-character cap over every cadence is the obvious simpler thing and it is
+ * wrong in the direction that destroys the product. It would make a daily boss
+ * compete with Chosen Seren for the same 14 slots, and since a week of dailies
+ * generates far more crystals than 14, the greedy solve would drop the entire
+ * daily rotation off the plan as "displaced". The panel's own label is the
+ * evidence that it does not work that way.
+ */
+export const PER_CHARACTER_CRYSTAL_CAP = {
+  crystalsPerWeek: OBSERVED_CRYSTAL_CAPS.perCharacterWeeklyType,
+  /** Sourced by the panel's label on the character row. */
+  appliesToCadences: ["weekly"] as readonly BossCadence[],
+  scope: "per-character" as const,
+  source: OBSERVED_CRYSTAL_CAPS.source,
+  lastVerified: OBSERVED_CRYSTAL_CAPS.observedAt,
+};
+
+/**
+ * HEADROOM, not a cap, and a snapshot of exactly one week.
+ *
+ * The same panel read 159 of 180 world crystals already sold. 21 left is a
+ * materially different planning problem from "180 available", and it is the
+ * number a player would actually act on this week - so it is surfaced rather
+ * than folded silently into a total.
+ *
+ * It is NEVER applied behind the caller's back. weeklyPlan() budgets against the
+ * full 180 unless the caller passes worldCrystalsAlreadySold, because a figure
+ * observed in one week is not a standing constraint on every week.
+ */
+export const OBSERVED_WORLD_HEADROOM =
+  OBSERVED_CRYSTAL_CAPS.worldPerWeek - OBSERVED_CRYSTAL_CAPS.observedWorldUsed;
+
+/** What changed on 2026-09-12, so the promotion from unverified to sourced is
+ *  auditable rather than invisible in a diff. */
+export const SOURCED_SINCE: ReadonlyArray<{ name: string; was: string; now: string; by: string }> = [
+  {
+    name: "CRYSTAL_SALE_LIMIT.crystalsPerReset",
+    was: "null - a range across CAP_SCENARIOS (60 account-wide / 60 x roster / uncapped)",
+    now: "180, account-per-world",
+    by: "in-game Crystal Collector, Weekly Sale Status (World 159/180)",
+  },
+  {
+    name: "CRYSTAL_SALE_LIMIT.scope",
+    was: "unknown - attested both ways in the same forum thread",
+    now: "account-per-world",
+    by: "same panel; the world row is the one that carries the total",
+  },
+  {
+    name: "PER_CHARACTER_CRYSTAL_CAP",
+    was: "did not exist; the per-character allowance was a contested 60 or 12",
+    now: "14 per character per week, WEEKLY crystal type only",
+    by: "same panel (Character 4/14, row labelled weekly)",
+  },
+  {
+    name: "CAP_SCENARIOS",
+    was: "the operative range",
+    now: "CONTRADICTED and inert - retained only as the historical record",
+    by: "same panel",
+  },
+];
+
+/** SUPERSEDED AND CONTRADICTED by the 2026-09-12 observation - see
+ *  SOURCED_SINCE. Retained, not deleted, for two reasons: it is the record of
+ *  what was believed and why it was wrong (60 vs 180, and a per-character scope
+ *  that would have overstated the ceiling ~10x), and it is still the fallback
+ *  the range machinery uses IF someone nulls CRYSTAL_SALE_LIMIT.crystalsPerReset
+ *  again. With the cap sourced, nothing reads it in the default path.
+ *
+ *  DO NOT re-derive anything from these numbers. They are known wrong.
+ *
+ *  The original note follows.
+ *
+ *  The plausible worlds the cap could live in, used to produce a RANGE while
  *  CRYSTAL_SALE_LIMIT.crystalsPerReset is null.
  *
  *  UNVERIFIED. The number 60 comes from player forum posts dated 2017 and 2021,
@@ -190,9 +300,11 @@ export const FARM_RATE = {
  *  Exported so the UI can render a provenance panel and so a checker can assert
  *  none of them reached a headline figure unflagged. */
 export const UNVERIFIED: ReadonlyArray<{ name: string; why: string }> = [
-  { name: "CRYSTAL_SALE_LIMIT.crystalsPerReset", why: "No GMS v.271 source. Forum posts say 60 (2017, 2021); scope contradicted within the same thread." },
-  { name: "CRYSTAL_SALE_LIMIT.scope", why: "Attested both as per-character (stated intent) and account-per-world (observed behaviour, unresolved bug report)." },
-  { name: "CAP_SCENARIOS[*].crystalsPerReset", why: "Range bounds taken from 2017/2021 player forum wording, not patch notes." },
+  // CRYSTAL_SALE_LIMIT.crystalsPerReset, .scope and CAP_SCENARIOS left this list
+  // on 2026-09-12: the first two are now sourced (see SOURCED_SINCE) and the
+  // third is contradicted, which is a stronger statement than unverified.
+  { name: "CRYSTAL_SALE_LIMIT.resetsAt", why: "Thursday 00:00 UTC is from the product brief, not from the observation and not from a Nexon page. lib/symbols.ts registers the same fact as WEEKLY_RESET_DAY_UTC_UNVERIFIED while this module was asserting it. Moves a week's boundary, not a total." },
+  { name: "CRYSTAL_SALE_LIMIT crystal-TYPE scope", why: "The panel qualifies the character row with the word weekly and leaves the world row bare, so the 180 is read here as counting all three crystal types. If it is weekly-type only, daily crystals are uncapped account-wide and every ceiling in this module is too low." },
   { name: "WEEKLY_RUN_ALLOWANCE.daily", why: "7 is the entry allowance assuming a daily login, not a measured habit; user-editable." },
   { name: "CP_CONFIDENCE_BANDS", why: "Presentation heuristic over community CP estimates. Not game data." },
   { name: "FARM_RATE.mesosPerHour", why: "Placeholder. Must be measured by the user; no defensible default exists." },
@@ -386,8 +498,15 @@ export interface WeeklyPlanOptions extends ClearOptions {
   clearedBossIds?: readonly string[];
   /** Override WEEKLY_RUN_ALLOWANCE.daily. */
   dailyClearsPerWeek?: number;
-  /** Override the cap for a what-if. null means "use CRYSTAL_SALE_LIMIT". */
+  /** Override the ACCOUNT cap for a what-if. null means uncapped; undefined
+   *  means "use CRYSTAL_SALE_LIMIT". */
   capOverride?: number | null;
+  /** Override the per-character weekly-type sub-cap. null means uncapped. */
+  perCharacterWeeklyCapOverride?: number | null;
+  /** Crystals this account has already sold in this world this week. Supplying
+   *  it budgets against the remaining headroom instead of the full 180. The
+   *  observed value on 2026-09-12 was 159 - see OBSERVED_WORLD_HEADROOM. */
+  worldCrystalsAlreadySold?: number;
 }
 
 export interface WeeklyPlan {
@@ -402,6 +521,18 @@ export interface WeeklyPlan {
   spilledCrystals: CrystalEntry[];
   capUsed: number | null;
   capVerified: boolean;
+  /** Weekly-type crystals kept, against the per-character allowance. */
+  weeklyTypeUsed: number;
+  perCharacterCapUsed: number | null;
+  /** True when the 14-crystal per-character weekly allowance ran out. Distinct
+   *  from capBinding, which is the account total: they bind for different
+   *  reasons and the fix for each is the opposite of the other (spread the
+   *  weeklies over more characters vs stop generating crystals). */
+  perCharacterCapBinding: boolean;
+  /** Weekly crystals dropped by the per-character cap specifically. */
+  spilledByPerCharacterCap: CrystalEntry[];
+  /** Cadences that do not consume the per-character allowance at all. */
+  cadencesExemptFromCharacterCap: readonly BossCadence[];
 }
 
 function runsPerWeek(cadence: BossCadence, dailyOverride?: number): number {
@@ -453,6 +584,48 @@ function takeTopN(entries: CrystalEntry[], cap: number | null): { taken: Crystal
   return { taken: sorted.slice(0, cap), spilled: sorted.slice(cap) };
 }
 
+/**
+ * The per-character weekly-type sub-cap, applied BEFORE the account total.
+ *
+ * ORDER IS LOAD-BEARING, and the reverse order loses crystals twice. The two
+ * caps count different things: a 15th weekly crystal is dead no matter how much
+ * world allowance remains, while a daily crystal only ever competes for the
+ * total. Take the total first and a doomed 15th weekly crystal can displace a
+ * daily one out of the account budget and then be discarded itself - the plan
+ * loses the daily crystal AND does not gain the weekly one.
+ *
+ * Entries whose cadence is not in appliesToCadences pass through untouched. That
+ * pass-through IS the daily-bossing conclusion expressed as code rather than as
+ * a comment: dailies are not cheaper than weeklies here, they are exempt.
+ */
+function applyPerCharacterWeeklyCap(
+  entries: CrystalEntry[],
+  cap: number | null,
+): { kept: CrystalEntry[]; spilled: CrystalEntry[]; consumed: number } {
+  const applies = new Set<BossCadence>(PER_CHARACTER_CRYSTAL_CAP.appliesToCadences);
+  const counted = entries.filter((e) => applies.has(e.cadence)).sort((a, b) => b.mesos - a.mesos);
+  const exempt = entries.filter((e) => !applies.has(e.cadence));
+  if (cap === null) return { kept: [...counted, ...exempt], spilled: [], consumed: counted.length };
+  return {
+    kept: [...counted.slice(0, cap), ...exempt],
+    spilled: counted.slice(cap),
+    consumed: Math.min(counted.length, cap),
+  };
+}
+
+/** The account allowance this character may actually spend against.
+ *
+ *  Defaults to the full sourced 180. OBSERVED_WORLD_HEADROOM is deliberately NOT
+ *  the default: 159 already sold was true of one observed week, and quietly
+ *  budgeting every future week against 21 remaining would understate income
+ *  roughly 8x for a player who opens the app the morning after a reset. */
+function effectiveWorldCap(opts: WeeklyPlanOptions): number | null {
+  const total = CRYSTAL_SALE_LIMIT.crystalsPerReset;
+  if (total === null) return null;
+  if (opts.worldCrystalsAlreadySold === undefined) return total;
+  return Math.max(0, total - opts.worldCrystalsAlreadySold);
+}
+
 export function weeklyPlan(ch: Character, opts: WeeklyPlanOptions = {}): WeeklyPlan {
   const all = clearableBosses(ch, opts);
   const chosen = opts.clearedBossIds
@@ -460,18 +633,31 @@ export function weeklyPlan(ch: Character, opts: WeeklyPlanOptions = {}): WeeklyP
     : all.filter((c) => isClearing(c.confidence));
 
   const unpricedCount = chosen.filter((c) => !isPriced(c.row) && runsPerWeek(c.row.cadence, opts.dailyClearsPerWeek) > 0).length;
-  const cap = opts.capOverride !== undefined ? opts.capOverride : CRYSTAL_SALE_LIMIT.crystalsPerReset;
-  const pool = candidates(chosen, opts);
-  const { taken, spilled } = takeTopN(pool, cap);
+  const cap = opts.capOverride !== undefined ? opts.capOverride : effectiveWorldCap(opts);
+  const perChar =
+    opts.perCharacterWeeklyCapOverride !== undefined
+      ? opts.perCharacterWeeklyCapOverride
+      : PER_CHARACTER_CRYSTAL_CAP.crystalsPerWeek;
 
+  const pool = candidates(chosen, opts);
+  const charCapped = applyPerCharacterWeeklyCap(pool, perChar);
+  const { taken, spilled } = takeTopN(charCapped.kept, cap);
+
+  const applies = new Set<BossCadence>(PER_CHARACTER_CRYSTAL_CAP.appliesToCadences);
   return {
     takenCrystals: taken,
     mesosFromCrystals: taken.reduce((a, c) => a + c.mesos, 0),
     capBinding: spilled.length > 0,
     unpricedCount,
-    spilledCrystals: spilled,
+    // Both spill sets, so a caller can tell the player WHICH allowance ran out.
+    spilledCrystals: [...spilled, ...charCapped.spilled],
     capUsed: cap,
     capVerified: CRYSTAL_SALE_LIMIT.crystalsPerReset !== null && CRYSTAL_SALE_LIMIT.source !== null,
+    weeklyTypeUsed: taken.filter((e) => applies.has(e.cadence)).length,
+    perCharacterCapUsed: perChar,
+    perCharacterCapBinding: charCapped.spilled.length > 0,
+    spilledByPerCharacterCap: charCapped.spilled,
+    cadencesExemptFromCharacterCap: (["daily", "weekly", "monthly"] as const).filter((c) => !applies.has(c)),
   };
 }
 
@@ -494,12 +680,21 @@ export interface ScenarioFigure {
 }
 
 function figureFor(entries: CrystalEntry[], rosterSize: number): IncomeFigure {
+  // The per-character weekly-type allowance binds on ONE character and is
+  // independent of roster size, so it is applied once here rather than inside
+  // the scenario loop below - where multiplying it by the roster would be the
+  // same category error the roster-scope scenario made.
+  const pool = applyPerCharacterWeeklyCap(entries, PER_CHARACTER_CRYSTAL_CAP.crystalsPerWeek).kept;
+
   if (CRYSTAL_SALE_LIMIT.crystalsPerReset !== null) {
-    const { taken } = takeTopN(entries, CRYSTAL_SALE_LIMIT.crystalsPerReset);
+    const { taken } = takeTopN(pool, CRYSTAL_SALE_LIMIT.crystalsPerReset);
     return {
       kind: "exact",
       mesos: taken.reduce((a, c) => a + c.mesos, 0),
       crystalsCounted: taken.length,
+      // Compared against the UNCAPPED entry list on purpose: a crystal lost to
+      // the per-character allowance is just as lost as one lost to the account
+      // total, and the player needs to see that a cap bit.
       capApplied: taken.length < entries.length,
     };
   }
@@ -513,7 +708,7 @@ function figureFor(entries: CrystalEntry[], rosterSize: number): IncomeFigure {
         : s.scope === "per-character"
           ? s.crystalsPerReset * Math.max(1, rosterSize)
           : s.crystalsPerReset;
-    const { taken } = takeTopN(entries, effective);
+    const { taken } = takeTopN(pool, effective);
     return { scenario: s, mesos: taken.reduce((a, c) => a + c.mesos, 0), crystalsCounted: taken.length };
   });
   return collapse(basis);
@@ -524,6 +719,14 @@ function figureFor(entries: CrystalEntry[], rosterSize: number): IncomeFigure {
  *  problem"). Report it as exact — the surrounding IncomeReport still carries
  *  capUnverified, so nothing pretends the cap itself is known. */
 function collapse(basis: ScenarioFigure[]): IncomeFigure {
+  // Math.min() of nothing is Infinity and Math.max() is -Infinity, which would
+  // render as a backwards range rather than as an error. CAP_SCENARIOS is now
+  // superseded and could legitimately be emptied by a later editor, so this
+  // guard is the difference between that edit being safe and it shipping
+  // "Infinity - -Infinity mesos".
+  if (basis.length === 0) {
+    return { kind: "unknown", why: "No cap scenario is on file, so a range cannot be bounded." };
+  }
   const vals = basis.map((b) => b.mesos);
   const low = Math.min(...vals), high = Math.max(...vals);
   if (low === high) {
@@ -555,6 +758,12 @@ export interface IncomeReport {
   currentInferredFromCp: boolean;
   capUnverified: boolean;
   capNote: string;
+  /** What filling the account allowance would actually require. With a
+   *  per-character weekly allowance of 14 and an account allowance of 180, a
+   *  weekly boss cannot fill the account cap alone - it needs ceil(180/14) = 13
+   *  characters all clearing it. Stated because ceilingIfCapFilled reads like a
+   *  reachable number and is not one. */
+  capFillNote: string;
   plan: WeeklyPlan;
 }
 
@@ -614,7 +823,11 @@ export function incomeReport(ch: Character, opts: WeeklyPlanOptions = {}): Incom
     capNote:
       CRYSTAL_SALE_LIMIT.crystalsPerReset === null
         ? `Crystal sale cap is UNVERIFIED for GMS v.271 and its scope (per character vs per account per world) is contradicted in the only sources found — the roster has ${rosterSize} character${rosterSize === 1 ? "" : "s"}, so the scope alone moves this figure by that factor. Figures are ranges, not estimates.`
-        : `Cap ${CRYSTAL_SALE_LIMIT.crystalsPerReset} crystals per reset, ${CRYSTAL_SALE_LIMIT.scope}, resets ${CRYSTAL_SALE_LIMIT.resetsAt}.`,
+        : `Cap ${CRYSTAL_SALE_LIMIT.crystalsPerReset} crystals per reset, ${CRYSTAL_SALE_LIMIT.scope} (sourced ${CRYSTAL_SALE_LIMIT.lastVerified} from the Crystal Collector). Inside it, each character may sell ${PER_CHARACTER_CRYSTAL_CAP.crystalsPerWeek} WEEKLY-type crystals; daily and monthly crystals do not consume that allowance. Resets ${CRYSTAL_SALE_LIMIT.resetsAt} (reset time unverified). Observed headroom in the sample week was ${OBSERVED_WORLD_HEADROOM} of ${OBSERVED_CRYSTAL_CAPS.worldPerWeek}.`,
+    capFillNote:
+      CRYSTAL_SALE_LIMIT.crystalsPerReset === null
+        ? "No account cap on file."
+        : `Filling ${CRYSTAL_SALE_LIMIT.crystalsPerReset} account crystals with a WEEKLY boss needs ${Math.ceil(CRYSTAL_SALE_LIMIT.crystalsPerReset / PER_CHARACTER_CRYSTAL_CAP.crystalsPerWeek)} characters that can all clear it, because one character may only sell ${PER_CHARACTER_CRYSTAL_CAP.crystalsPerWeek} weekly crystals. The roster has ${rosterSize}. Daily crystals carry no per-character allowance, so they are the only thing that can fill the account cap from a small roster.`,
     plan,
   };
 }
