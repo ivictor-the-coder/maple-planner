@@ -309,6 +309,13 @@ export interface Rec {
   /** Slot id this rec came from. Stamped by planAdvice(); "character" for
    *  account-wide advice. */
   slot?: string;
+  /** This rec spends on THIS item: cubes, flames, star force. Set at the call
+   *  site so the ladder check below can find them without matching on strings. */
+  invest?: true;
+  /** Set when the plan has told the player to replace the item this rec spends
+   *  on. Two consequences: the warning names what does not survive the swap,
+   *  and assignPri() will not promote the rec on damage alone. */
+  replaced?: true;
 }
 
 /* ---------- slots, laid out like the in-game equip window ---------- */
@@ -1597,10 +1604,32 @@ function assignPri(pool: Rec[]): void {
     r.lv = r.pri === 1 ? "hi" : r.pri === 2 ? "mid" : "ok";
   });
 
+  // A rec that spends on an item the plan has told the player to REPLACE can
+  // still be worth doing today - the damage is real until the replacement drops
+  // - but it cannot hold the top band. NOW is competing against the replacement
+  // itself, and this ranking cannot see that contest: a gear-tier delta is a
+  // pair of item stat blocks neither of which is in this repo, so the upgrade
+  // enters with no damage number and loses to anything carrying one. Capping
+  // the band is the honest correction. Deleting the rec, or inventing a figure
+  // for the upgrade so it wins on merit, are both worse.
+  //
+  // Without this, a Lv 140 glove showed "+0.09% for 3M mesos, reroll the flame"
+  // above "replace this - it is below every tier on the ladder".
+  for (const r of pool) {
+    if (r.replaced && r.pri < 2) {
+      r.pri = 2;
+      r.lv = "mid";
+    }
+  }
+
   const bar = Math.max(0, ...byEff.filter((r) => r.pri === 1).map((r) => r.dmg ?? 0));
   if (!(bar > 0)) return;
   for (const r of pool) {
     if (typeof r.eff === "number") continue; // already in the meso ranking
+    // Spending on an item the plan says to replace does not get promoted on
+    // raw damage. The damage is real and temporary, and this pass cannot see
+    // the difference - the slot that set the flag could.
+    if (r.replaced) continue;
     if (r.pri === 4 || typeof r.dmg !== "number") continue;
     if (r.dmg >= bar) {
       r.pri = 1;
@@ -1653,6 +1682,10 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
     recs.push(r);
     return r;
   };
+  /** Marks a rec as spend on THIS item. The ladder check at the bottom of this
+   *  function needs to find them, and matching on rec text would break the
+   *  first time someone rewords a string. */
+  const inv = (r: Rec): Rec => { r.invest = true; return r; };
 
   if (!it) {
     const lad = LADDER[slot.id];
@@ -1665,7 +1698,7 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
       add(3, "mid", "Slot is empty.", "Free stat even with a basic item. No potential or star force here.");
     } else if (lad) {
       const [nm, lv] = lad[0];
-      add(1, "hi", `Empty — put a ${nm} here.`, `${SOURCE[nm] || ""}${lv ? ` · Lv. ${lv}` : ""}`);
+      add(1, "hi", `Empty — ${nm} goes here.`, `${SOURCE[nm] || ""}${lv ? ` · Lv. ${lv}` : ""}`);
     } else {
       add(1, "hi", "Slot is empty.");
     }
@@ -1680,7 +1713,7 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
     const band = potLineValue(it.lvl || 0);
 
     if (tier === "none") {
-      add(1, "hi", "No potential. Unlock it, then cube to Epic.", "Free Mystical and Hard cubes from bossing and Monster Park.");
+      inv(add(1, "hi", "No potential. Unlock it, then cube to Epic.", "Free Mystical and Hard cubes from bossing and Monster Park."));
     } else if (tier !== "legendary") {
       const next = TIER_NEXT[tier]!;
       const nx = TIER_LABEL[next];
@@ -1688,7 +1721,7 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
         tier === "rare" || tier === "epic"
           ? "Free Hard / Solid cubes from bossing. Cheap — do this before chasing extra lines."
           : "The expensive step. Save Bright cubes for it — they can double rank-up and let you pick a line.";
-      const r = add(1, "hi", `Tier up: ${TIER_LABEL[tier]} → ${nx}.`, how);
+      const r = inv(add(1, "hi", `Tier up: ${TIER_LABEL[tier]} → ${nx}.`, how));
 
       // The guide's own spend order is free cubes up to Unique, Bright cubes
       // for the Unique -> Legendary step, so that is what each step is billed at.
@@ -1721,10 +1754,10 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
 
     if (slot.pot === "stat") {
       if (dead.length) {
-        add(2, "mid", `${dead.length} dead line${dead.length > 1 ? "s" : ""} — reroll toward ${rerollTarget}.`,
+        inv(add(2, "mid", `${dead.length} dead line${dead.length > 1 ? "s" : ""} — reroll toward ${rerollTarget}.`,
           farming
             ? `${dead.join(" · ")} does nothing against normal mobs. This item is in your farming loadout only, so rerolling it costs you no boss damage.`
-            : `${dead.join(" · ")} does nothing for you.`);
+            : `${dead.join(" · ")} does nothing for you.`));
       }
       if (farming) {
         // THE POINT OF ADOPTING farming.isDeadLineFor, stated in advice rather
@@ -1749,8 +1782,8 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
         const done = round1(band.legendary * MILESTONE_LINES_DONE);
         if (pct < good) {
           const have = band.legendary > 0 ? Math.floor(pct / band.legendary) : 0;
-          const r = add(2, "mid", `Only ${pct}% ${label}. Aim for ${good}%+.`,
-            `${have} of 3 legendary lines at ${band.legendary}% each. A second good line is the next milestone.`);
+          const r = inv(add(2, "mid", `Only ${pct}% ${label}. Aim for ${good}%+.`,
+            `${have} of 3 legendary lines at ${band.legendary}% each. A second good line is the next milestone.`));
           const flat = pctToFlat(ch, band.legendary);
           if (flat !== null) {
             price(r, mk(relGain(st, withMain(st, flat), env),
@@ -1810,29 +1843,29 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
         const live = activeSets(ch.items).find((a) => a.setId === piece.setId);
         const lost = live && !isEmptyEffects(live.effects) ? describeEffects(live.effects) : "";
         const at = live ? ` (${live.count} piece${live.count === 1 ? "" : "s"} equipped)` : "";
-        add(2, "mid", `Superior gear — caps at 15 stars, currently ${cur}.`,
+        inv(add(2, "mid", `Superior gear — caps at 15 stars, currently ${cur}.`,
           `Expensive per star, but this is a ${piece.setName} piece${at}. Replacing it to ` +
           `reach 30 stars gives up ${lost || "the set bonus"}, which is usually worth more ` +
-          `than the extra stars. Finish the set first, then reconsider.`);
+          `than the extra stars. Finish the set first, then reconsider.`));
       } else {
-        add(1, "hi", `Superior gear — caps at 15 stars, currently ${cur}.`,
+        inv(add(1, "hi", `Superior gear — caps at 15 stars, currently ${cur}.`,
           "Expensive per star, and this piece is not in a set. A non-superior " +
-          "replacement goes to 30 instead.");
+          "replacement goes to 30 instead."));
       }
     } else if (cur === 0) {
       // It used to say "free power sitting on the floor". With the real per-star
       // curve in front of it that sentence now sits next to a nine-figure price
       // tag and reads as a lie. Nothing below 15 can boom — that is what was
       // actually free, and it is all this claims now.
-      const r = add(1, "hi", "0 stars. Nothing below 15 can boom, so this is risk-free.",
-        "Mesos and time only, no destruction. Push to 15 during a 5/10/15 event.");
+      const r = inv(add(1, "hi", "0 stars. Nothing below 15 can boom, so this is risk-free.",
+        "Mesos and time only, no destruction. Push to 15 during a 5/10/15 event."));
       priceStars(r, it, ch, env, 0, Math.min(15, cap));
     } else if (cur < tgt) {
-      const r = add(2, "mid", `${cur} → ${tgt} stars.`,
-        `${cap >= 20 ? "Below 15 there is no boom risk. " : ""}Only tap past 15 during a 5/10/15 or 30%-off event.`);
+      const r = inv(add(2, "mid", `${cur} → ${tgt} stars.`,
+        `${cap >= 20 ? "Below 15 there is no boom risk. " : ""}Only tap past 15 during a 5/10/15 or 30%-off event.`));
       priceStars(r, it, ch, env, cur, tgt);
     } else if (cap >= 20 && cur < 22) {
-      const r = add(3, "ok", `${cur} stars. Next milestone is 22.`, "Safeguard through 18, and only on event weekends.");
+      const r = inv(add(3, "ok", `${cur} stars. Next milestone is 22.`, "Safeguard through 18, and only on event weekends."));
       priceStars(r, it, ch, env, cur, 22);
     } else {
       add(4, "ok", `${cur}/${cap} stars.`);
@@ -1855,12 +1888,12 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
       ? " This is boss-drop gear, so it is flame advantaged — tier 4 minimum and up to tier 7. Worth more rerolls than ordinary gear."
       : "";
     if (!fl.length) {
-      const r = add(2, "mid", "No flame. Roll one.",
-        `Bonus stats reset for 3,000,000 mesos since v.271 — at Black Flame rates.${advantaged}`);
+      const r = inv(add(2, "mid", "No flame. Roll one.",
+        `Bonus stats reset for 3,000,000 mesos since v.271 — at Black Flame rates.${advantaged}`));
       priceFlame(r, it, ch, env);
     } else if (badf.length) {
-      const r = add(1, "hi", `${badf.length} wasted flame line${badf.length > 1 ? "s" : ""} — reset it.`,
-        `${badf.join(" · ")}. A reset is 3,000,000 mesos. The cheapest fix on the page.${advantaged}`);
+      const r = inv(add(1, "hi", `${badf.length} wasted flame line${badf.length > 1 ? "s" : ""} — reset it.`,
+        `${badf.join(" · ")}. A reset is 3,000,000 mesos. The cheapest fix on the page.${advantaged}`));
       priceFlame(r, it, ch, env);
     } else {
       add(4, "ok", "Flame is working.",
@@ -1872,11 +1905,69 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
     add(4, "ok", "This slot cannot take flames.");
   }
 
+  /* ---------- where this item sits on its ladder ----------
+   *
+   * The guard here used to be `idx > -1 && idx < lad.length - 1`, and the
+   * first half of it silently deleted the most important case on the page.
+   * idx is -1 when the item clears NO rung - a Lv 140 Pensalir glove against a
+   * ladder that opens at Absolab 160 - so the slot holding the worst item in
+   * the loadout was the one slot that got no upgrade advice at all. The player
+   * who hit it asked exactly the right question: "what do i even replace this
+   * with?" There was no answer because the branch did not exist.
+   */
   const lad = LADDER[slot.id];
   if (lad) {
     let idx = -1;
     lad.forEach((rung, i) => { if (it.lvl >= rung[1]) idx = i; });
-    if (idx > -1 && idx < lad.length - 1) {
+
+    if (!(it.lvl > 0)) {
+      // Every rung is level-gated, so with no level there is nothing to compare
+      // against. Reporting "outclassed" from a missing field would be inventing
+      // a verdict out of an import failure - the one thing this engine refuses
+      // to do. Ladders whose first rung is level 0 never reach here.
+      add(3, "mid", "Item level unknown — can't rank this slot.",
+        "Set the required level and this slot will name its next tier. The importer reads it from the tooltip's “REQ LEV” line.");
+    } else if (idx === -1) {
+      const [nm, lv] = lad[0];
+      const r = add(1, "hi", `Outclassed — ${nm} is the upgrade here.`,
+        `${SOURCE[nm] ? `${SOURCE[nm]}. ` : ""}${lv ? `Lv. ${lv}. ` : ""}` +
+        `This item is below every tier on this slot's ladder, so replacing it is the ` +
+        `biggest single upgrade available here - bigger than anything you can do TO it.`);
+
+      // Everything above this line was advice to spend on an item the player
+      // has just been told to replace, and none of that spend survives the
+      // swap: potential does not carry over, and neither do flames.
+      //
+      // Two different corrections, because the recs are not alike:
+      //
+      //   - The PRICED ones are ranked by assignPri() on real damage per meso,
+      //     and that ranking is not wrong. Star forcing a Pensalir glove to 15
+      //     does buy damage today, and a player who cannot reach Lotus yet is
+      //     entitled to it. Those keep their band and gain the caveat.
+      //   - The UNPRICED ones keep whatever priority this function authored,
+      //     and "Tier up to Legendary" sitting at NOW directly under "replace
+      //     this item" is the planner contradicting itself on one screen.
+      //     Those drop to LATER.
+      //
+      // `replaced` also stops assignPri()'s second pass from promoting any of
+      // them back to NOW on damage alone - that pass cannot see that the damage
+      // is temporary, and this branch can.
+      //
+      // Deliberately NOT claimed: that star force partially survives via
+      // Transfer Hammer. It does, but the level span it allows and the stars it
+      // costs are both unsourced in this repo, and a wrong span here sends
+      // someone to hammer an item that cannot take it.
+      for (const rec of recs) {
+        if (rec === r || !rec.invest) continue;
+        rec.replaced = true;
+        const priced = typeof rec.eff === "number";
+        if (!priced && rec.pri < 3) {
+          rec.pri = 3;
+          rec.lv = "ok";
+        }
+        rec.w = `${rec.w} Worth less than it looks: this item is below ${nm}, and potential and flames are lost when you replace it.`.trim();
+      }
+    } else if (idx < lad.length - 1) {
       const [nm, lv] = lad[idx + 1];
       // Not priced: the stat delta between two gear tiers is a pair of item
       // stat blocks, and neither is in this repo.
@@ -2201,6 +2292,47 @@ export function __selfTest(): { ok: boolean; failures: string[] } {
     const lv200 = sfPlan(200, 11, 12, false);
     if (lv200 && Math.abs(lv200.mesos - PLACEHOLDER_SF_TAP_MESO(200, 11)) < 1e6) {
       failures.push("sfPlan is still quoting PLACEHOLDER_SF_TAP_MESO");
+    }
+
+    // THE LADDER, on every slot that has one. The bug this replaces was not a
+    // wrong answer, it was NO answer: gear below rung zero fell through the
+    // guard and its slot said nothing about replacing it, which is the one
+    // thing a player looking at four-tier-stale gear needs to read. A silent
+    // slot is invisible in a screenshot, so it gets an assertion instead.
+    __setDamageModelEnabled(true);
+    for (const slot of SLOTS) {
+      const lad = LADDER[slot.id];
+      // A ladder opening at level 0 has no below-rung case to test.
+      if (!lad || lad[0][1] <= 1) continue;
+      const ch = exampleCharacter();
+      ch.items = { ...ch.items, [slot.id]: { name: "Below rung zero", lvl: Math.max(1, lad[0][1] - 10), star: 0, pot: "epic", sup: 0, p: [], f: [] } };
+      const recs = advise(slot, ch);
+      const top = recs.find((r) => /^Outclassed/.test(r.t));
+      if (!top) {
+        failures.push(`${slot.id}: below-rung item gets no replacement advice`);
+        continue;
+      }
+      if (top.pri !== 1) failures.push(`${slot.id}: replacement advice sits at pri ${top.pri}, not 1`);
+      if (!top.t.includes(lad[0][0])) failures.push(`${slot.id}: replacement advice does not name ${lad[0][0]}`);
+      // Nothing that spends on the doomed item may outrank replacing it.
+      const above = recs.filter((r) => r.replaced && r.pri < top.pri);
+      if (above.length) failures.push(`${slot.id}: ${above.length} doomed-item rec(s) rank above the replacement`);
+      if (recs.some((r) => r.invest && !r.replaced))
+        failures.push(`${slot.id}: an investment rec was not flagged replaced`);
+    }
+
+    // An import that failed to read the required level must not be reported as
+    // a verdict about the item. lvl 0 clears no rung, which is indistinguishable
+    // from "outclassed" unless this case is handled first.
+    {
+      const slot = SLOTS.find((x) => x.id === "gloves")!;
+      const ch = exampleCharacter();
+      ch.items = { ...ch.items, gloves: { name: "Level unread", lvl: 0, star: 0, pot: "epic", sup: 0, p: [], f: [] } };
+      const recs = advise(slot, ch);
+      if (recs.some((r) => /^Outclassed/.test(r.t)))
+        failures.push("an item with no level was called outclassed");
+      if (!recs.some((r) => /level unknown/i.test(r.t)))
+        failures.push("an item with no level does not say so");
     }
   } finally {
     __setDamageModelEnabled(prev);
