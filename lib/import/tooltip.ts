@@ -5,6 +5,11 @@
 // so the UI can make the user confirm before anything is written.
 
 import type { Item, Tier } from "../rules";
+import {
+  describeTooltipAggregate,
+  readTooltipAggregate,
+  type TooltipAggregateReading,
+} from "./bonusStats";
 
 export interface ParsedItem {
   item: Item;
@@ -15,9 +20,21 @@ export interface ParsedItem {
     lvl: boolean;
     pot: boolean;
     potLines: number;
+    /** Always 0 from this parser now — see the comment on `bonusStats`. */
     flameLines: number;
     superior: boolean;
   };
+  /**
+   * What the tooltip's combined stat block could honestly say about bonus
+   * stats: per-stat TOTALS where the parenthetical spelled out three groups,
+   * and the names of the stats it could not resolve. `lines` is always null.
+   *
+   * Undefined when the text carried no parentheticals at all.
+   *
+   * ADDITIVE. components/ImportDialog.tsx builds its own ParsedItem for the
+   * screenshot path and ignores unknown keys, so nothing breaks by its absence.
+   */
+  bonusStats?: TooltipAggregateReading;
   warnings: string[];
   raw: string;
 }
@@ -80,65 +97,34 @@ function titleCaseish(s: string): string {
   return s.replace(/\s+/g, " ").trim();
 }
 
-/* Only these carry flames worth recording. Speed, Jump, Max HP, Max MP and
-   Defense also show parentheticals, but those are almost always star force —
-   reading them as flames is how you end up advising someone to reroll a
-   perfectly good item. */
-const FLAMEABLE = /^(str|dex|int|luk|all stats?|attack power|magic att)$/i;
-const MAIN_STAT = /^(str|dex|int|luk)$/i;
-
-interface StatParen { stat: string; nums: number[]; pct: boolean }
-
-function readStatLine(line: string): StatParen | null {
-  const m = line.match(/^([A-Za-z][A-Za-z .]*?)\s*\+?[\d,]+(%?)\s*\(([^)]+)\)/);
-  if (!m) return null;
-  const nums = m[3]
-    .split("+")
-    .map((p) => p.trim())
-    .filter(Boolean)
-    .map((p) => parseInt(p.replace(/[^\d]/g, ""), 10))
-    .filter((n) => !Number.isNaN(n));
-  return { stat: titleCaseish(m[1]), nums, pct: m[2] === "%" };
-}
-
 /**
- * A tooltip stat line reads `STR +111 (40 +51 +20)` — that is
- * (base + star force + flame), so three groups gives the flame outright.
+ * The tooltip's stat lines, up to the potential block.
  *
- * Two groups is ambiguous: `(50 +24)` could be base+flame or base+starforce.
- * Star force raises STR, DEX, INT and LUK by the *same* amount, so if a value
- * appears on only some of the main stats it must be a flame; if every main
- * stat present shares it, it is star force.
+ * WHAT USED TO BE HERE, and why it is gone. `extractFlames()` turned this block
+ * into a confident list of flame lines: three parenthesised groups gave the
+ * flame outright, and two groups were resolved with a uniformity heuristic —
+ * star force lands on every main stat equally, so a value shared by three or
+ * more main stats is star force and anything else is a flame.
+ *
+ * That produced, on the owner's Black Bean Mark, "STR +31" — which is star
+ * force. The heuristic needed three two-group main stats and the item only had
+ * two (DEX and INT carried a third group), so the shared +31 was promoted to a
+ * flame. It also emitted "DEX +59", the sum of two separate bonus stat lines,
+ * and it dropped Attack Power and Max HP because they were not on its list of
+ * stats worth reading. The full observation is OBSERVED_BONUS_STAT_PANEL in
+ * ./damageReadings.ts.
+ *
+ * So this parser no longer produces flame lines at all. ./bonusStats.ts records
+ * what the block CAN state — a per-stat bonus TOTAL where the parenthetical had
+ * three groups — and names the stats it cannot resolve, and the caller is told
+ * to screenshot Enhance > Bonus Stats for the lines themselves. A missing flame
+ * is a prompt to go look; an invented one sends someone to reroll a good item.
  */
-function extractFlames(lines: string[], canEnhance: boolean): string[] {
-  if (!canEnhance) return [];
-
-  const parsed: StatParen[] = [];
+function statBlockLines(lines: string[]): string[] {
+  const out: string[] = [];
   for (const l of lines) {
     if (/^potential/i.test(l)) break;
-    const p = readStatLine(l);
-    if (p && FLAMEABLE.test(p.stat)) parsed.push(p);
-  }
-
-  // Which two-group values look like a uniform main-stat bump? That's star force.
-  const twoGroupMain = parsed.filter((p) => p.nums.length === 2 && MAIN_STAT.test(p.stat));
-  const values = new Set(twoGroupMain.map((p) => p.nums[1]));
-  const uniformStarForce = twoGroupMain.length >= 3 && values.size === 1;
-
-  const out: string[] = [];
-  for (const p of parsed) {
-    if (out.length >= 3) break;
-    if (p.nums.length >= 3) {
-      const v = p.nums[p.nums.length - 1];
-      if (v > 0) out.push(`${p.stat} +${v}${p.pct ? "%" : ""}`);
-    } else if (p.nums.length === 2) {
-      const [base, second] = p.nums;
-      if (second <= 0) continue;
-      if (uniformStarForce && MAIN_STAT.test(p.stat)) continue;
-      if (base === 0 || MAIN_STAT.test(p.stat) || /all stats?/i.test(p.stat)) {
-        out.push(`${p.stat} +${second}${p.pct ? "%" : ""}`);
-      }
-    }
+    out.push(l);
   }
   return out;
 }
@@ -207,9 +193,13 @@ export function parseTooltip(input: string): ParsedItem {
   const cannotEnhance = /bonus stats can'?t enhance/i.test(text);
   const superior = /\b(tyrant|superior)\b/i.test(text) || cannotEnhance;
 
-  /* ---- flames, inferred from the stat parentheticals ---- */
-  const flames = extractFlames(lines, !cannotEnhance);
-  if (cannotEnhance) warnings.push("This item can't take bonus stats, so no flame was read.");
+  /* ---- bonus stats: what the aggregate block can honestly support ---- */
+  const bonusStats = cannotEnhance ? undefined : readTooltipAggregate(statBlockLines(lines));
+  if (cannotEnhance) {
+    warnings.push("This item can't take bonus stats, so no bonus stat was read.");
+  } else if (bonusStats) {
+    warnings.push(`Bonus stat lines ${describeTooltipAggregate(bonusStats)}.`);
+  }
 
   const item: Item = {
     name,
@@ -218,7 +208,11 @@ export function parseTooltip(input: string): ParsedItem {
     pot,
     sup: superior ? 1 : 0,
     p: [potLines[0] ?? "", potLines[1] ?? "", potLines[2] ?? ""],
-    f: [flames[0] ?? "", flames[1] ?? "", flames[2] ?? ""],
+    // Three empty strings, always. The padding is the wire format lib/portable.ts
+    // expects; the emptiness is the point — see statBlockLines() above. A bonus
+    // stat line only comes from the Bonus Stat panel, which is a screenshot this
+    // text parser never sees.
+    f: ["", "", ""],
   };
 
   warnings.push("Star force can't be read from a screenshot — set it yourself.");
@@ -231,9 +225,10 @@ export function parseTooltip(input: string): ParsedItem {
       lvl: lvl > 0,
       pot: pot !== "none",
       potLines: potLines.length,
-      flameLines: flames.length,
+      flameLines: 0,
       superior,
     },
+    ...(bonusStats ? { bonusStats } : {}),
     warnings,
     raw: text,
   };

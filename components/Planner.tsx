@@ -552,6 +552,41 @@ export default function Planner() {
    * from an import, sets it back to null so the boxes follow the sheet. */
   const [symDraft, setSymDraft] = useState<Record<ArcaneArea, string> | null>(null);
 
+  /* ---------- the page stops scrolling over a stat box ----------
+   *
+   * Reported from the running app: scrolling stalls at various heights. There
+   * is nothing in this app trapping the wheel - no wheel handler anywhere in
+   * components/ or app/, no scroll-linked CSS, one sticky element, and no
+   * nested scroll container. The mechanism is the browser's own: a FOCUSED
+   * <input type="number"> consumes wheel events and increments its value
+   * instead of scrolling the page. This sheet renders eighteen of them, sixteen
+   * stacked down the left column, which is exactly the band where scrolling
+   * stalls and why it stalls at several different heights rather than one.
+   *
+   * The scroll is the lesser half of the bug. The greater half is that the
+   * wheel was EDITING the sheet: a player scrolling past their DEX box with it
+   * focused changes their DEX, and every number on the page silently re-ranks
+   * around a stat they never typed. That is the failure this whole app is
+   * built to refuse, arriving through the scroll wheel.
+   *
+   * Blur rather than preventDefault: suppressing the event would fix the scroll
+   * and leave the field looking focused while ignoring input, and a player who
+   * meant to use the arrow keys would find them dead. Blurring gives the page
+   * the scroll AND makes the value safe, and the field is one click away.
+   *
+   * Capture phase, because the input's own handler runs first otherwise. */
+  useEffect(() => {
+    const onWheel = (e: WheelEvent) => {
+      const active = document.activeElement;
+      if (!(active instanceof HTMLInputElement) || active.type !== "number") return;
+      const target = e.target;
+      if (target instanceof Node && !active.contains(target) && active !== target) return;
+      active.blur();
+    };
+    document.addEventListener("wheel", onWheel, { capture: true, passive: true });
+    return () => document.removeEventListener("wheel", onWheel, { capture: true });
+  }, []);
+
   useEffect(() => {
     let live = true;
     store.load().then((saved) => {

@@ -1066,7 +1066,43 @@ export const UNVERIFIED_SET_CONSTANTS: UnverifiedSetFact[] = [
   {
     name: "boss-accessory piece list",
     why: "Sources name between six and ten qualifying items and disagree. The count can "
-      + "under-report. Unmatched items are excluded, never assumed in.",
+      + "under-report. Unmatched items are excluded, never assumed in. Nexon's own Set "
+      + "Items guide (read 2026-09-13) publishes no membership for any set and points at "
+      + "the item tooltip instead, so no first-party list exists to check this against.",
+  },
+  {
+    name: "boss-eye matching \"papulatus mark\" — CONTRADICTED ELSEWHERE IN THIS REPO",
+    // Flagged rather than silently corrected because this file is one of the two
+    // witnesses to the disagreement. Editing the pattern to agree with the other
+    // one would settle a contradiction by picking a side, which is exactly how the
+    // invented gear rung got in next door.
+    why: "This file puts Papulatus Mark in the EYE slot, on the strength of the in-game "
+      + "Set Effect panel transcription of 2026-09-12. data/guide-graph.json node "
+      + "bosses.drops calls it a FACE accessory, and lib/rules.ts LADDER lists it on BOTH "
+      + "the face and the eye ladder, which cannot both be right. Do NOT change this "
+      + "pattern on argument: settle it the way lib/farming.ts settled the same question "
+      + "for the Black Bean Mark, by reading api.maplestory.net's subcategory field. One "
+      + "lookup decides it, and the same lookup decides which LADDER rung is deleted. "
+      + "Consequence while unsettled: if Papulatus Mark is really a face accessory then "
+      + "boss-face matches nothing on a player wearing one and the count reads one low — "
+      + "the under-report direction this file already accepts.",
+  },
+  {
+    name: "Lucky Items are not modelled at all",
+    why: "SOURCED and not implemented, which is worse than unsourced. Nexon's Set Items "
+      + "guide, read 2026-09-13: \"If you have at least 3 items from a set equipped, then "
+      + "equipping a Lucky Item will count as another one of the items from that set.\" "
+      + "Nothing here has a concept of a wildcard piece, so activeSets() under-counts any "
+      + "tier a Lucky Item is padding, and whatBreaks() will then recommend a swap that "
+      + "drops a real tier. The 3-piece precondition is what makes it modellable: a Lucky "
+      + "Item is worth nothing below 3pc.",
+  },
+  {
+    name: "BUILTIN_SETS is not a complete list of GMS sets",
+    why: "The same first-party page names a \"Pinnacle Set\" that does not appear in this "
+      + "table. Recorded because an absent set is invisible rather than loud: a player "
+      + "wearing one gets no warning when a recommended swap breaks it, and no caller can "
+      + "tell an empty activeSets() result from a set this table has never heard of.",
   },
   {
     name: "cra piece name templates for non-Bowman classes",

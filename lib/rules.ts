@@ -432,6 +432,49 @@ function nextTierTransferNote(fromLvl: number, toLvl: number, toName: string): s
     : ` — a Transfer Hammer only reaches Lv. ${ceil} from Lv. ${fromLvl}, short of ${toName} at Lv. ${toLvl}, so do not over-cube what you will replace.`;
 }
 
+/**
+ * The other slots an item could equally sit in: ring1..ring4, pendant1..pendant2.
+ * Derived from SLOTS rather than hardcoded, so a future numbered family is
+ * covered without touching this.
+ */
+function siblingSlots(slotId: string): string[] {
+  const base = slotId.replace(/\d+$/, "");
+  if (base === slotId) return [];
+  return SLOTS.filter((s) => s.id !== slotId && s.id.replace(/\d+$/, "") === base).map((s) => s.id);
+}
+
+/**
+ * Is this ladder rung an item the character is ALREADY WEARING in a sibling slot?
+ *
+ * Reported from the running app: ring2 held Ifia's Ring and the planner said
+ * "Outclassed - Kanna's Treasure is the upgrade here" while Kanna's Treasure was
+ * on ring1 at 17 stars. You cannot wear two. The advice was not merely useless,
+ * it was unfollowable, and it displaced the rung that IS the answer - which the
+ * player worked out themselves by reading the ring1 panel, where the same engine
+ * correctly says Superior Gollux.
+ *
+ * Only siblings are checked, not the whole loadout. A cross-slot name collision
+ * is a real risk with loose matching - "Arcane Umbra" appears on five different
+ * pieces - and unique-equip is a within-family rule anyway.
+ *
+ * Matching is by TOKEN rather than substring, because a rung is a family name and
+ * an item is a specific piece: "Superior Gollux" has to match "Superior Engraved
+ * Gollux Ring", which `includes` does not. Every token of the rung must appear in
+ * the item name, so "Boss ring" does not match "Guardian Angel Ring" on the
+ * strength of the word ring alone.
+ */
+function wornInSibling(ch: Character, slotId: string, rungName: string): string | null {
+  const want = rungName.toLowerCase().split(/[^a-z0-9']+/i).filter((t) => t.length > 2);
+  if (!want.length) return null;
+  for (const sib of siblingSlots(slotId)) {
+    const it = ch.items[sib];
+    if (!it || !it.name) continue;
+    const nm = it.name.toLowerCase();
+    if (want.every((t) => nm.includes(t))) return sib;
+  }
+  return null;
+}
+
 /** The highest required level a Transfer Hammer can reach FROM `lvl`. */
 export function transferHammerCeiling(lvl: number): number | null {
   if (!(lvl > 0)) return null;
@@ -1459,6 +1502,20 @@ export function isDeadLine(txt: string, main: MainStat): boolean {
   if (IGNORE_DEF.test(t)) return false;
   if (JUNK.test(t) || FLAT_DEF.test(t)) return true;
   if (/all ?stat/.test(t)) return false;
+  // A LINE CAN NAME MORE THAN ONE STAT. The game prints "DEX, INT +24" as a
+  // single bonus-stat row granting +24 to each, and this function used to ask
+  // only whether an OFF stat appeared anywhere in the text - so on a DEX
+  // character that row read as DEAD, and the page led with "1 wasted flame line
+  // - reset it" pointing at the player's best line. Following that advice would
+  // have destroyed it for 3,000,000 mesos.
+  //
+  // It never fired before because no comma row could reach Item.f: the reader
+  // that produces them is new, and the one it replaced summed the two DEX rows
+  // into a single "DEX +59", which hid this.
+  //
+  // Naming the main stat is decisive. Whatever else the row carries, it is
+  // paying out main stat and is not dead.
+  if (new RegExp(`\\b${main}\\b`).test(t)) return false;
   return OFF[main].some((o) => new RegExp(`\\b${o}\\b`).test(t));
 }
 
@@ -2066,8 +2123,31 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
    */
   const lad = LADDER[slot.id];
   if (lad) {
+    // RANK AGAINST THE WHOLE LADDER. An earlier attempt filtered the array
+    // first and that was wrong in a way worth recording: removing a rung
+    // shifts every index above it, so a Lv 140 Kanna's Treasure at 17 stars -
+    // which clears rung zero - was reported as clearing nothing and got
+    // "Outclassed" instead of "Next tier". Where the item SITS is a fact about
+    // the item; what the player can equip NEXT is a fact about the loadout.
     let idx = -1;
     lad.forEach((rung, i) => { if (it.lvl >= rung[1]) idx = i; });
+
+    // Walk up from the rung above this item to the first one the player is not
+    // already wearing somewhere else. Reported from the running app: ring2 held
+    // Ifia's Ring and the planner said "Kanna's Treasure is the upgrade here"
+    // while Kanna's Treasure sat on ring1 at 17 stars. You cannot wear two.
+    const skipped: string[] = [];
+    let next = idx + 1;
+    while (next < lad.length && wornInSibling(ch, slot.id, lad[next][0])) {
+      skipped.push(lad[next][0]);
+      next++;
+    }
+    // "another ring slot", not "another ring 2 slot" - the family name, since
+    // the point is that the item is on a SIBLING.
+    const family = slot.n.replace(/\s*\d+$/, "").toLowerCase();
+    const alreadyNote = skipped.length
+      ? ` ${skipped.join(" and ")} ${skipped.length > 1 ? "are" : "is"} skipped — already equipped in another ${family} slot.`
+      : "";
 
     if (!(it.lvl > 0)) {
       // Every rung is level-gated, so with no level there is nothing to compare
@@ -2076,12 +2156,16 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
       // to do. Ladders whose first rung is level 0 never reach here.
       add(3, "mid", "Item level unknown — can't rank this slot.",
         "Set the required level and this slot will name its next tier. The importer reads it from the tooltip's “REQ LEV” line.");
+    } else if (next >= lad.length) {
+      // Nothing left to offer: either the item is on the top rung, or every
+      // rung above it is already on a sibling. Saying nothing is right.
     } else if (idx === -1) {
-      const [nm, lv] = lad[0];
+      const [nm, lv] = lad[next];
       const r = add(1, "hi", `Outclassed — ${nm} is the upgrade here.`,
         `${SOURCE[nm] ? `${SOURCE[nm]}. ` : ""}${lv ? `Lv. ${lv}. ` : ""}` +
         `This item is below every tier on this slot's ladder, so replacing it is the ` +
-        `biggest single upgrade available here - bigger than anything you can do TO it.`);
+        `biggest single upgrade available here - bigger than anything you can do TO it.` +
+        alreadyNote);
 
       // Everything above this line was advice to spend on an item the player
       // has just been told to replace, and none of that spend survives the
@@ -2129,12 +2213,12 @@ function buildAdvice(slot: SlotDef, ch: Character): Rec[] {
               : "";
         rec.w = `${rec.w} Worth less than it looks: this item is below ${nm}.${reach} Bonus stats are believed not to carry either way.`.trim();
       }
-    } else if (idx < lad.length - 1) {
-      const [nm, lv] = lad[idx + 1];
+    } else {
+      const [nm, lv] = lad[next];
       // Not priced: the stat delta between two gear tiers is a pair of item
       // stat blocks, and neither is in this repo.
       add(3, "ok", `Next tier: ${nm}${lv ? ` (Lv. ${lv})` : ""}.`,
-        `${SOURCE[nm] || ""}${nextTierTransferNote(it.lvl, lv, nm)}`);
+        `${SOURCE[nm] || ""}${nextTierTransferNote(it.lvl, lv, nm)}${alreadyNote}`);
     }
   }
 
@@ -2475,7 +2559,13 @@ export function __selfTest(): { ok: boolean; failures: string[] } {
         continue;
       }
       if (top.pri !== 1) failures.push(`${slot.id}: replacement advice sits at pri ${top.pri}, not 1`);
-      if (!top.t.includes(lad[0][0])) failures.push(`${slot.id}: replacement advice does not name ${lad[0][0]}`);
+      // It must name the first rung the player can actually EQUIP, which is not
+      // always rung zero: a ring already on a sibling finger is skipped. Asserting
+      // rung zero flatly would re-enshrine the bug where ring2 was told to go get
+      // the Kanna's Treasure already worn on ring1.
+      const wantRung = lad.find((r) => !wornInSibling(ch, slot.id, r[0]));
+      if (wantRung && !top.t.includes(wantRung[0]))
+        failures.push(`${slot.id}: replacement advice names neither ${wantRung[0]} nor an equippable rung`);
       // Nothing that spends on the doomed item may outrank replacing it.
       const above = recs.filter((r) => r.replaced && r.pri < top.pri);
       if (above.length) failures.push(`${slot.id}: ${above.length} doomed-item rec(s) rank above the replacement`);

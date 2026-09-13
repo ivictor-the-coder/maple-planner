@@ -3,6 +3,15 @@ import { SLOTS, canStarForce, sfCap, type Item, type SlotDef, type Tier } from "
 import type { ImportFailure, ImportOutcome, OpenRouterUsage } from "@/lib/entitlement";
 import { guardImport } from "@/lib/entitlementStore";
 import { STAT_WINDOW_DAMAGE_PROMPT } from "@/lib/import/damageReadings";
+import {
+  BONUS_STAT_PANEL_PROMPT,
+  TOOLTIP_STAT_BLOCK_PROMPT,
+  bonusStatTotals,
+  bonusStatWire,
+  describeTooltipAggregate,
+  readBonusStatPanel,
+  readTooltipAggregate,
+} from "@/lib/import/bonusStats";
 import { SYMBOL_TAB_PROMPT, type RawArcaneSymbols } from "@/lib/import/symbolLevels";
 import { ARCANE_AREAS } from "@/lib/symbols";
 import { num, str, tidyCharacterWindows, type VisionStats } from "@/lib/import/visionFields";
@@ -96,6 +105,16 @@ const DEFAULT_MODELS = [
  *   table a player approves the import from — its STAT_LABELS array is the only
  *   renderer of that table and it is not this change's file to edit. Until that
  *   row is added, the Planner's own apply toast is what names them.
+ * - `item.fUnknown` and the top-level `bonusStats` object are ADDITIVE and
+ *   ignored by the current dialog, the same way `conf` and `reasons` were when
+ *   they landed. `item.f` keeps its name, its type (string[]) and its meaning
+ *   (one printed bonus stat line per entry), so lib/rules.ts and lib/farming.ts
+ *   read exactly what they read before — with the difference that a line they
+ *   receive is now one the game printed. TWO edits are needed in files this
+ *   change does not own, and both are stated in orchestratorMustApply rather
+ *   than made here: lib/rules.ts `isDeadLine` calls a combined "DEX, INT +24"
+ *   dead on a DEX character because it sees INT, and components/ImportDialog.tsx
+ *   truncates `f` to three entries while the observed panel showed four.
  * - app/api/items/route.ts already maps the upstream subcategory to our slot id
  *   and returns it as `slot`, so that mapping is consumed rather than copied.
  * ------------------------------------------------------------------ */
@@ -119,10 +138,7 @@ Reply with ONLY a JSON object, no prose and no code fences:
                                // ring pendant earring face eye badge medal heart pocket android. "" if unclear
   "tier": string,              // "legendary" | "unique" | "epic" | "rare" | "none" — from the "Potential : X" line
   "potential": string[],       // up to 3 potential lines exactly as shown, e.g. "DEX: +9%", "All Stats +3%"
-  "flame": string[],           // up to 3 bonus-stat (flame) lines. A stat line reads "STR +111 (40 +51 +20)"
-                               // = base + starforce + flame, so the THIRD number is the flame: "STR +20".
-                               // If a line shows only two numbers it is ambiguous — omit it.
-                               // If the tooltip says "Bonus Stats Can't Enhance", return [].
+${TOOLTIP_STAT_BLOCK_PROMPT}
   "starforce": number,         // Star force, above the item name. The stars are drawn in groups of five
                                // and the row shows EVERY possible star, most of them EMPTY. Count ONLY
                                // the solid gold/yellow filled ones. Grey, hollow or dim outlined stars
@@ -151,6 +167,8 @@ Reply with ONLY a JSON object, no prose and no code fences:
 }
 
 If there is NO item tooltip visible, set "name" to "" — do not invent one.
+
+${BONUS_STAT_PANEL_PROMPT}
 
 SEPARATELY: the screenshot may also show the CHARACTER STAT window (headed
 "Character Info" / "STAT", showing Combat Power, DAMAGE RANGE, STR/DEX/INT/LUK,
@@ -260,6 +278,40 @@ const SYMBOLS_SCHEMA = {
 
 const BOX_SCHEMA = { type: "array", items: { type: "number" } } as const;
 
+/**
+ * One row of the Enhance > Bonus Stats panel.
+ *
+ * `stats` is an ARRAY because a row can name more than one stat — "DEX, INT +24"
+ * is one row granting +24 to each, and flattening it to a single stat is half of
+ * the bug this wave fixes (lib/import/bonusStats.ts has the full account). The
+ * value is deliberately NOT per-stat: the panel prints it once.
+ */
+const BONUS_STAT_LINE_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["stats", "value", "percent", "tier"],
+  properties: {
+    stats: { type: "array", items: { type: "string" } },
+    value: { type: "number" },
+    percent: { type: "boolean" },
+    // The small tier badge. Nullable because it is the one part of a row that is
+    // routinely too small to read, and a guessed tier would be a fabricated
+    // quality claim about a line the player is deciding whether to reroll.
+    tier: NUM_OR_NULL,
+  },
+} as const;
+
+const BONUS_STATS_SCHEMA = {
+  type: ["object", "null"],
+  additionalProperties: false,
+  required: ["itemName", "headline", "lines"],
+  properties: {
+    itemName: STR_OR_NULL,
+    headline: NUM_OR_NULL,
+    lines: { type: "array", items: BONUS_STAT_LINE_SCHEMA },
+  },
+} as const;
+
 const TOOLTIP_SCHEMA = {
   name: "maple_tooltip",
   strict: true,
@@ -267,8 +319,8 @@ const TOOLTIP_SCHEMA = {
     type: "object",
     additionalProperties: false,
     required: [
-      "name", "level", "slot", "tier", "potential", "flame", "starforce",
-      "superior", "noStarForce", "noFlame", "noPotential", "iconBox",
+      "name", "level", "slot", "tier", "potential", "statBlock", "bonusStats",
+      "starforce", "superior", "noStarForce", "noFlame", "noPotential", "iconBox",
       "tooltipBox", "stats", "roster", "rosterPage", "symbols",
     ],
     properties: {
@@ -277,7 +329,13 @@ const TOOLTIP_SCHEMA = {
       slot: { type: "string" },
       tier: { type: "string", enum: ["legendary", "unique", "epic", "rare", "none"] },
       potential: { type: "array", items: { type: "string" } },
-      flame: { type: "array", items: { type: "string" } },
+      // Replaces the old "flame" key, which asked the model to pick the third
+      // number out of a parenthetical and call it a bonus stat. It is the same
+      // block of pixels; the difference is that the model now COPIES it and
+      // lib/import/bonusStats.ts decides what it can support — which, for a
+      // two-number parenthetical, is nothing.
+      statBlock: { type: "array", items: { type: "string" } },
+      bonusStats: BONUS_STATS_SCHEMA,
       starforce: { type: "number" },
       superior: { type: "boolean" },
       noStarForce: { type: "boolean" },
@@ -330,7 +388,15 @@ interface VisionRosterEntry {
 
 interface VisionItem {
   name?: string; level?: number; slot?: string; tier?: string;
-  potential?: string[]; flame?: string[]; starforce?: number; superior?: boolean;
+  potential?: string[];
+  /** The item tooltip's stat lines, copied verbatim with their parentheses.
+   *  `unknown` for the same reason `symbols` below is: the `object` and `none`
+   *  rungs of the format ladder deliver whatever the model felt like typing,
+   *  and readTooltipAggregate() is what decides what those numbers support. */
+  statBlock?: unknown;
+  /** The Enhance > Bonus Stats panel, in whichever shape it arrived. */
+  bonusStats?: unknown;
+  starforce?: number; superior?: boolean;
   noStarForce?: boolean; noFlame?: boolean; noPotential?: boolean;
   iconBox?: number[]; tooltipBox?: number[]; stats?: VisionStats | null;
   roster?: VisionRosterEntry[] | null; rosterPage?: number[] | null;
@@ -434,10 +500,16 @@ function extractJson<T>(text: string): { value: T | null; salvaged: boolean } {
 
 /* ---------- line-shape validation (replaces the old tidy()) ---------- */
 
-// A potential or flame line is a tiny, rigid grammar. Anything else is the model
+// A potential line is a tiny, rigid grammar. Anything else is the model
 // narrating, and narration used to be stored verbatim as a potential line and
 // handed to lib/rules.ts, which then advised on a sentence. Shape-check instead
 // of trusting, and report what was dropped so the field's confidence can fall.
+//
+// THIS IS NOW THE POTENTIAL PATH ONLY. Bonus stats used to share it, on the
+// theory that a flame line and a potential line look alike. They do — but a
+// bonus stat line can name two stats at once ("DEX, INT +24"), which this
+// grammar has no comma in, and the panel it comes from carries a tier badge
+// this shape cannot hold. lib/import/bonusStats.ts reads those.
 
 /** "DEX: +9%", "STR +20", "Attack Power : +12" — the overwhelming majority. */
 const SHAPE_STAT = /^[A-Za-z][A-Za-z .]*?\s*:?\s*[+\-]\s*\d+(?:\.\d+)?%?$/;
@@ -1081,7 +1153,7 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
         return {
           body: {
             model, item: null, slotGuess: null, iconBox: null, tooltipBox: null,
-            stats, roster, conf: null, reasons: null, db: null, flags: [],
+            stats, roster, bonusStats: null, conf: null, reasons: null, db: null, flags: [],
             accuracy: evalAccuracy(),
           },
           outcome: { ok: true, model, usage: r.usage },
@@ -1146,9 +1218,21 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
       const sup: 0 | 1 = parsed.superior || db?.superior ? 1 : 0;
 
       const pot = keepStatLines(parsed.potential);
-      const flame = keepStatLines(parsed.flame);
       const noPot = !!parsed.noPotential;
       const noFl = !!parsed.noFlame;
+
+      /* ---- bonus stats, read from the panel the game states them on ----
+       *
+       * TWO SOURCES, RANKED, NOT MERGED. The Enhance > Bonus Stats panel states
+       * each line: how many there are, which stats each one names, and its
+       * value. The item tooltip's stat block states only per-stat sums with
+       * base and star force folded in. When the panel is in the shot it is the
+       * answer; when it is not, the tooltip is asked what it can support, and
+       * the answer to "what are the lines" is honestly "unknown" rather than a
+       * plausible-looking list. See lib/import/bonusStats.ts for why the
+       * previous inference could not be repaired. */
+      const panel = noFl ? undefined : readBonusStatPanel(parsed.bonusStats);
+      const aggregate = noFl || panel ? undefined : readTooltipAggregate(parsed.statBlock);
 
       // "Potential : Can't Enhance" is itself a definite reading — there is
       // nothing left to be unsure about. A missing tier line is not.
@@ -1166,15 +1250,39 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
       } else confP = pot.lines.length ? "high" : "med";
       if (confP === "low") flags.push("potential");
 
+      // The `Item.f` payload: one string per PRINTED ROW, in panel order,
+      // nothing merged and nothing invented. Empty when nothing was read — and
+      // `flameUnknown` is what keeps that empty array from being mistaken for
+      // "this item has no bonus stats", which is a different and much louder
+      // claim (lib/rules.ts answers it with "No flame. Roll one.").
+      let flameLines: string[] = [];
+      let flameUnknown = false;
       let confF: Conf;
-      if (noFl) confF = "high";
-      else if (flame.dropped > 0) {
-        confF = "low";
-        reasons.f = `${flame.dropped} line${flame.dropped === 1 ? "" : "s"} did not look like a stat line and ${flame.dropped === 1 ? "was" : "were"} dropped`;
+      if (noFl) {
+        confF = "high";
+      } else if (panel) {
+        flameLines = bonusStatWire(panel.lines);
+        if (panel.dropped > 0) {
+          confF = "low";
+          reasons.f = `read the Bonus Stat panel but ${panel.dropped} row${panel.dropped === 1 ? "" : "s"} did not look like a bonus stat line and ${panel.dropped === 1 ? "was" : "were"} dropped`;
+        } else {
+          // Never better than med, for the same reason the old flame read never
+          // was: a panel showing four rows is indistinguishable from one whose
+          // fifth row the cursor was covering. What HAS improved is that the
+          // rows present are now the game's own statement rather than an
+          // inference off a combined number.
+          confF = "med";
+          reasons.f = `${panel.lines.length} line${panel.lines.length === 1 ? "" : "s"} read from the Bonus Stat panel`;
+        }
       } else {
-        // Never better than med: a tooltip showing no flame line is
-        // indistinguishable from one whose flame line the cursor was covering.
-        confF = "med";
+        // No panel in the shot. The tooltip cannot separate star force from
+        // bonus stats, so no line list is emitted at all — see requirement 5 of
+        // this wave and the long comment on TooltipAggregateReading.
+        confF = "low";
+        flameUnknown = true;
+        reasons.f = aggregate
+          ? describeTooltipAggregate(aggregate)
+          : "no Bonus Stat panel in this screenshot, so the bonus stat lines are unknown; screenshot Enhance > Bonus Stats to read them";
       }
       if (confF === "low") flags.push("flame");
 
@@ -1229,7 +1337,13 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
             noFl,
             noPot,
             p: noPot ? [] : pot.lines,
-            f: noFl ? [] : flame.lines,
+            f: flameLines,
+            // ADDITIVE, and the one field that stops an empty `f` from lying.
+            // lib/rules.ts does not read it yet — the exact edit it needs is in
+            // this wave's orchestratorMustApply — so today it is carried and
+            // ignored, which is the same as the old behaviour minus the
+            // invented lines.
+            fUnknown: flameUnknown,
           },
           slotGuess: slot,
           iconBox: box(parsed.iconBox),
@@ -1238,6 +1352,34 @@ async function runImport(req: Request, key: string): Promise<RunResult> {
           tooltipBox: box(parsed.tooltipBox),
           stats,
           roster,
+          // Additive: the structured bonus stat reading that `f` cannot carry.
+          // `f` is a string[] because lib/rules.ts and lib/farming.ts say so,
+          // and a string cannot hold a tier badge or say whether two rows that
+          // both mention DEX were one roll or two. This key can, and it names
+          // its own provenance so a UI never has to guess which window it came
+          // from. `totals` is what the item TOOLTIP would show for the same
+          // item — a diagnostic, never a line list.
+          bonusStats: panel
+            ? {
+                source: "panel" as const,
+                itemName: panel.itemName ?? null,
+                headline: panel.headline ?? null,
+                lines: panel.lines,
+                dropped: panel.dropped,
+                totals: bonusStatTotals(panel.lines),
+              }
+            : aggregate
+              ? {
+                  source: "tooltip-aggregate" as const,
+                  itemName: null,
+                  headline: null,
+                  // Null, not []. The block states sums; it cannot state lines.
+                  lines: null,
+                  totals: aggregate.totals,
+                  ambiguous: aggregate.ambiguous,
+                  note: describeTooltipAggregate(aggregate),
+                }
+              : null,
           // Additive: everything the UI needs to point at ONE field instead of
           // asking the user to re-verify all eight.
           conf,
