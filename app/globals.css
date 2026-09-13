@@ -62,11 +62,36 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 }
 .navlink:hover { color: var(--ink); background: rgba(255,255,255,.05); }
 
-/* ---------- layout ---------- */
+/* In-page jump targets clear the sticky masthead. Without this the browser
+ * scrolls the target's top edge to y=0, which is BEHIND .mast — the stat-window
+ * readings landed with their first input under the header, i.e. the link worked
+ * and looked like it had not. 66px is the masthead's measured 53.7 plus
+ * breathing room, not a guess at its height.
+ *
+ * `:target` is what makes the claim true rather than aspirational. Naming ids
+ * covered only the two this page knew about, and the guide page has eight
+ * anchors of its own behind the same masthead — seven of which still landed
+ * underneath it. :target matches whatever the fragment actually points at, so
+ * a new anchor is covered the day it is added instead of the day someone
+ * notices. The two ids stay alongside it as a belt-and-braces for the initial
+ * load, where a browser may compute scroll-margin before :target applies. */
+:target, #stat-readings, #roster { scroll-margin-top: 66px; }
+
+/* ---------- layout ----------
+ * DOM order is: account strip, ADVICE, character, equipment, roster — the
+ * ranked recommendations come first in the markup, because they are the product
+ * and because that is the order a phone and a screen reader get. Desktop places
+ * them back into the right-hand column by name rather than by nth-child, so the
+ * reading order and the visual order can differ on purpose. */
 .wrap {
   max-width: 1340px; margin: 0 auto; padding: 22px 22px 80px;
   display: grid; grid-template-columns: 262px auto minmax(0, 1fr); gap: 18px; align-items: start;
 }
+.wrap > .acct   { grid-column: 1 / -1; grid-row: 1; }
+.wrap > .who    { grid-column: 1; grid-row: 2; }
+.wrap > .eq     { grid-column: 2; grid-row: 2; }
+.wrap > .advice { grid-column: 3; grid-row: 2; }
+.wrap > .roster { grid-column: 1 / -1; grid-row: 3; }
 
 /* game-window chrome: 1px light top edge, dark outer, soft drop */
 .card {
@@ -84,15 +109,16 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 }
 .card > .body { padding: 14px; }
 
-/* ---------- character panel ---------- */
-.who { display: flex; flex-direction: column; gap: 2px; margin-bottom: 12px; }
+/* ---------- character panel ----------
+ * `.who` is now the character CARD — it is how the layout grid places it by
+ * name. The old `.who` flex block and its `.sub` child styled markup that no
+ * longer exists and were removed rather than left to collide with the card. */
 .nameInput {
   background: none; border: 0; padding: 0; width: 100%;
   font-family: var(--font-inter-tight), sans-serif; font-size: 1.22rem; font-weight: 700;
   color: var(--ink); letter-spacing: -.02em;
 }
 .nameInput:focus { outline: none; box-shadow: 0 1px 0 var(--gold); }
-.who .sub { font-size: .74rem; color: var(--ink-3); }
 
 .cp {
   position: relative; overflow: hidden;
@@ -435,12 +461,24 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 .gtable tbody tr:last-child td { border-bottom: 0; }
 .gtable tbody tr:hover td { background: rgba(255,255,255,.022); }
 
+/* Two columns: the advice card takes the full width of the first content row,
+ * ABOVE the character sheet and the grid, rather than being pushed under both. */
 @media (max-width: 1240px) {
-  .wrap { grid-template-columns: 250px auto; }
-  .wrap > :nth-child(3) { grid-column: 1 / -1; }
+  .wrap { grid-template-columns: 250px minmax(0, 1fr); }
+  .wrap > .advice { grid-column: 1 / -1; grid-row: 2; }
+  .wrap > .who    { grid-column: 1; grid-row: 3; }
+  .wrap > .eq     { grid-column: 2; grid-row: 3; }
+  .wrap > .roster { grid-column: 1 / -1; grid-row: 4; }
 }
+/* One column: pure DOM order, so the first recommendation is one short scroll
+ * from the masthead instead of four screens down. */
 @media (max-width: 760px) {
   .wrap { grid-template-columns: 1fr; }
+  .wrap > .acct,
+  .wrap > .advice,
+  .wrap > .who,
+  .wrap > .eq,
+  .wrap > .roster { grid-column: 1; grid-row: auto; }
   .grid-eq { grid-template-columns: repeat(5, 1fr); grid-auto-rows: auto; }
   .slot { aspect-ratio: 1; }
 }
@@ -459,11 +497,37 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 @media (max-width: 860px) { .roster-split { grid-template-columns: 1fr; } }
 
 .roster-list { display: flex; flex-direction: column; gap: 1px; }
+/* Every row is a button now: clicking one switches the whole planner to that
+ * character, so it has to look and behave like something you can press. */
 .roster-row {
-  display: flex; align-items: center; gap: 9px;
-  padding: 5px 9px; border-radius: 3px; font-size: .79rem;
+  display: flex; align-items: center; gap: 9px; width: 100%; text-align: left;
+  background: none; border: 1px solid transparent; border-left-width: 2px;
+  padding: 5px 9px; border-radius: 3px; font-size: .79rem; cursor: pointer;
+  color: inherit;
 }
 .roster-row:nth-child(odd) { background: var(--well); }
+.roster-row:hover { border-color: var(--edge); border-left-color: var(--gold); }
+.roster-row:focus-visible { outline: none; border-color: var(--gold); }
+.roster-row.on {
+  background: rgba(240,192,96,.10); border-color: var(--gold-deep); border-left-color: var(--gold);
+}
+.roster-row .gear {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: .62rem; letter-spacing: .05em; color: var(--ink-3);
+  white-space: nowrap; margin-left: auto;
+}
+.roster-row .gear.none { color: #4b5570; }
+/* .nm takes the slack so the two right-hand columns stay put next to each
+ * other rather than each claiming half the free space. */
+.roster-row .nm { flex: 1 1 auto; min-width: 0; }
+.roster-row .nx { margin-left: 0; }
+.roster-row .nm .editing {
+  font-style: normal; font-size: .6rem; letter-spacing: .06em; text-transform: uppercase;
+  color: #12182a; background: var(--gold); border-radius: 2px; padding: 0 4px; font-weight: 700;
+}
+.roster-how { margin: 2px 0 8px; }
+.card.roster > .roster-sum { margin: 12px 14px; }
+.card.roster > .roster-split { margin: 0 14px 14px; }
 .roster-row .lv { color: var(--gold); min-width: 26px; text-align: right; }
 .roster-row .nm { color: var(--ink-1); display: flex; align-items: baseline; gap: 6px; min-width: 0; }
 .roster-row .nm em { font-style: normal; color: var(--ink-3); font-size: .72rem; white-space: nowrap; }
@@ -483,3 +547,136 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
 .rank.rS   { background: #2f3f1c; color: #b6e06a; }
 .rank.rA   { background: #1e3346; color: #7fc0f0; }
 .rank.rB   { background: #33283f; color: #c3a2e6; }
+
+/* ---------- the account strip ----------
+ * One row, above every card, naming the character the whole page is about and
+ * letting you change it in one click. It is the control that redefines what all
+ * the other panels mean, so it is the first thing under the masthead — and it
+ * is deliberately a strip rather than a card, because it must not cost the
+ * ranked list its place at the top of the fold. */
+.acct {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 10px; border-radius: 4px;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), transparent), var(--bg-2);
+  border: 1px solid var(--line-soft);
+  min-width: 0;
+}
+.acct > .sub-h { flex: 0 0 auto; }
+.acct .chips {
+  display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px;
+  scrollbar-width: thin; min-width: 0;
+}
+.chip {
+  display: flex; align-items: baseline; gap: 6px; white-space: nowrap;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 3px;
+  padding: 4px 9px; cursor: pointer; color: var(--ink-2); font-size: .78rem;
+}
+.chip:hover { border-color: var(--edge); color: var(--ink); }
+.chip b { font-weight: 600; color: var(--ink-2); }
+.chip i { font-style: normal; font-size: .66rem; color: var(--ink-3); }
+.chip .mono {
+  font-size: .6rem; color: var(--ink-3); border: 1px solid var(--line-soft);
+  border-radius: 2px; padding: 0 4px;
+}
+/* The active character has to be unmistakable: it is the answer to "whose gear
+ * am I looking at", and getting it wrong is the mistake this wave is about. */
+.chip.on {
+  background: linear-gradient(180deg, #4a3a12 0%, #2e2409 100%);
+  border-color: var(--gold); color: var(--gold-2);
+}
+.chip.on b { color: var(--gold-2); }
+.chip.on i, .chip.on .mono { color: var(--gold); border-color: var(--gold-deep); }
+.chip.add { color: var(--ink-3); border-style: dashed; }
+.acct-jump {
+  flex: 0 0 auto; margin-left: auto; font-size: .7rem; color: var(--ink-3);
+  text-decoration: none; border: 1px solid var(--line); border-radius: 3px; padding: 4px 8px;
+}
+.acct-jump:hover { color: var(--gold); border-color: var(--gold-deep); }
+
+/* Which character a card is about, stated in its own header. */
+.h2-for {
+  float: right; text-transform: none; letter-spacing: .02em;
+  font-family: var(--font-public-sans), sans-serif; font-size: .72rem; color: var(--ink-2);
+}
+.card.roster > h2 .h2-for { float: none; margin-left: 10px; color: var(--ink-3); }
+.h3-for {
+  margin-left: 9px; font-family: var(--font-public-sans), sans-serif;
+  font-size: .78rem; font-weight: 400; color: var(--ink-3);
+}
+
+/* ---------- the damage model gate, rendered ----------
+ * The panel that stands where a damage range would be for a class the model has
+ * never been measured on. No figure, no ghost of one. */
+.dr.off { border-left-color: #3a4664; }
+.dr.off .v.dash { color: #3f4a68; }
+.modelnote {
+  margin: 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  background: var(--well); border: 1px solid var(--line-soft); border-left: 2px solid var(--warn);
+  border-radius: 3px; padding: 8px 11px; font-size: .745rem; line-height: 1.45; color: var(--ink-2);
+}
+
+/* ---------- landing on an empty sheet ----------
+ * The common case after a roster import: 31 characters read, one with gear.
+ * A blank grid and an empty list have to say what to do next. */
+.startup {
+  background: var(--well); border: 1px solid var(--line); border-left: 2px solid var(--gold);
+  border-radius: 3px; padding: 11px 13px;
+}
+.startup b { color: var(--ink); font-size: .9rem; }
+.startup p { margin: 5px 0 9px; font-size: .765rem; color: var(--ink-3); line-height: 1.45; }
+.startup-do { display: flex; gap: 7px; flex-wrap: wrap; }
+
+.eq-empty {
+  margin: 0 0 11px; font-size: .755rem; color: var(--ink-3); text-align: center; line-height: 1.5;
+}
+.linkish {
+  background: none; border: 0; padding: 0; cursor: pointer; color: var(--blue);
+  text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px;
+}
+.linkish:hover { color: var(--gold); }
+.fineprint { margin: 6px 0 0; font-size: .68rem; color: var(--ink-3); line-height: 1.45; }
+
+/* The ranking rationale, the badge legend and the hyper stat verdicts — real,
+ * kept, and no longer sitting on top of the answer. */
+.working { border-top: 1px solid var(--line-soft); padding-top: 10px; }
+.working-in { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+
+/* class and level, editable next to the name */
+.wholine { display: flex; align-items: baseline; gap: 6px; margin: 3px 0 11px; font-size: .76rem; color: var(--ink-3); }
+.wholine input {
+  background: none; border: 0; border-bottom: 1px dotted var(--line);
+  color: var(--ink-2); font-family: inherit; font-size: .76rem; padding: 1px 2px;
+}
+.wholine input:focus { outline: none; border-bottom-color: var(--gold); color: var(--ink); }
+.wholine .clsInput { flex: 1 1 auto; min-width: 0; }
+.wholine .lvlInput { width: 5ch; text-align: right; }
+
+/* ---------- import dialog: whose sheet is this ---------- */
+.imp-target {
+  display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap;
+  background: linear-gradient(180deg, #4a3a12 0%, #2e2409 100%);
+  border: 1px solid var(--gold-deep); border-radius: 3px; padding: 9px 12px;
+}
+.imp-target b { font-size: .95rem; color: var(--gold-2); }
+.imp-target i { font-style: normal; font-size: .74rem; color: var(--gold); }
+.imp-target .mono { margin-left: auto; font-size: .66rem; color: var(--ink-2); }
+.imp-warn {
+  margin: 0; font-size: .78rem; line-height: 1.5; color: var(--warn);
+  background: var(--well); border-left: 2px solid var(--warn); padding: 9px 12px;
+}
+.imp-warn b { color: var(--gold-2); }
+
+/* ---------- what just happened, and to whom ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 70;
+  display: flex; align-items: flex-start; gap: 12px; max-width: min(560px, calc(100vw - 32px));
+  background: linear-gradient(180deg, var(--panel-2) 0%, #131b2e 100%);
+  border: 1px solid var(--gold-deep); border-left: 2px solid var(--gold);
+  border-radius: 4px; padding: 10px 12px; font-size: .79rem; line-height: 1.45; color: var(--ink-2);
+  box-shadow: 0 18px 40px -16px rgba(0,0,0,.95);
+}
+.toast button {
+  background: none; border: 0; cursor: pointer; color: var(--ink-3); font-size: 1rem; line-height: 1;
+  padding: 0 2px;
+}
+.toast button:hover { color: var(--ink); }

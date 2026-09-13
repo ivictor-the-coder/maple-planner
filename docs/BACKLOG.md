@@ -408,8 +408,41 @@ recommendation is locally sensible; together they are backwards.
    figure is from memory and is exactly the kind of number this project keeps
    catching itself on.
 
-## Not fixed yet, and why
+## FIXED, 2026-09-13
 
-lib/rules.ts is owned by the running multi-character wave and has uncommitted
-edits. Two writers on one file is what produced the 24% crit-damage error.
-Apply once that wave lands.
+Point 1 as written. idx === -1 now gets its own branch that names rung zero at
+priority 1. Every laddered slot is covered by a test that puts a below-rung item
+in it and asserts the slot does not stay silent.
+
+Point 2 came out differently, and the difference matters. The plan said demote
+star force and potential advice outright. Reading assignPri() first changed
+that: it ranks priced recs by damage per meso, and that ranking is not wrong -
+star forcing a Pensalir glove to 15 does buy damage today, and a player who
+cannot reach Lotus yet is entitled to it. A blanket demotion would also have
+been silently undone, because assignPri() overwrites pri for anything carrying
+an eff number.
+
+What shipped instead:
+  - Every spend-on-this-item rec is marked `invest` at its call site, and
+    `replaced` when the plan has told the player to replace the item.
+  - UNPRICED investment recs drop to LATER. "Tier up to Legendary" at NOW
+    directly under "replace this item" is the planner contradicting itself.
+  - PRICED ones keep their band but are CAPPED below NOW, because NOW is
+    competing against the replacement and the ranking cannot see that contest -
+    a gear-tier delta has no price in this repo, so the upgrade enters with no
+    number and loses to anything carrying one. Without the cap the page showed
+    "+0.09% for 3M mesos, reroll the flame" ABOVE "replace this".
+  - All of them gain a sentence naming what does not survive the swap.
+
+Point 3 is resolved by NOT asserting it. Nothing in this repo sources the
+Transfer Hammer level span or its star cost, so the copy says potential and
+flames are lost and stays silent on hammering. The ten-level figure quoted
+above is still unverified and should not be repeated until someone reads it in
+game.
+
+Found while fixing it: an item with lvl 0 - an import that failed to read the
+required level - cleared no rung either, and would have been called outclassed
+on the strength of a missing field. That now says the level is unknown instead.
+
+Harness: scratchpad/harness.js, 19 assertions, all passing, including the
+degradation contract in __selfTest().

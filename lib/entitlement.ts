@@ -28,9 +28,21 @@
  * listed in QUOTA_PROVENANCE. The per-screenshot token cost is deliberately
  * `null` rather than a guess — see IMPORT_UNIT_COST_USD_PLACEHOLDER.
  *
+ * WHAT THE GATE IS TODAY: A DEMO, NOT A PAYWALL. Every visitor gets
+ * DEMO_IMPORTS (10) screenshot imports, ever — one full batch, measured against
+ * the `lifetime` bucket, which nothing refills. When it runs out the answer is
+ * `demo_exhausted` and the next step is an EXPRESSION OF INTEREST, not a
+ * checkout: see INTEREST_FORM_PATH for the Vercel Hobby constraint that makes
+ * the difference between those two words a deployment cost rather than a
+ * preference. The paid vocabulary below (PAID_*, BillingEvent, PRICE_*) is
+ * fully implemented and currently unreachable — it is what "open paid access if
+ * enough demand appears" turns on, and nothing in it is wired to a route.
+ *
  * HOW app/api/import/route.ts USES THIS. The order is not decorative: every step
  * before `commitSpend` is free, and `commitSpend` is the last thing that happens
- * before money is spent.
+ * before money is spent. In practice a route should call guardImport() from
+ * lib/entitlementStore.ts, which is this sequence with the fail-closed error
+ * handling already in it:
  *
  *   const subject = store.subjectFor(req);            // session, else { kind:'ip' }
  *   const plan    = await planFor(subject);           // session claim; 'anonymous' for ip
@@ -52,6 +64,14 @@
  * `settle` must run on EVERY exit path, including the 20s abort — it releases
  * the concurrency slot as well as refunding the unit, and a leaked slot is a
  * subject who can never import again until the process restarts.
+ *
+ * FAIL CLOSED. Every await in that sequence can reject, and every rejection
+ * DENIES with `store_unavailable`. The alternative — allowing when the ledger
+ * is unreachable — spends real money on a call nobody counted, which is the one
+ * thing this module exists to prevent. The cost of the choice is stated where
+ * it is made: a ledger outage disables the importer completely, and with the
+ * in-memory store that outage is indistinguishable from a cold start, which is
+ * why the store reports its own durability in every response.
  *
  * GET /api/import/quota answers from `quotaSummary(ctx, Date.now())`, which is
  * the same resolution logic with nothing charged, so the number in the dialog
@@ -219,9 +239,17 @@ export type Provenance = "sourced" | "derived" | "unverified";
 
 export const QUOTA_PROVENANCE: Readonly<Record<string, { how: Provenance; note: string }>> =
   Object.freeze({
+    DEMO_IMPORTS: {
+      how: "sourced",
+      note: "Product owner decision: the demo is one full batch. Equals MAX_BATCH_FILES (10) — enough gear for one character, and well short of the 25 equip slots a character has.",
+    },
+    CHARACTER_EQUIP_SLOTS: {
+      how: "sourced",
+      note: "SLOTS in lib/rules.ts:82-108 — 25 ids, as counted in the comment at lib/portable.ts:233. Copied, not imported: this file stays free of game data so it can be tested on its own.",
+    },
     ANON_IMPORTS_PER_HOUR: {
-      how: "unverified",
-      note: "Product policy. Chosen so a first-time visitor can prove the feature works on the three things it reads (a tooltip, the Stat window, one roster page) without signing in. No usage data exists yet.",
+      how: "derived",
+      note: "Derived from DEMO_IMPORTS, not chosen. It is a pace limit inside the demo, never the demo ceiling; set below DEMO_IMPORTS it makes the one promised batch impossible to finish in one sitting.",
     },
     FREE_IMPORTS_PER_DAY: {
       how: "derived",
@@ -262,13 +290,91 @@ export const QUOTA_PROVENANCE: Readonly<Record<string, { how: Provenance; note: 
   });
 
 /**
- * Anonymous callers are keyed by IP and get a small hourly allowance. IP is a
- * weak key (CGNAT shares it, a VPN rotates it) — that is fine, because this
- * bucket is not the business model, it is the thing standing between the
- * OpenRouter key and the open internet.
- * UNVERIFIED — product policy, see QUOTA_PROVENANCE.
+ * THE DEMO. Every visitor gets this many screenshot imports, ever.
+ *
+ * TEN, AND NOT FIVE — do not "tidy" this number:
+ *   - Ten is ONE FULL BATCH. MAX_BATCH_FILES is 10, so a visitor can drop one
+ *     batch of screenshots and watch a populated grid appear. That is one
+ *     natural action completed, not a mechanic half-demonstrated.
+ *   - A character has CHARACTER_EQUIP_SLOTS (25) slots, and the value
+ *     proposition is "you do not have to fill 25 slots by hand". Five
+ *     screenshots proves the trick works and then leaves 20 slots to type:
+ *     the demonstration without the benefit. The visitor learns the feature is
+ *     real and that using it is still work.
+ *   - Ten is still well short of 25, so the demo does not become the product.
+ *
+ * One named constant, so moving the number is a one-line change when the demand
+ * signal says to move it. Everything downstream — the counter in the dialog,
+ * the refusal sentence, the invariants below — reads it from here.
+ *
+ * This is a LIFETIME count against LedgerSnapshot.lifetime, not a window. See
+ * ANON_IMPORTS_PER_HOUR for why both exist and which one governs.
  */
-export const ANON_IMPORTS_PER_HOUR = 3;
+export const DEMO_IMPORTS = 10;
+
+/**
+ * Equip slots on one character. Used only to keep DEMO_IMPORTS honest: a demo
+ * at or above 25 stops being a demo and becomes the product.
+ *
+ * SOURCED: SLOTS in lib/rules.ts:82-108, counted at lib/portable.ts:233.
+ * Copied rather than imported so this module keeps its promise to import
+ * nothing.
+ */
+export const CHARACTER_EQUIP_SLOTS = 25;
+
+/**
+ * Where a visitor whose demo is spent is sent. The deny body carries this path
+ * so the dialog does not hard-code it.
+ *
+ * WHAT THAT PAGE MAY AND MAY NOT DO — this is a deployment constraint, not a
+ * design preference. Vercel's Hobby plan forbids commercial use, and defines it
+ * to include "any method of requesting or processing payment from visitors of
+ * the site". An expression of interest is not payment, so this shape keeps the
+ * app on Hobby and defers Vercel Pro at $20/seat/month indefinitely.
+ *
+ *   ALLOWED:     asking whether someone would use a paid plan, and what they
+ *                would expect it to include. "Would you pay for this?" is a
+ *                survey question.
+ *   NOT ALLOWED: card fields, a checkout of any kind, a pre-order, a waitlist
+ *                that takes a deposit, or naming a price as something being
+ *                purchased. "Reserve your spot for $10" crosses the line.
+ *
+ * PRICE_USD_PER_PERIOD exists in this file as a product assumption for sizing
+ * quotas. Rendering it on this page as a thing to buy is the drift this comment
+ * exists to prevent — it costs $20/month the moment it happens.
+ */
+export const INTEREST_FORM_PATH = "/interest";
+
+/**
+ * WHICH GOVERNS AN ANONYMOUS VISITOR: DEMO_IMPORTS DOES.
+ *
+ * These two numbers measure different things, and the difference is the whole
+ * point of the demo gate:
+ *
+ *   ANON_IMPORTS_PER_HOUR is a RATE — how fast. It refills. A patient visitor
+ *   renews 3/hour forever, spends unbounded OpenRouter tokens over a week, and
+ *   never has a reason to tell us they want this. A rate limit answers "is this
+ *   a script?", never "has this person had their demo?".
+ *
+ *   DEMO_IMPORTS is a LIFETIME CEILING — how much, ever. It does not refill. It
+ *   is the number that ENDS, and that ending is the moment which produces an
+ *   expression of interest.
+ *
+ * So the lifetime demo is the ceiling, and decideImport checks it FIRST; the
+ * hourly window sits underneath as pace. Checking the rate first would answer
+ * an exhausted visitor with "try again in 40 minutes", which is a lie — those
+ * units are gone for good, and the honest answer is the interest form.
+ *
+ * THEY CANNOT SILENTLY DISAGREE. A pace limit tighter than the demo makes the
+ * promised single batch undeliverable: at 3/hour a 10-screenshot batch stalls
+ * on the fourth file and the visitor meets a rate limit instead of a populated
+ * grid. So this is DERIVED from DEMO_IMPORTS, and ENTITLEMENT_INVARIANTS below
+ * throws at module load if anyone sets it back under the demo. IP remains a
+ * weak key (CGNAT shares it, a VPN rotates it); that is accepted, because this
+ * bucket is not the business model, it is what stands between the OpenRouter
+ * key and the open internet.
+ */
+export const ANON_IMPORTS_PER_HOUR = DEMO_IMPORTS;
 
 /**
  * A signed-in free user gets their own bucket, not the shared IP bucket. This is
@@ -310,6 +416,65 @@ export const MAX_CONCURRENT_IMPORTS = 3;
  *  if request batching ever lands, and the guard against a hand-rolled caller
  *  posting a hundred images in one body. */
 export const MAX_BATCH_FILES = 10;
+
+/**
+ * Relations between the numbers above that must hold for the demo to mean what
+ * the product owner decided it means. Not opinions: each one, if broken,
+ * produces a specific silent failure, named in `breaks`.
+ *
+ * Checked at module load, and a violation throws rather than serving a demo
+ * that quietly does not work — every failure mode here is invisible from the
+ * outside, because the gate still returns 200s, it just guards the wrong thing.
+ */
+export interface EntitlementInvariant {
+  rule: string;
+  ok: boolean;
+  detail: string;
+  breaks: string;
+}
+
+export function entitlementInvariants(): EntitlementInvariant[] {
+  return [
+    {
+      rule: "DEMO_IMPORTS === MAX_BATCH_FILES",
+      ok: DEMO_IMPORTS === MAX_BATCH_FILES,
+      detail: DEMO_IMPORTS + " vs " + MAX_BATCH_FILES,
+      breaks:
+        "The demo stops being one full batch. Below: the last files of a full batch are refused mid-way. Above: the visitor is promised imports the dialog will not let them queue.",
+    },
+    {
+      rule: "ANON_IMPORTS_PER_HOUR >= DEMO_IMPORTS",
+      ok: ANON_IMPORTS_PER_HOUR >= DEMO_IMPORTS,
+      detail: ANON_IMPORTS_PER_HOUR + " vs " + DEMO_IMPORTS,
+      breaks:
+        "The pace limit fires before the demo is spent, so the one batch we promise cannot be finished in one sitting and the visitor meets 'try again later' instead of a populated grid.",
+    },
+    {
+      rule: "DEMO_IMPORTS < CHARACTER_EQUIP_SLOTS",
+      ok: DEMO_IMPORTS < CHARACTER_EQUIP_SLOTS,
+      detail: DEMO_IMPORTS + " vs " + CHARACTER_EQUIP_SLOTS,
+      breaks:
+        "The demo covers a whole character, so it is the product rather than a taste of it.",
+    },
+    {
+      rule: "MAX_CONCURRENT_IMPORTS <= DEMO_IMPORTS",
+      ok: MAX_CONCURRENT_IMPORTS <= DEMO_IMPORTS,
+      detail: MAX_CONCURRENT_IMPORTS + " vs " + DEMO_IMPORTS,
+      breaks:
+        "One wave of parallel lanes could exceed the whole demo, so the ceiling is never reached in order and the last allowed import is refused as a concurrency error.",
+    },
+  ];
+}
+
+const ENTITLEMENT_INVARIANT_VIOLATIONS = entitlementInvariants().filter((i) => !i.ok);
+if (ENTITLEMENT_INVARIANT_VIOLATIONS.length > 0) {
+  throw new Error(
+    "Entitlement constants disagree — the demo gate would not do what it says:\n" +
+      ENTITLEMENT_INVARIANT_VIOLATIONS.map(
+        (v) => "  - " + v.rule + " (" + v.detail + "): " + v.breaks,
+      ).join("\n"),
+  );
+}
 
 /**
  * Cost of one screenshot import, in USD.
@@ -416,7 +581,16 @@ export function subjectKey(s: Subject): string {
   return `${s.kind}:${s.id}`;
 }
 
-export type WindowKind = "minute" | "hour" | "day" | "period";
+export type WindowKind = "minute" | "hour" | "day" | "period" | "lifetime";
+
+/**
+ * The windows that roll over on a fixed span. `period` is anchored to a billing
+ * date and `lifetime` never rolls over at all, so neither belongs in WINDOW_MS
+ * and neither can be handed to windowState() — the type says so rather than a
+ * comment, because a lifetime counter that silently rolls over every hour is a
+ * demo gate that does not gate.
+ */
+export type RollingWindow = Exclude<WindowKind, "period" | "lifetime">;
 
 export interface LedgerWindow {
   /** epoch ms at which this window opened — i.e. when its first unit was spent */
@@ -435,15 +609,28 @@ export interface LedgerSnapshot {
   hour: LedgerWindow;
   day: LedgerWindow;
   period: LedgerWindow;
+  /**
+   * The demo counter, and the only bucket with no span. Monotonic for the life
+   * of the row: nothing takes units back out of it except a refund for a call
+   * that failed. DEMO_IMPORTS is measured against this, which is precisely why
+   * a patient visitor cannot renew an hourly allowance forever.
+   */
+  lifetime: LedgerWindow;
 }
 
 export const EMPTY_WINDOW: LedgerWindow = Object.freeze({ startedAt: 0, units: 0 });
 
 export function emptyLedger(): LedgerSnapshot {
-  return { minute: { ...EMPTY_WINDOW }, hour: { ...EMPTY_WINDOW }, day: { ...EMPTY_WINDOW }, period: { ...EMPTY_WINDOW } };
+  return {
+    minute: { ...EMPTY_WINDOW },
+    hour: { ...EMPTY_WINDOW },
+    day: { ...EMPTY_WINDOW },
+    period: { ...EMPTY_WINDOW },
+    lifetime: { ...EMPTY_WINDOW },
+  };
 }
 
-export const WINDOW_MS: Readonly<Record<Exclude<WindowKind, "period">, number>> = Object.freeze({
+export const WINDOW_MS: Readonly<Record<RollingWindow, number>> = Object.freeze({
   minute: MINUTE_MS,
   hour: HOUR_MS,
   day: DAY_MS,
@@ -458,7 +645,7 @@ export const WINDOW_MS: Readonly<Record<Exclude<WindowKind, "period">, number>> 
  */
 export function windowState(
   w: LedgerWindow,
-  kind: Exclude<WindowKind, "period">,
+  kind: RollingWindow,
   now: number,
 ): { units: number; endsAt: number } {
   const span = WINDOW_MS[kind];
@@ -477,6 +664,17 @@ export function periodWindowState(
   // A window opened before this period began belongs to the previous period.
   const live = w.units > 0 && w.startedAt >= periodStart && w.startedAt < endsAt;
   return { units: live ? w.units : 0, endsAt };
+}
+
+/**
+ * The demo window. There is no reset, so `endsAt` is POSITIVE_INFINITY — the
+ * honest value for "never". Every caller must check Number.isFinite before
+ * turning it into a Retry-After: telling someone to come back in Infinity
+ * seconds is worse than telling them the demo is over. JSON.stringify renders
+ * it as null, which a UI should read as "this does not come back".
+ */
+export function lifetimeWindowState(w: LedgerWindow): { units: number; endsAt: number } {
+  return { units: Math.max(0, w.units), endsAt: Number.POSITIVE_INFINITY };
 }
 
 export interface ImportContext {
@@ -499,13 +697,28 @@ export interface ImportContext {
   configured?: boolean;
 }
 
+/**
+ * Why the answer was no. Never a bare boolean: the dialog has to say WHY, and
+ * the four reasons a visitor of a gated-demo deployment can actually hit are
+ * different conversations —
+ *
+ *   demo_exhausted     the demo is spent and never comes back. This is the one
+ *                      that leads to the interest form; see INTEREST_FORM_PATH.
+ *   anon_hourly_limit  rate limited. Time fixes it. Says so.
+ *   batch_too_large    the request is malformed. The caller fixes it.
+ *   store_unavailable  the ledger could not be read or written, so the import
+ *                      was refused rather than run uncounted. See FAIL CLOSED
+ *                      on decideImport.
+ */
 export type DenyReason =
+  | "demo_exhausted"
   | "anon_hourly_limit"
   | "free_daily_quota"
   | "period_quota_exhausted"
   | "burst_limit"
   | "concurrency_limit"
   | "batch_too_large"
+  | "store_unavailable"
   | "plan_past_due"
   | "plan_cancelled"
   | "not_configured";
@@ -552,6 +765,16 @@ export interface Deny {
   /** True when paying (or paying again) is what fixes this. The UI decides
    *  whether to show the upgrade affordance off this, never off the reason. */
   upgrade?: boolean;
+  /**
+   * True when the demo is over and there is nothing to buy — the UI shows the
+   * EXPRESSION OF INTEREST form off this flag, never off the reason string.
+   *
+   * `interest` and `upgrade` are mutually exclusive by construction and must
+   * stay that way: `upgrade` means "money fixes this", and this deployment
+   * does not take money. See INTEREST_FORM_PATH for the legal reason that
+   * distinction is load-bearing rather than cosmetic.
+   */
+  interest?: boolean;
   /** Ceiling that was hit, when there was one — lets the UI say the number. */
   limit?: number;
   window?: WindowKind;
@@ -569,14 +792,27 @@ interface QuotaProfile {
   window: WindowKind;
   reason: DenyReason;
   upgrade: boolean;
+  /** True when running out leads to the interest form rather than a payment. */
+  interest: boolean;
 }
 
-const ANON_PROFILE: QuotaProfile = {
+/**
+ * The anonymous visitor's profile, and on this deployment that is EVERY
+ * visitor: there is no sign-in, so nobody is ever anything else.
+ *
+ * The governing window is `lifetime`, not `hour`. An hourly bucket refills,
+ * and a visitor who waits out a refill never reaches the end of anything — so
+ * there is never a moment that asks them whether they want this, and the
+ * OpenRouter spend has no ceiling at all, only a slope. The demo has an end.
+ * decideImport checks this ceiling before the hourly pace for the same reason.
+ */
+const ANON_DEMO_PROFILE: QuotaProfile = {
   kind: "anon",
-  limit: ANON_IMPORTS_PER_HOUR,
-  window: "hour",
-  reason: "anon_hourly_limit",
-  upgrade: false, // signing in is the next step, not paying
+  limit: DEMO_IMPORTS,
+  window: "lifetime",
+  reason: "demo_exhausted",
+  upgrade: false, // there is nothing to buy — deliberately, see INTEREST_FORM_PATH
+  interest: true,
 };
 
 const FREE_PROFILE: QuotaProfile = {
@@ -585,6 +821,7 @@ const FREE_PROFILE: QuotaProfile = {
   window: "day",
   reason: "free_daily_quota",
   upgrade: true,
+  interest: false,
 };
 
 const PAID_PROFILE: QuotaProfile = {
@@ -593,6 +830,7 @@ const PAID_PROFILE: QuotaProfile = {
   window: "period",
   reason: "period_quota_exhausted",
   upgrade: false, // already the top plan; more is a support conversation
+  interest: false,
 };
 
 /**
@@ -607,13 +845,13 @@ export function resolveQuotaProfile(
   ctx: ImportContext,
   now: number,
 ): QuotaProfile | Deny {
-  if (ctx.subject.kind === "ip") return ANON_PROFILE;
+  if (ctx.subject.kind === "ip") return ANON_DEMO_PROFILE;
 
   switch (ctx.plan) {
     case "anonymous":
       // Contradictory input (a user subject with no plan). Treat as the
       // cheapest bucket rather than throwing at request time.
-      return ANON_PROFILE;
+      return ANON_DEMO_PROFILE;
     case "free":
       return FREE_PROFILE;
     case "active":
@@ -639,12 +877,37 @@ export function resolveQuotaProfile(
 }
 
 /**
+ * Units spent inside whichever window governs this profile, and when it ends.
+ * One implementation, used by both decideImport and quotaSummary, so the number
+ * in the dialog header and the number in the refusal can never disagree.
+ *
+ * `endsAt` is POSITIVE_INFINITY for the lifetime demo. Callers turning it into
+ * a Retry-After must check Number.isFinite first.
+ */
+function governingWindowState(
+  profile: QuotaProfile,
+  ctx: ImportContext,
+  now: number,
+): { units: number; endsAt: number } {
+  if (profile.window === "period") return periodWindowState(ctx.ledger.period, ctx.periodStart, now);
+  if (profile.window === "lifetime") return lifetimeWindowState(ctx.ledger.lifetime);
+  return windowState(ctx.ledger[profile.window], profile.window, now);
+}
+
+/**
  * The single function app/api/import/route.ts calls before it spends anything.
  *
  * Pure: no Date.now(), no fetch, no env. Order of checks is deliberate —
- * cheapest and most objective first (shape of the request), then the ones that
- * time fixes, then the ones that money fixes — so the user is told the most
+ * cheapest and most objective first (shape of the request), then the ceiling
+ * that nothing reopens, then the ones time fixes — so the user is told the most
  * actionable thing, not the first thing that happened to fail.
+ *
+ * FAIL CLOSED. This function cannot reach the ledger; it is handed one. The
+ * caller that CAN fail — the store — must turn any failure into a
+ * `store_unavailable` deny and never into an allow, because an allow on an
+ * unreadable ledger spends real OpenRouter tokens on a call nobody counted,
+ * which is the single thing this module exists to stop. lib/entitlementStore.ts
+ * does that, and guardImport() there is the sequence routes should call.
  */
 export function decideImport(ctx: ImportContext, now: number): Decision {
   if (ctx.configured === false) {
@@ -676,9 +939,33 @@ export function decideImport(ctx: ImportContext, now: number): Decision {
   const profile = resolveQuotaProfile(ctx, now);
   if ("allow" in profile) return profile;
 
-  // Burst applies to the paid bucket only: the anon and free ceilings are small
-  // enough that a per-minute limit on top would only ever fire after the real
-  // one, producing a worse message.
+  // THE CEILING FIRST — before any window that time reopens. For an anonymous
+  // visitor the ceiling is the lifetime demo, and answering it before the
+  // hourly pace limit is the difference between "that was your demo, here is
+  // the form" and "try again in 40 minutes", which is false and which also
+  // costs us the one useful thing an exhausted visitor can still do.
+  const gov = governingWindowState(profile, ctx, now);
+  const used = gov.units;
+  const left = Math.max(0, profile.limit - used);
+  if (used + batch > profile.limit) {
+    const denied: Deny = {
+      allow: false,
+      reason: profile.reason,
+      remaining: left,
+      limit: profile.limit,
+      window: profile.window,
+    };
+    // A lifetime window has no end, so it gets no Retry-After — Infinity
+    // seconds is not a thing to tell a person or a CDN. Everything else comes
+    // back on its own and says when.
+    if (Number.isFinite(gov.endsAt)) denied.retryAfterSec = secondsUntil(now, gov.endsAt);
+    if (profile.upgrade) denied.upgrade = true;
+    if (profile.interest) denied.interest = true;
+    return denied;
+  }
+
+  // PACE, second. These fire only inside a ceiling that still has room, so they
+  // always have an honest "try again in N" to offer.
   if (profile.kind === "paid") {
     const minute = windowState(ctx.ledger.minute, "minute", now);
     if (minute.units + batch > PAID_BURST_PER_MINUTE) {
@@ -693,34 +980,38 @@ export function decideImport(ctx: ImportContext, now: number): Decision {
     }
   }
 
-  const gov =
-    profile.window === "period"
-      ? periodWindowState(ctx.ledger.period, ctx.periodStart, now)
-      : windowState(
-          ctx.ledger[profile.window as Exclude<WindowKind, "period">],
-          profile.window as Exclude<WindowKind, "period">,
-          now,
-        );
-
-  const used = gov.units;
-  const left = Math.max(0, profile.limit - used);
-  if (used + batch > profile.limit) {
-    return {
-      allow: false,
-      reason: profile.reason,
-      retryAfterSec: secondsUntil(now, gov.endsAt),
-      remaining: left,
-      upgrade: profile.upgrade,
-      limit: profile.limit,
-      window: profile.window,
-    };
+  if (profile.kind === "anon") {
+    const hour = windowState(ctx.ledger.hour, "hour", now);
+    if (hour.units + batch > ANON_IMPORTS_PER_HOUR) {
+      return {
+        allow: false,
+        reason: "anon_hourly_limit",
+        retryAfterSec: secondsUntil(now, hour.endsAt),
+        // Deliberately the DEMO remainder, not the hour's: the hour refills, so
+        // how much of it is left is not information anyone can act on, while
+        // how much demo is left is the only number that matters.
+        remaining: left,
+        limit: ANON_IMPORTS_PER_HOUR,
+        window: "hour",
+      };
+    }
   }
+  // NOTE: while ANON_IMPORTS_PER_HOUR === DEMO_IMPORTS the branch above cannot
+  // fire — the demo ceiling is reached first, by exactly one import. It is not
+  // dead code but latent: the invariants permit raising the demo above the
+  // pace, and on the day someone does, this is what stops a script from
+  // draining the whole demo in one second. If it ever fires, the two numbers
+  // have been separated on purpose.
 
   // Every bucket the subject could be measured against is incremented, not just
   // the governing one: a free user who subscribes mid-day must not find their
-  // day bucket unwritten when they lapse back to free next month.
+  // day bucket unwritten when they lapse back to free next month. `lifetime` is
+  // in EVERY set — the demo must not be launderable through a plan change, and
+  // a subject who spends under one profile has still spent.
   const windows: WindowKind[] =
-    profile.kind === "paid" ? ["minute", "hour", "day", "period"] : ["minute", "hour", "day"];
+    profile.kind === "paid"
+      ? ["minute", "hour", "day", "period", "lifetime"]
+      : ["minute", "hour", "day", "lifetime"];
 
   return {
     allow: true,
@@ -752,6 +1043,11 @@ export interface QuotaSummary {
   used: number;
   limit: number;
   remaining: number;
+  /**
+   * POSITIVE_INFINITY when the governing window is the lifetime demo, because
+   * it does not reset. JSON.stringify renders that as null; a UI must read null
+   * as "never", not as "unknown" or "now".
+   */
   resetsAt: number;
   window: WindowKind;
   plan: PlanState;
@@ -767,6 +1063,7 @@ const WINDOW_LABEL: Record<WindowKind, string> = {
   hour: "this hour",
   day: "today",
   period: "this period",
+  lifetime: "in your demo",
 };
 
 export function quotaSummary(ctx: ImportContext, now: number): QuotaSummary {
@@ -783,14 +1080,7 @@ export function quotaSummary(ctx: ImportContext, now: number): QuotaSummary {
       blocked: profile.reason,
     };
   }
-  const gov =
-    profile.window === "period"
-      ? periodWindowState(ctx.ledger.period, ctx.periodStart, now)
-      : windowState(
-          ctx.ledger[profile.window as Exclude<WindowKind, "period">],
-          profile.window as Exclude<WindowKind, "period">,
-          now,
-        );
+  const gov = governingWindowState(profile, ctx, now);
   return {
     used: gov.units,
     limit: profile.limit,
@@ -862,6 +1152,13 @@ export function decidePersist(
  * on `upgrade: true` instead, where the UI can present it as an option.
  */
 export const DENY_STATUS: Readonly<Record<DenyReason, number>> = Object.freeze({
+  // 403, deliberately NOT 402. 402 is "Payment Required", and this deployment
+  // never asks for payment — see INTEREST_FORM_PATH. Answering 402 to a spent
+  // demo would describe the endpoint as a paywall in the one place a machine
+  // reads, which is exactly the line the Hobby plan says not to cross.
+  demo_exhausted: 403,
+  // 503: the ledger, not the caller, is the problem, and it may come back.
+  store_unavailable: 503,
   anon_hourly_limit: 429,
   burst_limit: 429,
   concurrency_limit: 429,
@@ -885,6 +1182,10 @@ export interface DenyBody {
   retryAfterSec?: number;
   remaining?: number;
   upgrade?: boolean;
+  /** Present and true only on demo_exhausted: show the interest form. */
+  interest?: boolean;
+  /** Where that form lives, so the dialog does not hard-code a path. */
+  interestPath?: string;
 }
 
 /**
@@ -895,8 +1196,19 @@ export interface DenyBody {
 export function explainDeny(d: Deny): string {
   const reset = d.retryAfterSec !== undefined ? formatResetIn(d.retryAfterSec) : "";
   switch (d.reason) {
+    case "demo_exhausted":
+      // Wording is constrained, not stylistic. It must not name a price as
+      // something being bought, sell a place in a queue, or promise access in
+      // exchange for anything. "Would you use this?" is a survey; "reserve your
+      // spot for $10" is commerce. See INTEREST_FORM_PATH.
+      return `That's all ${d.limit ?? DEMO_IMPORTS} screenshot imports in the demo — one full batch, enough for one character's gear. There's no paid plan yet. If you'd use one, say so and we'll open access if enough people ask.`;
+    case "store_unavailable":
+      return `Screenshot import is unavailable right now: the usage ledger can't be reached, so imports are being refused rather than run uncounted.${reset ? ` Try again in ${reset}.` : ""}`;
     case "anon_hourly_limit":
-      return `You've used the ${d.limit ?? ANON_IMPORTS_PER_HOUR} free imports available without an account this hour. Sign in for ${FREE_IMPORTS_PER_DAY} a day${reset ? `, or try again in ${reset}` : ""}.`;
+      // No longer mentions signing in: there is no account to sign in to on
+      // this deployment, and pointing at one would be a dead end. This is pace,
+      // and pace is fixed by waiting.
+      return `That's ${d.limit ?? ANON_IMPORTS_PER_HOUR} imports in an hour.${reset ? ` Try again in ${reset}` : ""}${d.remaining !== undefined ? ` — ${d.remaining} left in your demo.` : "."}`;
     case "free_daily_quota":
       return `You've used today's ${d.limit ?? FREE_IMPORTS_PER_DAY} free imports.${reset ? ` They reset in ${reset}.` : ""}`;
     case "period_quota_exhausted":
@@ -921,6 +1233,10 @@ export function denyBody(d: Deny): DenyBody {
   if (d.retryAfterSec !== undefined) body.retryAfterSec = d.retryAfterSec;
   if (d.remaining !== undefined) body.remaining = d.remaining;
   if (d.upgrade !== undefined) body.upgrade = d.upgrade;
+  if (d.interest) {
+    body.interest = true;
+    body.interestPath = INTEREST_FORM_PATH;
+  }
   return body;
 }
 
@@ -1147,9 +1463,26 @@ export class EntitlementDenied extends Error {
   }
 }
 
+/**
+ * The port. Every method except subjectFor may reject, and MUST reject rather
+ * than paper over a failure: an implementation that returns emptyLedger() when
+ * its database is unreachable has converted "we do not know" into "they have
+ * spent nothing", which grants an unbounded demo to everyone for the duration
+ * of the outage and spends real OpenRouter tokens doing it.
+ *
+ * Callers turn a rejection into a `store_unavailable` deny. guardImport() in
+ * lib/entitlementStore.ts is that caller; routes should use it rather than
+ * re-implementing the sequence.
+ */
 export interface EntitlementStore {
-  /** Identity for a request. Falls back to `{kind:'ip'}` when there is no
-   *  session. */
+  /**
+   * Identity for a request. Falls back to `{kind:'ip'}` when there is no
+   * session.
+   *
+   * An implementation must never derive identity from a header the client can
+   * set. A subject key a visitor can change at will is not a key: it is a
+   * button that says "new demo".
+   */
   subjectFor(req: RequestLike): Subject;
   readLedger(subject: Subject, window: LedgerQuery): Promise<LedgerSnapshot>;
   /** In-flight reservations for this subject right now. */
@@ -1175,28 +1508,47 @@ interface MemRecord {
 }
 
 /**
- * Dev and test implementation. Exists so the whole layer is exercisable before
- * the owner has picked a database (BACKLOG.md prerequisites).
+ * THE LEDGER ARITHMETIC, IN A MAP. Dev and test only.
  *
- * This is genuinely atomic, not approximately: the read-modify-write in
+ * This is the raw mechanism, not the thing routes use: it is wrapped by
+ * VolatileMemoryEntitlementStore in lib/entitlementStore.ts, which adds the
+ * health reporting that tells the API — loudly, in every response — that this
+ * ledger does not survive a cold start and therefore does not gate anything in
+ * production. Use the wrapper. Two implementations of this arithmetic is
+ * exactly the drift worth avoiding, which is why the wrapper delegates here
+ * rather than copying.
+ *
+ * It is genuinely atomic, not approximately: the read-modify-write in
  * commitSpend contains no `await`, so the JS event loop cannot interleave
  * another request inside it. A Postgres or Redis implementation has to buy that
  * property explicitly; the doc comment on the interface says how.
  *
- * NOT for production on Vercel: serverless instances do not share a Map, so this
- * limits per-instance, not per-account.
+ * NOT PRODUCTION ON VERCEL. Serverless instances do not share a Map and are
+ * recycled constantly, so every cold start hands the visitor a fresh demo. It
+ * limits per-instance, not per-visitor.
  */
 export class MemoryEntitlementStore implements EntitlementStore {
   private readonly rows = new Map<string, MemRecord>();
   private readonly concurrencyLimit: number;
+  private readonly trustUserIdHeader: boolean;
 
-  constructor(concurrencyLimit: number = MAX_CONCURRENT_IMPORTS) {
+  /**
+   * `trustUserIdHeader` exists for tests that need to drive two subjects
+   * through one fake request, and defaults to FALSE. Turning it on in
+   * production would let any caller mint a fresh subject — and therefore a
+   * fresh demo — by changing one header, which is the gate not gating. It may
+   * only be enabled once something upstream actually verifies that header.
+   */
+  constructor(concurrencyLimit: number = MAX_CONCURRENT_IMPORTS, trustUserIdHeader = false) {
     this.concurrencyLimit = concurrencyLimit;
+    this.trustUserIdHeader = trustUserIdHeader;
   }
 
   subjectFor(req: RequestLike): Subject {
-    const user = req.headers.get("x-entitlement-user-id");
-    if (user) return { kind: "user", id: user };
+    if (this.trustUserIdHeader) {
+      const user = req.headers.get("x-entitlement-user-id");
+      if (user) return { kind: "user", id: user };
+    }
     return { kind: "ip", id: clientIpFrom(req.headers.get("x-forwarded-for")) };
   }
 
@@ -1240,9 +1592,13 @@ export class MemoryEntitlementStore implements EntitlementStore {
       // every reader treats as stale, so the ceiling never bites again.
       const stale =
         win.units === 0 ||
-        (w === "period"
-          ? charge.periodStart !== null && win.startedAt < charge.periodStart
-          : charge.issuedAt - win.startedAt >= WINDOW_MS[w]);
+        (w === "lifetime"
+          ? // The demo counter never ages out. If this ever becomes "true" the
+            // demo silently turns into a rate limit and the gate stops gating.
+            false
+          : w === "period"
+            ? charge.periodStart !== null && win.startedAt < charge.periodStart
+            : charge.issuedAt - win.startedAt >= WINDOW_MS[w]);
       if (stale) {
         r.ledger[w] = { startedAt: charge.issuedAt, units: Math.max(0, charge.units) };
       } else {
@@ -1272,13 +1628,19 @@ export class MemoryEntitlementStore implements EntitlementStore {
 }
 
 function cloneLedger(l: LedgerSnapshot): LedgerSnapshot {
-  return { minute: { ...l.minute }, hour: { ...l.hour }, day: { ...l.day }, period: { ...l.period } };
+  return {
+    minute: { ...l.minute },
+    hour: { ...l.hour },
+    day: { ...l.day },
+    period: { ...l.period },
+    lifetime: { ...l.lifetime },
+  };
 }
 
 /** Zeroes windows whose span has elapsed, so a reader never sees yesterday's
  *  units as today's. Pure, and the same rule decideImport applies. */
 export function rolledOver(l: LedgerSnapshot, q: LedgerQuery): LedgerSnapshot {
-  const fix = (w: LedgerWindow, kind: Exclude<WindowKind, "period">): LedgerWindow => {
+  const fix = (w: LedgerWindow, kind: RollingWindow): LedgerWindow => {
     const s = windowState(w, kind, q.now);
     return s.units === 0 ? { startedAt: 0, units: 0 } : { ...w };
   };
@@ -1288,6 +1650,9 @@ export function rolledOver(l: LedgerSnapshot, q: LedgerQuery): LedgerSnapshot {
     hour: fix(l.hour, "hour"),
     day: fix(l.day, "day"),
     period: p.units === 0 ? { startedAt: 0, units: 0 } : { ...l.period },
+    // Never rolled over. That is the entire point of the demo counter: it is
+    // the one number a visitor cannot wait out.
+    lifetime: { ...l.lifetime },
   };
 }
 

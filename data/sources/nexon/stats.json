@@ -1,0 +1,457 @@
+{
+  "$meta": {
+    "key": "stats",
+    "agent": "nexon-guides wave, stats/symbols/damage/starforce slice",
+    "readOn": "2026-09-13",
+    "sourceClass": "first-party (NEXON America, official GMS documentation)",
+    "pagesAssigned": [
+      "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "https://www.nexon.com/maplestory/game/maple-guides/all/5909/arcane-river-special-content",
+      "https://www.nexon.com/maplestory/game/maple-guides/all/5907/star-force-hunting"
+    ],
+    "pagesAlsoRead": [
+      "https://www.nexon.com/maplestory/game/maple-guides/all/5893/how-to-level-up-faster",
+      "https://www.nexon.com/maplestory/game/maple-guides/all/5911/returning-mapler-guide",
+      "https://www.nexon.com/maplestory/game/maple-guides/all/5892/glossary",
+      "https://www.nexon.com/maplestory/news/update/44597"
+    ],
+    "howRead": "Guide bodies are client-rendered from a CMS endpoint, https://g.nexonstatic.com/maplestory/cms/v1/ms-guides/<id>. All 27 non-video guides were fetched and full-text searched, so every 'absent' verdict below is an absence across the WHOLE official guide corpus, not just one page. Tables were read with document.querySelectorAll('table') so the cells are real cells.",
+    "stalenessWarning": "THE MAPLE GUIDES ARE STALE. The newest version named anywhere in the guide corpus is v.270 (July 22, 2026). v.271 shipped September 9, 2026 - four days before this read - and it changed every symbol income number. Where the guide and the v.271 patch notes disagree, the patch notes win, and the repo already has the patch-note values. Treat guide page 5901's income figures as the PRE-v.271 baseline, which is exactly what they turn out to be.",
+    "promptInjectionCheck": "No text on any page addressed the agent or attempted to issue instructions. The only imperative text is ordinary game copy ('Help Nina with her investigation!', 'Hunt monsters on Star Force Hunting Zones'), addressed to players. Nothing was acted on."
+  },
+
+  "reconciliations": [
+    {
+      "constant": "ARCANE_LEVEL_CAP",
+      "file": "lib/symbols.ts",
+      "repoValue": "20",
+      "guideValue": "20",
+      "verdict": "confirmed",
+      "quote": "Arcane Symbols can be leveled-up to Lv. 20.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "First-party. This constant previously carried no source at all."
+    },
+    {
+      "constant": "SACRED_LEVEL_CAP",
+      "file": "lib/symbols.ts",
+      "repoValue": "11",
+      "guideValue": "11",
+      "verdict": "confirmed",
+      "quote": "Sacred Symbols can be leveled-up to Lv. 11.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "First-party. This constant previously carried no source at all."
+    },
+    {
+      "constant": "GRAND_SACRED_LEVEL_CAP",
+      "file": "lib/symbols.ts",
+      "repoValue": "11 (registry: 'copied from SACRED_LEVEL_CAP on the assumption that Grand Sacred symbols cap where Sacred ones do. No source was found for the Grand Sacred cap specifically.')",
+      "guideValue": "11",
+      "verdict": "confirmed",
+      "quote": "Grand Sacred Symbols can be upgraded to Lv. 11, at which time the symbol grants 50% bonus EXP and other stat boosts.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5893/how-to-level-up-faster",
+      "note": "THE GUESS WAS RIGHT AND IS NOW SOURCED. The Grand Sacred cap is stated first-party on the Level-Up Faster guide, not on the symbols guide - which is why prior passes missed it. Remove this from UNVERIFIED_SYMBOL_CONSTANTS."
+    },
+    {
+      "constant": "SACRED_FORCE_PER_LEVEL",
+      "file": "lib/symbols.ts",
+      "repoValue": "10",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "The higher the level of your Symbol, the greater Arcane/Sacred Power and more bonus stats you will gain.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "That sentence is the ONLY thing the official guide says about scaling. It is purely qualitative. The strings 'Arcane Force' and 'Sacred Force' return zero matches on the symbols page, and no per-level force figure appears anywhere in the guide corpus. I could not source this."
+    },
+    {
+      "constant": "ARCANE_FORCE_BASE_PER_SYMBOL",
+      "file": "lib/symbols.ts",
+      "repoValue": "20",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "The higher the level of your Symbol, the greater Arcane/Sacred Power and more bonus stats you will gain.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "Same sentence, same absence. Nexon's guides never publish a symbol force table. ARCANE_FORCE_PER_LEVEL (10) and ARCANE_FORCE_MAX (1320) are equally unsourced here. I could not source this."
+    },
+    {
+      "constant": "SACRED_GRANT_DEFAULT_UNVERIFIED.perLevel  (THE SACRED STAT SLOPE)",
+      "file": "lib/symbols.ts",
+      "repoValue": "base 300 + 200/level, i.e. 500 at Lv. 1, 2,500 at Lv. 11",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "The higher the level of your Symbol, the greater Arcane/Sacred Power and more bonus stats you will gain.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "THE MOST-WANTED NUMBER IN THE REPO IS NOT IN NEXON'S DOCUMENTATION. The symbols guide carries no stat table, no per-level figure, and not even the sourced Lv. 1 = 500. The word 'main stat' appears once on the page, in the Arcane Catalyst section about converting a transferred symbol's stat to the receiving job's main stat - not about magnitude. Searched all 27 guides. I could not source this. The +200/level slope must stay flagged unverified."
+    },
+    {
+      "constant": "ARCANE_GRANT_DEFAULT (THE ARCANE STAT SLOPE)",
+      "file": "lib/symbols.ts",
+      "repoValue": "base 200 + 100/level, i.e. 300 at Lv. 1, 2,200 at Lv. 20",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "Arcane Symbols are Equip items that can be obtained from each of the Arcane River regions, granting bonus stats appropriate for your character's job.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "'bonus stats appropriate for your character's job' is as specific as Nexon gets. No numbers. I could not source this."
+    },
+    {
+      "constant": "ARCANE_DAILY_PER_AREA  (vs the Maple Guide)",
+      "file": "lib/symbols.ts",
+      "repoValue": "40",
+      "guideValue": "20",
+      "verdict": "contradicted",
+      "quote": "Doing so will reward 20x Arcane Symbol Coupons for that region.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "CONTRADICTED BUT THE REPO IS RIGHT. 20 is precisely the pre-v.271 value - it is the left-hand side of the patch note's '20 -> 40'. The guide page has not been updated since v.271 (Sept 9, 2026). This contradiction is evidence the repo read the patch notes correctly, not evidence against it. Do not change the constant; do add a note that Nexon's own guide still prints the old number."
+    },
+    {
+      "constant": "ARCANE_DAILY_PER_AREA  (vs the v.271 patch notes)",
+      "file": "lib/symbols.ts",
+      "repoValue": "40",
+      "guideValue": "40",
+      "verdict": "confirmed",
+      "quote": "Increased the Arcane River Daily Quest rewards for all areas from 20 Arcane Symbols → 40 Arcane Symbols.",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "note": "Re-read on 2026-09-13. Page header: '[UPDATED 9/10] V.271 - MAPLESTORY X FRIEREN: BEYOND JOURNEY'S END PATCH NOTES', dated Sep 8, 2026, live Sept 9, 2026."
+    },
+    {
+      "constant": "ARCANE_WEEKLY_PER_AREA",
+      "file": "lib/symbols.ts",
+      "repoValue": "80",
+      "guideValue": "80",
+      "verdict": "confirmed",
+      "quote": "Increased the Arcane River Weekly Quest rewards for all areas from 40 Arcane Symbols → 80 Arcane Symbols.",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "note": "But see newFacts: the WEEKLY QUEST (80) and the SPECIAL CONTENT (15 x 3 runs = 45) are two different sources, and the repo models only one weekly number per area."
+    },
+    {
+      "constant": "SACRED_DAILY_CERNIUM",
+      "file": "lib/symbols.ts",
+      "repoValue": "30",
+      "guideValue": "30",
+      "verdict": "confirmed",
+      "quote": "Cernium: 20 Sacred Symbols → 30 Sacred Symbols",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "note": "Guide 5901 still prints the old 20: 'will reward Sacred Symbols for that region (20x for Cernium, 10x for all other continental Grandis regions)'. Same staleness as the Arcane row."
+    },
+    {
+      "constant": "SACRED_DAILY_OTHER",
+      "file": "lib/symbols.ts",
+      "repoValue": "15",
+      "guideValue": "15",
+      "verdict": "confirmed",
+      "quote": "Hotel Arcus, Odium, Shagri-La, Arteria, Carcion: 10 Sacred Symbols → 15 Sacred Symbols",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "note": "'Shagri-La' is Nexon's own typo in the patch notes. The five non-Cernium areas are named individually, which also confirms the repo's six-area Sacred list against guide 5901's stale three."
+    },
+    {
+      "constant": "GRAND_SACRED_DAILY_UNVERIFIED",
+      "file": "lib/symbols.ts",
+      "repoValue": "15, explicitly marked NOT CONFIRMED. The docblock asserts: 'the v.271 notes name Cernium and the five Sacred areas, not Tallahart or Geardock, so treat its 15 as unconfirmed.'",
+      "guideValue": "15",
+      "verdict": "confirmed",
+      "quote": "Tallahart, Geardock: 10 Grand Sacred Symbols → 15 Grand Sacred Symbols",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "note": "THE REPO'S DOCBLOCK IS FACTUALLY WRONG. The v.271 patch notes DO name Tallahart and Geardock, on their own bullet, directly under the Cernium and five-area bullets in the 'Arcane and Sacred Symbol Changes' section. A prior pass demoted a correct constant on a misreading. Promote it: rename off the _UNVERIFIED suffix, fix the docblock, and correct data/guide-graph.json node symbols.income row 6, which records this cell as '15 - UNCONFIRMED'."
+    },
+    {
+      "constant": "SACRED_AREAS (area list)",
+      "file": "lib/symbols.ts",
+      "repoValue": "6 areas: cernium, arcus, odium, shangrila, arteria, carcion",
+      "guideValue": "3 areas",
+      "verdict": "contradicted",
+      "quote": "Similarly, Sacred Symbols are Equip items that can be obtained from the continental Grandis regions (currently Cernium, Hotel Arcus, and Odium), and grant bonus stats appropriate for your character's job.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "CONTRADICTED BUT THE REPO IS RIGHT, and this is the single clearest proof of how stale page 5901 is: it predates Shangri-La, Arteria and Carcion entirely. The v.271 notes name all six. Carcion shipped in v.263 (Sept 24, 2025), so page 5901 is at least two years behind."
+    },
+    {
+      "constant": "GRAND_SACRED_UNMODELLED_EFFECTS: 'EXP Obtained +10% per symbol'",
+      "file": "lib/symbols.ts",
+      "repoValue": "flat +10% EXP per Grand Sacred symbol",
+      "guideValue": "10% at Lv. 1, rising to 50% at Lv. 11",
+      "verdict": "contradicted",
+      "quote": "At Lv. 1 the symbol grants 10% bonus EXP along with other stat boosts. Grand Sacred Symbols can be upgraded to Lv. 11, at which time the symbol grants 50% bonus EXP and other stat boosts.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5893/how-to-level-up-faster",
+      "note": "The EXP bonus SCALES with symbol level; the repo's list implies a flat per-symbol value. 10% at Lv. 1 and 50% at Lv. 11 are both stated; the shape in between is not (a linear 4%/level fits both endpoints but is NOT stated - do not print it as sourced). The sibling claims in that list (Mesos +5%, Drop +5%) are not addressed by any Nexon guide."
+    },
+    {
+      "constant": "GRAND_SACRED_AREA_LEVELS.tallahart",
+      "file": "lib/symbols.ts",
+      "repoValue": "290",
+      "guideValue": "no symbol/region gate stated; a Lv. 290+ boss is named in Tallahart",
+      "verdict": "absent",
+      "quote": "Stop Baldrix in his attempt at seizing the power of Tallahart's ancient gods in this brand-new boss fight for Lv. 290+ Maplers!",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5911/returning-mapler-guide",
+      "note": "Corroborates the LEVEL TIER of the region, not a symbol gate. Nexon's guides never state symbol unlock levels. Keep 290 sourced to MapleStory Wiki; this is supporting weight only."
+    },
+    {
+      "constant": "GRAND_SACRED_AREA_LEVELS.geardock",
+      "file": "lib/symbols.ts",
+      "repoValue": "295, registry: 'two search summaries ... but both pages returned HTTP 403 ... so no primary text was actually seen'",
+      "guideValue": "no symbol/region gate stated; Geardock's boss is Lv. 295",
+      "verdict": "absent",
+      "quote": "Deep beneath the sands of the new Geardock region lies Gob's abandoned workshop, and within it, a furnace built to devour gods, under the control of Jupiter. Battle against this new, Lv. 295 boss to thwart his plans to claim even greater power!",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5911/returning-mapler-guide",
+      "note": "FIRST PRIMARY TEXT EVER SEEN FOR A 295 ATTACHED TO GEARDOCK. It is the BOSS's level, not a region or symbol gate - so the constant is still not directly sourced - but this is first-party and replaces search-engine hearsay with a quotable sentence. Geardock shipped in v.270 (Ride the Lightning Pt. 2, July 22, 2026)."
+    },
+    {
+      "constant": "GRAND_SACRED_MESO_K.geardock / .tallahart, and ALL symbol meso costs",
+      "file": "lib/symbols.ts",
+      "repoValue": "tallahart 39.8 (verified flag true), geardock 39.8 (placeholder, verified false, returns null)",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "Double-click on the same type of Arcane or Sacred Symbol from your inventory as one you have equipped in order to level-up the equipped Symbol, absorbing the duplicate symbol.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "note": "The words 'meso' and 'mesos' return ZERO matches on the symbols guide. Nexon documents symbol upgrading as consuming duplicate symbols and never mentions the meso cost at all. No Arcane K, no Sacred K, no Grand Sacred K, for any area. I could not source any of these. Keeping grandSacredMesoForLevel() returning null for Geardock remains the right call."
+    },
+    {
+      "constant": "HYPER_STAT_COST_TO_REACH",
+      "file": "lib/classes.ts",
+      "repoValue": "[1,2,4,8,10,15,20,25,30,35,50,65,80,95,110]",
+      "guideValue": "[1,2,4,8,10,15,20,25,30,35,50,65,80,95,110], with cumulative [1,3,7,15,25,40,60,85,115,150,200,265,345,440,550]",
+      "verdict": "confirmed",
+      "quote": "The larger the level of a Hyper Stat, the more Hyper Stat points will required to level the Hyper Stat up further:",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "note": "EXACT MATCH, ALL FIFTEEN ROWS, first-party. The three in-game dialogs the repo used (Crit Rate 3->4 = 8, DEX 6->7 = 20, ATT 10->11 = 50) all sit on this table. The guide additionally publishes the CUMULATIVE column, which the repo recomputes in hyperStatCost() - worth asserting against in the self-test. The quote's grammar ('will required') is Nexon's, reproduced verbatim.",
+      "table": [
+        {"level": 1, "required": 1, "cumulative": 1},
+        {"level": 2, "required": 2, "cumulative": 3},
+        {"level": 3, "required": 4, "cumulative": 7},
+        {"level": 4, "required": 8, "cumulative": 15},
+        {"level": 5, "required": 10, "cumulative": 25},
+        {"level": 6, "required": 15, "cumulative": 40},
+        {"level": 7, "required": 20, "cumulative": 60},
+        {"level": 8, "required": 25, "cumulative": 85},
+        {"level": 9, "required": 30, "cumulative": 115},
+        {"level": 10, "required": 35, "cumulative": 150},
+        {"level": 11, "required": 50, "cumulative": 200},
+        {"level": 12, "required": 65, "cumulative": 265},
+        {"level": 13, "required": 80, "cumulative": 345},
+        {"level": 14, "required": 95, "cumulative": 440},
+        {"level": 15, "required": 110, "cumulative": 550}
+      ]
+    },
+    {
+      "constant": "Hyper stat level cap per line",
+      "file": "lib/classes.ts",
+      "repoValue": "not declared; implied to be 15 by the length of HYPER_STAT_COST_TO_REACH",
+      "guideValue": "15 for every line EXCEPT DF/TF/PP/MANA, which caps at 10",
+      "verdict": "confirmed",
+      "quote": "Hyper Stat types and max levels are as follows.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "note": "15 is confirmed for all damage-relevant lines. The DF/TF/PP/MANA exception at 10 is a real per-line cap the repo's single flat table cannot express - hyperStatCost() would happily quote a price for DF Lv. 15."
+    },
+    {
+      "constant": "CRIT_DAMAGE_BASE",
+      "file": "lib/damage.ts",
+      "repoValue": "0.35 (every crit does at least +35% before Critical Damage % is added)",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "Critical Damage (%)\t15\t1\t15%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "note": "I COULD NOT SOURCE THIS, AND THE ABSENCE IS CORPUS-WIDE. The only appearance of 'Critical Damage' on the stats guide is that hyper stat row. I regex-swept all 27 guides for 'critical damage ...', '1.35', 'base critical' and 'minimum critical': every hit is a skill description or a hyper stat row, and not one states a base crit multiplier. Nexon's official documentation does not publish the crit formula. The 0.35 vs [0.20, 0.50] band disagreement noted in lib/damage.ts cannot be settled from first-party material - it stays UNVERIFIED."
+    },
+    {
+      "constant": "DEFAULT_PDR",
+      "file": "lib/damage.ts",
+      "repoValue": "3.0 (300% PDR, the Arcane River standard)",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "Ignore Defense (%)\t15\t3\t45%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "note": "No monster defence value appears anywhere in the guide corpus - not per boss, not as a Lv. 200+ rule of thumb. Swept for 'monster defense' and 'defense' across all 27 guides; the only hits are player-side Ignore Defense stat lines. I could not source this, so BOSS_PDR's eight UNVERIFIED rows stay unverified."
+    },
+    {
+      "constant": "IED multiplicative stacking",
+      "file": "lib/damage.ts",
+      "repoValue": "sources stack multiplicatively; 100% IED is unreachable",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "Ignore Defense (%)\t15\t3\t45%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "note": "The guide states that Ignore Defense exists as a hyper stat and caps at +45% from that line, and the glossary defines the term, but NO stacking rule is given. 'multiplicativ' returns zero matches across all 27 guides. I could not source this."
+    },
+    {
+      "constant": "Star Force map requirement (numeric)",
+      "file": "lib/starforce.ts / lib/farming.ts",
+      "repoValue": "not modelled as a table",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "After you've entered a Star Force Hunting Zone through a portal, the amount of required Star Force is displayed via a message on the center of the screen.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5907/star-force-hunting",
+      "note": "Nexon deliberately does not publish the per-map numbers; it points players at the in-game display and the World Map hover tooltip. There is no table to scrape. I could not source this."
+    },
+    {
+      "constant": "Star Force hunting damage bonus",
+      "file": "lib/damage.ts / lib/farming.ts",
+      "repoValue": "not modelled",
+      "guideValue": "penalty direction only, no percentages",
+      "verdict": "absent",
+      "quote": "If you have less than the required amount of Star Force, you will deal reduced damage to the monsters, and the monsters will also deal increased damage to you.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5907/star-force-hunting",
+      "note": "IMPORTANT FRAMING CORRECTION. The official guide describes Star Force as a PENALTY you remove by meeting the requirement, never as a bonus you gain by exceeding it - 'Enhance your equipment with Star Force to remove the barrier and enjoy an effective hunt!'. Star Force above a map's requirement buys nothing on that map. No percentage is published; the guide says the figure is visible in the Star Force tooltip."
+    },
+    {
+      "constant": "Star Force hunting drop-rate bonus",
+      "file": "lib/farming.ts / lib/meso.ts",
+      "repoValue": "not modelled",
+      "guideValue": null,
+      "verdict": "absent",
+      "quote": "Hunt monsters on Star Force Hunting Zones and obtain bonus EXP and powerful rewards!",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5907/star-force-hunting",
+      "note": "The page claims bonus EXP and 'powerful rewards' and gives NO drop-rate figure, no meso figure, and no EXP figure. The commonly repeated 'Star Force zones give +drop rate' claim is NOT in Nexon's own documentation. If the repo ever wants to model it, it will not be from here. I could not source this."
+    },
+    {
+      "constant": "How the character's STAR FORCE 188 total is used",
+      "file": "lib/starforce.ts",
+      "repoValue": "not modelled against map requirements",
+      "guideValue": "compared against a per-map requirement; Overall items count double",
+      "verdict": "confirmed",
+      "quote": "If you equip an Overall item, double the normal Star Force is applied (as the Overall equipment takes up both a Top and Bottom slot).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5907/star-force-hunting",
+      "note": "The mechanic is confirmed (sum of equipped stars, compared to the map's requirement) and one arithmetic rule the repo does not model is stated: an Overall contributes DOUBLE its stars to the hunting total. Any app that reconstructs a Star Force total from an equipment list will be low by one Overall's worth of stars if it misses this."
+    }
+  ],
+
+  "newFacts": [
+    {
+      "fact": "Arcane River Special Content is a SEPARATE weekly income stream from the weekly quest: 6 pieces of content, 15 coupons per clear, 3 clears per week = 45 coupons per area per week.",
+      "quote": "These are weekly Special Content challenges, each of which will reward 15x Arcane Symbol Coupons for their respective regions, and can be completed up to 3 times per week.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "whyItMatters": "lib/symbols.ts IncomeOptions has exactly one weeklyPerArea field. The v.271 patch note's 80 is the WEEKLY QUEST. The special content's 45 is a different source and 15 x 3 != 40, so it is not the same quest renamed. If both run, per-area weekly income is understated. The per-clear 15 is confirmed individually on all six: Erda Spectrum (Vanishing Journey), Hungry Muto (Chu Chu Island), Midnight Chaser (Lachelein), Spirit Savior (Arcana), Ranheim Defense (Morass), Esfera Guardian (Esfera) - each page says 'Coupon x15'."
+    },
+    {
+      "fact": "Completing LATER regions' stories retroactively cheapens earlier regions' dailies and grants auto-completes of their weekly special content: one auto-complete for the next region's story, a second for the one after.",
+      "quote": "Completing the next region's story will reduce the number of enemies to defeat by 200, and allow you to auto-complete the weekly Special Content mission once per week for the same reward.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "whyItMatters": "This is exactly the 'turn level-this-symbol-next into a real date' mechanic the brief asked for. For a Lv. 245 character who has cleared every Arcane River story, all six regions are at the floor: the daily is 200 enemies and TWO of the three weekly special content runs are free. The guide continues: 'Completing the following region's story as well will further reduce the number of enemies to defeat, down to a total of 200 enemies, and give you a second auto-complete for that region's Special Content mission.' Time cost per area per week is therefore 7 short dailies plus ONE actual special content run, not three."
+    },
+    {
+      "fact": "Vanishing Journey and Chu Chu Island dailies pay HALF the standard amount, made up by a second daily quest elsewhere in the region.",
+      "quote": "The Daily Quest will only reward 10x Arcane Symbol Coupons in these regions on completion.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "whyItMatters": "The repo's ARCANE_DAILY_PER_AREA is a single number applied to all six areas. VJ and Chu Chu are exceptions, and the make-up quest is named: 'An additional 10x Arcane Symbol Coupons can be earned by completing the Reverse City quest (for Vanishing Journey) or Yum Yum Island quest (for Chu Chu Island)'. Post-v.271 these halves presumably double with everything else, but the patch note says 'for all areas' without restating the split - so the SPLIT is sourced and the post-patch magnitude of each half is not. A player who skips Reverse City / Yum Yum Island earns half rate in those two areas, which are also the two cheapest to level."
+    },
+    {
+      "fact": "Sacred dailies require 500 enemies, and each Grandis region has ADDITIONAL daily quests worth 10 more symbols beyond the main one.",
+      "quote": "Other daily quests can be completed in each region, which will reward 10x Sacred Symbols for that region.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "whyItMatters": "sacredIncomeFor() models one daily per area and zero weekly. There is a second Sacred daily stream the repo does not count at all, and the 500-enemy requirement ('Each region has a Daily Quest, which requires 500 enemies to be defeated') is the time price that makes Sacred dailies materially more expensive than Arcane ones."
+    },
+    {
+      "fact": "Full per-level values and caps for every hyper stat line.",
+      "quote": "Critical Rate (%)\t15\t1\nLv. 6+: 2\t25%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "whyItMatters": "The repo can ORDER and now PRICE hyper stat lines but has no table of what a level BUYS, so it cannot answer 'what do my unspent points get me'. Several lines have a Lv. 6+ or Lv. 11+ breakpoint that makes the naive per-level assumption wrong. Full table: STR/DEX/INT/LUK 30/level max 450; HP% and MP% 2/level max 30%; DF/TF/PP/MANA 10/level, MAX LEVEL 10, max 100; Critical Rate 1/level then 2 at Lv. 6+, max 25%; Critical Damage 1/level, max 15%; Ignore Defense 3/level, max 45%; Damage 3/level, max 45%; Boss Damage 3/level then 4 at Lv. 6+, max 55%; Normal Damage 3/level then 4 at Lv. 6+, max 55%; Status Resistance 1/level then 2 at Lv. 6+, max 25; Attack Power & Magic ATT 3/level, max 45; EXP Obtained 0.5/level then 1 at Lv. 11+, max 10%; Arcane Power 5/level then 10 at Lv. 11+, max 100."
+    },
+    {
+      "fact": "ARCANE POWER IS A HYPER STAT LINE worth up to +100 Arcane Power, gated behind 5th Job.",
+      "quote": "Note: You need to advance to your 5th Job in order to increase the stats for Arcane Power Hyper Stats.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "whyItMatters": "lib/symbols.ts derives Arcane Power purely from symbol levels (120 + 10 x sum) and CROSS-CHECKS it against the stat window reading. That cross-check has an unmodelled +0..100 term in it. For Archerroni the line is at 0 so 1,070 reconciles to 95 symbol levels cleanly - but for any character with points in it, checkArcanePower() will report a false mismatch and NO_ARCANE_LEVELS_WHY will be quoted for the wrong reason. The line scales 5/level to Lv. 10 then 10/level, reaching 100 at Lv. 15."
+    },
+    {
+      "fact": "Hyper stat points are granted on a published per-level schedule totalling 1,699 points at Lv. 300.",
+      "quote": "Level Range\tPoints Given\n140 - 149\t3",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "whyItMatters": "This is the missing half of the pricing question: the repo can now say what a line COSTS and what a character can AFFORD. Schedule: 140-149:3, 150-159:4, 160-169:5, 170-179:6, 180-189:7, 190-199:8, 200-209:9, 210-219:10, 220-229:11, 230-239:12, 240-249:13, 250-259:14, 260-269:15, 270-279:16, 280-289:17, 290-299:18, 300:19, Total 1699. DERIVED (not read off the page, shown so it can be checked): Archerroni at Lv. 245 has earned 828 points, and the stated build (DEX 6, Crit Rate 3, Crit Dmg 10, IED 10, Damage 10, Boss 10, ATT 10) costs 40+7+150+150+150+150+150 = 797, leaving 31 unspent. Also derived from the per-level table, that build yields DEX +180, Crit Rate +3%, Crit Damage +10%, IED +30%, Damage +30%, Boss +35% (5x3 then 5x4), ATT +30."
+    },
+    {
+      "fact": "Hyper stats reset for a flat 10,000,000 mesos at any time, and three presets swap free.",
+      "quote": "Hyper Stats can be reset at any time at the cost of 10 million mesos.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "whyItMatters": "Makes any hyper stat reallocation the app recommends cost-bounded and reversible - a 10M meso flat fee is nothing at this character's 764% meso rate, so the app can recommend reallocation freely. The guide also notes 'You can also create up to three Hyper Stat Presets ... You can swap between the presets at any time for free', which means boss-vs-training splits cost nothing ongoing."
+    },
+    {
+      "fact": "AP is 5 per level and SP follows a 3/6 pattern above Lv. 101.",
+      "quote": "5 AP is given per level each time you level up, and additional AP is given for specific Job Advancements when leveling up.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+      "whyItMatters": "Baseline for any AP/stat reconstruction. SP rule, same page: 'you will gain 3 SP on most level-ups, and 6 SP if your level ends in 0, 3, 6, or 9 upon level-up'."
+    },
+    {
+      "fact": "Arcane River special content has published entry levels and party sizes.",
+      "quote": "Only characters that are at least Lv. 200 and have completed the Vanishing Journey story quests can enter the Erda Spectrum content through Nina at Lake of Oblivion: Nameless Town.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5909/arcane-river-special-content",
+      "whyItMatters": "Gates the weekly income stream by level, which matters for projecting a lower-level alt. Erda Spectrum Lv. 200, party up to 3; Hungry Muto Lv. 210, party up to 4; Midnight Chaser Lv. 220, SOLO ONLY ('Content can only be done solo, outside of a party'); Spirit Savior Lv. 225, SOLO ONLY. Ranheim Defense and Esfera Guardian state no entry level on the page. All six state 'up to 3 times a week'."
+    },
+    {
+      "fact": "Grand Sacred Symbol: Tallahart can be obtained from Sacred Symbol Selector Coupons as of v.271.",
+      "quote": "Added Grand Sacred Symbol: Tallahart to the list of items that can be received from Sacred Symbol Selector Coupons.",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "whyItMatters": "A non-daily Grand Sacred income path the repo does not model. Note it names Tallahart only, NOT Geardock."
+    },
+    {
+      "fact": "Star Force Hunting Zones exist only in pre-Arcane content, and the three power systems never mix.",
+      "quote": "There are no hunting zones that require a combination of Star Force, Arcane Power, and Sacred Power.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "whyItMatters": "For a Lv. 245 character farming Arcane River and Grandis, Star Force 188 is IRRELEVANT to the maps being hunted - Arcane Power 1,070 and Sacred Power gate those maps instead. Any advice pairing Star Force with Arcane River hunting is wrong. The Star Force guide lists the zones as Minar Forest, Clocktower Bottom Floor, Abandoned Mine, Temple of Time, Gate to the Future, Kerning Tower, Lion King's Castle, Omega Sector, Stone Colossus - all pre-Arcane. (The page says '8 regions' and then lists 9; Nexon's own miscount.)"
+    },
+    {
+      "fact": "Arcane Catalyst transfer costs 20% of the symbols invested and resets the symbol to Lv. 1 - on top of being Interactive-only.",
+      "quote": "If you use the Arcane Catalyst, you'll lose 20% of the Arcane Symbols used to level it up. Arcane Symbols will also reset to Lv. 1, so they will need to be enhanced again.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "whyItMatters": "Irrelevant to this Heroic player but worth recording so the feature is never modelled as a cheap shortcut for anyone. Also stated: 'Arcane Catalysts cannot be used on Sacred Symbols' and 'Arcane Catalysts cannot be used on Lv. 1 Arcane Symbols'."
+    },
+    {
+      "fact": "v.271 also cut Lv. 210-259 EXP requirements by 8-58%.",
+      "quote": "Decreased the amount of EXP required to level up from Lv. 210 - 259:",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "whyItMatters": "Any levelling projection in the repo built before 2026-09-09 is now wrong for this character's exact band. Table: 210-214 ~8%, 215-219 ~15%, 220-224 ~21%, 225-229 ~27%, 230-234 ~33%, 235-239 ~38%, 240-244 ~43%, 245-249 ~47%, 250-259 ~58%. Archerroni at Lv. 245 sits in the ~47% bracket."
+    },
+    {
+      "fact": "v.271 removed Star Catching and folded its bonus into the base enhancement rate.",
+      "quote": "[Updated 9/10/2026] Removed the Star Catching feature from Star Force Enhancement. The increased enhancement success rate from Star Catching is now permanently applied to Star Force Enhancement.",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "whyItMatters": "lib/starforce.ts should not model Star Catching as an optional player-skill modifier any more - the bonus is unconditional. Flagged for whichever wave owns starforce.ts."
+    }
+  ],
+
+  "heroicDistinctions": [
+    {
+      "distinction": "Arcane Symbol transfer between characters does not exist on Heroic.",
+      "quote": "Note: Arcane Catalysts are only available on Interactive worlds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5901/arcane-and-sacred-symbol-power",
+      "impact": "Confirms the brief. Every symbol on every Heroic character must be farmed on that character. There is no mule-feeding path and no Legion Coin Shop shortcut."
+    },
+    {
+      "distinction": "Symbol INCOME does not differ by world type - a negative finding worth recording.",
+      "quote": "Increased the Arcane River Daily Quest rewards for all areas from 20 Arcane Symbols → 40 Arcane Symbols.",
+      "url": "https://www.nexon.com/maplestory/news/update/44597",
+      "impact": "Neither guide 5901 nor the v.271 patch notes attach any world-type qualifier to any symbol quest reward. The repo can safely model Heroic symbol income with the same constants as Interactive. The Heroic difference is in TRANSFER and in the meso economy, not in the coupon counts."
+    },
+    {
+      "distinction": "Auction House is unavailable on Heroic worlds.",
+      "quote": "Auction House is unavailable on Heroic worlds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5892/glossary",
+      "impact": "First-party confirmation of the no-trading premise. Anything the app prices via market value is meaningless for this player."
+    },
+    {
+      "distinction": "Bonus Potential does not exist on Heroic worlds.",
+      "quote": "Bonus Potential lines are unavailable on Heroic worlds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5892/glossary",
+      "impact": "MATERIAL FOR lib/cubes.ts AND lib/damage.ts, owned by other waves. Any damage ceiling or cube plan that includes a bonus-potential line is unreachable for this character. Flagging across wave boundaries because it silently inflates a damage target."
+    },
+    {
+      "distinction": "Cube acquisition is meso-based on Heroic and NX-based on Interactive.",
+      "quote": "Glowing Cubes and Bright Cubes can be purchased with mesos in Heroic worlds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5892/glossary",
+      "impact": "Heroic cubing is a meso sink, which is why MESOS OBTAINED 764% matters so much for this player. The same glossary entry says 'Glowing Cubes, Bright Cubes, and Bonus Glowing Cubes can be purchased in the Cash Shop with NX in Interactive worlds', and that Solid/Hard/Mystical Cubes drop in all worlds."
+    }
+  ],
+
+  "couldNotSource": [
+    "The Sacred symbol main-stat slope above Lv. 1 (the repo's +200/level). Not in any Nexon guide - the symbols guide publishes no stat figures at all, not even the Lv. 1 = 500 that MapleStory Wiki carries.",
+    "The Arcane symbol main-stat slope (the repo's 200 + 100/level).",
+    "Arcane Force per symbol and per level (ARCANE_FORCE_BASE_PER_SYMBOL = 20, ARCANE_FORCE_PER_LEVEL = 10, ARCANE_FORCE_MAX = 1320).",
+    "Sacred Force per level (SACRED_FORCE_PER_LEVEL = 10) and SACRED_FORCE_MAX = 660.",
+    "Every symbol meso cost: ARCANE_MESO_K, SACRED_MESO_K, GRAND_SACRED_MESO_K including Tallahart's 39.8 and Geardock's unknown. The words 'meso'/'mesos' do not appear on the symbols guide at all.",
+    "Symbols required per level (the level^2 + 11 and 9*level^2 + 20*level formulas).",
+    "CRIT_DAMAGE_BASE = 0.35, and the competing [0.20, 0.50] band. Swept all 27 guides; Nexon never publishes a base crit multiplier.",
+    "DEFAULT_PDR = 3.0 and every BOSS_PDR row. No monster defence figure exists anywhere in the guide corpus.",
+    "IED multiplicative stacking and the iedWall() derivation.",
+    "Per-map Star Force requirements - Nexon points at the in-game display instead of publishing a table.",
+    "Star Force hunting damage and drop-rate bonus percentages. The guide names only the under-requirement penalty, with no numbers, and never claims a drop-rate bonus at all.",
+    "Tallahart Lv. 290 and Geardock Lv. 295 as SYMBOL or REGION gates. Only boss levels were found (Baldrix Lv. 290+, Jupiter Lv. 295), which corroborate the tiers without stating the gates.",
+    "The weekly reset day (WEEKLY_RESET_DAY_UTC_UNVERIFIED = 4). Not addressed on any page.",
+    "Demon Avenger and Xenon symbol grants, for Arcane or Sacred.",
+    "Grand Sacred Mesos Obtained +5% and Item Drop Rate +5% per symbol. Only the EXP effect is documented, and it scales rather than being flat."
+  ]
+}

@@ -71,11 +71,36 @@ import {
   type Stats,
   type MainStat,
   type Tier,
+  type Conf,
   type SlotDef,
 } from "./rules";
 import { mesoPctFromLines, dropPctFromLines } from "./meso";
 import { damageIndex, inputsFromPercentStats, type DamageInputs } from "./damage";
 import { CUBE_COST_MESOS, PRIME_LINE as CUBE_PRIME_LINE, type Sourced, type CubeType } from "./cubes";
+// lib/symbols.ts declares these three effects and states in as many words that
+// pricing them belongs to THIS file and to ./meso. The strings are imported and
+// PARSED, never retyped: a percentage copied across a module boundary is a
+// second source of truth that goes stale silently the day the first is fixed.
+// The parsers used are ./meso's — the same two that read gear potential lines.
+import { GRAND_SACRED_UNMODELLED_EFFECTS, GRAND_SACRED_AREAS } from "./symbols";
+// SELF-IMPORT, deliberate, and the only way the provenance self-test below can
+// be a test rather than a restatement.
+//
+// __selfTest() has to answer "is every placeholder constant in THIS module
+// registered in farmingUnverified()?". A hand-written list of names cannot
+// answer it: the failure mode is a constant nobody remembered, and a list nobody
+// remembered to update is the same omission twice. The previous version of that
+// test whitelisted four names and passed while FARM_MAPS sat unregistered.
+// Enumerating the live module namespace is what closes that, and a module
+// namespace is the only object in the language that holds every export.
+//
+// The cycle is safe: ES module namespaces are live bindings, and the only read
+// happens inside a function body long after evaluation. Under TypeScript's
+// CommonJS emit the self-require returns the same `module.exports` object (it
+// already carries __esModule, so __importStar passes it through by reference),
+// which is likewise live. The cost is that a bundler cannot tree-shake this
+// module's exports; that is the price of the file being able to audit itself.
+import * as FARMING_MODULE from "./farming";
 
 const GMS_PATCH = "v.271";
 const CHECKED = "2026-09-11";
@@ -132,12 +157,12 @@ export const OBSERVED_INNER_ABILITY_BOSSING = {
 
 export const UNVERIFIED: ReadonlyArray<UnverifiedNote> = [
   {
-    name: "MESO_BAG_BASE_CHANCE",
+    name: "MESO_BAG_BASE_CHANCE_UNVERIFIED",
     why: "0.60 is attested only by community sources (MapleStory Wiki, Francesco149/mapleguide). No Nexon statement found. LOAD-BEARING: the entire 67% drop breakpoint is derived from it.",
   },
   {
-    name: "DROP_PCT_GUARANTEED_MESO_BAG",
-    why: "Derived from MESO_BAG_BASE_CHANCE, so it inherits that constant's status. 0.60 * 1.67 = 1.002.",
+    name: "DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED",
+    why: "Derived from MESO_BAG_BASE_CHANCE_UNVERIFIED, so it inherits that constant's status. 0.60 * 1.67 = 1.002.",
   },
   {
     name: "MESO_GEAR_CAP_PCT / MESO_TOTAL_ADDITIVE_CAP_PCT",
@@ -168,7 +193,19 @@ export const UNVERIFIED: ReadonlyArray<UnverifiedNote> = [
     why: "UNKNOWN, but the evidence that raised it is RESOLVED and no longer supports GMS pools differing. The KMS accessory pool is face/eye/earring/ring/pendant only; badges and hearts are not in it. The Black Bean Mark carrying Item Drop Rate +20% was the one data point suggesting GMS might differ - it does not: api.maplestory.net gives its subcategory as \"Eye Decoration\", so it is an EYE ACCESSORY and sits squarely inside the known pool. Badge eligibility is therefore still unestablished either way, with one fewer reason to think it is allowed. Do not model badge odds.",
   },
   {
-    name: "SPAWN_TICK_MS / SPAWN_TICKS_PER_HOUR",
+    name: "CONSUMABLE_MESO_BUCKET_CAP_PCT",
+    why: "REGISTRY GAP found by the 2026-09-13 audit: the constant was marked placeholder: true with an internal-conflict note and was never listed here, so farmingUnverified() did not report it and a provenance panel would have shown it as clean. 100% is maplestorywiki.net/w/Meso; Legion's Wealth's own in-game text cites the 300% global cap instead, so the two disagree and neither is Nexon.",
+  },
+  {
+    name: "MESO_LINES_PER_ITEM_MAX",
+    why: "A bare 3 with no Sourced wrapper. It is structural rather than researched - an item has three potential lines - so it is almost certainly right, but it was asserted without saying which of those two it was.",
+  },
+  {
+    name: "HEROIC_MESO_MULTIPLIER",
+    why: "INTERNAL INCONSISTENCY, not a contradiction of the value. 6x is placeholder: false while MESO_GEAR_CAP_PCT, cited to the SAME wiki domain, is placeholder: true. One of the two verdicts is wrong by this file's own standard. The 6x is left as-is because it is corroborated everywhere and because changing it would move every meso figure in the app; flagged so the standard can be applied deliberately rather than by accident.",
+  },
+  {
+    name: "SPAWN_TICK_MS / SPAWN_TICKS_PER_HOUR_UNVERIFIED",
     why: "7560 ms comes solely from Francesco149/mapleguide (last content commit 2022-11-16) and the v83 decompiled-server lineage. No first-party corroboration.",
   },
   {
@@ -180,7 +217,12 @@ export const UNVERIFIED: ReadonlyArray<UnverifiedNote> = [
     why: "clamp(AP / required, 1, 1.5) is the RATIO reading. A competing DIFFERENCE-based reading exists (KPRobin 2019). Both agree for this character on Esfera/Sellas/Moonbridge because he is above the cap there; they diverge at Labyrinth of Suffering and Limina.",
   },
   {
-    name: "LEVEL_DAMAGE_MULT rows -37 / -38 / -39",
+    // Commas, not " / ": the registry's name field is split on " / " to list
+    // several constants in one entry, and "rows -37 / -38 / -39" made the
+    // splitter emit "-38" and "-39" as though they were constants. The doubt
+    // here is about three ROWS, not about the whole table, so the entry stays
+    // one name.
+    name: "LEVEL_DAMAGE_MULT rows -37, -38 and -39",
     why: "The wiki table reads 0.8 / 0.5 / 0.3 at those gaps, which would be a jump UP from 0.10 at -36 before hitting 0 at -40. Almost certainly 0.08 / 0.05 / 0.03. Encoded as the wiki prints them; irrelevant at the gaps this planner reaches.",
   },
   {
@@ -200,7 +242,14 @@ export const UNVERIFIED: ReadonlyArray<UnverifiedNote> = [
     why: "mapleguide (2022) states familiar ITEM drop rate does not raise meso-bag frequency and that a 'Meso Drop Rate' line is required instead. Contradicted by nothing, corroborated by the existence of two separate familiar line families. Modelled as separate buckets; the split itself is unverified.",
   },
   {
-    name: "MAP_MOB_HP / MAP_MOB_LEVEL",
+    // FARM_MAPS leads the name because FARM_MAPS is the exported constant, and
+    // the constant is what a registry has to be able to find. MAP_MOB_HP and
+    // MAP_MOB_LEVEL are fields inside its rows and exist under no other name, so
+    // an entry filed only under those two left the export itself unregistered —
+    // the identical gap the 2026-09-13 audit closed for
+    // CONSUMABLE_MESO_BUCKET_CAP_PCT and then failed to guard, because the test
+    // that was supposed to guard it checked a four-name whitelist.
+    name: "FARM_MAPS / MAP_MOB_HP / MAP_MOB_LEVEL",
     why: "Mob HP and levels are from maplestorywiki region pages with no patch stamp relative to v.271. Spawn-point counts are deliberately null: every published figure traces to a 2022 Korean blog chain, and the guide's own author annotates part of that table as counted off YouTube footage.",
   },
   {
@@ -376,26 +425,87 @@ export const MESO_LINES_PER_ITEM_MAX = 3;
  * All monsters have a 60% base chance to drop mesos. Item drop rate multiplies
  * that chance. This is the load-bearing community constant in the module.
  */
-export const MESO_BAG_BASE_CHANCE: Sourced<number> = {
+export const MESO_BAG_BASE_CHANCE_UNVERIFIED: Sourced<number> = {
   value: 0.6,
-  source: "maplestorywiki.net/w/Meso and github.com/Francesco149/mapleguide, independently",
-  verifiedOn: CHECKED,
+  source: "maplestorywiki.net/w/Meso and github.com/Francesco149/mapleguide, independently. NOT a Nexon figure.",
+  verifiedOn: "2026-09-13",
   patch: GMS_PATCH,
   placeholder: true,
-  note: "UNVERIFIED against any Nexon statement. Derivation kept visible because DROP_PCT_GUARANTEED_MESO_BAG depends on it entirely.",
+  note:
+    "UNVERIFIED against any Nexon statement, and the name now says so because a headline number a player acts on was resting on it. "
+    + "Re-sourcing attempt 2026-09-13: see MESO_BAG_SOURCING_ATTEMPT. The MECHANISM is first-party corroborated; the MAGNITUDE 0.60 is not.",
 };
 
 /**
- * DERIVED, not a game constant: the drop % at which a meso bag is guaranteed.
- * 0.60 * 1.67 = 1.002. Below this, every point of Mesos Obtained is being
- * applied to bags that do not spawn — so drop % and meso % are NOT independent,
- * and the first ~67% of drop rate is partly a meso stat.
+ * What a deliberate attempt to source 0.60 actually turned up, on 2026-09-13.
+ * Recorded rather than summarised, so the next person does not repeat it.
  *
- * This is a STEP, not a curve, and it is the first thing a farming loadout
- * should buy. Four 20% drop lines (80%) clears it; three lines (60%) plus a
- * Decent Holy Symbol clears it with room to spare.
+ * The two claims are NOT of equal standing and the audit turned on separating
+ * them:
+ *
+ *   MECHANISM - "drop rate multiplies meso-bag FREQUENCY, and it saturates once
+ *   the bag is guaranteed". First-party corroboration exists: a Nexon-hosted
+ *   forum thread states that a meso drop rate familiar raises only the frequency
+ *   of the meso bag, and that if a monster already drops a bag 100% of the time
+ *   the familiar changes nothing. That is the saturating-multiplier shape this
+ *   module models, stated on Nexon's own forum.
+ *
+ *   MAGNITUDE - "the base frequency is 0.60". NOT found. Every hit traces to the
+ *   same two community documents already cited, or to aggregators
+ *   (digitaltq.com, gamerempire.net) that restate them. maplestorywiki.net/w/Meso
+ *   itself now returns HTTP 403 to a direct fetch, so even the community source
+ *   could not be re-read first-hand this pass. No Nexon patch note, item text or
+ *   support page states a number.
+ *
+ * CONSEQUENCE, and it is the whole reason this block exists: the SHAPE of
+ * mesoBagChance() is sourced and the 67 that falls out of it is not. So the
+ * engine keeps modelling the curve and stops printing 67 as a threshold the game
+ * has. See DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED.
  */
-export const DROP_PCT_GUARANTEED_MESO_BAG = Math.ceil((1 / MESO_BAG_BASE_CHANCE.value - 1) * 100);
+export const MESO_BAG_SOURCING_ATTEMPT = {
+  attemptedOn: "2026-09-13",
+  mechanismCorroborated: true,
+  mechanismSource:
+    "forums.maplestory.nexon.net discussion 27641 - meso drop rate familiars raise meso bag FREQUENCY only, and do nothing once the bag already drops 100% of the time",
+  magnitudeFound: false,
+  magnitudeSearched: [
+    "Nexon patch notes and news (v.170 through v.267 hits, none stating a base meso drop chance)",
+    "forums.maplestory.nexon.net drop-rate formula threads (15714, 27641, 24742)",
+    "maplestorywiki.net/w/Meso - HTTP 403 to direct fetch on this pass",
+    "digitaltq.com and gamerempire.net - aggregators restating the same community figure",
+  ],
+  verdict: "unsourced-magnitude-sourced-mechanism" as const,
+};
+
+/**
+ * THE AUDIT FINDING OF THIS FILE, kept in the name.
+ *
+ * This was `DROP_PCT_GUARANTEED_MESO_BAG = 67`: a bare number, no provenance
+ * wrapper, printed into player-facing warning text as "the 67% meso-bag
+ * breakpoint" — i.e. as a fact about the game. It is not one. It is
+ * ceil((1/0.60 - 1) * 100), and 0.60 has no first-party source (see
+ * MESO_BAG_SOURCING_ATTEMPT). A player closing "the last 17% to the breakpoint"
+ * is grinding against a community guess with two significant figures.
+ *
+ * WHY NOT JUST DELETE IT: the mechanism it encodes IS corroborated — bag
+ * frequency scales with drop rate and saturates. Deleting the breakpoint would
+ * lose a real and important structural fact (drop % and meso % are not
+ * independent below saturation) to fix a labelling problem. So the curve stays,
+ * the name carries the provenance, and the warning text no longer calls it a
+ * threshold.
+ *
+ * SENSITIVITY, so the reader can price the doubt themselves: the breakpoint is
+ * 1/base - 1, which is steep. If the true base chance were 0.50 the breakpoint
+ * is 100%; if 0.70, it is 43%. The 67 is not a rounding away from those.
+ */
+export const DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED = Math.ceil((1 / MESO_BAG_BASE_CHANCE_UNVERIFIED.value - 1) * 100);
+
+/** The breakpoint under other plausible base chances, so no caller has to trust
+ *  the single figure above. Exported because a range is the honest rendering of
+ *  a number whose input is a guess. */
+export const DROP_BREAKPOINT_SENSITIVITY: ReadonlyArray<{ baseChance: number; breakpointPct: number }> = [
+  0.5, 0.55, 0.6, 0.65, 0.7,
+].map((b) => ({ baseChance: b, breakpointPct: Math.ceil((1 / b - 1) * 100) }));
 
 /**
  * Heroic World's meso passive, applied MULTIPLICATIVELY after every additive
@@ -428,7 +538,7 @@ export function mesosObtainedPct(additivePct: number, multipliers: readonly numb
  *  feeds meso bags. Capped at 1 — drop rate past the breakpoint does nothing
  *  for meso income and the engine must say so rather than keep scoring it. */
 export function mesoBagChance(dropPctForBags: number): number {
-  return Math.min(1, MESO_BAG_BASE_CHANCE.value * (1 + Math.max(0, dropPctForBags) / 100));
+  return Math.min(1, MESO_BAG_BASE_CHANCE_UNVERIFIED.value * (1 + Math.max(0, dropPctForBags) / 100));
 }
 
 /* ==========================================================================
@@ -697,6 +807,36 @@ export const NON_GEAR_SOURCES: Sourced<readonly NonGearSource[]> = {
   note: "Entries with sourced: false carry their own caveat and are reported by farmingUnverified().",
 };
 
+/**
+ * Every genuinely MULTIPLICATIVE factor on Mesos Obtained a character can be
+ * carrying, read out of NON_GEAR_SOURCES rather than retyped.
+ *
+ * THIS IS NOT THE WHOLE LIST, and the sentence that used to sit here said it was:
+ * "the list scoreFarming() assembles as `mesoMults`, and the list a caller has to
+ * divide back out to invert the stat window". It omits HEROIC_MESO_MULTIPLIER.
+ * scoreFarming() opens with `[HEROIC_MESO_MULTIPLIER.value]` and pushes these on
+ * top, and a caller who followed the old sentence literally would divide 764% by
+ * 1.2 alone and land on 620% additive instead of 20% — a 6x error, which is the
+ * exact failure this area of the file exists to prevent. No shipped figure was
+ * ever wrong, because every in-repo call site prepends the Heroic factor; the
+ * COMMENT was the thing that outran the code.
+ *
+ * To invert a stat window, use `FarmScore.mesoMultipliers` rather than this array
+ * directly. It is derived from NON_GEAR_SOURCES because the alternative — writing
+ * 1.2 wherever the Wealth Acquisition Potion is discussed — is a second source of
+ * truth for a number the table above already holds, and the day the potion is
+ * rebalanced only one of them changes.
+ */
+export const MESO_MULTIPLIER_SOURCES: ReadonlyArray<{ id: string; n: string; mult: number }> =
+  NON_GEAR_SOURCES.value
+    .filter((s): s is NonGearSource & { mesoMult: number } => typeof s.mesoMult === "number")
+    .map((s) => ({ id: s.id, n: s.n, mult: s.mesoMult }));
+
+/** The Wealth Acquisition Potion's 1.2x, by id. Null if the table stops carrying
+ *  it — which is a fact worth failing on rather than substituting a literal. */
+export const WEALTH_POTION_MESO_MULT: number | null =
+  MESO_MULTIPLIER_SOURCES.find((m) => m.id === "wealthPotion")?.mult ?? null;
+
 /** The consumable item-drop bucket cap, stated verbatim in-game on Legion's Luck. */
 export const CONSUMABLE_DROP_BUCKET_CAP_PCT: Sourced<number> = {
   value: 100,
@@ -740,6 +880,446 @@ export const ELITE_BOSS_CURSE_MULTIPLIER: Sourced<ReadonlyArray<{ afterMinutes: 
   placeholder: false,
   note: "Whether it multiplies the drop-rate BONUS or the total drop multiplier is ambiguous in the source, and whether it scales meso-bag chance through the drop stat is unresolved.",
 };
+
+/* ==========================================================================
+ * 3b. GRAND SACRED SYMBOLS — the three lines lib/symbols.ts declines to price
+ *
+ * lib/symbols.ts models force and stat, names these three effects as unmodelled,
+ * and says in as many words that lib/farming.ts and lib/meso.ts are the files
+ * that price them. This is that pricing.
+ *
+ * THE ANSWER IS THE DIMINISHING RETURN, not the headline percentage, and it cuts
+ * in BOTH directions — which is why this section computes four numbers for the
+ * same line instead of one:
+ *
+ *   1. FACE VALUE. "Mesos Obtained +5%" reads like +5% income. It is not. That
+ *      is the error a player makes unaided, and it is the same class of error as
+ *      the one just found in the cube ranking.
+ *
+ *   2. THE "DIVIDE BY THE STAT WINDOW" CORRECTION. At 764% Mesos Obtained,
+ *      5/764 = 0.65%, so the line looks nearly worthless. This is the correction
+ *      most guides reach for and in a HEROIC world it is ALSO wrong — wrong by
+ *      about 5x, and wrong in the expensive direction, because it tells the
+ *      player to ignore a line that is worth taking.
+ *
+ *   3. WHY 2 IS WRONG HERE. The 764% in the stat window is not an additive
+ *      total. It is the OUTPUT of this repo's own sourced formula,
+ *      floor((100 + additive) * 6) - 100, with Heroic's 6x already inside it.
+ *      Inverting it gives additive = (764 + 100)/6 - 100 = 44%. A new additive
+ *      point re-enters BEFORE the 6x, so it is worth far more than its share of
+ *      the displayed number.
+ *
+ *   4. THE REAL SHAPE. Income is proportional to (100 + additive) x multiplier,
+ *      so the relative gain from d additive points is exactly d / (100 +
+ *      additive) — AND THE HEROIC 6x CANCELS COMPLETELY. That is the cleanest
+ *      fact in this section: the 6x changes how much you earn and changes
+ *      nothing about which meso line to take next.
+ *
+ * So the diminishing return is real, and its denominator is (100 + additive) =
+ * 144 — not the displayed 764, and not 100. The line is worth about 3.5%, not
+ * 5% and not 0.65%.
+ * ========================================================================*/
+
+/**
+ * Meso % and drop % one Grand Sacred symbol grants, READ OUT OF the declaration
+ * in lib/symbols.ts with ./meso's line parsers.
+ *
+ * The parse is not decoration. GRAND_SACRED_UNMODELLED_EFFECTS is prose
+ * ("Mesos Obtained +5% per symbol") and these two parsers are the repo's single
+ * reader for exactly that prose, already used on every gear potential line. If
+ * lib/symbols.ts corrects 5 to 4 tomorrow this file moves with it; a retyped
+ * literal would not, and nothing would fail to warn anybody.
+ */
+export const GRAND_SACRED_MESO_PCT_PER_SYMBOL = mesoPctFromLines(GRAND_SACRED_UNMODELLED_EFFECTS);
+export const GRAND_SACRED_DROP_PCT_PER_SYMBOL = dropPctFromLines(GRAND_SACRED_UNMODELLED_EFFECTS);
+
+/** Two areas, so two symbols. Taken from lib/symbols.ts's area list rather than
+ *  written as 2 — a third Grand Sacred area would otherwise silently halve this
+ *  entire valuation with no test failing. */
+export const GRAND_SACRED_MAX_SYMBOLS = GRAND_SACRED_AREAS.length;
+
+/**
+ * NOT PRICED, and named here so the omission stays visible — the same courtesy
+ * lib/symbols.ts extended to this file.
+ *
+ * The third line is EXP Obtained. This module converts things into mesos per
+ * hour; EXP is not mesos, and no sourced exchange rate between them exists for a
+ * Lv 245 character. Inventing one ("a level is worth N mesos") is exactly the
+ * move the honesty ledger forbids. The line is real and is left unvalued.
+ */
+export const GRAND_SACRED_EXP_NOT_PRICED = {
+  line: GRAND_SACRED_UNMODELLED_EFFECTS.find((l) => /exp/i.test(l)) ?? null,
+  why: "No sourced meso value of EXP exists for this level band. A farming module that priced it would be inventing the exchange rate.",
+} as const;
+
+/**
+ * Invert the stat window back to the additive total the game's formula took as
+ * input.
+ *
+ *   displayed = floor((100 + additive) * product) - 100
+ *   additive  = (displayed + 100) / product - 100
+ *
+ * The floor() is not inverted and cannot be: it destroys up to one point of
+ * information. At these magnitudes (a 6x on a three-digit total) that is under a
+ * tenth of an additive point and it is never the reason an answer is wrong —
+ * whereas forgetting the multiplier entirely is a 6x error.
+ *
+ * WHY THE DEFAULT IS NOT ENOUGH, and why every caller must think about it:
+ * `multipliers` defaults to the Heroic 6x alone because that is the only
+ * multiplier a character always has. It is NOT the only one that can be up.
+ * scoreFarming() builds [6, 1.2] whenever the Wealth Acquisition Potion is
+ * active, and a stat window read while that potion is running was produced by
+ * 7.2x, not 6x. Dividing 764% by 6 then gives 44% additive when the true figure
+ * is 20% — and since the additive total is the DENOMINATOR of every relative
+ * valuation downstream, that understates the next meso line by ~17%. The
+ * default is a default, not an assumption the caller is allowed to inherit
+ * silently: valueOfMesoPct() and valueGrandSacredForFarming() both report which
+ * multipliers they divided out.
+ */
+export function additiveMesoPctFromDisplayed(
+  displayedPct: number,
+  multipliers: readonly number[] = [HEROIC_MESO_MULTIPLIER.value],
+): number {
+  const prod = multipliers.reduce((a, b) => a * b, 1);
+  if (!(prod > 0)) return displayedPct;
+  return (100 + displayedPct) / prod - 100;
+}
+
+export interface MesoLineValue {
+  /** Additive points the line adds. */
+  readonly addedAdditivePct: number;
+  readonly displayedBefore: number;
+  readonly displayedAfter: number;
+  readonly additiveBefore: number;
+  readonly additiveAfter: number;
+  /** THE ANSWER: relative change in meso income, additive reading. */
+  readonly relativeIncomeGain: number;
+  /** The competing reading, in which the line lands on the displayed total
+   *  AFTER the world multiplier instead of before it. Returned rather than
+   *  hidden, because it is not separately sourced for symbols. */
+  readonly relativeIncomeGainIfPostMultiplier: number;
+  /** What the tooltip looks like it promises. */
+  readonly naiveFaceValue: number;
+  /** The "divide by the stat window" reading this section exists to correct. */
+  readonly naiveDisplayedRatio: number;
+  /** relativeIncomeGain / naiveFaceValue. 1 = no dilution, 0 = worthless. */
+  readonly dilutionVsFaceValue: number;
+  /** Additive points thrown away by the total additive cap. */
+  readonly cappedAwayPct: number;
+  /** The multiplicative factors that were divided back out of the stat window to
+   *  recover `additiveBefore`. Returned rather than assumed, because the answer
+   *  is wrong by the square of a missing entry: the 6x alone on a window read
+   *  with the Wealth Acquisition Potion up recovers 44% additive where the truth
+   *  is 20%, and the additive total is the denominator of `relativeIncomeGain`. */
+  readonly multipliersDividedOut: readonly number[];
+  /** One sentence naming those multipliers, for a caller that surfaces a list of
+   *  assumptions rather than the whole struct. */
+  readonly multiplierAssumption: string;
+  readonly why: string;
+}
+
+/**
+ * What d additive points of Mesos Obtained are worth, relatively, to a character
+ * whose stat window reads displayedMesoPct.
+ *
+ * The model is one line — (100 + a + d) / (100 + a) — and the reason it is
+ * wrapped in a struct this wide is that the bare ratio is indistinguishable from
+ * three WRONG ratios a reader might expect it to be. Returning only the right
+ * number teaches nobody why the other three are wrong, and this is precisely
+ * where a player over- or under-values hours of grinding.
+ *
+ * `multipliers` is the third argument and not an internal constant because the
+ * stat window is an OUTPUT of the game's formula and this function has to invert
+ * it. Which factors were in that product is a fact about the moment the player
+ * read the window, not about the character: the same 764% means 44% additive
+ * with nothing running and 20% additive with the Wealth Acquisition Potion up.
+ * A caller holding a FarmScore should pass `FarmScore.mesoMultipliers`, which is
+ * the list scoreFarming() actually used for THAT score. Re-deriving it from
+ * MESO_MULTIPLIER_SOURCES is not equivalent: that array is every multiplicative
+ * source the model knows about, while the score was computed from the subset
+ * selected by `chosen` and `includeTemporary`.
+ */
+export function valueOfMesoPct(
+  displayedMesoPct: number,
+  deltaAdditivePct: number,
+  multipliers: readonly number[] = [HEROIC_MESO_MULTIPLIER.value],
+): MesoLineValue {
+  const cap = MESO_TOTAL_ADDITIVE_CAP_PCT.value;
+  const a0raw = additiveMesoPctFromDisplayed(displayedMesoPct, multipliers);
+  const a0 = Math.min(Math.max(a0raw, 0), cap);
+  const a1 = Math.min(Math.max(a0raw + deltaAdditivePct, 0), cap);
+  const cappedAway = Math.max(0, a0raw + deltaAdditivePct - cap) - Math.max(0, a0raw - cap);
+
+  // Income is proportional to (100 + additive) x multiplier, so the multiplier
+  // cancels. Written as the ratio of the two totals, NOT as delta / total:
+  // delta/total silently drops the 100 and that is the second-most-common way to
+  // get this wrong.
+  const relative = (100 + a1) / (100 + a0) - 1;
+
+  const postMult = (100 + displayedMesoPct + deltaAdditivePct) / (100 + displayedMesoPct) - 1;
+  const face = deltaAdditivePct / 100;
+  const naiveRatio = displayedMesoPct > 0 ? deltaAdditivePct / displayedMesoPct : face;
+  // The SAME list on the way back out. Re-deriving the displayed figure through
+  // a different product than the one it was inverted with would print a window
+  // the player can never see.
+  const after = mesosObtainedPct(a1, multipliers);
+
+  const prod = multipliers.reduce((x, y) => x * y, 1);
+  // "6x" reads better than "a product of 6", and "6 x 1.2 = 7.2x" is the case a
+  // reader has to be able to spot, so the phrase is built rather than templated.
+  const multPhrase =
+    multipliers.length === 1
+      ? `${multipliers[0]}x`
+      : `${multipliers.join(" x ")} = ${Number(prod.toFixed(4))}x`;
+  const multiplierAssumption =
+    `The ${displayedMesoPct}% stat window was inverted by dividing out ${multPhrase}`
+    + (multipliers.length === 1 && multipliers[0] === HEROIC_MESO_MULTIPLIER.value
+      ? ` (the Heroic world multiplier alone). If the window was read with a MULTIPLICATIVE buff up — ${MESO_MULTIPLIER_SOURCES.map((m) => `${m.n}'s ${m.mult}x`).join(", ") || "none are modelled"} — the additive total behind it is lower than the ${a0.toFixed(1)}% used here and this line is worth MORE, not less.`
+      : `, so the additive total behind it is ${a0.toFixed(1)}%. Any multiplicative buff that was running when the window was read and is missing from that list makes this figure an understatement.`);
+
+  return {
+    addedAdditivePct: deltaAdditivePct,
+    displayedBefore: displayedMesoPct,
+    displayedAfter: after,
+    additiveBefore: a0,
+    additiveAfter: a1,
+    relativeIncomeGain: relative,
+    relativeIncomeGainIfPostMultiplier: postMult,
+    naiveFaceValue: face,
+    naiveDisplayedRatio: naiveRatio,
+    dilutionVsFaceValue: face > 0 ? relative / face : 0,
+    cappedAwayPct: cappedAway,
+    multipliersDividedOut: [...multipliers],
+    multiplierAssumption,
+    why:
+      `+${deltaAdditivePct}% Mesos Obtained on a character reading ${displayedMesoPct}%: `
+      + `the stat window already contains ${multPhrase}, so the additive total behind it is ${a0.toFixed(1)}%, `
+      + `and the line moves the window to ${after}%. `
+      + `Meso income rises ${(relative * 100).toFixed(2)}% — not the ${(face * 100).toFixed(0)}% the tooltip reads like, `
+      + `and not the ${(naiveRatio * 100).toFixed(2)}% you get by dividing into the stat window, which understates it `
+      + `${(relative / (naiveRatio || 1)).toFixed(1)}x because it forgets that an additive point re-enters BEFORE the ${multPhrase}. `
+      + `The diminishing return is real and its denominator is 100 + ${a0.toFixed(0)} = ${(100 + a0).toFixed(0)}: the same line on a character with no meso bonuses at all would be worth ${(face * 100).toFixed(0)}%.`
+      + (cappedAway > 0 ? ` ${cappedAway.toFixed(1)} of the ${deltaAdditivePct} points are past the ${cap}% additive cap and do nothing.` : ""),
+  };
+}
+
+export interface DropLineValue {
+  readonly addedDropPct: number;
+  readonly dropBefore: number;
+  readonly dropAfter: number;
+  readonly bagChanceBefore: number;
+  readonly bagChanceAfter: number;
+  /** Relative meso income gain via meso-bag FREQUENCY only. Zero once bags are
+   *  already guaranteed. */
+  readonly relativeMesoIncomeGain: number;
+  /** Relative item-drop gain. Never saturates the way the bag term does. */
+  readonly relativeItemDropGain: number;
+  readonly saturated: boolean;
+  readonly why: string;
+}
+
+/**
+ * What drop % is worth. Drop does TWO jobs and they diminish differently, which
+ * is why one number cannot answer it:
+ *
+ *   - item drops scale with (100 + drop) forever;
+ *   - meso-bag frequency scales the same way but SATURATES the moment a bag is
+ *     guaranteed, after which more drop % is worth exactly zero mesos.
+ *
+ * Collapsing the two makes drop look either permanently good (wrong past
+ * saturation) or permanently mediocre (wrong below it). The saturation POINT
+ * rests on an unverified base chance — see
+ * DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED — but the SHAPE is corroborated on
+ * Nexon's own forum, and the shape is what this function reports.
+ */
+export function valueOfDropPct(dropPctForBags: number, deltaDropPct: number): DropLineValue {
+  const d0 = Math.max(0, dropPctForBags);
+  const d1 = Math.max(0, d0 + deltaDropPct);
+  const b0 = mesoBagChance(d0);
+  const b1 = mesoBagChance(d1);
+  const bagGain = b0 > 0 ? b1 / b0 - 1 : 0;
+  const itemGain = (100 + d1) / (100 + d0) - 1;
+  const saturated = b0 >= 1 - 1e-12;
+  return {
+    addedDropPct: deltaDropPct,
+    dropBefore: d0,
+    dropAfter: d1,
+    bagChanceBefore: b0,
+    bagChanceAfter: b1,
+    relativeMesoIncomeGain: bagGain,
+    relativeItemDropGain: itemGain,
+    saturated,
+    why: saturated
+      ? `Meso bags are already modelled as guaranteed at ${d0}% drop, so +${deltaDropPct}% adds nothing to MESO income. It still adds ${(itemGain * 100).toFixed(2)}% to item drops.`
+      : `+${deltaDropPct}% drop takes modelled bag chance ${(b0 * 100).toFixed(1)}% -> ${(b1 * 100).toFixed(1)}%, worth ${(bagGain * 100).toFixed(2)}% more mesos, plus ${(itemGain * 100).toFixed(2)}% more item drops. Below saturation drop % is partly a MESO stat, which is why it is not comparable one-for-one with a meso line.`,
+  };
+}
+
+export interface GrandSacredFarmValue {
+  readonly symbols: number;
+  readonly mesoPctAdded: number;
+  readonly dropPctAdded: number;
+  readonly meso: MesoLineValue;
+  /** The MESO-side reading of the drop line, computed from bag-eligible drop.
+   *  `relativeItemDropGain` on this struct is off the bag base and is therefore
+   *  NOT the item answer — read `dropItems` for that. */
+  readonly drop: DropLineValue;
+  /** The ITEM-side reading, computed from the stat window's Item Drop Rate
+   *  total. Identical to `drop` whenever the caller did not separate the two. */
+  readonly dropItems: DropLineValue;
+  /** The bag-eligible drop % the meso half was actually computed from. */
+  readonly dropPctForMesoBagsUsed: number;
+  /** False when `dropPctForMesoBagsUsed` is just the stat window's item total,
+   *  i.e. when bag-eligible and item drop were conflated. The assumption is
+   *  spelled out in `assumptions` either way; this is the machine-readable form
+   *  so a UI can mark the figure rather than reprint a paragraph. */
+  readonly bagDropSeparatedFromItemDrop: boolean;
+  /** The bag-eligible-drop assumption as one sentence. Also inside
+   *  `assumptions`; exposed by name so a caller quoting it need not index the
+   *  array by position. */
+  readonly bagDropAssumption: string;
+  /** Which multiplicative factors were divided back out of the meso stat window.
+   *  [6] normally, [6, 1.2] with the Wealth Acquisition Potion up. */
+  readonly mesoMultipliersDividedOut: readonly number[];
+  /** Multiplier on mesos per hour at an unchanged kill rate. */
+  readonly mesoIncomeMultiplier: number;
+  readonly mesoIncomeGainPct: number;
+  readonly itemDropGainPct: number;
+  /** Absolute mesos/hour, ONLY when the caller supplies a measured rate. There
+   *  is no defensible default — see FARM_RATE in ./meso. */
+  readonly mesosPerHourGain: number | null;
+  readonly confidence: "modelled";
+  readonly assumptions: readonly string[];
+  readonly why: string;
+}
+
+export interface GrandSacredValueOptions {
+  /** Mesos Obtained % as the stat window reads it. */
+  readonly displayedMesoPct: number;
+  /**
+   * Item Drop Rate % as the stat window reads it. This is the ITEM total, and
+   * the stat window has no other. It is used for the item-drop half.
+   */
+  readonly displayedDropPct: number;
+  /**
+   * Drop % that actually feeds MESO BAG frequency, which is not the same number.
+   * `FarmScore.dropPctForMesoBags` is exactly this, and scoreFarming() keeps it
+   * apart from `dropPctForItems` on purpose: familiar ITEM drop lines are not
+   * established to raise meso-bag frequency — see
+   * UNVERIFIED.FAMILIAR_ITEM_DROP_FEEDS_MESO_BAGS.
+   *
+   * Defaults to `displayedDropPct`, which CONFLATES the two. The default is
+   * honest only because the conflation is then named in `assumptions`; a caller
+   * holding a FarmScore has the real figure and should pass it.
+   */
+  readonly dropPctForMesoBags?: number;
+  /**
+   * The multiplicative factors already inside `displayedMesoPct`, for inverting
+   * the stat window: [6] normally and [6, 1.2] with the Wealth Acquisition Potion
+   * up. Pass `FarmScore.mesoMultipliers` — the list that score was actually built
+   * from — rather than rebuilding it, which cannot reproduce the same subset.
+   * Defaults to the Heroic 6x alone.
+   */
+  readonly mesoMultipliers?: readonly number[];
+  /** Symbols equipped. Defaults to all of them. */
+  readonly symbols?: number;
+  /** The player's own measured mesos/hour, if they have measured one. */
+  readonly mesosPerHour?: number | null;
+}
+
+/**
+ * The headline: what equipping Grand Sacred symbols is worth to a farmer.
+ *
+ * The two effects COMPOUND rather than add, and that is not a rounding detail.
+ * Meso income per kill is (mesos in the bag) x (chance a bag drops); the meso
+ * line moves the first and the drop line moves the second, so the honest
+ * combination is a product. Adding them understates the result — the one place
+ * in this section where the naive move is too PESSIMISTIC rather than too
+ * generous.
+ */
+export function valueGrandSacredForFarming(opts: GrandSacredValueOptions): GrandSacredFarmValue {
+  const n = Math.max(0, Math.min(opts.symbols ?? GRAND_SACRED_MAX_SYMBOLS, GRAND_SACRED_MAX_SYMBOLS));
+  const mesoAdd = GRAND_SACRED_MESO_PCT_PER_SYMBOL * n;
+  const dropAdd = GRAND_SACRED_DROP_PCT_PER_SYMBOL * n;
+
+  const mesoMults = opts.mesoMultipliers ?? [HEROIC_MESO_MULTIPLIER.value];
+  // Whether the caller separated bag-eligible drop from the stat window's item
+  // total. If they did not, the two are conflated and `assumptions` says so in
+  // the same words scoreFarming() uses — it is not a rounding difference: a
+  // familiar Item Drop Rate Boost line is worth up to +120% of the stat window
+  // and is not established to feed a single meso bag.
+  const bagDropSeparated = opts.dropPctForMesoBags !== undefined;
+  const dropForBags = opts.dropPctForMesoBags ?? opts.displayedDropPct;
+  // Built once and returned as its own field as well as going into
+  // `assumptions`, so a caller that quotes one sentence does not have to index
+  // into the array by position to find it.
+  const bagDropAssumption = bagDropSeparated
+    ? `Meso-bag frequency is computed from ${dropForBags}% bag-eligible drop, supplied separately from the ${opts.displayedDropPct}% Item Drop Rate stat window. That is the split scoreFarming() maintains as dropPctForMesoBags vs dropPctForItems.`
+    : `The ${opts.displayedDropPct}% Item Drop Rate stat window is used AS the bag-eligible drop, because no separate figure was supplied. This CONFLATES two totals that scoreFarming() deliberately keeps apart as dropPctForMesoBags and dropPctForItems: familiar ITEM drop lines are not established to raise meso-bag frequency (UNVERIFIED.FAMILIAR_ITEM_DROP_FEEDS_MESO_BAGS), and a Legendary familiar's Item Drop Rate Boost line alone is +120% of item drop that may feed no bag at all. Where the window contains any such line the character is modelled as CLOSER TO BAG SATURATION THAN THEY ARE, which understates the meso half of this figure — marginal bag gain is (100+d1)/(100+d0) and falls as d0 rises, reaching exactly zero once the conflated total crosses saturation. Pass dropPctForMesoBags — FarmScore already computes it — to remove this assumption.`;
+
+  const meso = valueOfMesoPct(opts.displayedMesoPct, mesoAdd, mesoMults);
+  // Twice, from two different bases, because drop does two jobs off two
+  // different totals. `drop` answers "how much more MESO" and must start from
+  // the bag-eligible figure; `dropItems` answers "how much more LOOT" and must
+  // start from the stat window's item total. When the caller does not separate
+  // them these two calls are identical and nothing changes — which is exactly
+  // why the conflation was invisible before.
+  const drop = valueOfDropPct(dropForBags, dropAdd);
+  const dropItems = valueOfDropPct(opts.displayedDropPct, dropAdd);
+
+  const mult = (1 + meso.relativeIncomeGain) * (1 + drop.relativeMesoIncomeGain);
+  const perHour =
+    opts.mesosPerHour === null || opts.mesosPerHour === undefined ? null : opts.mesosPerHour * (mult - 1);
+
+  return {
+    symbols: n,
+    mesoPctAdded: mesoAdd,
+    dropPctAdded: dropAdd,
+    meso,
+    drop,
+    dropItems,
+    dropPctForMesoBagsUsed: dropForBags,
+    bagDropSeparatedFromItemDrop: bagDropSeparated,
+    bagDropAssumption,
+    mesoMultipliersDividedOut: [...mesoMults],
+    mesoIncomeMultiplier: mult,
+    mesoIncomeGainPct: (mult - 1) * 100,
+    itemDropGainPct: dropItems.relativeItemDropGain * 100,
+    mesosPerHourGain: perHour,
+    confidence: "modelled",
+    assumptions: [
+      "The symbol's Mesos Obtained line is ADDITIVE, entering the formula before the Heroic multiplier, like every other +X% Mesos Obtained source in NON_GEAR_SOURCES. NOT separately sourced for symbols: if it applied AFTER the multiplier the meso half would be worth "
+        + (meso.relativeIncomeGainIfPostMultiplier * 100).toFixed(2)
+        + "% instead of "
+        + (meso.relativeIncomeGain * 100).toFixed(2)
+        + "%. Both readings are returned so a caller can show the spread rather than pick one silently.",
+      "The symbol line is NOT an equipment potential, so it is assumed not to consume MESO_GEAR_CAP_PCT (+100%). It IS counted against MESO_TOTAL_ADDITIVE_CAP_PCT (+300%), which is itself unverified.",
+      meso.multiplierAssumption,
+      "The drop line is assumed to raise meso-bag frequency as well as item drops, i.e. to behave like gear drop rather than like a familiar ITEM drop line. Unverified for symbols; if it behaves like the familiar line the meso half of the drop gain is zero.",
+      // The assumption above is about the SYMBOL's own new line. This one is
+      // about the drop the character already had, which is a different claim and
+      // was previously made silently.
+      bagDropAssumption,
+      "Meso-bag saturation is modelled from an UNVERIFIED "
+        + (MESO_BAG_BASE_CHANCE_UNVERIFIED.value * 100)
+        + "% base bag chance. The SHAPE is corroborated; the magnitude is not.",
+      "Kill rate is held constant. Symbols also grant force and stat, which raise kill rate; that gain belongs to lib/symbols.ts's model and is NOT included here, so this figure is a floor on the symbols' total farming value.",
+    ],
+    why:
+      `${n} Grand Sacred symbol${n === 1 ? "" : "s"} = +${mesoAdd}% Mesos Obtained and +${dropAdd}% Item Drop Rate. `
+      + `${meso.why} `
+      // drop.why is one sentence about two jobs off ONE base, which is only
+      // coherent while the two bases are the same number. Once the caller
+      // separates them it would report the item gain off the bag base — the
+      // exact conflation being fixed, just inverted — so the separated case gets
+      // a sentence built from both structs instead.
+      + (bagDropSeparated
+        ? `+${dropAdd}% drop against ${dropForBags}% bag-eligible drop takes modelled bag chance ${(drop.bagChanceBefore * 100).toFixed(1)}% -> ${(drop.bagChanceAfter * 100).toFixed(1)}%, worth ${(drop.relativeMesoIncomeGain * 100).toFixed(2)}% more mesos; against the ${opts.displayedDropPct}% Item Drop Rate window it is worth ${(dropItems.relativeItemDropGain * 100).toFixed(2)}% more item drops. Those are two different denominators because familiar ITEM drop lines are not established to feed meso bags. `
+        : `${drop.why} `)
+      + `The two compound: meso income x${mult.toFixed(4)}, i.e. +${((mult - 1) * 100).toFixed(2)}% mesos per hour at the same kill rate. `
+      + `Compare that with the +${mesoAdd + dropAdd}% face value across the two lines, and with the +${(meso.naiveDisplayedRatio * 100).toFixed(2)}% a stat-window division gives for the meso half alone.`,
+  };
+}
 
 /* ==========================================================================
  * 4. THE MOB DAMAGE MODEL — what the boss model gets wrong about farming
@@ -908,7 +1488,7 @@ export const SPAWN_TICK_MS: Sourced<number> = {
 
 /** Upper bound on spawns per hour per effective spawn slot. Inherits
  *  SPAWN_TICK_MS's unverified status. */
-export const SPAWN_TICKS_PER_HOUR = 3600 / (SPAWN_TICK_MS.value / 1000);
+export const SPAWN_TICKS_PER_HOUR_UNVERIFIED = 3600 / (SPAWN_TICK_MS.value / 1000);
 
 /**
  * DELIBERATELY 1. A 75%-solo / +5%-per-player / 100%-at-six curve circulates
@@ -1012,7 +1592,7 @@ export interface FarmMapSpawn {
  *  clear the binding one is usually spawn points, so min() is correct. */
 export function killsPerHourCeiling(spawn: FarmMapSpawn): { ceiling: number; confidence: "ranking-only" } {
   const slots = Math.min(spawn.mobCapacity, spawn.spawnPoints) * PARTY_SPAWN_CAPACITY_MULTIPLIER;
-  return { ceiling: SPAWN_TICKS_PER_HOUR * slots, confidence: "ranking-only" };
+  return { ceiling: SPAWN_TICKS_PER_HOUR_UNVERIFIED * slots, confidence: "ranking-only" };
 }
 
 export function findMap(id: string): FarmMap | null {
@@ -1447,6 +2027,13 @@ export interface FarmScore {
   /** Drop % that actually raises meso-bag frequency. Familiar ITEM drop lines
    *  are excluded here — see UNVERIFIED.FAMILIAR_ITEM_DROP_FEEDS_MESO_BAGS. */
   readonly dropPctForMesoBags: number;
+  /** Drop % that raises ITEM drops, after the (contested) total cap.
+   *
+   *  The counterpart of dropPctForMesoBags, and the pair is the point: bag
+   *  frequency saturates and item drops do not, so one number cannot serve both.
+   *  scoreFarming has always computed this and dropped it on the floor, which
+   *  made it look like dead code rather than like a missing field. */
+  readonly dropPctForItems: number;
   /** Additive Mesos Obtained after the gear sub-cap and the global cap. */
   readonly mesoAdditivePct: number;
   /** Mesos Obtained % as the game's formula computes it, Heroic 6x included. */
@@ -1466,6 +2053,17 @@ export interface FarmScore {
   readonly belowBagBreakpoint: boolean;
   readonly dropToBreakpoint: number;
   readonly warnings: readonly string[];
+  /**
+   * The multiplicative factors THIS score was computed from, in the order they
+   * were applied: [6] on Heroic, [6, 1.2] with the Wealth Acquisition Potion up.
+   *
+   * Exposed because two docblocks told callers to pass it and it did not exist —
+   * `mesoMults` was a local. Re-deriving it from MESO_MULTIPLIER_SOURCES is not
+   * the same thing: that array is every multiplicative source the model knows,
+   * while this is the subset `chosen` and `includeTemporary` actually selected.
+   * Inverting a stat window with the wrong subset is a silent multiple-of-six.
+   */
+  readonly mesoMultipliers: readonly number[];
   readonly gearBySlot: GearFarmTotals["bySlot"];
 }
 
@@ -1563,11 +2161,15 @@ export function scoreFarming(items: Readonly<Record<string, Item>>, opts: FarmSc
   const obtained = mesosObtainedPct(mesoAdditive, mesoMults);
   const mesoFactor = (100 + obtained) / 100;
   const bag = mesoBagChance(dropForBags);
-  const toBreakpoint = Math.max(0, DROP_PCT_GUARANTEED_MESO_BAG - dropForBags);
+  const toBreakpoint = Math.max(0, DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED - dropForBags);
 
   if (toBreakpoint > 0 && mesoAdditive > 0) {
     warnings.push(
-      `Drop rate is ${dropForBags}% against the ${DROP_PCT_GUARANTEED_MESO_BAG}% meso-bag breakpoint — ${((1 - bag) * 100).toFixed(0)}% of mobs are dropping no bag at all, so every point of Mesos Obtained is currently being multiplied by ${bag.toFixed(2)}. Close the ${toBreakpoint}% gap before adding more meso.`,
+      // The saturating shape is corroborated; the 67 is not. So the sentence
+      // leads with the consequence the player can act on (meso % is being
+      // multiplied by less than one) and labels the number, rather than naming
+      // a "breakpoint" as though the game published one.
+      `Drop rate is ${dropForBags}%, below the level at which a meso bag is guaranteed, so every point of Mesos Obtained is currently being multiplied by ${bag.toFixed(2)} — roughly ${((1 - bag) * 100).toFixed(0)}% of mobs drop no bag at all. Drop % is therefore partly a MESO stat until that saturates. The saturation point is modelled at ${DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED}% from an UNVERIFIED ${MESO_BAG_BASE_CHANCE_UNVERIFIED.value * 100}% base bag chance; on other plausible base chances it lands between ${Math.min(...DROP_BREAKPOINT_SENSITIVITY.map((s) => s.breakpointPct))}% and ${Math.max(...DROP_BREAKPOINT_SENSITIVITY.map((s) => s.breakpointPct))}%. Treat it as "add drop before adding more meso", not as a finish line.`,
     );
   }
 
@@ -1577,6 +2179,7 @@ export function scoreFarming(items: Readonly<Record<string, Item>>, opts: FarmSc
     nonGearMesoPct: insideCapMeso + outsideCapMeso + consumableMesoCapped,
     nonGearDropPct: insideCapDrop + outsideCapDrop + consumableDropCapped + familiarItemBoost,
     dropPctForMesoBags: dropForBags,
+    dropPctForItems: dropForItems,
     mesoAdditivePct: mesoAdditive,
     mesosObtainedPct: obtained,
     mesoFactor,
@@ -1589,6 +2192,7 @@ export function scoreFarming(items: Readonly<Record<string, Item>>, opts: FarmSc
     belowBagBreakpoint: toBreakpoint > 0,
     dropToBreakpoint: toBreakpoint,
     warnings,
+    mesoMultipliers: [...mesoMults],
     gearBySlot: gear.bySlot,
   };
 }
@@ -1998,7 +2602,7 @@ export function recommendFarmLoadout(ch: CharacterWithLoadouts, opts: RecommendO
 
   // Which stat each slot should chase, decided ONCE up front from the
   // breakpoint rather than per-slot, so the answer is coherent.
-  const wantDropFirst = before.dropPctForMesoBags < DROP_PCT_GUARANTEED_MESO_BAG;
+  const wantDropFirst = before.dropPctForMesoBags < DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED;
   const mesoHeadroom = before.mesoGearCap.headroom;
 
   const slotCandidates: Array<{ slot: string; cands: FarmCandidate[] }> = [];
@@ -2215,10 +2819,13 @@ export const LEGENDARY_TIER_UP_PENALTY = 400;
  * The ordered first moves for a player with no farming loadout.
  *
  * Order is not a preference. It follows from the mechanics: the cube-free
- * sources are large enough to clear the 67% breakpoint on their own, the
- * breakpoint is a step worth a flat +67% on all meso income, and the meso gear
- * cap makes every point past +100% worthless. A player who cubes first has paid
- * for something they could have had free.
+ * sources are large enough to reach meso-bag saturation on their own, saturation
+ * is worth up to 1/base - 1 on all meso income (modelled at +67% from an
+ * UNVERIFIED base chance — see DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED), and the
+ * meso gear cap makes every point past +100% worthless. A player who cubes first
+ * has paid for something they could have had free. The ORDER survives the
+ * unverified constant even though the size of the step does not, which is why
+ * this is still safe advice.
  */
 export function coldStartPlan(ch: CharacterWithLoadouts, opts: RecommendOptions = {}): ColdStartStep[] {
   const items = loadoutItems(ch, opts.loadoutId);
@@ -2291,15 +2898,15 @@ export function coldStartPlan(ch: CharacterWithLoadouts, opts: RecommendOptions 
     .filter((r): r is { slot: string; item: Item; cost: number } => !!r.item && r.cost !== null)
     .sort((a, b) => a.cost - b.cost);
 
-  const gap = Math.max(0, DROP_PCT_GUARANTEED_MESO_BAG - score.dropPctForMesoBags);
+  const gap = Math.max(0, DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED - score.dropPctForMesoBags);
   if (gap > 0) {
     const need = Math.ceil(gap / 20);
     steps.push({
       order: order++,
       id: "drop-to-breakpoint",
-      title: `Cube ${need} drop line${need > 1 ? "s" : ""} to clear the ${DROP_PCT_GUARANTEED_MESO_BAG}% meso-bag breakpoint`,
+      title: `Cube ${need} drop line${need > 1 ? "s" : ""} to reach meso-bag saturation (modelled at ${DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED}%)`,
       detail:
-        `Mobs have a ${(MESO_BAG_BASE_CHANCE.value * 100).toFixed(0)}% base chance to drop a meso bag, multiplied by your drop rate; ${DROP_PCT_GUARANTEED_MESO_BAG}% guarantees it. You are ${gap}% short, so every point of Mesos Obtained you own is currently being multiplied by ${score.mesoBagChance.toFixed(2)}. This is a step, not a curve, and it is worth more than any drop rate above it. ` +
+        `A mob's chance to drop a meso bag is multiplied by your drop rate and stops rising once the bag is guaranteed — that much is corroborated on Nexon's own forum. WHERE it stops is NOT: it is modelled at ${DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED}% from an unverified ${(MESO_BAG_BASE_CHANCE_UNVERIFIED.value * 100).toFixed(0)}% base chance, and on other plausible base chances it lands anywhere from ${Math.min(...DROP_BREAKPOINT_SENSITIVITY.map((s) => s.breakpointPct))}% to ${Math.max(...DROP_BREAKPOINT_SENSITIVITY.map((s) => s.breakpointPct))}%. What is solid is the direction: every point of Mesos Obtained you own is currently being multiplied by ${score.mesoBagChance.toFixed(2)}, so drop is worth more than meso until that reaches 1.00. You are ${gap}% short of the modelled point. ` +
         (ranked.length
           ? `Cheapest carriers you own, worst damage ceiling first: ${ranked.slice(0, 3).map((r) => `${r.item.name} (${r.slot})`).join(", ")}. Remember the line is a flat 20% at item level 71+, so the junk accessory carries exactly as much as the endgame one.`
           : "You have no eligible accessory equipped — face, eye, earring, either pendant or any of the four rings."),
@@ -2638,8 +3245,8 @@ export function detectDrift(ch: CharacterWithLoadouts, opts: RecommendOptions = 
     out.push({
       kind: "drop-below-breakpoint",
       severity: "hi",
-      msg: `You have ${score.gearMesoPct}% Mesos Obtained on gear but only ${score.dropPctForMesoBags}% drop rate, against a ${DROP_PCT_GUARANTEED_MESO_BAG}% breakpoint. Mobs have a ${(MESO_BAG_BASE_CHANCE.value * 100).toFixed(0)}% base chance to drop a meso bag at all, so your meso % is being multiplied by ${score.mesoBagChance.toFixed(2)}.`,
-      fix: `Close the ${score.dropToBreakpoint}% gap before adding any more meso. Drop and meso are not independent below this line — the first ${DROP_PCT_GUARANTEED_MESO_BAG}% of drop rate is partly a meso stat.`,
+      msg: `You have ${score.gearMesoPct}% Mesos Obtained on gear but only ${score.dropPctForMesoBags}% drop rate, so your meso % is being multiplied by ${score.mesoBagChance.toFixed(2)} — a share of mobs are dropping no bag for it to apply to.`,
+      fix: `Add drop before adding any more meso. Drop and meso are not independent below saturation: drop % is partly a MESO stat until bags are guaranteed. Saturation is modelled at ${DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED}% (you are ${score.dropToBreakpoint}% short) from an UNVERIFIED ${(MESO_BAG_BASE_CHANCE_UNVERIFIED.value * 100).toFixed(0)}% base bag chance — treat it as a direction, not a finish line.`,
     });
   }
   if (hasFarmLoadout) {
@@ -2657,7 +3264,166 @@ export function detectDrift(ch: CharacterWithLoadouts, opts: RecommendOptions = 
 }
 
 /* ==========================================================================
- * 14. PROVENANCE AND SELF-TEST
+ * 14. THE ONE ENTRY POINT
+ *
+ * Everything above is a library. This is the single function lib/rules.ts should
+ * call to get farming advice, and it is the only thing in this module the
+ * orchestrator needs to know about.
+ *
+ * SHAPE CONTRACT: FarmingRec is deliberately a structural subset of
+ * `Rec` in ./rules — same field names, same literal types for `pri` and `lv`,
+ * same `Conf` for `conf`. It is declared here rather than imported so that this
+ * module does not take a type dependency on a file it must not edit and cannot
+ * see the final state of; the self-test below asserts the subset relationship
+ * holds against the real Rec fields. A caller writes:
+ *
+ *     recs.push(...farmingRecs(ch, { displayedMesoPct, displayedDropPct }));
+ *
+ * and nothing else changes.
+ *
+ * WHY `dmg` AND `eff` ARE NEVER SET, even though Rec has them: `eff` is
+ * documented in ./rules as "dmg per 1e9 mesos — the sort key". A farming rec has
+ * no damage term at all, and the honest value of `dmg` for "move your Boss
+ * Damage hyper points to Normal Damage" is not zero and is not a damage gain
+ * either — it is a gain against a DIFFERENT target. Writing 0 would sort every
+ * farming rec to the bottom; writing a mob-damage figure into a field the rest
+ * of the app reads as boss damage would be worse. So both are left undefined and
+ * `pri` carries the ordering, which is what `pri` is for.
+ * ========================================================================*/
+
+/** A recommendation row, shaped to drop straight into ./rules' `Rec[]`. */
+export interface FarmingRec {
+  pri: 1 | 2 | 3 | 4;
+  lv: "hi" | "mid" | "ok";
+  t: string;
+  w: string;
+  /** Mesos to realise it. 0 means free — and most of the best farming advice is
+   *  free, which is the point of surfacing cost here. */
+  cost?: number;
+  conf?: Conf;
+  /** Slot id, or "character" for account-wide advice, matching ./rules. */
+  slot?: string;
+}
+
+export interface FarmingRecsOptions extends RecommendOptions {
+  /** Mesos Obtained % as the stat window reads it. Without it the Grand Sacred
+   *  valuation is skipped rather than guessed — there is no default stat window. */
+  readonly displayedMesoPct?: number;
+  /** Item Drop Rate % as the stat window reads it. */
+  readonly displayedDropPct?: number;
+  /** Bag-eligible drop %, when the caller knows it apart from the item total.
+   *  See GrandSacredValueOptions.dropPctForMesoBags — omitting it conflates the
+   *  two, and the Grand Sacred rec then carries that conflation in its text. */
+  readonly dropPctForMesoBags?: number;
+  /** Multiplicative factors already inside `displayedMesoPct`. Defaults to the
+   *  Heroic 6x alone; pass [6, 1.2] for a window read with the Wealth
+   *  Acquisition Potion up, which is what scoreFarming() would have built. */
+  readonly mesoMultipliers?: readonly number[];
+  /** Grand Sacred symbols equipped. Defaults to all of them. */
+  readonly grandSacredSymbols?: number;
+  /** The player's own measured mesos/hour, if they have one. */
+  readonly mesosPerHour?: number | null;
+}
+
+function priFromSeverity(sev: "hi" | "mid" | "ok"): 1 | 2 | 3 | 4 {
+  return sev === "hi" ? 1 : sev === "mid" ? 2 : 3;
+}
+
+/**
+ * Every farming recommendation for this character, ordered.
+ *
+ * Composes the three engines already in this file — cold start, drift, and the
+ * Grand Sacred valuation — rather than adding a fourth. The composition is the
+ * only new judgement: what order the three kinds of finding go in, and that is
+ * expressed entirely through `pri` so a reader can disagree with one comparison
+ * instead of unpicking a blend.
+ *
+ * Deduplicated by title, because cold-start step 1 and the "drop below
+ * saturation" drift finding are frequently the same advice reached two ways, and
+ * the same sentence twice reads as a bug.
+ */
+export function farmingRecs(ch: CharacterWithLoadouts, opts: FarmingRecsOptions = {}): FarmingRec[] {
+  const out: FarmingRec[] = [];
+  const seen = new Set<string>();
+  const push = (r: FarmingRec): void => {
+    const key = r.t.toLowerCase();
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(r);
+  };
+
+  // 1. Grand Sacred symbols, when the caller has supplied a real stat window.
+  //    Skipped rather than defaulted: this module has no business inventing a
+  //    Mesos Obtained figure for a character it cannot see.
+  if (opts.displayedMesoPct !== undefined && opts.displayedDropPct !== undefined) {
+    const g = valueGrandSacredForFarming({
+      displayedMesoPct: opts.displayedMesoPct,
+      displayedDropPct: opts.displayedDropPct,
+      dropPctForMesoBags: opts.dropPctForMesoBags,
+      mesoMultipliers: opts.mesoMultipliers,
+      symbols: opts.grandSacredSymbols,
+      mesosPerHour: opts.mesosPerHour,
+    });
+    push({
+      // Priority 3, not 1, and the reason is the honest one: +14% income is
+      // real but Grand Sacred symbols are gated on Grandis progression that a
+      // farming rec cannot accelerate. It is a reason to keep going, not a
+      // thing to go and do this evening.
+      pri: 3,
+      lv: g.mesoIncomeGainPct >= 10 ? "hi" : g.mesoIncomeGainPct >= 4 ? "mid" : "ok",
+      t: `Grand Sacred symbols: +${g.mesoIncomeGainPct.toFixed(1)}% mesos/hour`,
+      // The two assumptions the player cannot see from the headline are carried
+      // into the rec text, not left in a struct the UI may never render: which
+      // multipliers were divided out of the stat window, and whether the drop
+      // figure behind the meso half is bag-eligible drop or the item total.
+      // A figure whose caveat lives somewhere the reader never looks is an
+      // undeclared figure.
+      w: `${g.why} ASSUMED: ${g.meso.multiplierAssumption} ${g.bagDropAssumption}`,
+      cost: 0,
+      conf: "modelled",
+      slot: "character",
+    });
+  }
+
+  // 2. The cold-start ladder. Order is mechanical, so it maps to pri directly.
+  for (const step of coldStartPlan(ch, opts)) {
+    const gain = step.gainDropPct + step.gainMesoPct;
+    push({
+      pri: step.order <= 2 ? 1 : step.order <= 4 ? 2 : 3,
+      lv: gain >= 20 ? "hi" : gain >= 10 ? "mid" : "ok",
+      t: step.title,
+      w: step.detail,
+      cost: step.costMesos ?? 0,
+      // "ranking-only" is this module's word for what ./rules calls
+      // "placeholder" — CONFIDENCE_VOCABULARY in ./rules lists exactly that
+      // alias, so this mapping is the repo's own, not a new one.
+      conf: step.confidence === "sourced" ? "sourced" : "placeholder",
+      slot: "character",
+    });
+  }
+
+  // 3. Drift, in both directions. These are things already wrong on the
+  //    character, so a "hi" drift outranks a cold-start step of the same size.
+  for (const d of detectDrift(ch, opts)) {
+    push({
+      pri: priFromSeverity(d.severity),
+      lv: d.severity,
+      t: d.msg,
+      w: d.fix,
+      cost: 0,
+      conf: "modelled",
+      slot: d.slot ?? "character",
+    });
+  }
+
+  // Stable sort: pri, then severity, then insertion order. Array.prototype.sort
+  // is stable in every engine this ships to, so the third key needs no index.
+  const lvRank: Record<FarmingRec["lv"], number> = { hi: 0, mid: 1, ok: 2 };
+  return out.sort((a, b) => a.pri - b.pri || lvRank[a.lv] - lvRank[b.lv]);
+}
+
+/* ==========================================================================
+ * 15. PROVENANCE AND SELF-TEST
  * ========================================================================*/
 
 /** Every unverified constant in this module, for the UI's provenance panel and
@@ -2737,8 +3503,8 @@ export function __selfTest(): CheckResult[] {
 
   out.push({
     name: "breakpoint derives from the base bag chance",
-    ok: DROP_PCT_GUARANTEED_MESO_BAG === 67 && Math.abs(mesoBagChance(67) - 1) < 1e-9,
-    detail: `0.6 x 1.67 = ${(0.6 * 1.67).toFixed(3)}; breakpoint ${DROP_PCT_GUARANTEED_MESO_BAG}%`,
+    ok: DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED === 67 && Math.abs(mesoBagChance(67) - 1) < 1e-9,
+    detail: `0.6 x 1.67 = ${(0.6 * 1.67).toFixed(3)}; modelled saturation ${DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED}% — this check asserts the DERIVATION is intact, not that 0.6 is correct`,
   });
 
   out.push({
@@ -2823,6 +3589,284 @@ export function __selfTest(): CheckResult[] {
     ok: (["mystical", "hard", "solid", "glowing", "bright"] as CubeType[]).every((c) => estimateCubesForFarmLine(c).confidence === "ranking-only"),
     detail: "a KMS placeholder is on the path, so absolutes must be suppressed",
   });
+
+  /* ---- Grand Sacred pricing, and the errors it exists to prevent ---- */
+
+  out.push({
+    name: "Grand Sacred percentages parse out of lib/symbols.ts, not out of this file",
+    ok: GRAND_SACRED_MESO_PCT_PER_SYMBOL > 0 && GRAND_SACRED_DROP_PCT_PER_SYMBOL > 0 && GRAND_SACRED_MAX_SYMBOLS > 0,
+    detail: `${GRAND_SACRED_MESO_PCT_PER_SYMBOL}% meso and ${GRAND_SACRED_DROP_PCT_PER_SYMBOL}% drop per symbol, ${GRAND_SACRED_MAX_SYMBOLS} symbols — read from GRAND_SACRED_UNMODELLED_EFFECTS. A zero here means lib/symbols.ts reworded the strings and this module went silently blind.`,
+  });
+
+  {
+    // The inversion must round-trip through the module's own formula, or the
+    // additive total every valuation below is built on is wrong.
+    const a = additiveMesoPctFromDisplayed(764);
+    out.push({
+      name: "stat window inverts to the additive total it was built from",
+      ok: Math.abs(a - 44) < 1e-9 && mesosObtainedPct(a, [HEROIC_MESO_MULTIPLIER.value]) === 764,
+      detail: `764% displayed -> ${a}% additive -> ${mesosObtainedPct(a, [HEROIC_MESO_MULTIPLIER.value])}% displayed. (764 + 100)/6 - 100 = 44.`,
+    });
+  }
+
+  {
+    // THE FINDING. All three wrong answers are computed alongside the right one
+    // so that a future edit cannot quietly collapse them into each other.
+    const v = valueOfMesoPct(764, 5);
+    const modelled = v.relativeIncomeGain * 100;
+    const naive = v.naiveDisplayedRatio * 100;
+    out.push({
+      name: "+5% Mesos Obtained at 764% is neither 5% nor 0.65%",
+      ok:
+        Math.abs(v.naiveFaceValue * 100 - 5) < 1e-9 &&
+        Math.abs(naive - 0.6545) < 0.001 &&
+        Math.abs(modelled - 3.4722) < 0.001 &&
+        modelled < v.naiveFaceValue * 100 &&
+        modelled > naive * 5,
+      detail: `face 5.00%, divide-by-stat-window ${naive.toFixed(4)}%, modelled ${modelled.toFixed(4)}%. The stat-window reading understates it ${(modelled / naive).toFixed(1)}x because 764% already contains the Heroic ${HEROIC_MESO_MULTIPLIER.value}x.`,
+    });
+  }
+
+  {
+    // THE DEFECT THIS SECTION WAS SHIPPED WITH: the same stat window inverts to
+    // two different additive totals depending on what was running when the
+    // player read it, and the old signature gave a caller no way to say which.
+    // scoreFarming() builds [6, 1.2] whenever the Wealth Acquisition Potion is
+    // up; 764% then means 20% additive, not 44%, and +5% is worth 4.17% rather
+    // than 3.47% — a 17% understatement of a number a player spends hours on.
+    const potion = WEALTH_POTION_MESO_MULT;
+    const withPotion = valueOfMesoPct(764, 5, potion === null ? [HEROIC_MESO_MULTIPLIER.value] : [HEROIC_MESO_MULTIPLIER.value, potion]);
+    const heroicOnly = valueOfMesoPct(764, 5);
+    // The owner's real window with the potion up: (764 + 100) / 7.2 - 100 = 20
+    // additive, so +5 takes 120 -> 125. Written as the closed form rather than a
+    // captured output, so the test checks the model and not itself.
+    const exact = 125 / 120 - 1;
+    out.push({
+      name: "the multipliers divided out of the stat window are the caller's to choose",
+      ok:
+        potion !== null &&
+        Math.abs(withPotion.additiveBefore - 20) < 1e-6 &&
+        Math.abs(withPotion.relativeIncomeGain - exact) < 1e-6 &&
+        withPotion.relativeIncomeGain > heroicOnly.relativeIncomeGain &&
+        withPotion.multipliersDividedOut.length === 2 &&
+        withPotion.multiplierAssumption.includes("7.2x"),
+      detail:
+        potion === null
+          ? "NON_GEAR_SOURCES no longer carries a wealthPotion mesoMult, so the multiplicative case cannot be exercised"
+          : `764% / 6 = ${heroicOnly.additiveBefore.toFixed(1)}% additive -> +5% is worth ${(heroicOnly.relativeIncomeGain * 100).toFixed(4)}%; `
+            + `764% / (6 x ${potion}) = ${withPotion.additiveBefore.toFixed(1)}% additive -> ${(withPotion.relativeIncomeGain * 100).toFixed(4)}% = (125/120)-1. `
+            + `Ignoring the potion understates the line by ${((1 - heroicOnly.relativeIncomeGain / withPotion.relativeIncomeGain) * 100).toFixed(1)}%.`,
+    });
+  }
+
+  {
+    // The assumption has to be VISIBLE, not merely correct. Both halves of the
+    // Grand Sacred valuation now name what they divided out and what drop figure
+    // they used, in every case — including the default one, where the honest
+    // report is "we assumed".
+    const dflt = valueGrandSacredForFarming({ displayedMesoPct: 764, displayedDropPct: 50 });
+    const told = valueGrandSacredForFarming({
+      displayedMesoPct: 764,
+      displayedDropPct: 170,
+      dropPctForMesoBags: 50,
+      mesoMultipliers: [HEROIC_MESO_MULTIPLIER.value, ...MESO_MULTIPLIER_SOURCES.map((m) => m.mult)],
+    });
+    // Same character, same 170% window, but now the caller does NOT separate —
+    // which is what the old entry point did unconditionally. 170% is past
+    // modelled saturation, so the conflation reports the symbol's drop line as
+    // worth zero mesos when at 50% bag-eligible drop it is worth real income.
+    const conflated = valueGrandSacredForFarming({
+      displayedMesoPct: 764,
+      displayedDropPct: 170,
+      mesoMultipliers: [HEROIC_MESO_MULTIPLIER.value, ...MESO_MULTIPLIER_SOURCES.map((m) => m.mult)],
+    });
+    out.push({
+      name: "the Grand Sacred valuation declares which multipliers and which drop total it used",
+      ok:
+        dflt.assumptions.some((a) => a.includes("6x")) &&
+        dflt.assumptions.some((a) => a.includes("CONFLATES")) &&
+        dflt.bagDropSeparatedFromItemDrop === false &&
+        told.bagDropSeparatedFromItemDrop === true &&
+        told.dropPctForMesoBagsUsed === 50 &&
+        told.mesoMultipliersDividedOut.length === 2 &&
+        // The meso half must come off bag-eligible drop and the item half off
+        // the item total. Same +5% line, two different answers.
+        told.drop.dropBefore === 50 &&
+        told.dropItems.dropBefore === 170 &&
+        told.itemDropGainPct < dflt.itemDropGainPct &&
+        // The direction the assumption text claims, asserted rather than
+        // asserted-about: feeding the item total into mesoBagChance() makes the
+        // character look nearer saturation than they are, which UNDERSTATES the
+        // drop line's meso value — here to exactly zero.
+        conflated.drop.saturated && !told.drop.saturated &&
+        conflated.mesoIncomeGainPct < told.mesoIncomeGainPct,
+      detail:
+        `default: conflated at ${dflt.dropPctForMesoBagsUsed}% and divided by ${dflt.mesoMultipliersDividedOut.join(" x ")}, both said out loud in ${dflt.assumptions.length} assumptions. `
+        + `told: bags from ${told.dropPctForMesoBagsUsed}%, items from ${told.dropItems.dropBefore}% -> +${told.itemDropGainPct.toFixed(2)}% items vs +${dflt.itemDropGainPct.toFixed(2)}% when conflated. `
+        + `Same 170% window conflated reports +${conflated.mesoIncomeGainPct.toFixed(3)}% mesos/hr against +${told.mesoIncomeGainPct.toFixed(3)}% when the 50% bag-eligible figure is supplied.`,
+    });
+  }
+
+  {
+    // The cleanest structural fact in the section: the world multiplier cancels
+    // out of every relative comparison. If this ever fails, some caller has
+    // started ranking meso lines differently in Heroic than in Interactive.
+    const heroic = valueOfMesoPct(mesosObtainedPct(44, [HEROIC_MESO_MULTIPLIER.value]), 5).relativeIncomeGain;
+    const plain = (100 + 49) / (100 + 44) - 1;
+    out.push({
+      name: "the Heroic multiplier cancels out of the relative gain",
+      ok: Math.abs(heroic - plain) < 1e-9,
+      detail: `both ${(heroic * 100).toFixed(4)}% — the 6x changes how much you earn and nothing about which meso line to take next`,
+    });
+  }
+
+  {
+    const diminishing = [500, 764, 1500].map((d) => valueOfMesoPct(d, 5).relativeIncomeGain);
+    const atCap = valueOfMesoPct(mesosObtainedPct(MESO_TOTAL_ADDITIVE_CAP_PCT.value, [HEROIC_MESO_MULTIPLIER.value]), 5);
+    out.push({
+      name: "the meso line's value strictly diminishes and reaches exactly zero at the cap",
+      ok:
+        diminishing[0] > diminishing[1] &&
+        diminishing[1] > diminishing[2] &&
+        atCap.relativeIncomeGain === 0 &&
+        atCap.cappedAwayPct === 5,
+      detail: `${diminishing.map((d) => (d * 100).toFixed(2) + "%").join(" > ")}, and 0.00% once additive is at the ${MESO_TOTAL_ADDITIVE_CAP_PCT.value}% cap`,
+    });
+  }
+
+  {
+    // Drop does two jobs that diminish differently. Below saturation both move;
+    // above it only item drops do. Collapsing them is the error guarded here.
+    const below = valueOfDropPct(50, 10);
+    const above = valueOfDropPct(DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED + 50, 10);
+    out.push({
+      name: "drop % stops being a meso stat at saturation but never stops being a drop stat",
+      ok:
+        !below.saturated && below.relativeMesoIncomeGain > 0 && below.relativeItemDropGain > 0 &&
+        above.saturated && above.relativeMesoIncomeGain === 0 && above.relativeItemDropGain > 0,
+      detail: `at 50%: +${(below.relativeMesoIncomeGain * 100).toFixed(2)}% mesos and +${(below.relativeItemDropGain * 100).toFixed(2)}% items; past saturation: +0% mesos, +${(above.relativeItemDropGain * 100).toFixed(2)}% items`,
+    });
+  }
+
+  {
+    // The two halves compound. Adding them would understate the answer, which is
+    // the one naive move in this section that errs downwards.
+    const g = valueGrandSacredForFarming({ displayedMesoPct: 764, displayedDropPct: 50 });
+    const summed = g.meso.relativeIncomeGain + g.drop.relativeMesoIncomeGain;
+    out.push({
+      name: "meso and drop compound rather than add",
+      ok: g.mesoIncomeMultiplier - 1 > summed && Math.abs(g.mesoIncomeGainPct - 14.074) < 0.01,
+      detail: `product ${(g.mesoIncomeGainPct).toFixed(3)}% vs sum ${(summed * 100).toFixed(3)}% — mesos per bag and bags per kill are different factors of the same product`,
+    });
+  }
+
+  out.push({
+    name: "no absolute mesos/hour without a measured rate",
+    ok: valueGrandSacredForFarming({ displayedMesoPct: 764, displayedDropPct: 50 }).mesosPerHourGain === null,
+    detail: "FARM_RATE.mesosPerHour is a placeholder, so an absolute figure is only produced when the caller supplies one",
+  });
+
+  out.push({
+    name: "EXP Obtained is named as unpriced rather than silently dropped",
+    ok: GRAND_SACRED_EXP_NOT_PRICED.line !== null,
+    detail: `${GRAND_SACRED_EXP_NOT_PRICED.line} — no sourced meso value of EXP exists, so it is left unvalued`,
+  });
+
+  /* ---- the audit's own findings, locked in ---- */
+
+  out.push({
+    name: "the unverified breakpoint carries its provenance in its name",
+    ok:
+      MESO_BAG_BASE_CHANCE_UNVERIFIED.placeholder === true &&
+      UNVERIFIED.some((u) => u.name === "MESO_BAG_BASE_CHANCE_UNVERIFIED") &&
+      UNVERIFIED.some((u) => u.name === "DROP_PCT_GUARANTEED_MESO_BAG_UNVERIFIED") &&
+      MESO_BAG_SOURCING_ATTEMPT.magnitudeFound === false &&
+      MESO_BAG_SOURCING_ATTEMPT.mechanismCorroborated === true,
+    detail: "0.60 has a corroborated mechanism and an unsourced magnitude; both the constant and the figure derived from it now say so in their names and in the registry",
+  });
+
+  {
+    // ENUMERATED, not whitelisted. The version this replaced asserted the same
+    // sentence against a hardcoded list of four names and passed while
+    // FARM_MAPS — placeholder: true, unregistered — sat two screens away. A test
+    // that can only fail if someone edits the test is not a guard; it is a note
+    // that stops the next reader looking.
+    //
+    // ONE direction only, and on purpose. An unregistered placeholder renders as
+    // clean in a provenance panel, which is the harm. The converse — a registry
+    // entry naming something that is not an export — is NOT checked, because
+    // most entries here deliberately name a doubt rather than a constant
+    // (BADGE_CAN_ROLL_DROP_MESO, FAMILIAR_ITEM_DROP_FEEDS_MESO_BAGS,
+    // MAP_MOB_HP). A test that flagged those would be asserting a convention
+    // this file does not follow.
+    const placeholders = Object.entries(FARMING_MODULE as Readonly<Record<string, unknown>>)
+      .filter(([, v]) => {
+        if (typeof v !== "object" || v === null) return false;
+        // Structural, not `instanceof Sourced`: Sourced<T> is an interface and
+        // has no runtime identity. Every constant in this file that carries
+        // provenance carries these two fields.
+        const s = v as { placeholder?: unknown; source?: unknown };
+        return s.placeholder === true && typeof s.source === "string";
+      })
+      .map(([name]) => name);
+    const listed = new Set(farmingUnverified().flatMap((u) => u.name.split(" / ")));
+    const unregistered = placeholders.filter((n) => !listed.has(n));
+    out.push({
+      name: "every placeholder constant is listed by farmingUnverified()",
+      // placeholders.length > 0 is not padding. If the namespace ever fails to
+      // enumerate — a bundler transform, a future module format — the filter
+      // returns [] and an empty list satisfies `every`. The test would then pass
+      // by construction again, silently, which is the exact bug being fixed.
+      ok: placeholders.length > 0 && unregistered.length === 0,
+      detail:
+        placeholders.length === 0
+          ? "FOUND NO PLACEHOLDER EXPORTS AT ALL — the module namespace did not enumerate, so this test proved nothing"
+          : `${placeholders.length} exports carry placeholder: true (${placeholders.join(", ")}); `
+            + (unregistered.length === 0 ? "all are registered" : `UNREGISTERED: ${unregistered.join(", ")}`),
+    });
+  }
+
+  /* ---- the entry point's shape contract ---- */
+
+  {
+    const ch: CharacterWithLoadouts = {
+      name: "Archerroni", cls: "Bow Master", main: "dex", lvl: 245, cp: 0,
+      stats: { main: 20790, att: 1497, crit: 0, critdmg: 0, boss: 159, ied: 92.9, hp: 0, arcane: 1070, starforce: 188 },
+      items: {
+        ring1: { name: "Silver Blossom Ring", lvl: 110, star: 0, pot: "legendary", sup: 0, p: ["Mesos Obtained +20%"], f: [] },
+        earring: { name: "Sup Gollux Earring", lvl: 150, star: 0, pot: "legendary", sup: 0, p: ["Item Drop Rate +20%"], f: [] },
+      },
+      loadouts: [],
+    };
+    const recs = farmingRecs(ch, { displayedMesoPct: 764, displayedDropPct: 50 });
+    const shapeOk = recs.every(
+      (r) =>
+        [1, 2, 3, 4].includes(r.pri) &&
+        ["hi", "mid", "ok"].includes(r.lv) &&
+        typeof r.t === "string" && r.t.length > 0 &&
+        typeof r.w === "string" && r.w.length > 0 &&
+        (r.conf === undefined || ["sourced", "modelled", "placeholder"].includes(r.conf)),
+    );
+    // dmg and eff are absent from FarmingRec entirely, so the compiler already
+    // guarantees they are never set. Asserted over the runtime object too,
+    // because a later edit could widen the interface without anyone noticing
+    // that it starts feeding ./rules' damage sort key with a farming number.
+    const noDamageTerm = recs.every((r) => {
+      const wide = r as unknown as Record<string, unknown>;
+      return wide.dmg === undefined && wide.eff === undefined;
+    });
+    const sorted = recs.every((r, i) => i === 0 || recs[i - 1].pri <= r.pri);
+    out.push({
+      name: "farmingRecs returns Rec-shaped rows, sorted, with no invented damage term",
+      ok: recs.length > 0 && shapeOk && sorted && noDamageTerm,
+      detail: `${recs.length} recs; pri in 1..4, lv in hi/mid/ok, conf in the ./rules vocabulary, dmg and eff deliberately absent`,
+    });
+    out.push({
+      name: "farmingRecs deduplicates advice reached two ways",
+      ok: new Set(recs.map((r) => r.t.toLowerCase())).size === recs.length,
+      detail: "cold start and drift frequently produce the same sentence; the same sentence twice reads as a bug",
+    });
+  }
 
   out.push({
     name: "loadout overlay resolves by absence, not by copy",

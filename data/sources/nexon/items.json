@@ -1,0 +1,492 @@
+{
+  "key": "items",
+  "wave": "nexon-first-party-source-research",
+  "collectedOn": "2026-09-13",
+  "sourceClass": "first-party (NEXON America official MapleStory Maple Guides, GMS)",
+  "pagesRead": [
+    "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/32431/useful-cash-items",
+    "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+    "https://www.nexon.com/maplestory/game/maple-guides/all"
+  ],
+  "readingNotes": [
+    "Every page was read in full via document.body.innerText (pages are 2-10 KB of text, none truncated). Every <table> on every page was read separately via document.querySelectorAll('table'); only the item-enhancement page and the MVP page have real tables.",
+    "The cube lists on /32431/useful-cash-items are IMAGES (alt text only: 'Boss Obtainable Cubes Tooltips', 'Cash Shop Cubes Tooltips', 'Special Event Cubes Tooltips', 'Limited Time Sale Cubes Tooltips'). The 'Other Tips' section is also image-only. No numbers are recoverable from that page beyond the prose quoted here.",
+    "The Maple Guides index was paginated through to the end (26 guides). There is NO star-force-enhancement guide in the corpus. /5907/star-force-hunting is about Star Force map hunting, not enhancement. This is why every star force rate/cost verdict below is 'absent' rather than 'not looked for'.",
+    "/13274/maple-value-points-mvp-service was NOT on the assigned page list. It was opened because it is the only first-party page that addresses SF_COST.mvpMultiplier and SF_COST.mvpMaxStar, which ARE assigned constants. Its URL is labelled on every claim drawn from it."
+  ],
+  "pageTextAddressingTheReader": {
+    "quote": "You can directly move to the information you want by searching it with [Ctrl + F].",
+    "appearsOn": "all five assigned pages",
+    "assessment": "Benign reader-facing UI hint, not an instruction directed at an agent. Not acted on. No other text on any of the five pages attempted to direct the reader to take an action outside the game."
+  },
+
+  "reconciliations": [
+    {
+      "topic": "star-force",
+      "constant": "SF_COST base cost formula (lib/starforce.ts) - L^3*(star+1)/2500 low band, L^3*(star+1)^2.7/perStarDivisor from 10 stars",
+      "repoValue": "verified:false, provenance 'community-single' (blushiemagic); reproduces Silver Blossom Ring Lv110 9->10 = 533,400 and Mechanator Pendant Lv120 10->11 = 2,801,600",
+      "guideValue": "no meso figure of any kind",
+      "verdict": "absent",
+      "quote": "If an item has maxed out on the number of upgrades, you can also try to increase its stats through Star Force Enhancement.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "The Star Force Enhancement section of the item-enhancement guide is eight sentences of UI directions and TIPS. It contains no cost, no rate, no cap and no percentage. I could not source this, and the guide index confirms there is no other first-party page that would."
+    },
+    {
+      "topic": "star-force",
+      "constant": "STAR_ROWS success / boom / conditionalDestroy table, stars 0-29 (lib/starforce.ts BASE)",
+      "repoValue": "full per-star table, e.g. 15->16 success 0.30 destroy 0.03; 21->22 success 0.15 destroy 0.15",
+      "guideValue": "none",
+      "verdict": "absent",
+      "quote": "The higher the Star Force Enhancement level, the greater the increase of an item's stats.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "That sentence is the entirety of what Nexon publishes about star scaling. No success rate, no destroy rate, no boom range anywhere in the corpus."
+    },
+    {
+      "topic": "star-force",
+      "constant": "maxStarsForLevel() star cap by item level (lib/starforce.ts) - 138+:30, 129+:20, 118+:15, 108+:10, 95+:8, else 5",
+      "repoValue": "six-band table",
+      "guideValue": "none",
+      "verdict": "absent",
+      "quote": "Items that have been enhanced with Star Force will be marked with one star (★) per enhanced level.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "No item-level band, no cap, and no number 30 appears on the page. I could not source the star cap by item level."
+    },
+    {
+      "topic": "star-force",
+      "constant": "Superior equipment caps at 15 stars (comment on maxStarsForLevel: 'Superior equipment caps at 15 and uses a harsher table that is NOT modelled here')",
+      "repoValue": "assumed cap 15, harsher table unmodelled",
+      "guideValue": "Superior rank is named twice, but never with a star cap",
+      "verdict": "absent",
+      "quote": "You cannot use the Safeguard function to protect Superior-rank equipment.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "The guide confirms Superior-rank equipment is a distinct star force case, and gives one hard rule about it (no Safeguard - see newFacts), but never states a cap of 15 or any other number. The '15' remains unsourced."
+    },
+    {
+      "topic": "star-force",
+      "constant": "SF_COST.rebootMultiplier = 1 and the 'heroic-cost-multiplier' assumption (a Heroic tap costs what an Interactive tap costs)",
+      "repoValue": "1, flagged unverified on EVERY tap",
+      "guideValue": "no Heroic/Interactive distinction is drawn anywhere in the Star Force section",
+      "verdict": "absent",
+      "quote": "Bonus Potentials are not available in Heroic worlds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "This quote is on the SAME page, four paragraphs above the Star Force section: Nexon does carve Heroic out by name when a system differs. It does not carve Star Force out. That is structural evidence, NOT a statement that the cost multiplier is 1 - the guide gives no star force cost at all, so it cannot confirm or contradict the multiplier. Keep the flag."
+    },
+    {
+      "topic": "star-force",
+      "constant": "SF_COST.mvpMultiplier = { silver: 0.97, gold: 0.95, diamond: 0.9 }",
+      "repoValue": "silver 3% off, gold 5% off, diamond 10% off (provenance 'community-single')",
+      "guideValue": "Silver 3%, Gold 5%, Diamond 10% - exact match, first-party",
+      "verdict": "confirmed",
+      "quote": "Bronze: N/A\nSilver: 3% discount\nGold: 5% discount\nDiamond: 10% discount\nRed: 10% discount\nBlack: 10% discount",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "note": "Three of the repo's four tiers land exactly. The repo's MvpTier union is missing the two ranks above Diamond - see newFacts."
+    },
+    {
+      "topic": "star-force",
+      "constant": "SF_COST.mvpMaxStar = 17 (MVP discount applies below 17 stars)",
+      "repoValue": "17",
+      "guideValue": "up to 17 stars",
+      "verdict": "confirmed",
+      "quote": "Receive discounts when performing Star Force enhancements up to 17 stars. Superior-ranked items are excluded from this discount.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "note": "Also newly sourced: Superior-ranked items are excluded from the MVP discount entirely. costPerAttempt() does not model that exclusion."
+    },
+    {
+      "topic": "star-force",
+      "constant": "MVP_IN_HEROIC_PROVENANCE - whether the MVP star force discount applies in Heroic at all",
+      "repoValue": "'community-single'; default tier 'none' so the common case never under-quotes",
+      "guideValue": "not stated either way",
+      "verdict": "absent",
+      "quote": "MVP members rank Silver and above also receive a 3% discount applied to Auction House sale transaction fees (Interactive Worlds only).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "note": "Quoted to show the page's OWN convention: it tags Interactive-only perks explicitly, and it tags three of them (AH slots, AH fee discount, Spell Trace Fever at Gold+). The Star Force discount carries no such tag. That is suggestive that it applies on Heroic, but the page never says so, so this stays 'absent' and the default of tier 'none' should stay."
+    },
+    {
+      "topic": "star-force",
+      "constant": "STAR_CATCH_SUCCESS_MULTIPLIER = 1.05, with the repo comment 'v.271 removed the minigame and applies the bonus automatically to every attempt, so this defaults ON and has no user toggle'",
+      "repoValue": "1.05, automatic, no minigame, no toggle",
+      "guideValue": "Nexon's live guide still describes Star Catching as a mini-game the player plays to raise the rate",
+      "verdict": "contradicted",
+      "quote": "You can increase the Star Force Enhancement success rate through the \"Star Catching\" mini-game.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "The contradiction is about the MECHANIC, not the number: the guide gives no multiplier, so 1.05 itself is still absent. The page also carries an image captioned alt='MapleStory Star Catching Minigame'. Either the repo's v.271 claim is wrong, or Nexon's guide is stale. This does not settle which - but the repo currently states the minigame is gone as fact, and the only first-party page on the subject says otherwise."
+    },
+    {
+      "topic": "star-force",
+      "constant": "traceRecoveryStar() / Equipment Trace boom recovery stars (15-19->12, 20->15, 21-22->17, 23-25->19, 26-30->20)",
+      "repoValue": "full per-star recovery table",
+      "guideValue": "confirms the Equipment Trace exists and what it is for; gives no recovery star",
+      "verdict": "absent",
+      "quote": "If the equipment has been destroyed while enhancing with Star Force, an Equipment Trace is created.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "The mechanism is first-party confirmed; the numbers are not. Second sentence, also first-party: \"Use the Equipment Transfer function to move the stats of the destroyed item to another version of the same item.\" - which confirms lib/rules.ts:1159's note that Trace Transfer needs a fresh copy of the SAME equip."
+    },
+    {
+      "topic": "star-force",
+      "constant": "SfEvents - five10Fifteen (GUARANTEED_STARS 5/10/15), discount30Multiplier 0.7, DESTRUCTION_REDUCTION_MULTIPLIER 0.7 below star 22, DOUBLE_STAR_MAX_RESULT_STAR 10",
+      "repoValue": "four modelled events with the above constants",
+      "guideValue": "none of the four events is mentioned",
+      "verdict": "absent",
+      "quote": "All forms of Enhancement can be done via the Enhance menu (available via the [O] key by default).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "The Maple Guides are evergreen system documentation and never mention star force events. 5/10/15, 30% off, destruction reduction and 1+1 are all absent from the entire corpus. They would live in patch notes, not guides."
+    },
+    {
+      "topic": "star-force",
+      "constant": "SF_COST.safeguardMultiplier = 3 (additive), and enhancement modes 2/3/4 costMult (ENHANCEMENT_MODE_QUESTION)",
+      "repoValue": "3, additive, verified:false; mode cost multipliers 1.5/2.5/3 at 15-17 and 2/3.5/6.5 at 18-21",
+      "guideValue": "Safeguard is named once, with no cost and no rate",
+      "verdict": "absent",
+      "quote": "You cannot use the Safeguard function to protect Superior-rank equipment.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "This is the only sentence in the corpus containing the word Safeguard. It resolves nothing about the x2 vs x3 disagreement, but it does add a rule the repo does not model (Superior cannot be safeguarded)."
+    },
+
+    {
+      "topic": "transfer-hammer",
+      "constant": "Transfer Hammer level span - lib/rules.ts:1993 REFUSES to state it ('the level span it allows and the stars it costs are both unsourced in this repo'), the remembered figure being 'ten levels upward'",
+      "repoValue": "refused / unstated; remembered as a flat 'ten levels upward'",
+      "guideValue": "1-10 levels higher, OR 1-20 levels higher when the extracting item is Lv. 119 or below",
+      "verdict": "contradicted",
+      "quote": "The Level Requirement of the receiving item must be 1-10 levels higher than the Level Requirement of the extracted item, or 1-20 levels if the extracting item is Lv. 119 or below.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "THE UNBLOCK. The remembered flat 'ten levels' is wrong as a blanket rule - there is a second, wider branch below Lv. 120. Note also the span is a RANGE with a floor: the receiving item must be strictly higher level, and overshooting fails too. Nexon's own two worked examples, verbatim: \"You can transfer stats of a Lv. 130 item to an item with a level as high as Lv. 140, but not to a Lv. 120 or Lv. 150 item.\" and \"You can transfer stats of a Lv. 110 item to an item with a level as high as Lv. 130, but not to a Lv. 140 item.\" For Archerroni specifically: a Lv. 110 Silver Blossom Ring can hammer up to Lv. 130; a Lv. 120 Mechanator Pendant can only reach Lv. 121-130."
+    },
+    {
+      "topic": "transfer-hammer",
+      "constant": "What survives a Transfer Hammer (lib/rules.ts warns 'potential and flames are lost when you replace it' and refuses to claim star force partially survives)",
+      "repoValue": "unstated; the planner deliberately does not claim star force survives",
+      "guideValue": "Star Force Enhancement, Potentials, Bonus Potentials and Soul Weapon enhancements all transfer",
+      "verdict": "confirmed",
+      "quote": "Transfer Hammers are mysterious hammers that allow Lv. 40+ characters to transfer the stat bonuses from Star Force Enhancement, Potentials, Bonus Potentials and Soul Weapon enhancements from a lower-level item to a higher-level item.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "Four things carry, named first-party. Corroborated on the same page: \"The Transfer Hammer can be used to transfer the Potential of an enhanced lower-level equip item to a higher-level equip item.\" This directly sources the claim rules.ts refused to make. The planner can now tell a Heroic player their potential and star force investment survives a gear upgrade inside the level span."
+    },
+    {
+      "topic": "transfer-hammer",
+      "constant": "Whether Rebirth Flame bonus stats survive a Transfer Hammer",
+      "repoValue": "rules.ts asserts flames are lost on replacement",
+      "guideValue": "not addressed - flames/Bonus Stats are NOT in the list of what transfers, and are not stated to be lost either",
+      "verdict": "absent",
+      "quote": "Stats displayed on the item window are called item stats, and include STR, DEX, INT, LUK and others. When displayed in an item's tooltip, they are largely categorized into three parts, displayed in the following order: Base Stats + Bonus Stats + Enhancement Stats.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "Quoted because it establishes that the guide treats Bonus Stats (the flame category) as a distinct third thing from Potential and from Enhancement stats - so the omission of Bonus Stats from the transfer list is a real omission, not a wording collapse. It is an argument that flames do NOT transfer, but the guide never says so. I could not source this; do not flip the rules.ts claim on this evidence alone."
+    },
+    {
+      "topic": "transfer-hammer",
+      "constant": "The star cost of a Transfer Hammer (the 'stars minus one' rule)",
+      "repoValue": "unstated, explicitly refused",
+      "guideValue": "not stated - only a minimum entry requirement is given",
+      "verdict": "absent",
+      "quote": "Equipment must have at least 1 Star Force Enhancement for its abilities to be extracted.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "This is an eligibility floor (you need at least 1 star to hammer at all), NOT a statement that you lose one star. Nexon never says how many stars arrive on the receiving item. The 'stars minus one' figure remains unsourced - the refusal in rules.ts should be narrowed to the star cost only, since the level span and what-carries are now both sourced."
+    },
+    {
+      "topic": "transfer-hammer",
+      "constant": "Slot/type compatibility rules for a transfer",
+      "repoValue": "not modelled",
+      "guideValue": "same Equipment Type required; weapons must match weapon type; Overalls are the one exception",
+      "verdict": "absent",
+      "quote": "The extracting item and receiving item must have the same Equipment Type in order for the transfer to work (Hat to Hat, Cape to Cape, Ring to Ring, etc), and weapons must be of the same type for a transfer to function (Bow to Bow, Two-Handed Sword to Two-Handed Sword, etc).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "Marked 'absent' against the repo because the repo models no compatibility rule at all. Bow to Bow matters directly for a Bow Master. Overall exception, verbatim: \"The only exception for this is that Overalls, as they effectively equip in both the Top and Bottom slot, can extract and transfer stats to both Top and Bottom items (as well as other Overalls).\""
+    },
+
+    {
+      "topic": "item-potential",
+      "constant": "CUBE_MAX_TIER = { mystical: epic, hard: unique, solid: legendary, glowing: legendary, bright: legendary }",
+      "repoValue": "epic / unique / legendary / legendary / legendary",
+      "guideValue": "identical on all five",
+      "verdict": "confirmed",
+      "quote": "Hard Cubes: Obtained from boss and elite monsters, harvesting, crafting in Regular World, Monster Collection, Pollo & Fritto, Monster Park, and the Reboot World General Store. Can be used on Rare to Unique items to reroll Potential. Max Result: Unique.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "note": "All five match. Corroborating verbatim lines from the same page: \"Mystical Cubes: Obtained at a fixed rate while hunting bosses. Resets the existing Potentials of Rare to Epic items.\" / \"Solid Cubes: ... Can be used on Rare to Legendary items to reroll Potential. Max Result: Legendary.\" / \"Glowing Cubes: ... Can be used on Rare to Legendary items to reroll Potential.\" / \"Bright Cubes: ... Can be used on Rare to Legendary items to reroll Potential\". CUBE_MAX_TIER can be promoted from 'guide-graph node' sourcing to first-party."
+    },
+    {
+      "topic": "item-potential",
+      "constant": "BRIGHT_MECHANIC = 'lock-line' (Bright Cube lets you lock a chosen line)",
+      "repoValue": "'lock-line', placeholder:true, note 'If it is really keep-better, pHitBright() overstates Bright by the factor a locked line buys'",
+      "guideValue": "choose 'before' or 'after' Potential lines - i.e. keep-better, not lock-line",
+      "verdict": "contradicted",
+      "quote": "Bright Cubes: Can be purchased from Cash Shop (for NX or Maple Rewards Points on Interactive Worlds and mesos on Heroic Worlds). Can be used on Rare to Legendary items to reroll Potential, with the option to choose before or after Potential lines. Can increase up to 2 ranks according to set probability rates.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "note": "THE SECOND HIGH-VALUE FINDING. Nexon first-party settles the repo's own flagged conflict in favour of maplestorywiki and AGAINST data/guide-graph.json's 'choose a line'. The item-enhancement page says the same thing independently: \"Bright Cubes: ... with a chance for double rank-up and the option to choose 'before' or 'after' Potential lines.\" Two first-party pages, same wording. BRIGHT_MECHANIC should flip to 'keep-better', which means pHitBright() is currently overstating Bright Cubes."
+    },
+    {
+      "topic": "item-potential",
+      "constant": "Whether Bright Cubes exist on Heroic worlds",
+      "repoValue": "modelled as available, at 22,000,000 mesos",
+      "guideValue": "yes - Cash Shop, for mesos on Heroic Worlds",
+      "verdict": "confirmed",
+      "quote": "Bright Cubes: Can be purchased from Cash Shop (for NX or Maple Rewards Points on Interactive Worlds and mesos on Heroic Worlds).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "note": "Glowing Cubes carry the identical clause. Both Glowing and Bright are Heroic-purchasable for mesos - confirmed first-party. This settles the assigned question 'whether Bright/Black cubes exist there': Bright yes. Black Cube is never mentioned anywhere in the GMS guide corpus, consistent with the repo treating it as KMS-only lineage."
+    },
+    {
+      "topic": "item-potential",
+      "constant": "CUBE_COST_MESOS = { glowing: 12,000,000, bright: 22,000,000 }",
+      "repoValue": "12M / 22M flat, no level scaling",
+      "guideValue": "states the currency, never the price",
+      "verdict": "absent",
+      "quote": "Obtained from the Cash Shop (NX on Interactive Worlds / Mesos on Heroic Worlds)",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/32431/useful-cash-items",
+      "note": "That heading on the useful-cash-items page is followed by an IMAGE of cube tooltips (alt='Cash Shop Cubes Tooltips'), not text. No meso price for any cube appears as text anywhere in the corpus. I could not source the 12M/22M figures. CUBE_COST_LEVEL_SCALING (no level scaling) is equally unsourced - the guide never mentions cube price varying with item level, which is weak negative evidence only."
+    },
+    {
+      "topic": "item-potential",
+      "constant": "TIER_UP odds (rare 0.15 / epic 0.035 / unique 0.003-0.014) and DOUBLE_RANK_UP_GIVEN_UP (0 for glowing and bright)",
+      "repoValue": "KMS Black/Red Cube disclosure mapped onto GMS names by lineage; all placeholder:true",
+      "guideValue": "explicitly refuses to publish the rates",
+      "verdict": "absent",
+      "quote": "Can increase up to 2 ranks according to set probability rates.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "note": "'according to set probability rates' is Nexon America declining to publish the number - the phrase appears on Glowing, Bright, Hard, Solid, Karma Hard and Karma Solid. GMS publishes no cube probability disclosure in the guide corpus. The repo's KMS-lineage placeholders remain the best available and must stay flagged. The guide does confirm the double-rank-up MECHANIC is real, which means the repo's conservative 0 is known to be too low."
+    },
+    {
+      "topic": "item-potential",
+      "constant": "PRIME_LINE (2nd/3rd line at item tier) and the three-lines-per-item cap",
+      "repoValue": "line2/line3 probabilities per cube; three-line model throughout analyseHit()",
+      "guideValue": "silent",
+      "verdict": "absent",
+      "quote": "Potentials are divided into 4 ranks: Rare (Blue), Epic (Purple), Unique (Gold), and Legendary (Green). The odds of obtaining a specific Potential and its stat bonus differ depending on the Potential's rank, and become more rare as the Potential becomes stronger.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "note": "The four ranks and their colours are confirmed (matches TIER_ORDER minus 'none'). The number of lines per item, how many roll at tier, and every line-pool weight are absent from the corpus. I could not source the line caps per tier."
+    },
+    {
+      "topic": "item-potential",
+      "constant": "Bonus Potential is excluded from the Heroic model",
+      "repoValue": "no bonus-potential cube is modelled (CubeType has no bonus variants)",
+      "guideValue": "Bonus Potentials do not exist on Heroic worlds",
+      "verdict": "confirmed",
+      "quote": "Bonus Potentials are not available in Heroic worlds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "note": "HEROIC DISTINCTION, first-party and unambiguous. Corroborated by the cube list: Bonus Glowing, Bonus Bright and Violet Cubes are each marked \"Interactive Worlds only\". Any advice mentioning bonus potential is wrong for Archerroni. Note the tension with the Transfer Hammer text, which lists Bonus Potentials among what transfers - on Heroic that clause is inert."
+    },
+
+    {
+      "topic": "set-items",
+      "constant": "Boss Accessory set reads 9/9 in-game while the panel lists TEN equipped qualifying items (lib/sets.ts boss-accessory, largest tier count:9, ten pieces defined)",
+      "repoValue": "set marked verified:false pending 'either the set caps its count below the number of slots it accepts, or one listed item does not contribute'",
+      "guideValue": "the first branch is correct - the set list is allowed to be longer than the largest bonus, and extras do nothing",
+      "verdict": "confirmed",
+      "quote": "Note that some set lists have more items than the amount needed for the largest bonus, and that there are no additional benefits to equipping more items than required for the largest bonus.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
+      "note": "THE OPEN QUESTION IS SETTLED, first-party. A ten-piece list with a nine-piece top tier is exactly the documented shape: the panel displays 9/9 because 9 is the largest bonus, and the tenth equipped piece contributes nothing. The repo's piece list is NOT one too long and the count is NOT one high - but activeSets()/cumulativeEffects() must CLAMP the effective count to the largest tier (9) rather than letting a raw count of 10 fall through. No unequip experiment is needed."
+    },
+    {
+      "topic": "set-items",
+      "constant": "cumulativeEffects() - all lower tiers of a set stack, and multiple sets stack",
+      "repoValue": "cumulative within a set, additive across sets",
+      "guideValue": "both stated explicitly",
+      "verdict": "confirmed",
+      "quote": "Even if you equip multiple sets of items, the bonuses from each equipped set will be stacked and applied. Additionally, all qualifying bonuses from a single set also stack and are applied.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
+      "note": "First-party confirmation of the repo's stacking model. The page's worked example spells out that 4 Pinnacle pieces grant the 2pc, 3pc AND 4pc bonuses simultaneously."
+    },
+    {
+      "topic": "set-items",
+      "constant": "The 'Boss Accessory' set exists under that name, with a 3-piece tier",
+      "repoValue": "id 'boss-accessory', name 'Boss Accessory', tiers at 3/5/7/9",
+      "guideValue": "Nexon names the set and uses a 3-piece bonus in its worked example",
+      "verdict": "confirmed",
+      "quote": "For example, if you have 4 items from the Pinnacle Set equipped and 3 items from the Boss Accessory Set equipped, you will receive the following bonuses:",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
+      "note": "The example's bullet list ends with \"3-piece Boss Accessory Set Bonus\", so a 3-piece tier is first-party confirmed. Only the name and the existence of the 3pc tier - the effect VALUES at 3/5/7/9 are not given."
+    },
+    {
+      "topic": "set-items",
+      "constant": "Boss Accessory set member list (ten pieces, transcribed from the in-game Set Effect panel 2026-09-12)",
+      "repoValue": "ten slot-gated name patterns",
+      "guideValue": "the guide lists no set's members",
+      "verdict": "absent",
+      "quote": "If an item is part of a set, its tooltip displays the bonuses granted upon equipping items from the same set, as well as all of the items that can be collected and equipped to help you complete the set.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
+      "note": "Nexon points the player at the in-game tooltip rather than publishing membership. The repo's in-game panel transcription is therefore the best source that exists and is BETTER than anything first-party on the web. It should keep its provenance but no longer be held back by the 9/9-vs-10 question, which the previous row settles."
+    },
+    {
+      "topic": "set-items",
+      "constant": "Set effect values for every tier of every set in BUILTIN_SETS",
+      "repoValue": "full effect tables, all verified:false",
+      "guideValue": "no set's effect values are published",
+      "verdict": "absent",
+      "quote": "Set Items are items that grant various bonus effects if you equip a specified number of items of the same set. Bonuses from Set Item stats are separately applied on top of the equipped item's stats.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
+      "note": "I could not source any set effect number, including the Superior Gollux 4pc (+30% IED / +30% Boss) that UNVERIFIED_SET_CONSTANTS singles out as the one to confirm first. The guide does confirm set bonuses are applied ON TOP of item stats (additively separate), which supports how setDelta() treats them."
+    }
+  ],
+
+  "newFacts": [
+    {
+      "fact": "MVP has two ranks above Diamond - Red and Black - and both give a 10% Star Force discount. The repo's MvpTier union is 'none' | 'silver' | 'gold' | 'diamond' and cannot express them.",
+      "quote": "Rank\tNX Required to Reach Rank\n(Spent Within 3 Months)\nBronze\t150,000 NX\nSilver\t300,000 NX\nGold\t600,000 NX\nDiamond\t900,000 NX\nRed\t1,500,000 NX\nBlack\t3,000,000 NX",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "Harmless for the discount maths (Red and Black are both 10%, same as Diamond), but a Red/Black player selecting 'diamond' is currently the only way to get the right number, and Bronze is explicitly N/A - the repo has no Bronze tier either, which is correct by accident."
+    },
+    {
+      "fact": "Superior-ranked items are excluded from the MVP Star Force discount, and cannot be protected with Safeguard at all.",
+      "quote": "Receive discounts when performing Star Force enhancements up to 17 stars. Superior-ranked items are excluded from this discount.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "Two independent Superior carve-outs the repo does not model. costPerAttempt() applies mvpMultiplier unconditionally below 17 stars, and the mode/safeguard branch is offered for any item. The second carve-out is first-party on the item-enhancement page: \"You cannot use the Safeguard function to protect Superior-rank equipment.\" Superior gear (Tyrant, Superior Gollux) is live content for this character's accessory slots."
+    },
+    {
+      "fact": "MVP Gold and above can pick from three 'after' options when cubing - and each extra option consumes an extra cube. Glowing Cubes are excluded from the perk.",
+      "quote": "Gold and above MVP members also get to choose from three 'after' options of Potential, Bonus Potential, or Bonus Stats when using Cubes. Note that each additional option also uses an additional Cube.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "A cube-count model that ignores this understates cube spend for MVP Gold+ players by up to 3x per roll while overstating the per-roll hit probability. The exclusion is first-party too: \"Glowing Cubes cannot be used for this perk.\" cubes.ts models neither."
+    },
+    {
+      "fact": "Some equipment needs additional materials beyond mesos to star force at all.",
+      "quote": "Some special equipment will require additional materials, such as Shadowknight Coins, in order to be enhanced with Star Force.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "whyItMatters": "totalStarForceCost() returns a pure meso figure. For these items the meso number is not the price. No list of affected items is given."
+    },
+    {
+      "fact": "Hard Cubes are sold in the Reboot World General Store, not only farmed.",
+      "quote": "Hard Cubes: Obtained from boss and elite monsters, harvesting, crafting in Regular World, Monster Collection, Pollo & Fritto, Monster Park, and the Reboot World General Store.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "whyItMatters": "CUBE_COST_MESOS prices hard at 0 with the note 'farmed, not bought', and FARMED_CUBE_TIME_COST exists to model the boss-run rate limit. On Heroic, Hard Cubes have a shop price instead - which would make them meso-priced rather than time-priced. The price itself is not given."
+    },
+    {
+      "fact": "Hard, Solid, Karma Hard and Karma Solid Cubes can ALSO double rank-up, when used on Rare items.",
+      "quote": "Solid Cubes: Obtained from boss and elite monsters, harvesting, crafting in Regular World, Monster Collection, Pollo & Fritto, and Monster Park. Can be used on Rare to Legendary items to reroll Potential. Max Result: Legendary. Can increase up to 2 ranks according to set probability rates if used on Rare items.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "whyItMatters": "DOUBLE_RANK_UP_GIVEN_UP is typed Record<'glowing' | 'bright', ...> - the repo cannot express a double rank-up on the farmed cubes at all. The rare->legendary jump on a free Solid Cube is exactly the case a Heroic player cares about. Rate still unpublished."
+    },
+    {
+      "fact": "Karma Hard and Karma Solid Cubes work on UNTRADEABLE items and are not marked Interactive-only, so they are usable on Heroic. The repo's CubeType union omits them.",
+      "quote": "Karma Solid Cubes: Obtained through in-game events. Can be used on Rare to Legendary untradeable items to reroll Potential. Max Result: Legendary. Can increase up to 2 ranks according to set probability rates if used on Rare items.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential",
+      "whyItMatters": "Everything is untradeable on Heroic, so 'untradeable-only' is not a restriction there. These are event-gated free Legendary-capable cubes the planner cannot currently represent."
+    },
+    {
+      "fact": "Lucky Items are set wildcards, gated behind already having 3 pieces of the set equipped.",
+      "quote": "Lucky Items are Set Item wildcards! If you have at least 3 items from a set equipped, then equipping a Lucky Item will count as another one of the items from that set to help you complete the set and get more powerful set bonuses.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
+      "whyItMatters": "lib/sets.ts has no concept of a Lucky Item (grep for 'lucky' returns nothing). activeSets() will under-count any set a Lucky Item is padding, which makes whatBreaks() and setDelta() wrong for that player in the direction of recommending a replacement that would actually break a tier."
+    },
+    {
+      "fact": "Pet Family ATT buffs are Interactive Worlds only. Heroic characters get zero ATT from pets.",
+      "quote": "Pet Family Buffs (Interactive Worlds Only)",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids",
+      "whyItMatters": "HEROIC DISTINCTION. The published values are Most Pet Families 1/2/3 pets = Weapon ATT/Magic ATT +3/+8/+15; Sweet Luna +6/+14/+24; Dream Luna +7/+16/+27; Petite Luna +8/+18/+36. On Interactive, three Petite Luna pets are +36 ATT - about 2.4% of Archerroni's 1,497 ATT. None of it exists on Heroic. Any imported build guide that budgets pet ATT is wrong for this player. The repo models no pet ATT at all, which is correct for Heroic and should be stated as a deliberate Heroic fact rather than an omission."
+    },
+    {
+      "fact": "Pet equipment carries stats only on Interactive Worlds.",
+      "quote": "On Interactive Worlds only, pet equipment can also have stats on it.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids",
+      "whyItMatters": "Second Heroic pet carve-out on the same page. Pet Equipment Scrolls are dead content for this character. Petite Luna pets ARE serviceable on Heroic though: \"Petite Luna Pets on Heroic worlds can be refreshed with the Petite Luna Water of Life, which is purchasable from the Cash Shop.\""
+    },
+    {
+      "fact": "Death costs 80% of both EXP and Drop Rate for 5 to 130 minutes depending on character level.",
+      "quote": "In MapleStory, death carries with it a serious penalty: An 80% reduction in both gained EXP and Drop Rate for between 5 and 130 minutes, depending on your character's level.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/32431/useful-cash-items",
+      "whyItMatters": "First-party and quantified. This character runs 764% Mesos Obtained and 50% Item Drop Rate; an 80% drop-rate cut for up to 130 minutes is a large hit to any farming-rate model in lib/farming.ts or lib/meso.ts. Safety Charms clear it instantly, and MVP members are exempt from death penalties entirely (\"you are exempt from death penalties and can respawn right on your current map\", same MVP guide)."
+    },
+    {
+      "fact": "Spell Trace Fever Time is a fixed weekly window, not an event.",
+      "quote": "Spell Trace Fever Time happens every weekend, from 12:00 AM (UTC) on Friday to 11:59 PM (UTC) on Sunday.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "whyItMatters": "A recurring 72-hour scroll-success window is schedulable, which is what a planner is for. The success delta is not published. Note MVP Gold+ get it permanently but \"in Interactive Worlds\" only - another Heroic carve-out."
+    },
+    {
+      "fact": "Up to three pets can be equipped after the Lv. 33 'Trainer's Command' quest.",
+      "quote": "Upon completing the \"Trainer's Command\" quest, available at Lv. 33, you will be able to equip up to three pets at a time",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids",
+      "whyItMatters": "Sets the ceiling for any pet-count reasoning. On Heroic the only benefit of the third pet is loot pickup, since family ATT buffs do not apply."
+    },
+    {
+      "fact": "Cash item prices: Premium Water of Life 2,400 NX (90 days), Premium Pet Food 1,000 NX, Pet Name Tag 2,100 NX.",
+      "quote": "This item can be found in the Cash Shop for 2,400 NX or the Maple Reward Shop for 2,400 RP.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids",
+      "whyItMatters": "The only real prices in the corpus, and they are NX not mesos. Nothing in the repo models NX spend. Included because they are the only first-party numbers on these pages that the repo does not have, and because Water of Life is a recurring 90-day cost a long-horizon planner could surface."
+    },
+    {
+      "fact": "Item quality has seven levels, colour-coded on the item name.",
+      "quote": "Quality / Class\tItem Name's Color\nLow Quality\tGray\nNormal Quality\tWhite\nHigh Quality\tTeal\nGreat Quality\tPurple\nPremium Class\tYellow\nExcellent Class\tGreen\nSpecial Class\tRed",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement",
+      "whyItMatters": "The only actual table on the item-enhancement page. Item quality is a distinct axis from Potential rank (4 ranks) and the repo models neither this nor its interaction with flames. Low priority, recorded for completeness."
+    },
+    {
+      "fact": "All items are untradeable in Heroic Worlds - stated first-party.",
+      "quote": "All items are untradeable in Heroic Worlds. Tradeability in Interactive Worlds is listed below.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service",
+      "whyItMatters": "A clean first-party citation for the no-trading premise the whole Heroic model rests on, which the repo has been asserting from community sources."
+    }
+  ],
+
+  "heroicDistinctions": [
+    {
+      "distinction": "Bonus Potential does not exist on Heroic worlds.",
+      "quote": "Bonus Potentials are not available in Heroic worlds.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement"
+    },
+    {
+      "distinction": "Glowing and Bright Cubes cost mesos on Heroic instead of NX/Reward Points.",
+      "quote": "Glowing Cubes: Can be purchased from Cash Shop (for NX or Maple Rewards Points on Interactive Worlds and mesos on Heroic Worlds).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential"
+    },
+    {
+      "distinction": "Bonus Glowing, Bonus Bright and Violet Cubes are Interactive-only and do not exist for this player.",
+      "quote": "Bonus Glowing Cubes: Can be purchased from Cash Shop on Interactive Worlds only.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential"
+    },
+    {
+      "distinction": "Hard Cubes have a Reboot-world shop source that Interactive worlds do not have.",
+      "quote": "Hard Cubes: Obtained from boss and elite monsters, harvesting, crafting in Regular World, Monster Collection, Pollo & Fritto, Monster Park, and the Reboot World General Store.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/1309/item-potential"
+    },
+    {
+      "distinction": "Pet Family ATT buffs (+3/+8/+15 up to +8/+18/+36) are Interactive-only. A Heroic character gets no ATT from pets.",
+      "quote": "Pet Family Buffs (Interactive Worlds Only)",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids"
+    },
+    {
+      "distinction": "Pet equipment has no stats on Heroic.",
+      "quote": "On Interactive Worlds only, pet equipment can also have stats on it.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids"
+    },
+    {
+      "distinction": "Petite Luna pets are explicitly supported on Heroic with their own refresh item.",
+      "quote": "Petite Luna Pets on Heroic worlds can be refreshed with the Petite Luna Water of Life, which is purchasable from the Cash Shop.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/29583/pets-and-androids"
+    },
+    {
+      "distinction": "MVP's permanent Spell Trace Fever Time and both Auction House perks are Interactive-only; the Star Force discount is NOT tagged that way.",
+      "quote": "At MVP rank Gold and above, Spell Trace Fever Time will always be enabled in Interactive Worlds, granting you a permanent increase to your equipment upgrade success rate.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service"
+    },
+    {
+      "distinction": "All items are untradeable in Heroic Worlds.",
+      "quote": "All items are untradeable in Heroic Worlds. Tradeability in Interactive Worlds is listed below.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/13274/maple-value-points-mvp-service"
+    },
+    {
+      "distinction": "NOT distinguished: Star Force costs, rates, boom rates, star caps, Safeguard cost and every star force event. Nexon draws no Heroic/Interactive line on any of them - because it publishes none of those numbers at all.",
+      "quote": "If an item has maxed out on the number of upgrades, you can also try to increase its stats through Star Force Enhancement.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5897/item-enhancement"
+    }
+  ],
+
+  "couldNotSource": [
+    "Star Force meso cost at ANY star, on any world - the formula, the divisors, and the two observed taps the repo reproduces are all unconfirmed by first-party sources.",
+    "Star Force success, failure and destroy rates at every star, including the 15-25 band the repo flags as unverified.",
+    "The boom range (which stars can destroy an item) and the Equipment Trace recovery star at each star.",
+    "The star cap by item level (the 138/129/118/108/95 bands).",
+    "Whether Superior gear caps at 15 stars, and the Superior rate table.",
+    "Any Heroic-vs-Interactive star force cost multiplier - neither confirmed nor contradicted, simply never addressed.",
+    "The 5/10/15 guaranteed-success event, the 30%-off event, destruction-reduction events and the 1+1 double-star event - none appear in the Maple Guides corpus.",
+    "Safeguard's cost multiplier (the x2 vs x3 disagreement is untouched) and the enhancement mode 2/3/4 cost multipliers.",
+    "The Star Catching success multiplier of 1.05 (the mini-game is described, the number is not).",
+    "The Transfer Hammer's star cost - whether you lose a star, and how many. Only the 1-star minimum to be ELIGIBLE is published.",
+    "Whether Rebirth Flame bonus stats survive a Transfer Hammer (Bonus Stats are conspicuously absent from the list of what transfers, but the guide never says they are lost).",
+    "Cube tier-up probabilities - Nexon America says 'according to set probability rates' and publishes no rate for any cube.",
+    "Cube meso prices on Heroic (the 12,000,000 / 22,000,000 figures) - the currency is confirmed, the price is not.",
+    "Potential line caps per tier, prime-line probabilities, and every line-pool weight.",
+    "The Boss Accessory set's member list and every set effect value in BUILTIN_SETS - Nexon publishes no set's membership or bonuses, pointing players at the in-game tooltip instead."
+  ]
+}
