@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   CONFIDENCE_VOCABULARY, SLOTS, TIER_LABEL, STAT_LABEL, advise,
   activeCharacter, addCharacter, characterIdForRoster, damageModelStatus,
-  emptyCharacter, exampleAccount, exampleCharacter, hasDamagePctReading, isDeadLine, listCharacters,
+  emptyAccount, emptyCharacter, exampleAccount, exampleCharacter, hasDamagePctReading, isDeadLine, listCharacters,
   openRosterCharacter, planAdvice, removeCharacter, rosterKey, selectCharacter,
   setRoster, sfCap, withActiveCharacter, EXAMPLE_CHARACTER_ID,
   VALIDATED_DAMAGE_PCT, VALIDATED_FINAL_DAMAGE_PCT,
@@ -34,6 +34,7 @@ import {
 import { getAccountStore } from "@/lib/storage";
 import { resolveItem } from "@/lib/itemLookup";
 import { mergeRoster, type RosterChar } from "@/lib/legion";
+import AccountBar from "@/components/AccountBar";
 import ImportDialog from "@/components/ImportDialog";
 import ItemSearch from "@/components/ItemSearch";
 import Roster, { type RosterSheet } from "@/components/Roster";
@@ -569,6 +570,37 @@ export default function Planner() {
   const [editing, setEditing] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
   const [ready, setReady] = useState(false);
+  /* Has THIS BROWSER ever saved an account, as opposed to looking at the demo?
+   *
+   * It matters for exactly one thing, and that thing is the worst bug this wave
+   * could ship. `account` starts as exampleAccount() — the demo Bow Master with
+   * seventeen pieces of gear — because a first-time visitor should land on
+   * something rather than an empty grid. That demo is NOT the visitor's data. If
+   * the account strip treated it as "this device's sheet", the first sign-up
+   * from a fresh browser would push a demo character into the one place the
+   * owner's real roster is supposed to live, and on the second machine it would
+   * arrive looking exactly like a sheet somebody had made.
+   *
+   * So: false until the store hands back something real, or until the player's
+   * own edit is committed. AccountBar is given null while it is false, which it
+   * reads as "this browser has nothing to offer" — the same state as a brand
+   * new MacBook, which is the correct reading. */
+  const [storeHasData, setStoreHasData] = useState(false);
+  /* Has a HUMAN changed anything this visit?
+   *
+   * storeHasData is not enough on its own, and finding that out cost a rebuild
+   * of this guard: the item backfill below resolves the demo's gear against
+   * /api/items on first load and commits the result, so a browser nobody has
+   * touched holds a saved account within a second of the page opening —
+   * observed, on a cleared profile: `maple-planner:account` holding
+   * demo-archerroni with 24 items, before any click. A guard that reads
+   * "something is saved, so it must be the player's" would therefore seed a
+   * brand new visitor's empty account with the sample character.
+   *
+   * So the backfill writes through commitBackground(), which persists without
+   * claiming authorship, and everything a person can click goes through
+   * commit(), which sets this. */
+  const [touched, setTouched] = useState(false);
   const [note, setNote] = useState<string | null>(null);
   // Damage per meso is the right axis and the wrong answer to "what next?" when
   // the player has no budget: a 3M flame roll beats a 1.5B tier-up on the ratio
@@ -623,16 +655,25 @@ export default function Planner() {
   useEffect(() => {
     let live = true;
     store.load().then((saved) => {
-      if (live && saved) setAccount(saved);
+      if (live && saved) { setAccount(saved); setStoreHasData(true); }
       if (live) setReady(true);
     });
     return () => { live = false; };
   }, [store]);
 
-  const commit = useCallback((next: Account) => {
+  /** Persist without claiming the sheet is the player's work. For writes this
+   *  app makes on its own behalf — today, exactly one: the item backfill. */
+  const commitBackground = useCallback((next: Account) => {
     setAccount(next);
     void store.save(next);
+    setStoreHasData(true);
   }, [store]);
+
+  /** THE save path for anything a person did. */
+  const commit = useCallback((next: Account) => {
+    commitBackground(next);
+    setTouched(true);
+  }, [commitBackground]);
 
   const ch = useMemo(() => activeCharacter(account), [account]);
   const chars = useMemo(() => listCharacters(account), [account]);
@@ -673,10 +714,50 @@ export default function Planner() {
         };
         changed = true;
       }
-      if (live && changed) update({ ...ch, items });
+      // commitBackground, NOT update: resolving a sprite is this app tidying up
+      // after itself, not the player recording anything, and treating it as an
+      // edit is what would let the demo seed a fresh account. See `touched`.
+      if (live && changed) commitBackground(withActiveCharacter(account, { ...ch, items }));
     })();
     return () => { live = false; };
-  }, [ready, ch, update]);
+  }, [ready, ch, account, commitBackground]);
+
+  /* ---------- the account, and the sheet that follows the player ----------
+   *
+   * WHAT GOES UP: the sheet on screen, and only once this browser has one of
+   * its own. See storeHasData for why the demo must never be it.
+   *
+   * WHAT COMES DOWN: exactly one character, because the stored envelope
+   * (lib/portable.ts's Profile) has room for exactly one. It lands in the
+   * ACTIVE slot, by id, and never anywhere else.
+   *
+   * The id is forced rather than trusted: the incoming sheet carries whichever
+   * CharacterId the other machine minted for it, and withActiveCharacter()
+   * would write to that id if this account happened to have one — which, on an
+   * account with several characters, could mean landing the account's sheet on
+   * top of a DIFFERENT character the player built here. Pinning it to activeId
+   * makes the destination the one the player is looking at, every time.
+   *
+   * The roster comes down with it: it is account-wide data that rides on the
+   * character across the wire, and setRoster() is its only legitimate writer. */
+  const syncSheet = useMemo(() => (storeHasData ? ch : null), [storeHasData, ch]);
+
+  const adoptFromAccount = useCallback((incoming: Character) => {
+    const base = storeHasData ? account : emptyAccount();
+    const landOn = base.activeId;
+    const next = setRoster(withActiveCharacter(base, { ...incoming, id: landOn }), incoming.roster);
+    commit(next);
+    // The symbol boxes follow the sheet, not the last thing typed into them.
+    setSymDraft(null);
+    // Gear that arrived by name but without an itemId has never been through
+    // the lookup ON THIS DEVICE, and the backfill runs at most once per id.
+    backfilled.current.delete(landOn);
+    const n = Object.keys(incoming.items ?? {}).length;
+    setNote(
+      `Opened ${incoming.name || "your account's sheet"} from your account — ` +
+      `${n} item${n === 1 ? "" : "s"}, ${incoming.roster?.length ?? 0} roster row${(incoming.roster?.length ?? 0) === 1 ? "" : "s"}.`
+    );
+  }, [account, commit, storeHasData]);
 
   // Switching sheets is otherwise invisible — the grid simply fills with
   // someone else's gear, which is the silent mistake this whole wave is about.
@@ -977,6 +1058,20 @@ export default function Planner() {
         {!ch.symbols && (
           <a className="acct-jump" href="#symbol-levels">Enter symbol levels &darr;</a>
         )}
+        {/* Accounts live HERE, at the right-hand end of the strip that already
+            answers "whose sheet is this?", because "which account is this
+            sheet on?" is the same question one level up. It is rendered last
+            so it sits outermost right, and it is deliberately the smallest
+            control on the strip: signed out, the planner is unchanged except
+            for one extra button. */}
+        <AccountBar
+          localSheet={syncSheet}
+          /* localIsDemo is gone: planFor() proves it from content now. The
+             expression that used to live here - `ch.id === EXAMPLE_CHARACTER_ID
+             && !touched` - answered a different question from the one it was
+             asked, and the gap between them was a silently destroyed sheet. */
+          onAdopt={adoptFromAccount}
+        />
       </div>
 
       {/* ---------- the answer, first ----------
@@ -1379,7 +1474,9 @@ export default function Planner() {
           {ready && (
             <p className="fineprint" style={{ marginTop: 8 }}>
               {chars.length} character{chars.length === 1 ? "" : "s"} saved to this browser.
-              Accounts coming.
+              Sign in at the top of the page to keep {chars.length === 1 ? "this one" : "the one you are editing"}
+              {" "}and your Legion roster on your account, so the same sheet opens on another
+              machine. The others stay here.
             </p>
           )}
         </div>
