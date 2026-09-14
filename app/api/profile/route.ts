@@ -57,6 +57,35 @@
 //  unreadable       | any                     | "invalid"          | 422
 //                   |   NOTHING IS WRITTEN, and errors[] is the same
 //                   |   FieldError[] the import dialog already renders.
+//  too big          | any                     | "too-large"        | 413
+//                   |   NOTHING IS WRITTEN. See HOW BIG IS TOO BIG below.
+//
+// ---------------------------------------------------------------------------
+// HOW BIG IS TOO BIG, AND WHICH LIMIT YOU HIT
+// ---------------------------------------------------------------------------
+// A profile carries item icons as base64 data URLs, so it is genuinely large
+// for a JSON document. lib/portable.ts bounds every field — 64 KiB per icon, 64
+// characters per name — but nothing bounded the ROSTER, and therefore nothing
+// bounded the document. MEASURED against this deployment on 2026-09-13, before
+// the caps below existed: a 12.27 MB PUT was accepted, stored, and handed back
+// in full on the next GET; a 27 MB document passed lib/portable.ts's validator
+// in 17 ms. Eleven copies per user (current plus ten in profile_history) made
+// that roughly 300 MB of shared database per browser that asked for it.
+//
+// Two caps, and a 413 always says which one it was, in `scope`:
+//   scope: "request"  MAX_REQUEST_BYTES — the HTTP body, counted as it streams
+//                     in, so an oversized request is refused WITHOUT being
+//                     buffered or parsed. 4 MiB. Also deliberately under
+//                     Vercel's own 4.5 MB body limit, so on the deployment it
+//                     is this message the caller gets rather than a platform
+//                     error page with no `status` in it.
+//   scope: "profile"  lib/db.ts's MAX_PROFILE_BYTES — the normalised document
+//                     that would be stored. 3 MiB, against a MEASURED
+//                     legitimate worst case of 1.58 MB (all 25 slots carrying
+//                     an icon at portable.ts's 64 KiB cap, plus a roster).
+// A payload sent as JSON *text* rather than as an object has less room than it
+// looks: escaping roughly doubles it on the wire, and the request cap counts
+// the wire.
 //
 // POST is idempotent and safe to call on every sign-in, from both machines, in
 // any order. It cannot destroy anything, by construction: the only writes it
@@ -80,6 +109,15 @@
 // There is no userId parameter anywhere in this file — not in the path, not in
 // the query, not in the body — so there is nothing for one account to put
 // another account's id into.
+//
+// VERIFIED, not merely intended. Two accounts were signed up through the real
+// /api/auth/sign-up/email on 2026-09-13 and one of them tried to reach the
+// other's row through ?userId=, ?user=, ?id=, /api/profile/<id>, an x-user-id
+// header, an x-forwarded-user header, body.userId, body.user.id, and a DELETE
+// naming the other id. Every one of them landed on the caller's OWN row; the
+// other account's document was never read and never written. A session token
+// with one byte changed — in the signature or in the body — is a 401, not a
+// session, and the signed session-cache cookie alone is a 401 too.
 
 import { NextResponse } from "next/server";
 import {
@@ -91,6 +129,7 @@ import {
   normalizePayload,
   saveProfile,
   type ProfileRow,
+  type TooLarge,
 } from "@/lib/db";
 import { getUserId } from "@/lib/auth";
 import type { FieldError, Profile } from "@/lib/portable";
@@ -104,6 +143,11 @@ export const dynamic = "force-dynamic";
    Documented here because the UI wave wires against them. Every response is a
    JSON object with a `status` string; `status` is the discriminant and is
    always present, including on errors.
+
+   That last sentence used to be untrue and is the reason resolveCaller() below
+   exists: a database outage that reached the SESSION lookup — which is every
+   request once the five-minute session-cookie cache lapses — escaped the
+   handler and produced a bare 500 with an empty body. See resolveCaller().
    ========================================================================== */
 
 /** Enough to describe a profile to a human without shipping the document.
@@ -190,19 +234,172 @@ function failure(err: unknown): NextResponse {
   );
 }
 
-/** Body parsing that cannot throw. A malformed body is a 400, not a 500. */
-async function readJsonBody(req: Request): Promise<{ ok: true; body: Record<string, unknown> } | { ok: false }> {
+/** Who is asking — or the response to send instead.
+ *
+ *  getUserId() is NOT a pure cookie read. lib/auth.ts caches the session in a
+ *  signed cookie for five minutes; past that, resolving a session is a query
+ *  against the same Postgres this route stores profiles in. So a database
+ *  outage makes identity itself throw, before any handler's own try block has
+ *  started.
+ *
+ *  MEASURED on 2026-09-13, with the server restarted against an unreachable
+ *  DATABASE_URL and a cookie that had been valid seconds earlier: with the
+ *  session cache still warm, every verb answered 503 "unavailable" exactly as
+ *  intended — but with the cache cookie dropped, the way every request looks
+ *  after five minutes, the throw escaped the handler and Next answered a bare
+ *  HTTP 500 with an EMPTY BODY and no content-type. No `status`, from a route
+ *  whose stated contract is that `status` is always present, including on
+ *  errors. A client matching on `status` had nothing to match, during exactly
+ *  the outage where guessing wrong means writing an empty profile over a real
+ *  one.
+ *
+ *  So the session lookup gets the same treatment as every other database call:
+ *  it is an outage, it is a 503, and it says nothing was read or written.
+ *  A throw is never reported as "not signed in" — 401 is reserved for the case
+ *  where the database answered and there is genuinely no session. */
+type Caller = { ok: true; userId: string } | { ok: false; response: NextResponse };
+
+async function resolveCaller(req: Request): Promise<Caller> {
+  let userId: string | null;
   try {
-    const raw: unknown = await req.json();
-    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return { ok: false };
+    userId = await getUserId(req);
+  } catch (err) {
+    return { ok: false, response: failure(err) };
+  }
+  if (!userId) return { ok: false, response: NextResponse.json(UNAUTHENTICATED, { status: 401 }) };
+  return { ok: true, userId };
+}
+
+/** The HTTP body cap. See HOW BIG IS TOO BIG in the header. Not exported: a
+ *  route module's value exports are route segment configuration to Next. */
+const MAX_REQUEST_BYTES = 4 * 1024 * 1024;
+
+/** Read the body with a hard byte ceiling, counted as it arrives.
+ *
+ *  `await req.json()` was the obvious thing and it is the wrong thing: it
+ *  buffers and parses the whole body first, so the 12.27 MB request measured
+ *  above was fully received and fully parsed before anything could object. The
+ *  ceiling has to be enforced against the STREAM to mean anything.
+ *
+ *  Content-Length is checked first because it is free, but it is a claim by the
+ *  caller, not a fact — a chunked request has none and a hostile one can lie —
+ *  so the streaming count below is the enforcing copy. */
+async function readCapped(
+  req: Request,
+  limit: number
+): Promise<{ ok: true; text: string } | { ok: false; reason: "too-large" | "unreadable" }> {
+  const stream = req.body;
+  if (!stream) return { ok: true, text: "" };
+  const reader = stream.getReader();
+  // Streaming decode: a multi-byte character split across two chunks would
+  // otherwise decode to a replacement character and corrupt an IGN.
+  const decoder = new TextDecoder("utf-8");
+  let text = "";
+  let total = 0;
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (!value) continue;
+      total += value.byteLength;
+      if (total > limit) {
+        await reader.cancel();
+        return { ok: false, reason: "too-large" };
+      }
+      text += decoder.decode(value, { stream: true });
+    }
+    text += decoder.decode();
+  } catch {
+    return { ok: false, reason: "unreadable" };
+  }
+  return { ok: true, text };
+}
+
+type BodyRead =
+  | { ok: true; body: Record<string, unknown> }
+  | { ok: false; reason: "malformed" }
+  | { ok: false; reason: "too-large"; declared: number | null };
+
+/** Body parsing that cannot throw. A malformed body is a 400, an oversized one
+ *  a 413, and neither is ever a 500. */
+async function readJsonBody(req: Request): Promise<BodyRead> {
+  const header = req.headers.get("content-length");
+  const declared = header !== null && /^\d+$/.test(header) ? Number(header) : null;
+  if (declared !== null && declared > MAX_REQUEST_BYTES) {
+    return { ok: false, reason: "too-large", declared };
+  }
+
+  const read = await readCapped(req, MAX_REQUEST_BYTES);
+  if (!read.ok) {
+    if (read.reason === "too-large") return { ok: false, reason: "too-large", declared };
+    return { ok: false, reason: "malformed" };
+  }
+  try {
+    const raw: unknown = JSON.parse(read.text);
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return { ok: false, reason: "malformed" };
     return { ok: true, body: raw as Record<string, unknown> };
   } catch {
-    return { ok: false };
+    return { ok: false, reason: "malformed" };
   }
 }
 
 function badBody(detail: string): NextResponse {
   return NextResponse.json({ status: "bad-request", message: detail }, { status: 400 });
+}
+
+/** 413 for the HTTP body. `bytes` is the caller's declared Content-Length and
+ *  is null when the request did not declare one — in that case all that is
+ *  known is that the stream went past the limit, and saying so is the honest
+ *  answer rather than inventing a figure. */
+function requestTooLarge(declared: number | null): NextResponse {
+  return NextResponse.json(
+    {
+      status: "too-large",
+      scope: "request" as const,
+      limitBytes: MAX_REQUEST_BYTES,
+      bytes: declared,
+      message:
+        `Nothing was read or written: the request body exceeds ${MAX_REQUEST_BYTES} bytes. ` +
+        `This is the whole HTTP body, not the profile inside it — a payload sent as JSON text ` +
+        `rather than as an object roughly doubles on the wire. Send the profile as an object.`,
+    },
+    { status: 413 }
+  );
+}
+
+/** 413 for the document. Distinct `scope` from the one above because the fixes
+ *  are different: this one is not about how the payload was encoded, it is that
+ *  the profile itself is too big to store. */
+function profileTooLarge(result: TooLarge): NextResponse {
+  return NextResponse.json(
+    {
+      status: "too-large",
+      scope: "profile" as const,
+      limitBytes: result.limit,
+      bytes: result.bytes,
+      message:
+        `Nothing was saved: this profile is ${result.bytes} bytes and the limit is ${result.limit}. ` +
+        `A real profile does not reach this — the largest legitimate one measured is about 1.6 MB, ` +
+        `every icon at its maximum — so the usual cause is a roster that has grown without bound.`,
+    },
+    { status: 413 }
+  );
+}
+
+/** 409 for a write that named a revision of a profile this account no longer
+ *  has. There is no server row to return; that absence IS the answer. */
+function goneResponse(): NextResponse {
+  return NextResponse.json(
+    {
+      status: "gone",
+      message:
+        "Nothing was saved: you sent baseRev for a revision this account does not have, because " +
+        "its planner data has since been deleted. Re-read with GET — it will say empty — and then " +
+        "POST to claim this browser's data, or PUT again with baseRev: null if you mean to re-create " +
+        "the profile from this device. Sending the same baseRev again will not start working.",
+    },
+    { status: 409 }
+  );
 }
 
 /** Key-sorted JSON, because `JSON.stringify` is not a comparison function here.
@@ -271,8 +468,9 @@ function invalidResponse(errors: FieldError[]): NextResponse {
    ========================================================================== */
 
 export async function GET(req: Request): Promise<NextResponse> {
-  const userId = await getUserId(req);
-  if (!userId) return NextResponse.json(UNAUTHENTICATED, { status: 401 });
+  const caller = await resolveCaller(req);
+  if (!caller.ok) return caller.response;
+  const userId = caller.userId;
 
   try {
     const row = await getProfile(userId);
@@ -299,15 +497,21 @@ export async function GET(req: Request): Promise<NextResponse> {
    200 { status: "nothing-to-claim", hasProfile: false }
    409 { status: "both-populated",   local: {summary, profile},
                                      server: {rev, ..., summary, profile} }
+   409 { status: "gone" }            // the row was deleted mid-claim, twice
+   413 { status: "too-large",        scope, limitBytes, bytes }
    422 { status: "invalid",          errors }
    ========================================================================== */
 
 export async function POST(req: Request): Promise<NextResponse> {
-  const userId = await getUserId(req);
-  if (!userId) return NextResponse.json(UNAUTHENTICATED, { status: 401 });
+  const caller = await resolveCaller(req);
+  if (!caller.ok) return caller.response;
+  const userId = caller.userId;
 
   const parsed = await readJsonBody(req);
-  if (!parsed.ok) return badBody("Expected a JSON object: { payload }.");
+  if (!parsed.ok) {
+    if (parsed.reason === "too-large") return requestTooLarge(parsed.declared);
+    return badBody("Expected a JSON object: { payload }.");
+  }
   const payload = parsed.body.payload;
 
   try {
@@ -342,67 +546,86 @@ export async function POST(req: Request): Promise<NextResponse> {
     }
 
     // ---- The populated-browser rows ----------------------------------------
-    // claimProfile() is ON CONFLICT DO NOTHING: it can insert into an account
-    // that has no profile, and it is physically incapable of overwriting one
-    // that does. That property is what makes this endpoint safe to call from
-    // both machines at once.
-    const claim = await claimProfile(userId, localProfile);
-
-    if (claim.status === "invalid") return invalidResponse(claim.errors);
-
-    if (claim.status === "seeded") {
-      return NextResponse.json(
-        {
-          status: "seeded",
-          hasProfile: true,
-          ...serverSide(claim.row),
-          warnings: localWarnings,
-        },
-        { status: 201 }
-      );
-    }
-
-    // claim.status === "exists": the account already had a profile, and it was
-    // left exactly as it was. Three sub-cases, and only one of them writes.
-    const server = claim.row;
-
-    if (isEmptyProfile(server.profile)) {
-      // An empty row holds nothing, so filling it cannot lose anything. Still
-      // done as a compare-and-swap against the rev we just read, so a real
-      // profile that landed in the microsecond between the read and the write
-      // turns into a conflict rather than a loss.
-      const save = await saveProfile({
-        userId,
-        payload: localProfile,
-        baseRev: server.rev,
-      });
-      if (save.status === "saved") {
-        return NextResponse.json({
-          status: "upgraded",
-          hasProfile: true,
-          ...serverSide(save.row),
-          warnings: localWarnings,
-        });
-      }
-      if (save.status === "invalid") return invalidResponse(save.errors);
-      // Lost the race, or the guard fired. Fall through to the ask-a-human
-      // branch with whatever is actually on the server now.
-      return bothPopulated(localProfile!, save.row);
-    }
-
-    if (sameCharacter(localProfile!, server.profile)) {
-      // Same data on both sides. Nothing to write, nothing to ask. The client
-      // takes server.rev and is now a normal, synced device.
-      return NextResponse.json({ status: "identical", hasProfile: true, ...serverSide(server) });
-    }
-
-    // Two different populated profiles. The one branch where the server refuses
-    // to decide. Nothing was written; the browser's copy is untouched in
-    // localStorage and the account's copy is untouched in Postgres.
-    return bothPopulated(localProfile!, server);
+    return await claimOrFill(userId, localProfile!, localWarnings, 0);
   } catch (err) {
     return failure(err);
   }
+}
+
+/** The populated-browser half of the merge table.
+ *
+ *  claimProfile() is ON CONFLICT DO NOTHING: it can insert into an account that
+ *  has no profile, and it is physically incapable of overwriting one that does.
+ *  That property is what makes this endpoint safe to call from both machines at
+ *  once — VERIFIED with two simultaneous first-sign-in claims against the same
+ *  account: exactly one `seeded`, the other told `exists` and handed the
+ *  winner's row.
+ *
+ *  `attempt` exists only for the one race that can legitimately be retried: the
+ *  account's row being deleted between the claim and the fill. It is a counter
+ *  rather than a `while (true)` because an unbounded retry against a database
+ *  that is misbehaving is a hung request, not a recovery. */
+async function claimOrFill(
+  userId: string,
+  local: Profile,
+  warnings: FieldError[],
+  attempt: number
+): Promise<NextResponse> {
+  const claim = await claimProfile(userId, local);
+
+  if (claim.status === "invalid") return invalidResponse(claim.errors);
+  if (claim.status === "too-large") return profileTooLarge(claim);
+
+  if (claim.status === "seeded") {
+    return NextResponse.json(
+      { status: "seeded", hasProfile: true, ...serverSide(claim.row), warnings },
+      { status: 201 }
+    );
+  }
+
+  // claim.status === "exists": the account already had a profile, and it was
+  // left exactly as it was. Three sub-cases, and only one of them writes.
+  const server = claim.row;
+
+  if (isEmptyProfile(server.profile)) {
+    // An empty row holds nothing, so filling it cannot lose anything. Still
+    // done as a compare-and-swap against the rev we just read, so a real
+    // profile that landed in the microsecond between the read and the write
+    // turns into a conflict rather than a loss.
+    const save = await saveProfile({ userId, payload: local, baseRev: server.rev });
+
+    if (save.status === "saved") {
+      return NextResponse.json({
+        status: "upgraded",
+        hasProfile: true,
+        ...serverSide(save.row),
+        warnings,
+      });
+    }
+    if (save.status === "invalid") return invalidResponse(save.errors);
+    if (save.status === "too-large") return profileTooLarge(save);
+    if (save.status === "gone") {
+      // The empty row was deleted between the claim and the fill, so there is
+      // nothing left to conflict with — and a browser holding data against an
+      // account holding none is the seed case this endpoint exists for.
+      if (attempt === 0) return claimOrFill(userId, local, warnings, attempt + 1);
+      return goneResponse();
+    }
+    // conflict or refused-empty: something real landed in between. Ask a human
+    // rather than picking, with whatever is actually on the server now.
+    return bothPopulated(local, save.row);
+  }
+
+  if (sameCharacter(local, server.profile)) {
+    // Same data on both sides. Nothing to write, nothing to ask. The client
+    // takes server.rev and is now a normal, synced device.
+    return NextResponse.json({ status: "identical", hasProfile: true, ...serverSide(server) });
+  }
+
+  // Two different populated profiles. The one branch where the server refuses
+  // to decide. Nothing was written; the browser's copy is untouched in
+  // localStorage and the account's copy is untouched in Postgres.
+  return bothPopulated(local, server);
 }
 
 /** 409 with BOTH documents and both summaries. The UI renders the two
@@ -429,11 +652,23 @@ function bothPopulated(local: Profile, server: ProfileRow): NextResponse {
    Body: { payload, baseRev, allowEmpty?, force? }
 
      payload    a Profile, a bare pre-v1 Character, or JSON text of either.
-     baseRev    the `rev` this edit was made on top of. `null` asserts "I
-                believe this account has no profile yet" and succeeds only if
-                that is still true. REQUIRED — there is no "just overwrite"
-                default, because a missing rev is exactly how last-write-wins
-                data loss gets in.
+     baseRev    the `rev` this edit was made on top of. REQUIRED — there is no
+                "just overwrite" default, because a missing rev is exactly how
+                last-write-wins data loss gets in. It is checked in BOTH
+                directions:
+                  null      "I believe this account has no profile yet."
+                            Creates the row, and only if that is still true.
+                  a number  "I believe this account is at rev N." Replaces rev
+                            N, and only if N is still current. If the account
+                            has NO profile — because it was deleted — this is
+                            409 "gone" and nothing is created.
+                That second half is not decoration. MEASURED on 2026-09-13,
+                before it existed: the owner erased their planner data on the
+                PC, a MacBook still holding rev 2 sent an ordinary save, and the
+                deletion was silently reversed — the stale document came back as
+                the account's data and neither device was told anything had
+                happened. The erase had been behind a typed confirmation phrase;
+                undoing it took no confirmation at all.
      allowEmpty optional. Permits storing an empty profile over a populated
                 one. Only ever send this from a worded confirmation.
      force      optional. Skips the rev check. For a merge a human has already
@@ -443,15 +678,21 @@ function bothPopulated(local: Profile, server: ProfileRow): NextResponse {
    200 { status: "saved",         rev, updatedAt, summary, warnings }
    409 { status: "conflict",      server: {...} }   // somebody else wrote
    409 { status: "refused-empty", server: {...} }   // guard fired
+   409 { status: "gone" }                           // baseRev names a deleted profile
+   413 { status: "too-large",     scope, limitBytes, bytes }
    422 { status: "invalid",       errors }
    ========================================================================== */
 
 export async function PUT(req: Request): Promise<NextResponse> {
-  const userId = await getUserId(req);
-  if (!userId) return NextResponse.json(UNAUTHENTICATED, { status: 401 });
+  const caller = await resolveCaller(req);
+  if (!caller.ok) return caller.response;
+  const userId = caller.userId;
 
   const parsed = await readJsonBody(req);
-  if (!parsed.ok) return badBody("Expected a JSON object: { payload, baseRev }.");
+  if (!parsed.ok) {
+    if (parsed.reason === "too-large") return requestTooLarge(parsed.declared);
+    return badBody("Expected a JSON object: { payload, baseRev }.");
+  }
   const { payload, baseRev, allowEmpty, force } = parsed.body;
 
   if (payload === undefined || payload === null) {
@@ -518,6 +759,12 @@ export async function PUT(req: Request): Promise<NextResponse> {
           { status: 409 }
         );
 
+      case "gone":
+        return goneResponse();
+
+      case "too-large":
+        return profileTooLarge(result);
+
       case "invalid":
         return invalidResponse(result.errors);
     }
@@ -545,10 +792,12 @@ export async function PUT(req: Request): Promise<NextResponse> {
 const DELETE_PHRASE = "delete my planner data";
 
 export async function DELETE(req: Request): Promise<NextResponse> {
-  const userId = await getUserId(req);
-  if (!userId) return NextResponse.json(UNAUTHENTICATED, { status: 401 });
+  const caller = await resolveCaller(req);
+  if (!caller.ok) return caller.response;
+  const userId = caller.userId;
 
   const parsed = await readJsonBody(req);
+  if (!parsed.ok && parsed.reason === "too-large") return requestTooLarge(parsed.declared);
   if (!parsed.ok || parsed.body.confirm !== DELETE_PHRASE) {
     return badBody(
       `Refused: erasing planner data requires { "confirm": "${DELETE_PHRASE}" } in the body. Nothing was deleted.`
