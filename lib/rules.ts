@@ -3096,7 +3096,11 @@ export function exampleCharacter(): Character {
         p: ["Critical Damage +8%", "DEX +9%", "DEX +3%"], f: ["DEX +50", "All Stats +4%"] },
       cape: { name: "Arcane Umbra Archer Cape", lvl: 200, star: 17, pot: "legendary", sup: 0, bossDrop: true,
         p: ["DEX +12%", "DEX +9%", "All Stats +3%"], f: ["DEX +60", "INT +40"] },
-      shoulder: { name: "Absolab Archer Shoulder", lvl: 160, star: 15, pot: "legendary", sup: 0,
+      // "AbsoLab", capital L, because that is what /api/items returns and the
+      // startup backfill overwrites this literal with it on every page load. The
+      // two disagreed by one character, which was enough to move the demo's
+      // signature off its own constant a second after any visitor arrived.
+      shoulder: { name: "AbsoLab Archer Shoulder", lvl: 160, star: 15, pot: "legendary", sup: 0,
         p: ["All Stats +9%", "DEX +9%", "DEX +9%"], f: [] },
       weapon: { name: "Arcane Umbra Bow", lvl: 200, star: 17, pot: "legendary", sup: 0, bossDrop: true,
         p: ["Boss Damage +30%", "Ignore Enemy DEF +30%", "DEX +9%"], f: ["ATT +51", "All Stats +5%", "DEX +90"] },

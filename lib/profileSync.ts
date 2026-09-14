@@ -586,11 +586,26 @@ function demoShapeSignature(ch: Character): string {
     // Rest-spread, so the default for any field added to Item in future is to
     // PARTICIPATE in the comparison. That is the safe direction: a new field a
     // player can edit must be able to break the demo match, or this check
-    // silently starts calling edited sheets 'the demo' again. Only the three
-    // the backfill writes are excluded, and they are named here.
+    // silently starts calling edited sheets 'the demo' again.
+    //
+    // THE BACKFILL WRITES FOUR FIELDS, NOT THREE. An earlier version of this
+    // comment said three and named itemId, sub and bossDrop; the backfill also
+    // writes `name: db.name`, and the shipped demo carried "Absolab Archer
+    // Shoulder" where the database returns "AbsoLab". One capital letter moved
+    // every real visitor's demo off DEMO_SHAPE within a second of arriving, so
+    // BOTH demo branches of planFor() were dead in practice: a second machine
+    // got a choose-one dialog instead of the account's sheet simply opening, and
+    // a brand-new visitor silently seeded their empty account with the sample
+    // character - the exact thing offer-seed exists to prevent.
+    //
+    // The literal is fixed too, but fixing it alone would leave this waiting to
+    // happen again the next time the external item database adjusts a name. So
+    // the name is COMPARED CASE-INSENSITIVELY rather than excluded: a casing
+    // change cannot break the match, and swapping a real item for a different
+    // one still can, because a different item has a different name.
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { itemId, sub, bossDrop, ...rest } = it;
-    items[slotId] = rest;
+    const { itemId, sub, bossDrop, name, ...rest } = it;
+    items[slotId] = { ...rest, name: (name ?? "").toLowerCase() };
   }
   return JSON.stringify({ ...canon, items });
 }
