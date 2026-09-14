@@ -99,6 +99,7 @@ import {
   arcaneFlatMainStatFromLevels,
   arcaneFlatMainStatFromPower,
   hasArcaneLevels,
+  symbolAdvice,
   type SymbolState,
 } from "./symbols";
 import guideGraphRaw from "@/data/guide-graph.json";
@@ -2468,13 +2469,53 @@ function buildCharAdvice(ch: Character): Rec[] {
     add(2, "mid", `HP ${st.hp.toLocaleString()} is thin for Lucid/Will.`,
       "Max HP hyper stat, Decent Hyper Body on your bottom, Demon Avenger link.");
 
-  if (st.arcane) {
+  /* ---------- symbols ----------
+   *
+   * Two paths, because two very different questions can be answered.
+   *
+   * WITH PER-AREA LEVELS the symbols model can rank: it knows which of the six
+   * is cheapest to advance, what each costs in dailies and mesos, and when the
+   * set finishes. That is the question a player actually has - "which one next"
+   * - and a total cannot answer it, because thousands of spreads sum to the same
+   * Arcane Power with different answers.
+   *
+   * WITHOUT THEM, only the stat-window total exists, and the old block below is
+   * the correct thing to say: how much flat stat is still on the table. Its
+   * arithmetic agrees exactly with planArcane().statRemaining for the observed
+   * character, so this is a narrower answer rather than a different one.
+   *
+   * lib/symbols.ts is deliberately free of a clock so a server render and a
+   * client render agree. `today` is floored to the UTC day: planArcane formats a
+   * date ("Maxed on Oct 13, 2026") and a bare new Date() either side of midnight
+   * would be a hydration mismatch, while a day-granular value is identical for
+   * every caller for twenty-four hours regardless of timezone.
+   */
+  if (ch.symbols && hasArcaneLevels(ch.symbols)) {
+    const today = new Date(Math.floor(Date.now() / 86_400_000) * 86_400_000);
+    for (const s of symbolAdvice(ch.symbols, {
+      cls: ch.cls,
+      playerLevel: ch.lvl,
+      today,
+      reportedArcanePower: st.arcane || undefined,
+    }).recs) {
+      const r = add(s.pri, s.lv, s.t, s.w);
+      if (s.cost !== undefined) r.cost = s.cost;
+      // symbolAdvice returns no damage figure on purpose: turning flat main stat
+      // into a damage fraction needs this file's relGain() and this character's
+      // whole stat line, which symbols.ts has no business knowing.
+      if (s.statGain && s.statKind === "mainStat") {
+        priceDamageOnly(r, relGain(st, withMain(st, s.statGain), env), "modelled",
+          "Paid for in Arcane River dailies, not mesos",
+          "Symbol stat is FLAT, so none of it is multiplied by your %stat lines — which is exactly why those lines are worth less than they look.");
+      }
+    }
+  } else if (st.arcane) {
     const lv = Math.max(0, Math.round((st.arcane - 120) / 10));
     const left = 120 - lv;
     if (left > 0) {
       const flat = left * 10 * ARCANE_MAIN_STAT_PER_FORCE;
       const r = add(1, "hi", `${left} Arcane symbol levels left (+${flat.toLocaleString()} ${label}).`,
-        `Arcane Power ${st.arcane} of 1,320. Symbol stat is flat and is not multiplied by your %stat — which is why %lines are worth less than they look right now.`);
+        `Arcane Power ${st.arcane} of 1,320. Symbol stat is flat and is not multiplied by your %stat — which is why %lines are worth less than they look right now. Enter your six symbol levels and this becomes a ranking instead of a total.`);
       priceDamageOnly(r, relGain(st, withMain(st, flat), env), "modelled",
         "Paid for in daily Arcane River dailies, not mesos",
         "It is the largest single number on this page, and the reason it does not sit at the top of the meso ranking is that dividing by a zero meso cost would pin it there forever.");
