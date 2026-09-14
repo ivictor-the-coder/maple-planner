@@ -104,19 +104,61 @@ export function nextLink(lvl: number): { lv: 1 | 2 | 3; at: number; need: number
 //
 // This table remains only as the fallback for callers that cannot reach the roster.
 // Keep it in sync or delete it; do not let it drift again.
+/**
+ * LINK SKILLS READ OFF THE OWNER'S OWN WINDOW, 2026-09-13. Four disputes that
+ * Nexon's guide had opened, settled - and they did NOT all go the same way,
+ * which is the point of having a precedence order at all:
+ *
+ *   CYGNUS BLESSING        game and guide agree, THIS REPO WAS WRONG.
+ *                          One skill, all five Knights, "Attack Power and Magic
+ *                          ATT". Master Level 15; at Lv 10, +25 / +15 status
+ *                          resist / +15% elemental resist.
+ *
+ *   THIEF'S CUNNING        guide right, repo mislabelled. Master Level 9. The
+ *                          repo's "+18%" is the LEVEL 6 value (three maxed
+ *                          Explorer Thieves), not the maximum. Lv 6 +18%,
+ *                          Lv 7 +21%, so Lv 9 is +27% - which is what the guide
+ *                          quoted and what the repo should quote as the cap.
+ *
+ *   TERMS AND CONDITIONS   THE REPO WAS RIGHT AND THE GUIDE IS WRONG. Nexon says
+ *                          90 sec cooldown. The tooltip says 60 sec at Lv 2
+ *                          (+45%) and 60 sec at Lv 3 (+60%). Do not apply the
+ *                          guide's figure.
+ *
+ *   GUIDING STARS          THE REPO WAS RIGHT AND THE GUIDE IS WRONG. Nexon calls
+ *                          it "Tree of Stars" with three levels; the owner's
+ *                          Applied Link Skill panel lists "Guiding Stars" at
+ *                          Lv 3, and their earlier tooltip gave Master Level 6.
+ *
+ * Two each way. That is why a Nexon guide is not applied in bulk over a reading
+ * taken from the game: an in-game tooltip outranks a guide, a guide outranks a
+ * wiki, and the same sweep that proved the guides useful also proved them stale
+ * in places (the symbol page still lists three Grandis regions where there are
+ * six). See data/sources/nexon/skills.json for the full reconciliation.
+ */
 export const LINK_EFFECT: Record<string, string> = {
   "demon avenger": "Wild Rage - Damage +15% at master level 3. One of the strongest links in the game.",
   luminous: "Light Wash - Enemy DEF Ignored +20% when attacking. Top tier for bossing.",
   phantom: "Phantom Instinct - critical rate %.",
   "demon slayer": "Fury Unleashed - Boss Damage +20% at master level 3.",
   mercedes: "Elven Blessing - EXP %. Level this one early; it pays for the others.",
-  "dawn warrior": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
-  "blaze wizard": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
-  "wind archer": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
-  "night walker": "Cygnus Blessing - ATT. Stacks with every other Cygnus Knight you own.",
+  // CYGNUS BLESSING IS ONE SKILL, NOT FIVE VARIANTS, and it grants Attack Power
+  // AND Magic ATT to everybody. This table used to give four Knights plain ATT
+  // and Thunder Breaker alone ATT+MATT, which is wrong twice over: it invented a
+  // distinction between Knights, and it shorted four of them a stat.
+  //
+  // SOURCED from the owner's own Link Skill window, 2026-09-13 - the tooltip
+  // names all five classes on one skill and reads, at Lv 10 of a Master Level 15
+  // skill: "Attack Power and Magic ATT: +25, Status Resistance: +15, Elemental
+  // Resistance: +15%". Nexon's Link Skills guide says the same, so guide and game
+  // agree here and the repo was the odd one out.
+  "dawn warrior": "Cygnus Blessing - Attack Power and Magic ATT, one shared skill across all five Knights. Stacks with every other Cygnus Knight you own.",
+  "blaze wizard": "Cygnus Blessing - Attack Power and Magic ATT, one shared skill across all five Knights. Stacks with every other Cygnus Knight you own.",
+  "wind archer": "Cygnus Blessing - Attack Power and Magic ATT, one shared skill across all five Knights. Stacks with every other Cygnus Knight you own.",
+  "night walker": "Cygnus Blessing - Attack Power and Magic ATT, one shared skill across all five Knights. Stacks with every other Cygnus Knight you own.",
   // Was keyed "thunder", which matched no class name, so Thunder Breaker silently
   // got no link text. legionCrossCheck() reported it as an unmatched key.
-  "thunder breaker": "Cygnus Blessing - ATT and Magic ATT. Stacks with every other Cygnus Knight you own.",
+  "thunder breaker": "Cygnus Blessing - Attack Power and Magic ATT, one shared skill across all five Knights. Stacks with every other Cygnus Knight you own.",
 };
 
 export function linkEffect(cls: string): string | null {

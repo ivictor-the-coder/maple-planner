@@ -28,12 +28,10 @@
       "staleness": "SELF-DECLARED STALE. Verbatim banner at top of page: \"[Note] This guide is out of date as of the v.269 update, which revamped the V Matrix system. It will be updated soon.\""
     }
   ],
-
   "promptInjectionCheck": {
     "result": "clean",
     "detail": "None of the three pages contained text addressed to an agent or instructing any action. The only imperative text is ordinary reader guidance, e.g. \"You can directly move to the information you want by searching it with [Ctrl + F].\" Nothing was acted on."
   },
-
   "linkSkillGeneralRules": {
     "unlockAndUpgradeLadder": {
       "quote": "All Jobs possess Link Skills, skills that can be shared with your other characters in the same world to give them a power boost. The skills' effects are always applied to the character themselves and, once you reach Lv. 70, you can choose another one of your characters within the same world to transfer the corresponding skill.",
@@ -68,45 +66,340 @@
       "internalContradiction": "The page's own TIPS block says Zero reaches Lv. 5 by completing \"Chapter 8\", while the Zero section says \"Link Skills level up for Zero characters as they complete Acts 2 - 4, and completing Act 8 will upgrade the Link Skill to Lv. 6.\" Lv. 5 vs Lv. 6, Chapter vs Act. NEXON contradicts itself here; do not treat either number as settled."
     }
   },
-
   "linkSkillTable": {
     "note": "Complete extraction of every row on the guide. maxLevelEffect strings are verbatim cell text, newlines flattened to ' / '. 'unlock' is the per-stage character-level ladder as the page states it.",
     "rows": [
-      { "group": "Anima - Hoyoung", "skill": "Bravado", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Enemy DEF Ignored: +15% / Damage +19% against enemies with 100% HP / (Hoyoung only) Damage: +4%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Anima - Lara", "skill": "Nature's Friend", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Damage: +7% (Lara only: +10%) / Activate Nature's Help upon defeating 20 normal monsters. / Increase Damage Against Normal Monsters by 15% for 30 sec. when Nature's Help is active. / Nature's Help Cooldown: 30s.", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Anima - Ren", "skill": "Grounded Body", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Damage Taken: -6%, including attacks that inflict damage at a certain percentage of your Max HP. / (Ren only) Damage: +5%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Cygnus Knights", "skill": "Cygnus Blessing", "type": "Passive Skill", "maxLevel": 15, "maxLevelEffect": "Attack Power and Magic ATT: +35 (Cygnus Knights only: +55) / Abnormal Status Resistance: +22 / All Elemental Resistance: +22%", "lv1Effect": "Attack Power and Magic ATT: +7 / Abnormal Status Resistance: +1 / All Elemental Resistance: +1%", "unlock": "Cygnus Knights' Link Skills can be stacked, and by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15.", "stacks": "5 named Knights; Mihile is NOT in the named five", "cygnusOnlyBonusStartsAt": "Lv. 11 (Cygnus Knights only: +31)" },
-      { "group": "Demon Avenger", "skill": "Wild Rage", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Damage +15%", "ladder": "Lv1 Damage +5%, Lv2 Damage +10%, Lv3 Damage +15%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Demon Slayer", "skill": "Fury Unleashed", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Boss Damage +20%", "ladder": "Lv1 Boss Damage +10%, Lv2 +15%, Lv3 +20%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Explorer - Bowman", "skill": "Adventurer's Curiosity", "type": "Active Skill", "maxLevel": 9, "maxLevelEffect": "Chance to add monsters to Monster Collection: +50% / Critical Rate: +15% / (Explorer - Bowman only) Damage: +6%", "ladder": "Lv1 MC +10% / Crit +3% ... Lv3 MC +20% / Crit +6% ... Lv7 first Bowman-only Damage +2% ... Lv9 MC +50% / Crit +15% / Damage +6%", "unlock": "3 levels per character (70/120/210), stacking to Lv. 9 across three characters", "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Bowman job character you have on this world." },
-      { "group": "Explorer - Magician", "skill": "Empirical Knowledge", "type": "Passive Skill", "maxLevel": 9, "maxLevelEffect": "When attacking, has a 31% chance to identify the weakness of the enemy with the highest Max HP among those struck, granting you the following bonuses against them: / Damage per Stack: +4% / Enemy DEF Ignored per Stack: +4% / Effect Duration: 10 sec / Stacks up to 3 times", "unlock": "3 levels per character, stacking to Lv. 9", "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Magician job character you have on this world." },
-      { "group": "Explorer - Pirate", "skill": "Pirate Blessing", "type": "Passive Skill", "maxLevel": 9, "maxLevelEffect": "STR: +100 (Explorer - Pirate only: +130) / DEX: +100 (Explorer - Pirate only: +130) / INT: +100 (Explorer - Pirate only: +130) / LUK: +100 (Explorer - Pirate only: +130) / Max HP: +1750 / Max MP: +1750 / Damage Taken: -21% / Explorer - Pirate only: Damage: +6%", "unlock": "3 levels per character, stacking to Lv. 9", "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Exporer Pirate job character you have on this world.", "descriptionNote": "Description says: \"While this skill is active, the STR and DEX values for your equipment will be swapped.\"" },
-      { "group": "Explorer - Thief", "skill": "Thief's Cunning", "type": "Passive Skill", "maxLevel": 9, "maxLevelEffect": "Upon debuffing an enemy: / Damage: +27% / Duration: 10 sec / Cooldown: 20 sec", "ladder": "+3% per level, linear: Lv3 +9%, Lv6 +18%, Lv9 +27%", "unlock": "3 levels per character, stacking to Lv. 9", "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Thief job character you have on this world.", "descriptionNote": "Description says: \"Not affected by cooldown resets or buff duration increases.\"" },
-      { "group": "Explorer - Warrior", "skill": "Invincible Belief", "type": "Passive Skill", "maxLevel": 9, "maxLevelEffect": "Automatically activates when your health falls to 15% of Max HP or below / Restores 44% of Max HP every 1 sec for 3 sec / (Explorer - Warrior only) Damage: +6% / Cooldown: 150 sec", "ladder": "Cooldown falls 410s at Lv1 to 150s at Lv9; heal rises 20% to 44%", "unlock": "3 levels per character, stacking to Lv. 9", "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Warrior job character you have on this world." },
-      { "group": "Flora - Adele", "skill": "Noble Fire", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "For each party member, including yourself, on the same map: / Increases damage by 3% up to 12% / Boss Damage: +6%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Flora - Ark", "skill": "Solus", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Activates when the combat state continues for 5 sec / Can be stacked a max of 5 times / Duration: 5 sec / When activated, damage increases by 1%, and damage increases an extra 3% per stack", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Flora - Illium", "skill": "Tide of Battle", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Activated when moving a certain distance / Max number of stacks: 4 times / Illium-only Duration: 15 sec / Link Skill Duration: 10 sec / Damage per stack: +4%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Flora - Khali", "skill": "Innate Gift", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Damage: +7% (Khali only: +10%) / Upon attacking: / Recovery Chance 100% / Recovery: 3% of Max HP/MP per sec / Duration: 5 sec / Cooldown: 30 sec", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Hayato", "skill": "Keen Edge", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "All Stats: +35 / Attack Power: +20 / Magic Attack Power: +20", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Hero - Aran", "skill": "Combo Kill Blessing", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Combo Kill Orb EXP: +900% (permanently) / (Aran only) Damage: +5%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Hero - Evan", "skill": "Rune Persistence", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Rune Duration: +70% / (Evan only) Damage: +5%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Hero - Luminous", "skill": "Light Wash", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Enemy DEF Ignored: +20% / (Luminous Only) Damage: +4%", "ladder": "Lv1 +10%, Lv2 +15%, Lv3 +20%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Hero - Mercedes", "skill": "Elven Blessing", "type": "Active Skill", "maxLevel": 3, "maxLevelEffect": "Permanently receive 20% additional EXP / Returns you to Elluel, Cooldown: 10 min / (Mercedes only) Damage: +5%", "ladder": "Lv1 10% EXP, Lv2 15%, Lv3 20%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Hero - Phantom", "skill": "Phantom Instinct", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Critical Rate: +20% / (Phantom only) Damage: +5%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Hero - Shade", "skill": "Close Call", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Fatal Attack Survival Chance: +15% / (Shade only) Damage: +5%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Kanna", "skill": "Elementalism", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Damage Increase: +15%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Kinesis", "skill": "Judgment", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Critical Damage +6%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Lynn", "skill": "Spirit Guide Blessing", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Boss Damage: +11% / Critical Rate: +10% / Max HP: +5% / Max MP: +5%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Mihile", "skill": "Knight's Watch", "type": "Active Skill", "maxLevel": 3, "maxLevelEffect": "Mihile only: / Creates a shield for 30 sec that absorbs up to 9 hits, increases damage +25% / However, damage from attacks that deal a percentage of Max HP is reduced by 30%. / Cooldown: 120 sec / Passive: Damage: +3% / Other Classes: / Duration: 20 sec / Knockback Resistance Rate: 100% / Cooldown: 1820 sec", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Mo Xuan", "skill": "Qi Cultivation", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Boss Damage: +6%. If the target is a boss, up to 3% increase for every successful attack. Max Stacks: 6, stack activates once every 2 sec. Duration: 5 sec", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Nova - Angelic Buster", "skill": "Terms and Conditions", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "+120% skill damage for 10 sec. Cooldown: 90 sec. / Link Skill Effect: +60% skill damage for 10 sec. Cooldown: 90 sec.", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Nova - Cadena", "skill": "Unfair Advantage", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Attacks against weaker opponents deal +9% damage / Attacks against monsters afflicted by Abnormal Statuses deal +9% damage.", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Nova - Kain", "skill": "Time to Prepare", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "After completing Time to Prepare at least 1 time, then upon either defeating 40 enemies or attacking a boss 5 times, damage increases by 25% for 20 sec, every 5 times you've stacked Time to Prepare. / Cooldown: 40 sec.", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Nova - Kaiser", "skill": "Iron Will", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Max HP: +20% (Kaiser only: +15%) / (Kaiser only) Damage: +5% per Morph Gauge stage", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null, "descriptionNote": "Description says: \"Only the HP increase is applied when used as a Link Skill.\"" },
-      { "group": "Resistance", "skill": "Spirit of Freedom", "type": "Passive Skill", "maxLevel": 12, "maxLevelEffect": "Invincible for 12 sec after being revived. / (Resistance only) Damage: +5%", "unlock": "Resistance's Link Skills can be stacked, and by leveling up 4 Resistance characters (Blaster, Battle Mage, Wild Hunter, and Mechanic) to Lv. 210, the Link Skill can reach Lv. 12.", "stacks": "4 named Resistance classes", "resistanceOnlyBonusStartsAt": "Lv. 9 (Resistance only) Damage: +2%" },
-      { "group": "Sia Astelle", "skill": "Tree of Stars", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "Buff Duration: +10% / Critical Damage: +3%", "ladder": "Lv1 Buff Duration +3% / Crit Damage +1%; Lv2 +7% / +2%; Lv3 +10% / +3%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null, "description": "Draws on the nascent power of the star flowers to increase your buff duration." },
-      { "group": "Xenon", "skill": "Hybrid Logic", "type": "Passive Skill", "maxLevel": 3, "maxLevelEffect": "All Stats: +15%", "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210", "stacks": null },
-      { "group": "Zero", "skill": "Rhinne's Blessing", "type": "Passive Skill", "maxLevel": 6, "maxLevelEffect": "Reduces your damage receipt by 20% / When attacking, ignore the target's DEF by 15% / (Zero only) Damage: +5%", "ladder": "Lv1 3%/2%, Lv2 6%/4%, Lv3 9%/6%, Lv4 12%/8%, Lv5 15%/10%, Lv6 20%/15% (NOT linear - Lv6 jumps)", "unlock": "Link Skills level up for Zero characters as they complete Acts 2 - 4, and completing Act 8 will upgrade the Link Skill to Lv. 6.", "stacks": null }
+      {
+        "group": "Anima - Hoyoung",
+        "skill": "Bravado",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Enemy DEF Ignored: +15% / Damage +19% against enemies with 100% HP / (Hoyoung only) Damage: +4%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Anima - Lara",
+        "skill": "Nature's Friend",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Damage: +7% (Lara only: +10%) / Activate Nature's Help upon defeating 20 normal monsters. / Increase Damage Against Normal Monsters by 15% for 30 sec. when Nature's Help is active. / Nature's Help Cooldown: 30s.",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Anima - Ren",
+        "skill": "Grounded Body",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Damage Taken: -6%, including attacks that inflict damage at a certain percentage of your Max HP. / (Ren only) Damage: +5%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Cygnus Knights",
+        "skill": "Cygnus Blessing",
+        "type": "Passive Skill",
+        "maxLevel": 15,
+        "maxLevelEffect": "Attack Power and Magic ATT: +35 (Cygnus Knights only: +55) / Abnormal Status Resistance: +22 / All Elemental Resistance: +22%",
+        "lv1Effect": "Attack Power and Magic ATT: +7 / Abnormal Status Resistance: +1 / All Elemental Resistance: +1%",
+        "unlock": "Cygnus Knights' Link Skills can be stacked, and by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15.",
+        "stacks": "5 named Knights; Mihile is NOT in the named five",
+        "cygnusOnlyBonusStartsAt": "Lv. 11 (Cygnus Knights only: +31)"
+      },
+      {
+        "group": "Demon Avenger",
+        "skill": "Wild Rage",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Damage +15%",
+        "ladder": "Lv1 Damage +5%, Lv2 Damage +10%, Lv3 Damage +15%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Demon Slayer",
+        "skill": "Fury Unleashed",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Boss Damage +20%",
+        "ladder": "Lv1 Boss Damage +10%, Lv2 +15%, Lv3 +20%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Explorer - Bowman",
+        "skill": "Adventurer's Curiosity",
+        "type": "Active Skill",
+        "maxLevel": 9,
+        "maxLevelEffect": "Chance to add monsters to Monster Collection: +50% / Critical Rate: +15% / (Explorer - Bowman only) Damage: +6%",
+        "ladder": "Lv1 MC +10% / Crit +3% ... Lv3 MC +20% / Crit +6% ... Lv7 first Bowman-only Damage +2% ... Lv9 MC +50% / Crit +15% / Damage +6%",
+        "unlock": "3 levels per character (70/120/210), stacking to Lv. 9 across three characters",
+        "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Bowman job character you have on this world."
+      },
+      {
+        "group": "Explorer - Magician",
+        "skill": "Empirical Knowledge",
+        "type": "Passive Skill",
+        "maxLevel": 9,
+        "maxLevelEffect": "When attacking, has a 31% chance to identify the weakness of the enemy with the highest Max HP among those struck, granting you the following bonuses against them: / Damage per Stack: +4% / Enemy DEF Ignored per Stack: +4% / Effect Duration: 10 sec / Stacks up to 3 times",
+        "unlock": "3 levels per character, stacking to Lv. 9",
+        "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Magician job character you have on this world."
+      },
+      {
+        "group": "Explorer - Pirate",
+        "skill": "Pirate Blessing",
+        "type": "Passive Skill",
+        "maxLevel": 9,
+        "maxLevelEffect": "STR: +100 (Explorer - Pirate only: +130) / DEX: +100 (Explorer - Pirate only: +130) / INT: +100 (Explorer - Pirate only: +130) / LUK: +100 (Explorer - Pirate only: +130) / Max HP: +1750 / Max MP: +1750 / Damage Taken: -21% / Explorer - Pirate only: Damage: +6%",
+        "unlock": "3 levels per character, stacking to Lv. 9",
+        "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Exporer Pirate job character you have on this world.",
+        "descriptionNote": "Description says: \"While this skill is active, the STR and DEX values for your equipment will be swapped.\""
+      },
+      {
+        "group": "Explorer - Thief",
+        "skill": "Thief's Cunning",
+        "type": "Passive Skill",
+        "maxLevel": 9,
+        "maxLevelEffect": "Upon debuffing an enemy: / Damage: +27% / Duration: 10 sec / Cooldown: 20 sec",
+        "ladder": "+3% per level, linear: Lv3 +9%, Lv6 +18%, Lv9 +27%",
+        "unlock": "3 levels per character, stacking to Lv. 9",
+        "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Thief job character you have on this world.",
+        "descriptionNote": "Description says: \"Not affected by cooldown resets or buff duration increases.\""
+      },
+      {
+        "group": "Explorer - Warrior",
+        "skill": "Invincible Belief",
+        "type": "Passive Skill",
+        "maxLevel": 9,
+        "maxLevelEffect": "Automatically activates when your health falls to 15% of Max HP or below / Restores 44% of Max HP every 1 sec for 3 sec / (Explorer - Warrior only) Damage: +6% / Cooldown: 150 sec",
+        "ladder": "Cooldown falls 410s at Lv1 to 150s at Lv9; heal rises 20% to 44%",
+        "unlock": "3 levels per character, stacking to Lv. 9",
+        "stacks": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Warrior job character you have on this world."
+      },
+      {
+        "group": "Flora - Adele",
+        "skill": "Noble Fire",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "For each party member, including yourself, on the same map: / Increases damage by 3% up to 12% / Boss Damage: +6%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Flora - Ark",
+        "skill": "Solus",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Activates when the combat state continues for 5 sec / Can be stacked a max of 5 times / Duration: 5 sec / When activated, damage increases by 1%, and damage increases an extra 3% per stack",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Flora - Illium",
+        "skill": "Tide of Battle",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Activated when moving a certain distance / Max number of stacks: 4 times / Illium-only Duration: 15 sec / Link Skill Duration: 10 sec / Damage per stack: +4%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Flora - Khali",
+        "skill": "Innate Gift",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Damage: +7% (Khali only: +10%) / Upon attacking: / Recovery Chance 100% / Recovery: 3% of Max HP/MP per sec / Duration: 5 sec / Cooldown: 30 sec",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Hayato",
+        "skill": "Keen Edge",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "All Stats: +35 / Attack Power: +20 / Magic Attack Power: +20",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Hero - Aran",
+        "skill": "Combo Kill Blessing",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Combo Kill Orb EXP: +900% (permanently) / (Aran only) Damage: +5%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Hero - Evan",
+        "skill": "Rune Persistence",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Rune Duration: +70% / (Evan only) Damage: +5%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Hero - Luminous",
+        "skill": "Light Wash",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Enemy DEF Ignored: +20% / (Luminous Only) Damage: +4%",
+        "ladder": "Lv1 +10%, Lv2 +15%, Lv3 +20%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Hero - Mercedes",
+        "skill": "Elven Blessing",
+        "type": "Active Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Permanently receive 20% additional EXP / Returns you to Elluel, Cooldown: 10 min / (Mercedes only) Damage: +5%",
+        "ladder": "Lv1 10% EXP, Lv2 15%, Lv3 20%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Hero - Phantom",
+        "skill": "Phantom Instinct",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Critical Rate: +20% / (Phantom only) Damage: +5%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Hero - Shade",
+        "skill": "Close Call",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Fatal Attack Survival Chance: +15% / (Shade only) Damage: +5%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Kanna",
+        "skill": "Elementalism",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Damage Increase: +15%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Kinesis",
+        "skill": "Judgment",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Critical Damage +6%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Lynn",
+        "skill": "Spirit Guide Blessing",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Boss Damage: +11% / Critical Rate: +10% / Max HP: +5% / Max MP: +5%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Mihile",
+        "skill": "Knight's Watch",
+        "type": "Active Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Mihile only: / Creates a shield for 30 sec that absorbs up to 9 hits, increases damage +25% / However, damage from attacks that deal a percentage of Max HP is reduced by 30%. / Cooldown: 120 sec / Passive: Damage: +3% / Other Classes: / Duration: 20 sec / Knockback Resistance Rate: 100% / Cooldown: 1820 sec",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Mo Xuan",
+        "skill": "Qi Cultivation",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Boss Damage: +6%. If the target is a boss, up to 3% increase for every successful attack. Max Stacks: 6, stack activates once every 2 sec. Duration: 5 sec",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Nova - Angelic Buster",
+        "skill": "Terms and Conditions",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "+120% skill damage for 10 sec. Cooldown: 90 sec. / Link Skill Effect: +60% skill damage for 10 sec. Cooldown: 90 sec.",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Nova - Cadena",
+        "skill": "Unfair Advantage",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Attacks against weaker opponents deal +9% damage / Attacks against monsters afflicted by Abnormal Statuses deal +9% damage.",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Nova - Kain",
+        "skill": "Time to Prepare",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "After completing Time to Prepare at least 1 time, then upon either defeating 40 enemies or attacking a boss 5 times, damage increases by 25% for 20 sec, every 5 times you've stacked Time to Prepare. / Cooldown: 40 sec.",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Nova - Kaiser",
+        "skill": "Iron Will",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Max HP: +20% (Kaiser only: +15%) / (Kaiser only) Damage: +5% per Morph Gauge stage",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null,
+        "descriptionNote": "Description says: \"Only the HP increase is applied when used as a Link Skill.\""
+      },
+      {
+        "group": "Resistance",
+        "skill": "Spirit of Freedom",
+        "type": "Passive Skill",
+        "maxLevel": 12,
+        "maxLevelEffect": "Invincible for 12 sec after being revived. / (Resistance only) Damage: +5%",
+        "unlock": "Resistance's Link Skills can be stacked, and by leveling up 4 Resistance characters (Blaster, Battle Mage, Wild Hunter, and Mechanic) to Lv. 210, the Link Skill can reach Lv. 12.",
+        "stacks": "4 named Resistance classes",
+        "resistanceOnlyBonusStartsAt": "Lv. 9 (Resistance only) Damage: +2%"
+      },
+      {
+        "group": "Sia Astelle",
+        "skill": "Tree of Stars",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "Buff Duration: +10% / Critical Damage: +3%",
+        "ladder": "Lv1 Buff Duration +3% / Crit Damage +1%; Lv2 +7% / +2%; Lv3 +10% / +3%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null,
+        "description": "Draws on the nascent power of the star flowers to increase your buff duration."
+      },
+      {
+        "group": "Xenon",
+        "skill": "Hybrid Logic",
+        "type": "Passive Skill",
+        "maxLevel": 3,
+        "maxLevelEffect": "All Stats: +15%",
+        "unlock": "Lv. 1 at Lv. 70, Lv. 2 at Lv. 120, Lv. 3 at Lv. 210",
+        "stacks": null
+      },
+      {
+        "group": "Zero",
+        "skill": "Rhinne's Blessing",
+        "type": "Passive Skill",
+        "maxLevel": 6,
+        "maxLevelEffect": "Reduces your damage receipt by 20% / When attacking, ignore the target's DEF by 15% / (Zero only) Damage: +5%",
+        "ladder": "Lv1 3%/2%, Lv2 6%/4%, Lv3 9%/6%, Lv4 12%/8%, Lv5 15%/10%, Lv6 20%/15% (NOT linear - Lv6 jumps)",
+        "unlock": "Link Skills level up for Zero characters as they complete Acts 2 - 4, and completing Act 8 will upgrade the Link Skill to Lv. 6.",
+        "stacks": null
+      }
     ],
     "classesAbsentFromTable": [
       "Erel Light - no section, no mention. The string 'Erel' does not occur anywhere in the page (verified via indexOf on document.body.innerText, result -1).",
@@ -114,7 +407,6 @@
     ],
     "totalRows": 35
   },
-
   "fifthJob": {
     "unlockLevel": {
       "quote": "Once you reach Lv. 200 and complete job advancement quests, you can begin to utilize 5th Job skills.",
@@ -133,17 +425,28 @@
       "note": "Every 5th Job skill listed on the page, shared and job alike, is tagged '[Master Level: 25]'. 459 occurrences of the string 'Master Level' in the page text, and no other master-level value appears."
     },
     "gatedSharedSkills": [
-      { "skill": "Solar Crest", "requirement": "Completion of all Cernium story quests" },
-      { "skill": "True Arachnid Reflection", "requirement": "Completion of all Esfera story quests" }
+      {
+        "skill": "Solar Crest",
+        "requirement": "Completion of all Cernium story quests"
+      },
+      {
+        "skill": "True Arachnid Reflection",
+        "requirement": "Completion of all Esfera story quests"
+      }
     ],
     "bowMasterSkillList": [
-      "Fury of the Wild", "Guided Arrow", "Inhuman Speed", "Maple World Goddess's Blessing",
-      "Quiver Barrage", "Silhouette Mirage", "Storm of Arrows", "Vicious Shot"
+      "Fury of the Wild",
+      "Guided Arrow",
+      "Inhuman Speed",
+      "Maple World Goddess's Blessing",
+      "Quiver Barrage",
+      "Silhouette Mirage",
+      "Storm of Arrows",
+      "Vicious Shot"
     ],
     "bowMasterNote": "\"Quiver Cartridge\" is NOT among Bow Master's 5th Job skills on this guide; the closest name is \"Quiver Barrage\". The owner's 6th Job node is \"Quiver Cartridge/Phoenix Mastery Enhancement\", so Quiver Cartridge is a pre-5th-job skill that a boost node / HEXA Mastery core targets, not a 5th Job node skill. The repo's bow-master.json already places Quiver Cartridge + Phoenix as boost-node group 3, which is consistent with this.",
     "erelLightAndSiaAstellePresence": "Both Erel Light and Sia Astelle DO appear in this page's job-category table (Erel Light under Warrior/Other, Sia Astelle under Magician/Other), which is why their absence from the link-skills page is notable rather than explicable by 'the guide site does not know these classes yet'."
   },
-
   "vMatrix": {
     "stalenessBanner": "[Note] This guide is out of date as of the v.269 update, which revamped the V Matrix system. It will be updated soon.",
     "unlock": {
@@ -191,70 +494,452 @@
     },
     "terminologyNote": "The guide calls the level-up currency 'Matrix Point'. The owner's in-game UI calls them 'V Points' (26 unspent). Either the v.269 revamp renamed them, or the guide's term is simply older. Flag as a naming divergence, not a numeric conflict."
   },
-
   "reconciliations": [
-    { "constant": "lib/legion.ts LINK_TRANSFER = 70; linkLevel() thresholds 120 and 210", "repoValue": "70 / 120 / 210", "guideValue": "70 / 120 / 210", "verdict": "confirmed", "quote": "Lv. 1 can be reached at Lv. 70, Lv. 2 can be reached at Lv. 120, and Lv. 3 can be reached at Lv. 210.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Demon Slayer link skill = \"Fury Unleashed\", Boss Damage +20% (the corrected value)", "repoValue": "Fury Unleashed - Boss Damage +20% at master level 3", "guideValue": "Fury Unleashed, Lv. 3: Boss Damage +20%", "verdict": "confirmed", "quote": "Fury Unleashed", "quote2": "Boss Damage +20%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Demon Avenger link skill = \"Wild Rage\", Damage +15% (the corrected value)", "repoValue": "Wild Rage - Damage +15% at master level 3", "guideValue": "Wild Rage, Lv. 3: Damage +15%", "verdict": "confirmed", "quote": "Wild Rage", "quote2": "Damage +15%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Luminous link skill = \"Light Wash\", DEF Ignored +20% (the corrected value; 'Permeate' was the wrong name)", "repoValue": "Light Wash - Enemy DEF Ignored +20% when attacking", "guideValue": "Light Wash, Lv. 3: Enemy DEF Ignored: +20%, plus (Luminous Only) Damage: +4%", "verdict": "confirmed", "quote": "Enemy DEF Ignored: +20%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Sia Astelle / Erel Light link skill name = \"Guiding Stars\" (data/classes.json siaastelle + erellight, data/class-guides/sia-astelle.json + erel-light.json)", "repoValue": "Guiding Stars", "guideValue": "Tree of Stars", "verdict": "contradicted", "quote": "Sia Astelle\nSkill Icon and Name\t\tTree of Stars\n[Passive Skill]\nDescription\tDraws on the nascent power of the star flowers to increase your buff duration.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Sia Astelle / Erel Light link skill Master Level = 6, shared across the Shine group, max +19% Buff Duration / +6% Critical Damage", "repoValue": "Master Level 6; Lv6 = Buff Duration +19%, Critical Damage +6%; stacks twice, once per unique Shine class", "guideValue": "3 levels only, at 70/120/210; Lv. 3 = Buff Duration +10%, Critical Damage +3%; no stacking clause; no Erel Light section anywhere", "verdict": "contradicted", "quote": "Lv. 3\t\nBuff Duration: +10%\nCritical Damage: +3%", "quote2": "Lv. 1 can be reached at Lv. 70, Lv. 2 can be reached at Lv. 120, and Lv. 3 can be reached at Lv. 210.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Lynn link skill name (data/classes.json ships it as name:null with an unresolved conflict between 'Spirit Guide Blessing' and 'Focus Spirit')", "repoValue": "null - unresolved between two fan sources", "guideValue": "Spirit Guide Blessing", "verdict": "confirmed", "quote": "Lynn\n\nSkill Icon and Name\t\tSpirit Guide Blessing\n[Passive Skill]", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Lynn link skill effect: Boss Damage +10% (data/classes.json)", "repoValue": "Boss Damage +10%, Critical Rate +10%, Max HP +5%, Max MP +5%", "guideValue": "Boss Damage: +11%, Critical Rate: +10%, Max HP: +5%, Max MP: +5%", "verdict": "contradicted", "quote": "Boss Damage: +11%\nCritical Rate: +10%\nMax HP: +5%\nMax MP: +5%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Invincible Belief cooldown = 90s (data/classes.json hero/paladin/darkknight)", "repoValue": "restores 44% of Max HP every 1s for 3s. 90s cooldown.", "guideValue": "Lv. 9 cooldown 150 sec (the ladder runs 410s at Lv.1 down to 150s at Lv.9; 90s never appears)", "verdict": "contradicted", "quote": "Restores 44% of Max HP every 1 sec for 3 sec\n(Explorer - Warrior only) Damage: +6%\nCooldown: 150 sec", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Empirical Knowledge per-stack value = 5% (data/classes.json bishop/archmagefirepoison/archmageicelightning)", "repoValue": "+5% Damage and +5% Enemy DEF Ignored per stack, 3 stacks, 31% chance", "guideValue": "Lv. 9: Damage per Stack +4%, Enemy DEF Ignored per Stack +4%, 31% chance", "verdict": "contradicted", "quote": "When attacking, has a 31% chance to identify the weakness of the enemy with the highest Max HP among those struck, granting you the following bonuses against them:\nDamage per Stack: +4%\nEnemy DEF Ignored per Stack: +4%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Thief's Cunning max damage = +18% (data/classes.json nightlord/shadower/dualblade)", "repoValue": "On debuffing an enemy, Damage +18% for 10s. 20s cooldown.", "guideValue": "Lv. 9: Damage +27% (18% is the Lv. 6 value, i.e. only two maxed Explorer Thieves)", "verdict": "contradicted", "quote": "Upon debuffing an enemy:\nDamage: +27%\nDuration: 10 sec\nCooldown: 20 sec", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Mihile Knight's Watch link effect and cooldown (data/classes.json mihile)", "repoValue": "Active buff, 20s duration: Status Resistance +100. 120s cooldown.", "guideValue": "For other classes: Duration 20 sec, Knockback Resistance Rate 100%, Cooldown 1820 sec. The 120 sec cooldown is the Mihile-ONLY shield, not the link.", "verdict": "contradicted", "quote": "Other Classes:\nDuration: 20 sec\nKnockback Resistance Rate: 100%\nCooldown: 1820 sec", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Mercedes Elven Blessing return cooldown = 1800s (data/classes.json mercedes)", "repoValue": "Also an active return-to-Elluel on a 1800s cooldown.", "guideValue": "Cooldown: 10 min (= 600s)", "verdict": "contradicted", "quote": "Permanently receive 20% additional EXP\nReturns you to Elluel, Cooldown: 10 min", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Mercedes Elven Blessing EXP = 20% (data/classes.json); lib/legion.ts LINK_EFFECT mercedes = 'EXP %'", "repoValue": "Permanently receive 20% additional EXP", "guideValue": "Lv. 3: Permanently receive 20% additional EXP", "verdict": "confirmed", "quote": "Permanently receive 20% additional EXP", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Zero Rhinne's Blessing max = damage taken -18%, DEF ignored 12% (data/classes.json zero)", "repoValue": "Incoming damage reduced 18%, Enemy DEF Ignored 12%. Master level 6.", "guideValue": "Lv. 6: Reduces your damage receipt by 20%; ignore the target's DEF by 15%. The ladder is NOT linear - Lv.5 is 15%/10% and Lv.6 jumps to 20%/15%. The repo's 18%/12% is a linear extrapolation of the Lv.1-5 slope and matches no printed row.", "verdict": "contradicted", "quote": "Reduces your damage receipt by 20%\nWhen attacking, ignore the target's DEF by 15%\n(Zero only) Damage: +5%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Ren Grounded Body damage taken reduction = 4% (data/classes.json ren)", "repoValue": "Reduces damage taken by 4%", "guideValue": "Lv. 3: Damage Taken -6% (4% is the Lv. 2 value)", "verdict": "contradicted", "quote": "Damage Taken: -6%, including attacks that inflict damage at a certain percentage of your Max HP.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Ren Grounded Body mitigates %Max HP attacks (data/classes.json note: 'the only link that mitigates %Max HP boss attacks')", "repoValue": "INCLUDING attacks that deal a ratio of maximum HP", "guideValue": "same clause, verbatim", "verdict": "confirmed", "quote": "including attacks that inflict damage at a certain percentage of your Max HP", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Illium Tide of Battle duration = 15s (data/classes.json illium)", "repoValue": "Damage +4% per stack, max 4 stacks, 15s.", "guideValue": "Illium-only Duration: 15 sec; Link Skill Duration: 10 sec. On a linked character the duration is 10s, not 15s.", "verdict": "contradicted", "quote": "Illium-only Duration: 15 sec\nLink Skill Duration: 10 sec\nDamage per stack: +4%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Angelic Buster Terms and Conditions cooldown = 60s (data/classes.json angelicbuster)", "repoValue": "ACTIVE buff: Damage +60% for 10s on a 60s cooldown.", "guideValue": "Link Skill Effect: +60% skill damage for 10 sec. Cooldown: 90 sec. (The +60% is right; 60s cooldown is wrong, and it is 'skill damage', not flat Damage.)", "verdict": "contradicted", "quote": "Link Skill Effect: +60% skill damage for 10 sec. Cooldown: 90 sec.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Kain Time to Prepare stack trigger = 8 enemies (data/classes.json kain)", "repoValue": "1 stack per 8 enemies defeated or 5 boss hits; at 5 stacks Damage +25% for 20s", "guideValue": "upon either defeating 40 enemies or attacking a boss 5 times, damage increases by 25% for 20 sec, every 5 times you've stacked", "verdict": "contradicted", "quote": "After completing Time to Prepare at least 1 time, then upon either defeating 40 enemies or attacking a boss 5 times, damage increases by 25% for 20 sec, every 5 times you've stacked Time to Prepare.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "lib/legion.ts LINK_EFFECT: only Thunder Breaker is tagged 'ATT and Magic ATT'; Dawn Warrior / Blaze Wizard / Wind Archer / Night Walker are tagged 'ATT' alone", "repoValue": "Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker: 'Cygnus Blessing - ATT.' Thunder Breaker: 'Cygnus Blessing - ATT and Magic ATT.'", "guideValue": "One shared Cygnus Blessing for all five Knights, granting 'Attack Power and Magic ATT' at every level. There is no per-Knight variation.", "verdict": "contradicted", "quote": "Attack Power and Magic ATT: +7\nAbnormal Status Resistance: +1\nAll Elemental Resistance: +1%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Cygnus Blessing max = ATT/MATT +35, Status Res +22, Elem Res +22% (data/classes.json all five Knights; data/class-guides/dawn-warrior.json Master Level 15)", "repoValue": "Attack Power +35 and Magic ATT +35, Status Resistance +22, Elemental Resistance +22%; Master Level 15", "guideValue": "Lv. 15: Attack Power and Magic ATT +35 (Cygnus Knights only: +55), Abnormal Status Resistance +22, All Elemental Resistance +22%", "verdict": "confirmed", "quote": "Attack Power and Magic ATT: +35 (Cygnus Knights only: +55)\nAbnormal Status Resistance: +22\nAll Elemental Resistance: +22%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "data/class-guides/dawn-warrior.json + thunder-breaker.json: Cygnus link 'stacks up to five times'; thunder-breaker.json adds 'Grandis Library states Mihile is excluded from the 5-character stack'", "repoValue": "Stacks 5x; Mihile excluded (attributed to Grandis Library)", "guideValue": "by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15 - Mihile is not among the five named, and Mihile has his own separate link skill (Knight's Watch)", "verdict": "confirmed", "quote": "Cygnus Knights' Link Skills can be stacked, and by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Spirit of Freedom = 12s invincibility (data/classes.json battlemage/wildhunter/mechanic/blaster)", "repoValue": "12s of invincibility after being revived; removed on changing map.", "guideValue": "Lv. 12: Invincible for 12 sec after being revived. Guide adds '(Resistance only) Damage: +5%' at Lv. 12, which the repo does not record. The 'removed on changing map' clause is not on the page.", "verdict": "confirmed", "quote": "Invincible for 12 sec after being revived.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Adventurer's Curiosity: data/class-guides/bow-master.json flags an UNRECONCILED conflict between 'Master Level 9: crit +15% (Grandis)' and 'Bow Master + Marksman + Pathfinder combined = 15% Crit and 6% Damage (class doc)'", "repoValue": "two framings recorded as irreconcilable", "guideValue": "Both are the same statement. The skill runs Lv.1-9, stacks 3x once per unique Explorer Bowman, and Lv. 9 = Critical Rate +15% plus (Explorer - Bowman only) Damage +6%. The 15% crit and the 6% damage are the three-character stacked total.", "verdict": "confirmed", "quote": "Chance to add monsters to Monster Collection: +50%\nCritical Rate: +15%\n(Explorer - Bowman only) Damage: +6%", "quote2": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Bowman job character you have on this world.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Pirate Blessing max (data/classes.json buccaneer/corsair/cannoneer)", "repoValue": "STR/DEX/INT/LUK +100 each, Max HP/MP +1750, Damage Taken -21%", "guideValue": "Lv. 9: identical, plus Explorer-Pirate-only +130 stats and Damage +6%", "verdict": "confirmed", "quote": "STR: +100 (Explorer - Pirate only: +130)", "quote2": "Max HP: +1750\nMax MP: +1750\nDamage Taken: -21%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Phantom Instinct Critical Rate +20% (data/classes.json phantom); lib/legion.ts says only 'critical rate %'", "repoValue": "Critical Rate +20%", "guideValue": "Lv. 3: Critical Rate +20%", "verdict": "confirmed", "quote": "Critical Rate: +20%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Hoyoung Bravado = DEF Ignored +15%, Damage +19% vs full-HP (data/classes.json hoyoung)", "repoValue": "Enemy DEF Ignored +15%, Damage +19% against enemies at 100% HP", "guideValue": "identical at Lv. 3, plus (Hoyoung only) Damage +4%", "verdict": "confirmed", "quote": "Enemy DEF Ignored: +15%\nDamage +19% against enemies with 100% HP", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Kaiser Iron Will Max HP +20% (data/classes.json kaiser)", "repoValue": "Max HP +20%", "guideValue": "Lv. 3: Max HP +20% (Kaiser only: +15%)", "verdict": "confirmed", "quote": "Max HP: +20% (Kaiser only: +15%)", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills" },
-    { "constant": "Xenon Hybrid Logic All Stats +15% / Kanna Elementalism Damage +15% / Kinesis Judgment Crit Damage +6% / Hayato Keen Edge All Stats +35 ATT/MATT +20 / Evan Rune Persistence +70% / Shade Close Call 15% / Adele Noble Fire +6% boss +12% party / Ark Solus +1%+3%x5 / Khali Innate Gift +7% / Lara Nature's Friend +7%/+15% / Cadena Unfair Advantage +9%/+9% / Mo Xuan Qi Cultivation +6%/+3%x6 / Aran Combo Kill +900%", "repoValue": "as listed in data/classes.json", "guideValue": "every one matches the guide's Lv. 3 row exactly", "verdict": "confirmed", "quote": "All Stats: +15%", "quote2": "Combo Kill Orb EXP: +900% (permanently)", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "note": "Aran terminology differs only: guide says 'Combo Kill Orb', repo says 'Combo Kill Marble'. Values identical." },
-    { "constant": "Legion rank ladder in lib/legion.ts: B 60 / A 100 / S 140 / SS 200 / SSS 250, BOARD_MIN 60", "repoValue": "B 60, A 100, S 140, SS 200, SSS 250", "guideValue": "not addressed", "verdict": "absent", "quote": "(no sentence on any of the three assigned pages mentions Legion ranks, the Legion board, or a level-to-rank mapping)", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "note": "The link-skills guide covers only the link ladder. A separate Legion guide, if one exists, was not in my assignment; the guide index at /maple-guides/all did not surface one in the nine entries it rendered." },
-    { "constant": "5th Job unlock level (lib/classes.ts HexaPlan has unlockLevel for HEXA; no 5th-job unlock constant found in lib/)", "repoValue": "not modelled as a constant", "guideValue": "Lv. 200 plus job advancement quests", "verdict": "absent", "quote": "Once you reach Lv. 200 and complete job advancement quests, you can begin to utilize 5th Job skills.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills", "note": "Verdict 'absent' describes the REPO side: the guide states it plainly, the repo does not carry it. Use the quote to populate it." },
-    { "constant": "V Matrix slot counts by character level (lib/classes.ts VMatrixPlan.slotCurve: Array<{atLevel, slots}>)", "repoValue": "schema exists in lib/classes.ts but data/classes.json records carry NO vMatrix key at all - slotCurve is unpopulated for all 53 classes", "guideValue": "not addressed. The guide never states how many V Matrix slots a character has at any level, and never states a total equippable node count.", "verdict": "absent", "quote": "V Matrix Slot: These are slots on which you can equip Nodes. Click on the equipped Node to see the Node Type, Rank, and EXP of the Active Node Skills to the right.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "note": "I could not source slot counts by level from NEXON. That sentence is the guide's entire treatment of slots as a quantity." },
-    { "constant": "Boost node value per level, and what sets the per-level rate (owner observes Wind Arrow +5% at level 1 but Gritty Gust +2% at level 1)", "repoValue": "lib/classes.ts VMatrixPlan.boostNodeMechanics carries maxLevel / effectType / multiplicative / masteryFifty, but data/classes.json populates no vMatrix object", "guideValue": "not addressed. The guide states only that Boost Nodes enhance 1st-4th Job and Hyper Skills and that rank determines skill level. It never gives a per-level percentage, never explains why two skills on the same node move at different rates, and never mentions final damage.", "verdict": "absent", "quote": "Boost Nodes: Nodes that can be used to enhance a character's 1st, 2nd, 3rd, and 4th Job Skills, as well as Hyper Skills.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "note": "This is the owner's specific question and NEXON does not answer it. The non-uniform rate is per-skill and is not documented first-party. Additionally the page is self-declared out of date as of v.269, so even its silence is stale silence." },
-    { "constant": "Boost node level cap", "repoValue": "unpopulated (schema field boostNodeMechanics.maxLevel exists)", "guideValue": "50 normally, 55 via Slot Enhancement", "verdict": "absent", "quote": "A Boost Node's highest Rank is normally 50, but can be increased to up to 55 via Slot Enhancement.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "note": "Verdict is 'absent' on the repo side - the repo has nowhere to compare. Treat the 50/55 numbers as pre-v.269 per the page's own banner." },
-    { "constant": "Rules for which skills a boost node can pair", "repoValue": "data/class-guides/*.json model boost nodes as 'trios'; bow-master.json warns the exact trio pairings are its weakest claim and predate the v.269 grouping change", "guideValue": "Boost Nodes consist of 1 main skill and 2 sub-skills; only same-type nodes with the same main skill can be used to enhance each other; nodes sharing a main skill cannot be stacked; on crafting, the chosen skill becomes the main skill and sub-skills are assigned randomly. The guide does NOT state which skills may appear together as sub-skills.", "verdict": "confirmed", "quote": "Boost Nodes consist of 1 main skill and 2 sub-skills. A total of 3 skills make up a single Boost Node.", "quote2": "Also, Boost Nodes with the same main skills cannot be stacked.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "note": "The 'trio' vocabulary the repo uses is vindicated - 3 skills per node is first-party. The constraint on WHICH three is not documented." },
-    { "constant": "HEXA / 6th Job unlock level (lib/classes.ts HexaPlan.unlockLevel), HEXA core acquisition, HEXA stat, Mastery/Enhancement node structure", "repoValue": "HexaPlan schema models unlockLevel, prerequisiteQuest, Sol Erda cost tables, hexaStat rank curve; data/class-guides/bow-master.json carries Mastery/Enhancement prerequisites quoted from a Google-doc class guide", "guideValue": "not addressed on any of the three assigned pages. The 5th Job Skills page contains ZERO occurrences of 'HEXA', 'Hexa', '6th', 'Sixth', 'Sol Erda' or 'Fragment' as a HEXA term. The V Matrix page likewise never mentions 6th Job.", "verdict": "absent", "quote": "5th Job Skills are obtained, and have their Skill Levels boosted, by equipping Nodes on the V Matrix. These Nodes can be chosen, combined, and enhanced by players through the V Matrix, and you can learn more about it in the V Matrix Maple Guide.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills", "note": "I could not source any 6th Job / HEXA fact from these pages. The quote is the page's only forward reference and it points at the V Matrix guide, not at a HEXA guide. The guide index at /maple-guides/all rendered nine entries and none was a HEXA or 6th Job guide." },
-    { "constant": "data/class-guides/bow-master.json HEXA prerequisite: 'In order to unlock your Mastery Nodes, the corresponding V-Matrix Boost Nodes must be level 40 or higher' and 'Enhancement Nodes... Job Nodes must be level 25 or higher' (both single-sourced, consensus 'weak')", "repoValue": "Boost Node >= 40 for Mastery; Job/Skill Node >= 25 for Enhancement", "guideValue": "not addressed. The guide does corroborate the surrounding caps that make these thresholds coherent - Skill Node rank normally caps at 25 and Boost Node at 50 - but never states either prerequisite.", "verdict": "absent", "quote": "A Skill Node's highest Rank is normally 25, but can be increased to up to 30 via Slot Enhancement.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "note": "These two prerequisites remain single-sourced to the class Google doc. NEXON did not corroborate them; it also did not contradict them." },
-    { "constant": "Repo patch stamps: data/classes.json = 53 records all 'v.269'; data/class-guides/*.json = 54 records all 'v.271'", "repoValue": "v.269 on the fact layer, v.271 on the guide layer", "guideValue": "NEXON's own V Matrix guide declares itself out of date as of v.269 BECAUSE v.269 revamped the V Matrix system", "verdict": "confirmed", "quote": "[Note] This guide is out of date as of the v.269 update, which revamped the V Matrix system. It will be updated soon.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "note": "First-party confirmation that v.269 was a V-Matrix-revamp patch. data/class-guides/bow-master.json already suspects this ('predates the v269 boost-node grouping changes that Grandis Library's own View Pre-V.269 Boost Nodes toggle is evidence of'). NEXON's banner is the strongest evidence available for that suspicion, and it also means every V Matrix number on this guide describes the PRE-revamp system." }
+    {
+      "constant": "lib/legion.ts LINK_TRANSFER = 70; linkLevel() thresholds 120 and 210",
+      "repoValue": "70 / 120 / 210",
+      "guideValue": "70 / 120 / 210",
+      "verdict": "confirmed",
+      "quote": "Lv. 1 can be reached at Lv. 70, Lv. 2 can be reached at Lv. 120, and Lv. 3 can be reached at Lv. 210.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Demon Slayer link skill = \"Fury Unleashed\", Boss Damage +20% (the corrected value)",
+      "repoValue": "Fury Unleashed - Boss Damage +20% at master level 3",
+      "guideValue": "Fury Unleashed, Lv. 3: Boss Damage +20%",
+      "verdict": "confirmed",
+      "quote": "Fury Unleashed",
+      "quote2": "Boss Damage +20%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Demon Avenger link skill = \"Wild Rage\", Damage +15% (the corrected value)",
+      "repoValue": "Wild Rage - Damage +15% at master level 3",
+      "guideValue": "Wild Rage, Lv. 3: Damage +15%",
+      "verdict": "confirmed",
+      "quote": "Wild Rage",
+      "quote2": "Damage +15%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Luminous link skill = \"Light Wash\", DEF Ignored +20% (the corrected value; 'Permeate' was the wrong name)",
+      "repoValue": "Light Wash - Enemy DEF Ignored +20% when attacking",
+      "guideValue": "Light Wash, Lv. 3: Enemy DEF Ignored: +20%, plus (Luminous Only) Damage: +4%",
+      "verdict": "confirmed",
+      "quote": "Enemy DEF Ignored: +20%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Sia Astelle / Erel Light link skill name = \"Guiding Stars\" (data/classes.json siaastelle + erellight, data/class-guides/sia-astelle.json + erel-light.json)",
+      "repoValue": "Guiding Stars",
+      "guideValue": "Tree of Stars",
+      "verdict": "contradicted",
+      "quote": "Sia Astelle\nSkill Icon and Name\t\tTree of Stars\n[Passive Skill]\nDescription\tDraws on the nascent power of the star flowers to increase your buff duration.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Sia Astelle / Erel Light link skill Master Level = 6, shared across the Shine group, max +19% Buff Duration / +6% Critical Damage",
+      "repoValue": "Master Level 6; Lv6 = Buff Duration +19%, Critical Damage +6%; stacks twice, once per unique Shine class",
+      "guideValue": "3 levels only, at 70/120/210; Lv. 3 = Buff Duration +10%, Critical Damage +3%; no stacking clause; no Erel Light section anywhere",
+      "verdict": "contradicted",
+      "quote": "Lv. 3\t\nBuff Duration: +10%\nCritical Damage: +3%",
+      "quote2": "Lv. 1 can be reached at Lv. 70, Lv. 2 can be reached at Lv. 120, and Lv. 3 can be reached at Lv. 210.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Lynn link skill name (data/classes.json ships it as name:null with an unresolved conflict between 'Spirit Guide Blessing' and 'Focus Spirit')",
+      "repoValue": "null - unresolved between two fan sources",
+      "guideValue": "Spirit Guide Blessing",
+      "verdict": "confirmed",
+      "quote": "Lynn\n\nSkill Icon and Name\t\tSpirit Guide Blessing\n[Passive Skill]",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Lynn link skill effect: Boss Damage +10% (data/classes.json)",
+      "repoValue": "Boss Damage +10%, Critical Rate +10%, Max HP +5%, Max MP +5%",
+      "guideValue": "Boss Damage: +11%, Critical Rate: +10%, Max HP: +5%, Max MP: +5%",
+      "verdict": "contradicted",
+      "quote": "Boss Damage: +11%\nCritical Rate: +10%\nMax HP: +5%\nMax MP: +5%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Invincible Belief cooldown = 90s (data/classes.json hero/paladin/darkknight)",
+      "repoValue": "restores 44% of Max HP every 1s for 3s. 90s cooldown.",
+      "guideValue": "Lv. 9 cooldown 150 sec (the ladder runs 410s at Lv.1 down to 150s at Lv.9; 90s never appears)",
+      "verdict": "contradicted",
+      "quote": "Restores 44% of Max HP every 1 sec for 3 sec\n(Explorer - Warrior only) Damage: +6%\nCooldown: 150 sec",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Empirical Knowledge per-stack value = 5% (data/classes.json bishop/archmagefirepoison/archmageicelightning)",
+      "repoValue": "+5% Damage and +5% Enemy DEF Ignored per stack, 3 stacks, 31% chance",
+      "guideValue": "Lv. 9: Damage per Stack +4%, Enemy DEF Ignored per Stack +4%, 31% chance",
+      "verdict": "contradicted",
+      "quote": "When attacking, has a 31% chance to identify the weakness of the enemy with the highest Max HP among those struck, granting you the following bonuses against them:\nDamage per Stack: +4%\nEnemy DEF Ignored per Stack: +4%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Thief's Cunning max damage = +18% (data/classes.json nightlord/shadower/dualblade)",
+      "repoValue": "On debuffing an enemy, Damage +18% for 10s. 20s cooldown.",
+      "guideValue": "Lv. 9: Damage +27% (18% is the Lv. 6 value, i.e. only two maxed Explorer Thieves)",
+      "verdict": "contradicted",
+      "quote": "Upon debuffing an enemy:\nDamage: +27%\nDuration: 10 sec\nCooldown: 20 sec",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Mihile Knight's Watch link effect and cooldown (data/classes.json mihile)",
+      "repoValue": "Active buff, 20s duration: Status Resistance +100. 120s cooldown.",
+      "guideValue": "For other classes: Duration 20 sec, Knockback Resistance Rate 100%, Cooldown 1820 sec. The 120 sec cooldown is the Mihile-ONLY shield, not the link.",
+      "verdict": "contradicted",
+      "quote": "Other Classes:\nDuration: 20 sec\nKnockback Resistance Rate: 100%\nCooldown: 1820 sec",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Mercedes Elven Blessing return cooldown = 1800s (data/classes.json mercedes)",
+      "repoValue": "Also an active return-to-Elluel on a 1800s cooldown.",
+      "guideValue": "Cooldown: 10 min (= 600s)",
+      "verdict": "contradicted",
+      "quote": "Permanently receive 20% additional EXP\nReturns you to Elluel, Cooldown: 10 min",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Mercedes Elven Blessing EXP = 20% (data/classes.json); lib/legion.ts LINK_EFFECT mercedes = 'EXP %'",
+      "repoValue": "Permanently receive 20% additional EXP",
+      "guideValue": "Lv. 3: Permanently receive 20% additional EXP",
+      "verdict": "confirmed",
+      "quote": "Permanently receive 20% additional EXP",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Zero Rhinne's Blessing max = damage taken -18%, DEF ignored 12% (data/classes.json zero)",
+      "repoValue": "Incoming damage reduced 18%, Enemy DEF Ignored 12%. Master level 6.",
+      "guideValue": "Lv. 6: Reduces your damage receipt by 20%; ignore the target's DEF by 15%. The ladder is NOT linear - Lv.5 is 15%/10% and Lv.6 jumps to 20%/15%. The repo's 18%/12% is a linear extrapolation of the Lv.1-5 slope and matches no printed row.",
+      "verdict": "contradicted",
+      "quote": "Reduces your damage receipt by 20%\nWhen attacking, ignore the target's DEF by 15%\n(Zero only) Damage: +5%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Ren Grounded Body damage taken reduction = 4% (data/classes.json ren)",
+      "repoValue": "Reduces damage taken by 4%",
+      "guideValue": "Lv. 3: Damage Taken -6% (4% is the Lv. 2 value)",
+      "verdict": "contradicted",
+      "quote": "Damage Taken: -6%, including attacks that inflict damage at a certain percentage of your Max HP.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Ren Grounded Body mitigates %Max HP attacks (data/classes.json note: 'the only link that mitigates %Max HP boss attacks')",
+      "repoValue": "INCLUDING attacks that deal a ratio of maximum HP",
+      "guideValue": "same clause, verbatim",
+      "verdict": "confirmed",
+      "quote": "including attacks that inflict damage at a certain percentage of your Max HP",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Illium Tide of Battle duration = 15s (data/classes.json illium)",
+      "repoValue": "Damage +4% per stack, max 4 stacks, 15s.",
+      "guideValue": "Illium-only Duration: 15 sec; Link Skill Duration: 10 sec. On a linked character the duration is 10s, not 15s.",
+      "verdict": "contradicted",
+      "quote": "Illium-only Duration: 15 sec\nLink Skill Duration: 10 sec\nDamage per stack: +4%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Angelic Buster Terms and Conditions cooldown = 60s (data/classes.json angelicbuster)",
+      "repoValue": "ACTIVE buff: Damage +60% for 10s on a 60s cooldown.",
+      "guideValue": "Link Skill Effect: +60% skill damage for 10 sec. Cooldown: 90 sec. (The +60% is right; 60s cooldown is wrong, and it is 'skill damage', not flat Damage.)",
+      "verdict": "contradicted",
+      "quote": "Link Skill Effect: +60% skill damage for 10 sec. Cooldown: 90 sec.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Kain Time to Prepare stack trigger = 8 enemies (data/classes.json kain)",
+      "repoValue": "1 stack per 8 enemies defeated or 5 boss hits; at 5 stacks Damage +25% for 20s",
+      "guideValue": "upon either defeating 40 enemies or attacking a boss 5 times, damage increases by 25% for 20 sec, every 5 times you've stacked",
+      "verdict": "contradicted",
+      "quote": "After completing Time to Prepare at least 1 time, then upon either defeating 40 enemies or attacking a boss 5 times, damage increases by 25% for 20 sec, every 5 times you've stacked Time to Prepare.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "lib/legion.ts LINK_EFFECT: only Thunder Breaker is tagged 'ATT and Magic ATT'; Dawn Warrior / Blaze Wizard / Wind Archer / Night Walker are tagged 'ATT' alone",
+      "repoValue": "Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker: 'Cygnus Blessing - ATT.' Thunder Breaker: 'Cygnus Blessing - ATT and Magic ATT.'",
+      "guideValue": "One shared Cygnus Blessing for all five Knights, granting 'Attack Power and Magic ATT' at every level. There is no per-Knight variation.",
+      "verdict": "contradicted",
+      "quote": "Attack Power and Magic ATT: +7\nAbnormal Status Resistance: +1\nAll Elemental Resistance: +1%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Cygnus Blessing max = ATT/MATT +35, Status Res +22, Elem Res +22% (data/classes.json all five Knights; data/class-guides/dawn-warrior.json Master Level 15)",
+      "repoValue": "Attack Power +35 and Magic ATT +35, Status Resistance +22, Elemental Resistance +22%; Master Level 15",
+      "guideValue": "Lv. 15: Attack Power and Magic ATT +35 (Cygnus Knights only: +55), Abnormal Status Resistance +22, All Elemental Resistance +22%",
+      "verdict": "confirmed",
+      "quote": "Attack Power and Magic ATT: +35 (Cygnus Knights only: +55)\nAbnormal Status Resistance: +22\nAll Elemental Resistance: +22%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "data/class-guides/dawn-warrior.json + thunder-breaker.json: Cygnus link 'stacks up to five times'; thunder-breaker.json adds 'Grandis Library states Mihile is excluded from the 5-character stack'",
+      "repoValue": "Stacks 5x; Mihile excluded (attributed to Grandis Library)",
+      "guideValue": "by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15 - Mihile is not among the five named, and Mihile has his own separate link skill (Knight's Watch)",
+      "verdict": "confirmed",
+      "quote": "Cygnus Knights' Link Skills can be stacked, and by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Spirit of Freedom = 12s invincibility (data/classes.json battlemage/wildhunter/mechanic/blaster)",
+      "repoValue": "12s of invincibility after being revived; removed on changing map.",
+      "guideValue": "Lv. 12: Invincible for 12 sec after being revived. Guide adds '(Resistance only) Damage: +5%' at Lv. 12, which the repo does not record. The 'removed on changing map' clause is not on the page.",
+      "verdict": "confirmed",
+      "quote": "Invincible for 12 sec after being revived.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Adventurer's Curiosity: data/class-guides/bow-master.json flags an UNRECONCILED conflict between 'Master Level 9: crit +15% (Grandis)' and 'Bow Master + Marksman + Pathfinder combined = 15% Crit and 6% Damage (class doc)'",
+      "repoValue": "two framings recorded as irreconcilable",
+      "guideValue": "Both are the same statement. The skill runs Lv.1-9, stacks 3x once per unique Explorer Bowman, and Lv. 9 = Critical Rate +15% plus (Explorer - Bowman only) Damage +6%. The 15% crit and the 6% damage are the three-character stacked total.",
+      "verdict": "confirmed",
+      "quote": "Chance to add monsters to Monster Collection: +50%\nCritical Rate: +15%\n(Explorer - Bowman only) Damage: +6%",
+      "quote2": "This Link Skill can be stacked up to 3 times, once for each unique Explorer Bowman job character you have on this world.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Pirate Blessing max (data/classes.json buccaneer/corsair/cannoneer)",
+      "repoValue": "STR/DEX/INT/LUK +100 each, Max HP/MP +1750, Damage Taken -21%",
+      "guideValue": "Lv. 9: identical, plus Explorer-Pirate-only +130 stats and Damage +6%",
+      "verdict": "confirmed",
+      "quote": "STR: +100 (Explorer - Pirate only: +130)",
+      "quote2": "Max HP: +1750\nMax MP: +1750\nDamage Taken: -21%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Phantom Instinct Critical Rate +20% (data/classes.json phantom); lib/legion.ts says only 'critical rate %'",
+      "repoValue": "Critical Rate +20%",
+      "guideValue": "Lv. 3: Critical Rate +20%",
+      "verdict": "confirmed",
+      "quote": "Critical Rate: +20%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Hoyoung Bravado = DEF Ignored +15%, Damage +19% vs full-HP (data/classes.json hoyoung)",
+      "repoValue": "Enemy DEF Ignored +15%, Damage +19% against enemies at 100% HP",
+      "guideValue": "identical at Lv. 3, plus (Hoyoung only) Damage +4%",
+      "verdict": "confirmed",
+      "quote": "Enemy DEF Ignored: +15%\nDamage +19% against enemies with 100% HP",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Kaiser Iron Will Max HP +20% (data/classes.json kaiser)",
+      "repoValue": "Max HP +20%",
+      "guideValue": "Lv. 3: Max HP +20% (Kaiser only: +15%)",
+      "verdict": "confirmed",
+      "quote": "Max HP: +20% (Kaiser only: +15%)",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills"
+    },
+    {
+      "constant": "Xenon Hybrid Logic All Stats +15% / Kanna Elementalism Damage +15% / Kinesis Judgment Crit Damage +6% / Hayato Keen Edge All Stats +35 ATT/MATT +20 / Evan Rune Persistence +70% / Shade Close Call 15% / Adele Noble Fire +6% boss +12% party / Ark Solus +1%+3%x5 / Khali Innate Gift +7% / Lara Nature's Friend +7%/+15% / Cadena Unfair Advantage +9%/+9% / Mo Xuan Qi Cultivation +6%/+3%x6 / Aran Combo Kill +900%",
+      "repoValue": "as listed in data/classes.json",
+      "guideValue": "every one matches the guide's Lv. 3 row exactly",
+      "verdict": "confirmed",
+      "quote": "All Stats: +15%",
+      "quote2": "Combo Kill Orb EXP: +900% (permanently)",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "note": "Aran terminology differs only: guide says 'Combo Kill Orb', repo says 'Combo Kill Marble'. Values identical."
+    },
+    {
+      "constant": "Legion rank ladder in lib/legion.ts: B 60 / A 100 / S 140 / SS 200 / SSS 250, BOARD_MIN 60",
+      "repoValue": "B 60, A 100, S 140, SS 200, SSS 250",
+      "guideValue": "not addressed",
+      "verdict": "absent",
+      "quote": "(no sentence on any of the three assigned pages mentions Legion ranks, the Legion board, or a level-to-rank mapping)",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "note": "The link-skills guide covers only the link ladder. A separate Legion guide, if one exists, was not in my assignment; the guide index at /maple-guides/all did not surface one in the nine entries it rendered."
+    },
+    {
+      "constant": "5th Job unlock level (lib/classes.ts HexaPlan has unlockLevel for HEXA; no 5th-job unlock constant found in lib/)",
+      "repoValue": "not modelled as a constant",
+      "guideValue": "Lv. 200 plus job advancement quests",
+      "verdict": "absent",
+      "quote": "Once you reach Lv. 200 and complete job advancement quests, you can begin to utilize 5th Job skills.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills",
+      "note": "Verdict 'absent' describes the REPO side: the guide states it plainly, the repo does not carry it. Use the quote to populate it."
+    },
+    {
+      "constant": "V Matrix slot counts by character level (lib/classes.ts VMatrixPlan.slotCurve: Array<{atLevel, slots}>)",
+      "repoValue": "schema exists in lib/classes.ts but data/classes.json records carry NO vMatrix key at all - slotCurve is unpopulated for all 53 classes",
+      "guideValue": "not addressed. The guide never states how many V Matrix slots a character has at any level, and never states a total equippable node count.",
+      "verdict": "absent",
+      "quote": "V Matrix Slot: These are slots on which you can equip Nodes. Click on the equipped Node to see the Node Type, Rank, and EXP of the Active Node Skills to the right.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "note": "I could not source slot counts by level from NEXON. That sentence is the guide's entire treatment of slots as a quantity."
+    },
+    {
+      "constant": "Boost node value per level, and what sets the per-level rate (owner observes Wind Arrow +5% at level 1 but Gritty Gust +2% at level 1)",
+      "repoValue": "lib/classes.ts VMatrixPlan.boostNodeMechanics carries maxLevel / effectType / multiplicative / masteryFifty, but data/classes.json populates no vMatrix object",
+      "guideValue": "not addressed. The guide states only that Boost Nodes enhance 1st-4th Job and Hyper Skills and that rank determines skill level. It never gives a per-level percentage, never explains why two skills on the same node move at different rates, and never mentions final damage.",
+      "verdict": "absent",
+      "quote": "Boost Nodes: Nodes that can be used to enhance a character's 1st, 2nd, 3rd, and 4th Job Skills, as well as Hyper Skills.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "note": "This is the owner's specific question and NEXON does not answer it. The non-uniform rate is per-skill and is not documented first-party. Additionally the page is self-declared out of date as of v.269, so even its silence is stale silence."
+    },
+    {
+      "constant": "Boost node level cap",
+      "repoValue": "unpopulated (schema field boostNodeMechanics.maxLevel exists)",
+      "guideValue": "50 normally, 55 via Slot Enhancement",
+      "verdict": "absent",
+      "quote": "A Boost Node's highest Rank is normally 50, but can be increased to up to 55 via Slot Enhancement.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "note": "Verdict is 'absent' on the repo side - the repo has nowhere to compare. Treat the 50/55 numbers as pre-v.269 per the page's own banner."
+    },
+    {
+      "constant": "Rules for which skills a boost node can pair",
+      "repoValue": "data/class-guides/*.json model boost nodes as 'trios'; bow-master.json warns the exact trio pairings are its weakest claim and predate the v.269 grouping change",
+      "guideValue": "Boost Nodes consist of 1 main skill and 2 sub-skills; only same-type nodes with the same main skill can be used to enhance each other; nodes sharing a main skill cannot be stacked; on crafting, the chosen skill becomes the main skill and sub-skills are assigned randomly. The guide does NOT state which skills may appear together as sub-skills.",
+      "verdict": "confirmed",
+      "quote": "Boost Nodes consist of 1 main skill and 2 sub-skills. A total of 3 skills make up a single Boost Node.",
+      "quote2": "Also, Boost Nodes with the same main skills cannot be stacked.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "note": "The 'trio' vocabulary the repo uses is vindicated - 3 skills per node is first-party. The constraint on WHICH three is not documented."
+    },
+    {
+      "constant": "HEXA / 6th Job unlock level (lib/classes.ts HexaPlan.unlockLevel), HEXA core acquisition, HEXA stat, Mastery/Enhancement node structure",
+      "repoValue": "HexaPlan schema models unlockLevel, prerequisiteQuest, Sol Erda cost tables, hexaStat rank curve; data/class-guides/bow-master.json carries Mastery/Enhancement prerequisites quoted from a Google-doc class guide",
+      "guideValue": "not addressed on any of the three assigned pages. The 5th Job Skills page contains ZERO occurrences of 'HEXA', 'Hexa', '6th', 'Sixth', 'Sol Erda' or 'Fragment' as a HEXA term. The V Matrix page likewise never mentions 6th Job.",
+      "verdict": "absent",
+      "quote": "5th Job Skills are obtained, and have their Skill Levels boosted, by equipping Nodes on the V Matrix. These Nodes can be chosen, combined, and enhanced by players through the V Matrix, and you can learn more about it in the V Matrix Maple Guide.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills",
+      "note": "I could not source any 6th Job / HEXA fact from these pages. The quote is the page's only forward reference and it points at the V Matrix guide, not at a HEXA guide. The guide index at /maple-guides/all rendered nine entries and none was a HEXA or 6th Job guide."
+    },
+    {
+      "constant": "data/class-guides/bow-master.json HEXA prerequisite: 'In order to unlock your Mastery Nodes, the corresponding V-Matrix Boost Nodes must be level 40 or higher' and 'Enhancement Nodes... Job Nodes must be level 25 or higher' (both single-sourced, consensus 'weak')",
+      "repoValue": "Boost Node >= 40 for Mastery; Job/Skill Node >= 25 for Enhancement",
+      "guideValue": "not addressed. The guide does corroborate the surrounding caps that make these thresholds coherent - Skill Node rank normally caps at 25 and Boost Node at 50 - but never states either prerequisite.",
+      "verdict": "absent",
+      "quote": "A Skill Node's highest Rank is normally 25, but can be increased to up to 30 via Slot Enhancement.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "note": "These two prerequisites remain single-sourced to the class Google doc. NEXON did not corroborate them; it also did not contradict them."
+    },
+    {
+      "constant": "Repo patch stamps: data/classes.json = 53 records all 'v.269'; data/class-guides/*.json = 54 records all 'v.271'",
+      "repoValue": "v.269 on the fact layer, v.271 on the guide layer",
+      "guideValue": "NEXON's own V Matrix guide declares itself out of date as of v.269 BECAUSE v.269 revamped the V Matrix system",
+      "verdict": "confirmed",
+      "quote": "[Note] This guide is out of date as of the v.269 update, which revamped the V Matrix system. It will be updated soon.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "note": "First-party confirmation that v.269 was a V-Matrix-revamp patch. data/class-guides/bow-master.json already suspects this ('predates the v269 boost-node grouping changes that Grandis Library's own View Pre-V.269 Boost Nodes toggle is evidence of'). NEXON's banner is the strongest evidence available for that suspicion, and it also means every V Matrix number on this guide describes the PRE-revamp system."
+    }
   ],
-
   "newFacts": [
-    { "fact": "A character can have at most 12 link skills transferred to it at one time.", "quote": "List of all of the Link Skills currently transferred to the current character (you can transfer up to 12 at a time).", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "This is a hard cap the planner does not model. With 53 classes on the roster there are far more than 12 link skills available, so 'level this character for the account' advice is only true if the resulting link would actually make the top 12. A roster recommendation engine that ignores the cap will recommend levelling a character whose link the owner cannot equip." },
-    { "fact": "Link skill transfers are free and unlimited per day.", "quote": "Link Skills can be transferred an unlimited number of times per day.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "Softens the 12-slot cap: the owner can swap the loadout per activity (bossing vs training) at no cost. The planner can recommend two loadouts rather than one compromise loadout." },
-    { "fact": "A character must reach 1st Job Advancement before its link skill can be transferred (Zero excepted).", "quote": "All Jobs (excluding Zero) need to reach their 1st Job Advancement in order to transfer their Link Skills.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "A second gate below Lv. 70 that lib/legion.ts does not model." },
-    { "fact": "A character always keeps its own link skill even after transferring it away.", "quote": "A character always benefits from their own Link Skills, even if has been transferred to another character.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "Means transferring costs the source character nothing - relevant to any UI that implies a trade-off." },
-    { "fact": "Explorer link skills stack up to 3 times, once per unique Explorer job in that class branch on the world.", "quote": "If you have different characters with the same Explorer job in the same world, their Link Skills can be stacked up to three times to the same character.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "lib/legion.ts's linkLevel() returns 0-3 per character and has no concept of a stacked account-level total. For the owner specifically: Bow Master is an Explorer Bowman, so Marksman and Pathfinder at 210 each add a further 3 levels to Adventurer's Curiosity, taking Critical Rate from +6% to +15%. That is a concrete, quantified 'level these two characters' recommendation the app cannot currently make." },
-    { "fact": "Cygnus Blessing reaches Lv. 15 with five Knights at Lv. 210; Spirit of Freedom reaches Lv. 12 with four Resistance characters at Lv. 210; two Knights at Lv. 120 already gives Lv. 4.", "quote": "Cygnus Knights' Link Skills can be stacked, and by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "Gives the exact account-level payoff curve for the two biggest multi-character link investments. lib/legion.ts caps link level at 3 and so cannot express 'your fourth Cygnus Knight is worth +2 ATT to every character'." },
-    { "fact": "Cygnus Blessing pays a bonus to Cygnus Knights themselves starting at Lv. 11: +31 ATT instead of +27, rising to +55 instead of +35 at Lv. 15.", "quote": "Attack Power and Magic ATT: +35 (Cygnus Knights only: +55)", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "Not modelled anywhere. It means a Cygnus main gets a materially larger return from the same roster investment than a Bow Master main does." },
-    { "fact": "Many links carry an own-class-only Damage bonus that the linked character never receives: Phantom, Mercedes, Shade, Evan, Aran +5%; Hoyoung, Luminous +4%; Ren, Zero +5%; Khali +10% vs +7%; Lara +10% vs +7%; Mihile +3%; Explorer Bowman/Pirate/Warrior +6% at Lv. 9.", "quote": "(Phantom only) Damage: +5%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "data/classes.json records only the transferred value for most of these. Any 'what does this link give me' display is correct, but any 'what does this character gain from its own link' display would be understated." },
-    { "fact": "Zero's link is levelled by storyline progress, not character level, and the guide contradicts itself on the endpoint: the TIPS block says Lv. 5 via Chapter 8, the Zero section says Lv. 6 via Act 8.", "quote": "Zero characters can upgrade their Link Skills to Lv. 5 by completing Chapter 8 of their storyline.", "quote2": "Link Skills level up for Zero characters as they complete Acts 2 - 4, and completing Act 8 will upgrade the Link Skill to Lv. 6.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "lib/legion.ts's nextLink() would tell a Zero owner to grind to 210. That advice is wrong for Zero - the ladder is storyline-gated. data/classes.json already notes this; lib/legion.ts does not, and legion.ts is the file that generates the recommendations." },
-    { "fact": "Zero's level ladder is not linear: Lv. 5 is 15% damage reduction / 10% DEF ignore, and Lv. 6 jumps to 20% / 15%.", "quote": "Reduces your damage receipt by 20%\nWhen attacking, ignore the target's DEF by 15%", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "Explains the repo's wrong 18%/12% figure - it is what you get by extrapolating the Lv. 1-5 slope one more step. Any other repo value derived by extrapolating a link ladder is now suspect." },
-    { "fact": "Explorer Warrior's Invincible Belief cooldown falls with level, 410 sec at Lv. 1 down to 150 sec at Lv. 9.", "quote": "Cooldown: 410 sec", "quote2": "Cooldown: 150 sec", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "The repo stores a single cooldown with no level dimension, and the value it stores (90s) is not on the ladder at all." },
-    { "fact": "Every 5th Job skill in GMS has Master Level 25.", "quote": "[Master Level: 25]", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills", "whyItMatters": "Uniform across all 459 skill entries on the page. Pairs with the V Matrix rule that a Skill Node's rank normally caps at 25 and reaches 30 via slot enhancement - i.e. the slot enhancement is what takes a 5th job skill past its printed master level." },
-    { "fact": "Two shared 5th Job skills are story-gated: Solar Crest requires all Cernium story quests, True Arachnid Reflection requires all Esfera story quests.", "quote": "Completion of all Cernium story quests", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills", "whyItMatters": "These are progression gates the planner could surface as prerequisites. At Lv. 245 the owner has almost certainly cleared both, but any advice given to a lower-level mule needs them." },
-    { "fact": "Matrix Points come from levels above 200, one per level; each slot accepts up to 5 enhancements at 1 point each; a full reset costs exactly 1,000,000 mesos and refunds every point, with no cooldown and no escalating cost.", "quote": "Every level above Lv. 200 will award you with a Matrix Point that can be used to enhance your Node Slots, increasing the skill level of a Skill or Boost Node equipped in that slot.", "quote2": "This costs 1,000,000 mesos, will reset the enhancement level of all slots, and will refund all spent Matrix Points as well. There is no increase in costs or cooldown on resetting.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "whyItMatters": "Directly usable for the owner: at Lv. 245 the levels-above-200 count is 45, and 26 are unspent, implying 19 spent. A 1,000,000 meso reset is free in practice at 764% meso obtained, so the planner can safely recommend experimenting with slot allocation. Caveat: the page is self-declared stale as of v.269, and the owner's UI calls these 'V Points', not 'Matrix Points'." },
-    { "fact": "Node slot level and node rank add: a Rank 2 skill node in a Lv. 3 slot yields a Lv. 5 skill.", "quote": "Ex: If a Rank 2 Skill Node is equipped in a Lv. 3 Node slot, then the subsequent Skill will be Lv. 5.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "whyItMatters": "The arithmetic is additive, not multiplicative. Lets the planner compute achievable skill levels from a node inventory plus a point budget." },
-    { "fact": "Special Nodes occupy exactly one slot, cannot be enhanced, and gain nothing from an enhanced slot.", "quote": "Special Nodes can only be equipped on 1 slot within the V Matrix.", "quote2": "While Special Nodes can be equipped into Enhanced Slots, they will gain no benefit from doing so.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "whyItMatters": "A direct, actionable misplay warning: never spend Matrix Points on the slot holding a special node. The owner's matrix shows 1 special node, so this applies today." },
-    { "fact": "Nodestones drop from field hunting and content in the Arcane River and Grandis regions, and from events; Experience Nodestones enhance any node but cannot be disassembled into shards.", "quote": "Nodestones can be earned through events, or through field hunting and content within the Arcane River and Grandis regions.", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix", "whyItMatters": "lib/classes.ts has a nodestoneSources field that data/classes.json never populates. This is a first-party fill for it." },
-    { "fact": "The official guide's class roster includes Ren (Anima) with the link skill Grounded Body, and lists Erel Light and Sia Astelle as playable jobs on the 5th Job page - but gives Erel Light no link skill entry at all.", "quote": "Anima - Ren", "quote2": "Grounded Body", "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills", "whyItMatters": "data/classes.json carries ren but data/class-guides/ has no ren.json (54 files, no Ren). Conversely the repo confidently ships Erel Light's link skill and NEXON does not document one." }
+    {
+      "fact": "A character can have at most 12 link skills transferred to it at one time.",
+      "quote": "List of all of the Link Skills currently transferred to the current character (you can transfer up to 12 at a time).",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "This is a hard cap the planner does not model. With 53 classes on the roster there are far more than 12 link skills available, so 'level this character for the account' advice is only true if the resulting link would actually make the top 12. A roster recommendation engine that ignores the cap will recommend levelling a character whose link the owner cannot equip."
+    },
+    {
+      "fact": "Link skill transfers are free and unlimited per day.",
+      "quote": "Link Skills can be transferred an unlimited number of times per day.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "Softens the 12-slot cap: the owner can swap the loadout per activity (bossing vs training) at no cost. The planner can recommend two loadouts rather than one compromise loadout."
+    },
+    {
+      "fact": "A character must reach 1st Job Advancement before its link skill can be transferred (Zero excepted).",
+      "quote": "All Jobs (excluding Zero) need to reach their 1st Job Advancement in order to transfer their Link Skills.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "A second gate below Lv. 70 that lib/legion.ts does not model."
+    },
+    {
+      "fact": "A character always keeps its own link skill even after transferring it away.",
+      "quote": "A character always benefits from their own Link Skills, even if has been transferred to another character.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "Means transferring costs the source character nothing - relevant to any UI that implies a trade-off."
+    },
+    {
+      "fact": "Explorer link skills stack up to 3 times, once per unique Explorer job in that class branch on the world.",
+      "quote": "If you have different characters with the same Explorer job in the same world, their Link Skills can be stacked up to three times to the same character.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "lib/legion.ts's linkLevel() returns 0-3 per character and has no concept of a stacked account-level total. For the owner specifically: Bow Master is an Explorer Bowman, so Marksman and Pathfinder at 210 each add a further 3 levels to Adventurer's Curiosity, taking Critical Rate from +6% to +15%. That is a concrete, quantified 'level these two characters' recommendation the app cannot currently make."
+    },
+    {
+      "fact": "Cygnus Blessing reaches Lv. 15 with five Knights at Lv. 210; Spirit of Freedom reaches Lv. 12 with four Resistance characters at Lv. 210; two Knights at Lv. 120 already gives Lv. 4.",
+      "quote": "Cygnus Knights' Link Skills can be stacked, and by leveling up 5 different Knights (Dawn Warrior, Blaze Wizard, Wind Archer, Night Walker, and Thunder Breaker) to Lv. 210, the Link Skill can reach Lv. 15.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "Gives the exact account-level payoff curve for the two biggest multi-character link investments. lib/legion.ts caps link level at 3 and so cannot express 'your fourth Cygnus Knight is worth +2 ATT to every character'."
+    },
+    {
+      "fact": "Cygnus Blessing pays a bonus to Cygnus Knights themselves starting at Lv. 11: +31 ATT instead of +27, rising to +55 instead of +35 at Lv. 15.",
+      "quote": "Attack Power and Magic ATT: +35 (Cygnus Knights only: +55)",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "Not modelled anywhere. It means a Cygnus main gets a materially larger return from the same roster investment than a Bow Master main does."
+    },
+    {
+      "fact": "Many links carry an own-class-only Damage bonus that the linked character never receives: Phantom, Mercedes, Shade, Evan, Aran +5%; Hoyoung, Luminous +4%; Ren, Zero +5%; Khali +10% vs +7%; Lara +10% vs +7%; Mihile +3%; Explorer Bowman/Pirate/Warrior +6% at Lv. 9.",
+      "quote": "(Phantom only) Damage: +5%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "data/classes.json records only the transferred value for most of these. Any 'what does this link give me' display is correct, but any 'what does this character gain from its own link' display would be understated."
+    },
+    {
+      "fact": "Zero's link is levelled by storyline progress, not character level, and the guide contradicts itself on the endpoint: the TIPS block says Lv. 5 via Chapter 8, the Zero section says Lv. 6 via Act 8.",
+      "quote": "Zero characters can upgrade their Link Skills to Lv. 5 by completing Chapter 8 of their storyline.",
+      "quote2": "Link Skills level up for Zero characters as they complete Acts 2 - 4, and completing Act 8 will upgrade the Link Skill to Lv. 6.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "lib/legion.ts's nextLink() would tell a Zero owner to grind to 210. That advice is wrong for Zero - the ladder is storyline-gated. data/classes.json already notes this; lib/legion.ts does not, and legion.ts is the file that generates the recommendations."
+    },
+    {
+      "fact": "Zero's level ladder is not linear: Lv. 5 is 15% damage reduction / 10% DEF ignore, and Lv. 6 jumps to 20% / 15%.",
+      "quote": "Reduces your damage receipt by 20%\nWhen attacking, ignore the target's DEF by 15%",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "Explains the repo's wrong 18%/12% figure - it is what you get by extrapolating the Lv. 1-5 slope one more step. Any other repo value derived by extrapolating a link ladder is now suspect."
+    },
+    {
+      "fact": "Explorer Warrior's Invincible Belief cooldown falls with level, 410 sec at Lv. 1 down to 150 sec at Lv. 9.",
+      "quote": "Cooldown: 410 sec",
+      "quote2": "Cooldown: 150 sec",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "The repo stores a single cooldown with no level dimension, and the value it stores (90s) is not on the ladder at all."
+    },
+    {
+      "fact": "Every 5th Job skill in GMS has Master Level 25.",
+      "quote": "[Master Level: 25]",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills",
+      "whyItMatters": "Uniform across all 459 skill entries on the page. Pairs with the V Matrix rule that a Skill Node's rank normally caps at 25 and reaches 30 via slot enhancement - i.e. the slot enhancement is what takes a 5th job skill past its printed master level."
+    },
+    {
+      "fact": "Two shared 5th Job skills are story-gated: Solar Crest requires all Cernium story quests, True Arachnid Reflection requires all Esfera story quests.",
+      "quote": "Completion of all Cernium story quests",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5903/5th-job-skills",
+      "whyItMatters": "These are progression gates the planner could surface as prerequisites. At Lv. 245 the owner has almost certainly cleared both, but any advice given to a lower-level mule needs them."
+    },
+    {
+      "fact": "Matrix Points come from levels above 200, one per level; each slot accepts up to 5 enhancements at 1 point each; a full reset costs exactly 1,000,000 mesos and refunds every point, with no cooldown and no escalating cost.",
+      "quote": "Every level above Lv. 200 will award you with a Matrix Point that can be used to enhance your Node Slots, increasing the skill level of a Skill or Boost Node equipped in that slot.",
+      "quote2": "This costs 1,000,000 mesos, will reset the enhancement level of all slots, and will refund all spent Matrix Points as well. There is no increase in costs or cooldown on resetting.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "whyItMatters": "Directly usable for the owner: at Lv. 245 the levels-above-200 count is 45, and 26 are unspent, implying 19 spent. A 1,000,000 meso reset is free in practice at 764% meso obtained, so the planner can safely recommend experimenting with slot allocation. Caveat: the page is self-declared stale as of v.269, and the owner's UI calls these 'V Points', not 'Matrix Points'."
+    },
+    {
+      "fact": "Node slot level and node rank add: a Rank 2 skill node in a Lv. 3 slot yields a Lv. 5 skill.",
+      "quote": "Ex: If a Rank 2 Skill Node is equipped in a Lv. 3 Node slot, then the subsequent Skill will be Lv. 5.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "whyItMatters": "The arithmetic is additive, not multiplicative. Lets the planner compute achievable skill levels from a node inventory plus a point budget."
+    },
+    {
+      "fact": "Special Nodes occupy exactly one slot, cannot be enhanced, and gain nothing from an enhanced slot.",
+      "quote": "Special Nodes can only be equipped on 1 slot within the V Matrix.",
+      "quote2": "While Special Nodes can be equipped into Enhanced Slots, they will gain no benefit from doing so.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "whyItMatters": "A direct, actionable misplay warning: never spend Matrix Points on the slot holding a special node. The owner's matrix shows 1 special node, so this applies today."
+    },
+    {
+      "fact": "Nodestones drop from field hunting and content in the Arcane River and Grandis regions, and from events; Experience Nodestones enhance any node but cannot be disassembled into shards.",
+      "quote": "Nodestones can be earned through events, or through field hunting and content within the Arcane River and Grandis regions.",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5904/v-matrix",
+      "whyItMatters": "lib/classes.ts has a nodestoneSources field that data/classes.json never populates. This is a first-party fill for it."
+    },
+    {
+      "fact": "The official guide's class roster includes Ren (Anima) with the link skill Grounded Body, and lists Erel Light and Sia Astelle as playable jobs on the 5th Job page - but gives Erel Light no link skill entry at all.",
+      "quote": "Anima - Ren",
+      "quote2": "Grounded Body",
+      "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5902/link-skills",
+      "whyItMatters": "data/classes.json carries ren but data/class-guides/ has no ren.json (54 files, no Ren). Conversely the repo confidently ships Erel Light's link skill and NEXON does not document one."
+    }
   ],
-
   "heroicDistinctions": [
     {
       "finding": "None. Across all three pages there are ZERO occurrences of 'Reboot', 'Heroic', or 'Interactive'.",
@@ -270,7 +955,6 @@
       "nexonCorroboration": "none - NEXON does not document 6th Job / HEXA on any of the three assigned pages, so this split is uncorroborated by first-party source."
     }
   ],
-
   "couldNotSource": [
     "V Matrix slot counts by character level. The guide names the slot UI element but never gives a count at any level, and never states a total equippable node count. The owner's 4 job / 6 boost / 19 common breakdown cannot be checked against NEXON.",
     "What sets the per-level rate of a boost node (why Wind Arrow is +5% per level and Gritty Gust +2% per level on the same character). The guide gives no per-level percentages at all and no mechanism. This is the owner's explicit question and NEXON does not answer it.",
@@ -283,11 +967,54 @@
     "Any corroboration that Guiding Stars / Tree of Stars is shared between Sia Astelle and Erel Light, or that it has Master Level 6. NEXON documents it as a single-class, 3-level skill with no stacking clause.",
     "Recent-patch skill change notes. None of the three pages carries a patch-notes section or a changelog. The only patch reference anywhere is the V Matrix staleness banner naming v.269."
   ],
-
   "guidanceForNextAgent": {
     "strongest": "The link skill table is complete and first-party. Treat data/sources/nexon/skills.json linkSkillTable as outranking every wiki row for GMS link skill names, per-level values and unlock levels.",
     "mostUrgent": "Seven numeric contradictions in data/classes.json - Invincible Belief cooldown, Empirical Knowledge per-stack, Thief's Cunning max, Mihile Knight's Watch, Mercedes return cooldown, Zero Rhinne's Blessing max, Ren Grounded Body, Illium link duration, Angelic Buster cooldown, Kain stack trigger, Lynn boss damage. Also one in lib/legion.ts: the Cygnus ATT vs ATT-and-Magic-ATT split is fictional.",
     "mostDelicate": "Sia Astelle / Erel Light. The repo says Guiding Stars, Master Level 6, shared. NEXON says Tree of Stars, 3 levels, Sia Astelle only, no Erel Light entry. The Lv. 3 values agree exactly (+10% buff duration / +3% critical damage), which is strong evidence they are the same skill under two names rather than two different skills. The owner supplied an in-game tooltip saying Master Level 6 and shared, and an in-game tooltip outranks a guide page that may simply predate the Erel Light release. Do NOT overwrite the repo with 'Tree of Stars' on the strength of this page alone. Record both and ask the owner for a screenshot of the skill name.",
     "doNotTrust": "Every V Matrix number on page 5904 describes the pre-v.269 system by NEXON's own admission. The 25/30 skill node and 50/55 boost node caps, and the Matrix Point mechanics, should be re-verified against a post-v.269 source before the app states them."
+  },
+  "inGameSettled": {
+    "observedAt": "2026-09-13",
+    "source": "owner Link Skill window and tooltips, Archerroni, GMS Heroic",
+    "rule": "an in-game tooltip outranks a Nexon guide; a Nexon guide outranks a wiki",
+    "verdicts": [
+      {
+        "skill": "Cygnus Blessing",
+        "winner": "guide",
+        "note": "One skill for all five Knights, Attack Power AND Magic ATT. Master Level 15; Lv10 = +25 ATT/MATT, +15 status resist, +15% elemental resist. The repo had invented a per-Knight distinction and shorted four of them a stat. FIXED in lib/legion.ts."
+      },
+      {
+        "skill": "Thief's Cunning",
+        "winner": "guide",
+        "note": "Master Level 9. Lv6 = Damage +18% / 10s / 20s cooldown; Lv7 = +21%. The repo's 18% is the Lv6 value presented as the cap; the cap is +27%."
+      },
+      {
+        "skill": "Terms and Conditions",
+        "winner": "repo",
+        "note": "Nexon says 90 sec cooldown. Tooltip: Lv2 = +45% / 60 sec, Lv3 = +60% / 60 sec. The guide is wrong; do not apply it."
+      },
+      {
+        "skill": "Guiding Stars",
+        "winner": "repo",
+        "note": "Nexon calls it Tree of Stars with three levels. The owner's Applied Link Skill panel lists Guiding Stars at Lv3, and an earlier tooltip gave Master Level 6. The guide is wrong on the name."
+      }
+    ],
+    "unsettleable": [
+      "Zero (Rhinne's Blessing) and Lynn (Nature's Friend effect values) - the owner does not have either character, so their contradictions stay open and unapplied."
+    ],
+    "appliedLinks": [
+      "Bravado Lv2",
+      "Cygnus Blessing Lv10",
+      "Elementalism Lv2",
+      "Elven Blessing Lv3",
+      "Guiding Stars Lv3",
+      "Hybrid Logic Lv2",
+      "Innate Gift Lv2",
+      "Light Wash Lv3",
+      "Nature's Friend Lv2",
+      "Phantom Instinct Lv3",
+      "Rune Persistence Lv2",
+      "Wild Rage Lv2"
+    ]
   }
 }

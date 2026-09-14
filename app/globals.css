@@ -177,10 +177,30 @@ button { font-family: inherit; font-size: inherit; color: inherit; }
   border: 1px solid var(--line-soft); border-radius: 3px;
   box-shadow: 0 1px 0 rgba(255,255,255,.04) inset;
   display: flex; align-items: center; justify-content: center;
-  transition: border-color .12s, transform .08s, box-shadow .12s;
+  /* transform is no longer animated here - see .slot:hover for why it is gone. */
+  transition: border-color .12s, box-shadow .12s;
 }
+/* NO TRANSFORM ON HOVER. This rule used to lift the tile with
+ * `transform: translateY(-1px)`, and a transformed element is HIT-TESTED IN ITS
+ * MOVED POSITION - so a pointer resting in the bottom 1px of a tile loses the
+ * tile the instant it lifts. Hover ends, the tile drops back under the pointer,
+ * hover starts, and it loops at the transition's own 0.08s.
+ *
+ * A 1px loop would be invisible on its own. It is not invisible here, because
+ * hovering a tile swaps the entire advice column between the ranked list and
+ * that item's panel - so every cycle re-renders thousands of pixels of content.
+ * That is the flicker reported as "jitters when i hover over certain items at a
+ * specific location": certain items being the ones whose edge the pointer
+ * happens to land on, and the specific location being that edge.
+ *
+ * Measured: applying exactly this transform moves the element's client rect by
+ * 1px, so the vacated strip is real and not a rounding artefact.
+ *
+ * The lift is the only part of this rule that moved the hit box. The gold
+ * border, the ring and the drop shadow all read as "raised" without touching
+ * geometry, so the affordance survives and the loop cannot start. */
 .slot:hover, .slot:focus-visible {
-  border-color: var(--gold); outline: none; transform: translateY(-1px);
+  border-color: var(--gold); outline: none;
   box-shadow: 0 0 0 1px rgba(240,192,96,.35), 0 6px 16px -6px rgba(0,0,0,.8);
 }
 .slot.empty { background: #0c1220; border-style: dashed; border-color: #1c2540; }

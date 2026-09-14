@@ -522,6 +522,11 @@ function levelsFromBoxes(boxes: Record<ArcaneArea, string>): Partial<ArcaneLevel
   return out;
 }
 
+/** How long the pointer must rest on a tile before the advice column commits to
+ *  it. Long enough that sub-frame hover chatter cannot drive a repaint, short
+ *  enough that a deliberate hover still feels instant - roughly five frames. */
+const HOVER_SETTLE_MS = 80;
+
 export default function Planner() {
   /* ---------- an account, not a character ----------
    * The planner edits ONE character at a time, but the thing it loads, saves
@@ -532,7 +537,35 @@ export default function Planner() {
    * roster and setRoster() is its only writer. */
   const store = useMemo(() => getAccountStore(), []);
   const [account, setAccount] = useState<Account>(() => exampleAccount());
-  const [hover, setHover] = useState<string | null>(null);
+  /* The slot under the pointer, and the one the advice column actually renders.
+   *
+   * THESE ARE TWO DIFFERENT THINGS ON PURPOSE. Hovering a tile swaps the whole
+   * advice column, so anything that makes hover flicker re-renders thousands of
+   * pixels per cycle. One such cause is fixed in globals.css (the tile used to
+   * lift 1px on hover, which moves its own hit box out from under a pointer
+   * resting on its edge) - but that is one cause, and this page has already
+   * produced two different mechanisms for the same symptom today.
+   *
+   * So the column does not follow the raw signal. It follows a settled one: the
+   * pointer has to stay on a tile for HOVER_SETTLE_MS before the column commits
+   * to it. Sub-frame chatter cannot drive a repaint at all, whatever is causing
+   * it, and a real hover still feels immediate at this delay.
+   *
+   * Leaving the grid clears both at once, with no delay - an exit should never
+   * feel laggy, and there is no flicker to absorb on the way out. */
+  const [hover, setHoverSettled] = useState<string | null>(null);
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // The debounce lives in the SETTER, not in an effect. Same call sites, same
+  // signature - every setHover(...) in this file is unchanged - but entering a
+  // tile now has to survive HOVER_SETTLE_MS before the column commits to it.
+  // LEAVING is immediate: an exit should never feel laggy, and there is no
+  // flicker to absorb on the way out.
+  const setHover = useCallback((id: string | null) => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    if (id === null) { setHoverSettled(null); return; }
+    hoverTimer.current = setTimeout(() => setHoverSettled(id), HOVER_SETTLE_MS);
+  }, []);
+  useEffect(() => () => { if (hoverTimer.current) clearTimeout(hoverTimer.current); }, []);
   const [editing, setEditing] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
   const [ready, setReady] = useState(false);
@@ -667,7 +700,7 @@ export default function Planner() {
     setSymDraft(null);
     const who = next.characters[id];
     if (who) setNote(`Now editing ${who.name} — ${who.cls} Lv. ${who.lvl}.`);
-  }, [account, ch.id, commit]);
+  }, [account, ch.id, commit, setHover]);
 
   /** THE product request: click a roster row, get that character's sheet.
    *  openRosterCharacter() is idempotent — a second click selects rather than
@@ -688,7 +721,7 @@ export default function Planner() {
         ? `Started a sheet for ${entry.name} — ${entry.cls} Lv. ${entry.lvl}. Nothing is recorded yet: import screenshots, or click any equipment slot to add an item.`
         : `Now editing ${entry.name} — ${n} item${n === 1 ? "" : "s"} recorded.`,
     );
-  }, [account, commit]);
+  }, [account, commit, setHover]);
 
   const addBlank = useCallback(() => {
     commit(addCharacter(account, emptyCharacter(), { makeActive: true }).account);
