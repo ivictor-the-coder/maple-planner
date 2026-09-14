@@ -14,6 +14,7 @@ import {
 import {
   DAMAGE_RANGE_VALIDATION, DEFAULT_PDR, REFERENCE_CHARACTER, WEAPON_MULTIPLIER,
   WEAPON_MULTIPLIER_CONF,
+  classConstantsFor,
   damageRange, fractionToPrintedPercent, fractionalInputsFromCharacter,
   printedPercentToFraction, referenceCheck,
   type CharacterAdapterOptions, type DamageWarning,
@@ -600,7 +601,12 @@ export default function Planner() {
    * So the backfill writes through commitBackground(), which persists without
    * claiming authorship, and everything a person can click goes through
    * commit(), which sets this. */
-  const [touched, setTouched] = useState(false);
+  /* `touched` is gone. It existed to answer 'is this still the demo', it could
+   * not - component state is false again on every reload - and answering that
+   * question wrongly is what silently destroyed a sheet. planFor() proves the
+   * demo from content now; nothing needs a flag. The backfill distinction the
+   * old comment described is still real and still handled, by commitBackground()
+   * persisting without claiming authorship. */
   const [note, setNote] = useState<string | null>(null);
   // Damage per meso is the right axis and the wrong answer to "what next?" when
   // the player has no budget: a 3M flame roll beats a 1.5B tier-up on the ratio
@@ -672,7 +678,6 @@ export default function Planner() {
   /** THE save path for anything a person did. */
   const commit = useCallback((next: Account) => {
     commitBackground(next);
-    setTouched(true);
   }, [commitBackground]);
 
   const ch = useMemo(() => activeCharacter(account), [account]);
@@ -939,7 +944,18 @@ export default function Planner() {
    *  half-typed "1e" is not a measurement, and `parseFloat(v) || 0` would have
    *  recorded it as one — as 0, the one value the engine is not allowed to
    *  invent. A typed 0 still stores 0, because that IS a reading of zero. */
-  const setReading = (k: "damagePct" | "finalDamagePct", v: string) => {
+  /* Which stat this class reads as its SECONDARY, from the class table rather
+   * than guessed from the main stat - the two are not derivable from each other.
+   * A Bow Master reads DEX main and STR secondary; a Night Lord reads LUK and
+   * DEX. Falls back to the generic word for a class the table does not carry,
+   * because naming the WRONG stat on a label is worse than naming none. */
+  const secondaryLabel = ((): string => {
+    const cc = classConstantsFor(ch.cls);
+    const k = cc?.secondaryStat;
+    return k && k in STAT_LABEL ? STAT_LABEL[k as keyof typeof STAT_LABEL] : "Secondary stat";
+  })();
+
+  const setReading = (k: "damagePct" | "finalDamagePct" | "secondary", v: string) => {
     const stats: CharacterStats = { ...ch.stats };
     const n = Number(v);
     if (v.trim() === "" || !Number.isFinite(n)) delete stats[k];
@@ -1418,12 +1434,22 @@ export default function Planner() {
               {([
                 ["Damage %", "damagePct"],
                 ["Final Damage %", "finalDamagePct"],
-              ] as Array<[string, "damagePct" | "finalDamagePct"]>).map(([lbl, key]) => (
+                // The third reading, and the last thing between this panel and the
+                // number the game prints. The range formula counts secondary stat at
+                // 1x against main stat's 4x, which sounds ignorable and is not: on
+                // the reference sheet 2,609 STR is 3.0% of the printed Damage Range,
+                // and with DAMAGE % and FINAL DAMAGE % already applied it is the
+                // entire remaining gap. Labelled by the stat this class actually
+                // reads, because "secondary stat" is our word - the window says STR.
+                [`${secondaryLabel} (secondary)`, "secondary"],
+              ] as Array<[string, "damagePct" | "finalDamagePct" | "secondary"]>).map(([lbl, key]) => (
                 <div className="stat" key={key}>
                   <span className="k">{lbl}</span>
                   <input
                     type="number"
-                    step="0.01"
+                    // Secondary stat is a flat count, not a percentage; the other two
+                    // are printed with two decimals.
+                    step={key === "secondary" ? "1" : "0.01"}
                     placeholder="—"
                     value={ch.stats[key] ?? ""}
                     aria-label={lbl}
@@ -1432,11 +1458,14 @@ export default function Planner() {
                 </div>
               ))}
               <p className="fineprint">
-                Both lines are in the game&rsquo;s Character Info / STAT window — the one that
-                prints your Combat Power and Damage Range — labelled DAMAGE and FINAL DAMAGE.
+                All three are in the game&rsquo;s Character Info / STAT window — the one that
+                prints your Combat Power and Damage Range. The first two are labelled DAMAGE
+                and FINAL DAMAGE; the third is your{" "}
+                {secondaryLabel} line, a few rows above them.
                 Type them exactly as printed: the reference Bow Master reads {VALIDATED_DAMAGE_PCT}
-                {" "}and {VALIDATED_FINAL_DAMAGE_PCT}. Leave a box empty for &ldquo;not read&rdquo;;
-                a zero would claim a measurement of zero.
+                {" "}and {VALIDATED_FINAL_DAMAGE_PCT}, with 2,609 STR. Leave a box empty for
+                &ldquo;not read&rdquo;; a zero would claim a measurement of zero, and for
+                secondary stat zero is a reading some classes genuinely have.
               </p>
             </div>
           )}
