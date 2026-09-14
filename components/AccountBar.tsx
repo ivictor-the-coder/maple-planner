@@ -379,16 +379,36 @@ export default function AccountBar({ localSheet, onAdopt }: AccountBarProps) {
    * `offer-seed` is neither — so a player who took the hint and imported their
    * own gear would sit unsynced until they reloaded. Re-planning is the whole
    * fix, and re-planning is free: it is one GET that writes nothing. */
-  // Re-plan whenever the sheet CHANGES while an offer-seed is on screen. This
-  // used to hinge on a localIsDemo prop; that prop was the source of the
-  // data-loss defect and is gone. The sheet's own signature is the honest
-  // trigger - it moves exactly when the player edits something, which is the
-  // event this effect cares about, and planFor() decides what that means.
+  /* Re-plan whenever the sheet CHANGES while an offer-seed is on screen.
+   *
+   * `state.t` IS READ THROUGH A REF AND IS NOT A DEPENDENCY, and that is the
+   * whole point of this shape. check() opens with setState({ t: "checking" }),
+   * so listing state.t as a dep makes this effect retrigger itself: offer-seed
+   * fires it, check() flips the state to checking, the dep changes, it fires
+   * again, check() resolves back to offer-seed, and round it goes. Measured
+   * before this was fixed: 298 GET /api/profile in 20 seconds and still
+   * climbing, the strip stuck on "Checking account…" in 197 of 200 samples, and
+   * the "Put this sheet on my account" button - the only thing a brand-new
+   * visitor can click - rendering in 0 of 200.
+   *
+   * It was dormant until today. The condition used to be
+   * `state.t !== "offer-seed" || localIsDemo`, and localIsDemo was false for
+   * every real visitor because of a separate bug, so the branch never ran. One
+   * fix made offer-seed reachable and this one went live with it - the usual way
+   * a second bug surfaces, by the first one being fixed.
+   *
+   * The sheet's signature is the honest trigger: it moves exactly when the
+   * player edits something, which is the event this effect cares about, and
+   * planFor() decides what that means. */
+  const stateRef = useRef(state);
   useEffect(() => {
-    if (state.t !== "offer-seed") return;
+    stateRef.current = state;
+  });
+  useEffect(() => {
+    if (stateRef.current.t !== "offer-seed") return;
     const id = setTimeout(() => void check(), 0);
     return () => clearTimeout(id);
-  }, [state.t, localSig, check]);
+  }, [localSig, check]);
 
   /* Ongoing saves. Only ever from a settled `synced` state, so a pending
    * question or a failure stops the flow instead of hammering the server. */
