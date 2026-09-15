@@ -1,0 +1,60 @@
+{
+  "question": "Can a plain Honor EXP reset reach or keep Legendary, or does that take a Circulator?",
+  "askedBy": "the owner, 2026-09-14",
+  "source": "Nexon Maple Guides, Character Stats and Hyper Stats",
+  "url": "https://www.nexon.com/maplestory/game/maple-guides/all/5900/character-stats-and-hyper-stats",
+  "readAt": "2026-09-14",
+  "quotes": [
+    "Ability reset can be done through Honor EXP or by using a Circulator item.",
+    "You can reset the Ability with 100 points of Honor EXP. Stats that you do not wish to change can be locked, keeping them safe while your other stats are reset.",
+    "However, the rank needs to be fixed as well in order to lock the stats. If you lock a rank or stats, Honor EXP needed to reset it will increase.",
+    "Rank and stats cannot be locked for Rare or Epic Abilities.",
+    "Circulators can be used to reset Ability without the cost of Honor EXP. Usage effects differ depending on the type of the Circulator.",
+    "Circulators cannot be used to lock ranks or stats."
+  ],
+  "nexonHonorTable": {
+    "note": "Nexon's 'Required Honor EXP to Lock' table, transcribed verbatim.",
+    "columns": [
+      "Epic",
+      "Unique",
+      "Legendary"
+    ],
+    "rows": {
+      "None selected": [
+        100,
+        100,
+        100
+      ],
+      "Rank selected": [
+        500,
+        5100,
+        10100
+      ],
+      "Rank + 1 stat selected": [
+        3500,
+        8100,
+        13100
+      ],
+      "Rank + 2 stats selected": [
+        8500,
+        13100,
+        18100
+      ]
+    }
+  },
+  "answer": "Honor EXP alone CAN reroll at Legendary - a reset costs 100 Honor with nothing locked - but nothing about that reset preserves the rank. Keeping Legendary means LOCKING the rank, which is what costs: 10,100 Honor for the rank alone, rising to 18,100 with two stats locked. A Circulator resets without spending Honor at all, but Nexon states outright that a Circulator CANNOT lock rank or stats - so a Circulator is the cheap way to reroll and the wrong tool for protecting a rank you already have.",
+  "contradictions": [
+    {
+      "what": "Nexon's own table contradicts Nexon's own sentence about Epic.",
+      "detail": "The table gives Epic a 'Rank selected' cost of 500 and a 'Rank + 2 stats' cost of 8,500, while the sentence below it says 'Rank and stats cannot be locked for Rare or Epic Abilities.' Both cannot be true. Unresolved; do not model Epic locking on either until someone reads it in game."
+    },
+    {
+      "what": "The guide's Legendary costs are each 2,100 Honor above the owner's panel.",
+      "detail": "In-game on 2026-09-12 the owner's Ability Setting panel printed 8,000 / 11,000 / 16,000 for 0 / 1 / 2 locked. Nexon's Legendary column reads 10,100 / 13,100 / 18,100 for rank / rank+1 / rank+2. The offset is a flat 2,100 across all three, which looks structural rather than coincidental - possibly the panel labels count stats where the guide counts rank-plus-stats, possibly the guide is stale. INNER_ABILITY_REROLL_HONOR keeps the in-game figures: an in-game reading outranks a guide, and this repo has already caught these guides stale twice."
+    }
+  ],
+  "notModelled": [
+    "Rank-up probability on an unlocked reset. Nexon publishes no odds, and neither does anything else sourced here.",
+    "Which Circulator does what. Nexon says only that 'usage effects differ depending on the type'."
+  ]
+}
