@@ -556,8 +556,31 @@ export const LADDER: Record<string, Rung[]> = {
   ring2: [["Kanna's Treasure", 140], ["Superior Gollux", 150], ["Boss ring", 160]],
   ring3: [["Silver Blossom Ring", 110], ["Superior Gollux", 150], ["Boss ring", 160]],
   ring4: [["Noble Ifia's Ring", 110], ["Superior Gollux", 150], ["Boss ring", 160]],
-  face: [["Condensed Power Crystal", 140], ["Papulatus Mark", 145], ["Sweetwater face", 160]],
-  eye: [["Papulatus Mark", 145], ["Magic Eyepatch", 150], ["Berserked", 160]],
+  // FACE AND EYE EACH CARRIED AN ITEM FROM THE OTHER SLOT. lib/sets.ts had
+  // already flagged the Papulatus Mark half and said exactly how to settle it -
+  // "by reading api.maplestory.net's subcategory field. One lookup decides it" -
+  // so the lookup was done. It decided that, and found a second one going the
+  // other way that nobody had noticed:
+  //
+  //   Papulatus Mark   1022277  Eye Decoration  Lv 145   was on BOTH ladders
+  //   Berserked        1012632  Face Accessory  Lv 160   was on the EYE ladder
+  //
+  // So the app was telling a player to put an eye accessory on their face and a
+  // face accessory on their eye. Neither is buyable as advised, which is the
+  // same defect the owner caught on the secondary slot: a rung you cannot act on.
+  //
+  // "Sweetwater face" was not an item name at all. The database has Sweetwater
+  // TATTOO (Face Accessory, Lv 160) and Sweetwater MONOCLE (Eye Decoration,
+  // Lv 160); neither can be found by typing what the ladder used to say.
+  //
+  // ORDERED BY REQUIRED LEVEL, because that is what the ranking below actually
+  // uses (`it.lvl >= rung[1]`). Every name and every level here came back from
+  // /api/items on 2026-09-15, so a rung is now a thing a player can search for.
+  // Sweetwater Tattoo is Lv 160 like Berserked rather than above it, so it is an
+  // ALTERNATIVE at that rung and not a further tier - listing it as one would be
+  // inventing an ordering the database does not give.
+  face: [["Condensed Power Crystal", 140], ["Berserked", 160]],
+  eye: [["Papulatus Mark", 145], ["Magic Eyepatch", 150], ["Sweetwater Monocle", 160]],
   heart: [["Lidium Heart", 0], ["Mechanical Heart", 120], ["Black Heart", 150]],
   pocket: [["Pink Bean pocket", 140], ["Cursed Spellbook", 150], ["Stone of Eternal Life", 160]],
   emblem: [["Gold Maple Leaf Emblem", 100]],
@@ -575,6 +598,7 @@ export const SOURCE: Record<string, string> = {
   "Commanding Force Earring": "Darknell",
   "Guardian Angel Ring": "Guardian Angel Slime (weekly)",
   "Papulatus Mark": "Chaos Papulatus",
+  "Sweetwater Monocle": "Commerci voyages, or the Sweetwater crafting line",
   "Magic Eyepatch": "Damien",
   Berserked: "Lotus",
   "Genesis (liberated)": "Tenebris liberation questline",

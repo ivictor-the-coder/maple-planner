@@ -4,7 +4,6 @@
   "collectedOn": "2026-09-13",
   "sourceClass": "first-party (NEXON America official MapleStory Maple Guides, GMS) read live, reconciled against lib/rules.ts LADDER/SOURCE and data/guide-graph.json",
   "why": "LADDER.secondary named an 'Absolab-tier' secondary that does not exist. The tell was that neither upper rung had an entry in the SOURCE table, so the advice rendered with an empty obtain-route string. This file asks the same question of every remaining rung and answers it per rung, with evidence.",
-
   "pagesRead": [
     "https://www.nexon.com/maplestory/game/maple-guides/all/5905/boss-content",
     "https://www.nexon.com/maplestory/game/maple-guides/all/1301/set-items",
@@ -22,9 +21,7 @@
     "appearsOn": "all three pages read on this pass",
     "assessment": "Benign reader-facing UI hint, not an instruction directed at an agent. Not acted on. No text on any page read attempted to direct the reader to take an action outside the game."
   },
-
   "method": "lib/ was compiled to CommonJS in a scratch dir and LADDER/SOURCE were read out of the compiled module, not eyeballed. advise() was then run per slot on exampleCharacter() with the slot emptied, and the rendered strings captured verbatim. Every 'rendersAs' string below is a real render, not a reconstruction.",
-
   "shape": {
     "ladderedSlots": 24,
     "totalRungs": 66,
@@ -35,11 +32,24 @@
     "slotsWhoseEmptyStateRendersNoObtainRoute": 13,
     "note": "28 of 66 rungs (24 of 39 distinct names) have no SOURCE row. The retracted secondary had two such rungs and that was enough to retract the slot."
   },
-
   "reproducedDefect": {
     "what": "The secondary-bug signature - an obtain route that renders as the empty string - is live on 13 slots today.",
     "howReproduced": "For each slot: exampleCharacter(), delete the item, advise(slot, ch), read the 'Empty - X goes here.' rec's w field.",
-    "slotsAffected": ["ring1", "ring2", "ring3", "ring4", "pocket", "pendant1", "pendant2", "weapon", "belt", "face", "earring", "shoulder", "emblem"],
+    "slotsAffected": [
+      "ring1",
+      "ring2",
+      "ring3",
+      "ring4",
+      "pocket",
+      "pendant1",
+      "pendant2",
+      "weapon",
+      "belt",
+      "face",
+      "earring",
+      "shoulder",
+      "emblem"
+    ],
     "verbatimRenders": [
       "ring1  t='Empty - Meister Ring goes here.'  w=' · Lv. 140'",
       "pocket t='Empty - Pink Bean pocket goes here.'  w=' · Lv. 140'",
@@ -56,7 +66,6 @@
     ],
     "note": "On the upper rungs the empty route is worse than on the empty-slot rec, because the sentence opens with a bare em-dash where the route should be. It reads as a typographical fault rather than as missing knowledge, so nobody reports it."
   },
-
   "contradicted": [
     {
       "rung": "face rung 1 - ['Papulatus Mark', 145]",
@@ -69,7 +78,7 @@
       "evidenceForFace": [
         "data/guide-graph.json node bosses.drops, row 'Chaos Papulatus' -> 'Papulatus Mark', notes 'Face accessory. Low drop rate'. That node's own source field reads 'UNVERIFIED - community drop tables.'"
       ],
-      "howItGotThere": "guide-graph node gear.slots has ONE combined row for 'Face / Eye' whose tier-1 cell reads 'Condensed Power Crystal, Papulatus Mark'. The transcription into LADDER split one row into two ladders and put both items on both. That is a fabrication introduced by the copy, not by the source.",
+      "howItGotThere": "guide-graph node gear.tiers has ONE combined row for 'Face / Eye' whose tier-1 cell reads 'Condensed Power Crystal, Papulatus Mark'. The transcription into LADDER split one row into two ladders and put both items on both. That is a fabrication introduced by the copy, not by the source.",
       "whyItIsWorseThanTheSecondaryBug": "Papulatus Mark HAS a SOURCE row, so this rung prints a confident obtain route. A face-slot player is told 'Next tier: Papulatus Mark (Lv. 145). Chaos Papulatus - a Transfer Hammer reaches Lv. 150 from Lv. 140, so star force and potential can move onto Papulatus Mark at Lv. 145.' - a confident instruction to farm a boss and hammer an item into a slot it cannot occupy. The empty-string tell that caught the secondary is absent here.",
       "notSettledHere": "Which slot Papulatus Mark actually occupies is NOT settled by this audit. Nexon publishes no item data. lib/farming.ts:193 shows the repo has previously settled exactly this question for the Black Bean Mark by reading api.maplestory.net's subcategory field ('Eye Decoration'). That is the check to run - one lookup, and it decides which rung to delete."
     },
@@ -88,8 +97,8 @@
       "rung": "SOURCE['Lidium Heart'] = 'Free from the Frieren Lotus mission'",
       "verdict": "contradicted",
       "claim": "The only obtain route in SOURCE that points at a time-limited collaboration event, presented as the permanent route for a gear slot.",
-      "origin": "data/guide-graph.json gear.slots, Heart row, note cell: 'Lidium Heart is free from the Frieren Lotus mission'. v.271 is 'MapleStory x Frieren: Beyond Journey's End' (data/patches.json).",
-      "provenanceOfTheOriginal": "gear.slots source field: 'UNVERIFIED - community gear progression; no citable source states this slot-by-slot ladder.'",
+      "origin": "data/guide-graph.json gear.tiers, Heart row, note cell: 'Lidium Heart is free from the Frieren Lotus mission'. v.271 is 'MapleStory x Frieren: Beyond Journey's End' (data/patches.json).",
+      "provenanceOfTheOriginal": "gear.tiers source field: 'UNVERIFIED - community gear progression; no citable source states this slot-by-slot ladder.'",
       "whyItIsAProblem": "Collab events end. When it does, the heart slot's only obtain route names a mission that no longer exists, and nothing in the repo carries an expiry date for it. This is a fact with a shelf life stored as if it had none.",
       "fix": "Either date-stamp it in the string ('v.271 Frieren event, while it runs') or retract it to the permanent route, which this repo does not have."
     },
@@ -114,7 +123,6 @@
       "fix": "Gate nextTierTransferNote() on slot.sf, and gate the 'do not over-cube' half on slot.pot !== 'no'."
     }
   ],
-
   "perRung": {
     "legend": {
       "sourceRow": "does lib/rules.ts SOURCE have an exact-match key for this rung name",
@@ -123,99 +131,731 @@
       "verdict": "sourced | unsourced | contradicted"
     },
     "rows": [
-      { "slot": "hat", "rung": 0, "name": "CRA Root Abyss hat", "lvl": 150, "sourceRow": true, "route": "Chaos Vellum / Pierre / Von Bon / Crimson Queen", "routeProvenance": "sourced", "origin": "guide-graph gear.sources, DigitalTQ 2024-07-09 + maplestorywiki, lastVerified 2026-09-11", "firstParty": "all four bosses named on the Boss Content page as Chaos Vellum / Chaos Pierre / Chaos Von Bon / Chaos Crimson Queen; the gear link is absent", "verdict": "sourced", "note": "Best-corroborated rung in the table. But 'CRA Root Abyss hat' is not an item name and cannot be searched for in game - see namingProblems." },
-      { "slot": "hat", "rung": 1, "name": "Arcane Umbra", "lvl": 200, "sourceRow": true, "route": "Lucid / Will drops, or craft with Arcane River Droplets", "routeProvenance": "sourced", "origin": "guide-graph gear.sources", "firstParty": "Lucid and Will confirmed as weekly bosses; gear link absent", "verdict": "sourced" },
-      { "slot": "hat", "rung": 2, "name": "Eternal", "lvl": 250, "sourceRow": true, "route": "Kalos the Guardian (~85M CP)", "routeProvenance": "unverified", "origin": "guide-graph gear.sources for the boss; bosses.cp (UNVERIFIED) for the number", "firstParty": "Kalos the Guardian confirmed as a weekly boss, Easy/Normal/Chaos/Extreme; no gear, no CP", "verdict": "contradicted", "see": "contradicted[1]" },
-      { "slot": "top", "rung": 0, "name": "CRA top", "lvl": 150, "sourceRow": true, "route": "Root Abyss weekly", "routeProvenance": "unverified", "origin": "guide-graph gear.slots note; vaguer than the hat's route in the same table", "firstParty": "absent", "verdict": "unsourced", "note": "'Root Abyss weekly' names a cadence, not a route. The hat rung in the same LADDER names four bosses; this one names none." },
-      { "slot": "top", "rung": 1, "name": "Arcane Umbra overall", "lvl": 200, "sourceRow": false, "route": "", "routeProvenance": "none", "firstParty": "absent", "verdict": "contradicted", "see": "contradicted[3]" },
-      { "slot": "top", "rung": 2, "name": "Eternal", "lvl": 250, "sourceRow": true, "routeProvenance": "unverified", "verdict": "contradicted", "see": "contradicted[1]" },
-      { "slot": "bottom", "rung": 0, "name": "CRA bottom", "lvl": 150, "sourceRow": true, "route": "Root Abyss weekly", "routeProvenance": "unverified", "firstParty": "absent", "verdict": "unsourced" },
-      { "slot": "bottom", "rung": 1, "name": "Arcane Umbra overall", "lvl": 200, "sourceRow": false, "routeProvenance": "none", "verdict": "contradicted", "see": "contradicted[3]" },
-      { "slot": "bottom", "rung": 2, "name": "Eternal", "lvl": 250, "sourceRow": true, "routeProvenance": "unverified", "verdict": "contradicted", "see": "contradicted[1]" },
-      { "slot": "gloves", "rung": 0, "name": "Absolab", "lvl": 160, "sourceRow": true, "route": "Lotus coins (all but hat/shoulder) and Damien Stigma Coins (weapon/shoulder)", "routeProvenance": "sourced", "origin": "guide-graph gear.sources", "firstParty": "Lotus and Damien confirmed as weekly bosses; gear link absent", "verdict": "sourced", "note": "Spelled 'Absolab' here and 'AbsoLab' in lib/sets.ts. The game spells it AbsoLab. See namingProblems." },
-      { "slot": "gloves", "rung": 1, "name": "Arcane Umbra", "lvl": 200, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "gloves", "rung": 2, "name": "Eternal", "lvl": 250, "sourceRow": true, "routeProvenance": "unverified", "verdict": "contradicted", "see": "contradicted[1]" },
-      { "slot": "shoes", "rung": 0, "name": "Absolab", "lvl": 160, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "shoes", "rung": 1, "name": "Arcane Umbra", "lvl": 200, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "shoes", "rung": 2, "name": "Eternal", "lvl": 250, "sourceRow": true, "routeProvenance": "unverified", "verdict": "contradicted", "see": "contradicted[1]" },
-      { "slot": "cape", "rung": 0, "name": "Absolab", "lvl": 160, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "cape", "rung": 1, "name": "Arcane Umbra", "lvl": 200, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "cape", "rung": 2, "name": "Eternal", "lvl": 250, "sourceRow": true, "routeProvenance": "unverified", "verdict": "contradicted", "see": "contradicted[1]" },
-      { "slot": "shoulder", "rung": 0, "name": "Royal Black Metal", "lvl": 120, "sourceRow": false, "routeProvenance": "none", "firstParty": "absent", "verdict": "unsourced", "note": "lib/sets.ts classifies 'Royal Black Metal' as a Boss Accessory shoulder, so the repo believes the item exists; where it comes from is stated nowhere. Renders an empty route on an empty shoulder slot." },
-      { "slot": "shoulder", "rung": 1, "name": "Absolab", "lvl": 160, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "shoulder", "rung": 2, "name": "Arcane Umbra", "lvl": 200, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced", "note": "LADDER ends the shoulder at Arcane Umbra; guide-graph gear.slots ends the same slot at 'Eternal (250)'. The transcription dropped a rung here while inventing one on the face. Whether an Arcane Umbra shoulder exists at all is unverified in this repo - lib/sets.ts lists 'shoulder' in ARMOR_SLOTS for both AbsoLab and Arcane Umbra, which is an assumption, not a reading." },
-      { "slot": "weapon", "rung": 0, "name": "Fafnir / CRA", "lvl": 150, "sourceRow": false, "routeProvenance": "none", "firstParty": "absent", "verdict": "unsourced", "note": "Not an item name; a slash-joined pair of set nicknames. lib/sets.ts matches CRA weapons on /^fafnir\\b/, so 'Fafnir' alone is the repo's own name for it." },
-      { "slot": "weapon", "rung": 1, "name": "Absolab", "lvl": 160, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "weapon", "rung": 2, "name": "Arcane Umbra", "lvl": 200, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "weapon", "rung": 3, "name": "Genesis (liberated)", "lvl": 200, "sourceRow": true, "route": "Tenebris liberation questline", "routeProvenance": "sourced", "origin": "guide-graph gear.liberation", "firstParty": "absent", "verdict": "unsourced", "note": "LEVEL UNSOURCED. guide-graph gear.sources gives the Genesis weapon's level as '-' explicitly. LADDER states 200. It also sits at the same level as the rung below it, the only equal-level pair in the table, so idx never advances past Arcane Umbra to reach it for a Lv 200 weapon." },
-      { "slot": "belt", "rung": 0, "name": "Reinforced Gollux", "lvl": 140, "sourceRow": false, "routeProvenance": "unverified", "origin": "guide-graph bosses.gollux gives 'Hard: Reinforced/Solid gear' (DigitalTQ 2024-07-08, lastVerified 2026-09-11) - a route exists in the repo and was simply never copied into SOURCE", "firstParty": "absent; Gollux appears nowhere on the Boss Content page", "verdict": "unsourced", "note": "Cheapest fix in the table: the route already exists in guide-graph and is dated." },
-      { "slot": "belt", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "route": "Belt + Earrings from Hell Gollux; Ring + Pendant from Lucia's shop", "routeProvenance": "sourced", "origin": "guide-graph gear.sources + bosses.gollux", "firstParty": "absent entirely - Gollux is not on the Boss Content page in any difficulty", "verdict": "sourced" },
-      { "slot": "belt", "rung": 2, "name": "Dreamy Belt", "lvl": 160, "sourceRow": false, "routeProvenance": "none", "firstParty": "absent", "verdict": "unsourced", "note": "Renders ' - a Transfer Hammer reaches...' with a leading em-dash and no route." },
-      { "slot": "pendant1", "rung": 0, "name": "Dominator Pendant", "lvl": 140, "sourceRow": false, "routeProvenance": "unverified", "origin": "guide-graph bosses.drops names Arkarium as the source; never copied into SOURCE", "firstParty": "Arkarium is not on the Boss Content page, but that page lists weekly bosses only and Arkarium is not claimed to be weekly, so absence is not evidence here", "verdict": "unsourced" },
-      { "slot": "pendant1", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "pendant1", "rung": 2, "name": "Source of Suffering", "lvl": 160, "sourceRow": true, "route": "Verus Hilla", "routeProvenance": "unverified", "origin": "guide-graph bosses.drops (source: 'UNVERIFIED - community drop tables')", "firstParty": "Verus Hilla confirmed as a weekly boss (Normal/Hard); the gear link is absent", "verdict": "unsourced", "note": "Has a SOURCE row, so it renders confidently. The boss exists; that it drops this pendant is community knowledge with no citable origin in this repo." },
-      { "slot": "pendant2", "rung": 0, "name": "Daybreak Pendant", "lvl": 140, "sourceRow": false, "routeProvenance": "none", "firstParty": "absent", "verdict": "unsourced", "note": "Named in guide-graph gear.slots as 'Dominator Pendant, Daybreak' - the repo does not even state its full item name consistently, let alone a source." },
-      { "slot": "pendant2", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "pendant2", "rung": 2, "name": "Source of Suffering", "lvl": 160, "sourceRow": true, "routeProvenance": "unverified", "verdict": "unsourced" },
-      { "slot": "earring", "rung": 0, "name": "Reinforced Gollux", "lvl": 140, "sourceRow": false, "routeProvenance": "unverified", "verdict": "unsourced" },
-      { "slot": "earring", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced", "note": "guide-graph gear.slots lists 'Superior Gollux (150), Estella' for this rung. LADDER dropped Estella. A dropped alternative is a smaller sin than an invented rung but it is the same transcription being lossy in both directions." },
-      { "slot": "earring", "rung": 2, "name": "Commanding Force Earring", "lvl": 160, "sourceRow": true, "route": "Darknell", "routeProvenance": "unverified", "origin": "guide-graph bosses.drops (UNVERIFIED)", "firstParty": "Darknell confirmed as a weekly boss (Normal/Hard); gear link absent", "verdict": "unsourced" },
-      { "slot": "ring1", "rung": 0, "name": "Meister Ring", "lvl": 140, "sourceRow": false, "routeProvenance": "none", "firstParty": "absent", "verdict": "unsourced", "note": "Not a boss drop at all in community knowledge - it is crafted - which is why no boss-drop table would ever supply its route. A crafted item needs a different kind of route string and SOURCE has no shape for one." },
-      { "slot": "ring1", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "ring1", "rung": 2, "name": "Guardian Angel Ring", "lvl": 160, "sourceRow": true, "route": "Guardian Angel Slime (weekly)", "routeProvenance": "sourced", "origin": "guide-graph bosses.drops for the drop; the CADENCE is first-party", "firstParty": "PARTIAL AND THE BEST IN THE TABLE: 'Normal/Chaos Guardian Angel Slime' is in the Practice Mode roster, and 'Only the bosses that can be cleared weekly can be faced in Practice Mode', so 'weekly' is first-party sourced by inference. The ring drop itself is absent.", "verdict": "sourced", "note": "The only rung whose SOURCE string has any first-party content at all, and only half of it." },
-      { "slot": "ring2", "rung": 0, "name": "Kanna's Treasure", "lvl": 140, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced" },
-      { "slot": "ring2", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "ring2", "rung": 2, "name": "Boss ring", "lvl": 160, "sourceRow": false, "routeProvenance": "none", "firstParty": "absent", "verdict": "unsourced", "note": "NOT AN ITEM. 'Boss ring' is a category, occupying the top rung of three ring slots. guide-graph gear.slots reads 'Boss rings + Special Skill Rings' and notes 'v.271 added a second Special Skill Ring slot' - both of which LADDER drops. A player told their ring is outclassed by 'Boss ring' has been told nothing." },
-      { "slot": "ring3", "rung": 0, "name": "Silver Blossom Ring", "lvl": 110, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "Level 110 is corroborated inside the repo: lib/starforce.ts reproduces a 'Silver Blossom Ring Lv110 9->10 = 533,400' observation. The LEVEL is the only cross-checked number on any unsourced rung." },
-      { "slot": "ring3", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "ring3", "rung": 2, "name": "Boss ring", "lvl": 160, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced" },
-      { "slot": "ring4", "rung": 0, "name": "Noble Ifia's Ring", "lvl": 110, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "lib/sets.ts lists it as a Boss Accessory ring alternate, transcribed from the in-game Set Effect panel, so the NAME is corroborated in-repo. The level and the route are not." },
-      { "slot": "ring4", "rung": 1, "name": "Superior Gollux", "lvl": 150, "sourceRow": true, "routeProvenance": "sourced", "verdict": "sourced" },
-      { "slot": "ring4", "rung": 2, "name": "Boss ring", "lvl": 160, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced" },
-      { "slot": "face", "rung": 0, "name": "Condensed Power Crystal", "lvl": 140, "sourceRow": false, "routeProvenance": "none", "firstParty": "absent", "verdict": "unsourced", "note": "Name corroborated by lib/sets.ts as the face-slot Boss Accessory. Route stated nowhere. Renders an empty route on an empty face slot." },
-      { "slot": "face", "rung": 1, "name": "Papulatus Mark", "lvl": 145, "sourceRow": true, "routeProvenance": "unverified", "verdict": "contradicted", "see": "contradicted[0]", "note": "THE HIGHEST-VALUE ROW IN THIS TABLE." },
-      { "slot": "face", "rung": 2, "name": "Sweetwater face", "lvl": 160, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "Not an item name. guide-graph gear.slots reads 'Sweetwater / boss faces', which is two alternatives and a category; LADDER kept half of one." },
-      { "slot": "eye", "rung": 0, "name": "Papulatus Mark", "lvl": 145, "sourceRow": true, "route": "Chaos Papulatus", "routeProvenance": "unverified", "firstParty": "Chaos Papulatus confirmed as a weekly boss; gear link absent", "verdict": "contradicted", "see": "contradicted[0]", "note": "This is the copy the repo's stronger witnesses support. If the api.maplestory.net check says Eye Decoration, this rung stays and face rung 1 is deleted." },
-      { "slot": "eye", "rung": 1, "name": "Magic Eyepatch", "lvl": 150, "sourceRow": true, "route": "Damien", "routeProvenance": "unverified", "firstParty": "Damien confirmed as a weekly boss (Normal/Hard); gear link absent", "verdict": "unsourced" },
-      { "slot": "eye", "rung": 2, "name": "Berserked", "lvl": 160, "sourceRow": true, "route": "Lotus", "routeProvenance": "unverified", "firstParty": "Lotus confirmed as a weekly boss (Normal/Hard/Extreme); gear link absent", "verdict": "unsourced" },
-      { "slot": "heart", "rung": 0, "name": "Lidium Heart", "lvl": 0, "sourceRow": true, "routeProvenance": "unverified", "verdict": "contradicted", "see": "contradicted[2]" },
-      { "slot": "heart", "rung": 1, "name": "Mechanical Heart", "lvl": 120, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "guide-graph gear.slots reads 'Mechanical / Gollux hearts'; LADDER kept one and dropped the other." },
-      { "slot": "heart", "rung": 2, "name": "Black Heart", "lvl": 150, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced" },
-      { "slot": "pocket", "rung": 0, "name": "Pink Bean pocket", "lvl": 140, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "NOT AN ITEM NAME. guide-graph itself writes 'Pink Bean pocket item'. lib/sets.ts, transcribed from the in-game panel, gives the actual pocket-slot Boss Accessory names as /pink (holy cup|light grail)|stone of eternal life/ - so the repo HAS the real name ('Pink Holy Cup') in another file and the ladder prints a description instead." },
-      { "slot": "pocket", "rung": 1, "name": "Cursed Spellbook", "lvl": 150, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced" },
-      { "slot": "pocket", "rung": 2, "name": "Stone of Eternal Life", "lvl": 160, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "Name corroborated by lib/sets.ts. Route absent." },
-      { "slot": "emblem", "rung": 0, "name": "Gold Maple Leaf Emblem", "lvl": 100, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "One-rung ladder, so it renders ONLY as 'Empty - Gold Maple Leaf Emblem goes here.  · Lv. 100' with nothing after the separator. guide-graph notes 'Never replaced. Cube it early, it is permanent' - useful advice the ladder drops." },
-      { "slot": "badge", "rung": 0, "name": "Crystal Ventus Badge", "lvl": 130, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "Name corroborated by lib/sets.ts as the badge-slot Boss Accessory." },
-      { "slot": "badge", "rung": 1, "name": "Genesis Badge", "lvl": 200, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced" },
-      { "slot": "android", "rung": 0, "name": "Any android", "lvl": 0, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "Not an item name. Harmless because lvl 0 routes the slot to the 'Slot is empty.' branch instead, but it is still a placeholder sitting in a data table." },
-      { "slot": "medal", "rung": 0, "name": "Best available", "lvl": 0, "sourceRow": false, "routeProvenance": "none", "verdict": "unsourced", "note": "Not an item name. Same lvl-0 escape as android." }
+      {
+        "slot": "hat",
+        "rung": 0,
+        "name": "CRA Root Abyss hat",
+        "lvl": 150,
+        "sourceRow": true,
+        "route": "Chaos Vellum / Pierre / Von Bon / Crimson Queen",
+        "routeProvenance": "sourced",
+        "origin": "guide-graph gear.sources, DigitalTQ 2024-07-09 + maplestorywiki, lastVerified 2026-09-11",
+        "firstParty": "all four bosses named on the Boss Content page as Chaos Vellum / Chaos Pierre / Chaos Von Bon / Chaos Crimson Queen; the gear link is absent",
+        "verdict": "sourced",
+        "note": "Best-corroborated rung in the table. But 'CRA Root Abyss hat' is not an item name and cannot be searched for in game - see namingProblems."
+      },
+      {
+        "slot": "hat",
+        "rung": 1,
+        "name": "Arcane Umbra",
+        "lvl": 200,
+        "sourceRow": true,
+        "route": "Lucid / Will drops, or craft with Arcane River Droplets",
+        "routeProvenance": "sourced",
+        "origin": "guide-graph gear.sources",
+        "firstParty": "Lucid and Will confirmed as weekly bosses; gear link absent",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "hat",
+        "rung": 2,
+        "name": "Eternal",
+        "lvl": 250,
+        "sourceRow": true,
+        "route": "Kalos the Guardian (~85M CP)",
+        "routeProvenance": "unverified",
+        "origin": "guide-graph gear.sources for the boss; bosses.cp (UNVERIFIED) for the number",
+        "firstParty": "Kalos the Guardian confirmed as a weekly boss, Easy/Normal/Chaos/Extreme; no gear, no CP",
+        "verdict": "contradicted",
+        "see": "contradicted[1]"
+      },
+      {
+        "slot": "top",
+        "rung": 0,
+        "name": "CRA top",
+        "lvl": 150,
+        "sourceRow": true,
+        "route": "Root Abyss weekly",
+        "routeProvenance": "unverified",
+        "origin": "guide-graph gear.tiers note; vaguer than the hat's route in the same table",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "'Root Abyss weekly' names a cadence, not a route. The hat rung in the same LADDER names four bosses; this one names none."
+      },
+      {
+        "slot": "top",
+        "rung": 1,
+        "name": "Arcane Umbra overall",
+        "lvl": 200,
+        "sourceRow": false,
+        "route": "",
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "contradicted",
+        "see": "contradicted[3]"
+      },
+      {
+        "slot": "top",
+        "rung": 2,
+        "name": "Eternal",
+        "lvl": 250,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "contradicted",
+        "see": "contradicted[1]"
+      },
+      {
+        "slot": "bottom",
+        "rung": 0,
+        "name": "CRA bottom",
+        "lvl": 150,
+        "sourceRow": true,
+        "route": "Root Abyss weekly",
+        "routeProvenance": "unverified",
+        "firstParty": "absent",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "bottom",
+        "rung": 1,
+        "name": "Arcane Umbra overall",
+        "lvl": 200,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "contradicted",
+        "see": "contradicted[3]"
+      },
+      {
+        "slot": "bottom",
+        "rung": 2,
+        "name": "Eternal",
+        "lvl": 250,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "contradicted",
+        "see": "contradicted[1]"
+      },
+      {
+        "slot": "gloves",
+        "rung": 0,
+        "name": "Absolab",
+        "lvl": 160,
+        "sourceRow": true,
+        "route": "Lotus coins (all but hat/shoulder) and Damien Stigma Coins (weapon/shoulder)",
+        "routeProvenance": "sourced",
+        "origin": "guide-graph gear.sources",
+        "firstParty": "Lotus and Damien confirmed as weekly bosses; gear link absent",
+        "verdict": "sourced",
+        "note": "Spelled 'Absolab' here and 'AbsoLab' in lib/sets.ts. The game spells it AbsoLab. See namingProblems."
+      },
+      {
+        "slot": "gloves",
+        "rung": 1,
+        "name": "Arcane Umbra",
+        "lvl": 200,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "gloves",
+        "rung": 2,
+        "name": "Eternal",
+        "lvl": 250,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "contradicted",
+        "see": "contradicted[1]"
+      },
+      {
+        "slot": "shoes",
+        "rung": 0,
+        "name": "Absolab",
+        "lvl": 160,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "shoes",
+        "rung": 1,
+        "name": "Arcane Umbra",
+        "lvl": 200,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "shoes",
+        "rung": 2,
+        "name": "Eternal",
+        "lvl": 250,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "contradicted",
+        "see": "contradicted[1]"
+      },
+      {
+        "slot": "cape",
+        "rung": 0,
+        "name": "Absolab",
+        "lvl": 160,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "cape",
+        "rung": 1,
+        "name": "Arcane Umbra",
+        "lvl": 200,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "cape",
+        "rung": 2,
+        "name": "Eternal",
+        "lvl": 250,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "contradicted",
+        "see": "contradicted[1]"
+      },
+      {
+        "slot": "shoulder",
+        "rung": 0,
+        "name": "Royal Black Metal",
+        "lvl": 120,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "lib/sets.ts classifies 'Royal Black Metal' as a Boss Accessory shoulder, so the repo believes the item exists; where it comes from is stated nowhere. Renders an empty route on an empty shoulder slot."
+      },
+      {
+        "slot": "shoulder",
+        "rung": 1,
+        "name": "Absolab",
+        "lvl": 160,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "shoulder",
+        "rung": 2,
+        "name": "Arcane Umbra",
+        "lvl": 200,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced",
+        "note": "LADDER ends the shoulder at Arcane Umbra; guide-graph gear.tiers ends the same slot at 'Eternal (250)'. The transcription dropped a rung here while inventing one on the face. Whether an Arcane Umbra shoulder exists at all is unverified in this repo - lib/sets.ts lists 'shoulder' in ARMOR_SLOTS for both AbsoLab and Arcane Umbra, which is an assumption, not a reading."
+      },
+      {
+        "slot": "weapon",
+        "rung": 0,
+        "name": "Fafnir / CRA",
+        "lvl": 150,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "Not an item name; a slash-joined pair of set nicknames. lib/sets.ts matches CRA weapons on /^fafnir\\b/, so 'Fafnir' alone is the repo's own name for it."
+      },
+      {
+        "slot": "weapon",
+        "rung": 1,
+        "name": "Absolab",
+        "lvl": 160,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "weapon",
+        "rung": 2,
+        "name": "Arcane Umbra",
+        "lvl": 200,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "weapon",
+        "rung": 3,
+        "name": "Genesis (liberated)",
+        "lvl": 200,
+        "sourceRow": true,
+        "route": "Tenebris liberation questline",
+        "routeProvenance": "sourced",
+        "origin": "guide-graph gear.liberation",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "LEVEL UNSOURCED. guide-graph gear.sources gives the Genesis weapon's level as '-' explicitly. LADDER states 200. It also sits at the same level as the rung below it, the only equal-level pair in the table, so idx never advances past Arcane Umbra to reach it for a Lv 200 weapon."
+      },
+      {
+        "slot": "belt",
+        "rung": 0,
+        "name": "Reinforced Gollux",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "unverified",
+        "origin": "guide-graph bosses.gollux gives 'Hard: Reinforced/Solid gear' (DigitalTQ 2024-07-08, lastVerified 2026-09-11) - a route exists in the repo and was simply never copied into SOURCE",
+        "firstParty": "absent; Gollux appears nowhere on the Boss Content page",
+        "verdict": "unsourced",
+        "note": "Cheapest fix in the table: the route already exists in guide-graph and is dated."
+      },
+      {
+        "slot": "belt",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "route": "Belt + Earrings from Hell Gollux; Ring + Pendant from Lucia's shop",
+        "routeProvenance": "sourced",
+        "origin": "guide-graph gear.sources + bosses.gollux",
+        "firstParty": "absent entirely - Gollux is not on the Boss Content page in any difficulty",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "belt",
+        "rung": 2,
+        "name": "Dreamy Belt",
+        "lvl": 160,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "Renders ' - a Transfer Hammer reaches...' with a leading em-dash and no route."
+      },
+      {
+        "slot": "pendant1",
+        "rung": 0,
+        "name": "Dominator Pendant",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "unverified",
+        "origin": "guide-graph bosses.drops names Arkarium as the source; never copied into SOURCE",
+        "firstParty": "Arkarium is not on the Boss Content page, but that page lists weekly bosses only and Arkarium is not claimed to be weekly, so absence is not evidence here",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "pendant1",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "pendant1",
+        "rung": 2,
+        "name": "Source of Suffering",
+        "lvl": 160,
+        "sourceRow": true,
+        "route": "Verus Hilla",
+        "routeProvenance": "unverified",
+        "origin": "guide-graph bosses.drops (source: 'UNVERIFIED - community drop tables')",
+        "firstParty": "Verus Hilla confirmed as a weekly boss (Normal/Hard); the gear link is absent",
+        "verdict": "unsourced",
+        "note": "Has a SOURCE row, so it renders confidently. The boss exists; that it drops this pendant is community knowledge with no citable origin in this repo."
+      },
+      {
+        "slot": "pendant2",
+        "rung": 0,
+        "name": "Daybreak Pendant",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "Named in guide-graph gear.tiers as 'Dominator Pendant, Daybreak' - the repo does not even state its full item name consistently, let alone a source."
+      },
+      {
+        "slot": "pendant2",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "pendant2",
+        "rung": 2,
+        "name": "Source of Suffering",
+        "lvl": 160,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "earring",
+        "rung": 0,
+        "name": "Reinforced Gollux",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "unverified",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "earring",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced",
+        "note": "guide-graph gear.tiers lists 'Superior Gollux (150), Estella' for this rung. LADDER dropped Estella. A dropped alternative is a smaller sin than an invented rung but it is the same transcription being lossy in both directions."
+      },
+      {
+        "slot": "earring",
+        "rung": 2,
+        "name": "Commanding Force Earring",
+        "lvl": 160,
+        "sourceRow": true,
+        "route": "Darknell",
+        "routeProvenance": "unverified",
+        "origin": "guide-graph bosses.drops (UNVERIFIED)",
+        "firstParty": "Darknell confirmed as a weekly boss (Normal/Hard); gear link absent",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "ring1",
+        "rung": 0,
+        "name": "Meister Ring",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "Not a boss drop at all in community knowledge - it is crafted - which is why no boss-drop table would ever supply its route. A crafted item needs a different kind of route string and SOURCE has no shape for one."
+      },
+      {
+        "slot": "ring1",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "ring1",
+        "rung": 2,
+        "name": "Guardian Angel Ring",
+        "lvl": 160,
+        "sourceRow": true,
+        "route": "Guardian Angel Slime (weekly)",
+        "routeProvenance": "sourced",
+        "origin": "guide-graph bosses.drops for the drop; the CADENCE is first-party",
+        "firstParty": "PARTIAL AND THE BEST IN THE TABLE: 'Normal/Chaos Guardian Angel Slime' is in the Practice Mode roster, and 'Only the bosses that can be cleared weekly can be faced in Practice Mode', so 'weekly' is first-party sourced by inference. The ring drop itself is absent.",
+        "verdict": "sourced",
+        "note": "The only rung whose SOURCE string has any first-party content at all, and only half of it."
+      },
+      {
+        "slot": "ring2",
+        "rung": 0,
+        "name": "Kanna's Treasure",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "ring2",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "ring2",
+        "rung": 2,
+        "name": "Boss ring",
+        "lvl": 160,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "NOT AN ITEM. 'Boss ring' is a category, occupying the top rung of three ring slots. guide-graph gear.tiers reads 'Boss rings + Special Skill Rings' and notes 'v.271 added a second Special Skill Ring slot' - both of which LADDER drops. A player told their ring is outclassed by 'Boss ring' has been told nothing."
+      },
+      {
+        "slot": "ring3",
+        "rung": 0,
+        "name": "Silver Blossom Ring",
+        "lvl": 110,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "Level 110 is corroborated inside the repo: lib/starforce.ts reproduces a 'Silver Blossom Ring Lv110 9->10 = 533,400' observation. The LEVEL is the only cross-checked number on any unsourced rung."
+      },
+      {
+        "slot": "ring3",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "ring3",
+        "rung": 2,
+        "name": "Boss ring",
+        "lvl": 160,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "ring4",
+        "rung": 0,
+        "name": "Noble Ifia's Ring",
+        "lvl": 110,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "lib/sets.ts lists it as a Boss Accessory ring alternate, transcribed from the in-game Set Effect panel, so the NAME is corroborated in-repo. The level and the route are not."
+      },
+      {
+        "slot": "ring4",
+        "rung": 1,
+        "name": "Superior Gollux",
+        "lvl": 150,
+        "sourceRow": true,
+        "routeProvenance": "sourced",
+        "verdict": "sourced"
+      },
+      {
+        "slot": "ring4",
+        "rung": 2,
+        "name": "Boss ring",
+        "lvl": 160,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "face",
+        "rung": 0,
+        "name": "Condensed Power Crystal",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "firstParty": "absent",
+        "verdict": "unsourced",
+        "note": "Name corroborated by lib/sets.ts as the face-slot Boss Accessory. Route stated nowhere. Renders an empty route on an empty face slot."
+      },
+      {
+        "slot": "face",
+        "rung": 1,
+        "name": "Papulatus Mark",
+        "lvl": 145,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "contradicted",
+        "see": "contradicted[0]",
+        "note": "THE HIGHEST-VALUE ROW IN THIS TABLE."
+      },
+      {
+        "slot": "face",
+        "rung": 2,
+        "name": "Sweetwater face",
+        "lvl": 160,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "Not an item name. guide-graph gear.tiers reads 'Sweetwater / boss faces', which is two alternatives and a category; LADDER kept half of one."
+      },
+      {
+        "slot": "eye",
+        "rung": 0,
+        "name": "Papulatus Mark",
+        "lvl": 145,
+        "sourceRow": true,
+        "route": "Chaos Papulatus",
+        "routeProvenance": "unverified",
+        "firstParty": "Chaos Papulatus confirmed as a weekly boss; gear link absent",
+        "verdict": "contradicted",
+        "see": "contradicted[0]",
+        "note": "This is the copy the repo's stronger witnesses support. If the api.maplestory.net check says Eye Decoration, this rung stays and face rung 1 is deleted."
+      },
+      {
+        "slot": "eye",
+        "rung": 1,
+        "name": "Magic Eyepatch",
+        "lvl": 150,
+        "sourceRow": true,
+        "route": "Damien",
+        "routeProvenance": "unverified",
+        "firstParty": "Damien confirmed as a weekly boss (Normal/Hard); gear link absent",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "eye",
+        "rung": 2,
+        "name": "Berserked",
+        "lvl": 160,
+        "sourceRow": true,
+        "route": "Lotus",
+        "routeProvenance": "unverified",
+        "firstParty": "Lotus confirmed as a weekly boss (Normal/Hard/Extreme); gear link absent",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "heart",
+        "rung": 0,
+        "name": "Lidium Heart",
+        "lvl": 0,
+        "sourceRow": true,
+        "routeProvenance": "unverified",
+        "verdict": "contradicted",
+        "see": "contradicted[2]"
+      },
+      {
+        "slot": "heart",
+        "rung": 1,
+        "name": "Mechanical Heart",
+        "lvl": 120,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "guide-graph gear.tiers reads 'Mechanical / Gollux hearts'; LADDER kept one and dropped the other."
+      },
+      {
+        "slot": "heart",
+        "rung": 2,
+        "name": "Black Heart",
+        "lvl": 150,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "pocket",
+        "rung": 0,
+        "name": "Pink Bean pocket",
+        "lvl": 140,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "NOT AN ITEM NAME. guide-graph itself writes 'Pink Bean pocket item'. lib/sets.ts, transcribed from the in-game panel, gives the actual pocket-slot Boss Accessory names as /pink (holy cup|light grail)|stone of eternal life/ - so the repo HAS the real name ('Pink Holy Cup') in another file and the ladder prints a description instead."
+      },
+      {
+        "slot": "pocket",
+        "rung": 1,
+        "name": "Cursed Spellbook",
+        "lvl": 150,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "pocket",
+        "rung": 2,
+        "name": "Stone of Eternal Life",
+        "lvl": 160,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "Name corroborated by lib/sets.ts. Route absent."
+      },
+      {
+        "slot": "emblem",
+        "rung": 0,
+        "name": "Gold Maple Leaf Emblem",
+        "lvl": 100,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "One-rung ladder, so it renders ONLY as 'Empty - Gold Maple Leaf Emblem goes here.  · Lv. 100' with nothing after the separator. guide-graph notes 'Never replaced. Cube it early, it is permanent' - useful advice the ladder drops."
+      },
+      {
+        "slot": "badge",
+        "rung": 0,
+        "name": "Crystal Ventus Badge",
+        "lvl": 130,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "Name corroborated by lib/sets.ts as the badge-slot Boss Accessory."
+      },
+      {
+        "slot": "badge",
+        "rung": 1,
+        "name": "Genesis Badge",
+        "lvl": 200,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced"
+      },
+      {
+        "slot": "android",
+        "rung": 0,
+        "name": "Any android",
+        "lvl": 0,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "Not an item name. Harmless because lvl 0 routes the slot to the 'Slot is empty.' branch instead, but it is still a placeholder sitting in a data table."
+      },
+      {
+        "slot": "medal",
+        "rung": 0,
+        "name": "Best available",
+        "lvl": 0,
+        "sourceRow": false,
+        "routeProvenance": "none",
+        "verdict": "unsourced",
+        "note": "Not an item name. Same lvl-0 escape as android."
+      }
     ]
   },
-
   "namingProblems": {
     "what": "A rung name is what the player is told to go and find. Sixteen of the 39 distinct names cannot be typed into the game's own search because they are set nicknames, categories or descriptions rather than item names.",
-    "notItemNames": ["CRA Root Abyss hat", "CRA top", "CRA bottom", "Arcane Umbra overall", "Fafnir / CRA", "Boss ring", "Sweetwater face", "Pink Bean pocket", "Any android", "Best available", "Absolab", "Arcane Umbra", "Eternal", "Superior Gollux", "Reinforced Gollux", "Royal Black Metal"],
+    "notItemNames": [
+      "CRA Root Abyss hat",
+      "CRA top",
+      "CRA bottom",
+      "Arcane Umbra overall",
+      "Fafnir / CRA",
+      "Boss ring",
+      "Sweetwater face",
+      "Pink Bean pocket",
+      "Any android",
+      "Best available",
+      "Absolab",
+      "Arcane Umbra",
+      "Eternal",
+      "Superior Gollux",
+      "Reinforced Gollux",
+      "Royal Black Metal"
+    ],
     "note": "The set names (Absolab, Arcane Umbra, Eternal, Superior Gollux) are defensible - a player does shop for 'an AbsoLab cape'. The categories and descriptions are not: 'Boss ring', 'Sweetwater face', 'Pink Bean pocket', 'Best available' and 'Any android' name nothing a player can obtain.",
     "spelling": "LADDER and SOURCE spell it 'Absolab'; lib/sets.ts spells it 'AbsoLab'; the game spells it AbsoLab. LADDER says 'CRA'; lib/sets.ts names the same set 'Chaos Root Abyss'. The two files disagree about the same two sets."
   },
-
   "provenanceOfTheWholeTable": {
     "finding": "LADDER is a hand-transcription of one data/guide-graph.json node, and that node declares itself unverified.",
-    "node": "gear.slots",
+    "node": "gear.tiers",
     "quote": "UNVERIFIED - community gear progression; no citable source states this slot-by-slot ladder. Individual item levels are checkable on the wiki, the ordering is judgement.",
     "lastVerified": "\"\" (empty)",
     "consequence": "Every rung in LADDER inherits that provenance, including the retracted secondary, which came from the same node's 'Secondary' row ('Class secondary' / 'Absolab-tier' / 'Astra secondary'). The secondary was not a uniquely bad row; it was the row somebody happened to check. Nothing downstream marks any of this as unverified - lib/rules.ts SOURCED and UNVERIFIED do not carry a LADDER entry, so the ladder prints at the same confidence as a measured number.",
     "transcriptionLosses": [
-      "gear.slots Shoulder endgame is 'Eternal (250)'; LADDER stops at Arcane Umbra.",
-      "gear.slots Weapon endgame is 'Genesis (liberated) -> Destiny'; LADDER stops at Genesis.",
-      "gear.slots Gloves tier 1 is 'CRA / Absolab (160)'; LADDER kept only Absolab.",
-      "gear.slots Belt tier 1 is 'Golden Clover / Reinforced Gollux'; LADDER kept only Reinforced Gollux.",
-      "gear.slots Earring tier 2 is 'Superior Gollux (150), Estella'; LADDER dropped Estella.",
-      "gear.slots Ring tier 3 is 'Boss rings + Special Skill Rings'; LADDER dropped Special Skill Rings.",
-      "gear.slots has ONE 'Face / Eye' row; LADDER split it into two ladders and duplicated Papulatus Mark into both. This is the only loss that INVENTED a fact rather than dropping one."
+      "gear.tiers Shoulder endgame is 'Eternal (250)'; LADDER stops at Arcane Umbra.",
+      "gear.tiers Weapon endgame is 'Genesis (liberated) -> Destiny'; LADDER stops at Genesis.",
+      "gear.tiers Gloves tier 1 is 'CRA / Absolab (160)'; LADDER kept only Absolab.",
+      "gear.tiers Belt tier 1 is 'Golden Clover / Reinforced Gollux'; LADDER kept only Reinforced Gollux.",
+      "gear.tiers Earring tier 2 is 'Superior Gollux (150), Estella'; LADDER dropped Estella.",
+      "gear.tiers Ring tier 3 is 'Boss rings + Special Skill Rings'; LADDER dropped Special Skill Rings.",
+      "gear.tiers has ONE 'Face / Eye' row; LADDER split it into two ladders and duplicated Papulatus Mark into both. This is the only loss that INVENTED a fact rather than dropping one."
     ]
   },
-
   "couldNotSource": [
     "Which boss drops which piece of equipment, for every rung in the table. Nexon publishes no drop table on the web and refers the player to the in-game F1 Maple Guide. This is the single fact the whole LADDER/SOURCE mechanism is built on and none of it is first-party.",
     "The slot Papulatus Mark occupies. Two in-repo witnesses disagree and neither is first-party. api.maplestory.net's subcategory field is the check the repo has used before for exactly this question (lib/farming.ts:193) and was not run on this pass.",
@@ -224,5 +864,10 @@
     "The Genesis weapon's required level. guide-graph gear.sources gives it as '-' and LADDER states 200.",
     "Whether the 'Boss ring' category resolves to any specific obtainable ring, and what the v.271 second Special Skill Ring slot means for a four-ring ladder.",
     "Entry requirements, level gates and CP gates for every boss. The Boss Content page frames unlocks as quest and item prerequisites and publishes no figure for any boss."
-  ]
+  ],
+  "nodeIdCorrection": {
+    "what": "This file cited data/guide-graph.json node `gear.slots` 18 times. No such node exists; it is `gear.tiers`.",
+    "why": "Recorded rather than quietly renamed because the audit's whole subject is citations that do not resolve, and an audit whose own citation does not resolve is the same defect one level up.",
+    "correctedOn": "2026-09-15"
+  }
 }
